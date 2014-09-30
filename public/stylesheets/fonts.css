@@ -64,6 +64,7 @@ body.touch * {
 }
 
 /* semi-bold */
-.create-voice .cv-button {
+.create-voice .cv-button,
+..home-cover__title {
   font-weight: 600;
 }
