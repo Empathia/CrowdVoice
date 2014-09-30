@@ -1,0 +1,36 @@
+<% if @posts.length > 0 %>
+(function() {
+    var posts     = $("<%= escape_javascript render(@posts) %>"),
+        items     = $('.voice-box'),
+        images    = posts.find('img'),
+        container = $('.voices-container');
+
+    container
+        .append( posts )
+        .isotope('appended', posts);
+
+    <% if @next_page == 2 || params[:start] %>
+        container.isotope('remove', items);
+    <% end %>
+
+    container.isotope('reLayout');
+
+    var counter       = 0,
+        total_images  = images.length;
+
+    images.bind('load error', function(event) {
+        counter++;
+        if ( counter == total_images/2 && total_images > 25) {
+            Timeline.element.trigger('posts:served', images);
+        } else if (counter == total_images){
+            images.unbind('load error');
+            Timeline.element.trigger('posts:served', images);
+        }
+        return;
+    });
+
+    Timeline.options.overlays.unbindEvents().bindEvents();
+    Timeline.options.votes.unbindEvents().bindEvents();
+
+  })();
+<% end %>

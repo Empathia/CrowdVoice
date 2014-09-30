@@ -1,0 +1,68 @@
+<% javascript 'homepageSort' %>
+<div class="woahbar" style="display: none;">
+  <span style="font-family: Helvetica, Arial;">
+    Organize the order of the topics in the homepage by clicking on a title and dragging it to where you wish to place it. It will save it automatically, so once you are done you can just close the page.
+  </span>
+  <a class="close-notify" onclick="woahbar_hide();">
+    <img class="woahbar-hide-arrow" src="/images/menubar/woahbar-hide-arrow.png" />
+  </a>
+</div>
+<div class="woahbar-stub" style="display: none;">
+  <a class="show-notify" onclick="woahbar_show();">
+    <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+  </a>
+</div>
+<header class='form'>
+  <h2>Drag the voices to show them in order in the homepage</h2>
+</header>
+
+<%= form_tag admin_homepage_path, :method => :put do %>
+  <section style="padding-left:30px; width: 420px; float:left;" class="treshold">
+    <ol id="voices">
+    <% @voices.each do |voice| %>
+      <li style="padding:5px 0; cursor: move;" id="voice_<%= voice.id %>">
+        <%= voice.title %>
+      </li>
+    <% end %>
+    </ol>
+  </section>
+<% end %>
+
+<div class="clear"></div>
+
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_notification_path, {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New Notification
+      <% end %>
+    </li>
+  </ul>
+  <h2>Notifications</h2>
+</header>
+<section class="with-table" id="home-notifications">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Content</th>
+        <th>Url</th>
+        <th>Theme</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for notification in @notifications %>
+      <tr>
+        <td><%= notification.content %></td>
+        <td><%= notification.url %></td>
+        <td><%= notification.theme %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_notification_path(notification), :class => 'action edit' %>
+          <%= link_to "Delete", [:admin, notification], :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

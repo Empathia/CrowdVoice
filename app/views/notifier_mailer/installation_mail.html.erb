@@ -1,0 +1,10 @@
+<td width="425" valign="top" align="left" style="background-color: #ffffff;">
+  <img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/top-email.png" style="display: block" width="524" height="32"/>
+  <div style="min-height: 300px; padding: 20px; margin-bottom: 10px">
+    <div style="font-size: 15px; border-bottom: 1px dashed #dededa; padding-bottom: 20px; margin: 0;">
+      <p>Thank you for signing up to <%= @server_name.present? ? @server_name : 'crowdvoice.org' %>! Please click the link below to create your new installation</p>
+      <p><%= link_to 'Create your Installation', install_url(:token => @user.auth_token, :server_name => @server) %></p>
+      <p>We hope you will find our service useful.</p>
+    </div>
+  </div>
+</td>

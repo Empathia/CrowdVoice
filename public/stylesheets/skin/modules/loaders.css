@@ -1,0 +1,23 @@
+.loader {
+  text-align: center;
+}
+
+.loader__inner {
+  border-radius: 3px;
+}
+
+.loader--dark .loader__inner {
+  background: rgba(0,0,0,.9);
+}
+
+.loader--dark .loader__image {
+  background: transparent url('/images/ajax-loader.gif') 0 0 no-repeat;
+}
+/*
+  Usage: just add this class and position the target element as relative,
+  it puts this clear-colored spinner right in the middle for both X & Y
+*/
+.fetcher-spinner:after {
+  background: url("/images/loader.gif") no-repeat scroll 50% 50% #F5F5F5;
+  content: "";
+}

@@ -1,0 +1,13 @@
+<li>
+  <% title = post.title.eql?('(no title)') ? '' : post.title %>
+  <%= link_to voice_url(@voice, :post => post), :title => title, :target => "_blank" do %>
+    <div class="voice-thumb left">
+      <%= image_tag post.image.url(:widget_thumb), :alt => title, :size => @post_image_size %>
+    </div>
+    <span><%= title %></span>
+    <% if @show_description %>
+      <span class="clear"><%= post.description if post.description != '(no description)' %></span>
+    <% end %>
+    <span class="clear"></span>
+  <% end %>
+</li>

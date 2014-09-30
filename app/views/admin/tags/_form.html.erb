@@ -1,0 +1,16 @@
+<%= form_for @tag, :as => :tag, :url => admin_tag_path(@tag), :method => :put, :html => { :class => "form" } do |f| %>
+  <section class="clearfix tag-editor" style="width:420px; float:left;">
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :name, 'Name: ' %>
+      </div>
+      <%= f.text_field :name %>
+      <%= render 'shared/error_messages_for', :object => @tag, :field => :name %>
+    </div>
+
+    <div class="action clearfix">
+      <button class="button button-gray" type="submit"><span class="accept"></span>Save</button>
+    </div>
+  </section>
+<% end %>
+

@@ -1,0 +1,33 @@
+<% stylesheet 'layout/admin' %>
+<% stylesheet 'skin/admin' %>
+
+
+<div class="login-box">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash#{name}" %>
+  <% end %>
+
+  <div class="main-content">
+    <header class='form'>
+      <ul class="action-buttons clearfix fr">
+        <li><a href="<%= reset_password_url %>" class="button button-gray"><span class="help"></span>Forgot Password</a></li>
+      </ul>
+      <h2>Login</h2>
+    </header>
+    <section>
+      <%= form_tag login_path, :format => :json, :class => 'clearfix admin-login-form' do %>
+        <p>
+          <input type="text" id="username"  class="large" value="" name="email" required="required" placeholder="Email or Username" />
+          <input type="password" id="password" class="large" value="" name="password" required="required" placeholder="Password" />
+          <button class="large button button-gray fr" type="submit">Login</button>
+        </p>
+        <p class="clearfix">
+          <span class="fl">
+            <input type="checkbox" id="remember" class="" value="1" name="remember"/>
+            <label class="choice" for="remember">Keep me logged-in for two weeks</label>
+          </span>
+        </p>
+      <% end %>
+    </section>
+  </div>
+</div>

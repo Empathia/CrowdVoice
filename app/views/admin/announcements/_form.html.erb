@@ -1,0 +1,36 @@
+<%= form_for [:admin, @announcement], :html => { :multiport => true, :class => "form" } do |f| %>
+  <section class="clearfix" style="width:420px; float:left;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :title %>
+      </div>
+      <%= f.text_field :title %>
+      <%= render 'shared/error_messages_for', :object => @announcement, :field => :title %>
+    </div>
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :content %>
+      </div>
+      <%= f.text_area :content, :rows => "5" %>
+      <%= render 'shared/error_messages_for', :object => @announcement, :field => :content %>
+    </div>
+  </section>
+  <section class"clearfix" style="width:420px; float:left; padding-left:0px; overflow:visible;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :url %>
+      </div>    
+      <%= f.text_field :url %>
+      <%= render 'shared/error_messages_for', :object => @announcement, :field => :url %>
+    </div>
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :voice %>
+      </div>
+      <%= f.select :voice_id, Voice.all.collect { |v| [ v.title, v.id ] } %>
+    </div>
+    <div class="action clearfix" style="margin-left: 89px;">
+      <button class="button button-gray" type="submit"><span class="accept"></span>Save</button>
+    </div>
+  </section>
+<% end %>

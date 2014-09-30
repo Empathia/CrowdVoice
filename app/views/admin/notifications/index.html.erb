@@ -1,0 +1,51 @@
+<div class="woahbar" style="display: none;">
+  <span style="font-family: Helvetica, Arial;">
+    This allows you to post an announcement for a particular page. Follow the steps <%= link_to "here", "https://www.google.com/url?q=http%3A%2F%2Ftutorials.mycrowdvoice.org%2Fpost%2F36548130382%2Fcreating-an-announcement&sa=D&sntz=1&usg=AFQjCNG0EZGP0651yzsX2VJKFaj6tt1lGg", :class => 'action edit-tags', :target=>"_blank" %> to see how it works.
+  </span>
+  <a class="close-notify" onclick="woahbar_hide();">
+    <img class="woahbar-hide-arrow" src="/images/menubar/woahbar-hide-arrow.png" />
+  </a>
+</div>
+<div class="woahbar-stub" style="display: none;">
+  <a class="show-notify" onclick="woahbar_show();">
+    <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+  </a>
+</div>
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_announcement_path, {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New Announcement
+      <% end %>
+    </li>
+  </ul>
+  <h2>Announcements</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+      <th>Title</th>
+      <th>Voice</th>
+      <th>Url</th>
+      <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for announcement in @announcements %>
+      <tr>
+        <td><%= announcement.title %></td>
+        <td><%= link_to announcement.voice.title, announcement.voice %></td>
+        <td><%= announcement.url %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_announcement_path(announcement), :class => 'action edit' %>
+          <%= link_to "Delete", [:admin, announcement], :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @announcements %>

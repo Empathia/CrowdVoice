@@ -1,0 +1,2 @@
+class RelatedVideosController < ApplicationController
+end

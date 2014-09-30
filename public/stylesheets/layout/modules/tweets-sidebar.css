@@ -1,0 +1,106 @@
+.tweets-sidebar {
+  border-left-width: 1px;
+  bottom: 0;
+  display: none;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  padding-left: 0;
+  right: 0;
+  top: 0;
+  z-index: 4;
+  -webkit-transition: all ease-in-out 300ms;
+  -moz-transition: all ease-in-out 300ms;
+  -ms-transition: all ease-in-out 300ms;
+  -o-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+.tweets-sidebar.open {
+  opacity: 1;
+}
+/*.tweets-sidebar.media_feed {*/
+.tweets-sidebar {
+  border-left-width: 1px;
+  display: block;
+  left: auto;
+  padding-left: 0;
+  position: absolute;
+  right: -300px;
+  width: 300px;
+  z-index: 4;
+}
+/*.tweets-sidebar.media_feed.open {*/
+.tweets-sidebar.open {
+  display: block;
+  right: 0;
+}
+.tweets-sidebar .header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 40px;
+  font-size: 11px;
+  padding: 10px 15px;
+  z-index: 1;
+}
+  .tweets-sidebar .header + .tweets-wrapper-list {
+    padding-top: 40px;
+  }
+
+.tweets-sidebar .close {
+  width: 17px;
+  height: 17px;
+  display: block;
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+
+.tweets-sidebar .tweets-wrapper-list {
+    width: 100%;
+    height: 100%;
+}
+.tweets-sidebar .tweet {
+    padding: 10px 20px 15px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+.tweets-sidebar .tweet .author,
+.tweets-sidebar .tweet .date {line-height: 25px}
+.tweets-sidebar .tweet .author {float: left; font-size: 13px}
+.tweets-sidebar .tweet .date {float: right; font-size: 11px}
+.tweets-sidebar .tweet cite {display: block; margin-bottom: 3px; font-style: normal}
+.tweets-sidebar .tweet cite::after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
+.tweets-sidebar .tweet blockquote {font-size: 13px; line-height: 19px}
+
+.tweets-sidebar .loader {
+    margin-top: 70px;
+}
+
+@media all and (max-width: 768px) {
+  /*.tweets-sidebar.media_feed {*/
+  .tweets-sidebar {
+    display: none;
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+  /*.tweets-sidebar.media_feed.open {
+    display: block;
+    right: 0;
+  }*/
+  .tweets-sidebar:not(.media_feed){
+    position: fixed;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media all and (max-width: 460px) {
+	.media_feed.tweets-sidebar {
+		bottom: 39px;
+    z-index: 5;
+	}
+}

@@ -1,0 +1,7 @@
+A new voice with the following information has been submitted. Please review
+
+Title: <%= @voice.title %>
+User: <%= @voice.user.username %>
+Date: <%= @voice.created_at.to_s %>
+
+Approve / Disapprove:  <%= edit_admin_voice_url(@voice) %>

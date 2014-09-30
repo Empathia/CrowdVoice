@@ -1,0 +1,53 @@
+<%= javascript_tag "const AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+<%= javascript_include_tag 'admin/sidebar-sorting.js' %>
+
+<div class="section-title">
+  Current voices
+</div>
+<section class="with-table admin-sidebar-section first">
+  <div class="scroll-receiver-top"></div>
+  <div class="scrollable">
+    <table id="current-voices" class="datatable full">
+      <colgroup>
+        <col class="drag-icon-column" />
+        <col class="voice-title-column" />
+      </colgroup>
+      <tbody>
+      <% @voices.each do |voice| %>
+        <%= content_tag_for(:tr, voice, :class=>'admin-sidebar-row') do %>
+          <td><span class="sort-handler"></span></td>
+          <td><%= voice.title %></td>
+        <% end %>
+      <% end %>  
+    </tbody>
+    </table>
+  </div>
+  <div class="scroll-receiver-bottom"></div>
+</section>
+
+<div class="section-title">Archived voices</div>
+<section class="with-table admin-sidebar-section">
+  <div class="scroll-receiver-top"></div>
+  <div class="scrollable">
+    <table id="archived-voices" class="datatable full">
+      <colgroup>
+        <col class="drag-icon-column" />
+        <col class="voice-title-column" />
+      </colgroup>
+      <tbody>
+      <% @archived_voices.each do |voice| %>
+        <%= content_tag_for(:tr, voice, :class=>'admin-sidebar-row') do %>
+          <td><span class="sort-handler"></span></td>
+          <td><%= voice.title %></td>
+        <% end %>
+      <% end %>  
+    </tbody>
+    </table>
+  </div>
+  <div class="scroll-receiver-bottom"></div>
+</section>
+<script>
+  (function(){
+    var sortController = new SidebarSortController();
+  }).call();
+</script>

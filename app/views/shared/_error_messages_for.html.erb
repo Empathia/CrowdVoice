@@ -1,0 +1,5 @@
+<span class="error-message" style="<%= 'margin-top:5px' if params[:action] == "update_custom"%>">
+<%- object.errors[field].first do |e| %>
+    <%= e.titleize %>
+<%- end %>
+</span>

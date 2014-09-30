@@ -1,0 +1,9 @@
+<li>
+  <%= link_to voice_url(voice), :title => voice.title, :target => "_blank" do %>
+    <div class="voice-thumb left">
+      <%= image_tag voice.background.thumb.url, :alt => voice.title, :size => @post_image_size %>
+    </div>
+    <span><%= voice.title %></span>
+    <span class="clear"></span>
+  <% end %>
+</li>

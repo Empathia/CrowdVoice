@@ -1,0 +1,9 @@
+<td width="425" valign="top" align="left" style="background-color: #ffffff;">
+	<img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/top-email.png" style="display: block" width="524" height="32"/>
+	<div style="min-height: 300px; padding: 20px; margin-bottom: 10px">
+		<div style="font-size: 15px; border-bottom: 1px dashed #dededa; padding-bottom: 20px; margin: 0;">
+			<p>This is a confirmation for your subscription to the voice <%= link_to @voice.title, voice_url(@voice) %> at <%= @server_name.present? ? @server_name : 'crowdvoice.org' %></p>
+			<p>You will receive a daily digest with all contents posted to this voice.</p>
+		</div>
+	</div>
+</td>

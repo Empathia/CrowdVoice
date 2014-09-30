@@ -1,0 +1,36 @@
+<% if subdomain_present? %>
+  <div class="woahbar" style="display: none;">
+    <span style="font-family: Helvetica, Arial;">
+      This page has some advanced features (creating infographics for your pages.) <%= link_to "click here", "mailto:director@mideastyouth.com", :class => 'action edit-tags', :target=>"_blank" %> for details & a private tutorial.
+    </span>
+    <a onclick="woahbar_hide();" class="close-notify"><img src="/images/menubar/woahbar-up-arrow.png" class="woahbar-up-arrow"/></a>
+  </div>
+  <div class="woahbar-stub" style="display: none;">
+    <a class="show-notify" onclick="woahbar_show();">
+      <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+    </a>
+  </div>
+<% end %>
+<header class='form'>
+  <h2>Advanced</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Sections</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to 'Cliparts', admin_cliparts_path %></td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Tags', admin_tags_path  %></td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Blocks', admin_blocks_path  %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

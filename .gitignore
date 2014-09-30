@@ -1,0 +1,16 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+config/database.yml
+Gemfile.lock
+.DS_Store
+.rvmrc
+.ruby-version
+.ruby-gemset
+public/uploads
+public/images/event
+public/images/related_image
+nbproject/*
+db/schema.rb
+node_modules

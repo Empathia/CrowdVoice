@@ -1,0 +1,17 @@
+This is your daily digest for the voice <%= @voice.title %>.
+
+<% if @contents.empty? %>
+  There are no new contents today for the voice.
+<% else %>
+  These are the new contents added today to the voice:
+  
+  <% @contents.each do |content| %>
+    - <%= content.class %>: <%= content.url %>
+    <% unless content.description.blank? %>
+      <%= content.description %>
+    <% end %>
+  <% end %>
+<% end %>
+
+You can visit this voice to check out all contents from past days:
+<%= voice_url(@voice) %>

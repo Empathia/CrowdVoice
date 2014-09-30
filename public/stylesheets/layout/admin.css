@@ -1,0 +1,473 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+}
+
+html > body {overflow: auto}
+/*  Layout   */
+a {outline: none}
+h1,h2,h3,h4,h5,h6,p {margin:1em 0}
+.main-content {margin-bottom: 20px; position: relative; z-index: 1}
+.main-content > header.form {padding: 13px 20px; position: relative; width:auto}
+.main-content > header h2 {font-weight: normal; font-size: 18px; margin: 0}
+.main-content > header h2 em {font-weight: normal; font-size: 11px; margin: 0}
+.main-content > section {padding: 20px; overflow: hidden}
+.main-content > form > section {padding: 20px; overflow: hidden}
+.main-content > form > .user {padding: 15px 20px 0px; overflow: hidden}
+.form .label-form {display: block; font-size: 13px; float: left; margin: 4px 0px 0px 0px; text-align: right; width: 160px; clear: left}
+.form .label-form small {color: #666; display:block; font-size:11px; font-weight: normal; line-height: 11px; text-align: right; margin: 3px 0px 0px 0px}
+label.perPage {float: left; display: block; clear: left; font-size: 13px; text-align: right; margin: 4px 10px 0px 0px}
+.label-form.center {margin-top: 5px; margin-right: 5px; width: 80px}
+label.center {margin-top: 8px; width: 80px}
+.label-form.extended {margin-top: 8px; width: 185px}
+label.extended {margin-top: 8px; width: 158px}
+.form label.left-label {text-align: left}
+label em {font-style: normal}
+.form .main-image img{margin:10px 0px}
+.form .main-image .ui-file {margin:0px 0px; width: 250px}
+.form .ui-select, .form .ui-file {width: 262px; height: 24px}
+.form input:not(.date),
+.form input:not(.data),
+.form input:not(.to),
+.form input:not(.from),
+.form input:not(.auto-colors), .form textarea, .form .ui-file, .form .ui-date {float: left; clear: right; width: 310px}
+.form input[type=checkbox]{width:auto;margin-top: 5px}
+.form .ui-select {float: left; margin:2px 0 25px 10px; clear: right; width: 150px}
+.form label small {display:block; font-size:11px; font-weight:normal; line-height: 11px; text-align:right; width:160px}
+.form .main-image img{margin:10px 0px}
+
+.theme {width: 200px; float: left; margin-top:0px}/*Update margin-top:20px  */
+.theme .ui-select {margin: 10px 0px 0px 0px; width: 110px}
+.theme-preview {width: auto; float: left; margin-top:20px}
+.theme-window {padding:5px; margin-top:10px}
+.theme-window > span {width: 180px; height:90px; display: block;}
+.theme-window > .green {background-position: 0px 0px}
+.theme-window > .yellow {background-position: 0px -90px}
+.theme-window > .red {background-position: 0px -180px}
+.theme-window > .orange {background-position: 0px -270px}
+.theme-window > .blue {background-position: 0px -360px}
+
+.ui-select, .ui-select .ui-select-value, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=date], input[type=number], input[type=time], input[type=date], .ui-date, .ui-file {
+    padding: 4px 6px; font-size: 13px;
+}
+.checkbox {float: left; width: 20px !important;}
+.user-input {width: 200px !important}
+.ui-file {padding: 0; position: relative; width: 150px; display: inline-block}
+.ui-file .ui-file-value {display: block; padding: 5px 6px; margin-right: 75px; overflow: hidden}
+.ui-file .ui-file-button {height: 26px; margin: 0; position: absolute; right: -1px; top: -1px; width: 75px}
+.ui-file input[type=file] {height: 26px; position: absolute; right: -1px; top: -3px; opacity: 0; width: 253px;}
+.button {display: inline-block; font-size: 13px; line-height: 16px; outline: none !important; padding: 4px 10px; position: relative; text-align: center; text-decoration: none; white-space: nowrap}
+.form .main-image .ui-file input {margin:0px 0px; width: 250px}
+.ui-select .ui-select-value {overflow: hidden; position: relative; z-index: 0; padding: 5px 22px 5px 6px; display: block; height:14px}
+.ui-select select {display: none; left: 0; top: 24px; width: 100%; z-index: 1;}/*position: absolute;*/
+input, textarea, select {outline: none; font-family: Arial}
+.ui-select {padding: 0;  position: relative; white-space: nowrap; display: inline-block; z-index: 1}
+.ui-select .ui-select-button {display: block; margin: 0; padding: 0px; position: absolute; right: -1px; top: -1px; text-indent: -999em; z-index: 1; width: 24px; line-height: 26px}
+.button span {display: inline-block; float: left; *float: none; height: 16px; margin-right: 5px; position: relative; width: 16px; zoom: 1; *display: inline}
+.ui-select .ui-select-button span {display: block; float: none; margin-right: 0; width: 24px; height: 24px}
+.form .action {clear: left; margin-left: 170px}
+.form .edit-action {clear: left; margin: 0px 0px 20px 110px}
+ul.action-buttons.small li a:hover {border-width: 1px}
+#announcement_voice_id {height:120px;}
+/*-- Navigation --*/
+#wrapper > header {margin-bottom: 20px; width: 100%;}
+#wrapper > header > div {margin: 0 auto; padding: 0 20px; width: 940px}
+#wrapper > header nav {display: block}
+#wrapper > header nav ul {padding: 0; width: 700px; float:left}
+#wrapper > header nav > ul > li {display: block; float: left; position: relative}
+#wrapper > header nav > ul > li.action {margin-top: 7px; margin-left: 3px; margin-right: 3px}
+#wrapper > header nav > ul > li > a {display: block; font-size: 13px; line-height: 40px; padding: 0 10px; position: relative; text-decoration: none}
+#wrapper > header .user {float:right; font-size: 14px; float:right; margin:12px 0px;}
+#wrapper > header .user a {font-size: 13px;}
+
+/*-- Login --*/
+body.login {height:0; overflow: hidden}
+.login-box {margin: 0 auto; margin-top: 110px; margin-left: -300px; position: absolute ; top: 50%; left: 50%; width:600px; z-index: 9999}
+.login-box form {margin:10px 0}
+.login-box input[type=text], .login-box input[type=password] {width: 215px}
+.login-box.main-content {min-height: 0}
+.main-content > header .action-buttons {position: relative; top: -4px; z-index: 999}
+ul.action-buttons {list-style-type: none; padding: 0}
+ul.action-buttons li {display: block; float: left; margin: 0 2px; height: 26px; line-height: 24px}
+ul.action-buttons li:first-child {margin-left: 0}
+ul.action-buttons li:last-child {margin-right: 0}
+.fr {float: right;}
+.login-box input[type=text], .login-box input[type=password] {width: 215px}
+input.large, button.large {padding: 8px 12px; font: 16px/20px Arial, sans-serif}
+
+/* --- Slider --- */
+.voiting-wrapper {width:312px; margin-top: 50px}
+.ui-slider-horizontal {height: 0.8em; width:301px}
+.ui-slider .ui-slider-range {background-position: 0 0; border: 0 none; display: block; font-size: 0.7em; position: absolute; z-index: 1}
+.ui-slider-horizontal .ui-slider-range {height: 100%; top: 0; margin-left: 6px}
+.ui-slider {position: relative; text-align: left; padding-top: 2px}
+.ui-slider .ui-slider-handle {height: 54px; position: absolute; width: 32px; z-index: 2}
+.ui-slider {position: relative; text-align: left}
+.ui-slider .ui-slider-handle {position: absolute; z-index: 2; width: 33px; height: 54px}
+.ui-slider .ui-slider-range {position: absolute; z-index: 1; font-size: .7em; display: block; border: 0}
+.ui-slider-horizontal { height: .8em}
+.ui-slider-horizontal .ui-slider-handle { top: -38px; margin-left: -.8em}
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%}
+.ui-slider-horizontal .ui-slider-range-min { left: 0}
+.ui-slider-horizontal .ui-slider-range-max { right: 0}
+.ui-slider-vertical { width: .8em; height: 100px}
+.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em}
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%}
+.ui-slider-vertical .ui-slider-range-min { bottom: 0}
+.ui-slider-vertical .ui-slider-range-max { top: 0}
+ul.range-values {width:325px; height: 18px; margin:5px 0px 0px -5px; font-size:13px}
+ul.range-values > li {float: left; display:block; width:20px; margin-right: 56px; text-align:center}
+ul.range-values > .last{margin-right:0px}
+p.votes {font-size: 13px; font-weight: bold; margin-bottom: 30px}
+p.votes span {font-size: 16px}
+p.votes > input {font-size: 16px; font-weight: bold; border:none}
+
+/* Table Styles */
+.main-content > section.with-table {padding: 0 0 10px 0; margin-top: 1px}
+.main-content > section.with-table .pagination {padding-left: 20px}
+table caption {font-size: 12px; padding-bottom: 10px}
+table.no-style {border: none; border-collapse: collapse; padding: 0; margin: 0}
+table.full {width: 100%}
+table.no-style > body > tr > td, table.no-style > tbody > tr > th {border: none}
+table.simple > thead > tr > th {padding: 5px; text-align: left}
+table.simple > thead > tr > th:last-child {border-right: none}
+table.simple > tbody > tr > td, table.simple > tbody > tr > th {padding: 5px; text-align: left}
+table.simple > tbody > tr > th {font-weight: bold; text-align: right}
+table.datatable {border-collapse: separate; border-spacing: 0}
+.main-content > section.with-table > table {border: none}
+table.datatable > thead > tr > th {position: relative; text-decoration: none; padding: 5px 20px; text-align: left}
+table.datatable > tbody > tr > th, table.datatable > tbody > tr > td {padding: 5px 20px; vertical-align: middle}
+table.datatable.tablesort {table-layout: fixed}
+table.datatable.tablesort > thead > tr > th {padding: 0; display: block; text-decoration: none; padding: 5px 20px}
+table.datatable.tablesort > thead > tr > th > a {display: block; text-decoration: none; padding: 5px 20px}
+table.datatable > tfoot > tr > th, table.datatable > tfoot > tr > td {padding: 5px 20px}
+.with-table .datatable tr {height: 38px}
+
+/* Pagination */
+
+.pagination {padding: 0px 20px; height: 30px;}
+.pagination > span {
+  font-family: 'Lucida Grande', Verdana, Arial, 'Bitstream Vera Sans', sans-serif;
+  display: block;
+  padding: 0 6px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  float:left;
+  margin-right:5px;
+}
+
+/* Sponsor */
+
+
+/* errors */
+.field_with_errors {}
+.field_with_errors > input {border: 2px solid red !important;}
+.field_with_errors > textarea {border: 2px solid red !important;}
+.error-message {color: red; float: right; margin: -20px 6px 0px 0px;}
+
+#flashalert {width:576px; margin:10px auto 40px auto; padding:30px 15px; font-size:14px; position: relative}
+#flashnotice {width:576px; margin:10px auto 40px auto; padding:30px 15px; font-size:14px; position: relative}
+
+/* ADMIN VOICE SECTION */
+.form.voices .section-btn {border-width: 1px; width: 598px; height: 43px; margin-bottom: 24px}
+.form.voices .section-btn > p {border-width: 1px; width: 590px; height: 35px; line-height: 35px; margin:3px; font-size: 14px; font-weight: bold}
+.form.voices .section-btn > p > .section-icon {width:25px; height:25px; display: block; float: left; margin: 5px 14px 5px 10px}
+.form.voices .label-form {float: left; text-align: left; width: auto; margin-bottom: 12px}
+.form.voices input[type=text] {font-size: 20px}
+.form.voices input[type=text] {margin:2px 0 15px 0px; width: 560px; height: 40px; line-height: 40px; padding:0px 20px}
+.form.voices textarea {margin:2px 0 24px 0px; width: 560px; padding:10px 20px; font-size: 14px; line-height:1.5; clear: both;}
+.form.voices .ui-date {margin:2px 0 15px 0px}
+.form.voices .lat-long {margin:2px 10px 15px 0px !important; width: 233px !important; height: 40px; line-height: 40px; padding:0px 20px}
+.form.voices .ui-file {margin:2px 0 15px 0px; width: 280px}
+.form.voices .sponsor-input {margin:2px 0 15px 0px; width: 210px}
+.form.voices input[type=text].title {font-size:24px; height: 64px; padding:0 20px; width: 560px}
+.form.voices .action {clear: left; margin-left: 0}
+.location-tabs {width: 405px; border-width: 0 0px 1px 0; height: 20px; padding-left: 4px; margin-bottom: 12px}
+.location-tabs > li.selected {border-width:1px}
+.location-tabs > li {display: inline; font-size: 13px; font-weight: bold; border-width: 1px 1px 0px 1px; padding:6px 10px; margin:0px 4px -1px 0}
+.button-green {border-width: 1px; padding: 6px 13px; margin:3px; font-size: 16px; font-weight: bold}
+.button-green span {width: 19px; height: 19px; display: block; float: left; margin:1px 8px 0 0}
+.form.voices .side-bar input[type=text] {width:240px}
+.form.voices .side-bar input[type="checkbox"] {width:20px}
+.form.voices .side-bar .actions {margin: 40px 0px}
+.form.voices .side-bar .actions input {float:left; margin:5px 0 0}
+.form.voices .side-bar .actions .label-form {float:left; width: 100px; margin-bottom: 15px}
+.hide-panel {display:none}
+.ask-me {display: inline-block; float: right; height: 14px; margin-left: 5px; position: relative; width: 15px}
+.form.voices .field_with_errors {margin-bottom: 4px}
+.form.voices .field_with_errors textarea {margin-bottom: 15px}
+.form.voices .error-message {color: red; display: block; float: left; margin: 0 0 10px}
+.form.voices .answere {display:none; float:left; padding-left:8px; margin-top: 6px; font-size: 11px}
+
+table.datatable > tbody > tr > .title {font-size: 13px; font-weight: bold; height:46px}
+table.datatable > tbody > tr:hover > td > .action {display:block}
+table.datatable > tbody > tr > td > .action {width: 28px; height: 28px; display:none; text-indent:-999em; cursor: pointer; float: left}
+table.datatable > tbody > tr > td > .edit,
+table.datatable > tbody > tr > td > .edit-tags,
+table.datatable > tbody > tr > td > .edit-events,
+table.datatable > tbody > tr > td > .edit-blocks {margin-right: 18px}
+table.datatable > thead > tr > .actions { width: 114px}
+.datatable .voices.actions { padding: 5px 20px 5px 0px; width: 220px}
+
+/* Voices blocks list */
+.drag-icon-column { padding: 0; width: 20px}
+.block-name-column { width: 297px}
+.voice-title-column { width: 164px}
+.tag-list-column { width: 181px}
+.actions-column { width: 114px}
+.sort-handler {cursor: move; display: inline-block; border: 0; height: 20px; padding: 0px; width: 20px}
+.ui-sortable td {width: inherit}
+
+.chart-window { padding: 15px 0px; }
+
+/* Infobox tips box */
+.double-break {display: block}
+.tips-toggle {float: left; width: 100%; text-align: left}
+.infobox-tips {border: solid 1px; padding: 10px; border-radius: 5px; margin: 10px; min-height: 13px; text-align: center; width: 12%}
+.infobox-tips .tips-body {display: none}
+.infobox-tips .tip-title {display: inline-block; margin: 10px 0 20px 10px; width: 75%}
+.infobox-tips .tip-divider {display: inline-block; padding: 0 0 10px 10px; text-align: left; width: 98%}
+.infobox-tips .tip-image-container {float: left; width: 20%; display: block; margin: 10px 0 -10px -10px}
+.infobox-tips .tip-image {display: block; margin: 0 auto 10px}
+.infobox-tips .tip-description { display: inline-block; padding: 0 0 0 20px; width: 70%}
+
+/* Infobox editor */
+.hidden {display: none}
+.infobox-editor .featured-label {display: inline-block; margin: 10px 0 0}
+.infobox-editor .featured-check {margin: 10px 10px 0 0}
+.infobox-editor-forms {float:left; width:420px}
+.form .infobox-editor-forms input[type="text"]{float: none}
+.infobox-editor-forms .label-form,
+.infobox-editor-details .label-form {display: inline-block; float: none; margin: 15px 0 5px; text-align: left; width: 100%}
+.infobox-editor-forms .ui-select {margin: 0}
+.infobox-editor-forms .custom-image-element {float: left; height: auto; margin: 0 10px 0 0; padding: 5px}
+.infobox-editor-forms .custom-images .ui-file {clear: both}
+.infobox-editor-forms .clipart-panel {width: 320px; height: 230px; overflow-y: scroll; border-width: 1px;}
+.infobox-editor-forms .clipart-sample {width: 93px; height: 93px; float: left; margin: 3px}
+.infobox-editor-forms .clipart-sample a {width: 83px; height: 83px; padding: 5px; display: block}
+.infobox-editor-forms .clipart-sample img {max-width: 75px; max-height: 75px; display: block; margin: auto}
+
+.infobox-editor-forms .thumb-container .image-thumb {width: 200px; height: auto}
+
+
+.infobox-editor-forms .chart-selection .chart-values {clear: both}
+.infobox-editor-forms .ui-file-button {height: 28px}
+.infobox-editor-details {width:420px; float:left; padding-left:0px; overflow:visible}
+.infobox-editor-details .save-changes{margin: 20px 0 0}
+.infobox-preview {width: 400px}
+.infobox-preview .infobox {margin: 20px auto}
+.infobox-preview .infobox p {margin: 0}
+
+/* Chart data editor */
+.chart-data .grid-container .l-col,
+.chart-data .grid-container .r-col {float: left}
+
+.chart-data .grid-container .label,
+.chart-data .grid-container .data-row input,
+.chart-data .from-to input {width: 45px; height: 13px; float: left; padding: 0; margin: 0 0 1px 2px; font-size: 11px}
+.chart-data .grid-container .label {margin-top: 29px}
+.chart-data .grid-container .label.name {margin-left: 14px}
+.chart-data .grid-container .data-row .remove-row {width: 10px; height: 10px; float: left; margin-top: 2px}
+
+.chart-data .grid-container .l-col {width: 121px; overflow: hidden;}
+.chart-data .grid-container .l-col .series-data {max-height: 199px; overflow-y: scroll; margin-right: -15px} /*-15px to hide scrollbar*/
+.chart-data .grid-container .l-col .series-data .data-row.first .name {margin-left: 12px}
+.chart-data .grid-container .l-col .series-data .data-row {width: 120px}
+.chart-data .grid-container .l-col .add-row {width: 14px; height: 14px; display: block; float: right; margin: 1px 3px 0 0}
+.chart-data .grid-container .data-row .color {width: 57px}
+
+.chart-data .grid-container .r-col {width: 220px}
+.chart-data .grid-container .r-col .values-label {display: none; margin-top: 26px} /*show only on special cases*/
+.chart-data .grid-container .r-col .col-titles-mask {height: 40px; overflow: hidden; margin: 0 0 1px 2px; float: left}
+.chart-data .grid-container .r-col .col-titles-container {overflow-x: scroll}
+.chart-data .grid-container .r-col .col-titles {/* variable width */}
+.chart-data .grid-container .r-col .col-titles .col-title {width: 49px; float: left;}
+.chart-data .grid-container .r-col .col-titles .col-title.first {padding-top: 10px} /*compensate absence of 'remove column'*/
+.chart-data .grid-container .r-col .col-titles .col-title .col-order {text-align: center}
+.chart-data .grid-container .r-col .col-titles .col-title .col-name {width: 45px; padding: 0; font-size: 11px}
+.chart-data .grid-container .r-col .series-rows-container {width: 215px; overflow: scroll; max-height: 215px; border-width: 1px; padding: 1px 0 0 1px}
+.chart-data .grid-container .r-col .series-rows-container input {width: 45px; height: 13px; float: left; padding: 0; margin: 0 2px 1px 0; font-size: 11px; border-width: 1px}
+.chart-data .grid-container .r-col .add-col {width: 14px; height: 14px; display: block; float: left; margin: 25px 3px 0 0}
+.chart-data .grid-container .col-title .remove-col {width: 10px; height: 10px; margin: auto; display: block;}
+.chart-data .from-to {display: none}
+.chart-data .auto-colors {margin-top: 10px}
+.chart-data input.color-check {float:none}
+.chart-data input.units {font-size: 11px; height: 10px; padding: 2px 6px; width: 30px}
+
+/* Clipart editor */
+.clipart-editor .label-form {margin-right: 10px}
+.clipart-editor .clipart-name,
+.clipart-editor .clipart-image,
+.clipart-editor .clipart-path {margin: 0 0 20px 0}
+.clipart-editor .image-display {float: left; padding: 10px; text-align: center; width: 72%}
+.clipart-editor img {max-width: 300px}
+.clipart-editor .ui-file {width: 323px}
+.clipart-editor .action {margin: 0 5px 0 90px; text-align: right}
+.flash { width: 100%; border-width: 0px 0px 3px 0px; padding: 14px 0px 12px 0px; overflow: hidden}
+.flash > p {font-size: 15px; font-weight: normal; float:left; margin-left: 20px; padding-right: 18px}
+.flash > p > span {font-weight: bold}
+.flash > p > span > a {}
+.flash > .close-message {float:right; width: 18px; height: 18px; display: block; margin-right: 12px}
+.flash > p {background: url('../../images/bg/arrow-message.png') center right no-repeat; color: #6b6b13; text-shadow: 0 1px 0px #fff}
+.flash > p > span {}
+.flash > p > span > a {color: #6b6b13;}
+.flash > .close-message {background: url('../../images/bg/close-notifier.png') 0 0 no-repeat;}
+.flash > .close-message:hover {background-position: 0px -18px;}
+
+/* Events editor */
+#sources .about-link-wrapper a {
+  display: block;
+}
+#sources .about-link-wrapper:hover .tooltip {
+  display: block;
+}
+#sources .tooltip {
+  top: 0;
+}
+#sources .tooltip .tooltip-positioner {
+  top: -10px;
+}
+#sources .tooltip .tooltip-arrow {
+  top: 3px;
+}
+#sources .tooltip .media-type-info {
+  margin: 0;
+}
+#sources .tooltip .media-type-title {
+  width: 210px;
+}
+
+.related .remove-button-container {
+  display: inline-block;
+  margin: 5px;
+  width: 100%;
+  text-align: right;
+}
+#additional-sources label,
+.related.video label,
+.related.image label {
+  display: block;
+  float: left;
+  margin: 3px 0 0 5px;
+}
+.related.image img {
+  float: left;
+  margin: 5px 10px 5px 5px;
+}
+.related.image input.caption-input {
+  width: 450px;
+}
+#additional-sources input.is-explicit-checkbox,
+.form input.is-explicit-checkbox {
+  float: left;
+}
+.form .related.image .caption-input {
+  margin: 5px 0 10px;
+}
+
+/* Home Layout Builder */
+.layout-builder form .voicesAutoComplete {
+  width: 100%;
+}
+.layout-item {
+  padding: 10px;
+  margin: 10px;
+  border-width: 1px;
+  position: relative;
+  height: 175px;
+  overflow: hidden
+}
+.layout-item .add-voice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 0;
+  line-height: 10;
+}
+.ui-autocomplete {
+  width: 324px;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.ui-autocomplete .ui-menu-item {
+  position: relative;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #aaa;
+}
+.ui-autocomplete .voice-info {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -9px;
+  height: 16px;
+  width: 40px;
+}
+.ui-autocomplete .ui-menu-item a {
+  display: block;
+  padding: 2px 50px 2px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ui-autocomplete .ui-state-disabled {
+  cursor: text !important;
+  opacity: .35;
+  filter:Alpha(Opacity=35);
+  background-image: none;
+}
+.layout-builder .form.voices input[type=text] {
+  width: 100%;
+  padding: 0 5px;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+/* Sidebar sortable */
+.main-content > .admin-sidebar-section.with-table {
+  overflow: hidden;
+  position: relative;
+}
+.admin-sidebar-section .scrollable {
+  height: inherit;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.main-content > .admin-sidebar-section.first {
+  margin-bottom: 10px;
+}
+.main-content .section-title {
+  font-size: 12px;
+  font-weight: bold;
+  height: 28px;
+  padding: 5px 20px;
+  width: auto;
+}
+.admin-sidebar-row td:nth-child(2),
+.admin-sidebar-row th:nth-child(2){
+  width: 94%;
+}
+.sort-handler.toggle {
+  height: 10px;
+}
+.scroll-receiver-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 2;
+}
+.scroll-receiver-bottom {
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 2;
+}

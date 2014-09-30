@@ -1,0 +1,19 @@
+var $form = $('#edit_layout_item_<%= @layout_item.order %>'),
+    $textInput = $form.find('.voicesAutoComplete');
+
+if ( <%= @response == 'success' %> ) {
+
+  $form
+    .closest('.layout-item')
+    .removeClass('error-response')
+    .addClass('success-response');
+
+  $textInput .attr('placeholder', "Select a Voice...");
+
+  setTimeout(function () {
+    $form.closest('.layout-item').removeClass('success-response');
+  }, 3000);
+} else {
+  $form.closest('.layout-item').addClass('error-response');
+  $textInput.attr('placeholder', "Voice Can't be Empty");
+}

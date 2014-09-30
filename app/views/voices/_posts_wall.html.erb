@@ -1,0 +1,224 @@
+<%
+  infosidebarIsPresent = false
+  if !@blocks.empty?
+    if params[:tags].present? || params['all'].present?
+      infosidebarIsPresent = true
+    end
+  end
+  
+  mod = (params[:mod] ? 'mod' : 'public')
+  mobile = (is_mobile? ? 'mobile' : 'other')
+%>
+<% head do %>
+  <% @is_gaza = @voice.is_witness_gaza %>
+  <%= include_stylesheets :mediafeed_pack %>
+<% end %>
+<!-- this preloads the background image, used instead of script since script is fired after dom ready -->
+<img src="<%= @voice.background %>" class="hidden">
+<%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
+  <header class="main-header">
+
+      <%= render :partial => "nav_bar" %>
+
+    <div class="post-and-actions">
+      <div class="post-width">
+        <%= form_for Post.new, :url => voice_posts_path(@voice, :format => :json), :html => { :multipart => true } do |f| %>
+          <%= f.text_field :url_check, :style => "display:none" %>
+          <fieldset class="post">
+            <p class="post-paceholder"><span>Post a URL or </span><%= f.file_field :image %><a href="#" title="Upload an Image">Upload an Image</a><span class="cover"></span></p>
+            <ul class="post-type">
+              <li class="media tool-image">
+                <a class="media-type image-tool" href="#" title="Image"></a>
+                <div class="tooltip">
+                  <div class="tooltip-positioner">
+                    <p class="tooltip-arrow"><span></span></p>
+                    <div class="media-type-info image-tip">
+                      <div class="without-image">
+                        <strong class="media-type-title">Put the URL of your image to display in this voice.</strong>
+                      </div>
+                      <div class="with-image">
+                        <span class="tooltip-label">Add a title to your image:</span>
+                          <input type="text" id="image_title" name="post[image_title]"/>
+                        <span class="tooltip-label">Add a message to your image:</span>
+                          <textarea id="image_description" class="link-textarea" name="post[image_description]"></textarea>
+                      </div>
+                      <span class="media-type-subtitle">Also you can send images to this email:</span>
+                      <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'media-type-link', :encode => "javascript" %>
+                      <em class="media-type-notice">(max-size for attachments is 2mb.)</em>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="media tool-video">
+                <a class="media-type video-tool" href="#" title="Video"></a>
+                <div class="tooltip">
+                  <div class="tooltip-positioner">
+                    <p class="tooltip-arrow"><span></span></p>
+                    <p class="media-type-info">
+                      <strong class="media-type-title">Put the URL of a Youtube or Vimeo video to display in this voice.</strong>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="media tool-link">
+                <a class="media-type link-tool" href="#" title="Link"></a>
+                <div class="tooltip link-img-post">
+                  <div class="tooltip-positioner normal">
+                    <p class="tooltip-arrow"><span></span></p>
+                    <p class="media-type-info">
+                      <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
+                    </p>
+                  </div>
+                  <div class="tooltip-positioner carousel">
+                    <p class="tooltip-arrow"><span></span></p>
+                    <div class="media-type-info">
+                      <div class="without-link">
+                        <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
+                      </div>
+                      <div class="with-link">
+                        <%= f.hidden_field :remote_image_url %>
+                        <h3>Choose an image for this Link</h3>
+                        <div class="carousel-image">
+                          <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
+                        </div>
+                        <div class="carousel-arrows">
+                          <div id="carousel_left_arrow" class="left-arrow"></div>
+                          <div id="carousel_right_arrow" class="right-arrow"></div>
+                          <div class="carousel-counter"></div>
+                        </div>
+                        <p class="description-link">Add custom description to the link</p>
+                        <textarea id="link_description" class="link-textarea" name="post[description]"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <%= f.text_field :source_url %>
+            <div class="post-button"><%= f.submit 'Post' %>
+              <div class="tooltip notice">
+                <div class="tooltip-positioner">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <div class="media-type-info">
+                    <p class="moderate-tooltip"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+    <div class="filters-and-mode">
+      <div>
+        <form>
+          <div class="tags-container">
+            <div class="tag-tooltip-trigger">
+              Tags
+            </div>
+              <div class="tooltip">
+                <div class="tooltip-positioner">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <div class="media-type-info">
+                      <ul class="voice-tags"></ul>
+                      <div class="mode-button">
+                        <p class="button">
+                          <a href="<%= voice_path(@voice)%>?tags=" class="active filter-apply-button">
+                            Apply
+                          </a>
+                        </p>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <fieldset class="filters">
+            <p>Show</p>
+            <label class="photos-label"><input type="checkbox" name="image" class="filter" checked="checked" />Photos</label>
+            <label class="videos-label"><input type="checkbox" name="video" class="filter" checked="checked" />Videos</label>
+            <label class="links-label"><input type="checkbox" name="link"  class="filter" checked="checked" />Links</label>
+            <label class="tweets-label"><input type="checkbox" name="tweets" />Tweets</label>
+          </fieldset>
+        </form>
+      </div>
+      <form class="form-right">
+        <fieldset class="mode">
+          <p>Mode</p>
+          <ul>
+            <li class="mode-button <%= 'selected' unless params[:mod] %> public"><p class="button"><%= link_to "Public", voice_path(@voice, :all => true) %></p>
+              <div class="tooltip">
+                <div class="tooltip-positioner">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <div class="media-type-info">
+                    <strong class="media-type-title"></strong>
+                    <p class="moderate-tooltip">
+                      <span>Go back to public mode</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="mode-button <%= 'selected' if params[:mod] %> mod"><p class="button"><%= link_to "Moderator", voice_path(@voice, params.merge({:mod => 1}) ) %></p>
+              <div class="tooltip">
+                <div class="tooltip-positioner">
+                  <p class="tooltip-arrow"><span></span></p>
+                  <div class="media-type-info">
+                    <strong class="media-type-title">Participate!</strong>
+                    <p class="moderate-tooltip">
+                      <span>Help us approve images, videos and external links.</span> Flag any content that you feel should not be posted here.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </fieldset>
+      </form>
+    </div>
+
+    <% if @voice.logo.url %>
+      <div class="header-sponsor">
+        <%= link_to_if @voice.logo_link.present?, image_tag(@voice.logo.url, :title => "Sponsored by #{@voice.sponsor}", :alt => @voice.sponsor), @voice.logo_link %>
+        <span class="sponsor-slogan"><%= @voice.sponsor_slogan %></span>
+      </div>
+    <% end %>
+  </header>
+  <section class="voice-wrapper initial-state">
+    <script>
+      var posts_votes = <%= @votes.to_json.html_safe %>;
+    </script>
+    <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
+
+      <% if @posts.empty? %>
+        <div class="panel-padding sweeper">
+          <div class="voices-container">
+          </div>
+        </div>
+
+        <div class="empty-msg" style="position:relative; text-align: center; top: 120px">
+          All items for this tag have been moderated! Find a missing link, video or image? Add it here for moderation.
+        </div>
+      <% else %>
+        <%= render :partial => "posts" %>
+      <% end %>
+    <%= render :partial => "tweets" %>
+    <%# end %>
+  </section>
+
+  <%= include_javascripts :mediafeed_pack %>
+<% if @voice.announcement.present? %>
+    <div class="flash-message <%= 'with-infosidebar' if infosidebarIsPresent %>">
+      <div class="message">
+        <p><span><%= link_to_if @voice.announcement.url, @voice.announcement.title, @voice.announcement.url %></span> <%= @voice.announcement.content %></p>
+        <a class="close-message"></a>
+      </div>
+    </div>
+  <% end %>
+<script type="text/javascript">
+  var infoboxTags = <%=raw @voice.blocks.map(&:tag_list).flatten.uniq.to_json %>,
+      _postCount  = <%= Setting.posts_per_page %>,
+      _fbPath     = "<%= fb_path %>",
+      urlTags     = "<%= params[:tags] %>".split(',');
+</script>

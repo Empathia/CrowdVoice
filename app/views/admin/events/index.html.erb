@@ -1,0 +1,58 @@
+<script>
+$(function () {
+  $('.close-message').click(function () {
+      $(this).parent().hide('blind');
+      return false;
+  });
+});
+</script>
+<div id="overlay" style="display: none"><div class="serverResponse"></div></div>
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to @status, activate_timeline_admin_voice_path(@voice), :id => "activate_link_#{@voice.id}", :class => 'button button-gray' %>
+    </li>
+    <li>
+      <%= link_to new_admin_voice_event_path(@voice), {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New Data Point
+      <% end %>
+    </li>
+  </ul>
+  <h2>Data Points for '<%= @voice.title %>'</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <colgroup>
+      <col class="drag-icon-column" />
+      <col class="block-name-column" />
+      <col class="voice-title-column" />
+      <col class="tag-list-column" />
+      <col class="actions-column" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Date</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody class="ui-sortable">
+      <% for event in @events %>
+      <tr class="block-item" data-block-id="<%= event.id %>">
+        <td><span class="sort-handler"></span></td>
+        <td><%= event.name %></td>
+        <td><%= event.event_date %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_voice_event_path(@voice, event), :class => 'action edit' %>
+          <%= link_to "Delete", admin_voice_event_path(@voice, event), :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @events %>
+

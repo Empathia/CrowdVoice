@@ -1,0 +1,125 @@
+<% head do %>
+  <% @is_gaza = @voice.is_witness_gaza %>
+  <%= include_stylesheets :backstory %>
+<% end %>
+<%# cache("#{current_connection}_backstory_#{@voice.id}") do %>
+<header class="main-header">
+
+    <%= render :partial => "nav_bar" %>
+
+</header>
+<div class="sweeper header-sep"></div>
+
+<!-- Detailed view start -->
+<div class="elements-navigation prev"></div>
+<div class="elements-navigation next"></div>
+<div class="detailed-view-wrapper">
+  <!-- detailed view header start -->
+  <div class="detailed-view-header">
+    <div class="calendar-wrapper">
+      <div class="month-name">FEB</div>
+      <div class="day-name">16</div>
+      <div class="year-name">2013</div>
+    </div>
+    <div class="element-thumbnail"><img src="" class="thumbnail"></div>
+    <h2 class="name"></h2>
+    <div class="close-view"></div>
+  </div>
+  <!-- detailed view header end -->
+
+  <!-- navigation start  -->
+  <div class="navigation-icons-container">
+    <i class="content icon">Info</i>
+    <i class="imgGallery icon">Gallery</i>
+    <i class="videoGallery icon">Videos</i>
+    <i class="sources icon">Sources</i>
+  </div>
+  <!-- navigation end -->
+
+  <!-- Content container start -->
+  <div class="content-container section-wrapper active">
+    <div class="top-scroll-mask">
+      <div class="mask mask-1"></div>
+      <div class="mask mask-2"></div>
+      <div class="mask mask-3"></div>
+      <div class="mask mask-4"></div>
+      <div class="mask mask-5"></div>
+      <div class="mask mask-6"></div>
+      <div class="mask mask-7"></div>
+      <div class="mask mask-8"></div>
+      <div class="mask mask-9"></div>
+      <div class="mask mask-10"></div>
+    </div>
+    <div class="content-wrapper">
+      <div class="content"></div>
+    </div>
+    <div class="bottom-scroll-mask"></div>
+    <a href="mailto:crowdvoice@mideastyouth.com?subject=I%20have%20a%20correction&body=I'd%20like%20to%20suggest%20a%20correction%20for%20the%20topic%20'<%= @voice.title %>'" class="suggest-correction" target="_blank">Suggest a Correction</a>
+  </div>
+  <!-- content container end -->
+
+  <!-- gallery container start -->
+  <div class="image-gallery-container section-wrapper"></div>
+  <div class="video-gallery-container section-wrapper"></div>
+  <div class="sources-container section-wrapper">
+    <div class="top-scroll-mask">
+      <div class="mask mask-1"></div>
+      <div class="mask mask-2"></div>
+      <div class="mask mask-3"></div>
+      <div class="mask mask-4"></div>
+      <div class="mask mask-5"></div>
+      <div class="mask mask-6"></div>
+      <div class="mask mask-7"></div>
+      <div class="mask mask-8"></div>
+      <div class="mask mask-9"></div>
+      <div class="mask mask-10"></div>
+    </div>
+    <div class="bottom-scroll-mask"></div>
+  </div>
+  <!-- gallery container end -->
+</div>
+<!-- Detailed view end -->
+
+<!-- suggest an event button start -->
+<a class="suggest-event" href="mailto:crowdvoice@mideastyouth.com?subject=I%20have%20a%20suggestion&body=I'd%20like%20to%20suggest%20a%20new%20event%20for%20the%20topic%20'<%= @voice.title %>'" target="_blank">Suggest an Event</a>
+<!-- suggest an event button end -->
+
+<!-- Timeline wrapper start -->
+<div class="timeline-wrapper panel-padding">
+  <div class="backdrop-image" style="background-image:url('<%= @voice.background %>')"><div class="image-bg-patter"></div></div>
+
+  <!-- Timeline container start -->
+  <div class="timeline-container">
+  </div>
+  <!-- Timeline container end -->
+
+  <div class="drag-handle"></div>
+</div>
+<!-- Timeline wrapper end -->
+
+<div class="overlay-mask">
+  <div class="menu-1 nav-text <% if @blocks.empty? %>no-infobox<% end %>">Backstory</div>
+  <% if !@blocks.empty? %>
+  <div class="menu-2 nav-text">Infographic</div>
+  <% end %>
+  <div class="menu-3 nav-text <% if @blocks.empty? %>no-infobox<% end %>">Media Feed</div>
+  <div class="menu-caption caption-text <% if @blocks.empty? %>no-infobox<% end %>"><i class='icon'></i> Navigate through the different views</div>
+  <div class="onboarding-sidebar-toggler"><i class="icon"></i></div>
+  <div class="sidebar-caption caption-text">Toggle open/close the main navigation</div>
+  <div class="onboarding-timeline">
+    <div class="drag-instruction caption-text">Drag this whole area left &amp; right to see more events in the timeline</div>
+    <div class="scroller-instruction caption-text">You can also use the scroller at the bottom or use your left/right keyboard arrows!</div>
+  </div>
+  <div class="onboarding-infopoints caption-text">
+    <i class="icon"></i>
+    Rollover these to get chronological context on the events
+  </div>
+  <div class="dismiss-onboarding">Thanks, I got it!</div>
+</div>
+<%= include_javascripts :backstory_pack %>
+<script type="text/javascript">
+  new FacebookNavButton({
+        fbPath : "<%= fb_path %>"
+      });
+</script>
+<%# end %>

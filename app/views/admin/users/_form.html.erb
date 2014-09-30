@@ -1,0 +1,44 @@
+<%= form_for [:admin, @user], :html => { :multipart => true, :class => "form" } do |f| %>
+<div style="overflow:hidden; height:50px; margin-top:20px">
+  <section class="clearfix user" style="width:310px; float:left;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :name %>
+      </div>
+      <%= f.text_field :username, :class => "user-input" %>
+      <%= render 'shared/error_messages_for', :object => @user, :field => :username %>
+    </div>
+  </section>
+  <section class="clearfix user" style="width:310px; float:left;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :email %>
+      </div>
+      <%= f.text_field :email, :class => "user-input" %>
+      <%= render 'shared/error_messages_for', :object => @user, :field => :email %>
+    </div>
+  </section>
+  <section class="clearfix user" style="width:200px; float:left;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label 'Is Admin?' %>
+      </div>
+      <%= f.check_box :is_admin, :class => "checkbox" %>
+      <%= render 'shared/error_messages_for', :object => @user, :field => :is_admin %>
+    </div>
+  </section>
+</div>  
+  <section class="clearfix user" style="width:310px; float:left;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :password %>
+      </div>
+      <%= f.password_field :password, :class => "user-input" %>
+      <%= render 'shared/error_messages_for', :object => @user, :field => :password %>
+    </div>
+  </section>
+  <div class="edit-action clearfix">
+    <button class="button button-gray" type="submit"><span class="accept"></span>Save</button>
+  </div>
+
+<% end %>

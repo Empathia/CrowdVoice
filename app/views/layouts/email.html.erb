@@ -1,0 +1,34 @@
+<html>
+  <head>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <table cellpadding="0" cellspacing="0" width="100%" height="100%" style="background-color: #dfdfdb;">
+      <tr>
+        <td valign="top">
+          <table cellpadding="0" cellspacing="0" width="100%" style="text-align: center; padding-bottom: 27px;">
+            <tr>
+              <td width="" valign="top"><div style="height: 9px; background-color: #009784; overflow: hidden;"></div></td>
+              <td width="175" valign="top" style="background-color: #ffffff;">
+                <img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/sidebar.png" style="display: block" width="175" height="524"/>
+              </td>
+              <%= yield %>
+              <td width="" valign="top"><div style="height: 9px; background-color: #009784; overflow: hidden;"></div></td>
+            </tr>
+          </table>
+
+          <% if defined?(@voice) && defined?(@subscription)%>
+            <table cellpadding="0" cellspacing="0" style="text-align: center; padding-bottom: 27px" width="100%">
+              <tr>
+                <td style="font-size: 13px; color: #848383">
+                  You are receiving this email because you are subscribed to the daily digest for the voice <%= @voice.title %>.<br/>
+                  If you want to stop receiving these emails, you can unsubscribe by following this URL:<br/>
+                  <%= link_to unsubscribe_voice_subscription_url(@voice, @subscription), unsubscribe_voice_subscription_url(@voice, @subscription), :style => "color: #000000; text-decoration: none;" %>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

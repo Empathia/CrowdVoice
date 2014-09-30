@@ -1,0 +1,16 @@
+<td width="425" valign="top" align="left" style="background-color: #ffffff;">
+  <img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/top-email.png" style="display: block" width="524" height="32"/>
+  <div style="min-height: 300px; padding: 20px; margin-bottom: 10px">
+    <div style="font-size: 15px; border-bottom: 1px dashed #dededa; padding-bottom: 20px; margin: 0;">
+      <p>A new voice with the following information has been submitted. Please review</p>
+      <p>
+        <ul>
+          <li> Title: <%= @voice.title %> </li>
+          <li> User: <%= @voice.user.username %> </li>
+          <li> Date: <%= @voice.created_at.to_s %> </li>
+        </ul>
+      </p>
+      <p><%= link_to 'Approve / Disapprove', edit_admin_voice_url(@voice) %></p>
+    </div>
+  </div>
+</td>

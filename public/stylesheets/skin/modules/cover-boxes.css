@@ -1,0 +1,86 @@
+.home-cover__content {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .6);
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .25);
+}
+    .home-cover__content::before {
+        border-radius: 3px;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, .8)));
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8));
+        background-image: -moz-linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8));
+        background-image: -ms-linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8));
+        background-image: -o-linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8));
+        background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .8));
+    }
+
+.home-cover__header-title {
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .7);
+}
+.home-cover__title {
+    color: rgba(255, 255, 255, 1);
+}
+.home-cover__total-voices {
+    color: rgba(255, 255, 255, 1);
+}
+.home-cover__time-ago {
+    color: #b2b2b2;
+}
+.home-cover__actions {
+    border-top-style: solid;
+    border-top-color: black;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 0 0 3px 3px;
+    -webkit-transition: -webkit-transform 400ms ease-out;
+            transition:         transform 400ms ease-out;
+}
+    .green .home-cover__actions   {border-top-color: #50b347}
+    .blue .home-cover__actions    {border-top-color: #4cb5ff}
+    .yellow .home-cover__actions  {border-top-color: #ebc91c}
+    .red .home-cover__actions     {border-top-color: #f10f2a}
+    .orange .home-cover__actions  {border-top-color: #ec9415}
+
+    .home-cover__actions-label {
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+.home-cover__boxes {
+  text-align: center;
+    -webkit-transition: -webkit-transform 250ms ease-out;
+            transition:         transform 250ms ease-out;
+}
+.home-cover__box {
+    text-align: center;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, .15);
+}
+.home-cover__box-date {
+    text-transform: uppercase;
+    color: #fff;
+}
+.home-cover__box-image {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .35);
+    border-radius: 9px;
+    -webkit-background-size: cover;
+            background-size: cover;
+    background-clip: padding-box;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+.home-cover__box-image::after {
+    background-color: rgba(0, 0, 0, .15);
+    border-radius: 3px;
+}
+.home-cover__box-infographic {
+}
+  .home-cover__box-graphic-number {
+      color: #ccc;
+  }
+.home-cover__box-description {
+    color: #b2b2b2;
+}

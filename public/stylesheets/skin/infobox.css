@@ -1,0 +1,301 @@
+
+/* Infoboxes */
+/*correction needed for isotope wall positioning*/
+.right-pane-container .isotope,
+.right-pane-container .isotope .isotope-item {-webkit-transition-duration: 0; -moz-transition-duration: 0; transition-duration: 0}
+.right-pane-container .isotope {-webkit-transition-property: none; -moz-transition-property: none; transition-property: none}
+.right-pane-container .isotope .isotope-item {-webkit-transition-property: none; -moz-transition-property: none; transition-property: none}
+
+.right-pane-container {background-color: #3d3d3d}
+
+.infobox-header {background: #303030; border-bottom: solid 1px rgba(0,0,0,0.2); box-shadow: 0 0 3px #222222}
+.infobox-header .color-line,
+.voice-headline-holder .color-line {}
+.infobox-header .ribbon-title {color: #53B74A; text-shadow: 0px -1px 0px #000000}
+.infobox-header .view-all {color: #888888; text-decoration: none; border: 1px solid #0e0e0e; box-shadow: 0 0 0 1px #353535 inset; background: #373737; border-radius: 4px; text-shadow: 0px -1px 0px #000000;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  background-image: -moz-linear-gradient(top, #333333, #262626);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #333333), color-stop(1.0, #262626));
+  background-image: -webkit-linear-gradient(#333333, #262626);
+  background-image: linear-gradient(top, #333333, #262626)
+}
+.infobox-header .view-all:hover {color: #AAAAAA}
+
+.infobox {
+  border: 1px solid; border-color: #4C4C4C #2C2C2C #101010;
+  border-radius: 4px;
+  background-clip: padding-box;
+  background: #373737;
+  background: -moz-linear-gradient(top,  #373737 0%, #303030 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#373737), color-stop(100%,#303030));
+  background: -webkit-linear-gradient(top,  #373737 0%,#303030 100%);
+  background: -o-linear-gradient(top,  #373737 0%,#303030 100%);
+  background: -ms-linear-gradient(top,  #373737 0%,#303030 100%);
+  background: linear-gradient(to bottom,  #373737 0%,#303030 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#373737', endColorstr='#303030',GradientType=0 );
+}
+
+.infobox .info:last-child {
+  -webkit-border-radius: 0 0 4px 4px;
+     -moz-border-radius: 0 0 4px 4px;
+          border-radius: 0 0 4px 4px;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+}
+.infobox:hover {
+  background: #363636;
+  background: -moz-linear-gradient(top,  #363636 0%, #2f2f2f 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#363636), color-stop(100%,#2f2f2f));
+  background: -webkit-linear-gradient(top,  #363636 0%,#2f2f2f 100%);
+  background: -o-linear-gradient(top,  #363636 0%,#2f2f2f 100%);
+  background: -ms-linear-gradient(top,  #363636 0%,#2f2f2f 100%);
+  background: linear-gradient(to bottom,  #363636 0%,#2f2f2f 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#363636', endColorstr='#2f2f2f',GradientType=0 );
+}
+
+.infobox-padding {border-bottom-color: #202020; border-bottom-style: solid}
+.highlight .infobox-padding {border-bottom-color: #151515}
+
+.infobox .primary-btn {
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  color: #999999;
+  border: 1px solid #191919;
+  box-shadow: inset 0 1px 0 0 #454545, inset 0 0 0 1px #383838;
+  background: #373737;
+  border-radius: 4px;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.6);
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  background-image: -moz-linear-gradient(top, #333333, #282828);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #333333), color-stop(1.0, #282828));
+  background-image: -webkit-linear-gradient(#333333, #282828);
+  background-image: linear-gradient(top, #333333, #282828)
+}
+.infobox .primary-btn:hover {color: #aaaaaa; text-decoration: none}
+.infobox .primary-btn:active {position: relative; top: 1px}
+
+.infobox.highlight {box-shadow: 0 0 6px #000000;
+  background-image: -moz-linear-gradient(top, #2a2a2a, #242424);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #2a2a2a), color-stop(1.0, #242424));
+  background-image: -webkit-linear-gradient(#2a2a2a, #242424);
+  background-image: linear-gradient(top, #2a2a2a, #242424);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a2a2a', endColorstr='#242424',GradientType=0 );
+}
+.infobox .caption {color: #cccccc; text-shadow: 0 -1px 1px #000000}
+.infobox .divline {background-color: #53b74a}
+.infobox .description {color: #888888}
+.infobox .graphic,
+.infobox .graphic-number,
+.infobox .caption {color: #cccccc; text-shadow: 0 -1px 1px #000000}
+.infobox .tagbox {
+  border-top-color: #393939;
+  border-top-style: solid;
+  background: url('../../images/bg/sprites/infographics-tagbox.png') no-repeat;
+  background-position: 10px -13px;
+  background-repeat: no-repeat;
+}
+.infobox .sources {
+  background-color: #282828;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top-color: #171717;
+  border-top-style: solid;
+}
+  .infobox .sources:before {
+    -webkit-box-shadow: 0 1px 10px black;
+    box-shadow: 0 1px 10px black;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+  }
+.sources-list-wrapper {
+  background-color: #2e2e2e;
+  -webkit-transition: -webkit-transform 200ms linear;
+          transition: transform 200ms linear;
+}
+
+.sources-list-wrapper .header {text-align: left; background-color: #282828; border-bottom-color: #171717; border-bottom-style: solid}
+.sources-list-wrapper .title {color: #cccccc}
+.sources-list-wrapper .list {border-bottom-style: solid; border-bottom-color: #393939}
+.sources-list-wrapper .list-item {text-align: left; border-style: solid none; border-color: #393939 transparent #202020}
+.sources-list-wrapper .list-item a {color: #888888; text-decoration: none}
+.sources-list-wrapper .list-item a:hover {color: #aaa}
+
+.highlight .tagbox {border-top-color: #2E2E2E}
+.infobox .tag { color: #53b74a; text-shadow: 0 -1px 1px #000000}
+.infobox .tag a,
+.infobox .tag a:hover { color: #6aeb5e; text-decoration: none}
+.chart-bullet {background-color: #5ccc52}
+.chart-data-list {color: #cccccc}
+.percent {color: #888888}
+.chart-bullet {border-radius: 100%;
+  -webkit-border-radius: 100%;
+     -moz-border-radius: 100%;
+          border-radius: 100%;
+}
+.no-caption .graphic {color: #53B74A}
+.infobox .chart-bullet .ie-rounded-corner-mask { background: url('../../images/bg/ie_rounded_corner_normal.png') no-repeat}
+.infobox.highlight .chart-bullet .ie-rounded-corner-mask { background: url('../../images/bg/ie_rounded_corner_highlight.png') no-repeat}
+
+/*
+  Infographic sidebar
+*/
+.preload-mask {background: url("../../images/bg/load-pattern.png") repeat scroll 0 0 transparent}
+.preload-mask .image-bg-patter {background: url("../../images/bg/load-pattern.png") repeat scroll 0 0 #212121}
+.info-sidebar {
+  background-color: #363636;
+  -webkit-transition: left 300ms linear;
+  -moz-transition: left 300ms linear;
+  -ms-transition: left 300ms linear;
+  -o-transition: left 300ms linear;
+  transition: left 300ms linear;
+
+}
+.info-tab-controller {cursor: pointer; border-right: none; border-left: solid 5px #777777; background: none;}
+.info-tab-controller:hover { border-right: none; border-left: solid 5px #777777; background: none;}
+
+.info-tab-controller .tab-icon {
+  background-image: url("/images/icons/sidebar-sprite.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: -123px -1px;
+}
+.info-tab-controller:hover .tab-icon {
+  background-position: -133px -1px;
+}
+.info-tab-controller.close-control .tab-icon {
+  background-position: -143px -1px;
+}
+.info-tab-controller.close-control:hover  .tab-icon{
+  background-position: -153px -1px;
+}
+
+.info-sidebar .voice-headline-holder {background-color: #303030; border-bottom: solid 1px #1f1f1f}
+.info-sidebar .voice-headline a {color: #e6e6e6}
+.info-sidebar .voice-headline a:hover {color: #ffffff; text-decoration: none}
+.info-sidebar .infobox {box-shadow: none; border-left-color: #53B74A}
+.info-sidebar .infobox:hover {background-image: -moz-linear-gradient(top, #444444, #303030);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #444444), color-stop(1.0, #303030));
+  background-image: -webkit-linear-gradient(#444444, #303030);
+  background-image: linear-gradient(top, #444444, #303030);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#303030',GradientType=0 )}
+body .infobox.collapsed.infobox {border-left-color: #2C2C2C}
+.collapsed.number-graphic-top .graphic-number {color: #bcbcbc; font-size: 19px}
+.collapsed .caption {color: #aaa;font-size: 13px; font-weight: normal}
+body .infobox.collapsed .divline {background: none}
+
+/*
+  Dark sidebar scroller
+*/
+.tags-container .jspTrack,
+.info-sidebar .jspTrack,
+.infobox-wall .jspTrack,
+.infobox-preview .jspTrack {
+  background: #191919;
+  background: -moz-linear-gradient(left,  #191919 0%, #1f1f1f 41%, #202020 44%, #1f1f1f 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#191919), color-stop(41%,#1f1f1f), color-stop(44%,#202020), color-stop(100%,#1f1f1f));
+  background: -webkit-linear-gradient(left,  #191919 0%,#1f1f1f 41%,#202020 44%,#1f1f1f 100%);
+  background: -o-linear-gradient(left,  #191919 0%,#1f1f1f 41%,#202020 44%,#1f1f1f 100%);
+  background: -ms-linear-gradient(left,  #191919 0%,#1f1f1f 41%,#202020 44%,#1f1f1f 100%);
+  background: linear-gradient(to right,  #191919 0%,#1f1f1f 41%,#202020 44%,#1f1f1f 100%);
+}
+.tags-container .jspDrag,
+.info-sidebar .jspDrag,
+.infobox-wall .jspDrag,
+.infobox-preview .jspDrag {box-shadow: 0 0 0 1px #212121 inset;
+  background-image: -moz-linear-gradient(left, rgba(118,118,118,1) 0%, rgba(84,84,84,1) 50%, rgba(74,74,74,1) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(118,118,118,1)), color-stop(50%,rgba(84,84,84,1)), color-stop(100%,rgba(74,74,74,1)));
+  background-image: -webkit-linear-gradient(left, rgba(118,118,118,1) 0%,rgba(84,84,84,1) 50%,rgba(74,74,74,1) 100%);
+  background-image: linear-gradient(to right, rgba(118,118,118,1) 0%,rgba(84,84,84,1) 50%,rgba(74,74,74,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#767676', endColorstr='#4a4a4a',GradientType=0 )}
+
+/*
+  Filters and mode bar on main header
+*/
+.filters-and-mode .tag-label {color: #c7c7c7; border: 1px solid #4d4d4d; box-shadow: 0 0 0 1px rgba(116,116,116,0.5) inset, 0 0 0 1px rgba(255,255,255,0.3); background: #373737; border-radius: 4px; text-shadow: 0px -1px 0px #333333;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  background-image: -moz-linear-gradient(top, #626262, #3a3a3a);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #626262), color-stop(1.0, #3a3a3a));
+  background-image: -webkit-linear-gradient(#626262, #3a3a3a);
+  background-image: linear-gradient(top, #626262, #3a3a3a)}
+.tag-label .erase-me {background: url('../../images/icons/delete-tag.png') no-repeat 0 0 transparent; font-size: 13px}
+
+/*
+  Theme color schemes
+*/
+/* Blue */
+.blue .infobox-header .color-line,
+.blue .voice-headline-holder .color-line {background-color: #4cb5ff}
+.blue .infobox .divline,
+.blue .chart-bullet {background-color: #4cb5ff}
+.blue .info-sidebar .infobox {border-left-color: #4cb5ff}
+.blue .infobox .tag,
+.blue .infobox .tag a,
+.blue .infobox .tag a:hover,
+.blue .no-caption .graphic,
+.blue .infobox-header .ribbon-title {color: #4cb5ff}
+
+/* Red */
+.red .infobox-header .color-line,
+.red .voice-headline-holder .color-line {background-color: #f10f2a}
+.red .infobox .divline,
+.red .chart-bullet {background-color: #f10f2a}
+.red .info-sidebar .infobox {border-left-color: #f10f2a}
+.red .infobox .tag,
+.red .infobox .tag a,
+.red .infobox .tag a:hover,
+.red .no-caption .graphic,
+.red .infobox-header .ribbon-title {color: #f10f2a}
+
+/* Orange */
+.orange .infobox-header .color-line,
+.orange .voice-headline-holder .color-line {background-color: #ec9415}
+.orange .infobox .divline,
+.orange .chart-bullet {background-color: #ec9415}
+.orange .info-sidebar .infobox {border-left-color: #ec9415}
+.orange .infobox .tag,
+.orange .infobox .tag a,
+.orange .infobox .tag a:hover,
+.orange .no-caption .graphic,
+.orange .infobox-header .ribbon-title {color: #ec9415}
+
+/* Yellow */
+.yellow .infobox-header .color-line,
+.yellow .voice-headline-holder .color-line {background-color: #ebc91c}
+.yellow .infobox .divline,
+.yellow .chart-bullet {background-color: #ebc91c}
+.yellow .info-sidebar .infobox {border-left-color: #ebc91c}
+.yellow .infobox .tag,
+.yellow .infobox .tag a,
+.yellow .infobox .tag a:hover,
+.yellow .no-caption .graphic,
+.yellow .infobox-header .ribbon-title {color: #ebc91c}
+
+/* Loading overlay */
+
+.info-wall-overlay .overlay {background: url("../../images/bg/ig-wall-bg.png") repeat scroll 0 0 #3D3D3D}
+
+/*highcharts tooltiop -*/
+.highcharts-tooltip tspan {fill: #939393}
+
+/*
+  New info panel styles
+  Added by Aaron
+  Project: backstory
+*/
+/*
+  Info box
+*/
+.infobox-wall-container .voice-info {
+  background: #232323;
+}
+.infobox-wall-container .voice-info .voice-title {
+  color: #ffffff;
+}
+.infobox-wall-container .voice-subtitle em {
+  color: #bfbfbf;
+}

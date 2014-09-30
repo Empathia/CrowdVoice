@@ -1,0 +1,29 @@
+<%= form_for [:admin, @notification], :html => { :multiport => true, :class => "form" } do |f| %>
+  <section class="clearfix" style="width: 410px; float:left">
+    <div class="clearfix" style="margin: 0 0 10px">
+      <div class="label-form center">
+        <%= f.label :content %>
+      </div>
+      <%= f.text_area :content, :rows => "5" %>
+      <%= render 'shared/error_messages_for', :object => @notification, :field => :content %>
+    </div>
+    <div class="clearfix"  style="margin: 0 0 10px">
+      <div class="label-form center">
+        <%= f.label :url %>
+      </div>
+      <%= f.text_field :url %>
+      <%= render 'shared/error_messages_for', :object => @notification, :field => :url %>
+    </div>
+     <div class="action clearfix" style="margin-left: 89px;">
+      <button class="button button-gray" type="submit"><span class="accept"></span>Save</button>
+    </div>
+  </section>
+  <section class="clearfix" style="width:300px; float:left; height: 200px">
+    <div class="clearfix theme">
+      <div class="label-form" style="text-align: left;">
+        <%= f.label :theme, :class => "left-label" %>
+      </div>
+      <div class="clearfix"><%= f.collection_select :theme, APP_CONFIG[:voice_themes], :to_s, :capitalize %></div>
+    </div>
+  </section>
+<% end %>

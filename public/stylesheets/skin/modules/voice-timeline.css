@@ -1,0 +1,98 @@
+/*
+  Timeline
+  Mobile tabs
+*/
+
+/* Timeline */
+#current_date .year-label {color: #666}
+.disactivated-timeliner > a {text-decoration: none}
+.disactivated-timeliner > a > .year-label {color: #666}
+.disactivated-timeliner > a:hover .year-text {text-decoration: underline}
+
+.timeliner-group {font-family: 'AlrightSansRegular'}
+
+.timeliner-group .inner-dot-icn,
+.timeliner-group #current_date .inner-dot-icn,
+.slider-values > li,
+.slider-values > li:last-child {
+  background-image: url('/images/icons/sidebar-sprite.png');
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+.timeliner-group .inner-dot-icn {
+  border-style: none;
+  background-position: -284px 0;
+}
+
+#current_date .inner-dot-icn {background-position: -264px 0}
+
+.slider-values {color: #333}
+.slider-values > li {
+  font-family:'AlrightSansRegular';
+  font-weight: normal;
+  background-position: -266px -43px;
+}
+.slider-values > li:last-child {
+  background-position: -266px -86px;
+}
+.slider-values .linkable {cursor: pointer}
+.slider-values .empty-month .month-label {opacity: 0.5; pointer-events: none}
+.slider-values .active .month-label {color: #333; font-weight: bold; text-decoration: underline}
+.slider-values .linkable:hover .month-label {text-decoration: underline}
+.post-fetch-trigger {
+  background: #F5F5F5;
+  color: #F5F5F5;
+  border-top: 1px solid #666666;
+}
+
+/*
+  < 1024
+*/
+@media all and (max-width: 1024px) {
+/*
+  Mobile tabs
+*/
+  #current_date .inner-dot-icn,
+  .timeliner-group .inner-dot-icn,
+  .slider-values > li,
+  .slider-values > li:last-child,
+  .timeliner-group li {
+    background-color: #EEEEEE;
+    background-image: none;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: none;
+    color: #666666;
+  }
+  #current_date .year-label,
+  .disactivated-timeliner > a > .year-label,
+  .timeliner-group .timeline-tab {
+    color: #666666;
+  }
+  .not-touch .timeline-tab:hover,
+  .not-touch .timeliner-group li:hover {
+    cursor: pointer;
+    background-color: #FFFFFF;
+    background-image: none;
+  }
+  .timeline-tab:active,
+  .timeliner-group li:active {
+    background-color: #F7F7F7;
+    background-image: none;
+  }
+  .slider-values .linkable.active {
+    background: #f9f9f9;
+  }
+  .timeliner-group > .timeliner.current {
+    border: none;
+  }
+  .timeliner-group,
+  .timeliner-group .slider-values > li {
+    font-family: 'AlrightSansMedium';
+  }
+  .slider-values .active .month-label {
+    font-weight: normal;
+  }
+  .disactivated-timeliner > a:hover .year-text {
+    text-decoration: none;
+  }
+}

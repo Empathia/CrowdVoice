@@ -1,0 +1,33 @@
+<%= form_for [:admin, @clipart], :html => { :multipart => true, :class => "form" } do |f| %>
+  <section class="clearfix clipart-editor" style="width:420px; float:left;">
+    <div class="clearfix clipart-name">
+      <div class="label-form center">
+        <%= f.label :name, 'Name' %>
+      </div>
+      <%= f.text_field :name %>
+      <%= render 'shared/error_messages_for', :object => @clipart, :field => :name %>
+    </div>
+
+    <div class="clearfix clipart-image">
+      <div class="label-form center">
+        <%= f.label :image, 'Image' %>
+      </div>
+      <div class="image-display">
+        <%= image_tag @clipart.image.url if @clipart.image? %>
+      </div>
+    </div>
+
+    <div class="clearfix clipart-path">
+      <div class="label-form center">
+        <%= f.label :image, 'Select image' %>
+      </div>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+      <%= render 'shared/error_messages_for', :object => @clipart, :field => 'image' %>
+    </div>
+
+    <div class="action clearfix">
+      <button class="button button-gray" type="submit"><span class="accept"></span>Save</button>
+    </div>
+  </section>
+<% end %>

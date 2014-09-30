@@ -1,0 +1,71 @@
+<%= include_stylesheets :install %>
+
+<%= csrf_meta_tag %>
+<%= chartbeat_top %>
+
+<% if session[:pre_setup] %>
+  <p>Great! Please check your e-mail for the instructions!</p>
+  <%= link_to "close", '/accept_install' %>
+<% else %>
+  <%= form_for User.new, :url => users_path(:format => :json), :html => { :class => 'installation-form form-horizontal' } do |f| %>
+    <div class="user-form install-sec">
+      <div class="control-group">
+        <%= f.label :username, :class => 'control-label', :for => :username %>
+        <div class="controls">
+          <%= f.text_field :username, :'data-attribute' => 'username', :placeholder => 'Username', :class => 'span12' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :email, :class => 'control-label', :for => :email %>
+        <div class="controls">
+          <%= f.text_field :email, :'data-attribute' => 'email', :placeholder => 'Email', :class => 'span12' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :password, :class => 'control-label', :for => :password %>
+        <div class="controls">
+          <%= f.password_field :password, :'data-attribute' => 'password', :placeholder => 'Password', :class => 'span12' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label "Installation Name*", :class => 'control-label', :for => :server_name, :id=>"server_name_id" %>
+
+        <div class="controls" style="position:relative">
+          <%= f.text_field :server_name, :'data-attribute' => 'server_name', :placeholder => 'Installation Name', :class => 'span12' %>
+
+          <div class="tip">
+            This name will appear in the URL and can't be changed
+            <p><i style="font-size:12px">*Accepts lowercases and hyphens characters only</i></p>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <%= submit_tag t('layout.signup'), :'data-action' => 'submit', :class => 'btn btn-success', 'data-disable-with' => "Please wait...", :onclick=> "$(this).attr('disabled', 'disabled')" %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+<% end %>
+
+<%= include_javascripts :install %>
+<script>
+$(document).ready(function(){
+
+    new JsonForm('form.installation-form', function () {
+        location.reload();
+    });
+
+    $("#server_name_id").hover(function(){
+        $('.tip').css("display", "block");
+    },function(){
+        $('.tip').css("display", "none");
+    });
+
+    $('[data-action=submit]').bind("click", function () {
+        $(this).closest('form').submit();
+        return false;
+    });
+});
+</script>

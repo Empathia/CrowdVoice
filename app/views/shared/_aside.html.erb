@@ -1,0 +1,66 @@
+<div class="voice">
+  <%= render :partial => 'shared/user_menu' %>
+  <div class="voice-search">
+    <input class="search" placeholder="Search Voices" type="text" >
+    <span class="clear-search"></span>
+    <ul>
+      <li class="mapit">
+        <a class="map-btn">
+          <span class="sprite-sidebar"></span>
+        </a>
+        <div class="tooltip">
+          <div class="tooltip-positioner">
+            <p class="tooltip-arrow"><span></span></p>
+            <p class="media-type-info">
+              <strong class="media-type-title">Show Voices on the map.</strong>
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="sidebar-scroller scroll-secondary">
+    <div class="searchable">
+      <% cache( from_gaza? ? "#{current_connection}_aside_menu_bar_gaza" : "#{current_connection}_aside_menu_bar") do %>
+        <% if from_gaza? %>
+          <div class="sidebar-scroller__accordion-toggler">
+            <span class="sidebar-scroller__accordion-arrow">more</span>
+            <h2>Gaza</h2>
+          </div>
+          <ul class="sidebar-scroller__list voice-gaza">
+            <%= render :partial => 'voices/voices', :object => @gaza_voices.order('created_at desc') %>
+          </ul>
+        <% end %>
+
+        <% unless @featured_voices.empty? %>
+          <div class="sidebar-scroller__accordion-toggler">
+            <span class="sidebar-scroller__accordion-arrow">more</span>
+            <h2>Featured Voices</h2>
+          </div>
+          <ul class="sidebar-scroller__list voice-feature">
+            <%= render :partial => 'voices/voices', :object => @featured_voices.order('created_at desc') %>
+          </ul>
+        <% end %>
+        <% unless @non_featured_voices.empty? %>
+          <div class="sidebar-scroller__accordion-toggler">
+            <span class="sidebar-scroller__accordion-arrow">more</span>
+            <h2>Current Voices</h2>
+          </div>
+          <ul class="sidebar-scroller__list voice-all">
+            <%= render :partial => 'voices/voices', :object => from_gaza? ? @all_voices : @non_featured_voices %>
+          </ul>
+        <% end %>
+
+        <% unless @archived_voices.empty? %>
+          <div class="sidebar-scroller__accordion-toggler">
+            <span class="sidebar-scroller__accordion-arrow">more</span>
+            <h2>Archived Voices</h2>
+          </div>
+          <ul class="sidebar-scroller__list voice-all">
+            <%= render :partial => 'voices/voices', :object => @archived_voices %>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

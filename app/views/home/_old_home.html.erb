@@ -1,0 +1,147 @@
+<div class="current-voices-container" data-hansel-component-id="voices-grid">
+  <div class="notification-bar is-empty">
+    <% unless subdomain_present? %>
+      <div class="welcome" data-hansel-component-id="top-notice">
+        <a class="close-message">&times;</a>
+        <div class="header">
+          <h2 class="title"><%= t('layout.welcome_title') %></h2>
+          <ul class="actions">
+            <li class="facebook-like">
+              <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fcrowdvoice&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:170px; height:21px;" allowTransparency="true"></iframe>
+            </li>
+            <li class="tweet">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://crowdvoice.org/" data-text="CrowdVoice - Tracking Voices Of Protest">Tweet</a>
+            </li>
+            <li class="twitter-follow">
+              <a href="https://twitter.com/CrowdVoice" class="twitter-follow-button" data-show-screen-name="true" data-show-count="false">Follow @CrowdVoice</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </li>
+          </ul>
+        </div>
+        <p class="description">
+          <%= t('layout.welcome')  %>
+          <a href="/about"><%= t('layout.learn_more')  %></a>
+        </p>
+      </div>
+    <% end %>
+    <% @notifications.each do |notification| %>
+      <div class="notification <%= notification.theme %>">
+        <a class="close-message">&times;</a>
+        <div class="description">
+          <span class="circle">
+            <i class="sprite-sidebar"></i>
+          </span>
+          <p><%= link_to notification.content, notification.url %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Featured Voice -->
+  <div class="home-columns clearfix">
+    <% @columns.each_with_index do |voices_group, i| %>
+
+      <div class="column-<%= i + 1 %>">
+        <% voices_group.each do |voice| %>
+          <% posts_count = voice.posts_counted_by_type %>
+          <% if voice.square_version? && voice.square_background.url %>
+              <div class="voice-list normal-voice <%= 'is_infographic' if voice.is_infographic? %> <%= voice.theme %>">
+                <% if voice.is_infographic? %>
+                  <span class="badge"></span>
+                <% end %>
+                <div class="voice-list-content">
+                  <%= link_to voice, :title => voice.title do %>
+                    <%= image_tag voice.square_background.url if voice.square_background.url %>
+                    <div class="voice-description">
+                      <div class="voice-description-padding">
+                        <h2><%= voice.title %></h2>
+                        <span class="time-ago">Updated on <%= (voice.posts.approved.first ? voice.posts.approved.first.created_at : voice.updated_at).to_s(:short) %></span>
+                        <span class="voices-count">
+                          <span class="voices-count-right">
+                            <span class="voices-numbers vTooltip" data-counts="({image: <%= posts_count['image'] || 0%>, video: <%= posts_count['video'] || 0 %>, link: <%= posts_count['link'] || 0 %>})"><%= voice.posts.approved.count %></span>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+          <% elsif voice.wide_version? && voice.wide_background.url%>
+              <div class="voice-list featured-voice <%= 'is_infographic' if voice.is_infographic? %> <%= voice.theme %>">
+                <% if voice.is_infographic? %>
+                  <span class="badge"></span>
+                <% end %>
+                <div class="voice-list-content">
+                  <%= link_to voice, :title => voice.title do %>
+                    <% if voice.wide_background.url %>
+
+                      <%= image_tag voice.wide_background.url %>
+
+                    <% end %>
+                    <div class="voice-description">
+                      <div class="voice-description-padding">
+                        <h2><%= voice.title %></h2>
+                        <p title="<%= voice.description %>"><%= get_excerpt voice.description, 190 %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="news-ticker-holder">
+                  <div class="crowd-noise">
+                    <span class="shader shader-left">
+                      <span class="icons latest"></span>
+                    </span>
+                    <ul class="news-ticker">
+                      <% voice.posts.approved.limit(10).each do |post| %>
+                        <li>
+                          <%= link_to voice_path(voice, :post => post.id), :title => post.title do %>
+                            <span class="icons <%= post.source_type == 'image' ? 'photo' : post.source_type %>-ico"></span>
+                              <%= post.title %>
+                            <span class="voice-time"> <%= time_ago_in_words post.created_at %> ago</span>
+                          <% end %>
+                        </li>
+                      <% end %>
+                    </ul>
+                    <span class="shader shader-right">
+                      <span class="voices-count">
+                        <span class="voices-count-right">
+                          <span class="voices-numbers vTooltip" data-counts="({image: <%= posts_count['image'] || 0%>, video: <%= posts_count['video'] || 0 %>, link: <%= posts_count['link'] || 0 %>})">
+                            <%= voice.posts.approved.count %>
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+          <% else %>
+              <div class="voice-list voice-without-image <%= 'is_infographic' if voice.is_infographic? %> <%= voice.theme %>">
+                <% if voice.is_infographic? %>
+                  <span class="badge"></span>
+                <% end %>
+                <div class="voice-list-content">
+                  <%= link_to voice, :title => voice.title do %>
+                    <div class="voice-description">
+                      <div class="voice-description-padding">
+                        <h2><%= voice.title %></h2>
+                        <p><%= get_excerpt voice.description, 190 %></p>
+                        <span class="time-ago">Updated <%= time_ago_in_words voice.posts.approved.first ? voice.posts.approved.first.created_at : voice.updated_at %> ago</span>
+                        <span class="voices-count">
+                          <span class="voices-count-right">
+                            <span class="voices-numbers vTooltip" data-counts="({image: <%= posts_count['image'] || 0%>, video: <%= posts_count['video'] || 0 %>, link: <%= posts_count['link'] || 0 %>})">
+                              <%= voice.posts.approved.count %>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+ </div>
+</div>

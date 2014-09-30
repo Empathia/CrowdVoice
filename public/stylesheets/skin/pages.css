@@ -1,0 +1,39 @@
+/* Skin */
+.static-title {border-style: solid; border-color: #8d8d8d transparent #383838 transparent; background: url('../../images/bg/static_title.png') repeat-x 0 0}
+.static-title > h2 {text-indent:-999em; color: #FFFFFF; background: url('../../images/about_sprite.png') no-repeat 0 0}
+.video-container {background: #d9d9d9; border-color: #ffffff; border-style: solid; background: url('../../images/bg/video_container.png') repeat 0 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 0 0 3px #5C5D5C;
+  -webkit-box-shadow: 0 0 0 3px #5C5D5C;
+  box-shadow: 0 0 0 3px #5C5D5C;
+}
+.static-sec,
+.long-title {border-style: solid; border-color: #565756}
+.short-title,
+.long-title-container {background: url('../../images/about_sprite.png') no-repeat; text-indent: -999em}
+.short-title.about {background-position: 0 -21px}
+.short-title.people {background-position: 0 -42px}
+.short-title.funding {background-position: 0 -63px}
+.short-title.contact {background-position: 0 -86px}
+.long-title.saying > .long-title-container {background-position: 0 -112px}
+.long-title.testimonial > .long-title-container {background-position: 0 -138px}
+.long-title.press > .long-title-container {background-position: 0 -163px}
+.static-sec > p {color: #d9d9d9; text-shadow: #111111 1px 1px 1px}
+.static-sec > p > a {color: #d9d9d9; font-weight: bold}
+.static-sec > p > a:hover {text-decoration:none; color:#bfbfbf;}
+.cite-slide-left-arrow,
+.cite-slide-right-arrow {background-image: url('../../images/bg/sprites/cites_arrows.png'); background-repeat: no-repeat}
+.cite-slide-left-arrow {background-position:0 -21px}
+.cite-slide-left-arrow:hover {background-position:0 -42px}
+.cite-slide-left-arrow.disabled,
+.cite-slide-left-arrow.disabled:hover {background-position:0 0}
+.cite-slide-right-arrow {background-position:-16px -21px}
+.cite-slide-right-arrow:hover {background-position:-16px -42px}
+.cite-slide-right-arrow.disabled,
+.cite-slide-right-arrow.disabled:hover {background-position:-16px 0px}
+.cite-text {color: #ffffff}
+.cite-author {color: #010101}
+.cite-author a {color: #010101; text-decoration:underline}
+.cite-author a:hover {color: #3e3e3e; text-decoration:underline}

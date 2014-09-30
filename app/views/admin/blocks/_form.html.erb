@@ -1,0 +1,429 @@
+<%= include_javascripts :infobox %>
+<%= stylesheet_link_tag 'token-input', 'token-input-facebook' %>
+<%= stylesheet_link_tag 'skin/infobox', 'layout/infobox' %>
+
+<% head do %>
+  <script type="text/javascript">
+      $(document).ready(function() {
+
+        voicePalletes = {
+          red:    ['#D6282D','#8C3B67','#846D03','#CF9013','#CCCC52','#BDBDBD','#5C6166'],
+          blue:   ['#2797CF','#88D9FF','#52CC9A','#85CC52','#7759B3','#BDBDBD','#5C6166'],
+          green:  ['#5CCC52','#C4ED68','#51CDB1','#CBCC52','#CCA84C','#BDBDBD','#5C6166'],
+          yellow: ['#CCCC52','#CF9013','#9C7E48','#89A819','#7B7B00','#BDBDBD','#5C6166'],
+          orange: ['#DA9204','#DABA09','#DA5A04','#759505','#49AC95','#BDBDBD','#5C6166']
+        };
+
+        //select chart colors according to voice theme
+        voiceColors = voicePalletes['<%= @voice.theme %>'];
+
+        //autocomplete url for tag tokeninput
+        voiceAutocompleteUrl = '<%= admin_voice_tags_autocomplete_path(@voice) %>';
+
+        //Edition mode?
+        initData = <%= raw @block.data_parsed || false %>;
+        // console.log({a:initData});
+        //init form
+        new InfoEditor('.infobox-editor', initData); //edition mode
+      });
+  </script>
+<% end %>
+
+<div class="infobox-tips">
+  <div class="arrow-up">
+      <div class="arrow-up-border"></div>
+  </div>
+
+  <a href='#' class="tips-toggle"><%= t('admin.voices.tip') %> [<span class="plus-minus">+</span>]</a>
+  <div class="tips-body">
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-tag.gif" alt="Tag selection" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.tag') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.tip_desc_one') %> <a href="<%= admin_voice_posts_path(@voice) %>" class="tip-link" target="_blank"><%= t('admin.voices.tip_desc_two') %></a> <%= t('admin.voices.tip_desc_three') %>.
+      </div>
+    </div>
+
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-color.gif" alt="Color assignment" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.chart') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.chart_desc') %>:
+        <br class="double-break" />
+        <span class="tip-good"><%= t('admin.voices.good') %></span>: #FF0000
+        <br />
+        <span class="tip-bad"><%= t('admin.voices.bad') %></span>: #F00 or 'red'
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-values.gif" alt="Value assignment" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.radial') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.radial_desc') %>.
+        <br class="double-break" />
+        <%= t('admin.voices.radial_desc_two') %>:
+        <br class="double-break" />
+          50 + 100 + 50 = 200
+        <br class="double-break" />
+        <%= t('admin.voices.radial_desc_three') %>:
+        <br class="double-break" />
+          50 = 25%
+        <br />
+          100 = 50%
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-bar-chart.gif" alt="Bar chart" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.bar') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.bar_desc') %>
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-area.gif" alt="Area chart" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.area') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.area_desc') %>.
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-clipart.gif" alt="Custom images and clipart" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.custom_images') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.custom_images_desc') %>.
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-limits.gif" alt="Maximum range assignment" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.limits') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.limits_desc') %>.
+        <br />
+        <%= t('admin.voices.limits_desc_two') %>
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-units.gif" alt="Units assignment" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.units') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.units_desc') %>.
+      </div>
+    </div>
+    <div class="tip-divider">
+      <div class="tip-image-container">
+        <img src="/images/admin-voice-block-layout.gif" alt="Layout assignment" class="tip-image"/>
+      </div>
+      <h2 class="tip-title"><%= t('admin.voices.layouts') %>:</h2>
+      <div class="tip-description">
+        <%= t('admin.voices.layouts_desc') %>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_tag("", :class => "form infobox-editor") do %>
+
+  <!-- left column -->
+  <section class="clearfix infobox-editor-forms">
+
+    <!-- headline -->
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= label_tag :block_name,  t('admin.form.layouts') %>
+      </div>
+      <%= text_field('block', 'name', :class => "headline", :value => t('admin.form.head_value')) %>
+    </div>
+
+    <!-- description -->
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= label_tag "block_description", t('admin.form.desc') %>
+      </div>
+      <%= text_area_tag(:block_description, "", :size => "40x4") %>
+      <span class="error-message"></span>
+    </div>
+
+    <!-- content type-->
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= label_tag "block_type", t('admin.form.content') %>
+      </div>
+
+      <%= select_tag("block[type]", options_for_select([[t('admin.select.choose'), "none"], [t('admin.select.radial'), "chart-radial"], [t('admin.select.bars'), "chart-hbars"], [t('admin.select.area'), "chart-area"], [t('admin.select.clipart'), "clipart-image"], [t('admin.select.custom'), "custom-image"], [t('admin.select.number'), "number"], [t('admin.select.clipart_num'), "number-clipart"], [t('admin.select.custom_num'), "number-custom-image"]]), :class => "no-skin") %>
+    </div>
+
+    <!-- sources -->
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= label_tag "block_sources", t('admin.form.src') %>
+      </div>
+      <%= text_area_tag(:block_sources, "", :size => "40x10", :wrap => "off") %>
+      <span class="error-message"></span>
+    </div>
+
+      <!-- ******************************* -->
+      <!-- fieldsets for each content type -->
+      <!-- ******************************* -->
+
+      <!-- chart -->
+      <fieldset class="chart-data">
+        <div class="label-form center">
+          <%= label_tag nil, t('admin.form.values') %>
+        </div>
+        <div class="label-form center">
+          <%= label_tag :units_input, t('admin.form.units') %>
+          <%= text_field('units', 'input', :class => "units") %>
+        </div>
+
+        <div class="grid-placeholder"></div>
+
+
+
+        <script type="text/text" class="data-row-template">
+          <div class="data-row" data-row="0">
+            <a href="#" class="remove-row" title=t('admin.form.remove')></a>
+            <%= text_field('chart_item_name', 'input', :class => "name") %>
+            <%= text_field('chart_item_color', 'area', :class => "color") %>
+          </div>
+        </script>
+
+        <script type="text/text" class="col-title-template">
+          <div class="col-title" data-col="0">
+            <a href="#" class="remove-col" title=t('admin.form.layouts')></a>
+            <div class="col-order">A</div>
+            <%= text_field('', '', :class => "col-name") %>
+          </div>
+        </script>
+
+        <script type="text/text" class="row-data-template">
+          <div class="row-data" data-row="0">
+          </div>
+        </script>
+
+        <script type="text/text" class="data-template">
+          <%= text_field('', '', :class => "data", :id => nil) %>
+        </script>
+
+        <script type="text/text" class="data-grid-template">
+
+          <div class="from-to">
+            <div class="left to-c">
+              <div class="from"><%= t('admin.form.max_limit') %>: </div>
+              <%= text_field("max-limit", 'area', :class => "to") %>
+            </div>
+            <div class="clearfix"></div>
+            <div class="notice"><%= t('admin.form.auto') %></div>
+          </div>
+
+          <div class="grid-container">
+
+            <div class="l-col">
+              <div class="label name"><%= t('admin.form.name') %></div> <div class="label color"><%= t('admin.form.color') %></div>
+              <div class="clearfix"></div>
+              <div class="series-data">
+
+                <!-- template data-row-template
+                  <div class="data-row" data-serie="0">
+                    <a href="#" class="remove-row" title="Remove row"></a>
+                    <%= text_field('', '', :class => "name", :id => nil) %>
+                    <%= text_field('', '', :class => "color", :id => nil) %>
+                  </div>
+                template -->
+
+              </div>
+
+              <a href="#" class="add-row" title="<%= t('admin.form.add_row') %>"></a>
+
+            </div>
+
+            <div class="r-col">
+              <div class="values-label"><%= t('admin.form.value') %></div>
+              <!-- continer needed to mask the scrollbar for col-titles -->
+              <div class="col-titles-mask">
+                <div class="col-titles-container">
+                  <div class="col-titles">
+
+                    <!-- template col-title-template
+                      <div class="col-title" data-col="0">
+                        <a href="#" class="remove-col" title="Remove column"></a>
+                        <div class="col-order">A</div>
+                        <%= text_field('', '', :class => "col-name", :id => nil) %>
+                      </div>
+                    /template -->
+
+                  </div>
+                </div>
+              </div> <!-- col-titles-mask -->
+
+              <a href="#" class="add-col" title="<%= t('admin.form.add_col') %>"></a>
+
+              <div class="series-rows-container">
+                <div class="series-rows">
+
+                  <!-- result FROM TEMPLATES ABOVE
+
+                  <div class="row-data" data-row="0">
+                    <input data-col="0"coltype="text" class="data">
+                  </div>
+
+                  -->
+
+
+                </div> <!-- .series-rows -->
+              </div> <!-- .series-rows-container -->
+
+
+            </div> <!-- .r-col -->
+
+          </div> <!-- .grid-container -->
+          <div class="clearfix"></div>
+          <div class="auto-colors">
+            <%= label_tag(:color_check, t('admin.form.auto_colors'), :class => "color-label") %>
+            <%= check_box_tag(:color_check, "", false, :class => "color-check") %>
+          </div>
+
+          <%= label_tag(:block_layout, "Layout:", :class => 'layout-label') %>
+          <%= select_tag("block[layout]", options_for_select([[t('admin.form.top_ch'), "chart-top"], [t('admin.form.bottom_ch'), "chart-bottom"], [t('admin.form.left_ch'), "chart-left"]]), :class => "no-skin chart-layout") %>
+        </script>
+
+
+
+      </fieldset>
+
+      <!-- clipart -->
+      <fieldset class="clipart-image">
+        <script type="text/text" class="clipart-template">
+          <div class="label-form center">
+            <%= label_tag(:block_chart_attributes_static_image, t('admin.form.choose')) %>
+          </div>
+          <ul class="clipart-panel">
+            <% @cliparts.each do |clip| %>
+              <li class="clipart-sample" data-clipart-id="CLIPART_REF_<%= clip.id %>" data-clipart-url="<%= clip.image.url %>"> <a href="#"> <img src="<%= clip.image.url %>" /> </a> </li>
+            <% end %>
+          </ul>
+
+          <div class="layout-options">
+            <div class="label-form center">
+              <%= label_tag(:block_layout, "Layout Type") %>
+            </div>
+            <%= select_tag("block[layout]", options_for_select([[t('admin.form.bottom'), "graphic-top"], [t('admin.form.left'), "graphic-left"]]), :class => "no-skin clipart-layout", :id => "block_layout") %>
+          </div>
+          <%= hidden_field_tag("", "", :class=> "clipart-image-value", :id => nil, :name => nil, :value => nil) %>
+        </script>
+        <div class="clipart-placeholder">
+
+        </div>
+      </fieldset>
+
+      <!-- custom image -->
+      <fieldset class="custom-image">
+        <script type="text/text" class="custom-image-template">
+          <div data-for-forms='custom_image'>
+            <div class="thumb-container">
+              <div class="label-form center">
+                <%= label_tag(:block_chart_attributes_static_image,t('admin.form.static')) %>
+              </div>
+              <span class="custom-image-element">
+                <img class="image-thumb" src=""/>
+              </span>
+            </div>
+
+            <div class="label-form center">
+              <%= label_tag(:block_chart_attributes_chart_type, t('admin.form.choose_file')) %>
+            </div>
+
+
+            <%= file_field_tag "file", :class=> "image-preview", :id=> nil %>
+
+          </div>
+
+          <div class="layout-options">
+            <div class="label-form center">
+              <%= label_tag(:block_layout, t('admin.form.layout_type')) %>
+            </div>
+            <%= select_tag("block[layout]", options_for_select([[t('admin.form.bottom_ch'), "graphic-top"], [t('admin.form.left_ch'), "graphic-left"]]), :class => "no-skin graphic-layout", :id => "block_layout") %>
+          </div>
+        </script>
+
+        <div class="custom-image-placeholder"></div>
+
+      </fieldset>
+
+      <!-- number -->
+      <fieldset class="number">
+        <script type="text/text" class="number-template">
+          <div class="label-form">
+            <%= label_tag(:block_number, t('admin.form.number_content')) %>
+          </div>
+          <%= text_field(:block, :number, :value => t('admin.form.number_value'))%>
+        </script>
+
+        <div class="number-placeholder"></div>
+
+      </fieldset>
+
+  </section>
+  <!-- left column end -->
+
+  <!-- right column -->
+  <section class="clearfix infobox-editor-details">
+
+    <!-- tags -->
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= label_tag(:block_tag_list, t('admin.form.tag_list')) %>
+      </div>
+      <%= text_field(:block, :tag_list)%>
+      <span class="error-message"></span>
+
+    </div>
+    <div class="clearfix">
+      <%= label_tag(:featured_check, t('admin.form.featured'), :class => "featured-label") %>
+      <%= check_box_tag(:featured_check, "", false, :class => "featured-check") %>
+    </div>
+
+    <!-- preview -->
+    <div class="clearfix infobox-preview-container">
+      <div class="label-form center">
+        <%= label_tag(:block_tag_list, t('admin.form.preview')) %>
+      </div>
+
+      <%= render 'shared/infobox-template' %>
+
+      <div class="infobox-preview <%= @voice.theme %>">   <!-- add color theme -->
+
+        <!-- infobox -->
+
+      </div>
+
+    </div>
+
+    <button class="save-changes button button-gray" type="button"><span class="accept"></span><%= t('admin.form.save') %></button>
+
+  </section>
+  <!-- right column -->
+<% end %>
+<!-- </form> -->
+
+<%= form_for [:admin, @voice, @block], :html => { :multipart => true, :class => "form hidden back-form" } do |f| %>
+    <%= f.text_field :name, :class => 'back-name' %>
+    <%= f.text_field :type, :class => 'back-type' %>
+    <%= f.text_area :data, :class => 'back-data' %>
+    <%= f.text_field :tag_list, :class => 'back-tags' %>
+<% end %>

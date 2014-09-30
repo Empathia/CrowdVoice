@@ -1,0 +1,113 @@
+body{overflow: hidden;}
+.main-container,
+.main-container--inner {
+  height: 100% !important;
+  overflow: hidden;
+}
+.main-container img.hidden{
+  display: none;
+}
+.voice-wrapper {
+  margin-top:-5px;
+  z-index:0;
+}
+.voice-wrapper.initial-state{
+  height: 85%;
+}
+.voice-wrapper.initial-state > .sweeper.panel-padding {
+  height: 100%;
+}
+.updating-wrapper {
+  z-index: 4;
+}
+/*.voice-wrapper > .panel-padding {position: relative}*/
+.flash-message {
+  z-index: 3;
+  position: absolute;
+  margin: 0;
+  top: 214px;
+  left: 16px;
+  right: 0;
+}
+.message {
+  border-width: 0;
+}
+.flash-message.with-mainSidebar{
+  left: 21px;
+}
+.flash-message.with-infosidebar {
+  left: 306px;
+}
+
+.header-sep {width: 100%; float:left}
+
+/* Voice Boxes Area */
+.voices-scroller {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.voices-scroller .jspVerticalBar {width: 6px; right: 5px}
+.voices-container { margin: 17px auto 0; overflow: visible !important;}
+.voices-container.with-announcement { margin: 47px auto 0;}
+.voices-scroller.with-infosidebar {
+  left: 285px;
+}
+
+.flash {position: fixed; z-index: 10; width: 100%; border-width: 0 0 3px 0; padding: 14px 0 12px 0; overflow: hidden}
+.flash > p {font-size: 15px; font-weight: normal; float:left; margin-left: 20px; padding-right: 18px}
+.flash > p > span {font-weight: bold}
+.flash > .close-message {float:right; width: 18px; height: 18px; display: block; margin-right: 12px}
+
+/* tags tooltip */
+
+.tags-container {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 45px;
+  height: 21px;
+  margin: 0 20px 0 0;
+  padding: 1px 0;
+}
+.tags-container .info-tags__tooltip {text-align: left; top: 18px}
+.info-tags__tooltip .tooltip-positioner {left: -15%}
+.info-tags__tooltip .tooltip-arrow {left: 14%}
+.info-tags__tooltip .tag-tooltip-trigger {height: 10px}
+.info-tags__tooltip .media-type-info {padding: 5px 0 0 0}
+.info-tags__tooltip .mode-button {padding: 2px 0;}
+.info-tags__tooltip .mode-button .button { padding: 2px; float: left; border-width: 1px; margin: 4px 5px; }
+.voice-tags {min-width: 150px; padding: 5px;}
+.voice-tags li {padding: 3px 0; font-size: 12px;}
+/*
+  < 768
+*/
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+  .voices-scroller.with-infosidebar {
+    left: 0;
+    width: 100%;
+  }
+  .flash-message,
+  .voices-scroller.with-infosidebar,
+  .flash-message.with-infosidebar {
+    left: 0;
+    right: 0;
+  }
+  .top-scroll, .bottom-scroll {
+    display: none;
+  }
+}
+/*
+  < 460
+*/
+@media only screen and (max-width: 460px), only screen and (max-device-width: 460px) {
+  .main-container, .main-container--inner {
+    overflow-y: auto;
+  }
+  .voices-scroller {
+    height: auto !important;
+  }
+  .voices-container.with-announcement{
+    margin-top: 17px;
+  }
+}

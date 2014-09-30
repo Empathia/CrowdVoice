@@ -1,0 +1,18 @@
+<!-- each of the menu items are rendered though this partial -->
+<% voices.each do |voice| %>
+  <li class="sidebar-scroller__list-item <%= voice.theme %> <%= (voice.is_infographic? ? 'is_infographic' : 'bubble') %> <%= 'last' if voice == voices.last %> <%= 'backstory' if !subdomain_present? && voice.has_timeline  %>">
+
+    <%= link_to gaza_path_helper(voice), :class => 'sidebar-scroller__list-item-anchor' do %>
+      <%= voice.title %>
+    <% end %>
+
+    <% if voice.is_infographic? %>
+      <a href="<%= "/#{voice.slug}" %>" class="icon--14 icon--infographic simple-tooltip" data-tooltip-text="Infographics" data-tooltip-position="top right"></a>
+    <% end %>
+
+    <% if !subdomain_present? && voice.has_timeline %>
+      <a href="<%= "/#{voice.slug}" %>?backstory=true" class="icon--14 icon--backstory simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top right"></a>
+    <% end %>
+
+  </li>
+<% end %>

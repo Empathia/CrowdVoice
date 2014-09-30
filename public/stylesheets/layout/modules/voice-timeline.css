@@ -1,0 +1,111 @@
+/* Time line */
+.main-container {position: relative}
+.timeliner-group {
+  position: absolute;
+  top: 40px;
+  right: 21px;
+  width: 40px;
+  z-index: 2;
+}
+.timeliner-group.with-announcement {
+  top: 80px;
+}
+.timeliner-group > .timeliner {position: relative; line-height: 20px}
+#current_date {position: relative}
+.timeliner-group > .timeliner.current {margin-bottom: 5px}
+
+.disactivated-timeliner > a > .year-label,
+#current_date .year-label {font-size: 11px; padding-left: 12px; line-height: 20px}
+.timeliner-group .inner-dot-icn,
+.timeliner-group .timerliner-dot {position: absolute; width: 9px; height: 9px; left: -2px; top: 6px}
+.timeliner-group #current_date .inner-dot-icn {height: 20px}
+
+.slider-values {font-size: 11px}
+.slider-values > li {padding-left: 10px; line-height: 20px}
+.timeline-tab {
+  display: none;
+}
+.timeline-mobile-tabs {
+  display: none;
+}
+.month-label-complete {
+  display: none;
+}
+.post-fetch-trigger {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  height: 0;
+  -webkit-transition: height ease-in 300ms;
+     -moz-transition: height ease-in 300ms;
+      -ms-transition: height ease-in 300ms;
+       -o-transition: height ease-in 300ms;
+          transition: height ease-in 300ms;
+}
+.fetcher-spinner {
+  -webkit-transition: height ease-out 300ms;
+     -moz-transition: height ease-out 300ms;
+      -ms-transition: height ease-out 300ms;
+       -o-transition: height ease-out 300ms;
+          transition: height ease-out 300ms;
+  height: 30px;
+}
+.fetcher-spinner:after {
+  border-radius: 3px;
+}
+/*
+  < 1024
+*/
+@media all and (max-width: 1024px) {
+  .timeliner-group {
+    bottom: 0;
+    display: block;
+    position: relative;
+    top: auto !important; /* override inline styles */
+    right: auto !important; /* override inline styles */
+    width: 100%;
+  }
+  #current_date .year-label,
+  .disactivated-timeliner > a > .year-label,
+  .timeline-tab {
+    display: block;
+    font-size: 14px;
+  }
+  .timeline-tab,
+  .timeliner-group li {
+    display: block;
+    height: auto;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .timeliner-group > .timeliner.current {
+    padding: 0;
+    margin: 0;
+  }
+  #current_date,
+  .timeliner-group li.empty-month {
+    display: none;
+  }
+  .timeliner-group .slider-values > li {
+    font-size: 14px;
+  }
+  .month-label.short {
+    display: none;
+  }
+  .month-label-complete {
+    display: inline;
+  }
+}
+/*
+  < 460
+*/
+@media all and (max-width: 460px) {
+  .timeliner-group {
+    margin-bottom: 37px;
+  }
+}

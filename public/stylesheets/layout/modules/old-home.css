@@ -1,0 +1,80 @@
+.crowdvoice-custom-tag {font-size: 14px; line-height: 1em; padding: 5px 0 9px}
+
+/* Home Page Styles */
+.current-voice-bar {height: 4px}
+.home-scroller {width: 100%; height: 100%; position: relative; overflow: auto}
+.current-voices-container {padding: 18px 20px;}
+
+/* Voices Listing */
+
+/* Voices Types: Featured, normal-voice and without image */
+.voice-list {padding: 5px; margin-bottom: 20px; height: auto; position: relative}
+.voice-list.is_infographic > .badge {position: absolute; z-index: 1; top: -4px; right: 9px; width: 31px; height: 37px}
+
+.voice-without-image .voice-list-content {height: auto}
+.voice-list-content a {display: block; position: relative}
+.voice-list-content img {width: 100%}
+.voice-list-content a .voice-description {position: absolute; bottom: 0; z-index: 2}
+
+.voice-without-image a .voice-description {position: static}
+
+.voice-description {padding: 10px}
+.voice-description h2 {font-size: 15px}
+.voice-description h2,
+.voice-description p {margin-bottom: 5px}
+.voice-description p {line-height: 1.4}
+.voice-description .voices-count {float: left}
+.voice-description .time-ago {font-size: 10px; display: inline-block; margin: 5px 0 0 5px}
+
+/* Voices count Tooltip */
+.voice-count-tooltip {position: absolute; top: -100%; z-index: 10; font-size: 11px; height: 16px; padding: 4px 0 0 8px; display: none}
+.voice-count-tooltip > ul {float: left; line-height: 13px; overflow: hidden}
+.voice-count-tooltip > ul > li {display: inline-block; position: relative; padding-left: 17px; line-height: 11px; margin-right: 10px; white-space: nowrap}
+.voice-count-tooltip > ul > li > .icons {position: absolute; left: 0}
+.voice-count-tooltip > ul > li > span {font-size: 11px; font-weight: normal;}
+.voice-count-tooltip .video-count,
+.voice-count-tooltip .link-count {top: 2px}
+.voice-count-tooltip > ul > .last {margin: 0}
+.voice-count-tooltip > .arrow,
+.voice-count-tooltip > .arrow > span {position: absolute; width: 0; height: 0; line-height: 0}
+.voice-count-tooltip > .arrow {border-width: 0 6px 6px 6px; top: 20px; right: 15px; z-index: 5}
+.voice-count-tooltip > .arrow > span {border-width: 0 4px 4px 4px; z-index: 6; left: -5px; top: -1px}
+
+/* Home Columns */
+.home-columns > div {float: left; margin-right: 20px}
+.home-columns > .column-3 {margin-right: 0}
+.home-columns .voice-list .voice-description {padding: 0; width: 100%}
+.home-columns .voice-list .voice-description-padding {padding: 10px}
+
+/* News Ticker */
+.news-ticker-holder {height: 22px; width: 100%}
+.news-ticker-holder .shader {z-index: 5}
+.news-ticker-holder > .crowd-noise {height: 22px; overflow: hidden}
+.news-ticker {position: relative; height: 20px; overflow: hidden; padding: 4px 30px 0}
+.news-ticker > li {float: left; padding-right: 9px}
+.news-ticker > li > a {display: block; font-size: 10px; position: relative; padding-left: 25px}
+.news-ticker > li > a > .icons {position: absolute; left: 7px; top: 0}
+.news-ticker .icons.link-ico,
+.news-ticker .icons.video-ico,
+.news-ticker .icons.photo-ico {top: 5px}
+
+.icons.latest {margin-top: 0}
+.icons.voices-count {margin-top: -1px; position: relative}
+.news-ticker-holder > .crowd-noise {position: relative}
+.news-ticker-holder .shader {position: absolute; bottom: 0; height: 21px}
+.news-ticker-holder .shader-left  {left: 0;  padding-right: 15px}
+.news-ticker-holder .shader-right {right: 0; padding-left: 15px}
+
+.voices-count,
+.voices-count > span,
+.voices-count > span > span {line-height: 1}
+.voices-count {padding-left: 10px}
+.voices-count .voices-count-right {padding-right: 16px}
+.voices-count .voices-numbers {display: block; font-size: 10px; text-align: center; padding: 7px 0 0; height: 20px;}
+
+@media only screen and (min-width : 300px) and (max-width : 1090px) {
+    .featured-voice .voice-description p {overflow: hidden; height: 16px}
+}
+@media only screen and (min-width : 1091px) and (max-width : 1205px) {
+    .featured-voice .voice-description p {overflow: hidden; height: 32px}
+}

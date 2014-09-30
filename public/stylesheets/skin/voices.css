@@ -1,0 +1,85 @@
+.main-container {
+  background: #bdbdbd;
+}
+.voices-scroller {
+  background-color: #bdbdbd;
+}
+
+/* Voice Boxes Area */
+.voices-scroller .jspTrack {
+  background: none;
+}
+.voices-scroller .jspDrag {
+  background-color: rgba(0, 0, 0, 0.28);
+  background-image: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+.flash-message {background: #fff;
+  border-radius: 0;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.28);
+}
+.message {
+  background: #e3edec;
+  background: -moz-linear-gradient(top,  #e3edec 0%, #edf7f6 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e3edec), color-stop(100%,#edf7f6));
+  background: -webkit-linear-gradient(top,  #e3edec 0%,#edf7f6 100%);
+  background: -o-linear-gradient(top,  #e3edec 0%,#edf7f6 100%);
+  background: -ms-linear-gradient(top,  #e3edec 0%,#edf7f6 100%);
+  background: linear-gradient(to bottom,  #e3edec 0%,#edf7f6 100%);
+  border-radius: 0;
+}
+.flash {background: #f5f572 url('../../images/bg/notifications.png') 0 0 repeat-x; border-style: solid; border-color: #d5d653;
+    -moz-box-shadow: 0 2px 2px 0px #1e1e1e;
+    -webkit-box-shadow: 0 2px 2px 0px #1e1e1e;
+    box-shadow: 0 2px 2px 0px #323232
+}
+.flash > p {background: url('../../images/bg/arrow-message.png') center right no-repeat; color: #6b6b13; text-shadow: 0 1px 0px #fff}
+.flash > p > span > a {color: #6b6b13;}
+.flash > .close-message {background: url('../../images/bg/close-notifier.png') 0 0 no-repeat;}
+.flash > .close-message:hover {background-position: 0px -18px;}
+
+.corner-all4 {
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+
+.voice-tags {border-radius: 3px}
+.voice-tags li {color: #000000; font-family: 'AlrightSansRegular'}
+
+/*
+  Color overrides
+*/
+/* yellow */
+.yellow .tag-tooltip-trigger {
+  color: #EBC91C;
+}
+/* orange */
+.orange .tag-tooltip-trigger {
+  color: #EC9415;
+}
+/* blue */
+.blue .tag-tooltip-trigger {
+  color: #4DB5FF;
+}
+/* red */
+.red .tag-tooltip-trigger {
+  color: #F10F2A;
+}
+/* green */
+.green .tag-tooltip-trigger {
+  color: #50B347;
+}
+
+.isotope,
+.isotope .isotope-item {-webkit-transition-duration: 0.6s; transition-duration: 0.6s}
+.isotope {-webkit-transition-property: height, width; transition-property: height, width}
+.isotope .isotope-item {-webkit-transition-property: -webkit-transform, opacity; transition-property: transform, opacity}
+@media only screen and (max-width: 460px), only screen and (max-device-width: 460px) {
+  .updating-wrapper {
+    background-size: auto 100%;
+  }
+}

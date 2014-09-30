@@ -1,0 +1,191 @@
+<%= form_for [:admin, @voice], :html => { :multipart => true, :class => "form voices" } do |f| %>
+  <section class="clearfix" style="width:600px; float:left;">
+    <div class="clearfix">
+      <div class="label-form">
+        <%= f.label 'Voice Title' %> <span class="red">*</span> <span class="ask-me"></span> <br>
+      </div>
+      <small class="answere">Add a title to your Voice</small>
+      <%= f.text_field :title, :class => 'title' %>
+      <%= render 'shared/error_messages_for', :object => @voice, :field => :title %>
+    </div>
+    <div class="clearfix">
+      <div class="label-form">
+        <%= f.label 'About this Voice'  %> <span class="red">*</span> <span class="ask-me"></span> <br>
+      </div>
+      <small class="answere">This is the brief description of the voice</small>
+      <%= f.text_area :description, :rows => "5" %>
+      <%= render 'shared/error_messages_for', :object => @voice, :field => :description %>
+    </div>
+    <div class="sweeper"></div>
+    <div class='location'>
+      <div class="section-btn">
+          <p><span class="section-icon map"></span>Add Location Data</p>
+      </div>
+      <div class="location-info hide-panel">
+        <div class="clearfix">
+          <div class="label-form">
+            <%= f.label :location %> <span class="ask-me"></span> <br>
+          </div>
+          <small class="answere">Where is the voice happening</small>
+          <%= f.text_field :location %>
+          <%= render 'shared/error_messages_for', :object => @voice, :field => :location %>
+        </div>
+        <div class="clearfix">
+          <ul class="location-tabs">
+            <li class="selected" data-tab="#tab1">Custom Map URL</li>
+            <li data-tab="#tab2">Latitude & Longitude</li>
+          </ul>
+          <div class="tab-option" id="tab1">
+            <%= f.text_field :map_url %>
+            <%= render 'shared/error_messages_for', :object => @voice, :field => :map_url %>
+          </div>
+          <div class="tab-option hide-panel" id="tab2">
+            <%= f.text_field :latitude, :class => 'lat-long', :placeholder => "Latitude" %>
+            <%= render 'shared/error_messages_for', :object => @voice, :field => :latitude %>
+            <%= f.text_field :longitude, :class => 'lat-long', :placeholder => "Longitude" %>
+            <%= render 'shared/error_messages_for', :object => @voice, :field => :longitude %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='twitter'>
+      <div class="section-btn">
+          <p><span class="section-icon twitter"></span>Add Twitter Hashtags</p>
+      </div>
+      <div class="clearfix hide-panel">
+        <div class="label-form">
+          <%= f.label :twitter_search %> <span class="ask-me"></span> <br>
+        </div>
+        <small class="answere">Search in twitter streamline</small>
+        <%= f.text_field :twitter_search %>
+        <%= render 'shared/error_messages_for', :object => @voice, :field => :twitter_search %>
+      </div>
+    </div>
+    <div class='rss'>
+      <div class="section-btn">
+          <p><span class="section-icon rss"></span>Add Content from RSS Feed</p>
+      </div>
+      <div class="clearfix hide-panel">
+        <div class="label-form">
+          <%= f.label :rss_feed %> <span class="ask-me"></span> <br>
+        </div>
+         <small class="answere">Search in content RSS</small>
+        <%= f.text_field :rss_feed %>
+        <%= render 'shared/error_messages_for', :object => @voice, :field => :rss_feed %>
+      </div>
+    </div>
+    <div class="action clearfix">
+      <button class="button-green" type="submit"><span class="accept"></span>Save Voice</button>
+    </div>
+  </section>
+
+  <section class="clearfix side-bar" style="width:300px; float:left;">
+    <div style="clear:both; display:block; overflow:hidden">
+      <div class="clearfix theme">
+        <div class="label-form">
+          <%= f.label :theme, :class => "left-label" %> <span class="ask-me"></span> <br>
+        </div>
+        <small class="answere">Choose a theme color</small>
+        <div class="sweeper"></div>
+        <div><%= f.collection_select :theme, APP_CONFIG[:voice_themes], :to_s, :capitalize,  {}, {:onchange => "$('.theme-window span').removeClass('"+APP_CONFIG[:voice_themes].join(" ")+"').addClass(this.value)"}%></div>
+      </div>
+      <div class="clearfix theme-preview">
+        <div class="label-form">
+          <label class="left-label">Preview</label> <span class="ask-me"></span> <br>
+        </div>
+        <small class="answere">See how it looks</small>
+        <div class="sweeper"></div>
+        <div class="theme-window">
+          <span class="<%=@voice.theme ? @voice.theme : APP_CONFIG[:voice_themes].first%>"></span>
+        </div>
+      </div>
+    </div>
+    <div class='actions'>
+      <div class="clearfix">
+        <div class="label-form">
+          <%= f.label :archived %>
+          <small></small>
+        </div>
+        <%= f.check_box :archived %>
+        <%= render 'shared/error_messages_for', :object => @voice, :field => :archived %>
+      </div>
+      <% if current_user.is_admin? %>
+        <div class="clearfix">
+          <div class="label-form">
+            <%= f.label :featured %>
+            <small></small>
+          </div>
+          <%= f.check_box :featured %>
+          <%= render 'shared/error_messages_for', :object => @voice, :field => :featured %>
+        </div>
+        <div class="clearfix">
+          <div class="label-form">
+            <%= f.label :approved %>
+            <small></small>
+          </div>
+          <%= f.check_box :approved, :checked => @voice.new_record? ? 'checked' : @voice.approved %>
+          <%= render 'shared/error_messages_for', :object => @voice, :field => :approved %>
+        </div>
+      <% unless subdomain_present? %>
+        <div class="clearfix">
+          <div class="label-form">
+            <%= f.label :is_witness_gaza %>
+            <small></small>
+          </div>
+          <%= f.check_box :is_witness_gaza %>
+          <%= render 'shared/error_messages_for', :object => @voice, :field => :is_witness_gaza %>
+        </div>
+      <% end %>
+        <div class="clearfix">
+          <div class="label-form" style="width: 150px">
+            <%= f.label :background_version %><span class="ask-me"></span>
+          </div>
+          <small class="answere">Image displayed in the homepage</small>
+          <div><%= f.collection_select :background_version, Voice::BACKGROUND_VERSIONS, :to_s, :capitalize %></div>
+        </div>
+      <% end %>
+    </div>
+    <div class='background'>
+      <div class="clearfix">
+        <div class="label-form" style="width:140px">
+          <%= f.label :background, 'Background Image' %>
+        </div>
+        <span class="background-image">
+          <%= image_tag @voice.background.url if @voice.background?%>
+        </span>
+        <br />
+        <%= f.file_field :background %>
+        <%= f.hidden_field :background_cache %>
+      </div>
+    </div>
+    <% if current_user.is_admin? %>
+      <div class='background'>
+        <div class="clearfix">
+          <div class="label-form" style="width:140px">
+            <%= f.label :square_background, 'Square Background' %>
+          </div>
+          <span class="background-image">
+          <%= image_tag @voice.square_background.url if @voice.square_background?%>
+        </span>
+          <br />
+          <%= f.file_field :square_background %>
+          <%= f.hidden_field :square_background_cache %>
+        </div>
+      </div>
+      <div class='background'>
+        <div class="clearfix">
+          <div class="label-form" style="width:140px">
+            <%= f.label :wide_background, 'Wide Background' %>
+          </div>
+          <span class="background-image">
+          <%= image_tag @voice.wide_background.url if @voice.wide_background?%>
+        </span>
+          <br />
+          <%= f.file_field :wide_background %>
+          <%= f.hidden_field :wide_background_cache %>
+        </div>
+      </div>
+      
+    <% end %>
+  </section>
+<% end %>

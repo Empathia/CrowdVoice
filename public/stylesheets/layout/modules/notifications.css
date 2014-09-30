@@ -1,0 +1,92 @@
+.notification-bar {
+  margin-bottom: 28px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.home-voices-layout .notification-bar {
+  margin-bottom: 0;
+}
+.notification-bar.is-empty {
+  margin-bottom: 0;
+}
+.welcome {
+  position: relative;
+  z-index: 0;
+  padding: 25px 20px 20px;
+}
+.welcome .header .title {
+  float: left;
+  font-size: 20px;
+  margin: 1px 15px 0 0;
+}
+.welcome .header .actions {
+  float: left;
+}
+.welcome .description {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: normal;
+  padding-top: 6px;
+}
+.welcome .description > span {
+  font-weight: bold;
+}
+.notification-bar .close-message {
+  width: 17px;
+  height: 17px;
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.welcome .header::after,
+.welcome .actions::after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
+
+.welcome .actions > li {
+  float:left;
+  margin-right: 5px;
+}
+.welcome .actions > li > a {
+  display:block;
+  width: 25px;
+  height: 25px;
+}
+.welcome .actions .facebook-like {width: 90px}
+.welcome .actions .tweet {width: 90px;}
+
+.notification {
+  position: relative;
+  border-top-width: 1px;
+  z-index: 1;
+  margin-top: -1px;
+}
+.notification .description {
+  font-size: 14px;
+  padding: 12px 30px 12px 20px;
+}
+.notification .description p {margin-left: 27px}
+.notification .close-message {
+  top: 11px;
+}
+.notification .close-message:hover {
+  opacity: 0.8;
+}
+.notification .circle {
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  width: 25px;
+  height: 25px;
+}
+
+@media all and (max-width: 500px) {
+  .welcome .header .title {
+    margin-bottom: 10px;
+  }
+}

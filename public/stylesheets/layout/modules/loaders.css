@@ -1,0 +1,37 @@
+.loader,
+.loader--hide {
+    display: none;
+}
+
+.loader--show {
+    display: block;
+}
+
+.loader__inner {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.loader__image {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+}
+.voice-wrapper .loader--dark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -26px 0 0 -36px;
+}
+/*
+  Usage: just add this class and position the target element as relative,
+  it puts this clear-colored spinner right in the middle for both X & Y
+*/
+.fetcher-spinner:after {
+  bottom: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

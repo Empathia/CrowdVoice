@@ -1,0 +1,637 @@
+<% head do %>
+  <%= include_stylesheets :about_pack %>
+<% end %>
+
+<header class="about-page subnav fixed-fake">
+  <div class="theme-image black"></div>
+  <nav class="inner-subnav">
+    <div class="content-700">
+      <ul class="menu">
+        <li><a href="#" data-target="intro" class="active">About &amp; Contact</a></li>
+        <li><a href="#" data-target="what-we-do">What we do</a></li>
+        <li><a href="#" data-target="how-it-works">How it works</a></li>
+        <li><a href="#" data-target="press">Press</a></li>
+        <li><a href="#" data-target="video-gallery">Videos</a></li>
+      </ul>
+      <div class="pull-right">
+        <a href="#" class="btn btn-v3-tertiary upper open-modal-subscribe">Subscribe to our Newsletter</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="about-scroller scroll-primary">
+  <div class="about-page content-700">
+
+    <!-- About Intro-->
+    <article class="intro" id="intro">
+      <h2 class="title"><span><%= t('about.about') %></span></h2>
+      <aside>
+        <div class="logo">
+          <img src="images/v3/about/shield-logo.png" width="176" height="231" alt="Crowdvoice - Tracking Voices of Protest">
+        </div>
+        <div class="contact-info-wrapper">
+          <div class="contact">
+            <h3 class="subtitle"><%= t('about.contact') %></h3>
+            <p><a href="mailto:crowdvoice@mideastyouth.com">crowdvoice@mideastyouth.com</a></p>
+          </div>
+          <div class="connect">
+            <h3 class="subtitle"><%= t('about.connect') %></h3>
+            <ul>
+              <li class="js-tw-follow"></li>
+              <li class="js-tw-tweet"></li>
+              <li class="js-fb-like"></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="content">
+        <p class="about-message"><%= t('about.about_message_first') %></p>
+        <p><%= t('about.about_message_second') %></p>
+        <p><%= t('about.about_message_third') %></p>
+        <h3><%= t('about.founding') %></h3>
+        <p class="static-sec-text"><%= t('about.founding_message') %></p>
+        <a href="http://www.shuttleworthfoundation.org/" target="_blank"><img class="shuttleworth-logo" src="/images/shuttleworth_logo.png"></a>
+      </div>
+    </article><!-- @intro -->
+
+    <!-- What we do -->
+    <article class="what-we-do" id="what-we-do">
+      <h2 class="title"><span><%= t('about.what_we_do.title') %></span></h2>
+      <div class="content">
+        <div>
+          <div class="sprite amplify"></div>
+          <h3><%= t('about.what_we_do.amplify') %></h3>
+          <p><%= t('about.what_we_do.amplify_message') %></p>
+        </div>
+        <div>
+          <div class="sprite curate"></div>
+          <h3><%= t('about.what_we_do.curate') %></h3>
+          <p><%= t('about.what_we_do.curate_message') %></p>
+        </div>
+        <div>
+          <div class="sprite educate"></div>
+          <h3><%= t('about.what_we_do.educate') %></h3>
+          <p><%= t('about.what_we_do.educate_message') %></p>
+        </div>
+        <div>
+          <div class="sprite engage"></div>
+          <h3><%= t('about.what_we_do.engage') %></h3>
+          <p><%= t('about.what_we_do.engage_message') %></p>
+        </div>
+      </div>
+    </article><!-- @what-we-do -->
+
+    <!-- HOW IT WORKS -->
+    <article class="how-it-works" id="how-it-works">
+      <h2 class="title"><span><%= t('about.how_it_works.title') %></span></h2>
+      <div class="widget-tabs tabs-horizontal">
+        <ul class="widget-tabs-nav center hiw-main-tabs hidden-on-medium-view">
+          <li><button data-target="#getting-started" class="tab"><%= t('about.how_it_works.getting_started.title') %></button></li>
+          <li><button data-target="#add-your-voice" class="tab"><%= t('about.how_it_works.add_your_voice.title') %></button></li>
+          <li><button data-target="#add-to-moderate" class="tab"><%= t('about.how_it_works.add_to_or_moderate.title') %></button></li>
+        </ul>
+        <div class="widget-tabs-content hiw-main-tabs-content">
+          <div class="widget-tab-pane visible-on-medium-view" id="getting-started">
+            <!-- getting started tabs -->
+            <div class="widget-tabs tabs-vertical">
+              <ul class="widget-tabs-nav hiw-secondary-tabs hidden-on-medium-view">
+                <% (1..4).each do |i| %>
+                  <li>
+                    <a href="#" data-target="#gs<%=i%>" class="tab">
+                      <span class="number"><%=i%></span>
+                      <span class="text"><%= t("about.how_it_works.getting_started.item_0#{i}").html_safe %></span>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="widget-tabs-content hiw-secondary-tabs-content">
+                <p class="hiw-section-title visible-on-medium-view"><%= t('about.how_it_works.getting_started.title') %></p>
+                <% (1..4).each do |i| %>
+                  <div class="widget-tab-pane visible-on-medium-view" id="gs<%=i%>">
+                    <div class="hiw-secondary-tabs-mobile visible-on-medium-view">
+                      <span class="number"><%=i%></span>
+                      <span class="text"><%= t("about.how_it_works.getting_started.item_0#{i}").html_safe %></span>
+                    </div>
+                    <img src="images/v3/about/how-it-works/01-0<%=i%>.jpg" width="322" height="322" alt='Crowdvoice - <%= t("about.how_it_works.getting_started.item_0#{i}") %> image'>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <!-- @getting-started -->
+          </div>
+          <div class="widget-tab-pane visible-on-medium-view" id="add-your-voice">
+            <!-- add your voice tabs -->
+            <div class="widget-tabs tabs-vertical">
+              <ul class="widget-tabs-nav hiw-secondary-tabs hidden-on-medium-view">
+                <% (1..6).each do |i| %>
+                  <li>
+                    <a href="#" data-target="#av<%=i%>" class="tab">
+                      <span class="number"><%=i%></span>
+                      <span class="text"><%= t("about.how_it_works.add_your_voice.item_0#{i}").html_safe %></span>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="widget-tabs-content hiw-secondary-tabs-content">
+                <p class="hiw-section-title visible-on-medium-view"><%= t('about.how_it_works.add_your_voice.title') %></p>
+                <% (1..6).each do |i| %>
+                  <div class="widget-tab-pane visible-on-medium-view" id="av<%=i%>">
+                    <div class="hiw-secondary-tabs-mobile visible-on-medium-view">
+                      <span class="number"><%=i%></span>
+                      <span class="text"><%= t("about.how_it_works.add_your_voice.item_0#{i}").html_safe %></span>
+                    </div>
+                    <img src="images/v3/about/how-it-works/02-0<%=i%>.jpg" width="322" height="322" alt='Crowdvoice - <%= t("about.how_it_works.add_your_voice.item_0#{i}") %> image'>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <!-- @add-your-voice -->
+          </div>
+          <div class="widget-tab-pane visible-on-medium-view" id="add-to-moderate">
+            <!-- add to moderate tabs -->
+            <div class="widget-tabs tabs-vertical">
+              <ul class="widget-tabs-nav hiw-secondary-tabs hidden-on-medium-view">
+                <% (1..2).each do |i| %>
+                  <li>
+                    <a href="#" data-target="#mo<%=i%>" class="tab">
+                      <span class="number"><%=i%></span>
+                      <span class="text"><%= t("about.how_it_works.add_to_or_moderate.item_0#{i}").html_safe %></span>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="widget-tabs-content hiw-secondary-tabs-content">
+                <p class="hiw-section-title visible-on-medium-view"><%= t('about.how_it_works.add_to_or_moderate.title') %></p>
+                <% (1..2).each do |i| %>
+                  <div class="widget-tab-pane visible-on-medium-view" id="mo<%=i%>">
+                    <div class="hiw-secondary-tabs-mobile visible-on-medium-view">
+                      <span class="number"><%=i%></span>
+                      <span class="text"><%= t("about.how_it_works.add_to_or_moderate.item_0#{i}").html_safe %></span>
+                    </div>
+                    <img src="images/v3/about/how-it-works/03-0<%=i%>.jpg" width="322" height="322" alt='Crowdvoice - <%= t("about.how_it_works.add_to_or_moderate.item_0#{i}") %> image'>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <!-- @add-your-voice -->
+          </div>
+        </div><!-- @tabs-content -->
+      </div><!-- @tabs end -->
+    </article>
+    <!--@how-it-works -->
+
+      <!-- press -->
+    <article class="press" id="press">
+      <h2 class="title"><span>Press</span></h2>
+      <div class="widget-scroller">
+        <div class="widget-scroller-viewport">
+          <div class="widget-scroller-items-wrapper">
+            <ul class="widget-scroller-items">
+              <li>
+                <blockquote cite="TechCrunch">
+                  <q lang="en-us"><%= t('about.press.TechCrunch') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://techcrunch.com/2010/08/12/crowdvoice-esraa-al-shafei-too-long-didnt-watch/">TechCrunch</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Mashable">
+                  <q lang="en-us"><%= t('about.press.Mashable') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://mashable.com/2011/07/15/online-tools-activism/">Mashable</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Wired">
+                  <q lang="en-us"><%= t('about.press.Wired') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.wired.co.uk/news/archive/2012-11/15/crowdvoice">Wired</a></cite>
+              </li>
+              <li>
+                <blockquote cite="The Guardian">
+                  <q lang="en-us"><%= t('about.press.TheGuardian') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.guardian.co.uk/world/blog/2011/feb/14/middleeast-unrest">The Guardian</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Bill Liao, co-founder of Xing.com">
+                  <q lang="en-us"><%= t('about.press.BillLiao') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.xing.com/profile/Bill_Liao">Bill Liao, co-founder of Xing.com</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Ninja Marketing">
+                  <q lang="en-us"><%= t('about.press.NinjaMarketing') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.ninjamarketing.it/2012/11/23/crowdvoice-il-sito-per-dare-voce-e-visibilita-ai-movimenti-di-protesta/">Ninja Marketing</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Wiki Noticia">
+                  <q lang="en-us"><%= t('about.press.WikiNoticia') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://en.wikinoticia.com/culture-science/strange-inventions/131100-crowdvoice-social-protests-in-the-world-in-one-website">Wiki Noticia</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Peace & Conflict Monitor">
+                  <q lang="en-us"><%= t('about.press.PeaceAndConflict') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.monitor.upeace.org/archive.cfm?id_article=769">Peace & Conflict Monitor</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Diana Hsu, Idealist.org">
+                  <q lang="en-us"><%= t('about.press.Idealist') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://blog.en.idealist.org/where-do-you-get-your-news/">Diana Hsu, Idealist.org</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Nonprofit Orgs">
+                  <q lang="en-us"><%= t('about.press.NonprofitOrgs') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="https://nonprofitorgs.wordpress.com/2013/03/08/50-fun-useful-and-totally-random-resources-for-nonprofits/">Nonprofit Orgs</a></cite>
+              </li>
+              <li>
+                <blockquote cite="All My Faves">
+                  <q lang="en-us"><%= t('about.press.AllMyFaves') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.allmyfaves.com/blog/news/crowdvoice-crowdsourcing-the-voices-of-protest-from-around-the-world/">All My Faves</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Ashoka Peace">
+                  <q lang="en-us"><%= t('about.press.AshokaPeace') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://fec.ashoka.org/blog/272/tracking-voices-protest">Ashoka Peace</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Farhad Mohit, Founder & CEO, Gripe App">
+                  <q lang="en-us"><%= t('about.press.FarhadMohit') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://blog.gri.pe/">Farhad Mohit, Founder & CEO, Gripe App</a></cite>
+              </li>
+              <li>
+                <blockquote cite="ReadWriteWeb">
+                  <q lang="en-us"><%= t('about.press.ReadWriteWeb') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://readwrite.com/2011/02/02/mideast_youth_launches_crowdvoice_for_yemeni_day_o">ReadWriteWeb</a></cite>
+              </li>
+              <li>
+                <blockquote cite="Visual News">
+                  <q lang="en-us"><%= t('about.press.VisualNews') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://www.visualnews.com/2013/01/page/10/">Visual News</a></cite>
+              </li>
+              <li>
+                <blockquote cite="SciDev">
+                  <q lang="en-us"><%= t('about.press.SciDev') %></q>
+                </blockquote>
+                <cite><a target="_blank" href="http://m.scidev.net/en/new-technologies/icts/features/q-a-middle-eastern-web-technology-for-social-change-with-esra-a-al-shafei-1.html">SciDev</a></cite>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="widget-scroller-controls">
+          <button class="prev"><span class="sprite left-arrow"></span></button>
+          <button class="next"><span class="sprite right-arrow"></span></button>
+        </div>
+      </div>
+    </article>
+    <!-- @press -->
+
+    <article class="tweets-button-container center">
+      <button class="upper btn-v3-secondary"><span class="sprite twitter"></span> <%= t('about.what_people_are_tweeting')%></button>
+    </article>
+
+    <article class="video-gallery" id="video-gallery">
+      <div class="widget-tabs">
+        <div class="widget-tabs-content">
+          <div class="widget-tab-pane" id="v6">
+            <div class="video-holder">
+              <img src="images/v3/about/videos/placeholders/06.jpg" alt="">
+            </div>
+          </div>
+          <div class="widget-tab-pane" id="v1">
+            <div class="video-holder">
+              <img src="images/v3/about/videos/placeholders/01.jpg" alt="">
+            </div>
+          </div>
+          <div class="widget-tab-pane" id="v2">
+            <div class="video-holder">
+              <img src="images/v3/about/videos/placeholders/02.jpg" alt="">
+            </div>
+          </div>
+          <div class="widget-tab-pane" id="v3">
+            <div class="video-holder">
+              <img src="images/v3/about/videos/placeholders/03.jpg" alt="">
+            </div>
+          </div>
+          <div class="widget-tab-pane" id="v4">
+            <div class="video-holder">
+              <img src="images/v3/about/videos/placeholders/04.jpg" alt="">
+            </div>
+          </div>
+          <div class="widget-tab-pane" id="v5">
+            <div class="video-holder">
+              <img src="images/v3/about/videos/placeholders/05.jpg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="widget-scroller">
+          <div class="widget-scroller-viewport">
+            <div class="widget-scroller-items-wrapper">
+              <ul class="widget-tabs-nav widget-scroller-items">
+                <li><a href="#" data-target="#v6" data-video-url="https://www.youtube.com/embed/2oyYfapPW38" class="tab"><img src="images/v3/about/videos/thumbs/06.jpg" width="109" height="60"></a></li>
+                <li><a href="#" data-target="#v1" data-video-url="https://www.youtube.com/embed/_dsSE94r3dA" class="tab"><img src="images/v3/about/videos/thumbs/01.jpg" width="109" height="60"></a></li>
+                <li><a href="#" data-target="#v2" data-video-url="https://www.youtube.com/embed/25yTBVPA6GY" class="tab"><img src="images/v3/about/videos/thumbs/02.jpg" width="109" height="60"></a></li>
+                <li><a href="#" data-target="#v3" data-video-url="https://www.youtube.com/embed/sAuZOoEKA84" class="tab"><img src="images/v3/about/videos/thumbs/03.jpg" width="109" height="60"></a></li>
+                <li><a href="#" data-target="#v4" data-video-url="https://www.youtube.com/embed/eVdJ2g_RhVg" class="tab"><img src="images/v3/about/videos/thumbs/04.jpg" width="109" height="60"></a></li>
+                <li><a href="#" data-target="#v5" data-video-url="https://www.youtube.com/embed/ok9mp27w4Fo" class="tab"><img src="images/v3/about/videos/thumbs/05.jpg" width="109" height="60"></a></li>
+                </ul>
+            </div>
+          </div>
+          <div class="widget-scroller-controls">
+            <button class="prev"><span class="sprite left-arrow"></span></button>
+            <button class="next"><span class="sprite right-arrow"></span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="install-your-cv center">
+      <a href="http://mycrowdvoice.org/" target="_blank" class="upper btn btn-v3-primary medium"><%= t('about.install_your_own_cv') %></a>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="tweets-sidebar">
+  <div class="header">
+    <p><%= t('about.what_people_are_tweeting') %></p>
+    <a href="#" class="close">&times;</a>
+  </div>
+  <div class="tweets-wrapper-list scroll-primary">
+    <ul class="tweets-list">
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/RocketDogCom/status/271057889668521984">@RocketDogCom</a> - RocketDog</cite>
+        <blockquote cite="RocketDog">
+          <q lang="en-us"><%= t('about.RocketDogCom') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/charleslaw/status/268464006715564032">@charleslaw</a> - Charles Law</cite>
+        <blockquote cite="Charles Law">
+          <q lang="en-us"><%= t('about.charleslaw') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/TimurBekir/status/270578041288286208">@TimurBekir</a> - Timur Bekir</cite>
+        <blockquote cite="Timur Bekir">
+          <q lang="en-us"><%= t('about.TimurBekir') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/kiwanja/status/268373847819046912">@kiwanja</a> - Ken Banks</cite>
+        <blockquote cite="Ken Banks">
+          <q lang="en-us"><%= t('about.kiwanja') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/xoshink/status/273535593902927873">@xoshink</a> - X</cite>
+        <blockquote cite="X">
+          <q lang="en-us"><%= t('about.xoshink') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/Global132/status/286877991789797376">@Global132</a> - 132Global</cite>
+        <blockquote cite="132Global">
+          <q lang="en-us"><%= t('about.Global132') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/MelissaWall">@MelissaWall</a> - Melissa Wall</cite>
+        <blockquote cite="Melissa Wall">
+          <q lang="en-us"><%= t('about.MelissaWall') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/blansharm">@blansharm</a> - Shushan Harutyunyan</cite>
+        <blockquote cite="Shushan Harutyunyan">
+          <q lang="en-us"><%= t('about.blansharm') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/#!/draddee/status/36515101766844416">@draddee</a> - Draddee</cite>
+        <blockquote cite="Draddee">
+          <q lang="en-us"><%= t('about.draddee') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/#!/ict4peace/statuses/49084476025880576">@ict4peace</a> - ICT4Peace Foundation</cite>
+        <blockquote cite="ICT4Peace Foundation">
+          <q lang="en-us"><%= t('about.ICT4Peace') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/MaureenAlley/status/269070340943134720">@MaureenAlley</a> - Maureen Alley</cite>
+        <blockquote cite="Maureen Alley">
+          <q lang="en-us"><%= t('about.MaureenAlley') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/helenturvey">@helenturvey</a> - Helen Turvey (King)</cite>
+        <blockquote cite="Helen Turvey (King)">
+          <q lang="en-us"><%= t('about.helenturvey') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/Info_Activismo">@Info_Activismo</a> - Info-Activismo</cite>
+        <blockquote cite="Info-Activismo">
+          <q lang="en-us"><%= t('about.Info_Activismo') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/naturalllyi">@naturalllyi</a> - Question Authority</cite>
+        <blockquote cite="Question Authority">
+          <q lang="en-us"><%= t('about.naturalllyi') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/joellehatem">@joellehatem</a> - Joelle Hatem</cite>
+        <blockquote cite="Joelle Hatem">
+          <q lang="en-us"><%= t('about.joellehatem') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/cibervoluntario">@cibervoluntario</a> - Cibervoluntarios</cite>
+        <blockquote cite="Cibervoluntarios">
+          <q lang="en-us"><%= t('about.cibervoluntario') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/cahyawardhani">@cahyawardhani</a> - Cahyawardhani</cite>
+        <blockquote cite="Cahyawardhani">
+          <q lang="en-us"><%= t('about.cahyawardhani') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/Liberationtech">@Liberationtech</a> - Liberationtech</cite>
+        <blockquote cite="Liberationtech">
+          <q lang="en-us"><%= t('about.Liberationtech') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/jsnophoto">@jsnophoto</a> - Jordan Snobelen</cite>
+        <blockquote cite="Jordan Snobelen">
+          <q lang="en-us"><%= t('about.jsnophoto') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/nataliebridgema">@nataliebridgema</a> - AccountabilityCounse</cite>
+        <blockquote cite="AccountabilityCounse">
+          <q lang="en-us"><%= t('about.nataliebridgema') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/elimeur">@elimeur</a> - Elisa M</cite>
+        <blockquote cite="Elisa M">
+          <q lang="en-us"><%= t('about.elimeur') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/rima_misurata">@rima_misurata</a> - Rima</cite>
+        <blockquote cite="Rima">
+          <q lang="en-us"><%= t('about.rima_misurata') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/logangraham">@logangraham</a> - Logan Graham</cite>
+        <blockquote cite="Logan Graham">
+          <q lang="en-us"><%= t('about.logangraham') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/nwoje">@nwoje</a> - Nicolò Wojewoda</cite>
+        <blockquote cite="Nicolò Wojewoda">
+          <q lang="en-us"><%= t('about.nwoje') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/MCSaatchiMobile">@MCSaatchiMobile</a> - M&C Saatchi Mobile</cite>
+        <blockquote cite="M&C Saatchi Mobile">
+          <q lang="en-us"><%= t('about.MCSaatchiMobile') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/nolicwee">@nolicwee</a> - Colin wee</cite>
+        <blockquote cite="Colin wee">
+          <q lang="en-us"><%= t('about.nolicwee') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/EwanGaffney">@EwanGaffney</a> - Ewan Gaffney</cite>
+        <blockquote cite="Ewan Gaffney">
+          <q lang="en-us"><%= t('about.EwanGaffney') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/Netzblockierer">@Netzblockierer</a> - Netzblockierer</cite>
+        <blockquote cite="Netzblockierer">
+          <q lang="en-us"><%= t('about.Netzblockierer') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/JavierIRB">@JavierIRB</a> - Javier Rodriguez</cite>
+        <blockquote cite="Javier Rodriguez">
+          <q lang="en-us"><%= t('about.JavierIRB') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/alexeisenberg">@alexeisenberg</a> - Alex Eisenberg</cite>
+        <blockquote cite="Alex Eisenberg">
+          <q lang="en-us"><%= t('about.alexeisenberg') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/BotalWaali">@BotalWaali</a> - Reena {madjarlady}</cite>
+        <blockquote cite="Reena {madjarlady}">
+          <q lang="en-us"><%= t('about.BotalWaali') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/eadvocate">@eadvocate</a> - E-Advocate Network</cite>
+        <blockquote cite="E-Advocate Network">
+          <q lang="en-us"><%= t('about.eadvocate') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/WITNESSchris">@WITNESSchris</a> - chris michael</cite>
+        <blockquote cite="chris michael">
+          <q lang="en-us"><%= t('about.WITNESSchris') %></q>
+        </blockquote>
+      </li>
+
+      <li class="tweet">
+        <cite class="author"><a target="_blank" href="https://twitter.com/citizentube">@citizentube</a> - citizentube</cite>
+        <blockquote cite="citizentube">
+          <q lang="en-us"><%= t('about.citizentube') %></q>
+        </blockquote>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<div class="widget-modal about-page">
+  <div class="content">
+    <div class="newsletter">
+      <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h2 class="title line-throught">
+          <span>Stay updated!</span>
+        </h2>
+      </div>
+      <div class="modal-body">
+        <p class="gelpen">Receive the latest updates and news about the social issues you are interest in. by subscribing to our mailing list!</p>
+        <%= form_tag subscribe_path, :remote => :true, :id => "form_subscribe" do %>
+          <%= text_field_tag "subscribe_mailchimp", nil, {:class => "txt subscribe", :placeholder => "Enter your email address"} %>
+          <button class="btn btn-v3-tertiary upper" type="submit">Subscribe!</button>
+          <div class="response"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: MOVE JS to the bottom properly -->
+<%= include_javascripts :about_pack %>

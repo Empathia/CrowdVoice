@@ -1,0 +1,349 @@
+<script type="text/javascript">
+  var voiceUrl = '<%= voice_url(@voice) %>'
+</script>
+
+<!-- **************** -->
+<!-- INFOWALL VERSION -->
+<!-- **************** -->
+
+<script type="text/template" class="infobox-template">
+  <div class="infobox {{data.layout}} {{data.featured}}" position="{{data.order}}" id="{{data.id}}" data-tags="">
+    <div class="info">
+      <a class="infobox-padding" href="{{ voiceUrl + '/?infoboxId=' }}{{data.id}}{{'&tags='}}{{data.tags.join(',')}}">
+        <div class="graphic large">
+          {[ if (data.graphic !== undefined){ ]}
+            <img src="{{data.graphic}}" class="clipart-or-custom">
+          {[ } ]}
+
+          {[ if (data.number !== undefined){ ]}
+            <p class="graphic-number">{{data.number}}</p>
+          {[ } ]}
+        </div>
+        <p class="caption">{{data.headline}}</p>
+        <div class="divline"></div>
+
+        {[ if (data.chartData !== undefined ){ ]}
+          <ul class="chart-data-list">
+            {[ for( var i = 0; i < data.chartData.labels.length; i++ ){ ]}
+              <li class="chart-data-item">
+                <div class="chart-bullet" style="background-color: {{data.chartData.colors[i]}}">
+                  <!--[if lte IE 8]><div class="ie-rounded-corner-mask"></div><![endif]-->
+                </div>
+                {{data.chartData.labels[i]}}
+                {[ if( data.type === 'chart-radial' ){ ]}
+                  <span class="percent">{{ data.chartData.values[0].data[i][1] }}{{data.units}}</span>
+                {[ } ]}
+                {[ if( data.type === 'chart-hbars' ){ ]}
+                  <span class="percent">{{ data.chartData.values[0].data[i][1] }}{{data.units}}</span>
+                {[ } ]}
+                <!--
+                {[ if( data.type === 'chart-area' ){ ]}
+                  <ul class="column-values">
+                  {[ for( var j = 0; j < data.chartData.values[i].data.length; j++ ){ ]}
+                    <li class="col-name">
+                      {{String.fromCharCode(j+65)}}: <span class="col-val">{{data.chartData.values[i].data[j]}}{{data.units}}</span>
+                    </li>
+                  {[ } ]}
+                  </ul>
+                {[ } ]}
+                -->
+              </li>
+            {[ } ]}
+
+            <!-- Area chart key
+            {[ if( data.type === 'chart-area' ){ ]}
+              <ul class="area-chart-key">
+              {[ for( var i = 0; i < data.chartData.xAxis.length; i++ ){ ]}
+                <li class="col"> {{String.fromCharCode(i+65)}}: <span class="name"> {{data.chartData.xAxis[i]}} </span> </li>
+              {[ } ]}
+              </ul>
+            {[ } ]}
+            -->
+          </ul>
+        {[ } ]}
+        <p class="description">{{data.description}}</p>
+      </a>
+      <ul class="tagbox">
+        {[ for(var i = 0; i < data.tags.length; i++){ ]}
+          <li class="tag"> <a href="{{ voiceUrl + '/?infoboxId=' }}{{data.id}}{{'&tags='}}{{data.tags[i]}}">{{data.tags[i]}}</a> </li>
+        {[ } ]}
+      </ul>
+      {[ if (data.sources !== undefined && data.sources !== "") { ]}
+        {[ var sources = data.sources.split(/\n/); ]}
+        {[ if (sources.length) { ]}
+          <div class="sources">
+            <button class="primary-btn sources-open">Sources</button>
+          </div>
+        {[ } ]}
+      {[ } ]}
+    </div><!-- end info -->
+
+    {[ if (data.sources !== undefined && data.sources !== "") { ]}
+      {[ var sources = data.sources.split(/\n/); ]}
+      {[ if (sources.length) { ]}
+        <div class="sources-list-wrapper">
+          <div class="header">
+            <p class="title">Sources</p>
+            <button class="primary-btn sources-back">Back</button>
+          </div>
+          <div class="scroll scroll-secondary">
+            <ul class="list">
+
+              {[ for (var i = 0; i < sources.length; i += 1) { ]}
+
+                {[ var alias, url, parts; ]}
+                {[ url = sources[i].replace(/^\s+/g,'').replace(/\s+$/g,''); ]}
+                {[ alias = url; ]}
+                {[ parts = url.split( /\[(.*?)\]/ ); ]}
+
+                {[ if (parts[1] !== undefined) { ]}
+                  {[ alias = parts[1].replace(/^\s+/g,'').replace(/\s+$/g,''); ]}
+                  {[ url = parts[2].replace(/^\s+/g,'').replace(/\s+$/g,''); ]}
+                {[ } ]}
+
+                {[ if (url !== "") { ]}
+                  <li class="list-item">
+                    <a href="{{url}}" target="_blank">{{alias}}</a>
+                  </li>
+                {[ } ]}
+
+              {[ } ]}
+
+            </ul>
+            <p>
+              <a href="{{ voiceUrl + '/?infoboxId=' }}{{data.id}}{{'&tags='}}{{data.tags.join(',')}}" class="primary-btn view-all-source">View all sources</a>
+            </p>
+          </div>
+        </div><!-- end sources-list -->
+      {[ } ]}
+    {[ } ]}
+
+  </div><!-- end infobox-->
+</script>
+
+<!-- *************** -->
+<!-- SIDEBAR VERSION -->
+<!-- *************** -->
+
+
+
+<script type="text/template" class="infobox-sidebar-template">
+  <div class="infobox {{data.layout}}" position="{{data.order}}" id="{{data.id}}" data-tags=""  data-expanded-height="-" data-collapsed-height="-">
+
+    <div class="infobox-extract">
+
+      <div class="graphic small">
+        {[ if (data.graphic !== undefined){ ]}
+          <img src="{{data.graphic}}" class="clipart-or-custom">
+        {[ } ]}
+      </div>
+      {[ if (data.number !== undefined){ ]}
+        <p class="graphic-number">{{data.number}}</p>
+      {[ } ]}
+
+      <p class="caption">{{data.headline}}</p>
+
+    </div>
+
+
+
+  <div class="infobox-complete" >
+    <a class="infobox-padding" href="{{ voiceUrl + '/?infoboxId=' }}{{data.id}}{{'&tags='}}{{data.tags.join(',')}}" >
+      <div class="graphic large">
+        {[ if (data.graphic !== undefined){ ]}
+          <img src="{{data.graphic}}" class="clipart-or-custom">
+        {[ } ]}
+
+        {[ if (data.number !== undefined){ ]}
+          <p class="graphic-number">{{data.number}}</p>
+        {[ } ]}
+      </div>
+
+      <p class="caption">{{data.headline}}</p>
+
+      <div class="divline"></div>
+
+      {[ if (data.chartData !== undefined ){ ]}
+
+        <ul class="chart-data-list">
+
+          {[ for( var i = 0; i < data.chartData.labels.length; i++ ){ ]}
+
+            <li class="chart-data-item">
+              <div class="chart-bullet" style="background-color: {{data.chartData.colors[i]}}">
+                <!--[if lte IE 8]><div class="ie-rounded-corner-mask"></div><![endif]-->
+              </div>
+              {{data.chartData.labels[i]}}
+
+              {[ if( data.type === 'chart-radial' ){ ]}
+                <span class="percent">{{ data.chartData.values[0].data[i][1] }}{{data.units}}</span>
+              {[ } ]}
+
+              {[ if( data.type === 'chart-hbars' ){ ]}
+                <span class="percent">{{ data.chartData.values[0].data[i][1] }}{{data.units}}</span>
+              {[ } ]}
+
+              <!--
+              {[ if( data.type === 'chart-area' ){ ]}
+                <ul class="column-values">
+                {[ for( var j = 0; j < data.chartData.values[i].data.length; j++ ){ ]}
+
+                  <li class="col-name">
+                    {{String.fromCharCode(j+65)}}: <span class="col-val">{{data.chartData.values[i].data[j]}}{{data.units}}</span>
+                  </li>
+
+                {[ } ]}
+                </ul>
+              {[ } ]}
+              -->
+
+            </li>
+
+          {[ } ]}
+
+          <!-- Area chart key
+          {[ if( data.type === 'chart-area' ){ ]}
+
+            <ul class="area-chart-key">
+
+            {[ for( var i = 0; i < data.chartData.xAxis.length; i++ ){ ]}
+              <li class="col"> {{String.fromCharCode(i+65)}}: <span class="name"> {{data.chartData.xAxis[i]}} </span> </li>
+            {[ } ]}
+
+            </ul>
+
+          {[ } ]}
+          -->
+        </ul>
+
+      {[ } ]}
+
+      <p class="description">{{data.description}}</p>
+    </a>
+    <ul class="tagbox">
+      {[ for(var i = 0; i < data.tags.length; i++){ ]}
+      <li class="tag">
+        <a href="{{ voiceUrl + '/?infoboxId=' }}{{data.id}}{{'&tags='}}{{data.tags[i]}}">
+          {{data.tags[i]}}
+        </a>
+      </li>
+      {[ } ]}
+    </ul>
+  </div>
+</script>
+
+<!-- *************** -->
+<!-- SIDEBAR VERSION -->
+<!-- *************** -->
+
+
+
+<script type="text/template" class="infobox-sidebar-template">
+  <div class="infobox {{data.layout}}" position="{{data.order}}" id="{{data.id}}">
+
+    <div class="infobox-extract">
+
+      <div class="graphic small">
+        {[ if (data.graphic !== undefined){ ]}
+          <img src="{{data.graphic}}" class="clipart-or-custom">
+        {[ } ]}
+      </div>
+      {[ if (data.number !== undefined){ ]}
+        <p class="graphic-number">{{data.number}}</p>
+      {[ } ]}
+
+      <p class="caption">{{data.headline}}</p>
+
+    </div>
+
+
+
+    <div class="infobox-complete">
+      <a href="#" class="infobox-padding">
+        <div class="graphic large">
+          {[ if (data.graphic !== undefined){ ]}
+            <img src="{{data.graphic}}" class="clipart-or-custom">
+          {[ } ]}
+
+          {[ if (data.number !== undefined){ ]}
+            <p>{{data.number}}</p>
+          {[ } ]}
+        </div>
+
+        <p class="caption">{{data.headline}}</p>
+
+        <div class="divline"></div>
+
+        {[ if (data.chartData !== undefined ){ ]}
+
+          <ul class="chart-data-list">
+
+            {[ for( var i = 0; i < data.chartData.labels.length; i++ ){ ]}
+
+              <li class="chart-data-item">
+                <div class="chart-bullet" style="background-color: {{data.chartData.colors[i]}}">
+                  <!--[if lte IE 8]><div class="ie-rounded-corner-mask"></div><![endif]-->
+                </div>
+                {{data.chartData.labels[i]}}
+
+                {[ if( data.type === 'chart-radial' ){ ]}
+                  <span class="percent">{{ data.chartData.values[0].data[i][1] }}{{data.units}}</span>
+                {[ } ]}
+
+                {[ if( data.type === 'chart-hbars' ){ ]}
+                  <span class="percent">{{ data.chartData.values[0].data[i][1] }}{{data.units}}</span>
+                {[ } ]}
+                <!--
+                {[ if( data.type === 'chart-area' ){ ]}
+                  <ul class="column-values">
+                  {[ for( var j = 0; j < data.chartData.values[i].data.length; j++ ){ ]}
+
+                    <li class="col-name">
+                      {{String.fromCharCode(j+65)}}: <span class="col-val">{{data.chartData.values[i].data[j]}}</span>
+                    </li>
+
+                  {[ } ]}
+                  </ul>
+                {[ } ]}
+                -->
+              </li>
+
+            {[ } ]}
+            <!-- Area chart key
+            {[ if( data.type === 'chart-area' ){ ]}
+
+              <ul class="area-chart-key">
+
+              {[ for( var i = 0; i < data.chartData.xAxis.length; i++ ){ ]}
+                <li class="col"> {{String.fromCharCode(i+65)}}: <span class="name"> {{data.chartData.xAxis[i]}} </span> </li>
+              {[ } ]}
+
+              </ul>
+
+            {[ } ]}
+            -->
+          </ul>
+
+        {[ } ]}
+
+        <p class="description">{{data.description}}</p>
+      </a>
+      <ul class="tagbox">
+        {[ for(var i = 0; i < data.tags.length; i++){ ]}
+        <li class="tag">
+          <a href="{{ voiceUrl + '/?infoboxId=' }}{{data.id}}{{'&tags='}}{{data.tags[i]}}">
+            {{data.tags[i]}}
+          </a>
+        </li>
+        {[ } ]}
+      </ul>
+      <div class="sources">
+        <button>Sources</button>
+      </div>
+
+    </div> <!-- expanded -->
+
+
+
+  </div>
+</script>

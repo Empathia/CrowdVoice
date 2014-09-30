@@ -1,0 +1,79 @@
+<% if item.item_type == 'graph' %>
+  <div class="home-cover home-cover--infographic home-cover--1-6 <%= item.voice.theme %>">
+    <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>">
+      <div class="home-cover__header-title">
+        <span class="icon--14 icon--infographic opacity--40"></span> know the facts behind
+      </div>
+      <div class="home-cover__title"><%= item.voice.title %></div>
+      <div class="home-cover__media-info">
+        <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
+          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
+          <span class="char--dot">•</span>
+        <% end %>
+        <% if !item.voice.blocks.empty? %>
+          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
+          <span class="char--dot">•</span>
+        <% end %>
+        <span class="icon--14 icon--stats"></span>
+        <span class="home-cover__total-voices"><%= item.voice.posts.size %></span>
+        <span class="home-cover__time-ago">Updated <%= time_ago_in_words(item.voice.posts.where(:approved => true).first.updated_at) %> ago</span>
+      </div>
+      <div class="home-cover__boxes">
+        <% item.voice.blocks.reorder('id ASC').limit(10).map(&:data_parsed).each do |block| %>
+          <% blockJSON = JSON.parse block %>
+          <div class="home-cover__box" data-json="<%= block %>">
+            <div class="home-cover__box-infographic">
+              <img src="<%= blockJSON['graphic'] %>" alt="<%= blockJSON['headline'] %>">
+            </div>
+            <div class="home-cover__box-graphic-number"><%= blockJSON["number"] %></div>
+            <div class="home-cover__box-description"><%= blockJSON["headline"] %></div>
+          </div>
+        <% end %>
+      </div>
+      <div class="home-cover__actions-wrapper">
+        <div class="home-cover__actions">
+          <span class="home-cover__actions-label">Explore the Stats</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="home-cover home-cover--backstory home-cover--1-6 <%= item.voice.theme %>">
+    <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>?backstory=true">
+      <div class="home-cover__header-title">
+        <span class="icon--14 icon--backstory opacity--40"></span>
+        understand the events behind
+      </div>
+      <div class="home-cover__title"><%= item.voice.title %></div>
+      <div class="home-cover__media-info">
+        <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
+          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
+          <span class="char--dot">•</span>
+        <% end %>
+        <% if !item.voice.blocks.empty? %>
+          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
+          <span class="char--dot">•</span>
+        <% end %>
+        <span class="icon--14 icon--stats"></span>
+        <span class="home-cover__total-voices"><%= item.voice.posts.size %></span>
+        <span class="home-cover__time-ago">
+          Updated <%= time_ago_in_words(item.voice.posts.where(:approved => true).first.updated_at) %> ago
+        </span>
+      </div>
+      <div class="home-cover__boxes">
+        <% item.voice.events.reorder('event_date ASC').limit(10).each do |event| %>
+          <div class="home-cover__box">
+            <div class="home-cover__box-date"><%= event.event_date.strftime("%b %d, %Y") %></div>
+            <div class="home-cover__box-image" style="background-image: url(<%= event.background_image.thumb.url %>);"></div>
+            <div class="home-cover__box-description"><%= event.name %></div>
+          </div>
+        <% end %>
+      </div>
+      <div class="home-cover__actions-wrapper">
+        <div class="home-cover__actions">
+          <span class="home-cover__actions-label">Explore the Backstory</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

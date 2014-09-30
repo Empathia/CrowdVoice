@@ -1,0 +1,260 @@
+/* Infoboxes */
+.main-container {height: 100%}
+.right-pane-container,
+.infobox-wall-container {height: 100%}
+
+.infobox-wall-container {height: 100%; width: 100%; overflow: hidden}
+.infobox-header {height: 47px}
+.infobox-header .color-line,
+.voice-headline-holder .color-line {height: 4px}
+.infobox-header .ribbon-title {display: block; font-size: 18px; margin: 10px 0 0 25px; float: left; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 54%}
+.infobox-header .voice-info-tools {margin-top: 8px}
+.infobox-header .info-tool.facebook-like-button {width:95px;}
+.infobox-header .view-all {float: right; margin: 10px 7px 0 0; padding: 5px}
+.infobox-wall {padding: 10px 0; overflow: auto; height: 100%; width: 100%; -webkit-overflow-scrolling: touch;}
+.infobox-wall .infobox-pane {
+  margin: 0 0 0 10px;
+  top: -10px;
+  -webkit-transform: translate3d(0,0,0);
+}
+.infobox-wall .infobox.no-caption {overflow: visible; padding: 0}
+.infobox.no-caption .graphic {margin: 20px 25px 0 25px}
+.infobox.no-caption .divline {display: block; margin: 12px 25px; width: auto}
+.infobox.no-caption .voice-info-tools {margin: 23px 0 0 25px; float: none}
+.infobox.no-caption .description {margin: 0 25px 10px; width: auto}
+
+.infobox {
+  display: block; position: relative; text-align: center; width: 290px; margin: 10px; overflow: hidden;
+  -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+          transform: translateZ(0);
+}
+.infobox .primary-btn {padding: 4px 10px 5px; font-size: 11px; line-height: 12px; display: inline-block}
+
+.sources-list-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateZ(0) translateY(-100%);
+      -ms-transform: translateZ(0) translateY(-100%);
+          transform: translateZ(0) translateY(-100%);
+}
+.sources-list-wrapper.show {
+  -webkit-transform: translateZ(0) translateY(0);
+      -ms-transform: translateZ(0) translateY(0);
+          transform: translateZ(0) translateY(0);
+}
+/*.sources-list-wrapper .scroll {width: auto; height: auto; overflow: hidden; position: relative;}*/
+.sources-list-wrapper .scroll .jspHorizontalBar {display: none !important}
+.sources-list-wrapper .header {padding: 8px 14px 7px; border-bottom-width: 1px}
+.sources-list-wrapper .header::after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
+.sources-list-wrapper .title {font-size: 17px; line-height: 24px; display: inline}
+.sources-list-wrapper .header button {float: right}
+.sources-list-wrapper .list {border-bottom-width: 1px; display: block}
+.sources-list-wrapper .list-item {border-width: 1px 0; display: block}
+.sources-list-wrapper .list-item:first-child {border-top-width: 0}
+.sources-list-wrapper .list-item a {padding: 12px 14px; display: block; font-size: 11px; line-height: 17px; word-wrap: break-word; overflow: hidden}
+.sources-list-wrapper .view-all-source {margin: 20px 0}
+
+.infobox-padding {display: block; padding: 20px 25px; border-bottom-width: 1px}
+.infobox-padding:hover {text-decoration: none}
+.infobox .graphic {height: auto}
+.infobox .graphic p {margin: 0}
+.infobox .caption {height: auto; margin: 20px 0 0 0; text-align: center; font-size: 16px; line-height: 24px}
+.infobox .divline {height: 1px; margin: 12px 0; display: inline-block}
+.infobox .description {height: auto; line-height: 23px; text-align: left; font-size: 13px; margin-top: 0}
+.infobox .tagbox {
+  border-top-width: 1px;
+  font-size: 13px;
+  margin: 0;
+  padding: 7px 10px 7px 35px;
+  text-align: left;
+}
+.infobox .tag {display: inline-block; padding: 2px 15px 5px 0}
+.infobox .sources {
+  position: relative;
+  border-top-width: 1px;
+  padding: 8px 0;
+  overflow: hidden;
+}
+  .infobox .sources:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 5%;
+    width: 90%;
+    height: 4px;
+    z-index: 0;
+  }
+.infobox .sources .primary-btn {
+    position: relative;
+    padding: 5px 20px 3px;
+}
+.infobox .description,
+.infobox .divline,
+.graphic-top .graphic,
+.graphic-top .caption {width: 100%}
+
+.graphic-left .graphic {padding-right: 48px}
+.graphic-top .graphic img {max-width: 140px; max-height: 140px}
+.graphic-left .graphic img {max-width: 90px; max-height: 90px}
+
+.number-graphic-top .graphic img {max-width: 140px; max-height: 140px}
+
+.collapsed .graphic {width:90px; max-height: 90px; float: left}
+.collapsed .caption {width: 60%; float: right; margin: 0}
+
+.area-chart-key {padding: 0 0 0 20px}
+
+.number-top .caption {margin-top: 15px; text-align: center}
+.number-top .graphic {line-height: 58px; font-size: 58px; word-wrap: break-word}
+
+.number-graphic-top .graphic,
+
+.number-graphic-top .graphic-number {line-height: 58px; font-size: 55px; word-wrap: break-word}
+.number-graphic-top .graphic-number.smaller-number {font-size: 48px}
+
+.number-graphic-top .graphic-number,
+.number-graphic-top p {line-height: 58px; font-size: 57px; word-wrap: break-word; margin: 0}
+.number-graphic-top .graphic-number.smaller-number {font-size: 48px}
+
+
+.chart-data-list {font-size: 13px; text-align: left; margin-bottom: 15px; width: 100%}
+.chart-data-item {line-height: 20px; padding: 0 0 10px 20px; text-align: left}
+.chart-bullet {float: left; height: 14px; margin: 3px 6px 3px -20px; width: 14px}
+.percent {font-weight: normal; font-size: 12px}
+.no-caption {padding: 20px 25px}
+.no-caption .graphic {line-height: 38px; font-size: 27px}
+.no-caption .voice-info-tools {margin-top: 23px}
+
+.infobox.chart-bottom,
+.chart-bottom .infobox-padding,
+.expanded.chart-bottom .infobox-complete {display: block}
+
+.infobox-pane .infobox.chart-bottom .infobox-padding {display: table}
+
+.chart-bottom .graphic {display: table-row-group}
+.chart-bottom .chart {display: inline; margin-top: 20px}
+.chart-bottom .caption {display: table-header-group}
+.chart-bottom .caption:after {content: ""; display: table-row; clear: both; height: 10px}
+
+.chart-bottom .graphic .highcharts-container,
+.chart-top .graphic .highcharts-container {margin: auto}
+
+.chart-left .graphic,
+.graphic-left .graphic {display: table-cell; text-align: left; width: 140px; height: 90px; padding-right: 0; text-align: center; vertical-align: middle}
+.chart-left .caption,
+.graphic-left .caption {display: table-cell; vertical-align: middle; margin: 0; width: 55%}
+
+.chart-top .caption,
+.chart-bottom .caption,
+.number-graphic-top .caption {margin-top: 10px; text-align: center}
+
+.chart-top    .graphic.chart-radial {width: 140px; height: 140px; margin: auto}
+.chart-bottom .graphic.chart-radial {display: table-cell; width: 29%; height: 140px}
+.chart-left   .graphic.chart-radial {width: 140px; height: 90px; margin: auto}
+
+.chart-top .graphic .chart {margin: auto}
+
+.infobox .chart-bullet .ie-rounded-corner-mask {height: 14px; width: 14px}
+
+/*
+  Infographic sidebar
+*/
+
+.preload-mask {width: 100%; height: 100%; position: relative}
+.preload-mask .loading-wrapper {margin-left: -75px}
+.initial-state .info-sidebar { opacity: 0}
+.info-sidebar {position: absolute; left: 0; width: 285px; height: 100%; z-index: 2}
+  .info-sidebar.closed {left: -285px;}
+.info-sidebar .wrapper {float: right; height: 100%; width: 285px; position: relative}
+.info-sidebar .scroll-mask {bottom: 0; overflow: hidden; padding: 10px 0; position: absolute; top: 0; width: 280px}
+.info-sidebar .infobox {min-height: 54px}
+.info-sidebar .voice-headline-holder {float: right; min-height: 107px; height: auto; margin-right: -5px; min-width: 335px; width: 267px}
+.info-sidebar .voice-headline {font-size: 21px; font-weight: normal; padding: 13px 13px 0}
+
+.info-sidebar .tooltip-positioner {left: -14%}
+.info-sidebar .tooltip-arrow {left: 14%}
+.info-sidebar .infobox {margin: 0 0 0 7px; position: relative; width: 263px}
+.info-sidebar .infobox-padding {display: block; padding: 10px 25px}
+.chart-bottom.expanded .infobox-padding {display: table}
+.info-sidebar .tagbox {clear: both; padding: 4px 0 4px 35px}
+.info-sidebar .jspPane {width: 280px; min-height: 99%}
+
+.infobox.collapsed {clear: both; padding: 10px 10px 0 0; cursor: pointer}
+.collapsed.no-caption .graphic {font-size: 20px; line-height: 30px; padding: 0 0 0 10px; width: auto}
+
+.collapsed.number-graphic-top .graphic-number {line-height: 20px}
+.collapsed.number-graphic-top .graphic {float: left; width: 45%}
+
+.collapsed.number-top .graphic {display: none}
+.collapsed.number-top .graphic-number {display: table-cell; vertical-align: middle; font-size: 25px; max-width: 123px; padding: 0 5px; word-wrap: break-word}
+.collapsed.number-top .caption {margin: 0}
+
+.collapsed .graphic {text-align: center}
+.collapsed .highcharts-container {margin: auto; cursor: pointer}
+.collapsed .graphic img {max-width: 90px; max-height: 90px}
+.collapsed .caption {margin: 0}
+
+.collapsed .caption,
+.collapsed.number-graphic-top .graphic-number {text-align: left; width: 55%}
+
+.collapsed .infobox-extract {display: table; padding: 0 0 10px 0; width: 100%}
+
+.collapsed .graphic,
+.collapsed .caption {display: table-cell; vertical-align: middle; float: none}
+
+.infobox-extract .graphic.chart-radial {height: auto}
+
+.collapsed.number-graphic-top .caption,
+.collapsed.number-graphic-top .graphic-number {float: right; display: block}
+
+.collapsed.number-graphic-top .graphic {float: left; display: block}
+.collapsed .tagbox {display: none}
+
+.collapsed.chart-left .graphic,
+.collapsed.graphic-left .graphic {height: auto; padding-right: 0; width: auto;}
+.collapsed.chart-bottom {display: block}
+.collapsed.chart-bottom .caption:after{ display: none; opacity: 0; height: 0; clear: none}
+
+.expanded .infobox-complete .caption {padding: 0 5px}
+
+.info-tab-controller {
+  height: 100%; position: absolute; top: 0; right: -10px; width: 10px; z-index: 4;
+}
+.info-tab-controller .tab-icon {position: absolute;height: 45px;margin-top: -125px; top:50%;width: 10px;left: -2px;}
+
+.collapsed .infobox-complete {display: none}
+.expanded .infobox-extract {display: none}
+
+/*
+  Filters and mode bar on main header
+*/
+.filters-and-mode .tag-container {max-width: 205px; display: block; float: left; margin: 3px 0 -4px 10px; height: auto}
+.tag-container .tag-label {display: inline-block; float: left; margin: 0 10px 5px 0; padding: 3px 8px 3px 4px}
+.tag-label .erase-me {display: block; float: left; height: 12px; margin: 2px 5px 0 0; width: 12px}
+
+/* Chart tooltip */
+
+/* LOADING overlay */
+
+.info-wall-overlay,
+.info-wall-overlay .overlay { width: 100%; height: 100%; z-index: 2; position: absolute; top: 0; left: 0}
+
+.info-wall-overlay .loading-wrapper {z-index: 3; top: 50%}
+.info-wall-overlay .loading-wrapper .spinner {width: 115px}
+/*
+  < 768
+*/
+@media all and (max-width: 1024px) {
+	.info-sidebar{
+		display: none;
+	}
+}
+@media all and (max-width: 460px) {
+	.infobox-wall .infobox-pane {
+		margin: 0;
+	}
+}

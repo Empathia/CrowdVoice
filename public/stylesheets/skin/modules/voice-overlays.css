@@ -1,0 +1,148 @@
+/* Overlay Styles */
+.arrows > .tooltip-arrow {display: none}
+.arrows > .tooltip-arrow > img {border-style: solid; border-color: #FFF;}
+.arrows > .tooltip-arrow > .over-arrow {background: url('/images/bg/over_arrow.png') no-repeat}
+.arrows > .left > .over-arrow {background-position: top left}
+.arrows > .right > .over-arrow {background-position: top right}
+.arrows > .voice-arrow {background: url('/images/bg/overlaw-arrows.png') no-repeat}
+.arrows > .left {background-position: 0 0;}
+.arrows > .right {background-position: 0 -64px;}
+  .arrows > .voice-arrow:active {opacity: .5}
+
+.vide-overlay-container .video-container {
+  background: #d9d9d9;
+  border-color: transparent;
+  border-style: solid;
+  background: url('/images/bg/video_container.png') repeat 0 0;
+  border-radius:4px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .2);
+}
+.overlay-container > .voice-container {
+  background: #d9d9d9;
+  border-color: transparent;
+  border-style: solid;
+  background: #EEEEEE;
+  border-radius:0px 0px 4px 4px;
+  box-shadow: 0 0 0px 3px rgba(0, 0, 0, .2);
+}
+.voice-over-info > h2 {color: #262626}
+.voice-over-info > .external-link > li {
+  border-style: solid;
+  border-color: #262522;
+  border-radius: 4px
+}
+.voice-over-info > .external-link > li > a {
+  background: #58554b;
+  text-decoration: none;
+  color: #d9d9d9;
+  border-style: solid;
+  border-color: #757269 #6b685f #5f5d54 #6b685f;
+  font-weight: normal;
+  border-radius: 4px;
+  background-image: -moz-linear-gradient(top, #636057, #4f4c43);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #636057), color-stop(1.0, #4f4c43));
+  background-image: -webkit-linear-gradient(#636057, #4f4c43);
+  background-image: linear-gradient(top, #636057, #4f4c43);
+}
+.close-voice-container {
+  background: url('/images/icons/sidebar-sprite.png') transparent no-repeat;
+  background-position: -213px 0;
+  float: right;
+  display: block;
+  position: relative;
+}
+.close-voice-container:hover {
+  background-position: -213px -33px;
+}
+.voice-container > .voice-coment-zone { background: #ededed; border-color: #bababa; border-style: solid}
+.voice-container > .voice-coment-zone > .show-comment-arrow {background: url('/images/bg/comment-arrow.png') no-repeat; background-position:0 0}
+.voice-container > .share-voice-container > p {color: #807c73}
+.share-voice-container > .actions > .flag-div {background: url('/images/bg/divider_dots.png') 0 0 no-repeat}
+.share-voice-container > .actions > li > a {background: url('/images/bg/sprites/box_actions.png') no-repeat}
+.share-voice-container > .actions > li > .facebook {background-position: 0 0}
+.share-voice-container > .actions > li > .twitter {background-position: -24px 0}
+.share-voice-container > .actions > li > .flag {background-position: -48px 0}
+.share-voice-container > .actions > li > .facebook:hover {background-position: 0 -25px}
+.share-voice-container > .actions > li > .twitter:hover {background-position: -24px -25px}
+.share-voice-container > .actions > li > .flag:hover {background-position: -48px -25px}
+.voice-over-info > .comments {background: url('/images/icons/comments.png') no-repeat; background-position:0 0}
+.voice-over-info > .comments > li { color: #1b181a}
+#overlay {
+  background:#000000 url('/images/loader-over.gif') no-repeat scroll center center;
+  background-position: 50% 50%;
+  opacity: 0.7;
+}
+
+/* Overlay Link Styles */
+
+.link-base-container > .back-to-voice {
+  text-align: center;
+  background: transparent url('/images/icons/sidebar-sprite.png') no-repeat;
+  background-position: -87px -98px;
+}
+.link-base-container > .back-to-voice > span {color: #2f2f2f; cursor: pointer;}
+.link-base-container > .back-to-voice > span:hover {color: #8b8b8b;}
+.back-to-voice > ul > .prev {border-style:solid; border-color:#e6e6e6}
+.back-to-voice > ul > .next {border-style:solid; border-color:#999999}
+.back-to-voice > ul > li > a {background: url('/images/bg/sprites/link-arrows.png')}
+.back-to-voice > ul > li > .prev {background-position:top left}
+.back-to-voice > ul > li > .next {background-position:top right}
+.back-to-voice > ul > li > .prev:hover {background-position:bottom left}
+.back-to-voice > ul > li > .next:hover {background-position:bottom right}
+.link-base-border {
+  border-style: solid;
+  border-color: #7f7f7f;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+}
+.link-base-border > .link-base-action {border-style: solid; border-color: #f3f3f3; background: #d9d9d9 url('/images/bg/link-over-bg.png')}
+.link-base-border > .link-base-action > ul > li {cursor:pointer}
+.link-base-border > .link-base-action > ul > li > div {cursor:pointer}
+.link-base-border > .link-base-action > ul > li > a {
+  background: #5a574d;
+  text-decoration: none;
+  color: #d9d9d9;
+  border-style: solid;
+  border-color: #0e0e0e;
+  font-weight: normal;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0px 1px #696969;
+  background-image: -moz-linear-gradient(top, #5E5E5E, #3D3D3D);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #5E5E5E), color-stop(1.0, #3D3D3D));
+  background-image: -webkit-linear-gradient(#5E5E5E, #3D3D3D);
+  background-image: linear-gradient(top, #5E5E5E, #3D3D3D);
+}
+
+.link-base-border > .link-base-action > ul > li > a:hover {
+  color: #FFFFFF;
+  box-shadow: inset 0 0 0px 2px #898989;
+  background-image: -moz-linear-gradient(top, #767676, #555555);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #767676), color-stop(1.0, #555555));
+  background-image: -webkit-linear-gradient(#767676, #555555);
+  background-image: linear-gradient(top, #767676, #555555);
+}
+
+
+.link-base-border > .link-base-action > ul > li > a.clipboard-btn {
+  cursor:pointer;
+  color: #FFFFFF;
+  box-shadow: inset 0 0 0px 2px #898989;
+  background-image: -moz-linear-gradient(top, #767676, #555555);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #767676), color-stop(1.0, #555555));
+  background-image: -webkit-linear-gradient(#767676, #555555);
+  background-image: linear-gradient(top, #767676, #555555);
+}
+.link-base-action > .right-action > span { color: #807c73;}
+.right-action  > .actions > .flag-div {background: url('/images/bg/divider_dots.png') 0 0 no-repeat}
+.right-action  > .actions > li > a {background: url('/images/bg/sprites/box_actions.png') no-repeat}
+.right-action  > .actions > li > .facebook {background-position: 0 0}
+.right-action  > .actions > li > .twitter {background-position: -24px 0}
+.right-action  > .actions > li > .flag {background-position: -48px 0}
+.right-action  > .actions > li > .flag-pressed, .flag-pressed {background-position: -73px 0}
+.right-action  > .actions > li > .flag-over, .flag-over {background-position: -48px -25px}
+.right-action  > .actions > li > .facebook:hover {background-position: 0 -25px}
+.right-action  > .actions > li > .twitter:hover {background-position: -24px -25px}
+.right-action  > .actions > li > .flag:hover {background-position: -48px -25px}
+.right-action  > .actions > li > .flag-pressed:hover {background-position: -73px -24px}
+.right-action  > .comments {background: url('/images/icons/comments.png') 0 0 no-repeat}
+.right-action  > .comments:hover {background-position: left bottom}
+.right-action  > .comments > li { color: #1b181a }

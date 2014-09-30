@@ -1,0 +1,37 @@
+development: &development
+  flickr_key: "1cc59b5775ca5fcd4b857135aefe6d63"
+  yfrog_key: "0234CQUXe1f931544fd534d1ecc8c256287f41a1"
+  mailchimp_key: "0c65b3972885f3fb7007ba52c668568d-us1"
+  voice_themes:
+    - blue
+    - green
+    - yellow
+    - orange
+    - red
+  s3_access_key: 'AKIAJMVHV7N6WHKN36XA'
+  s3_access_secret: '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'
+  email:    # Automatic Mail Hanlding, configuration file.
+    username:  "crowdvoice.tester@gmail.com"
+    password:  "freshout"
+    host:  "imap.gmail.com"
+    port:  993
+    ssl: true
+    look_in_folder: inbox                       # (remote) label_of_the_messages_whose_attachments_you_want_downloaded'
+    downloaded_mails_folder: downloaded_mail    # (remote) move downloaded mails to folder? Note: Make sure to create this folder before running the script!
+    invalidated_mails_folder: invalidated_mail  # (remote) folder to place all scanned/downloaded mail
+    max_mail_size: 2097152
+    log_file: log/imap.log                      # (local) filename to use for log
+  default_settings:
+    positive_threshold: 1
+    negative_threshold: -1
+    posts_per_page: 30
+    posts_per_page_on_mobile: 15
+
+test:
+  <<: *development
+
+staging:
+  <<: *development
+
+production:
+  <<: *development

@@ -1,0 +1,34 @@
+<td width="425" valign="top" align="left" style="background-color: #ffffff;">
+	<img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/top-email.png" style="display: block" width="524" height="32"/>
+	<div style="min-height: 300px; padding: 20px; margin-bottom: 10px">
+		<div style="font-size: 15px; border-bottom: 1px dashed #dededa; padding-bottom: 20px; margin: 0;">
+			Hello, This is your daily digest for the voice,<br/>
+			<%= link_to @voice.title, voice_url(@voice), :style => "color: #009884; text-decoration: none; font-size: 18px; font-weight: bold;" %>
+		</div>
+		<% if @contents.empty? %>
+		  <p>There is no new content for the voice today. Help us in <%= link_to "posting more", voice_url(@voice) %> content!</p>
+		<% else %>
+			<% @contents.each do |content| %>
+		      <div style="border-bottom: 1px dashed #dededa; padding: 20px 0; margin: 0; overflow: hidden;">
+				<div style="float: left; border: 1px solid #e3e2e2; padding: 2px; width: 70px; height: 62px">
+					<img src="<%= content.thumbnail_url %>" style="float: left" width="70" height="62"/>
+				</div>
+				<div style="float: right; width: 397px; font-size: 15px; padding-top: 12px; line-height: 1.3">
+					<div style="color: #979797">
+						<img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/<%= content.class.to_s.downcase %>-icon.gif" width="13" height="13" alt="<%= content.class.to_s.downcase %>"/> <%= content.class.to_s.capitalize %>
+					</div>
+					<div>
+						<a href="<%= voice_url(@voice) %>" style="text-decoration: none; color: #000000; font-weight: bold">
+							<%= content.page_title || content.description %>
+						</a>
+					</div>
+				</div>
+			</div>
+		    <% end %>
+		<% end %>
+		<div style="font-size: 13px; padding: 20px 0 0 0; color: #737373">
+			You can visit this voice to check out all contents from past days:<br/>
+			<%= link_to voice_url(@voice), voice_url(@voice), :style => "color: #009884; text-decoration: none; font-weight: bold;" %>
+		</div>
+	</div>
+</td>

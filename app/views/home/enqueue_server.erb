@@ -1,0 +1,40 @@
+<script type="text/javascript" >
+      $.CreationDone = function(){
+
+        $.ajax({
+          url: '/check_install',
+          data: {'server_name' : $('#token').val()},
+          success: function (data) {
+            if ( data.created ){
+               window.location = data.url;
+            } else {
+               setTimeout(function () {
+                  $.CreationDone();
+                }, 5000);
+            }
+          }
+        });
+      }
+    $(function(){
+      $.CreationDone();
+    })
+  </script>
+<header class='form'>
+  <%= hidden_field_tag 'token', params[:server_name] %>
+  <h2>Creating Installation <%= image_tag "loader-posts.gif" %> </h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Your installation is on queue to be created</th>
+        
+      </tr>
+    </thead>
+    <tr>
+      <td>
+        You will be redirected when it is done.. 
+      </td>
+    </tr>
+  </table>
+</section>

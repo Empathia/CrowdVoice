@@ -1,0 +1,829 @@
+/*
+	Default styles
+*/
+.main-header {
+  border-bottom-width: 1px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  z-index: 4;
+}
+	.voice-info {
+		border-bottom-width: 1px;
+    float: left;
+    padding-top: 0;
+    position: relative;
+		width: 100%;
+	}
+  	.nav-bar {
+  	  height: 36px;
+  	  width: 100%;
+      position: relative;
+      z-index: 1; /* I know it's relative, but fixes the 'more' button overlap, tell ios */
+  	}
+      .top-left-navigation {
+        float: left;
+        line-height: 13px;
+        padding-left: 40px;
+        height: 35px;
+      }
+        .menu-item {
+          display: inline-block;
+          margin: 0 4px -1px;
+          padding: 0;
+          position: relative;
+          top: 0;
+        }
+          .menu-item .menu-link {
+            float: left;
+            padding: 12px 13px 11px;
+          }
+          .menu-item.active .menu-link:after {
+            display: none;
+            height: 10px;
+            left: 50%;
+            margin-left: 40px;
+            position: fixed;
+            top: 16px;
+            width: 10px;
+          }
+      .top-right {
+        left: auto;
+        position: absolute;
+        right: 0;
+        margin: 5px 0;
+      }
+        .top-right .facebook-like-button {
+            width: 90px;
+        }
+        .top-right .twitter {
+            margin-top:3px;
+        }
+      .hgroup-theme-image {
+        border-bottom-width: 1px;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+      }
+        .theme-image {
+          height: 3px;
+          width: 100%;
+        }
+        .theme-image > .top-line.gaza,
+        .theme-image > .top-line {
+          border-width: 0;
+          height: 3px;
+        }
+    .voice-title {
+      font-size: 20px;
+      line-height:32px;
+      float: left;
+      clear: both;
+      padding: 14px 0 0 28px;
+    }
+    .voice-subtitle {
+      line-height: 22px;
+      clear: left;
+      float: left;
+      padding: 3px 45px 9px 28px;
+    }
+    .voice-subtitle.initial-state {
+      height: 30px;
+      overflow: hidden;
+    }
+    .infobox-wall-container .voice-subtitle,
+    .backstory .voice-subtitle{
+      padding-bottom: 20px;
+    }
+      .voice-subtitle > em {
+        line-height: 1.3em;
+        padding: 0;
+      }
+        .more-quote {
+          display: none;
+        }
+      .more-button {
+        border-width: 0;
+        font-size: 11px;
+      }
+        .more-button > span {
+          border-width: 1px;
+          padding: 1px 3px 0;
+          position: relative;
+          text-align: center;
+          z-index: 0; /* I know it's relative, but fixes the 'more' button overlap, tell ios */
+        }
+          .more-button > span:after {
+            font-size: 9px;
+            left: 37px;
+            position: absolute;
+            text-decoration: none;
+            top: 0;
+          }
+      .voice-info .voice-subtitle,
+      .voice-info .voice-subtitle > em {
+        font-size: 13px;
+      }
+	.post-and-actions {
+		border-width: 1px 0;
+		float: left;
+		height: 54px;
+		padding-bottom: 9px;
+		padding-top: 10px;
+		position: relative;
+		width: 100%;
+	}
+    .post-width {
+      left: 28px;
+      position: absolute;
+      right: 97px;
+      width: auto;
+    }
+      .new-post {
+        height: 35px;
+        width: 100%;
+      }
+      .post {
+        float: left;
+        height: 35px;
+        position: relative;
+        width: 100%;
+      }
+        .post > input[type="text"]{
+          min-width: 224px;
+          width: 100%;
+          height: 35px;
+          font-size: 15px;
+          float: left;
+          border-width: 1px;
+        }
+        .post > .post-button {
+          border-width: 1px;
+          position:absolute;
+          left: auto;
+          right: -84px;
+        }
+          .post > .post-button > input[type='submit'] {
+            float: left;
+            font-size: 18px;
+            padding:0 18px;
+            height: 35px;
+            border-width: 0;
+          }
+        .post > .post-paceholder, .empty-msg {
+          font-size: 15px;
+          left: 11px;
+          line-height: 1em;
+          top: 9px;
+          position: absolute;
+        }
+        .post > .post-paceholder > span {
+          position: relative;
+          z-index: 4;
+        }
+        .post > .post-paceholder > .cover {
+          height:20px;
+          position: absolute;
+          width:30px;
+          z-index: 4;
+        }
+        .post > .post-paceholder > input[type=file] {
+          margin-left: -30px;
+          position: absolute;
+          z-index: 2;
+          width: 120px;
+        }
+        .post > .post-type {
+          position: absolute;
+          right: 6px;
+          top: 7px;
+          /*z-index: 3*/
+        }
+        .post-type > .media {
+          float: left;
+          margin-right: 5px;
+          position: relative;
+        }
+          .post-type > .media > .media-type {
+            display: block;
+            width: 22px;
+            height: 25px;
+          }
+        .post-type > .media > .tooltip {
+          top: 24px;
+        }
+        .tooltip {
+          display:none;
+          left: 50%;
+          position: absolute;
+          top: 25px;
+          z-index: 100;
+        }
+        .tooltip > .tooltip-positioner {
+          position: relative;
+          top: 0;
+          left: -30%;
+        }
+        .tooltip-positioner > .tooltip-arrow {
+          position: absolute;
+          width: 16px;
+          height: 12px;
+          top: 0;
+          left: 30%;
+          z-index: 40;
+        }
+        .tooltip-positioner > .tooltip-arrow > span {
+          position: relative;
+          width: 16px;
+          height: 12px;
+          top: 2px;
+          left: -50%;
+          display: block;
+        }
+        .tooltip-positioner.notice {
+          display: none;
+        }
+        .tooltip-positioner.carousel {
+          display:none;
+        }
+        .media-type-info  {
+          position: relative;
+          top: 10px;
+          left: 0;
+          border-width: 2px;
+          padding: 15px 11px;
+          z-index: 30px;
+        }
+        .media-type-title {
+          font-size: 15px;
+          display: block;
+          padding: 0 7px;
+          width: 233px;
+          line-height: 22px;
+        }
+        .media-type-subtitle {
+          font-size: 12px;
+          display: block;
+          line-height: 1.3em;
+          margin-top: 9px;
+          border-top-width: 1px;
+          padding: 13px 7px 0;
+        }
+        .media-type-link {
+          font-size: 13px;
+          display: block;
+          line-height: 1;
+          padding: 6px 7px 0;
+        }
+        .media-type-notice {
+          font-size: 11px;
+          display: block;
+          line-height: 1;
+          padding: 6px 0 0;
+        }
+        .media-type-info h3 {
+          width: 100%;
+          font-size: 1em;
+        }
+        .media-type-info .description-link {
+          font-size:12px;
+          margin:5px 0;
+        }
+        .media-type-info .carousel-image {
+          width: 100%;
+          overflow: hidden;
+          margin: 4px 0;
+          text-align: center;
+        }
+        .media-type-info .carousel-arrows {
+          overflow: hidden;
+        }
+        .media-type-info .carousel-arrows >  {
+          overflow: hidden;
+        }
+        .media-type-info .carousel-arrows > .left-arrow {
+          width: 17px;
+          height: 17px;
+          display: block;
+          float: left;
+          margin-right: 5px;
+          margin-top: 2px;
+        }
+        .media-type-info .carousel-arrows > .right-arrow {
+          width: 17px;
+          height: 17px;
+          display: block;
+          float: left;
+          margin-right: 5px;
+          margin-top: 2px;
+        }
+        .media-type-info .carousel-arrows > .carousel-counter {
+          font-size: 10px;
+          float: left;
+          padding-top: 5px;
+        }
+        .media-type-info .link-textarea {
+          width: 100%;
+          border-width:1px;
+          overflow: hidden;
+          height: 70px;
+          font-size: 11px;
+          line-height: 15px;
+          padding: 7px;
+          margin: 4px 0 0 0;
+        }
+        .media-type-info.image-tip input {
+          margin-left: 0;
+        }
+        .tooltip-label {
+          font-size: 12px;
+          display: block;
+          line-height: 1;
+          padding: 7px 7px 0;
+        }
+        .filters-and-mode .tooltip, .post-button > .tooltip {
+          position: absolute;
+          left: 50%;
+          z-index:7;
+          top: 31px;
+        }
+        .filters-and-mode .tooltip-positioner,
+        .post-button > .tooltip > .tooltip-positioner {
+          position: relative;
+          top: 0;
+          left: -50%;
+        }
+        .filters-and-mode .tooltip-arrow,
+        .post-button > .tooltip > .tooltip-positioner > .tooltip-arrow {
+          position: absolute;
+          width: 16px;
+          height: 12px;
+          top: 0;
+          left: 50%;
+          z-index: 40;
+        }
+        .post-and-actions .tool-image .tooltip-positioner,
+        .post-and-actions .tool-video .tooltip-positioner,
+        .post-and-actions .tool-link .tooltip-positioner {
+          left: -50%;
+        }
+        .post-and-actions .tool-image .tooltip-arrow,
+        .post-and-actions .tool-video .tooltip-arrow,
+        .post-and-actions .tool-link .tooltip-arrow {
+          left: 50%;
+        }
+          .post-button > .tooltip > .tooltip-positioner > .tooltip-arrow > span {
+            position: relative;
+            width: 16px;
+            height: 12px;
+            top: 0;
+            left: -50%;
+            display: block;
+          }
+          .post-button > .tooltip > .tooltip-positioner > .media-type-info {
+            position: relative;
+            top: 10px;
+            left: -65px;
+            width:185px;
+            border-width: 2px;
+            padding: 15px 11px;
+            z-index: 30;
+          }
+          .post-button > .tooltip > .tooltip-positioner > .media-type-info > .media-type-title {
+            font-size: 15px;
+            display: block;
+            padding: 0 7px;
+            width: 233px;
+            line-height: 22px;
+          }
+          .post-button > .tooltip > .tooltip-positioner > .media-type-info > p {
+            font-size: 15px;
+            display: block;
+            padding: 0 7px;
+            font-weight: bold;
+            line-height: 22px;
+          }
+        .tool-link .media-type-info {
+          left: -9px;
+          width: 204px;
+        }
+        .tool-link .media-type-info .media-type-title {
+          width: 188px;
+        }
+	.filters-and-mode {
+		float: left;
+		padding-bottom: 10px;
+		padding-left: 28px;
+		padding-top: 11px;
+		width: 100%;
+	}
+    .form-right {
+      float: right !important;
+      margin-right:12px;
+    }
+    .filters-and-mode > form,
+    .filters,
+    .mode,
+    .filters > p,
+    .filters > label,
+    .mode > p,
+    .mode > ul,
+    .mode > ul > .mode-button {
+      float: left;
+    }
+    .mode-button {
+      position:relative;
+      overflow: hidden;
+    }
+    .filters-and-mode .mode-button {
+      overflow: visible;
+    }
+    .info-tags__tooltip .mode-button .dismiss-tooltip {
+      display: none;
+    }
+    .info-tags__tooltip .voice-tags li {
+      padding: 0;
+    }
+    .info-tags__tooltip .voice-tags label {
+      cursor: pointer;
+      display: block;
+      padding: 3px 0;
+    }
+    .mode-button > .tooltip-positioner {
+      left: -30%;
+    }
+    .mode-button > .tooltip > .tooltip-positioner > .tooltip-arrow {
+      left: 50%;
+    }
+    .mode-button > .tooltip > .tooltip-positioner > .media-type-info {
+      padding: 5px 15px 5px 12px;
+      overflow: hidden;
+      left: -90px;
+      padding-bottom: 5px;
+    }
+    .mode-button > .tooltip > .tooltip-positioner > .media-type-info > .media-type-title {
+      font-size: 17px;
+      padding: 0;
+      line-height: 1.5em;
+    }
+    .mode-button.selected > .tooltip > .tooltip-positioner > .media-type-info > .media-type-title {
+      width:170px;
+    }
+    .mode-button.selected > .tooltip > .tooltip-positioner > .media-type-info {
+      left: -55px;
+    }
+    .moderate-tooltip {
+      line-height: 2;
+      font-size: 13px;
+      font-weight: normal;
+    }
+    .moderate-tooltip > span {
+      font-weight:bold;
+    }
+    .public > .tooltip > .tooltip-positioner > .media-type-info {
+      left: -62px;
+    }
+    .public .media-type-title {
+      width: 157px;
+    }
+    .filters {
+      padding:3px 0 0 0;
+    }
+    .filters,
+    .mode {
+      font-size: 14px;
+    }
+    .filters > p {
+      padding-right: 6px;
+      font-size: 12px;
+      margin-top: -1px;
+    }
+    .mode > p {
+      font-size: 12px;
+      padding: 3px 10px 0 0;
+    }
+    .filters > label {
+      padding-right: 10px;
+      font-size: 12px;
+    }
+    .filters > label > input[type='checkbox'] {
+      margin-right: 4px;
+    }
+    .mode-button:first-child {
+      border-width: 1px 0 1px 1px;
+    }
+    .mode-button:first-child + .mode-button {
+      border-width: 1px 1px 1px 0;
+    }
+    .mode-button:first-child > .button {
+      border-width: 1px 0 1px 1px;
+      float: left;
+      padding: 2px;
+    }
+    .mode-button:first-child + .mode-button > .button {
+      float: left;
+      padding: 2px;
+    }
+    .mode-button > .button > a {
+      padding: 2px 10px 1px;
+      font-size: 11px;
+      line-height: 11px;
+      float: left;
+    }
+    .tooltip .mode-button > .button > a {
+      padding: 2px 10px 3px;
+      font-size: 11px;
+      line-height: 10px;
+      float: left;
+    }
+    .mode-button.selected:first-child > .button {
+      border-width: 1px;
+      padding: 0;
+    }
+    .mode-button.selected:first-child > .button > a {
+      border-width: 1px;
+      padding: 4px 10px 3px 11px;
+    }
+    .mode-button:first-child + .mode-button.selected > .button {
+      border-width: 1px;
+      padding: 0;
+    }
+    .mode-button:first-child + .mode-button.selected > .button > a {
+      border-width: 1px;
+      padding: 4px 11px 3px 10px;
+    }
+
+.js-voice-map {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+  .js-voice-map .loader {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -28px;
+  }
+/*
+  < 768
+*/
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+  .top-left-navigation {
+    padding-left: 54px;
+  }
+  .backstory-menu-item,
+  .info-tool.maps,
+  .info-tool.widget,
+  .info-tool.rss,
+  .post-and-actions,
+  .filters-and-mode .form-right {
+    display: none;
+  }
+  .voices-scroller {
+    width: 100% !important;
+  }
+}
+/*
+  < 460
+*/
+@media only screen and (max-width: 460px), only screen and (max-device-width: 460px) {
+  .voice-info {
+    margin: 0;
+    padding: 15px 10px 15px 28px;
+    margin-top: 35px;
+  }
+  .nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .top-left-navigation {
+    left: 50%;
+    margin-left: -90px;
+    padding: 0;
+    position: relative;
+    width: 180px;
+    cursor: pointer;
+  }
+  .top-left-navigation .menu-item {
+    display: none;
+    text-align: center;
+    position: static;
+  }
+  .top-left-navigation .menu-item.active {
+    pointer-events: none;
+  }
+  .top-left-navigation.active .menu-item:not(.active) {
+    pointer-events: auto;
+  }
+  .top-left-navigation .menu-item.active {
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+  }
+  .menu-item .menu-link {
+    padding: 12px 0 11px;
+    width: 100%;
+  }
+  /* for toggle behavior */
+  .top-left-navigation.active {
+    height: 70px;
+    left: 0;
+    line-height: 12px;
+    margin: 0;
+    padding: 0;
+    padding-top: 35px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  .top-left-navigation.active .menu-item:not(.backstory-menu-item) {
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+    float: left;
+  }
+  .top-left-navigation.active .menu-item.active:after {
+    content: attr(name);
+    height: 23px;
+    left: 0;
+    right: 0;
+    padding-top: 12px;
+    position: fixed;
+    top:0;
+  }
+  .menu-item.active .menu-link:after {
+    display: block;
+  }
+  .top-right {
+    cursor: pointer;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 31px;
+    width: 45px;
+    z-index: 3;
+  }
+  .top-right.active {
+    overflow: visible;
+  }
+  .top-right .info-tool {
+    float: none;
+    width: 110px;
+    padding: 10px;
+    text-align: center;
+    margin: 0 0 0 -65px;
+  }
+  .top-right .info-tool iframe {
+    width: 85px !important;
+  }
+  .voice-title {
+    max-width: 240px;
+    float: none;
+    display: inline;
+    padding: 0;
+  }
+  .voice-subtitle.initial-state {
+    display: none;
+  }
+  .voice-subtitle {
+    padding: 0;
+  }
+  .voice-subtitle.collapsed:not(.initial-state) {
+    clear: none;
+    display: inline;
+    float: none;
+  }
+  .filters-and-mode {
+    bottom: 0;
+    position: fixed;
+    top: auto;
+    padding: 7px 5px 5px 5px;
+    height: 39px;
+    z-index: 2;
+  }
+  .filters-and-mode .tags-container {
+    height: 26px;
+    width: 45px;
+  }
+  .filters-and-mode .tags-container .tag-tooltip-trigger {
+    height: auto;
+    line-height: 2em;
+  }
+  .info-tags__tooltip.tooltip {
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 36px;
+    z-index: 999999;
+  }
+  .info-tags__tooltip.tooltip .tooltip-positioner {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+  .info-tags__tooltip.tooltip .tooltip-arrow {
+    display: none;
+  }
+  .info-tags__tooltip.tooltip .media-type-info {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
+  }
+  .info-tags__tooltip .voice-tags {
+    bottom: 40px;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .info-tags__tooltip .voice-tags li {
+    font-size: 14px;
+  }
+  .info-tags__tooltip .voice-tags label {
+    padding: 13px 0;
+  }
+  .info-tags__tooltip .voice-tags input {
+    margin: 0 10px 0 13px;
+  }
+  .info-tags__tooltip .mode-button {
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    top: auto;
+    width: 100%;
+  }
+  .info-tags__tooltip.tooltip .mode-button .button {
+    display: inline-block;
+    float: none;
+    width: 40%;
+  }
+  .info-tags__tooltip .mode-button .dismiss-tooltip {
+    display: inline-block;
+  }
+  .info-tags__tooltip .mode-button > .button > a {
+    float: none;
+    line-height: 20px;
+  }
+  .filters-and-mode {
+    margin: 0;
+  }
+  .filters-and-mode .filters {
+    padding: 0;
+    position: absolute;
+    left: 60px;
+    right: 5px;
+  }
+  .filters-and-mode .filters p {
+    display: none;
+  }
+  .filters-and-mode .filters label {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    line-height: 1.15em;
+    padding: 6px 5px 4px;
+    position: relative;
+    text-align: center;
+    width: auto;
+  }
+  .filters > label > input[type="checkbox"] {
+    margin-right: 7px;
+  }
+  .filters-and-mode .filters .tweets-label {
+    float: right;
+  }
+}
+@media only screen and (max-width: 320px), only screen and (max-device-width: 320px) {
+  .filters-and-mode .tags-container {
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+  .filters-and-mode .tags-container .tag-tooltip-trigger{
+    line-height: 2em;
+  }
+  .filters-and-mode .filters label {
+    font-size: 11px;
+    max-width: 27%;
+    max-height: 24px;
+    padding: 2px;
+    line-height: 1.8em;
+  }
+  .filters > label > input[type="checkbox"] {
+    height: 12px;
+    margin-right: 3px;
+    margin-top: 2px;
+    float: left;
+  }
+}

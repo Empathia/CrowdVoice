@@ -1,0 +1,40 @@
+<% title @voice.title %>
+<%= head do %>
+  <meta property="og:title" content="<%= @voice.title %>"/>
+  <meta property="og:description" content="<%= @voice.description %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= voice_url(@voice) %>"/>
+  <meta property="og:site_name" content="CROWDVOICE"/>
+  <meta property="fb:app_id" content="101972966529938"/>
+
+  <script type="text/javascript">
+    window.timeline_dates = <%= @timeline.to_json.html_safe %>;
+
+    // dummy data
+    var infoboxData = [<%= raw @blocks.join(',') %>];
+  </script>
+<% end %>
+<% if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] && !params[:post] %>
+  <%= render 'infoboxes_wall' %>
+<% elsif params[:backstory] %>
+  <%= render 'backstory_wall' %>
+<% else %>
+  <%= render 'posts_wall' %>
+<% end %>
+
+  <div class="map-overlay">
+
+    <%= render 'map' %>
+
+    <div class="link-base-container">
+      <div class="back-to-voice">
+        <span>back to Voice</span>
+      </div>
+
+      <div class="link-base-border">
+        <div class="link-base-action">
+        </div>
+      </div>
+
+    </div>
+  </div>

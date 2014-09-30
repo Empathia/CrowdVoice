@@ -1,0 +1,36 @@
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_clipart_path, {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New Clipart
+      <% end %>
+    </li>
+  </ul>
+  <h2>Cliparts</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for clipart in @cliparts %>
+      <tr>
+        <td><%= clipart.name %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_clipart_path(clipart), :class => 'action edit' %>
+          <%= link_to "Delete", admin_clipart_path(clipart), :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @cliparts %>
+
+

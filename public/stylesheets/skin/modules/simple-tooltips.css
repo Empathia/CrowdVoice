@@ -1,0 +1,17 @@
+/* new tooltips */
+.simple-tooltip::after {
+  content: attr(data-tooltip-text);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  visibility: hidden;
+}
+.simple-tooltip[data-tooltip-text]::before,
+.simple-tooltip[data-tooltip-text]::after {
+  opacity: 0;
+}
+.simple-tooltip[data-tooltip-text]:hover::before,
+.simple-tooltip[data-tooltip-text]:hover::after {
+  visibility: visible;
+  opacity: 1;
+}

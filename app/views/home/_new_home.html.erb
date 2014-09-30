@@ -1,0 +1,71 @@
+<div class="home-voices-layout">
+  <!-- Start New Home -->
+
+  <!-- notification bar -->
+  <div class="notification-bar is-empty">
+    <% unless subdomain_present? %>
+      <div class="welcome" data-hansel-component-id="top-notice">
+        <a class="close-message">&times;</a>
+        <div class="header">
+          <h2 class="title"><%= t('layout.welcome_title') %></h2>
+          <ul class="actions">
+            <li class="facebook-like"></li>
+            <li class="tweet"></li>
+            <li class="twitter-follow"></li>
+          </ul>
+        </div>
+        <p class="description">
+          <%= t('layout.welcome')  %>
+          <a href="/about"><%= t('layout.learn_more')  %></a>
+        </p>
+      </div>
+    <% end %>
+    <% @notifications.each do |notification| %>
+      <div class="notification <%= notification.theme %>">
+        <a class="close-message">&times;</a>
+        <div class="description">
+          <span class="circle">
+            <i class="sprite-sidebar"></i>
+          </span>
+          <p><%= link_to notification.content, notification.url %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- @notification bar -->
+
+  <div class="home-covers-wrapper">
+    <!-- FEATURED VOICES BOX 1 -->
+    <div class="home-cover home-cover--featured home-cover--1-4 <%= @items[0].voice.theme %>">
+      <%= render :partial => 'voice', :locals => { :item => @items[0] } %>
+    </div>
+
+    <!-- BACKSTORY BOX 2 -->
+    <%= render :partial => 'event_graph', :locals => { :item => @items[1] } %>
+
+    <!-- INFOGRAPHIC BOX 3 -->
+    <%= render :partial => 'event_graph', :locals => { :item => @items[2] } %>
+
+    <!-- RECENTLY UPDATED BOX 4 -->
+    <div class="home-cover home-cover--updated home-cover--1-4 <%= @items[3].voice.theme %>">
+      <%= render :partial => 'voice', :locals => { :item => @items[3] } %>
+    </div>
+
+    <!-- FEATURED VOICES BOX 5 -->
+    <div class="home-cover home-cover--featured home-cover--1-4 <%= @items[4].voice.theme %>">
+      <%= render :partial => 'voice', :locals => { :item => @items[4] } %>
+    </div>
+
+    <%= render :partial => 'event_graph', :locals => { :item => @items[5] } %>
+
+    <!-- INFOGRAPHIC BOX 7 -->
+    <%= render :partial => 'event_graph', :locals => { :item => @items[6] } %>
+
+    <!-- RECENTLY UPDATED BOX 8 -->
+    <div class="home-cover home-cover--updated home-cover--1-4 <%= @items[7].voice.theme %>">
+      <%= render :partial => 'voice', :locals => { :item => @items[7] } %>
+    </div>
+  </div>
+
+  <!-- End New Home -->
+</div>

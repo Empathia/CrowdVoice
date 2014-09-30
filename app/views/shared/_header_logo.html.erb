@@ -1,0 +1,67 @@
+<hgroup class="<%= "gaza" if @voice && @voice.is_witness_gaza %>">
+  <% if @voice && @voice.is_witness_gaza %>
+    <div class="gaza-header top">
+      <div class="logo-header">
+        <div class="logo-container">
+          <%= link_to (root_path) do
+                content_tag :h1, 'CROWDVOICE',:class => 'crowdvoice-logo gaza'
+              end
+          %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="<%= subdomain_present? ? 'logo-custom-header' : 'logo-header' %>">
+      <div class="logo-container">
+        <% if subdomain_present? %>
+          <%= link_to (root_path) do
+                content_tag :h1, @custom.logo,:class => 'crowdvoice-custom-slogan'
+              end
+          %>
+          <div class="about-link-wrapper">
+            <%= link_to '?', custom_about_path, :title => t('layout.about'), :class => 'crowdvoice-custom-about' if @custom.about.present?%>
+            <div class="tooltip">
+              <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
+                <p class="media-type-info">
+                  <strong class="media-type-title">Find more info about CrowdVoice here!</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to (root_path) do
+                content_tag :h1, 'CROWDVOICE',:class => 'crowdvoice-logo'
+              end
+          %>
+          <div class="about-link-wrapper">
+            <%= link_to '?', about_path, :title => t('layout.about'), :class => 'crowdvoice-about'%>
+           <div class="tooltip">
+              <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
+                <p class="media-type-info">
+                  <strong class="media-type-title">Find more info about CrowdVoice here!</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <h5 class="<%= subdomain_present? ? 'crowdvoice-custom-tag' :'crowdvoice-slogan' %>"><%= @custom.title %></h5>
+    </div>
+  <% end %>
+
+  <% unless subdomain_present? %>
+    <ul class="mobile-menu__list visible-on-medium-view">
+      <li class="mobile-menu__list-item home-link">
+        <a href="/" class="mobile-menu__list-item-anchor">
+          <span class="crowdvoice-logo">CROWDVOICE</span>
+        </a>
+      </li>
+      <li class="mobile-menu__list-item about-link">
+        <%= link_to 'About', about_path, :title => t('layout.about'), :class => 'mobile-menu__list-item-anchor'%>
+      </li>
+    </ul>
+  <% end %>
+
+</hgroup>

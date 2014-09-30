@@ -1,0 +1,258 @@
+en:
+  flash:
+    application:
+      not_logged_in: 'You are not logged in.'
+    admin:
+      voices:
+        create:
+          notice: 'Voice was successfully created.'
+        update:
+          notice: 'Voice was successfully updated.'
+        destroy:
+          notice: 'Voice was successfully destroyed.'
+          alert: 'Voice could not be destroyed.'
+      announcements:
+        create:
+          notice: 'Announcement was successfully created.'
+        update:
+          notice: 'Announcement was successfully updated.'
+        destroy:
+          notice: 'Announcement was successfully destroyed.'
+          alert: 'Announcement could not be destroyed.'
+      notifications:
+        create: 'Notification was successfully created.'
+        update: 'Notification was successfully updated.'
+        destroy: 'Notification was successfully destroyed.'
+      settings:
+        update:
+          notice: 'Setting was successfully updated.'
+      users:
+        create:
+          notice: 'Users was successfully created.'
+        update:
+          notice: 'Users was successfully updated.'
+        destroy:
+          notice: 'Users was successfully destroyed.'
+          alert: 'Users could not be destroyed.'
+    sessions:
+      create:
+        invalid_login: 'Invalid email or password'
+  layout:
+    add_voice: 'Add A Voice'
+    login_tool: 'Login or Signup'
+    voice_tool: 'to Add a Voice.'
+    signup: 'Sign Up'
+    login: 'Login'
+    cancel: "Cancel"
+    forgot: 'Forgot Password?'
+    video: 'Watch The Video'
+    welcome_title: 'Welcome!'
+    welcome: 'CrowdVoice tracks voices of protest by curating and contextualizing valuable data, such as eyewitness videos, photos, and reports as a means to facilitate awareness regarding current social justice movements worldwide.'
+    message: 'CrowdVoice is a user-powered service that tracks voices of protest from around the world by crowdsourcing information'
+    learn_more: 'Learn More!'
+    about: 'About Crowdvoice'
+    create: 'Create Installation'
+  about:
+    what: 'What is CrowdVoice?'
+    about: 'About'
+    about_message_first: 'CrowdVoice.org is an open source service that tracks voices of protest by curating and contextualizing valuable data, such as eyewitness videos, photos, and reports as a means to facilitate awareness regarding current social justice movements worldwide.'
+    about_message_second: 'Despite what is happening today around the world, little hard-research exists for journalists and academics in terms of archives of diverse media reports. CrowdVoice addresses this by curating a wide range of content pulled from across the web on a dedicated page. Content is initially housed in a moderation queue, where it awaits crowdsourced verification.'
+    about_message_third: 'As a second step, the platform visually communicates social and political issues through hard facts, statistics, interactive infographics, and timelines, which are organized by tags, specific topics, and relevant citations. These engaging educational resources direct users to an archive of relevant footage and reports. Infographics and interactive timelines are an imperative step in providing a frame of reference to the hundreds of under-reported stories pouring in from across the world, and are crucial to putting together nuanced, comprehensive reports reflecting both hard facts and the human face of the issues.'
+    founding: 'Funding'
+    founding_message: 'After starting out as an experimental, self-funded initiative, CrowdVoice currently draws support from the Omidyar Network and the Shuttleworth Foundation.'
+    contact: 'Contact'
+    connect: 'Connect'
+    contact_message: 'For more information, contact us at <a href="mailto:crowdvoice@mideastyouth.com">crowdvoice@mideastyouth.com</a>'
+    what_we_do:
+      title: 'What we do'
+      amplify: 'Amplify'
+      amplify_message: 'CrowdVoice works to highlight, chronicle, and share the world’s most-deserving, yet under-reported stories as told by citizen journalists tracking movements worldwide.'
+      curate: 'Curate'
+      curate_message: 'The platform archives and organizes a collection of crowdsourced videos, photos, and reports, complemented by mainstream media reports.'
+      educate: 'Educate'
+      educate_message: 'Using interactive infographics, CrowdVoice works to break-down, source, and contextualize the world’s global movements in the most digestible way possible.'
+      engage: 'Engage'
+      engage_message: 'Social media integration connects users, activists, and organizations and initiates a dialogue about various issues.'
+    how_it_works:
+      title: 'How it Works'
+      getting_started:
+        title: 'Getting Started'
+        item_01: 'Click on “Sign-Up” to create your account'
+        item_02: 'Enter a valid email address and choose your password'
+        item_03: 'You should receive an email confirming your sign-up'
+        item_04: 'Log-in with your username and password and you’re ready to go!'
+      add_your_voice:
+        title: 'Add your voice'
+        item_01: 'Log-in to CrowdVoice using your email and password.'
+        item_02: 'Click “Add a Voice” to create a new topic.'
+        item_03: 'Fill out the basic voice information, including Title of the section, Description of the issue, and Location(s) to which it is relevant'
+        item_04: 'Fill out the advanced data-curation fields, including with relevant <strong>Twitter hashtags</strong> and <strong>RSS</strong> feeds from which content will be pulled.'
+        item_05: 'Select a background image and upload it from your computer using the “Background” upload function. You can also select a theme color for your section from the drop down menu on the right-hand side.'
+        item_06: 'Hit save to create the topic and queue for approval. Once approved, you can begin posting and moderating links, photos, and videos.'
+      add_to_or_moderate:
+        title: 'Add to moderate a voice'
+        item_01: 'To moderate posts for an existing voice, click the “Moderate” tab on the voice page. Approve a post by clicking the thumbs-up button. Disapprove a post by clicking the thumbs-down button. Flag a post as spam by clicking the flag icon.'
+        item_02: 'To add content to an existing voice, paste the URL of a picture, video, or link into the bar at the top of the voice. For videos, simply hit post. For pictures, you can add a title and caption. You can also upload pictures directly from your computer by select “Upload Picture” in the URL bar. For links, select from various thumbnails by scrolling through those available using the arrows.'
+    what_people_are_tweeting: 'What people are tweeting'
+    install_your_own_cv: 'Install your own crowdvoice!'
+    what_people: 'What people are saying'
+    RocketDogCom: 'A new social media site called #Crowdvoice curates protests in frighteningly real-time'
+    charleslaw: '@CrowdVoice is going to be an important site'
+    TimurBekir: 'Great crowdsourcing site - covering political struggle around the world: http://crowdvoice.org/assault-on-gaza'
+    kiwanja: 'Really impressed with the @CrowdVoice platform demo'
+    xoshink: 'MyCrowdVoice is the installation of the amazing tool @CrowdVoice, which helps movements grow.'
+    Global132: 'CrowdVoice has helped document some of the biggest social movements of 2012'
+    MelissaWall: "Innovative visuals by @CrowdVoice reporting on new UN estimate of 60,000 killed in #Syria's uprising"
+    blansharm: 'A wow project'
+    draddee: 'A very useful site to tracking protests in #Algeria'
+    ICT4Peace: 'No better source of info on #bahrain situation than @crowdvoice'
+    MaureenAlley: 'Could be a great tool for journalists: Crowdvoice provides realtime curation of protest social media http://flpbd.it/p5Hnl #journalism'
+    helenturvey: "Workers' Strike in South Africa infographic by @CrowdVoice for more eye opening data see  http://www.crowdvoice.org"
+    Info_Activismo: 'Plataforma para registrar, visualizar y documentar "revoluciones" http://www.crowdvoice.org  @CrowdVoice'
+    naturalllyi: 'Have a protest? Need fair coverage? Want to figure out what they are protesting? Check out this website https://crowdvoice.org/'
+    joellehatem: '#DiscoveryOfTheDay > My CrowdVoice Installation by @crowdvoice to aggregate and share information visually http://mycrowdvoice.org  #DataViz'
+    cibervoluntario: 'Gran plataforma de empoderamiento ciudadano: @CrowdVoice, seguimiento de voces de protesta en todo el mundo'
+    cahyawardhani: 'okay http://crowdvoice.org  is extremely cool'
+    Liberationtech: "@MideastYouth's @Crowdvoice Enables Internet Users to Find Relevant Info on World's Social Justice Movements http://womennewsnetwork.net/2013/01/10/human-rights-esraa-al-shafei-crowdvoice/"
+    jsnophoto: 'Wow, a site tracking protests and revolutions from all around the world via crowd sourcing info http://crowdvoice.org/  Really worth a look'
+    nataliebridgema: 'Looking for frontline #humanrights news? Check out http://crowdvoice.org/  http://fb.me/26rWZNQX2'
+    elimeur: '@CrowdVoice un mégaphone taille mondiale au service de toutes formes de protestation, partout dans le monde. http://www.crowdvoice.org/'
+    rima_misurata: 'CrowdVoice is a handy little tool for keeping track of protests'
+    logangraham: 'The most comprehensive protest/demonstration tracker. http://crowdvoice.org/'
+    nwoje: 'Tools like @CrowdVoice help movements grow. And now, you can create your own installation. http://mycrowdvoice.org/  #curate #organize #amplify'
+    MCSaatchiMobile: '@CrowdVoice - new platform seeking to change our understanding of major, people-led events with a unique perspective - http://bit.ly/WQC4iX'
+    nolicwee: '#crowdvoice - Tracking #news and happenings around the #middle-east in a new way! #crowdsource'
+    EwanGaffney: 'CrowdVoice is a great new social site to map uprisings around the world    http://buff.ly/XBRCHb'
+    Netzblockierer: 'CrowdVoice is an invaluable resource for tracking human rights protests around the globe. Check it out... http://tmblr.co/ZpJKFvWTdWcq'
+    JavierIRB: 'Impresionante. Todas las protestas que suceden cada día en cualquier lugar del mundo (incluido España), en http://crowdvoice.org'
+    alexeisenberg: 'An excellent site which tracks the voices of protest - alarmed and saddened to see these sorts of figures. http://www.crowdvoice.org/protests-in-syria'
+    BotalWaali: 'A website that uses crowdsourcing to track protests happening all over the world. Brilliant coverage.'
+    eadvocate: '@CrowdVoice You created an incredible project. *Applause* Thank you so much for your work.'
+    WITNESSchris: "I'm so intrigued by http://www.crowdvoice.org - an interesting #video4change project w/ great potential by @mideastyouth @crowdvoice"
+    citizentube: 'Great new platform to track online protests on @crowdvoice: http://bit.ly/d7i1ZW'
+    press:
+      TechCrunch: 'CrowdVoice is worthy of the attention: a site that aggregates images, videos and links from witnesses of oppression around the world: in the Middle East, but also as far afield as Uganda, North Korea, Kyrgyzstan and Oakland.'
+      Mashable: 'CrowdVoice spotlights all content on the web related to campaigns and protests. If one online activist comes across a spare or one-sided post, he can easily supplement information. Furthermore, campaign participants can add anecdotes and first-hand experiences so that others can check in from afar.'
+      Wired: "...a better resource for journalists wanting to report on social movements, even ones in countries where they don't speak the appropriate language."
+      TheGuardian: "It is a good resource for photos and videos of protests as well as links to news stories and reports"
+      BillLiao: 'This is the purpose for which social media was truly born.'
+      NinjaMarketing: '...a grassroots network whose mission is to amplify diverse and progressive voices advocating change through digital media, a place where you can see protests taking place in real time. We find it a very useful tool. Beyond learning about what’s happening in the world, this is a place to realize there is discontent in this world and we must fight for honest change.'
+      WikiNoticia: '...imagine a website dedicated to "cure" the social protests in different parts of the world, where we can access photos, videos and information? Crowdvoice uses all network resources from different sources and covers these movements to present them in a single platform... We needed a place like this...[and] as a resource for journalists and researchers.'
+      PeaceAndConflict: 'A great source for an insightful compilation of citizen perspectives, drawing from traditional news sources, blogs, image galleries, and video clips from protest participants, intellectuals and experts in the field.'
+      Idealist: 'Awesome site. The best part? You can subscribe to/follow any article or voice that piques your interest, which means one less excuse that I have to fall behind in my current events. This is a great resource to release unknown stories and empower them to make the change'
+      NonprofitOrgs: 'Ideal for activist organizations, CrowdVoice allows organizers to create “Voices” of protest where users can monitor and contribute links, photos, and videos of protests worldwide. It’s a creative, visual way to tell your organization’s stories of protest to your online communities.'
+      AllMyFaves: 'A one of a kind world news site... CrowdVoice is a different kind of media; on it you will find great infographics [and] all the Crowdsourcing material that will show you people’s opinions from that conflict, usually served with some chilling testimony and videos of the events. See the whole picture of subjects you thought you have a strong opinion about. Don’t be surprised if it will turn 180 degrees…'
+      AshokaPeace: 'Consider Crowdvoice for updates on issues that matter to you.'
+      FarhadMohit: 'This is fantastic!'
+      ReadWriteWeb: "CrowdVoice allows readers to read, and contribute to, a user-generated, dynamic aggregation of information on a specific topic. Features include a blog widget to funnel contributions to a user's site and the ability to subscribe"
+      VisualNews: 'Around the world people are fighting for their rights, protesting their oppressive governments, and uniting to take a stand. It’s inspirational to see stories like these and they give hope to people all over the planet. Now you can find them all in one place.'
+      SciDev: 'Internet-based technology and tools are becoming vital elements in the movement towards open government. But with so much information available, and so many different social media platforms, it can be hard to find relevant, reliable information... CrowdVoice.org— run by Mideast Youth — was set up to overcome this obstacle.'
+      FastCompany: "Google's Journalism Prize and the 5 Groups Who Should Win It"
+      INC: "Five projects to watch from the TED community:"
+      Cartography: "CrowdVoice is one of the best sites currently available for keeping track of recent developments in human rights movements around the world"
+  admin:
+    menu:
+      voices: 'Voices'
+      home: 'Homepage'
+      announce: 'Announcement'
+      block: 'Blocks'
+      clip: 'Cliparts'
+      tags: 'Tags'
+      settings: 'Settings'
+      users: 'Users'
+      install: 'Installations'
+      hi: 'Hi'
+      logout: 'Logout'
+    voices:
+      title: 'Title'
+      post: 'Num. of posts'
+      location: 'Location'
+      input: 'Add Tags to Selected Posts'
+      type: 'Type'
+      tag: 'Tags'
+      add: 'Add'
+      check: 'check_all_none'
+      infobox: 'Infobox editor'
+      tip: 'Show/Hide Tips'
+      tip_desc_one: 'Only the tags assigned to the posts of this voice are available.'
+      tip_desc_two: 'Edit tags'
+      tip_desc_three: 'opens in a new tab'
+      chart: 'All Charts'
+      chart_desc: 'When adding custom colors, keep them on six hex values, avoid shorthand or color names, e.g.'
+      good: 'Good'
+      bad: 'Bad'
+      radial: 'Radial Charts'
+      radial_desc: 'The radial charts represent the 100% of the values entered'
+      radial_desc_two: "This means that it doesn't matter if the values entered do not sum an exact '100,' the chart will sum all the values entered and then calculate the proportion for each one, e.g."
+      radial_desc_three: "200 is now our 100% so"
+      bar: 'Bar Charts'
+      bar_desc: 'The bar charts can receive negative values'
+      area: "Area Charts"
+      area_Desc: "The transparency on the area chart is only possible when 6-hex-value colors are used, the name of the columns are displayed when hovering on the chart"
+      custom_images: "Custom Images and Custom Clipart"
+      custom_images_desc: "To keep the aesthetics of the infobox try to add 'minimal' or monochromatic vector images with color #767676"
+      limits: 'Max Limit (for bars and area charts)'
+      limits_desc: "This limit is used when you want to force the maximum value on your chart x-axis."
+      limits_desc_two: "This value is rounded by the chart builder to keep it consistent, and cannot be used in conjunction of negative-value charts"
+      units: "Units"
+      units_desc: "This value is appended next to the name of the value on the chart description. (If you want separation between the number and the unit, add a space here e.g., ' %' instead of '%')"
+      layouts: "Layouts"
+      layouts_desc: "To keep the design consistent not all layouts can be applied to all types of infoboxes, only the available options on the layout combo-box are displayed, when using the 'number' type no layout options are available."
+    form:
+      head: 'Headline *'
+      head_value: "Block headline"
+      src: "Sources"
+      desc: "Description"
+      content: "Content Type"
+      number: "Number"
+      num_clipart: "Number clipart"
+      num_custom: "Number custom image"
+      values: 'Values *'
+      units: "Units"
+      tag_list: "Tag list"
+      remove: 'Remove row'
+      item_name: 'chart_item_name'
+      item_color: 'chart_item_color'
+      remove_col: 'Remove column'
+      max_limit: "max-limit"
+      auto: 'Automatic if empty'
+      name: 'Name'
+      color: 'Color'
+      add_row: "Add row"
+      add_col: "Add column"
+      value: "Value"
+      auto_colors: 'Automatic colors:'
+      block_layout: "block[layout]"
+      choose: "Choose Image"
+      layout_type: "Layout Type"
+      top: 'Graphic on top'
+      bottom: 'Graphic on bottom'
+      left: 'Chart on left'
+      top_ch: 'Chart on top'
+      bottom_ch: 'Chart on bottom'
+      left_ch: 'Chart on left'
+      static: "Static Image"
+      choose_file: 'Choose File'
+      number_content: "Number Content"
+      number_value: "Insert Number Value"
+      featured: "Featured"
+      preview: "Preview"
+      save: "Save"
+    select:
+      choose: "Please choose..."
+      radial: "Chart radial"
+      bars: "Chart bars"
+      area: "Chart area"
+      number: "Number"
+      clipart: "Clipart image"
+      clipart_num: "Clipart number"
+      custom: "Custom image"
+      custom_num: "Number custom image"
+  activerecord:
+    attributes:
+      user:
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        server_name: "Server Name"
+

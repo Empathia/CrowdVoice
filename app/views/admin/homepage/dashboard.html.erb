@@ -1,0 +1,296 @@
+<% javascript 'admin/layout-builder' %>
+<%= stylesheet_link_tag 'layout/dashboard' %>
+<% cache("#{current_connection}_admin_homepage") do %>
+  <script type="text/javascript">
+    var allVoices = [
+      <% @voices.each do |voice| %>
+        {
+          id: <%= voice.id %>,
+          label: "<%= voice.title %>",
+          has_infograph: <%= has_infograph(voice) %>,
+          has_backstory: <%= voice.has_timeline && voice.events.present? %>
+        },
+      <% end %>
+    ];
+    var allItems = [
+      <% @items.each do |item| %>
+      {
+        id: <%= item.id %>,
+        type: "<%= item.item_type %>",
+        name: "<%= item.voice.title %>",
+        order: <%= item.order %>
+      },
+      <% end %>
+    ];
+  </script>
+<% end %>
+<% if subdomain_present? %>
+  <div class="woahbar" style="display: none;">
+    <span style="font-family: Helvetica, Arial;">
+      Feature Voices and Events on the Home Page by selecting the voice from the autocomplete and select the voice type and Save
+    </span>
+    <a class="close-notify" onclick="woahbar_hide();">
+      <img class="woahbar-hide-arrow" src="/images/menubar/woahbar-hide-arrow.png" />
+    </a>
+  </div>
+  <div class="woahbar-stub" style="display: none;">
+    <a class="show-notify" onclick="woahbar_show();">
+      <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+    </a>
+  </div>
+<% end %>
+<header class='form'>
+  <h2>Drag the voices to show them in order in the homepage</h2>
+</header>
+
+<section style="padding:30px; " class="treshold">
+  <div class="layout-builder">
+    <div class="pure-g">
+      <div class="pure-u-2-5">
+          <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item1], :html => { :remote => true, :class => "form voices recent-featured", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 1 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-featured" data-value="featured">Featured Voice</li>
+                    <li class="ui-widget-content li-recent" data-value="recent">Recently Updated</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+          </div>
+      </div>
+      <div class="pure-u-3-5">
+        <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item2], :html => { :remote => true, :class => "form voices graph-event", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 2 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-graph" data-value="graph">Infographics</li>
+                    <li class="ui-widget-content li-backstory" data-value="backstory">Backstory</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-3-5">
+        <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item3], :html => { :remote => true, :class => "form voices graph-event", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 3 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-graph" data-value="graph">Infographics</li>
+                    <li class="ui-widget-content li-backstory" data-value="backstory">Backstory</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+        </div>
+      </div>
+      <div class="pure-u-2-5">
+          <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item4], :html => { :remote => true, :class => "form voices recent-featured", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 4 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-featured" data-value="featured">Featured Voice</li>
+                    <li class="ui-widget-content li-recent" data-value="recent">Recently Updated</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-2-5">
+          <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item5], :html => { :remote => true, :class => "form voices recent-featured", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 5 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-featured" data-value="featured">Featured Voice</li>
+                    <li class="ui-widget-content li-recent" data-value="recent">Recently Updated</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+          </div>
+      </div>
+      <div class="pure-u-3-5">
+        <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item6], :html => { :remote => true, :class => "form voices graph-event", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 6 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-graph" data-value="graph">Infographics</li>
+                    <li class="ui-widget-content li-backstory" data-value="backstory">Backstory</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-3-5">
+        <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item7], :html => { :remote => true, :class => "form voices graph-event", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 7 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-graph" data-value="graph">Infographics</li>
+                    <li class="ui-widget-content li-backstory" data-value="backstory">Backstory</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+        </div>
+      </div>
+      <div class="pure-u-2-5">
+          <div class="layout-item voice-layout">
+            <div class="voice-form pure-form pure-form-stacked">
+              <%= form_for [:admin, @item8], :html => { :remote => true, :class => "form voices recent-featured", :method => :put } do |f| %>
+                <fieldset class="pure-group">
+                  <div class="ui-widget">
+                    <%= text_field_tag 'voice_name', nil, :class => 'voicesAutoComplete pure-input-1', :placeholder => 'Select a Voice...' %>
+                    <%= f.hidden_field 'voice_id', :class => 'item_voice_id' %>
+                    <%= f.hidden_field 'order', :class => 'item_order', :value => 8 %>
+                    <%= f.hidden_field 'item_type', :class => 'item_type' %>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <ol class="selectable">
+                    <li class="ui-widget-content li-featured" data-value="featured">Featured Voice</li>
+                    <li class="ui-widget-content li-recent" data-value="recent">Recently Updated</li>
+                  </ol>
+                </fieldset>
+                <fieldset>
+                  <button class="pure-button pure-button-primary">Save</button>
+                </fieldset>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_notification_path, {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New Notification
+      <% end %>
+    </li>
+  </ul>
+  <h2>Notifications</h2>
+</header>
+<section class="with-table" id="home-notifications">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Content</th>
+        <th>Url</th>
+        <th>Theme</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for notification in @notifications %>
+      <tr>
+        <td><%= notification.content %></td>
+        <td><%= notification.url %></td>
+        <td><%= notification.theme %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_notification_path(notification), :class => 'action edit' %>
+          <%= link_to "Delete", [:admin, notification], :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

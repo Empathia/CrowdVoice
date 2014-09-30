@@ -1,0 +1,29 @@
+<header class='form'>
+  <h2>Tags</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for tag in @tags %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_tag_path(tag), :class => 'action edit' %>
+          <%= link_to "Delete", admin_tag_path(tag), :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @tags %>
+
+
+

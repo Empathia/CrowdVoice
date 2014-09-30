@@ -1,0 +1,45 @@
+/* Tweets Sidebar */
+.tweets-sidebar {
+  background-color: #e5e5e5;
+  border-left-style: solid;
+  border-left-color: #363636;
+  /*-webkit-transition: padding-left linear 300ms;
+     -moz-transition: padding-left linear 300ms;
+      -ms-transition: padding-left linear 300ms;
+       -o-transition: padding-left linear 300ms;
+          transition: padding-left linear 300ms;*/
+}
+
+.tweets-sidebar .header {
+  /*-webkit-transition: padding-left linear 300ms;
+     -moz-transition: padding-left linear 300ms;
+      -ms-transition: padding-left linear 300ms;
+       -o-transition: padding-left linear 300ms;
+          transition: padding-left linear 300ms;*/
+  background-color: #d4d4d4;
+  color: #808080;
+  text-transform: uppercase;
+}
+.tweets-sidebar .close {
+  background: #ededed;
+  color: #4C4C4C;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.tweets-sidebar .tweet {
+  color: #5d5d5d;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  border-bottom-color: #c6c7c6;
+  border-top-color: #f1f1f1;
+}
+
+.tweets-sidebar .tweet .author {
+  color: #4c4c4c;
+}
+
+.tweets-sidebar .tweet .date {
+  color: #a6a6a6;
+}

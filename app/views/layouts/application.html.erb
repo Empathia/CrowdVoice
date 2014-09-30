@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? "#{content_for(:title)} - #{@custom.name}" : @custom.name %></title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" user-scalable="no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <% if subdomain_present? %>
+      <link rel="icon" href="<%= @custom.favico.url %>"/>
+    <% else %>
+      <link rel="shortcut icon" href="/favicon.ico" />
+    <% end %>
+
+    <%= csrf_meta_tag %>
+    <%= chartbeat_top %>
+    <%= yield(:head) %>
+
+    <!--[if lt IE 9]>
+      <script src="/javascripts/include/html5_ie.js" type="text/javascript"></script>
+      <%= stylesheet_link_tag 'IE/IE' %>
+    <![endif]-->
+
+    <!--[if IE 8]>
+    <style type="text/css">
+      .isotope-hidden { visibility: hidden !important; }
+    </style>
+    <![endif]-->
+    <% if @voice %>
+      <script type="text/javascript">
+        window.currentVoice = {
+          id: <%= @voice.id %>,
+          slug: '<%= @voice.slug %>'
+        };
+      </script>
+    <% end %>
+    <!--[if IE]>
+    <style type="text/css">
+      .create-voice > ul > li > .button {
+      background:transparent url('/images/bg/bg-ie9button.jpg') repeat-x scroll 0 0 ! Important;
+      }
+      .create-voice > ul > li > .button:hover {
+      background:transparent url('/images/bg/bg-ie9button.jpg') repeat-x scroll 0 -21px ! Important;
+      }
+    </style>
+    <![endif]-->
+  </head>
+  <body class="layout-app <%= @voice.theme if @voice %>">
+    <script>
+      /* Check if the device has touch events */
+      window.hasTouch = function hasTouch() {
+        return 'ontouchstart' in window;
+      };
+
+      if (window.hasTouch()) {
+        document.body.className += " touch";
+      } else {
+        document.body.className += " not-touch";
+      }
+    </script>
+
+    <div id="fb-root"></div>
+
+    <div class="sidebar-wrapper">
+      <%= render :partial => "shared/header_logo" %>
+      <%= render :partial => "shared/aside" %>
+      <div class="tab-controller close-control">
+        <div class="sprite-sidebar"></div>
+        <div class="hamburger-menu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class= "main-container">
+      <div class="main-container--disable-overlay"></div>
+
+      <div class="map-container">
+        <div class="loader loader--dark loader--show">
+          <span class="loader__inner">
+            <span class="loader__image"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="main-container--inner scroll-primary">
+        <% flash.each do |key, msg| %>
+          <div class="flash <%= key %>">
+            <p><%= msg %></p>
+            <a class="close-message"></a>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render :partial => "voices/overlay" %>
+
+    <%= google_analytics %>
+    <%= chartbeat %>
+    <script>
+      $(document).ready(function(){
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      });
+    </script>
+
+  </body>
+</html>

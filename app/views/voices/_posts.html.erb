@@ -1,0 +1,57 @@
+<%
+    infosidebarIsPresent = false
+    if !@blocks.empty?
+      if params[:tags].present? || params['all'].present?
+        infosidebarIsPresent = true
+      end
+    end
+ %>
+<script type="text/template" id="timeline-deactivated">
+  <li class="timeliner disactivated-timeliner" data-year="{{year}}">
+    <a href="#"><span class="timerliner-dot"></span><span class="year-label"><span class="inner-dot-icn"></span><span class="year-text">{{year}}</span></span></a>
+  </li>
+</script>
+<div class="top-scroll" style="z-index:1;position:fixed;cursor:n-resize;width: 100%; height: 50px; right: 60px"></div>
+<div class="bottom-scroll" style="z-index:1;position:fixed;cursor:s-resize;width: 100%; height: 50px; right: 60px"></div>
+<div class="sweeper panel-padding">
+
+  <div class="updating-wrapper" <%= "style=\"background-image:url('#{@voice.background}')\"".html_safe if !@voice.background.blank? %> <%= "data-background-loading-image=\"#{@voice.background}\"".html_safe if !@voice.background.blank? %> >
+    <div class="image-bg-patter">
+      <div class="loading-hldr">
+        <div class="loading-wrapper">
+          <div class="spinner">
+            <%= image_tag '/images/loader-posts.gif', :border => '0' %>
+            <p>Loading Voice</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--style type="text/css" class="posts-style">
+    /*placeholder for dynamically calculated posts styles*/
+    /* used by mediafeed_init.js/setPostsmeasures()*/
+  </style-->
+
+  <!-- infographics sidebar render only on POSTS WALL view -->
+  <% if  infosidebarIsPresent && !is_mobile? %>
+    <%= render :partial => "voices/info-sidebar" %>
+  <% end %>
+
+  <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>">
+    <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>">
+      <%= render @posts %>
+    </div>
+  </div>
+
+  
+
+  <ul class="timeliner-group <%= 'with-announcement' if @voice.announcement.present? %>">
+    <li class="post-fetch-trigger timeline-tab _medium-font">See More</li>
+    <li class="timeliner current">
+      <div id="slider-vertical"></div>
+    </li>
+  </ul>
+</div>
+
+

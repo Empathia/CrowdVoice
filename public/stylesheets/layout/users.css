@@ -1,0 +1,15 @@
+
+.main-content > header .action-buttons {position: relative; top: -4px; z-index: 999; width:80%}
+ul.action-buttons li:first-child {
+margin-left: 0;
+float: left;
+}
+ul.action-buttons li:last-child {
+margin-right: 0;
+float: right;
+}
+.voice-search{
+  background: rgba(0, 0, 0, 0);
+  margin-top: -9px;
+  border-bottom: none;
+}

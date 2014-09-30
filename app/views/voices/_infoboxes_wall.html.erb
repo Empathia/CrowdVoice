@@ -1,0 +1,44 @@
+<% head do %>
+  <% @is_gaza = @voice.is_witness_gaza %>
+  <%= include_stylesheets :infographics %>
+<% end %>
+
+<style type="text/css" class="infobox-style">
+  /*placeholder for infobox sizing*/
+</style>
+
+<%= render 'shared/infobox-template' %>
+
+<div class="right-pane-container">
+    <div class="infobox-wall-container">
+
+      <div class="info-wall-overlay">
+        <div class="overlay"></div>
+        <div class="loading-wrapper">
+          <div class="spinner">
+            <img border="0" src="/images/loader-posts.gif">
+            <p>Loading ...</p>
+          </div>
+        </div>
+      </div>
+
+      <%= render :partial => "nav_bar" %>
+
+      <div class="infobox-wall scroll-secondary">
+          <div class="infobox-pane panel-padding">
+            <!-- begin infoboxes -->
+            <!-- end infoboxes  -->
+          </div>
+      </div>
+
+  </div>
+</div>
+
+<%= include_javascripts :infographics_pack %>
+
+<script type="text/javascript">
+  var posts_votes = <%= @votes.to_json.html_safe %>;
+  new FacebookNavButton({
+        fbPath : "<%= fb_path %>"
+      });
+</script>

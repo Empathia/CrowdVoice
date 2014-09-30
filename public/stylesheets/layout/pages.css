@@ -1,0 +1,28 @@
+/* Layout */
+.static-title {height: 19px; border-width: 1px 0px 1px 0px; margin-top: 3px; padding: 9px 0px 9px 287px; position: relative; z-index: 2; overflow: hidden} /* margin-top: 63px */
+.static-title > h2 {font-size: 18px; line-height: 1; float: left; width: 190px}
+/
+.video-container {width: 642px; height: 512px; border-width: 1px; margin:42px 0px 42px 33px; padding: 20px; overflow: hidden}
+.video-container > iframe {z-index: 0; position:relative}
+.video-container > object {z-index: 0; position:relative}
+.about-list {overflow: hidden; width: 690px; padding: 0 30px}
+.static-sec {width: 665px; border-width: 1px 0px 0px 0px; float: left; padding: 10px 25px 35px 0; position: relative}
+.static-sec.cites{border-top-width:0; padding: 60px 0 35px 0; width: 690px}
+.short-title,
+.long-title {height: 20px; font-size: 16px; line-height: 1}
+.long-title-container {height: 20px; display:block}
+.long-title {padding-bottom: 12px; border-width:0 0 1px 0}
+.short-title {width: 150px; float: left}
+.static-sec-text {font-size: 14px; line-height: 22px; width: 515px; float: left}
+.cite-slide {width: 726px;  height: 266px; /*Height must be setted trough javascript*/ position: relative; padding-top: 33px; overflow: hidden; z-index:0}
+.cite-slide-arrow-container {width:18px; height: 21px; position: relative; top: 50%; z-index:0; cursor: pointer}
+.cite-slide-arrow-container.left {float: left}
+.cite-slide-arrow-container.right {float: right}
+.cite-slide-left-arrow,
+.cite-slide-right-arrow {width: 16px; height: 21px; position: absolute; top: -50%; left: 0}
+.cite-slide-right-arrow {right: 0; position: absolute; z-index: 20}
+.cite-slide-left-arrow {position: absolute; z-index:20px}
+.cites-list {float: left; width: 657px;}
+.cite-container {float: left; width: 186px; padding-right: 33px; overflow: hidden}
+.cite-text {font-size: 13px; line-height: 18px; padding-bottom: 12px}
+.cite-author {font-size: 12px}

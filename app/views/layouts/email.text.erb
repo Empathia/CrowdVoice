@@ -1,0 +1,13 @@
+Hello,
+
+<%= yield %>
+
+--
+Crowdvoice.org
+
+<% if defined?(@voice) && defined?(@subscription)%>
+  You are receiving this email because you are subscribed to the daily digest for the voice <%= @voice.title %>.
+
+  If you want to stop receiving these emails, you can unsubscribe by following this URL:
+  <%= unsubscribe_voice_subscription_url(@voice, @subscription) %>
+<% end%>

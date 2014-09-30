@@ -1,0 +1,73 @@
+<script>
+  $(function() {
+    return $('#search').autocomplete({
+      source: "/admin/users/search_users",
+      select: function(event, ui) {
+          q = ui.item.value.split(/  \|\|(.*)/)[0]
+          this.value = q
+          this.form.submit();
+        }
+    });
+  });
+</script>
+<% if subdomain_present? %>
+  <div class="woahbar" style="display: none;">
+    <span style="font-family: Helvetica, Arial;">
+      Manage admin accounts and give a select few the ability to edit and delete topics / content. For more details, <%= link_to "click here", "https://www.google.com/url?q=http%3A%2F%2Ftutorials.mycrowdvoice.org%2Fpost%2F36549731423%2Fmanage-users&sa=D&sntz=1&usg=AFQjCNGfGsz10yzLCtJBwmG5jnsnGpuI-A", :class => 'action edit-tags', :target=>"_blank" %>.
+    </span>
+    <a class="close-notify" onclick="woahbar_hide();">
+      <img class="woahbar-hide-arrow" src="/images/menubar/woahbar-hide-arrow.png" />
+    </a>
+  </div>
+  <div class="woahbar-stub" style="display: none;">
+    <a class="show-notify" onclick="woahbar_show();">
+      <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+    </a>
+  </div>
+<% end %>
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <div class="voice-search">
+        <%= form_tag admin_users_path, :method=> :get do %>
+          <%= text_field_tag :search, params[:search], :placeholder=> "Search Users", :size=> 30, :class => "search" %>
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <%= link_to new_admin_user_path, {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New User
+      <% end %>
+    </li>
+  </ul>
+  <h2>Users</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Topics</th>
+        <th>Role</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for user in @users %>
+      <tr>
+        <td><%= user.username %><br/><%= mail_to truncate(user.email, :length => 25), nil, :style => 'font-size: 10px;' %></td>
+        <td><%= user.voices.map(&:title).join(", ") %></td>
+        <td><%= user.is_admin ? 'Admin' : 'Normal'%></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_user_path(user), :class => 'action edit' %>
+          <%= link_to "Delete", [:admin, user], :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @users unless params[:search] %>
+<%= stylesheet_link_tag "layout/users.css" %>

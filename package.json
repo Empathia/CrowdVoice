@@ -1,0 +1,16 @@
+{
+  "name": "crowdvoice",
+  "version": "0.1.0",
+  "url": "https://crowdvoice.org/",
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/freshout-dev/crowdvoice-v2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.1"
+  },
+  "dependencies": {
+    "load-grunt-tasks": "~0.1.0"
+  }
+}

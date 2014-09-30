@@ -1,0 +1,8 @@
+<p>Scraper Notifications</p>
+<p>Images Processed <%= @units %></p>
+<p>error: <%=@event if @event%></p>
+<p>message: <%=@event.message if @event%></p>
+backtrnace: <% for line in @event.backtrace %>
+    <%= line.chomp %>
+  <% end if @event%>
+<p>Time now <%=Time.now%></p>

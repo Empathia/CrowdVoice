@@ -1,0 +1,33 @@
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+  </ul>
+  <h2>Blocks</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Voice</th>
+        <th>Tags</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for block in @blocks %>
+      <tr>
+        <td><%= block.name %></td>
+        <td><%= link_to block.voice.title, block.voice %></td>
+        <td><%= block.tag_list %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_voice_block_path(block.voice, block), :class => 'action edit' %>
+          <%= link_to "Delete", admin_voice_block_path(block.voice, block), :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @blocks %>
+

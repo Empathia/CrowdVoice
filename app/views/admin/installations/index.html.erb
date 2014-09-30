@@ -1,0 +1,27 @@
+<header class='form'>
+  <h2>Listing installations</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @installations.each do |installation| %>
+        <tr>
+          <td><%= installation.name %></td>
+          <td><%= link_to 'Go', root_url(:subdomain => installation.name) %></td>
+          <td><%= link_to 'Destroy', [:admin, installation], :confirm => 'Are you sure?', :method => :delete, :onclick=>"javascript: $('.fm-admin-overlay').show()" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+<div class="fm-admin-overlay">
+    <img src="/images/ajax-loader.gif" width="32" height="32" />
+</div>

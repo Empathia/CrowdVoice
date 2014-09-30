@@ -1,0 +1,226 @@
+<%= stylesheet_link_tag 'skin/jquery-ui.css'%>
+<%= javascript_include_tag 'include/jquery-1.7.1.js', 'include/jquery-ui.js' %>
+<style>
+  .ui-select {
+    width: 465px !important;
+    margin: 0px 25px 25px 10px !important;
+  }
+  .ui-select select{
+    position: absolute;
+  }
+  .display-select .ui-select{
+    float:none;
+  }
+  .save-changes{
+    margin-top: 15px;
+  }
+  fieldset{
+    border: 2px groove threedface;
+  }
+  hr.style-two {
+    background: none repeat scroll 0 0 #c2c2c2;
+    border: 0 none;
+    clear: both;
+    display: block;
+    height: 1px;
+    margin: 15px 0;
+  }
+  .remove-media, .add-media {
+    padding: 5px;
+  }
+  button.select-data {
+    float: left;
+  }
+</style>
+<% head do %>
+  <script type="text/javascript">
+    $(function() {
+      $( "#event_event_date" ).datepicker();
+      initData = false;
+    });
+    window.addNestedFields = function(relation, container) {
+      var new_id, reg, template;
+      template = $('#new-' + relation + '-template').html();
+      new_id = new Date().getTime();
+      reg = new RegExp('new_' + relation, 'g');
+      return $(container).append($(template.replace(reg, new_id)));
+    };
+    jQuery(function() {
+      $("#event_is_event").click(function(){
+          $("#related-desc").toggle();
+          $("#sources").toggle();
+          $("#additional-objects").toggle();
+      });
+      $('.add-related-image').on('click', function() {
+        addNestedFields('image', '#additional-sources');
+        return false;
+      });
+      $('.add-related-video').on('click', function() {
+        addNestedFields('video', '#additional-sources');
+        return false;
+      });
+      $(".select-data").on('click', function(){
+        var Id = $("#events").val();
+        $("#description-error").html("");
+        wrapText(Id);
+      });
+
+      if ($("#event_is_event").is(':checked')) {
+          $("#related-desc").hide();
+          $("#sources").hide();
+          $("#additional-objects").hide();
+      }
+
+      function wrapText(Id) {
+          var openTag = "<a class='mention' data-reference='bs-"+ Id +"'>";
+          var closeTag = "</a>";
+          var textArea = $('#event_description');
+          var len = textArea.val().length;
+          var start = textArea[0].selectionStart;
+          var end = textArea[0].selectionEnd;
+          if (start === end){
+            $("#description-error").html("Please highlight some text");
+            return false;
+          }
+          var selectedText = textArea.val().substring(start, end);
+          var replacement = openTag + selectedText + closeTag;
+          textArea.val(textArea.val().substring(0, start) + replacement + textArea.val().substring(end, len));
+      }
+    });
+  </script>
+<% end %>
+
+<%= form_for [:admin, @voice, @event], :html => { :multipart => true, :class => "form voices" } do |f| %>
+  <section class="clearfix" style="width:600px; float:left;">
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :is_event %>
+      </div>
+      <%= f.check_box(:is_event, :class => "headline") %>
+    </div>
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :name %> <span class="red">*</span>
+      </div>
+      <%= f.text_field(:name, :class => "headline") %>
+    </div>
+
+    <!-- description -->
+    <div class="clearfix">
+      <div class="label-form">
+        <%= f.label "block_description", "Description" %> <span class="red">*</span> <!--span class="ask-me"></span--> <br>
+      </div>
+      <!-- <small class="answere">To relate the text to another event, first highligth the text, select the event in the dropdown and click the 'relate' button</small> -->
+      <%= f.text_area(:description, :size => "40x6") %>
+      <span id="description-error" class="error-message"></span><br />
+    </div>
+
+    <div class="clearfix">
+      <div class="label-form center">
+        <%= f.label :event_date, "Date" %> <span class="red">*</span>
+      </div>
+      <%= f.text_field :event_date %>
+    </div>
+    <div class="clearfix" id="sources">
+      <div class="label-form center">
+        <%= f.label :sources, "Sources" %>
+      </div>
+      <div class="about-link-wrapper">
+            <a title="About Crowdvoice" class="crowdvoice-about" href="/about">?</a>
+           <div class="tooltip">
+              <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
+                <p class="media-type-info">
+                  <strong class="media-type-title">e.g.: [Title] http://link.to/source</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+      <%= f.text_area(:sources, :size => "40x6", :wrap => "off") %>
+    </div>
+    <div class='background'>
+      <div class="clearfix">
+        <div class="label-form" style="width:100%">
+          <%= f.label :background_image, 'Background Image' %><span class="red">*</span>
+        </div>
+        <span class="background-image">
+          <%= image_tag @event.background_image.url if @event.background_image?%>
+        </span>
+        <br />
+        <%= f.file_field :background_image %>
+      </div>
+    </div>
+    <div id="additional-objects">
+      <legend style="margin: 5px 0 15px;">Additional images and videos</legend>
+      <%= link_to 'Add image', '#', :class => 'add-related-image button-gray add-media', :style => 'margin:15px' %>
+      <%= link_to 'Add video', '#', :class => 'add-related-video button-gray add-media' %>
+      <hr class="style-two"/>
+      <div id="additional-sources">
+      </div>
+      <% @event.related_images.each_with_index do |image,index| %>
+        <div class="related-image-<%= image.id %> related image"><%= image_tag image.image.thumb.url %>
+          <%= hidden_field_tag "event[related_images_attributes][#{index}][image]", image.image %>
+          <%= hidden_field_tag "event[related_images_attributes][#{index}][id]", image.id %>
+          <label for="event[related_images_attributes][#{index}][caption]">Caption</label>
+          <%= text_field_tag :caption, nil, :id => "event_related_images_#{index}_caption", :class => "caption-input", :name => "event[related_images_attributes][#{index}][caption]", :value =>image.caption %>
+          <%= check_box_tag "event[related_images_attributes][#{index}][is_explicit]", true, image.is_explicit %>
+          <label for="is_explicit">Is explicit</label>
+
+          <div class="remove-button-container">
+            <%= link_to 'Remove', admin_voice_event_related_image_path(@voice, @event, image), :class=>'button-gray remove-media', :method => :delete, :confirm => 'Are you sure?', :remote => true, :'data-format' => :js %>
+          </div>
+        </div>
+        <hr class="style-two"/>
+      <% end %>
+      <% @event.related_videos.each_with_index do |video,index| %>
+        <div class="related-video-<%= video.id %> related video">
+          <div style="width:100%">
+            <%= text_field_tag "event[related_videos_attributes][#{index}][url]", video.url %>
+            <%= hidden_field_tag "event[related_videos_attributes][#{index}][id]", video.id %>
+          </div>
+          <%= check_box_tag "event[related_videos_attributes][#{index}][is_explicit]", true, video.is_explicit %>
+          <label for="is_explicit">Is explicit</label>
+          <div class="remove-button-container">
+            <%= link_to 'Remove', admin_voice_event_related_video_path(@voice, @event, video), :class=>'button-gray remove-media', :method => :delete, :confirm => 'Are you sure?', :remote => true, :'data-format' => :js %>
+          </div>
+        </div>
+        <hr class="style-two"/>
+      <% end %>
+      <script id="new-image-template" type="text/template">
+          <div class="label-form" style="width:100%">
+            <%= label_tag :image, nil, :for => "event_related_images_new_image_image" %>
+          </div>
+            <%= file_field_tag :image, :id => "event_related_images_new_image_image", :name => "event[related_images_attributes][new_image][image]" %>
+            <%#= label_tag :related_to, nil, :for => "event_related_images_new_image_related_to" %>
+            <%#= select_tag "related_to", options_from_collection_for_select(@events, "id", "name"), :name=> "event[related_images_attributes][new_image][related_to]", :include_blank => true %>
+
+            <%= label_tag :caption, nil, :for => "event_related_images_new_image_related_caption" %>
+
+            <%= text_field_tag :caption, nil, :id => "event_related_images_new_image_caption", :name => "event[related_images_attributes][new_image][caption]" %>
+            <%= check_box_tag "event[related_images_attributes][new_image][is_explicit]", true, false %>
+            <%#= check_box_tag :is_explicit, nil, :id => "event_related_images_new_image_is_explicit", :name => "event[related_images_attributes][new_image][is_explicit]" %>
+            <label for="is_explicit">Is explicit</label>
+            <hr class="style-two"/>
+      </script>
+      <script id="new-video-template" type="text/template">
+        <div class="field">
+            <%= label_tag :video, nil, :for => "event_related_videos_new_video_video" %>
+            <%= text_field_tag :url, nil, :id => "event_related_videos_new_video_url", :name => "event[related_videos_attributes][new_video][url]" %>
+            <!--div class="clearfix"-->
+              <%#= label_tag :related_to, nil, :for => "event_related_videos_new_image_related_to" %>
+              <%#= select_tag "related_to", options_from_collection_for_select(@events, "id", "name"), :name=> "event[related_videos_attributes][new_video][related_to]", :include_blank => true %>
+            <!--/div-->
+            <!--div class="label-form" style="width:100%"-->
+              <%#= label_tag :caption, nil, :for => "event_related_videos_new_video_related_caption" %>
+            <!--/div-->
+            <%#= text_field_tag :caption, nil, :id => "event_related_videos_new_video_caption", :name => "event[related_videos_attributes][new_video][caption]" %>
+            <%= check_box_tag :is_explicit, nil, false, :id => "event_related_images_new_video_is_explicit", :name => "event[related_videos_attributes][new_video][is_explicit]" %>
+            <label for="is_explicit">Is explicit</label>
+            <hr class="style-two"/>
+        </div>
+      </script>
+    </div>
+    <button class="save-changes button button-gray" type="submit"><span class="accept"></span><%= t('admin.form.save') %></button>
+  </section>
+  <!-- right column -->
+<% end %>

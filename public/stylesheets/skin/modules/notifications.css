@@ -1,0 +1,87 @@
+.notification-bar {
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+.welcome {
+  background: #ffffff;
+}
+.welcome .header .title {color: #4c4c4c; text-transform: uppercase;}
+.welcome .description {color: #666}
+.welcome .description > span {}
+.welcome .description a {color: #bb2828; text-decoration: underline}
+.welcome .description a:hover {color: #B88585}
+.notification-bar .close-message {
+  background: #ededed;
+  color: #808080;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 2;
+  font-family: Arial, Verdana, sans-serif;
+}
+.welcome > .close-message:hover {
+  color: #B88585;
+}
+.notification .close-message {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  font-family: Arial, Verdana, sans-serif;
+}
+.notification {background-color: #ffffff; border-top-style: solid; border-top-color: #666;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.4)), to(rgba(0,0,0,0.1)));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,0.4), rgba(0,0,0,0.1));
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), rgba(0,0,0,0.1));
+  background-image: -o-linear-gradient(rgba(255,255,255,0.4), rgba(0,0,0,0.1));
+  background-image: linear-gradient(rgba(255,255,255,0.4), rgba(0,0,0,0.1));
+}
+.notification.red {background-color: #fff2f2; border-top-color: #b22121;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.4)), to(#fff2f2));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,0.4), #fff2f2);
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), #fff2f2);
+  background-image: -o-linear-gradient(rgba(255,255,255,0.4), #fff2f2);
+  background-image: linear-gradient(rgba(255,255,255,0.4), #fff2f2);
+}
+.notification.red .description a {color: #b22121}
+.notification.red .close-message {background-color: #daa2a2}
+
+.notification.green {background-color: #F2FAF1; border-top-color: #48A13F;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.4)), to(#F2FAF1));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,0.4), #F2FAF1);
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), #F2FAF1);
+  background-image: -o-linear-gradient(rgba(255,255,255,0.4), #F2FAF1);
+  background-image: linear-gradient(rgba(255,255,255,0.4), #F2FAF1);
+}
+.notification.green .description a {color: #48A13F}
+.notification.green .close-message {background-color: #8DD087}
+
+.notification.blue {background-color: #EBF7FF; border-top-color: #0F9FFF;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.4)), to(#EBF7FF));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,0.4), #EBF7FF);
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), #EBF7FF);
+  background-image: -o-linear-gradient(rgba(255,255,255,0.4), #EBF7FF);
+  background-image: linear-gradient(rgba(255,255,255,0.4), #EBF7FF);
+}
+.notification.blue .description a {color: #0F9FFF}
+.notification.blue .close-message {background-color: #85CEFF}
+
+.notification.yellow {background-color: #FDF8DF; border-top-color: #BC9F10;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.4)), to(#FDF8DF));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,0.4), #FDF8DF);
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), #FDF8DF);
+  background-image: -o-linear-gradient(rgba(255,255,255,0.4), #FDF8DF);
+  background-image: linear-gradient(rgba(255,255,255,0.4), #FDF8DF);
+}
+.notification.yellow .description a {color: #BC9F10}
+.notification.yellow .close-message {background-color: #EECF35}
+
+.notification.orange {background-color: #FEF7ED; border-top-color: #D58311;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.4)), to(#FEF7ED));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,0.4), #FEF7ED);
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), #FEF7ED);
+  background-image: -o-linear-gradient(rgba(255,255,255,0.4), #FEF7ED);
+  background-image: linear-gradient(rgba(255,255,255,0.4), #FEF7ED);
+}
+.notification.orange .description a {color: #D58311}
+.notification.orange .description a:hover {text-decoration: underline}
+.notification.orange .close-message {background-color: #F3B968}
+
+.notification .circle {background-color: #ffffff; border-radius: 50%}

@@ -1,0 +1,55 @@
+<script type="text/javascript">
+  $(window).load(function(){
+    new sortBlocks('.ui-sortable')
+  })
+  var voiceId = '<%= @voice.slug %>';
+</script>
+<div id="overlay" style="display: none"><div class="serverResponse"></div></div>
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <%= link_to new_admin_voice_block_path(@voice), {:class => 'button button-gray'} do %>
+      <span class="add"></span>
+      New Block
+      <% end %>
+    </li>
+  </ul>
+  <h2>Blocks for '<%= @voice.title %>'</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <colgroup>
+      <col class="drag-icon-column" />
+      <col class="block-name-column" />
+      <col class="voice-title-column" />
+      <col class="tag-list-column" />
+      <col class="actions-column" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Voice</th>
+        <th>Tags</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody class="ui-sortable">
+      <% for block in @blocks %>
+      <tr class="block-item" data-block-id="<%= block.id %>">
+        <td><span class="sort-handler"></span></td>
+        <td><%= block.name %></td>
+        <td><%= link_to block.voice.title, block.voice %></td>
+        <td><%= block.tag_list %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_admin_voice_block_path(@voice, block), :class => 'action edit' %>
+          <%= link_to "Delete", admin_voice_block_path(@voice, block), :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @blocks %>
+

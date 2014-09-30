@@ -1,0 +1,75 @@
+<% head do %>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#check_all_none').bind('click', function(){
+              var rows = $('table input:checkbox').closest('tr');
+
+              if ($(this).is(':checked')){
+                  rows.find('input:checkbox').attr('checked', true);
+              } else {
+                  rows.find('input:checkbox').attr('checked', false);
+              }
+          });
+
+          $('#main_tags_input').bind('keydown change paste keyup', function(){
+            $(this).val( $(this).val().replace(' ','') ) //remove spaces
+              // updateTags();
+          });
+          $('form').bind('submit', function(){
+            var atLeastOneIsChecked = $('input:checkbox').is(':checked');
+            if (atLeastOneIsChecked) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+      });
+
+
+      // function updateTags(){
+      //     if ($('#check_all_none').is(':checked')){
+      //         var rows = $('table input:checkbox:checked').closest('tr');
+      //         rows.find('input:text').val($('#main_tags_input').val());
+      //     }
+      // }
+
+  </script>
+<% end %>
+
+<header class='form'>
+  <%= form_for @voice, :url => admin_voice_bulk_update_path(@voice.slug), :html => { :class => "form" } do |f| %>
+  <ul class="action-buttons clearfix fr">
+    <li><%= text_field_tag :tags, nil,:placeholder =>  t('admin.voices.input'), :id => 'main_tags_input' %></li>
+    <li>
+      <button class="button button-gray fr" type="submit">Add</button>
+    </li>
+  </ul>
+  <h2><%= @voice.title %></h2>
+</header>
+<section class="with-table">
+    <table class="datatable paginate full posts-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Tags</th>
+          <th><%= check_box_tag t('admin.voices.check')  %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for post in @posts %>
+          <%= fields_for "voice[posts][]", post do |p| %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><%= post.source_type %></td>
+              <td><%= p.text_field :tag_list %></td>
+              <td><%= p.check_box :modify_tags %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>
+
+<%= paginate @posts %>

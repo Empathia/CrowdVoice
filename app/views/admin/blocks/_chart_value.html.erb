@@ -1,0 +1,15 @@
+<%= fields_for "block[chart_attributes][chart_values_attributes][]", chart_value do |chart_values_fields| %>
+  <div class="clearfix">
+    <div class="label-form center">
+      <%= chart_values_fields.label :name %>
+    </div>
+    <%= chart_values_fields.text_field :name %>
+    <%= render 'shared/error_messages_for', :object => @block, :field => 'chart.chart_values.name' unless chart_value.name.present? %>
+    <div class="label-form center">
+      <%= chart_values_fields.label :value %>
+    </div>
+    <%= chart_values_fields.text_field :value, :class => 'chart-input-value' %>
+    <%= render 'shared/error_messages_for', :object => @block, :field => 'chart.chart_values.value' unless  chart_value.value.present? %>
+    <%= link_to_function "remove", '$(this).closest(".clearfix").remove()' %>
+  </div>
+<% end %>

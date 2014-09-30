@@ -1,0 +1,55 @@
+<div class="voice-info <%= "gaza" if @is_gaza %>">
+  <div class="nav-bar">
+    <ul class="top-left-navigation">
+      <% if !subdomain_present? && (@voice.has_timeline || (@voice.events.present? && current_user && current_user.is_admin?)) %>
+        <li name="Backstory" class="menu-item backstory-menu-item <%= "active" if params[:backstory] %>"><a href="<%= voice_url(@voice) %>?backstory=true" class="menu-link">Backstory</a></li>
+      <% end %>
+      <% if !@blocks.empty? %>
+        <li name="Infographic" class="menu-item infographics-menu-item <%= "active" if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] %>"><a href="<%= voice_url(@voice) %>" class="menu-link">Infographic</a></li>
+      <% end %>
+      <li name="Media Feed" class="menu-item media-feed-menu-item <%= "active" if params[:tags].present? || params[:all] %>"><a href="<%= voice_url(@voice) %>?all=true" class="menu-link">Media feed</a></li>
+    </ul>
+    <ul class="voice-info-tools top-right" data-hansel-component-id="posts-voice-info-tool">
+      <li class="info-tool maps"><a title="Map" class="info-tool-link map"></a></li>
+      <li class="info-tool widget">
+        <a class="info-tool-link" href="#" title="widget"></a>
+        <div class="tooltip">
+          <div class="tooltip-positioner">
+            <p class="tooltip-arrow"><span></span></p>
+            <form>
+              <fieldset  class="grab-blog-widget media-type-info">
+                <strong class="blog-widget-title">Grab Blog Widget</strong>
+                <span class="blog-widget-subtitle">Choose widget’s height</span>
+                <label class="blog-widget-label" for="blog-widget-size-small"><input id="blog-widget-size-small" class="widget-height" type="radio" value="small" name="height" checked="checked" />Small</label>
+                <label class="blog-widget-label" for="blog-widget-size-medium"><input id="blog-widget-size-medium" class="widget-height" type="radio" value="medium" name="height" />Medium</label>
+                <label class="blog-widget-label" for="blog-widget-size-tall"><input id="blog-widget-size-tall" class="widget-height" type="radio" value="tall" name="height" />Tall</label>
+                <span class="blog-widget-subtitle no-border">Choose widget’s scope</span>
+                <label class="blog-widget-label" for="blog-widget-scope-this"><input id="blog-widget-scope-this" class="widget-scope" type="radio" value="this" name="scope" checked="checked" />This voice</label>
+                <label class="blog-widget-label" for="blog-widget-scope-all"><input id="blog-widget-scope-all" class="widget-scope" type="radio" value="all" name="scope" />All voices</label>
+                <p><label class="blog-widget-label" for="blog-widget-show-description"><input id="blog-widget-show-description" class="description-checkbox" type="checkbox" value="1" name="description" />Include description</label></p>
+                <p><label class="blog-widget-label" for="blog-widget-show-rtl"><input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />Right to Left</label></p>
+                <textarea  class="blog-widget-textarea" data-template="<iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&show_description={{show_description}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&show_description=0&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe>
+                </textarea>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </li>
+      <li class="info-tool rss"><%= link_to '', voice_path(@voice, :format => :rss), :class => 'info-tool-link', :title => 'RSS feed' %></li>
+      <li class="info-tool facebook-like-button" id="facebook-nav-button">
+      </li>
+      <li class="info-tool twitter">
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+      </li>
+    </ul>
+
+    <div class="hgroup-theme-image">
+      <div class="theme-image">
+        <p class="top-line <%= "gaza" if @is_gaza %>"></p>
+      </div>
+    </div>
+
+  </div>
+  <h2 class="voice-title"><%= @voice.title %></h2>
+  <h4 class="voice-subtitle initial-state collapsed"><em><%= @voice.description %></em> <a class="more-button"><span class="button-content">More</span></a></h4>
+</div>

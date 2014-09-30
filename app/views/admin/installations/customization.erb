@@ -1,0 +1,103 @@
+<div class="woahbar" style="display: none;">
+  <span style="font-family: Helvetica, Arial;">
+    Customize your installation. Before you fill this information up we recommend that you take a look at the guide <%= link_to "here", "https://www.google.com/url?q=http%3A%2F%2Ftutorials.mycrowdvoice.org%2Fpost%2F36553157178%2Fcustomize-your-installation&sa=D&sntz=1&usg=AFQjCNHUffNB6Xxeo-1KYYg1x97Yt358Kg", :class => 'action edit-tags', :target=>"_blank" %> to avoid any confusion.
+  </span>
+  <a class="close-notify" onclick="woahbar_hide();">
+    <img class="woahbar-hide-arrow" src="/images/menubar/woahbar-hide-arrow.png" />
+  </a>
+</div>
+<div class="woahbar-stub" style="display: none;">
+  <a class="show-notify" onclick="woahbar_show();">
+    <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+  </a>
+</div>
+<header class='form'>
+  <h2>Custom Attributes</h2>
+</header>
+<div class="main-container">
+  <% flash.each do |key, msg| %>
+    <div class="flash <%= key %>">
+      <p><%= msg %></p>
+    </div>
+  <% end %>
+</div>
+<%= form_for @installation, :url => update_custom_admin_installations_path( :id => @installation), :method => :put, :html => { :class => "form",:multipart => true } do |f| %>
+  <section class="clearfix tag-editor" style="width:420px; float:left;">
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :name, 'Name: ' %>
+      </div>
+      <%= f.text_field :name %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :name %>
+    </div><br/>
+
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :logo, 'Logo: ' %>
+      </div>
+      <%= f.text_field :logo %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :logo %>
+    </div><br/>
+
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :message, 'HomePage Msg: ' %>
+      </div>
+      <%= f.text_field :message %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :message %>
+    </div><br/>
+
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :twitter, 'Twitter: ' %>
+      </div>
+      <%= f.text_field :twitter %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :twitter %>
+    </div><br/>
+
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :facebook, 'Facebook: ' %>
+      </div>
+      <%= f.text_field :facebook %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :facebook %>
+    </div><br/>
+
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :title, 'Tagline: ' %>
+      </div>
+      <%= f.text_field :title %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :title %>
+    </div><br/>
+
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :about, 'About: ' %>
+      </div>
+      <%= f.text_field :about %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :about %>
+    </div><br/>
+    <div class="clearfix tag-name">
+      <div class="label-form center">
+        <%= f.label :favico, 'Favicon: ' %>
+      </div>
+      <%= f.file_field :favico %>
+      <%= f.hidden_field :favico_cache %>
+      <%= render 'shared/error_messages_for', :object => @installation, :field => :favico %>
+
+    </div><br/>
+    <% if @custom.favico? %>
+      <div class="label-form center">
+          <%= f.label :favico, 'Current Favico: ' %>
+      </div>
+      <%= image_tag @custom.favico.url %>
+    <% end %>
+  </section>
+
+
+    <div class="action clearfix">
+      <button class="button button-gray" type="submit"><span class="accept"></span>Save</button>
+    </div>
+
+<% end %>

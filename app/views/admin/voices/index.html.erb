@@ -1,0 +1,77 @@
+<script>
+  $(function() {
+    return $('#search').autocomplete({
+      source: "/admin/voices/search_voices",
+      select: function(event, ui) {
+          q = ui.item.value.split(/  \|\|(.*)/)[0]
+          this.value = q
+          this.form.submit();
+        }
+    });
+  });
+</script>
+<% if subdomain_present? %>
+  <div class="woahbar" style="display: none;">
+    <span style="font-family: Helvetica, Arial;">
+      Manage all your topics from this page (explore how to get started <%= link_to "here", "https://www.google.com/url?q=http%3A%2F%2Ftutorials.mycrowdvoice.org%2Fpost%2F36369961133%2Fgetting-started&sa=D&sntz=1&usg=AFQjCNH257uGaI0B1Nii32h8Ns_naLcdEQ", :class => 'action edit-tags', :target=>"_blank" %>).
+      If you hover a topic, you will notice some icons. To find out the function of each icon, <%= link_to "click here", "https://www.google.com/url?q=http%3A%2F%2Ftutorials.mycrowdvoice.org%2Fpost%2F36545411494%2Fhow-to-manage-topics&sa=D&sntz=1&usg=AFQjCNETyGN53FMPRe7tmr3yDT-9atvM2w", :class => 'action edit-tags', :target=>"_blank" %>).
+    </span>
+    <a onclick="woahbar_hide();" class="close-notify"><img src="/images/menubar/woahbar-up-arrow.png" class="woahbar-up-arrow"/></a>
+  </div>
+  <div class="woahbar-stub" style="display: none;">
+    <a class="show-notify" onclick="woahbar_show();">
+      <img class="woahbar-show-arrow" src="/images/menubar/woahbar-down-arrow.png" />
+    </a>
+  </div>
+<% end %>
+<header class='form'>
+  <ul class="action-buttons clearfix fr">
+    <li>
+      <div class="voice-search">
+        <%= form_tag admin_voices_path, :method=> :get do %>
+          <%= text_field_tag :search, params[:search], :placeholder=> "Search Voices", :size=> 30, :class => "search" %>
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <%= link_to new_admin_voice_path, {:class => 'button button-gray'} do %>
+        <span class="add"></span>
+        Add a Voice
+      <% end %>
+    </li>
+  </ul>
+  <h2>Voices</h2>
+</header>
+<section class="with-table">
+  <table class="datatable paginate full">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Num. of Posts</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for voice in @voices %>
+        <tr>
+          <td class="title"><%= link_to voice.title, voice %><br/><%= voice.user.username %></td>
+          <td><%= voice.posts.size %></td>
+          <td><%= voice.location %></td>
+          <td class="actions voices">
+            <%= link_to "Edit Data Points", admin_voice_events_path(voice), :class => 'action edit-events' unless subdomain_present?%>
+            <%= link_to "Edit Posts", admin_voice_posts_path(voice), :class => 'action edit-tags' %>
+            <%= link_to "Edit Blocks", admin_voice_blocks_path(voice), :class => 'action edit-blocks' %>
+            <%= link_to "Edit", edit_admin_voice_path(voice), :class => 'action edit' %>
+            <%= link_to "Delete", [:admin, voice], :confirm => "Are you sure?", :method => :delete, :class => 'action delete' %>
+          </td>
+          <!--td class="actions">
+          </td-->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= paginate @voices unless params[:search] %>
+<%= stylesheet_link_tag "layout/users.css" %>

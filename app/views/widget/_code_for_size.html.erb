@@ -1,0 +1,13 @@
+<% 
+url = url_for(:controller => "widget", 
+              :action => "show",
+              :id => @voice.to_param,
+              :only_path => false)
+%>
+
+<% 
+code_widget = <<EOL
+<iframe src='#{url}?size=small&width=small&show_description=false' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:400px;' allowTransparency='true'></iframe>
+EOL
+%>
+<textarea name="widget_size_code" rows="9" cols="37"><%= code_widget %></textarea>

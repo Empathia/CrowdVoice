@@ -1,0 +1,18 @@
+<td width="425" valign="top" align="left" style="background-color: #ffffff;">
+  <img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/top-email.png" style="display: block" width="524" height="32"/>
+  <div style="min-height: 300px; padding: 20px; margin-bottom: 10px">
+    <div style="font-size: 15px; border-bottom: 1px dashed #dededa; padding-bottom: 20px; margin: 0;">
+      <p>Your installation has now been created!</p>
+      <p><b>Public URL</b><br/>
+      <%= link_to "http://#{@host}", @path %></p>
+      <p><b>Admin Login Info</b><br/>
+      <%= link_to "http://#{@host}/admin", "#{@path}/admin" %><br/>
+      user: <%=@user.email%></p>
+      <p><%= link_to "Click here to learn about how you can get started with your CrowdVoice installation", "http://tutorials.mycrowdvoice.org/" %></p>
+      <p>Reply to this email to let us know if you run into any issues!</p>
+
+      <p>Best,<br/>
+      Crowdvoice</p>
+    </div>
+  </div>
+</td>

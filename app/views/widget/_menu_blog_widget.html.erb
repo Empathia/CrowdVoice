@@ -1,0 +1,37 @@
+<div class="widget-menu select">
+  <a href="#" title="Grab Blog Widget" class="button"><%= image_tag("grab-blog-widget.png", :alt => "Grab Blog Widget") %></a>
+  <div class="widget-menu-size overlay-box dropdown">
+    <div class="top-box">
+      <h3>Widget Height</h3>
+    </div>
+    <div class="center-box">
+      <div class="bx-container">
+        <ul>
+          <li>
+            <input type="radio" name="widget_size" value="small" checked="checked" /> <label>Small</label>
+          </li>
+          <li>
+            <input type="radio" name="widget_size" value="medium" /> <label>Medium</label>
+          </li>
+          <li>
+            <input type="radio" name="widget_size" value="tall" /> <label>Tall</label>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="bx-container bx-gray">
+        <ul>
+          <li>
+            <input type="checkbox" name="include_description" />
+            <label>Include description</label>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="footer-box">
+      <%= render :partial => "widget/code_for_size", :locals => {:size => "small"} %>
+    </div>
+    <div class="arrow-box"></div>
+  </div>
+</div>
