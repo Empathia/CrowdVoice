@@ -167,6 +167,8 @@ stylesheets:
     - public/stylesheets/skin.css
     - public/stylesheets/grid.css
     - public/stylesheets/jscrollpane.css
+    - public/stylesheets/components/utilities.css
+    - public/stylesheets/components/buttons.css
     - public/stylesheets/layout/modules/sidebar.css
     - public/stylesheets/skin/modules/sidebar.css
     - public/stylesheets/layout/modules/simple-tooltips.css

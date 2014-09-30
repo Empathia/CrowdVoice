@@ -11,8 +11,8 @@
   font-style: normal
 }
 
-body,
-input {
+
+body, p, ol, ul, td, input {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -43,7 +43,6 @@ body.touch * {
 .voice-info > h4 > .more-button {font-weight: 100}
 .media-type-info > a {font-weight: 800}
 .media-type-info > em {font-style: normal}
-.voice > .create-voice > .btn > .button,
 .cite-text {font-weight: 100}
 .cite-author {font-style: normal}
 .tweet-author {font-style: normal}
@@ -62,4 +61,9 @@ body.touch * {
 .voice-description > .time-ago,
 .news-ticker > li > a {
   font-weight: bold;
+}
+
+/* semi-bold */
+.create-voice .cv-button {
+  font-weight: 600;
 }
