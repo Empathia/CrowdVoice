@@ -1,27 +1,5 @@
-@font-face {
-    font-family: 'AlrightSansRegular';
-    src: url('fonts/alrightsans-regular.eot');
-    src: url('fonts/alrightsans-regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/alrightsans-regular.woff') format('woff'),
-         url('fonts/alrightsans-regular.ttf') format('truetype'),
-         url('fonts/alrightsans-regular.svg#AlrightSansRegular') format('svg');
-}
-@font-face {
-    font-family: 'AlrightSansMedium';
-    src: url('fonts/alrightsans-medium.eot');
-    src: url('fonts/alrightsans-medium.eot?#iefix') format('embedded-opentype'),
-         url('fonts/alrightsans-medium.woff') format('woff'),
-         url('fonts/alrightsans-medium.ttf') format('truetype'),
-         url('fonts/alrightsans-medium.svg#AlrightSansMedium') format('svg');
-}
-@font-face {
-    font-family: 'AlrightSansBold';
-    src: url('fonts/alrightsans-bold-v3.eot');
-    src: url('fonts/alrightsans-bold-v3.eot?#iefix') format('embedded-opentype'),
-         url('fonts/alrightsans-bold-v3.woff') format('woff'),
-         url('fonts/alrightsans-bold-v3.ttf') format('truetype'),
-         url('fonts/alrightsans-bold-v3.svg#AlrightSansBold') format('svg');
-}
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
 @font-face {
   font-family: "GelPen";
   src: url('fonts/gelpen-webfont.eot');
@@ -33,8 +11,18 @@
   font-style: normal
 }
 
-body, input, .blog-widget-textarea {font-family: Arial, Helvetica, sans-serif}
-body.touch * {font-family: Arial, Helvetica, sans-serif !important}
+body,
+input {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.blog-widget-textarea {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+body.touch * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
 
 .gelpen,
 .media-type-title {
@@ -43,7 +31,14 @@ body.touch * {font-family: Arial, Helvetica, sans-serif !important}
   letter-spacing:1px;
 }
 
-.about-page .press blockquote {font-family: Georgia, Times, "Times New Roman", serif}
+.about-page .press blockquote {
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.tweet-text {
+  font-family: 'Georgia';
+  font-style: italic;
+}
 
 .voice-info > h4 > .more-button {font-weight: 100}
 .media-type-info > a {font-weight: 800}
@@ -51,11 +46,9 @@ body.touch * {font-family: Arial, Helvetica, sans-serif !important}
 .voice > .create-voice > .btn > .button,
 .cite-text {font-weight: 100}
 .cite-author {font-style: normal}
-.tweet-text {font-family: 'Georgia'; font-style: italic}
 .tweet-author {font-style: normal}
-.infobox-wall .infobox .tagbox, .infoboxes-wall .infobox .chart-data {font-weight: 600}
-
-.cite-container {font-family: 'DroidSerifItalic'}
+.infobox-wall .infobox .tagbox,
+.infoboxes-wall .infobox .chart-data {font-weight: 600}
 
 /* font-weight: normal */
 .news-ticker > li .voice-time,
@@ -69,104 +62,4 @@ body.touch * {font-family: Arial, Helvetica, sans-serif !important}
 .voice-description > .time-ago,
 .news-ticker > li > a {
   font-weight: bold;
-}
-
-.sidebar-scroller__list-item-anchor,
-.link-base-border > .link-base-action > ul > li > a,
-.signup-btn > input,
-.main-content > header h2,
-.header-sponsor > span,
-.more-content,
-.flash > p,
-#wrapper > header nav > ul > li > a,
-.fb-button-square > span > span > p,
-.link-base-container > .back-to-voice,
-.message p,
-.mode-button > .button > a,
-.infobox .graphic,
-.infobox .graphic-number,
-.infobox .graphic p,
-.infobox .caption,
-.infobox-header .ribbon-title,
-.tags-container .tooltip,
-.info-sidebar .voice-headline,
-.infobox .sources-list-wrapper .title,
-.moderate-tooltip,
-.tooltip-label,
-header,
-hgroup > h5,
-.voice-info > h2,
-.voice-info > h4 > em,
-.post > .post-button > input[type="submit"],
-.create-voice > ul > li > .button,
-.welcome .description,
-.about-page .title,
-.about-page h2,
-.about-page a,
-.line-throught,
-.about-page .intro .content,
-.about-page .intro .content p,
-.notification-bar .description a,
-.home-columns .voice-description h2,
-.home-columns .voice-description p,
-.home-columns .voice-description .time-ago,
-.media-type-subtitle,
-.blog-widget-subtitle,
-.blog-widget-label,
-.voice-box .voice-cont p,
-.voice-box .voice-cont span,
-.voice-items--anchor,
-.tweets-sidebar .tweet .date,
-.tweets-sidebar .tweet blockquote,
-.flag-tooltip span,
-.infobox .description,
-.chart-data-list,
-.infobox .primary-btn,
-.infobox .sources-list-wrapper .list-item a,
-.timeline-tab {
-  font-family: 'AlrightSansRegular';
-  font-weight: normal;
-  font-style: normal;
-}
-
-._medium-font,
-.sidebar-scroller__accordion-toggler > h2,
-.link-base-container > .back-to-voice > span,
-.tab-title-text,
-.voice-description > h2,
-.fb-button > span > span,
-.static-title > h2,
-.static-sec > h3,
-.overlay-container > .voice-container > .voice-over-info > h2,
-.feature-voice .caption h2,
-.current-voice-notice p,
-.crowdvoice-slogan,
-.voice-sec > h2,
-.about-page .subtitle,
-.about-page h3,
-.about-page button,
-.about-page .btn,
-.inner-subnav li,
-.voice-box .voice-cont h3,
-.infobox .tag a,
-.top-left-navigation .menu-item,
-.link-base-container > .back-to-voice > span {
-  font-family: 'AlrightSansMedium';
-  font-weight: normal;
-}
-
-.message p span,
-.moderate-tooltip > span,
-.hiw-main-tabs .tab,
-.tweets-sidebar.v3 .header,
-.welcome .header .title,
-.about-page .intro p.about-message,
-.news-ticker li a,
-.media-type-info .media-type-link,
-.tweets-sidebar .tweet .author,
-.blog-widget-title,
-.voice-unmoderated > span,
-.spinner > p {
-  font-family: 'AlrightSansBold';
-  font-weight: normal;
 }

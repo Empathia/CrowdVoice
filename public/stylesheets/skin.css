@@ -391,7 +391,6 @@ body.blue .media-type-link {color: #2378ab}
 .menu-item .menu-link {
     color: #cccccc;
     font-size: 13px;
-    font-family: 'AlrightSansMedium';
     line-height: 12px;
     text-transform: capitalize;
     text-decoration: none;
@@ -449,7 +448,6 @@ body.blue .media-type-link {color: #2378ab}
 .more-button > span:hover {
     background: none repeat scroll 0 0 transparent;
     border: medium none;
-    font-family: 'AlrightSansRegular';
     font-size: 12px;
     text-decoration: underline;
 }

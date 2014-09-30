@@ -1,6 +1,5 @@
 .char--dot {font-size: 12px}
 
-.home-voices-layout {font-family: 'AlrightSansRegular'}
 .home-covers-wrapper:after,
 .home-voices-layout:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
 
@@ -124,7 +123,6 @@
         border-right-width: 0;
     }
     .home-cover__box-date {
-        font-family: 'AlrightSansMedium';
         font-size: 9px;
         line-height: 1em;
         margin: 5px 0 7px 0;

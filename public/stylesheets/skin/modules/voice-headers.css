@@ -86,12 +86,10 @@ header {
   }
 
 .post > .post-paceholder {color: #b2b2b2}
-.post > .post-paceholder > span {font-family: 'AlrightSansRegular'}
 .post > .post-paceholder > .cover {background: #FFF}
 .post > .post-paceholder > input[type=file] {float: right; cursor: pointer;
     opacity: 0;
 }
-.post > .post-paceholder > a {text-decoration:none; font-family: 'AlrightSansRegular'}
 .post > .post-paceholder > a:hover {text-decoration:underline}
 body.green .post > .post-paceholder > a {color: #50b347}
 body.red .post > .post-paceholder > a {
@@ -259,8 +257,6 @@ body.orange .post > .post-button > input[type='submit']:hover {
 body.orange .post > .post-button > input[type='submit']:active {
   background-color: #B8710E;
 }
-.filters > p,
-.mode > p {color: #a6a6a6; font-family: 'AlrightSansRegular'}
 .filters > label {color:#404040}
 .mode-button {border-top: #aeaeae; border-style: solid; border-color: #AEAEAE}
 .mode-button:first-child {
@@ -334,7 +330,12 @@ body.orange .tweets-sidebar a {color: #ec9415}
   background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.5) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
 }
-.tag-tooltip-trigger{cursor: pointer;font-family: 'AlrightSansRegular'; font-size: 11px;}
+
+ .tag-tooltip-trigger{
+   cursor: pointer;
+   font-size: 11px;
+ }
+
 .info-tags__tooltip .mode-button {border-top: solid 1px #9c9c9c; border-left: none; border-bottom: none; border-right: none;}
 .info-tags__tooltip .mode-button .button {
   cursor: pointer;

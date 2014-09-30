@@ -120,7 +120,6 @@
   color: #BBBBBB;
   border-radius: 13px;
   background: #4d4d4d url('/images/icons/search-ico.png') no-repeat 8px 5px;
-  font-family: 'AlrightSansRegular';
   z-index: 1;
 }
 .voice-search .search:focus {

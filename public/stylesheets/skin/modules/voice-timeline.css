@@ -9,8 +9,6 @@
 .disactivated-timeliner > a > .year-label {color: #666}
 .disactivated-timeliner > a:hover .year-text {text-decoration: underline}
 
-.timeliner-group {font-family: 'AlrightSansRegular'}
-
 .timeliner-group .inner-dot-icn,
 .timeliner-group #current_date .inner-dot-icn,
 .slider-values > li,
@@ -28,7 +26,6 @@
 
 .slider-values {color: #333}
 .slider-values > li {
-  font-family:'AlrightSansRegular';
   font-weight: normal;
   background-position: -266px -43px;
 }
@@ -85,10 +82,7 @@
   .timeliner-group > .timeliner.current {
     border: none;
   }
-  .timeliner-group,
-  .timeliner-group .slider-values > li {
-    font-family: 'AlrightSansMedium';
-  }
+
   .slider-values .active .month-label {
     font-weight: normal;
   }
