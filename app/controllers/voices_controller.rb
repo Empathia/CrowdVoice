@@ -36,6 +36,9 @@ class VoicesController < ApplicationController
       query.sub!("WHERE", "FORCE INDEX (PRIMARY, index_posts_on_approved_and_voice_id) WHERE") unless params[:tags]
     end
     @posts = Post.find_by_sql(query)
+
+    puts "x"*80
+    puts @posts.length
     @blocks = @voice.blocks.map(&:data_parsed)
     if request.format.html? || request.format.js?
       @next_page = (params[:page].nil? ? 1 : params[:page].to_i) + 1

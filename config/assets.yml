@@ -2,10 +2,17 @@
 package_assets: on
 
 javascripts:
+  neon: &neon
+    - public/javascripts/v3/vendor/neon/neon.js
+    - public/javascripts/v3/vendor/neon/stdlib/custom_event.js
+    - public/javascripts/v3/vendor/neon/stdlib/custom_event_support.js
+    - public/javascripts/v3/vendor/neon/stdlib/node_support.js
+    - public/javascripts/v3/vendor/neon/stdlib/bubbling_support.js
+    - public/javascripts/v3/vendor/neon/stdlib/widget.js
   defaults: &defaults
     - public/javascripts/include/jquery.1.6.4.js
     - public/javascripts/include/rails.js
-    - public/javascripts/include/neon.js
+    - *neon
     - public/javascripts/include/jquery.placeholder.js
     - public/javascripts/application.js
   jscroll: &jscroll
@@ -73,6 +80,7 @@ javascripts:
     - public/javascripts/infographics/infoSidebar.js
     - public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/mediafeed_init.js
+    - public/javascripts/v3/VoiceElement.js
   infobox: &infobox
     - public/javascripts/cv/excerpt.js
     # - public/javascripts/include/webfont.js
@@ -97,8 +105,6 @@ javascripts:
     - *jscroll
     - *sidebar
     - public/javascripts/include/jquery-ui.min.js
-    - public/javascripts/include/NodeSupport.js
-    - public/javascripts/include/widget.js
     - public/javascripts/include/CSSPlugin.min.js
     - public/javascripts/include/TweenLite.min.js
     - public/javascripts/cv/carousel.js
