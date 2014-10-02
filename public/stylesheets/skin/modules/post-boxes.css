@@ -135,7 +135,8 @@
 .mediafeed-sprite.flag {
   background-position: -48px 0;
 }
-.flag-div a:hover .mediafeed-sprite.flag {
+.mediafeed-sprite.flag:hover,
+.mediafeed-sprite.flag-pressed {
   background-position: -120px 0;
 }
 .voice-action > .actions > li > a {
@@ -144,12 +145,7 @@
 .voice-action .flag-div {
   text-align: center;
 }
-.voice-action .flag-div {
-
-}
-.voice-action > .actions > li > .flag-pressed {background-position: -73px 0}
 .voice-action > .actions > li > .flag-over {background-position: -48px -25px}
-.voice-action > .actions > li > .flag-pressed:hover {background-position: -73px -24px}
 
 .close-voice-box {background: url('/images/bg/delete-post.png') 0 0 no-repeat}
 .close-voice-box:hover {background-position: 0 bottom}

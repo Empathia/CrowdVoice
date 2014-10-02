@@ -100,7 +100,8 @@
   width: 7px;
   height: 14px;
 }
-.mediafeed-sprite.flag {
+.mediafeed-sprite.flag,
+.mediafeed-sprite.flag-pressed {
   width: 14px;
   height: 15px;
 }
@@ -111,10 +112,6 @@
   width: 20px;
 }
 
-.voice-action .flag-div a i {
-  display: inline-block;
-}
-.voice-action .flag-pressed {float: right; width: 23px;}
 .voice-action .flag-over {float: right}
 
 .close-voice-box {width: 28px; height: 21px; float: right; display: block; position: relative; margin: 4px -3px -18px; z-index:4}

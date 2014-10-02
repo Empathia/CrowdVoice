@@ -47,9 +47,7 @@
       </li>
     </ul>
     <div class="flag-div">
-      <%= link_to(voice_post_votes_path(@voice, post, :rating => -1 , :format => :json), :method => :post) do %>
-        <i class="mediafeed-sprite flag vote-post"></i>
-      <% end %>
+      <%= link_to '', voice_post_votes_path(@voice, post, :rating => -1 , :format => :json), :method => :post, :class => "vote-post mediafeed-sprite flag" %>
       <div class="tooltip flag-tip" data-post-id="post_<%= post.id %>">
         <div class="tooltip-positioner">
           <p class="tooltip-arrow"><span></span></p>
