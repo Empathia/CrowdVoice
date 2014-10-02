@@ -1,15 +1,26 @@
+.voice-content-type-wrapper {
+  color: #999;
+}
+
+.voice-content-type-wrapper.inside {
+  color: #fff;
+}
 
 .voices-container > .voice-box {
   box-shadow: none;
-  border: 1px solid rgba(123, 123, 123, 0.2);
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
-.voice-box > .voice-cont {background: #f7f7f7; cursor: pointer;
+.voice-box > .voice-cont {
+  cursor: pointer;
   border-radius: 3px 3px 0 0;
 }
-  .voice-box > .voice-cont:hover {background: #fff;
-    box-shadow:0 1px 3px rgba(0,0,0,0.2);
-  }
-  .unmoderated .voice-cont {opacity: 0.3;
+.voice-box > .voice-cont > a {
+  border-radius: 3px 3px 0 0;
+}
+  .unmoderated .voice-cont {
+    opacity: 0.3;
     -moz-transition: opacity .5s ease .2s;
     -webkit-transition: opacity .5s ease .2s;
     -o-transition: opacity .5s ease .2s;
@@ -23,12 +34,16 @@
 
 .voice-box > .voice-cont > a > .magnifier {background: url('/images/magnifier.png') center center no-repeat}
 .voice-box > .voice-cont > a > .video {background: url('/images/play-btn.png') center center no-repeat}
-.voice-box > .voice-cont > h3 {color: #333333}
+.voice-box > .voice-cont > h3 {
+  color: #404040;
+}
 .voice-box > .voice-cont > span {color: #808080}
-.voice-box > .voice-cont > p {color: #333333}
-.voice-box > .voice-action {background: #e6e6e6; border-style:solid; border-color: #dddddd;
-  box-shadow: 0 -1px 0 0 #cbcbcb;
-  border-radius: 0 0 3px 3px
+.voice-box > .voice-cont > p {
+  color: #808080;
+}
+.voice-box > .voice-action {
+  border-style:solid;
+  border-color: #d9d9d9;
 }
 .voice-box > .voice-unmoderated {opacity: 1; background: #f6f1dd; border-style:solid; border-color: #f3c719;
   box-shadow: 0 -2px 0 0 #c5a114;
@@ -93,25 +108,49 @@
   border:2px solid;
   border-color: #8b8a84 #828079 #74726a #77746b;
 }
-.voice-action > .post-icon-type {background: url('/images/bg/sprites/box_actions.png') no-repeat}
-.voice-action > .post-icon-type.link-icon {background-position: -96px 0}
-.voice-action > .post-icon-type.image-icon {background-position: -118px 0}
-.voice-action > .post-icon-type.video-icon {background-position: -140px 0}
-.voice-action > .comments {background: url('/images/icons/comments.png') 0 0 no-repeat}
-.voice-action > .comments:hover {background-position: 0 -16px}
-.voice-action > .comments > li { color: #1b181a }
-.comments > li .fb_comments_count_zero {display:none}
-.voice-action > .actions > .flag-div {background: url('/images/bg/divider_dots.png') 0 0 no-repeat}
-.voice-action > .actions > li > a {background: url('/images/bg/sprites/box_actions.png') no-repeat}
-.voice-action > .actions > li > .facebook {background-position: 0 0}
-.voice-action > .actions > li > .twitter {background-position: -24px 0}
-.voice-action > .actions > li > .flag {background-position: -48px 0}
+.mediafeed-sprite {
+  background: url('/images/v4/sprite-media-feed.png') no-repeat;
+}
+.mediafeed-sprite.link-icon {
+  background-position: 0 -24px;
+}
+.mediafeed-sprite.image-icon {
+  background-position: -48px -24px;
+}
+.mediafeed-sprite.video-icon {
+  background-position: -24px -24px;
+}
+.mediafeed-sprite.twitter {
+  background-position: 0 0;
+}
+.voice-action > .actions > li > a:hover .mediafeed-sprite.twitter {
+  background-position: -72px 0;
+}
+.mediafeed-sprite.facebook {
+  background-position: -24px 0;
+}
+.voice-action > .actions > li > a:hover .mediafeed-sprite.facebook {
+  background-position: -96px 0;
+}
+.mediafeed-sprite.flag {
+  background-position: -48px 0;
+}
+.flag-div a:hover .mediafeed-sprite.flag {
+  background-position: -120px 0;
+}
+.voice-action > .actions > li > a {
+  text-align: center;
+}
+.voice-action .flag-div {
+  text-align: center;
+}
+.voice-action .flag-div {
+
+}
 .voice-action > .actions > li > .flag-pressed {background-position: -73px 0}
 .voice-action > .actions > li > .flag-over {background-position: -48px -25px}
-.voice-action > .actions > li > .facebook:hover {background-position: 0 -25px}
-.voice-action > .actions > li > .twitter:hover {background-position: -24px -25px}
-.voice-action > .actions > li > .flag:hover {background-position: -48px -25px}
 .voice-action > .actions > li > .flag-pressed:hover {background-position: -73px -24px}
+
 .close-voice-box {background: url('/images/bg/delete-post.png') 0 0 no-repeat}
 .close-voice-box:hover {background-position: 0 bottom}
 

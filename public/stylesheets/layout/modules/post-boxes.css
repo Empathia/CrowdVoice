@@ -1,18 +1,60 @@
+.voice-box > .voice-cont > a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.voice-content-type-wrapper {
+  font-size: 12px;
+  margin-top: 1em;
+  padding: 0 0 0 1em;
+}
+.voice-content-type-wrapper.inside {
+  position: absolute;
+  bottom: 0;
+  padding: 0 0 .4em 1em;
+}
+
 .initial-state .voice-box { visibility: hidden;}
-.voices-container > .voice-box {width: 190px; margin:0 0 15px 0; z-index: 2}
+.voices-container > .voice-box {
+  width: 180px;
+  margin:0 0 15px 0;
+  z-index: 2;
+}
 .voices-container > .voice-box:hover {z-index: 3}
 .voice-box:hover > .voice-action {z-index: 1}
-.voice-box > .voice-cont {padding: 10px; position:relative; z-index:1}
+.voice-box > .voice-cont {
+  padding: 0 0 14px 0;
+  position:relative;
+  z-index:1;
+}
 .voice-cont.unmoderated {z-index:0}
 
 .voice-cont > a > .magnifier {position: absolute; width:42px; height:42px; margin-left:69px; display: none}
 .voice-cont > a:hover > .magnifier {display: block}
 .voice-cont > a > .video {position: absolute; width:42px; height:42px; margin-left:69px; display: none}
 .voice-cont > a:hover > .video {display: block}
-.voice-cont .thumb-preview {margin: auto; display: block; width: auto; height: auto; max-width: 170px}
-.voice-box > .voice-cont > h3 {font-size: 13px; line-height: 1.5; margin-top: 7px; width:160px; overflow:hidden}
+.voice-cont .thumb-preview {
+  margin: auto;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 180px;
+}
+.voice-box > .voice-cont > h3 {
+  font-size: 18px;
+  line-height: 1.222em;
+  margin: 7px 14px 0 14px;
+  width:160px;
+  overflow:hidden;
+}
 .voice-box > .voice-cont > span {font-size: 11px; font-weight: normal; margin-left: 0 !important; margin-top: 0 !important; padding-left: 0}
-.voice-box > .voice-cont > p {font-size: 13px; padding-top: 15px; line-height: 1.5; width:160px; overflow:hidden}
+.voice-box > .voice-cont > p {
+  font-size: 13px;
+  padding: 10px 14px 0;
+  line-height: 1.5;
+  width:160px;
+  overflow:hidden;
+}
 .voice-box > .voice-unmoderated {border-width: 1px 0 0 0; padding: 4px 10px}
 .voice-box > .voice-unmoderated > span {font-size: 12px; float:left; margin-top:5px}
 .voice-box > .voice-unmoderated > ul {height:23px; float:right; border-width: 1px}
@@ -21,15 +63,58 @@
 .voice-box > .voice-unmoderated > ul > .up {border-width: 2px 1px 2px 2px}
 .voice-box > .voice-unmoderated > ul > .down {border-width: 2px 2px 2px 1px}
 
-.voice-action > .post-icon-type {width:22px; height:22px; float:left; display:block; margin-right:6px}
-.voice-action > .comments {float: left; margin-top: 5px; cursor: pointer; height:16px}
-.voice-action > .comments > li {font-size: 12px; font-weight: bold; height: 17px; width: 30px; line-height: 19px;  padding-left: 20px}
-.voice-box > .voice-action {border-width: 1px 0 0 0; clear: both; padding: 4px 10px 5px 6px; position:relative; z-index:1}
-.voice-action > .actions {float: right}
-.voice-action > .actions > li {float:left; margin-right: 5px}
-.voice-action > .actions > li > a {display:block; width: 25px; height: 25px}
-.voice-action > .actions > .flag-div {width: 31px; margin-right: 0}
-.voice-action > .actions > li > .flag {float: right}
-.voice-action > .actions > li > .flag-pressed {float: right; width: 23px;}
-.voice-action > .actions > li > .flag-over {float: right}
+.voice-cont .post-icon-type {
+  width:22px;
+  height:22px;
+  float:left;
+  display:block;
+  margin-right:4px;
+}
+.voice-box > .voice-action {
+  border-width: 1px 0 0 0;
+  clear: both;
+  padding: 10px 14px 4px;
+  position:relative;
+  z-index:1;
+}
+.voice-action > .actions {
+  float: left;
+}
+.voice-action > .actions > li {
+  float: left;
+  margin-right: 1px;
+}
+.voice-action > .actions > li > a {
+  display: block;
+  width: 20px;
+}
+.mediafeed-sprite {
+  display: inline-block;
+}
+.mediafeed-sprite.twitter {
+  width: 14px;
+  height: 13px;
+  margin-top: 1px;
+}
+.mediafeed-sprite.facebook {
+  width: 7px;
+  height: 14px;
+}
+.mediafeed-sprite.flag {
+  width: 14px;
+  height: 15px;
+}
+
+.voice-action .flag-div {
+  float: right;
+  margin-right: 0;
+  width: 20px;
+}
+
+.voice-action .flag-div a i {
+  display: inline-block;
+}
+.voice-action .flag-pressed {float: right; width: 23px;}
+.voice-action .flag-over {float: right}
+
 .close-voice-box {width: 28px; height: 21px; float: right; display: block; position: relative; margin: 4px -3px -18px; z-index:4}

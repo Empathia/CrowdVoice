@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
 
 @font-face {
   font-family: "GelPen";
@@ -65,6 +65,7 @@ body.touch * {
 
 /* semi-bold */
 .create-voice .cv-button,
-..home-cover__title {
+.home-cover__title,
+.voice-box > .voice-cont > h3 {
   font-weight: 600;
 }
