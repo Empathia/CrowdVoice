@@ -73,7 +73,7 @@
 .voice-box > .voice-action {
   border-width: 1px 0 0 0;
   clear: both;
-  padding: 10px 14px 4px;
+  padding: 10px 13px 4px 11px;
   position:relative;
   z-index:1;
 }
