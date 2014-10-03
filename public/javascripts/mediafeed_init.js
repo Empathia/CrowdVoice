@@ -69,7 +69,6 @@ $(function () {
 
     new Excerpt('.voice-subtitle');
     new Message('.flash-message');
-    new ActionTooltip('.flag-div');
     new FacebookNavButton({
         fbPath : _fbPath
       });
@@ -201,7 +200,6 @@ $(function () {
                 var ele = $(".voice-box[data-post-id='"+val.id+"']");
                 ele.find('a.source-url').attr('data-voted', true);
                 ele.find('.voice-unmoderated .flag-div .vote-post').toggleClass('flag flag-pressed');
-                ele.find('.voice-unmoderated .flag-div .flag-tooltip span').html('Vote already cast');
                 if (val.positive) {
                     ele.find('.voice-unmoderated li.up').addClass('up_hover');
                     ele.find('.voice-unmoderated li.down').remove();

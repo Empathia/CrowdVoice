@@ -15,15 +15,15 @@
       <%= image_tag post.image.thumb.url, :size => "#{post.image_width}x#{post.image_height}", :class => 'thumb-preview' %>
       <% if post.source_type != 'link' %>
         <div class="voice-content-type-wrapper inside">
-          <span class="mediafeed-sprite post-icon-type <%= post.source_type %>-icon"></span>
-          <span><%= post.created_at.to_s(:short) %></span>
+          <i class="mediafeed-sprite post-icon-type <%= post.source_type %>-icon"></i>
+          <b class="date"><%= post.created_at.to_s(:short) %></b>
         </div>
       <% end  %>
     <% end %>
     <% if post.source_type == 'link' %>
       <div class="voice-content-type-wrapper">
-        <span class="mediafeed-sprite post-icon-type <%= post.source_type %>-icon"></span>
-        <span><%= post.created_at.to_s(:short) %></span>
+        <i class="mediafeed-sprite post-icon-type <%= post.source_type %>-icon"></i>
+        <b class="date"><%= post.created_at.to_s(:short) %></b>
       </div>
     <% end %>
     <h3><%= post.title if post.title != '(no title)'%></h3>
@@ -64,34 +64,19 @@
   </div>
   <% unless post.approved? %>
     <div class="voice-unmoderated">
-      <span>Unmoderated Post</span>
-      <ul>
+      <ul class="clearfix">
         <li class="up flag-div">
-          <span><%= link_to '', voice_post_votes_path(@voice, post, :rating => 1, :format => :json), :method => :post, :class => 'vote-post thumb' %></span>
-          <div class="tooltip thumb-tip" data-post-id="post_<%= post.id %>_up">
-            <div class="tooltip-positioner">
-            <p class="tooltip-arrow"><span></span></p>
-            <div class="media-type-info">
-              <strong class="media-type-title"></strong>
-              <p class="flag-tooltip">
-                <span>Thumbs up!</span>
-              </p>
-            </div>
-          </div>
+          <%= link_to voice_post_votes_path(@voice, post, :rating => 1, :format => :json), :method => :post, :class => 'vote-post thumb' do %>
+            <i class="mediafeed-sprite allow-post"></i>
+            <span class="text">Allow</span>
+          <% end %>
         </li>
 
         <li class="down flag-div">
-          <span><%= link_to '', voice_post_votes_path(@voice, post, :rating => -1, :format => :json), :method => :post, :class => 'vote-post thumb' %></span>
-          <div class="tooltip thumb-tip" data-post-id="post_<%= post.id %>_down">
-            <div class="tooltip-positioner">
-            <p class="tooltip-arrow"><span></span></p>
-            <div class="media-type-info">
-              <strong class="media-type-title"></strong>
-              <p class="flag-tooltip">
-                <span>Thumbs down!</span>
-              </p>
-            </div>
-          </div>
+          <%= link_to voice_post_votes_path(@voice, post, :rating => -1, :format => :json), :method => :post, :class => 'vote-post thumb' do %>
+            <i class="mediafeed-sprite deny-post"></i>
+            <span class="text">Deny</span>
+          <% end %>
         </li>
       </ul>
       <div style="clear:both"></div>

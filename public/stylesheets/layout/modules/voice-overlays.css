@@ -127,11 +127,10 @@
 .right-action > .actions > li > a {display:block; width: 25px; height: 25px}
 .right-action > .actions > .flag-div {width: 31px; margin-right: 0}
 .right-action > .actions > li > .flag {float: right}
-.right-action > .actions > li > .flag-pressed, .flag-pressed {float: right}
+.right-action > .actions > li > .flag-pressed {float: right}
 .right-action > .actions > li > .flag-over, .flag-over {float: right}
 .right-action  > .comments {float: left; margin-top: 5px; margin-left: 22px; cursor: pointer; height:16px}
 .right-action  > .comments > li {font-size: 12px; font-weight: bold; height: 17px; width: 30px; line-height: 19px;  padding-left: 20px}
-
 
 .touch .link-base-border > .link-base-action > ul > li.copy-url {
   display: none;

@@ -185,9 +185,6 @@ body.blue .info-tool-link:hover {background-image: url('/images/bg/sprites/voice
 .flag-tip > .tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip_down.png') no-repeat 0 0}
 .flag-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {color: #404040;}
 
-.thumb-tip > .tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip_down.png') no-repeat 0 0}
-.thumb-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {color: #404040}
-
 .media-type-title,
 .grab-blog-widget {color: #404040}
 

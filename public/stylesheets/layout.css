@@ -162,11 +162,6 @@ p > .blog-widget-label {padding: 15px 0}
 .flag-tip > .tooltip-positioner > .media-type-info {padding: 7px 9px; top: 0}
 .flag-tip > .tooltip-positioner > .media-type-info > .media-type-title  {width: 130px}
 .flag-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {text-align:center}
-.tooltip.thumb-tip{ display:none; top: -43px; left:50%; z-index: 99}
-.thumb-tip > .tooltip-positioner > .tooltip-arrow {top: 29px}
-.thumb-tip > .tooltip-positioner > .media-type-info {padding: 7px 9px; top: 0}
-.thumb-tip > .tooltip-positioner > .media-type-info > .media-type-title  {width: 122px}
-.thumb-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {text-align:center}
 .flag-tooltip .flagged {
   line-height: 2.9em;
 }
