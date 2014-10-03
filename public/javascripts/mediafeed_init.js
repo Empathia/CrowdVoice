@@ -14,7 +14,7 @@ $(function () {
         tweetsSidebar   = $('.tweets-sidebar'),
         timeline        = $('.timeliner-group'),
         infoSidebar     = $('.info-sidebar'),
-        colW            = 210,
+        colW            = 200,
         columns         = null,
         TweetsSidebar   = new ToggleTweets('.tweets-sidebar', { hidden : true, specialClass: 'media_feed' }),
         sidebarDisplay  = true,
@@ -153,8 +153,7 @@ $(function () {
             resizable: false,
             itemSelector: '.voice-box',
             masonry: {
-                columnWidth: 205
-                //columnWidth: colWidth // Change this too for gapless re-apply
+                columnWidth: colW - 5
             },
             callback: function(){
                 $('.updating-wrapper').hide();
