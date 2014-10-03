@@ -200,18 +200,18 @@ $(function () {
             $.each(posts_votes, function(i, val) {
                 var ele = $(".voice-box[data-post-id='"+val.id+"']");
                 ele.find('a.source-url').attr('data-voted', true);
-                ele.find('.voice-unmoderated li.flag-div .vote-post').toggleClass('flag flag-pressed');
-                ele.find('.voice-unmoderated li.flag-div .flag-tooltip span').html('Vote already cast');
+                ele.find('.voice-unmoderated .flag-div .vote-post').toggleClass('flag flag-pressed');
+                ele.find('.voice-unmoderated .flag-div .flag-tooltip span').html('Vote already cast');
                 if (val.positive) {
                     ele.find('.voice-unmoderated li.up').addClass('up_hover');
                     ele.find('.voice-unmoderated li.down').remove();
                 } else {
-                    var url = ele.find('.voice-action li.flag-div .vote-post').attr('href').split('?');
-                    ele.find('.voice-action li.flag-div .vote-post').attr('href', [url[0], 'rating=1'].join('?'));
-                    ele.find('.voice-action li.flag-div .vote-post').toggleClass('flag flag-pressed');
+                    var url = ele.find('.voice-action .flag-div .vote-post').attr('href').split('?');
+                    ele.find('.voice-action .flag-div .vote-post').attr('href', [url[0], 'rating=1'].join('?'));
+                    ele.find('.voice-action .flag-div .vote-post').toggleClass('flag flag-pressed');
                     ele.find('.voice-unmoderated li.down').addClass('down_hover');
                     ele.find('.voice-unmoderated li.up').remove();
-                    ele.find('.voice-action li.flag-div .flag-tooltip span').addClass('flagged').html('Unflag Content');
+                    ele.find('.voice-action .flag-div .flag-tooltip span').addClass('flagged').html('Unflag Content');
                 }
             });
         }
