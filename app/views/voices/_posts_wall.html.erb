@@ -13,6 +13,7 @@
   <% @is_gaza = @voice.is_witness_gaza %>
   <%= include_stylesheets :mediafeed_pack %>
 <% end %>
+<%= include_javascripts :mediafeed_pack %>
 <!-- this preloads the background image, used instead of script since script is fired after dom ready -->
 <img src="<%= @voice.background %>" class="hidden">
 <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
@@ -207,7 +208,6 @@
     <%# end %>
   </section>
 
-  <%= include_javascripts :mediafeed_pack %>
 <% if @voice.announcement.present? %>
     <div class="flash-message <%= 'with-infosidebar' if infosidebarIsPresent %>">
       <div class="message">

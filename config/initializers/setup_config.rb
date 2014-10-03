@@ -24,6 +24,7 @@ CarrierWave.configure do |config|
 
   #load remote images
   config.storage = Rails.env.development? ? :file : :fog #normal prod load
+  config.storage = :fog
   #config.storage = :fog #force load remote images locally
 
 

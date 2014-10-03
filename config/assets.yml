@@ -3,12 +3,12 @@ package_assets: on
 
 javascripts:
   neon: &neon
-    - public/javascripts/v3/vendor/neon/neon.js
-    - public/javascripts/v3/vendor/neon/stdlib/custom_event.js
-    - public/javascripts/v3/vendor/neon/stdlib/custom_event_support.js
-    - public/javascripts/v3/vendor/neon/stdlib/node_support.js
-    - public/javascripts/v3/vendor/neon/stdlib/bubbling_support.js
-    - public/javascripts/v3/vendor/neon/stdlib/widget.js
+    - public/javascripts/v4/vendor/neon/neon.js
+    - public/javascripts/v4/vendor/neon/stdlib/custom_event.js
+    - public/javascripts/v4/vendor/neon/stdlib/custom_event_support.js
+    - public/javascripts/v4/vendor/neon/stdlib/node_support.js
+    - public/javascripts/v4/vendor/neon/stdlib/bubbling_support.js
+    - public/javascripts/v4/vendor/neon/stdlib/widget.js
   defaults: &defaults
     - public/javascripts/include/jquery.1.6.4.js
     - public/javascripts/include/rails.js
@@ -80,7 +80,8 @@ javascripts:
     - public/javascripts/infographics/infoSidebar.js
     - public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/mediafeed_init.js
-    - public/javascripts/v3/VoiceElement.js
+    - public/javascripts/v4/VoicesContainer.js
+    - public/javascripts/v4/VoiceElement.js
   infobox: &infobox
     - public/javascripts/cv/excerpt.js
     # - public/javascripts/include/webfont.js

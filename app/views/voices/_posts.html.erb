@@ -40,9 +40,59 @@
 
   <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>">
     <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>">
-      <%= render @posts %>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      window.voicesContainer = new VoicesContainer({
+        name     : 'voicesContainer',
+        element  : $('.voices-container')
+      });
+      
+      var voice;
+
+    <% @posts.each  do |post| %>
+
+      <% if params[:tags].present? #TODO pass to a helper
+        url = voice_url(@voice, :post => post.id, :tags=>params[:tags])
+      elsif params[:all].present?
+        url = voice_url(@voice, :post => post.id, :all=>1)
+      elsif params[:filters].present?
+        url = voice_url(@voice, :post => post.id, :all=>1)
+      else
+        url = voice_url(@voice, :post => post.id)
+      end %>
+
+      voice = new VoiceElement({
+        name          : 'post_' + <%= post.id %>,
+        id            : <%= post.id %>,
+        URL           : "<%= url %>",
+        postURL       : "<%= post.is_raw_image? ? post.image.url : post.source_url %>",
+        apporved      : <%= post.approved %>,
+        description   : "<%= get_excerpt(post.description, 250) if post.description && post.description != '(no description)' %>",
+        imageWidth    : <%= post.image_width %>,
+        imageHeight   : <%= post.image_height %>,
+        thumbURL      : "<%= post.image.thumb.url %>",
+        negativeVotes : <%= post.negative_votes_count %>,
+        positiveVotes : <%= post.positive_votes_count %>,
+        overallScore  : <%= post.overall_score %>,
+        sourceService : "<%= post.source_service %>",
+        sourceType    : "<%= post.source_type %>",
+        sourceURL     : "<%= post.source_url %>",
+        title         : "<%= post.title if post.title != '(no title)' %>",
+        voiceID       : <%= post.voice_id %>,
+        createdAt     : "<%= post.created_at.beginning_of_day.to_date %>",
+        timeAgo       : "<%= time_ago_in_words(post.created_at) %>",
+        service       : "<%= post.source_url.nil? ? Post.detect_service(post.source_url) : post.source_url %>"
+      });
+
+      voice.render(window.voicesContainer.element);
+      window.voicesContainer.appendChild(voice);
+    <% end %>
+    });
+  </script>
 
   
 

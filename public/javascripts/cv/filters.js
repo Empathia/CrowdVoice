@@ -42,18 +42,18 @@ Class('Filters')({
             this.moderator = true;
             this.toggleModerate.filter('.public').removeClass('selected');
             this.toggleModerate.filter('.mod').addClass('selected');
-            $('.voices-container').isotope({ filter: this._buildFilterSelector() });
+            // $('.voices-container').isotope({ filter: this._buildFilterSelector() });
         },
 
         deactivateModerator: function() {
             this.moderator = false;
             this.toggleModerate.filter('.public').addClass('selected');
             this.toggleModerate.filter('.mod').removeClass('selected');
-            $('.voices-container').isotope({ filter: this._buildFilterSelector() });
+            // $('.voices-container').isotope({ filter: this._buildFilterSelector() });
         },
 
         filter: function (filter, show) {
-            $('.voices-container').isotope({ filter: this._buildFilterSelector() });
+            // $('.voices-container').isotope({ filter: this._buildFilterSelector() });
         },
 
         _buildFilterSelector: function () {
