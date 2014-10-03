@@ -70,7 +70,7 @@
         id            : <%= post.id %>,
         URL           : "<%= url %>",
         postURL       : "<%= post.is_raw_image? ? post.image.url : post.source_url %>",
-        apporved      : <%= post.approved %>,
+        apporved      : <%= post.approved? %>,
         description   : "<%= get_excerpt(post.description, 250) if post.description && post.description != '(no description)' %>",
         imageWidth    : <%= post.image_width %>,
         imageHeight   : <%= post.image_height %>,

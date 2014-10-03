@@ -65,7 +65,7 @@ Class('VoiceElement').inherits(Widget)({
 
             this.element.addClass(this.sourceType);
 
-            if (!this.approved) {
+            if (this.approved) {
                 this.element.addClass('unmoderated');
             }
 

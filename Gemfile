@@ -11,7 +11,7 @@ gem 'json'
 gem 'jbuilder', '~> 0.4.0'
 gem 'resque', :require => "resque/server"
 gem 'resque-timeout'
-gem "SystemTimer", "~> 1.2.3"
+# gem "SystemTimer", "~> 1.2.3"
 #gem 'hoptoad_notifier'
 
 gem "bcrypt-ruby", '~> 2.1', :require => 'bcrypt'
