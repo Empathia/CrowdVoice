@@ -27,3 +27,19 @@
   padding-top: 4px;
   padding-bottom: 2px;
 }
+
+.cv-button--small {
+  position: relative;
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0em .5em 0;
+  height: 19px;
+  border: 1px solid rgba(255,255,255,.5);
+  font-size: 10px;
+
+  background-color: rgba(0,0,0,.2);
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+}

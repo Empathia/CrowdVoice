@@ -67,7 +67,7 @@ $(function () {
                             showTooltip : !sidebarDisplay
                         });
 
-    new Excerpt('.voice-subtitle');
+//    new Excerpt('.voice-subtitle');
     new Message('.flash-message');
     new FacebookNavButton({
         fbPath : _fbPath

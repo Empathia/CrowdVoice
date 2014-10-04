@@ -153,8 +153,13 @@ p > .blog-widget-label {padding: 15px 0}
 .sweeper {position: relative; overflow: hidden; clear: both}
 .widget {position: relative}
 .info-tool + .info-tool {margin-left: 3px}
-.info-tool-link {width: 25px; height: 25px; float: left}
-.info-tool.facebook-like-button {margin-top: 3px; margin-left: 7px; width:60px;}
+.info-tool-link {
+  width: 23px;
+  height: 19px;
+  float: left;
+  border-width: 1px;
+}
+.info-tool.facebook-like-button {margin-left: 7px; width:60px;}
 .sponsor-padding {padding-right: 440px}
 .hiden-input {display: none}
 .tooltip.flag-tip{ display:none; top: -54px; left:89%; z-index: 99}

@@ -133,7 +133,12 @@ a.mobile-menu__list-item-anchor:hover {
 
 hgroup {background-color: #121212; border-top-style: solid; border-top-color: #595959; box-shadow: -1px 0 0 rgba(255, 255, 255, 0.1) inset}
 .gaza-header {background: url('/images/bg/gaza-header.png') no-repeat}
-.info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools.png'); background-repeat: no-repeat}
+.info-tool-link {
+  background-image: url('/images/bg/sprites/voice_info_tools.png');
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, .5);
+}
 
 body.green .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools.png'); background-repeat: no-repeat}
 body.orange .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_orange.png'); background-repeat: no-repeat}
@@ -319,9 +324,6 @@ body.blue .media-type-link {color: #2378ab}
 /*
     Viewport navigation
 */
-.nav-bar {
-  background: none repeat scroll 0 0 #1A1A1A;
-}
 #sidebar-toggler {
     border-right: 1px solid #6f6f6f;
 }
@@ -334,19 +336,22 @@ body.blue .media-type-link {color: #2378ab}
 #sidebar-toggler:hover {
     background-color: #333333;
 }
+
 .menu-item .menu-link {
-    color: #cccccc;
-    font-size: 13px;
-    line-height: 12px;
-    text-transform: capitalize;
-    text-decoration: none;
+  font-size: 12px;
+  line-height: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 2px 2px 0 0;
 }
-.menu-item.active {
-    background: #ebebeb;
+
+.top-left-navigation .menu-item.active .menu-link {
+  background-color: #f2f2f2;
+  color: #4c4c4c;
 }
-.menu-item.active .menu-link {
-    color: #ffffff;
-}
+
 .menu-item .menu-lines,
 .menu-lines:after,
 .menu-lines:before {
@@ -416,8 +421,9 @@ body.green .nav-bar .info-tool-link {
   border: none;
   text-decoration: underline;
 }
+
 /************ yellow ************/
-.yellow .menu-item.active {
+.yellow .menu-item .menu-link {
     background: #EBC91C;
 }
 .yellow .more-button:hover {
@@ -426,9 +432,9 @@ body.green .nav-bar .info-tool-link {
 .yellow .more-button > span {
     color: #EBC91C;
 }
-/************ yellow ************/
+
 /************ orange ************/
-.orange .menu-item.active {
+.orange .menu-item .menu-link {
     background: #EC9415;
 }
 .orange .more-button:hover {
@@ -437,9 +443,9 @@ body.green .nav-bar .info-tool-link {
 .orange .more-button > span {
     color: #EC9415;
 }
-/************ orange ************/
+
 /************ blue ************/
-.blue .menu-item.active {
+.blue .menu-item .menu-link {
     background: #4DB5FF;
 }
 .blue .more-button:hover {
@@ -448,9 +454,9 @@ body.green .nav-bar .info-tool-link {
 .blue .more-button > span {
     color: #4DB5FF;
 }
-/************ blue ************/
+
 /************ red ************/
-.red .menu-item.active {
+.red .menu-item .menu-link {
     background: #F10F2A;
 }
 .red .more-button:hover {
@@ -459,9 +465,9 @@ body.green .nav-bar .info-tool-link {
 .red .more-button > span {
     color: #F10F2A;
 }
-/************ red ************/
+
 /************ green ************/
-.green .menu-item.active {
+.green .menu-item .menu-link {
     background: #50B347;
 }
 .green .more-button:hover {
@@ -470,5 +476,3 @@ body.green .nav-bar .info-tool-link {
 .green .more-button > span {
     color: #50B347;
 }
-
-/************ green ************/
