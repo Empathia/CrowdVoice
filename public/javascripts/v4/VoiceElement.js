@@ -74,7 +74,12 @@ Class('VoiceElement').inherits(Widget)({
                 'data-created-at' : this.createdAt
             });
 
-            this.element.find('a.close-voice-box').attr('href', this.postURL);
+            if (voice.isAdmin) {
+                this.element.find('a.close-voice-box').attr('href', this.postURL);    
+            } else {
+                this.element.find('a.close-voice-box').hide();
+            }
+            
 
             this.element.find('a.source-url').attr({
                 'data-type'      : voice.sourceType,

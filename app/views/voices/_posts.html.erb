@@ -68,6 +68,7 @@
       voice = new VoiceElement({
         name          : 'post_' + <%= post.id %>,
         id            : <%= post.id %>,
+        isAdmin       : <%= current_user && current_user.is_admin? ? true : false %>,
         URL           : "<%= url %>",
         postURL       : "<%= post.is_raw_image? ? post.image.url : post.source_url %>",
         apporved      : <%= post.approved? %>,
