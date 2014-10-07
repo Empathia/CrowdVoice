@@ -25,8 +25,6 @@ Class('VoicesContainer').inherits(Widget)({
                     name          : 'post_' + post.id,
                     id            : post.id,
                     image         : post.image,
-                    isAdmin       : false,
-                    URL           : "",
                     apporved      : post.approved,
                     description   : post.description,
                     imageWidth    : post.image_width,
@@ -55,7 +53,7 @@ Class('VoicesContainer').inherits(Widget)({
                 
             });
 
-            // for UI locking performance
+            // Render here for better UI performance
             voices.forEach(function(voice) {
                 voice.render(window.voicesContainer.element);
             })
