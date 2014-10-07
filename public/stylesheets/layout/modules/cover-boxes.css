@@ -1,6 +1,5 @@
 .char--dot {font-size: 12px}
 
-.home-voices-layout {font-family: 'AlrightSansRegular'}
 .home-covers-wrapper:after,
 .home-voices-layout:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
 
@@ -59,7 +58,7 @@
 
 .home-cover__header-title {
     font-size: 13px;
-    line-height: 20px;
+    line-height: 18px;
     margin-bottom: 7px;
 }
 .home-cover__header-title .icon--14 {margin-right: 2px}
@@ -77,8 +76,16 @@
     .home-cover__media-info .icon--14:first-child {
         margin-left: 0;
     }
+    .home-cover__total-voices {
+      margin-top: -2px;
+      display: inline-block;
+      vertical-align: top;
+    }
     .home-cover__time-ago {
         margin-left: 5px;
+        margin-top: -2px;
+        display: inline-block;
+        vertical-align: top;
     }
 .home-cover__actions-wrapper {
     overflow: hidden;
@@ -124,8 +131,7 @@
         border-right-width: 0;
     }
     .home-cover__box-date {
-        font-family: 'AlrightSansMedium';
-        font-size: 9px;
+        font-size: 10px;
         line-height: 1em;
         margin: 5px 0 7px 0;
     }

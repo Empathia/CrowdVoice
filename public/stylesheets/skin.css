@@ -133,7 +133,12 @@ a.mobile-menu__list-item-anchor:hover {
 
 hgroup {background-color: #121212; border-top-style: solid; border-top-color: #595959; box-shadow: -1px 0 0 rgba(255, 255, 255, 0.1) inset}
 .gaza-header {background: url('/images/bg/gaza-header.png') no-repeat}
-.info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools.png'); background-repeat: no-repeat}
+.info-tool-link {
+  background-image: url('/images/bg/sprites/voice_info_tools.png');
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, .5);
+}
 
 body.green .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools.png'); background-repeat: no-repeat}
 body.orange .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_orange.png'); background-repeat: no-repeat}
@@ -185,9 +190,6 @@ body.blue .info-tool-link:hover {background-image: url('/images/bg/sprites/voice
 .flag-tip > .tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip_down.png') no-repeat 0 0}
 .flag-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {color: #404040;}
 
-.thumb-tip > .tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip_down.png') no-repeat 0 0}
-.thumb-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {color: #404040}
-
 .media-type-title,
 .grab-blog-widget {color: #404040}
 
@@ -224,57 +226,6 @@ body.blue .media-type-link {color: #2378ab}
 .header-sponsor {background: url('/images/bg/sponsor_header.png') top center no-repeat}
 .header-sponsor > span {font-size: 12px; color: #fff;}
 .side-tab {background: url('/images/side-tab.png') no-repeat}
-.create-voice > ul > li > .button {
-  background: #5a574d;
-  text-decoration: none;
-  color: #d9d9d9;
-  border-style: solid;
-  border-color: #0e0e0e;
-  font-weight: normal;
-  border-radius: 3px;
-  box-shadow: inset 0 0 0 1px #4F4F4F;
-  background: #454545;
-  background: -moz-linear-gradient(top,  #454545 0%, #282828 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#454545), color-stop(100%,#282828));
-  background: -webkit-linear-gradient(top,  #454545 0%,#282828 100%);
-  background: -o-linear-gradient(top,  #454545 0%,#282828 100%);
-  background: -ms-linear-gradient(top,  #454545 0%,#282828 100%);
-  background: linear-gradient(to bottom,  #454545 0%,#282828 100%);
-}
-.create-voice > ul > li > .button:hover {
-  color: #FFFFFF;
-  box-shadow: inset 0 0 0px 1px #898989;
-  background: #666666;
-  background: -moz-linear-gradient(top,  #666666 0%, #555555 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666666), color-stop(100%,#555555));
-  background: -webkit-linear-gradient(top,  #666666 0%,#555555 100%);
-  background: -o-linear-gradient(top,  #666666 0%,#555555 100%);
-  background: -ms-linear-gradient(top,  #666666 0%,#555555 100%);
-  background: linear-gradient(to bottom,  #666666 0%,#555555 100%);
-}
-.create-voice > ul > li > .voicebtn {
-  opacity: 0.6;
-}
-.create-voice > ul > li > .voicelogin {
-  opacity: 1;
-}
-.create-voice > ul > li > .button:active {
-  background: #5a574d;
-  text-decoration: none;
-  color: #d9d9d9;
-  border-style: solid;
-  border-color: #0e0e0e;
-  font-weight: normal;
-  border-radius: 4px;
-  box-shadow: inset 0 0 0px 2px #4b4b4b;
-  background-image: -moz-linear-gradient(top, #2f2f2f, #3d3d3d);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #2f2f2f), color-stop(1.0, #3d3d3d));
-  background-image: -webkit-linear-gradient(#2f2f2f, #3d3d3d);
-  background-image: linear-gradient(top, #2f2f2f, #3d3d3d);
-}
-
-.create-voice > ul > li > .tooltip > .tooltip-positioner > .media-type-info > .pencil {background: url('/images/pencil.png') no-repeat}
-
 .jspScrollable > .jspContainer > .jspPane > .voice-all > li a {color: #4c4c4c}
 
 .clear-search {background: url('/images/bg/sprites/clear-search.png') left top no-repeat}
@@ -373,9 +324,6 @@ body.blue .media-type-link {color: #2378ab}
 /*
     Viewport navigation
 */
-.nav-bar {
-  background: none repeat scroll 0 0 #1A1A1A;
-}
 #sidebar-toggler {
     border-right: 1px solid #6f6f6f;
 }
@@ -388,20 +336,22 @@ body.blue .media-type-link {color: #2378ab}
 #sidebar-toggler:hover {
     background-color: #333333;
 }
+
 .menu-item .menu-link {
-    color: #cccccc;
-    font-size: 13px;
-    font-family: 'AlrightSansMedium';
-    line-height: 12px;
-    text-transform: capitalize;
-    text-decoration: none;
+  font-size: 12px;
+  line-height: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 2px 2px 0 0;
 }
-.menu-item.active {
-    background: #ebebeb;
+
+.top-left-navigation .menu-item.active .menu-link {
+  background-color: #f2f2f2;
+  color: #4c4c4c;
 }
-.menu-item.active .menu-link {
-    color: #ffffff;
-}
+
 .menu-item .menu-lines,
 .menu-lines:after,
 .menu-lines:before {
@@ -449,7 +399,6 @@ body.blue .media-type-link {color: #2378ab}
 .more-button > span:hover {
     background: none repeat scroll 0 0 transparent;
     border: medium none;
-    font-family: 'AlrightSansRegular';
     font-size: 12px;
     text-decoration: underline;
 }
@@ -472,8 +421,9 @@ body.green .nav-bar .info-tool-link {
   border: none;
   text-decoration: underline;
 }
+
 /************ yellow ************/
-.yellow .menu-item.active {
+.yellow .menu-item .menu-link {
     background: #EBC91C;
 }
 .yellow .more-button:hover {
@@ -482,9 +432,9 @@ body.green .nav-bar .info-tool-link {
 .yellow .more-button > span {
     color: #EBC91C;
 }
-/************ yellow ************/
+
 /************ orange ************/
-.orange .menu-item.active {
+.orange .menu-item .menu-link {
     background: #EC9415;
 }
 .orange .more-button:hover {
@@ -493,9 +443,9 @@ body.green .nav-bar .info-tool-link {
 .orange .more-button > span {
     color: #EC9415;
 }
-/************ orange ************/
+
 /************ blue ************/
-.blue .menu-item.active {
+.blue .menu-item .menu-link {
     background: #4DB5FF;
 }
 .blue .more-button:hover {
@@ -504,9 +454,9 @@ body.green .nav-bar .info-tool-link {
 .blue .more-button > span {
     color: #4DB5FF;
 }
-/************ blue ************/
+
 /************ red ************/
-.red .menu-item.active {
+.red .menu-item .menu-link {
     background: #F10F2A;
 }
 .red .more-button:hover {
@@ -515,9 +465,9 @@ body.green .nav-bar .info-tool-link {
 .red .more-button > span {
     color: #F10F2A;
 }
-/************ red ************/
+
 /************ green ************/
-.green .menu-item.active {
+.green .menu-item .menu-link {
     background: #50B347;
 }
 .green .more-button:hover {
@@ -526,5 +476,3 @@ body.green .nav-bar .info-tool-link {
 .green .more-button > span {
     color: #50B347;
 }
-
-/************ green ************/

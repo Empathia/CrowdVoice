@@ -8,31 +8,43 @@ Class('VoiceElement').inherits(Widget)({
                     <img class="thumb-preview" />\
                 </a>\
                 <h3></h3>\
-                <span class="time-ago"></span>\
                 <p class="description"></p>\
             </div>\
             <div class="voice-action">\
-                <span class="post-icon-type"></span>\
                 <ul class="actions">\
-                    <li><a class="facebook" target="_blank" /></li>\
-                    <li><a class="twitter" target="_blank" /></li>\
-                    <li class="flag-div">\
-                        <a href="" class="flag vote-post" data-method="post" rel="nofollow" />\
-                        <div class="tooltip flag-tip" data-post-id="">\
-                            <div class="tooltip-positioner">\
-                                <p class="tooltip-arrow"><span></span></p>\
-                                <div class="media-type-info">\
-                                    <strong class="media-type-title"></strong>\
-                                    <p class="flag-tooltip">\
-                                        <span>Flag Inappropiate Content</span>\
-                                    </p>\
-                                </div>\
-                            </div>\
-                        </div>\
+                    <li>\
+                        <a class="twitter" target="_blank">\
+                            <i class="mediafeed-sprite twitter"></i>\
+                        </a>\
+                    </li>\
+                    <li>\
+                        <a class="facebook" target="_blank">\
+                            <i class="mediafeed-sprite facebook"></i>\
+                        </a>\
                     </li>\
                 </ul>\
+                <div class="flag-div">\
+                    <a href="" class="vote-post mediafeed-sprite flag" data-method="post" rel="nofollow" />\
+                    <div class="tooltip flag-tip" data-post-id="">\
+                        <div class="tooltip-positioner">\
+                            <p class="tooltip-arrow"><span></span></p>\
+                            <div class="media-type-info">\
+                                <strong class="media-type-title"></strong>\
+                                <p class="flag-tooltip">\
+                                    <span>Flag Inappropiate Content</span>\
+                                </p>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
                 <div style="clear:both"></div>\
             </div>\
+    ',
+    VOICE_TYPE_HTML : '\
+        <div class="voice-content-type-wrapper">\
+            <i class="mediafeed-sprite post-icon-type"></i>\
+            <b class="time-ago"></b>\
+        </div>\
     ',
     prototype     : {
         id            : 0,
@@ -53,10 +65,12 @@ Class('VoiceElement').inherits(Widget)({
         createdAt     : null,
         timeAgo       : null,
         service       : null,
+        sourceElement : null,
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
+            this.sourceElement = this.element.find('a.source-url');
             this.setupElements();
         },
 
@@ -75,13 +89,12 @@ Class('VoiceElement').inherits(Widget)({
             });
 
             if (voice.isAdmin) {
-                this.element.find('a.close-voice-box').attr('href', this.postURL);    
+                this.element.find('a.close-voice-box').attr('href', this.postURL);
             } else {
                 this.element.find('a.close-voice-box').hide();
             }
-            
 
-            this.element.find('a.source-url').attr({
+            this.sourceElement.attr({
                 'data-type'      : voice.sourceType,
                 'data-title'     : voice.title,
                 'data-permalink' : voice.url,
@@ -100,10 +113,16 @@ Class('VoiceElement').inherits(Widget)({
 
             this.element.find('h3').html(this.title);
 
+            if (this.sourceType == 'link') {
+                this.sourceElement.after(this.constructor.VOICE_TYPE_HTML);
+            } else {
+                this.sourceElement.append(this.constructor.VOICE_TYPE_HTML);
+            }
+
             this.element.find('.time-ago').html(this.timeAgo);
 
             if (this.sourceType == 'link' || this.sourceType == 'image') {
-                this.element.find('p.description').html(this.description);  
+                this.element.find('p.description').html(this.description);
             }
 
             this.element.find('.post-icon-type').addClass(this.sourceType + '-icon');
@@ -116,6 +135,5 @@ Class('VoiceElement').inherits(Widget)({
                 'href' : 'http://twitter.com/intent/tweet?text=' +  encodeURI(voice.title) + '&url=' + encodeURI(voice.postURL) +'&via=crowdvoice'
             });
         }
-        
     }
 });

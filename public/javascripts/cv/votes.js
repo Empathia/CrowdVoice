@@ -10,8 +10,7 @@ Class('Votes')({
 			this.element = $(this._elementSelector);
 			this.element.bind('click', function (e) {
 				var self = $(this);
-
-				if ($(this).parent().parent().find('.flag-tooltip span').html() == 'Vote already cast'){
+				if ($(this).parent().hasClass('down_hover')) {
 					return false;
 				}
 				$.ajax({
@@ -43,8 +42,8 @@ Class('Votes')({
 								parent_target.addClass('down_hover');
 							} else {
 								parent_target.addClass('up_hover');
-								parent_target.parent().css('margin-right', '22px');
 							}
+                            debugger
 							$(e.target).parent().siblings('div').find('.flag-tooltip span').html('Thank you for your vote!');
 							parent_target.siblings('li').hide();
 						}

@@ -13,27 +13,43 @@
   <div class="voice-cont">
     <%= link_to post_url, :class => "source-url post-#{post.id}", :'data-type' => post.source_type, :'data-title' => post.title, :'data-permalink' => "#{CGI.escape url}", :'data-ago' => time_ago_in_words(post.created_at), :'data-id' => post.id, :'data-voted' => false, :'data-service' => post.source_url.nil? ? Post.detect_service(post.source_url) : post.source_url do %>
       <%= image_tag post.image.thumb.url, :size => "#{post.image_width}x#{post.image_height}", :class => 'thumb-preview' %>
+      <% if post.source_type != 'link' %>
+        <div class="voice-content-type-wrapper inside">
+          <i class="mediafeed-sprite post-icon-type <%= post.source_type %>-icon"></i>
+          <b class="date"><%= post.created_at.to_s(:short) %></b>
+        </div>
+      <% end  %>
+    <% end %>
+    <% if post.source_type == 'link' %>
+      <div class="voice-content-type-wrapper">
+        <i class="mediafeed-sprite post-icon-type <%= post.source_type %>-icon"></i>
+        <b class="date"><%= post.created_at.to_s(:short) %></b>
+      </div>
     <% end %>
     <h3><%= post.title if post.title != '(no title)'%></h3>
-    <span><%= post.created_at.to_s(:short) %></span>
     <% if post.source_type == 'link' || post.source_type == 'image' %>
       <p>
         <%= get_excerpt(post.description, 250) if post.description && post.description != '(no description)' %>
       </p>
     <% end %>
-
   </div>
   <div class="voice-action" <%= 'style=display:none' unless post.approved? %> >
-    <span class="post-icon-type <%= post.source_type %>-icon"></span>
     <ul class="actions">
-      <li><%= link_to '', "http://facebook.com/sharer.php?u=#{url}", :class => 'facebook', :target => '_blank' %></li>
-
-      <li><%= link_to '', "http://twitter.com/intent/tweet?text=#{CGI.escape(post.title.nil? ? @voice.title : post.title)}&url=#{CGI.escape url}&via=#{@custom.name.split(".").first.parameterize('_')}", :class => 'twitter', :target => '_blank' %></li>
-
-      <li class="flag-div">
-        <%= link_to '', voice_post_votes_path(@voice, post, :rating => -1 , :format => :json), :class => "flag vote-post", :method => :post %>
-        <div class="tooltip flag-tip" data-post-id="post_<%= post.id %>">
-          <div class="tooltip-positioner">
+      <li>
+        <%= link_to("http://twitter.com/intent/tweet?text=#{CGI.escape(post.title.nil? ? @voice.title : post.title)}&url=#{CGI.escape url}&via=#{@custom.name.split(".").first.parameterize('_')}", :target => '_blank') do %>
+          <i class="mediafeed-sprite twitter"></i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to("http://facebook.com/sharer.php?u=#{url}", :target => '_blank') do %>
+          <i class="mediafeed-sprite facebook"></i>
+        <% end %>
+      </li>
+    </ul>
+    <div class="flag-div">
+      <%= link_to '', voice_post_votes_path(@voice, post, :rating => -1 , :format => :json), :method => :post, :class => "vote-post mediafeed-sprite flag" %>
+      <div class="tooltip flag-tip" data-post-id="post_<%= post.id %>">
+        <div class="tooltip-positioner">
           <p class="tooltip-arrow"><span></span></p>
           <div class="media-type-info">
             <strong class="media-type-title"></strong>
@@ -42,40 +58,25 @@
             </p>
           </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
     <div style="clear:both"></div>
   </div>
   <% unless post.approved? %>
     <div class="voice-unmoderated">
-      <span>Unmoderated Post</span>
-      <ul>
+      <ul class="clearfix">
         <li class="up flag-div">
-          <span><%= link_to '', voice_post_votes_path(@voice, post, :rating => 1, :format => :json), :method => :post, :class => 'vote-post thumb' %></span>
-          <div class="tooltip thumb-tip" data-post-id="post_<%= post.id %>_up">
-            <div class="tooltip-positioner">
-            <p class="tooltip-arrow"><span></span></p>
-            <div class="media-type-info">
-              <strong class="media-type-title"></strong>
-              <p class="flag-tooltip">
-                <span>Thumbs up!</span>
-              </p>
-            </div>
-          </div>
+          <%= link_to voice_post_votes_path(@voice, post, :rating => 1, :format => :json), :method => :post, :class => 'vote-post thumb' do %>
+            <i class="mediafeed-sprite allow-post"></i>
+            <span class="text">Allow</span>
+          <% end %>
         </li>
 
         <li class="down flag-div">
-          <span><%= link_to '', voice_post_votes_path(@voice, post, :rating => -1, :format => :json), :method => :post, :class => 'vote-post thumb' %></span>
-          <div class="tooltip thumb-tip" data-post-id="post_<%= post.id %>_down">
-            <div class="tooltip-positioner">
-            <p class="tooltip-arrow"><span></span></p>
-            <div class="media-type-info">
-              <strong class="media-type-title"></strong>
-              <p class="flag-tooltip">
-                <span>Thumbs down!</span>
-              </p>
-            </div>
-          </div>
+          <%= link_to voice_post_votes_path(@voice, post, :rating => -1, :format => :json), :method => :post, :class => 'vote-post thumb' do %>
+            <i class="mediafeed-sprite deny-post"></i>
+            <span class="text">Deny</span>
+          <% end %>
         </li>
       </ul>
       <div style="clear:both"></div>

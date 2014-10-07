@@ -86,16 +86,6 @@ hgroup {
   float: left;
   position: relative;
 }
-  .create-voice li.addVoice {
-    width: 50%;
-  }
-.create-voice .button {
-  border-width: 1px;
-  display: block;
-  font-size: 12px;
-  max-height: 28px;
-  padding: 4px 7px;
-}
   .create-voice .voicebtn {margin-left: 7px}
   .create-voice .voicelogin {margin: 0 7px}
   .create-voice .signup {margin: 0 5px}
@@ -138,8 +128,8 @@ hgroup {
 .user-form > ul > li {float: left; margin: 0 13px 0 0}
 .user-form > ul > .cancel {padding:6px 0}
 .user-form > ul > .cancel > a {font-size: 11px}
-.signup-btn {float: left; border-width: 1px}
-.signup-btn > input {float: left; display: block; padding: 4px 12px; font-size: 12px;  border-width: 1px; font-weight: normal}
+.signup-btn {float: left}
+.signup-btn > input {float: left; font-size: 12px;}
 
 /* Side Bar Search Area */
 .voice-search {
@@ -153,7 +143,7 @@ hgroup {
   height: 24px;
   display: inline-block;
   vertical-align: top;
-  padding: 0 25px;
+  padding: 0 25px 0 27px;
   margin-top: 9px;
   margin-left: 10px;
   border-width: 1px 0 0 0;
@@ -231,7 +221,7 @@ hgroup {
 .sidebar-scroller__list-item {border-left-width: 2px}
 .sidebar-scroller__list-item-anchor {
   display:block;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 17px;
   padding: 12px 12px 10px 12px;
 }

@@ -7,9 +7,11 @@
 <% else %>
   <div class= "create-voice" data-hansel-component-id="login-signup">
     <ul>
-      <li class="addVoice">
-        <%= link_to_if current_user, t('layout.add_voice'), new_admin_voice_path, :class => "button #{current_user.nil? ? 'voicebtn' : 'voicelogin'}" do %>
-          <a class="button voicebtn" href="#"><%= t('layout.add_voice') %></a>
+      <li class="addVoice <%= current_user.nil? ? 'logged-out' : 'logged-in' %>">
+        <%= link_to_if current_user, t('layout.add_voice'), new_admin_voice_path, :class => "cv-button cv-uppercase #{current_user.nil? ? 'voicebtn' : 'voicelogin'}" do %>
+          <a class="cv-button cv-uppercase voicebtn" href="#">
+            <%= t('layout.add_voice') %>
+          </a>
         <% end %>
         <% unless current_user %>
           <div class="tooltip">
@@ -24,15 +26,25 @@
         <% end %>
       </li>
       <% if current_user %>
-      <li class="addVoice">
-        <%= link_to_if current_user, "Manage Voices", admin_root_path, :class => "button #{current_user.nil? ? 'voicebtn' : 'voicelogin'}" do %>
-            <a class="button voicebtn" href="#"><%= t('layout.add_voice') %></a>
-        <% end %>
-      </li>
+        <li class="addVoice <%= current_user.nil? ? 'logged-out' : 'logged-in' %>">
+          <%= link_to_if current_user, "Manage Voices", admin_root_path, :class => "cv-button cv-uppercase #{current_user.nil? ? 'voicebtn' : 'voicelogin'}" do %>
+            <a class="cv-button cv-uppercase voicebtn" href="#">
+              <%= t('layout.add_voice') %>
+            </a>
+          <% end %>
+        </li>
       <% end %>
       <% unless current_user %>
-        <li class="sign-btn"><a class="button signup" href="#"><%= t('layout.signup') %></a></li>
-        <li><a class="button login" href="#"><%= t('layout.login') %></a></li>
+        <li class="sign-btn">
+          <a class="cv-button cv-uppercase signup" href="#">
+            <%= t('layout.signup') %>
+          </a>
+        </li>
+        <li>
+          <a class="cv-button cv-uppercase login" href="#">
+            <%= t('layout.login') %>
+          </a>
+        </li>
       <% end %>
     </ul>
   </div>
@@ -49,7 +61,7 @@
         <ul>
           <li>
             <div class="signup-btn">
-              <%= submit_tag t('layout.signup'), :'data-action' => 'submit' %>
+              <%= submit_tag t('layout.signup'), :'data-action' => 'submit', :class => 'cv-button' %>
             </div>
           </li>
           <li class="cancel"><a class="cancel"><%= t('layout.cancel') %></a></li>
@@ -68,7 +80,7 @@
         <ul>
           <li>
             <div class="signup-btn">
-              <%= submit_tag  t('layout.login'), :'data-action' => 'submit' %>
+              <%= submit_tag  t('layout.login'), :'data-action' => 'submit', :class => 'cv-button' %>
             </div>
           </li>
           <li class="cancel"><a class="cancel" href=""><%= t('layout.cancel') %></a></li>

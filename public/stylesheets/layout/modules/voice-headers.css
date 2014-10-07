@@ -10,13 +10,22 @@
 }
 	.voice-info {
 		border-bottom-width: 1px;
-    float: left;
     padding-top: 0;
     position: relative;
 		width: 100%;
 	}
+
+  .voice-info:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
   	.nav-bar {
-  	  height: 36px;
+  	  height: 35px;
   	  width: 100%;
       position: relative;
       z-index: 1; /* I know it's relative, but fixes the 'more' button overlap, tell ios */
@@ -36,7 +45,9 @@
         }
           .menu-item .menu-link {
             float: left;
-            padding: 12px 13px 11px;
+            height: 35px;
+            padding: 12px 13px 0;
+            border-bottom-width: 2px;
           }
           .menu-item.active .menu-link:after {
             display: none;
@@ -56,14 +67,10 @@
         .top-right .facebook-like-button {
             width: 90px;
         }
-        .top-right .twitter {
-            margin-top:3px;
-        }
       .hgroup-theme-image {
         border-bottom-width: 1px;
         position: absolute;
-        top: auto;
-        bottom: 0;
+        top: 0;
         width: 100%;
       }
         .theme-image {
@@ -76,16 +83,15 @@
           height: 3px;
         }
     .voice-title {
+      display: inline-block;
+      position: relative;
       font-size: 20px;
-      line-height:32px;
-      float: left;
-      clear: both;
-      padding: 14px 0 0 28px;
+      line-height: 32px;
+      padding: 14px 5px 0 28px;
     }
     .voice-subtitle {
+      position: relative;
       line-height: 22px;
-      clear: left;
-      float: left;
       padding: 3px 45px 9px 28px;
     }
     .voice-subtitle.initial-state {
@@ -103,31 +109,12 @@
         .more-quote {
           display: none;
         }
-      .more-button {
-        border-width: 0;
-        font-size: 11px;
-      }
-        .more-button > span {
-          border-width: 1px;
-          padding: 1px 3px 0;
-          position: relative;
-          text-align: center;
-          z-index: 0; /* I know it's relative, but fixes the 'more' button overlap, tell ios */
-        }
-          .more-button > span:after {
-            font-size: 9px;
-            left: 37px;
-            position: absolute;
-            text-decoration: none;
-            top: 0;
-          }
+
       .voice-info .voice-subtitle,
       .voice-info .voice-subtitle > em {
         font-size: 13px;
       }
 	.post-and-actions {
-		border-width: 1px 0;
-		float: left;
 		height: 54px;
 		padding-bottom: 9px;
 		padding-top: 10px;

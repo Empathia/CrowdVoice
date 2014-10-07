@@ -64,7 +64,6 @@ javascripts:
     - public/javascripts/include/jquery.ba-bbq.min.js
     - public/javascripts/include/jquery.form.js
     - public/javascripts/include/jquery.imgloaded.js
-    - public/javascripts/cv/actionTooltip.js
     - public/javascripts/cv/carousel.js
     - public/javascripts/cv/overlay.js
     - public/javascripts/cv/video_overlay.js
@@ -84,7 +83,6 @@ javascripts:
     - public/javascripts/v4/VoiceElement.js
   infobox: &infobox
     - public/javascripts/cv/excerpt.js
-    # - public/javascripts/include/webfont.js
     - public/javascripts/include/jquery.isotope.1.5.19.min.js
     - public/javascripts/include/smart-resize.js
     - public/javascripts/infographics/infoWall.js
@@ -175,6 +173,8 @@ stylesheets:
     - public/stylesheets/skin.css
     - public/stylesheets/grid.css
     - public/stylesheets/jscrollpane.css
+    - public/stylesheets/v4/utilities.css
+    - public/stylesheets/v4/buttons.css
     - public/stylesheets/layout/modules/sidebar.css
     - public/stylesheets/skin/modules/sidebar.css
     - public/stylesheets/layout/modules/simple-tooltips.css
