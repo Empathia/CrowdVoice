@@ -40,34 +40,92 @@ body {background: #d9d9d9 url('/images/v3/about/noise.png') 0 0 repeat}
   -webkit-border-radius: 3px;
 }
 
-.icon--14 {background: transparent url('/images/sprite-voice-types.png') 0 0 no-repeat}
+.icon--14 {
+  background: transparent url('/images/sprite-voice-types.png') 0 0 no-repeat;
+}
 
-.icon--backstory {background-position: 0 0}
-  .touch .icon--backstory {display: none}
-  .green .icon--backstory:hover   {background-position: 0 -14px}
-  .green.sidebar-scroller__list-item .icon--backstory:hover   {background-position: 0 -14px}
-  .blue .icon--backstory:hover    {background-position: 0 -28px}
-  .blue.sidebar-scroller__list-item .icon--backstory:hover    {background-position: 0 -28px}
-  .yellow .icon--backstory:hover  {background-position: 0 -42px}
-  .yellow.sidebar-scroller__list-item .icon--backstory:hover  {background-position: 0 -42px}
-  .red .icon--backstory:hover     {background-position: 0 -56px}
-  .red.sidebar-scroller__list-item .icon--backstory:hover     {background-position: 0 -56px}
-  .orange .icon--backstory:hover  {background-position: 0 -70px}
-  .orange.sidebar-scroller__list-item .icon--backstory:hover  {background-position: 0 -70px}
-.icon--infographic  {background-position: -14px 0}
-  .green .icon--infographic:hover   {background-position: -14px -14px}
-  .green.sidebar-scroller__list-item .icon--infographic:hover   {background-position: -14px -14px}
-  .blue .icon--infographic:hover    {background-position: -14px -28px}
-  .blue.sidebar-scroller__list-item .icon--infographic:hover    {background-position: -14px -28px}
-  .yellow .icon--infographic:hover  {background-position: -14px -42px}
-  .yellow.sidebar-scroller__list-item .icon--infographic:hover  {background-position: -14px -42px}
-  .red .icon--infographic:hover     {background-position: -14px -56px}
-  .red.sidebar-scroller__list-item .icon--infographic:hover     {background-position: -14px -56px}
-  .orange .icon--infographic:hover  {background-position: -14px -70px}
-  .orange.sidebar-scroller__list-item .icon--infographic:hover  {background-position: -14px -70px}
+.icon--backstory {
+  background-position: 0 0;
+}
+  .green .menu-item.active .icon--backstory,
+  .green .icon--backstory.hoverable:hover {
+    background-position: 0 -14px;
+  }
 
-.icon--stats    {background-position: -28px 0}
-.icon--star     {background-position: -42px 0}
+  .blue .menu-item.active .icon--backstory,
+  .blue .icon--backstory.hoverable:hover {
+    background-position: 0 -28px;
+  }
+
+  .yellow .menu-item.active .icon--backstory,
+  .yellow .icon--backstory.hoverable:hover {
+    background-position: 0 -42px;
+  }
+
+  .red .menu-item.active .icon--backstory,
+  .red .icon--backstory.hoverable:hover {
+    background-position: 0 -56px;
+  }
+
+  .orange .menu-item.active .icon--backstory,
+  .orange .icon--backstory.hoverable:hover {
+    background-position: 0 -70px;
+  }
+
+.icon--infographic {
+  background-position: -14px 0;
+}
+  .green .menu-item.active .icon--infographic,
+  .green .icon--infographic.hoverable:hover {
+    background-position: -14px -14px;
+  }
+
+  .blue .menu-item.active .icon--infographic,
+  .blue .icon--infographic.hoverable:hover {
+    background-position: -14px -28px;
+  }
+
+  .yellow .menu-item.active .icon--infographic,
+  .yellow .icon--infographic.hoverable:hover {
+    background-position: -14px -42px;
+  }
+
+  .red .menu-item.active .icon--infographic,
+  .red .icon--infographic.hoverable:hover {
+    background-position: -14px -56px;
+  }
+
+  .orange .menu-item.active .icon--infographic,
+  .orange .icon--infographic.hoverable:hover {
+    background-position: -14px -70px;
+  }
+
+.icon--stats {
+  background-position: -28px 0;
+}
+  .green .menu-item.active .icon--stats {
+    background-position: -28px -14px;
+  }
+  .blue .menu-item.active .icon--stats {
+    background-position: -28px -28px;
+  }
+  .yellow .menu-item.active .icon--stats {
+    background-position: -28px -42px;
+  }
+  .red .menu-item.active .icon--stats {
+    background-position: -28px -56px;
+  }
+  .orange .menu-item.active .icon--stats {
+    background-position: -28px -70px;
+  }
+
+.icon--star {
+  background-position: -42px 0;
+}
+
+.touch .icon--backstory {
+  display: none;
+}
 
 /*
   NEW COLOR CLASSES, self-explanatory

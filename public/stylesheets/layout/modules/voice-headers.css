@@ -32,9 +32,7 @@
   	}
       .top-left-navigation {
         float: left;
-        line-height: 13px;
-        padding-left: 40px;
-        height: 35px;
+        padding: .5em 0 0 2em;
       }
         .menu-item {
           display: inline-block;
@@ -45,18 +43,14 @@
         }
           .menu-item .menu-link {
             float: left;
-            height: 35px;
-            padding: 12px 13px 0;
+            padding: .7em 1em .5em;
             border-bottom-width: 2px;
+            max-height: 28px;
           }
-          .menu-item.active .menu-link:after {
-            display: none;
-            height: 10px;
-            left: 50%;
-            margin-left: 40px;
-            position: fixed;
-            top: 16px;
-            width: 10px;
+          .menu-item .menu-link .text {
+            display: inline-block;
+            vertical-align: middle;
+            padding-left: .2em;
           }
       .top-right {
         left: auto;
@@ -82,39 +76,50 @@
           border-width: 0;
           height: 3px;
         }
+
     .voice-title {
       display: inline-block;
       position: relative;
       font-size: 20px;
       line-height: 32px;
-      padding: 14px 5px 0 28px;
+      padding: .8em .25em .5em 1.7em;
     }
-    .voice-subtitle {
+
+    .description-wrapper {
       position: relative;
-      line-height: 22px;
-      padding: 3px 45px 9px 28px;
+      display: inline-block;
     }
-    .voice-subtitle.initial-state {
-      height: 30px;
-      overflow: hidden;
+    .description-wrapper:hover .tooltip {
+      display: block;
+    }
+
+    .description-wrapper .tooltip {
+      top: 13px;
+      width: 635px;
+    }
+
+    .description-wrapper .tooltip .tooltip-positioner {
+      left: -50%;
+    }
+
+    .description-wrapper .tooltip-positioner .tooltip-arrow {
+      left: 50%;
+    }
+
+    .description-wrapper .media-type-info {
+      padding: 22px 30px;
+    }
+
+    .voice-description {
+      font-size: 14px;
+      line-height: 25px;
     }
     .infobox-wall-container .voice-subtitle,
     .backstory .voice-subtitle{
       padding-bottom: 20px;
     }
-      .voice-subtitle > em {
-        line-height: 1.3em;
-        padding: 0;
-      }
-        .more-quote {
-          display: none;
-        }
 
-      .voice-info .voice-subtitle,
-      .voice-info .voice-subtitle > em {
-        font-size: 13px;
-      }
-	.post-and-actions {
+  .post-and-actions {
 		height: 54px;
 		padding-bottom: 9px;
 		padding-top: 10px;
@@ -222,11 +227,16 @@
         }
         .tooltip-positioner > .tooltip-arrow > span {
           position: relative;
-          width: 16px;
-          height: 12px;
-          top: 2px;
+          border-width: 0 7px 7px;
+          top: 4px;
           left: -50%;
           display: block;
+        }
+        .tooltip-positioner > .tooltip-arrow > span:after {
+          position: absolute;
+          left: -6px;
+          top: 1px;
+          border-width: 0 7px 7px;
         }
         .tooltip-positioner.notice {
           display: none;
@@ -238,7 +248,7 @@
           position: relative;
           top: 10px;
           left: 0;
-          border-width: 2px;
+          border-width: 1px;
           padding: 15px 11px;
           z-index: 30px;
         }

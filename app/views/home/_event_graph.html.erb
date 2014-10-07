@@ -7,11 +7,11 @@
       <div class="home-cover__title"><%= item.voice.title %></div>
       <div class="home-cover__media-info">
         <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory hoverable simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
           <span class="char--dot">•</span>
         <% end %>
         <% if !item.voice.blocks.empty? %>
-          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic hoverable simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
           <span class="char--dot">•</span>
         <% end %>
         <span class="icon--14 icon--stats"></span>
@@ -47,11 +47,11 @@
       <div class="home-cover__title"><%= item.voice.title %></div>
       <div class="home-cover__media-info">
         <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory hoverable simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
           <span class="char--dot">•</span>
         <% end %>
         <% if !item.voice.blocks.empty? %>
-          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic hoverable simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
           <span class="char--dot">•</span>
         <% end %>
         <span class="icon--14 icon--stats"></span>
