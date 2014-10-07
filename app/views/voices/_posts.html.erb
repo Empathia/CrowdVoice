@@ -55,22 +55,18 @@
 
     <% @posts.each  do |post| %>
 
-      <% if params[:tags].present? #TODO pass to a helper
-        url = voice_url(@voice, :post => post.id, :tags=>params[:tags])
-      elsif params[:all].present?
-        url = voice_url(@voice, :post => post.id, :all=>1)
-      elsif params[:filters].present?
-        url = voice_url(@voice, :post => post.id, :all=>1)
-      else
-        url = voice_url(@voice, :post => post.id)
-      end %>
-
       voice = new VoiceElement({
         name          : 'post_' + <%= post.id %>,
         id            : <%= post.id %>,
-        isAdmin       : <%= current_user && current_user.is_admin? ? true : false %>,
-        URL           : "<%= url %>",
-        postURL       : "<%= post.is_raw_image? ? post.image.url : post.source_url %>",
+        image         : {
+          thumb : {
+            url : "<%= post.image.thumb.url %>"
+          },
+          url : "<%= post.image.url %>",
+          widgetThumb : {
+            url : "<%= post.image.widget_thumb.url %>"
+          } 
+        },
         apporved      : <%= post.approved? %>,
         description   : "<%= get_excerpt(post.description, 250) if post.description && post.description != '(no description)' %>",
         imageWidth    : <%= post.image_width %>,

@@ -3,6 +3,8 @@ Class('Timeline')({
 
     loadPage: function (page) {
         page = page || Timeline.currentPage;
+
+        console.log('loadpage', page)
         var params = '?page=' + page;
         if ($.deparam.querystring().mod) {
             params += '&mod=1';
@@ -11,7 +13,10 @@ Class('Timeline')({
             params += '&start=' + this.startDate;
         }
         Timeline.applySpinner();
-        $.getScript(location.pathname + params);
+        // $.getScript(location.pathname + params);
+        $.getJSON(location.pathname + params, function(data) {
+            window.voicesContainer.appendFromJSON(data);
+        });
     },
 
     loadDate: function (date, callback) {

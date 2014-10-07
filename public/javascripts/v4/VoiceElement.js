@@ -36,6 +36,7 @@ Class('VoiceElement').inherits(Widget)({
     ',
     prototype     : {
         id            : 0,
+        URL           : null,
         postURL       : null,
         apporved      : false,
         description   : null,
@@ -57,6 +58,9 @@ Class('VoiceElement').inherits(Widget)({
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
+            this.URL     = this.getURL();
+            this.postURL = this.isRawImage ? this.image.url : this.sourceURL;
+
             this.setupElements();
         },
 
@@ -74,7 +78,8 @@ Class('VoiceElement').inherits(Widget)({
                 'data-created-at' : this.createdAt
             });
 
-            if (voice.isAdmin) {
+
+            if (CV.isAdmin) {
                 this.element.find('a.close-voice-box').attr('href', this.postURL);    
             } else {
                 this.element.find('a.close-voice-box').hide();
@@ -84,7 +89,7 @@ Class('VoiceElement').inherits(Widget)({
             this.element.find('a.source-url').attr({
                 'data-type'      : voice.sourceType,
                 'data-title'     : voice.title,
-                'data-permalink' : voice.url,
+                'data-permalink' : voice.URL,
                 'data-ago'       : voice.timeAgo,
                 'data-id'        : voice.id,
                 'data-voted'     : false,
@@ -109,12 +114,51 @@ Class('VoiceElement').inherits(Widget)({
             this.element.find('.post-icon-type').addClass(this.sourceType + '-icon');
 
             this.element.find('a.facebook').attr({
-                'href' : 'http://facebook.com/sharer.php?u=' + voice.postURL
+                'href' : 'http://facebook.com/sharer.php?u=' + voice.URL
             });
 
             this.element.find('a.twitter').attr({
-                'href' : 'http://twitter.com/intent/tweet?text=' +  encodeURI(voice.title) + '&url=' + encodeURI(voice.postURL) +'&via=crowdvoice'
+                'href' : 'http://twitter.com/intent/tweet?text=' +  escape(voice.title) + '&url=' + escape(voice.URL) +'&via=crowdvoice'
             });
+        },
+
+        isRawImage : function() {
+            var flickrRegExp  = /^https?:\/\/(?:www\.)?flickr\.com\/photos\/[-\w@]+\/\d+/i;
+            var twitpicRegExp = /^https?:\/\/(?:www\.)?twitpic\.com\/[^\/]+$/i;
+            var yfrogRegExp   = /^https?:\/\/(?:www\.)?yfrog\.com\/[^\/]+$/i;
+            var isRawImage = false;
+
+            if (this.sourceType === 'image') {
+                if (this.sourceURL.search(flickrRegExp) == -1) {
+                    isRawImage = true;
+                }
+
+                if (this.sourceURL.search(twitpicRegExp) == -1) {
+                    isRawImage = true;
+                }
+
+                if (this.sourceURL.search(yfrogRegExp) == -1) {
+                    isRawImage = true;
+                }
+            }
+
+            return isRawImage;
+        },
+
+        getURL : function() {
+            var params = $.deparam.querystring();
+            var voice  = window.location.origin + window.location.pathname;
+            var url = voice + '?post=' + this.id;
+
+            if (params.tags) {
+                url = url + '&tags=' + params.tags;
+            }
+
+            if (params.all) {
+                url = url + '&all=' + params.all;
+            }
+            
+            return url;
         }
         
     }

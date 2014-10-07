@@ -30,8 +30,6 @@ class VoicesController < ApplicationController
 
     scope = scope.by_tags(params[:tags]) if params[:tags]
 
-    #@posts = scope.page(params[:page]).per(Setting.posts_per_page.to_i)
-
     per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
 
     query = scope.page(params[:page]).per(per_page).to_sql

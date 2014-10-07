@@ -58,6 +58,10 @@
       } else {
         document.body.className += " not-touch";
       }
+
+      window.CV = {};
+
+      CV.isAdmin = <%= current_user && current_user.is_admin? ? true : false %>;
     </script>
 
     <div id="fb-root"></div>
