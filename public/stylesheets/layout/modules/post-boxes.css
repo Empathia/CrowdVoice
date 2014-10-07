@@ -13,7 +13,8 @@
   margin-top: 1em;
   padding: 0 0 0 1em;
 }
-.voice-content-type-wrapper.inside {
+
+.voice-box a > .voice-content-type-wrapper {
   position: absolute;
   bottom: 0;
   padding: 0 0 .4em 1em;
@@ -172,4 +173,11 @@
 
 .voice-action .flag-over {float: right}
 
-.close-voice-box {width: 28px; height: 21px; float: right; display: block; position: relative; margin: 4px -3px -18px; z-index:4}
+.close-voice-box {
+  width: 28px;
+  height: 21px;
+  position: absolute;
+  top: .5em;
+  right: 0;
+  z-index:4;
+}

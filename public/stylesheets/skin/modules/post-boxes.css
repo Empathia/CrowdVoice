@@ -2,11 +2,11 @@
   color: #999;
 }
 
-.voice-content-type-wrapper.inside {
+.voice-box a > .voice-content-type-wrapper {
   color: rgba(255, 255, 255, .7);
 }
 
-.voice-content-type-wrapper .date {
+.voice-content-type-wrapper .time-ago {
   font-weight: 100;
   font-style: normal;
 }
