@@ -84,6 +84,8 @@ class ApplicationController < ActionController::Base
   end
 
   def get_excerpt(string, length)
+    string = string.gsub("\n", '')
+    string = string.gsub("\r\n", '')
     str = string[0..length]
     if string.length > length
       str = str.split(' ')
