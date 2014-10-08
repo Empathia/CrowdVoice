@@ -590,15 +590,6 @@ a {
 /*
     Info panel
 */
-.backstory .voice-title {
-    color: #ffffff;
-    font-family: 'AlrightSansRegular';
-    font-size: 20px;
-}
-.backstory .voice-subtitle em {
-    color: #bfbfbf;
-    -webkit-text-stroke: 0.25px;
-}
 .backstory .more-button .button-content,
 .backstory .more-button .button-content:hover {
     background: none repeat scroll 0 0 transparent;

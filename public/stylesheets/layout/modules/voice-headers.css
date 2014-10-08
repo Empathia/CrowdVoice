@@ -114,10 +114,6 @@
       font-size: 14px;
       line-height: 25px;
     }
-    .infobox-wall-container .voice-subtitle,
-    .backstory .voice-subtitle{
-      padding-bottom: 20px;
-    }
 
   .post-and-actions {
 		height: 54px;
@@ -682,17 +678,6 @@
     float: none;
     display: inline;
     padding: 0;
-  }
-  .voice-subtitle.initial-state {
-    display: none;
-  }
-  .voice-subtitle {
-    padding: 0;
-  }
-  .voice-subtitle.collapsed:not(.initial-state) {
-    clear: none;
-    display: inline;
-    float: none;
   }
   .filters-and-mode {
     bottom: 0;

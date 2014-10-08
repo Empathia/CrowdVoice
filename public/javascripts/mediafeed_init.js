@@ -196,11 +196,6 @@ $(function () {
         tweetsSidebar.bind('tweets.change', function(){
             resizePostWall();
         });
-
-        $('.voice-subtitle').bind('excerpt.toggle', function () {
-            DynamicMeasures.setTopFaces();
-            TweetsSidebar.updatePosition();
-        });
     };
 
     var load_votes = function() {
