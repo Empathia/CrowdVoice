@@ -594,7 +594,6 @@ a {
 .backstory .more-button .button-content:hover {
     background: none repeat scroll 0 0 transparent;
     border: medium none;
-    font-family: 'AlrightSansRegular';
     font-size: 12px;
     text-decoration: underline;
 }
@@ -656,7 +655,6 @@ a {
   background: #000;
   border-radius: 8px;
   text-align: left;
-  font-family: 'AlrightSansRegular';
 }
 .details-clone .date {
   text-transform: uppercase;
@@ -782,16 +780,13 @@ a {
     text-align: center;
     color:#666666;
     font-size:11px;
-    font-family:'AlrightSansRegular';
   }
   .calendar-wrapper .day-name {
     color: #666666;
-    font-family: 'AlrightSansRegular';
     font-size: 11px;
   }
   .calendar-wrapper .year-name {
     color: #666666;
-    font-family: 'AlrightSansRegular';
     font-size: 11px;
   }
   .navigation-icons-container {
@@ -870,14 +865,12 @@ a {
 }
     .name {
       color: #333333;
-      font-family: 'AlrightSansRegular';
       font-size: 17px;
       font-weight: normal;
       line-height: 26px;
     }
     .content {
       color: #4d4d4d;
-      font-family: 'AlrightSansRegular';
       font-size: 14px;
       line-height: 25px;
       -webkit-text-stroke: 0.25px;
@@ -936,7 +929,6 @@ a {
 }
 .section-wrapper .caption {
   color: #ffffff;
-  font-family: 'AlrightSansRegular';
   font-size: 12px;
 }
 .section-wrapper .pagination-item {
@@ -965,12 +957,10 @@ a {
 .explicit-video-overlay .title,
 .explicit-image-overlay .title {
   color: #FFFFFF;
-  font-family: 'AlrightSansRegular';
 }
 .explicit-video-overlay .description,
 .explicit-image-overlay .description {
   color: #C1C1C1;
-  font-family: 'AlrightSansRegular';
 }
 .explicit-video-overlay .dismiss-explicit,
 .explicit-image-overlay .dismiss-explicit {
@@ -979,7 +969,6 @@ a {
   border-color: #CCCCCC;
   border-radius: 3px 3px 3px 3px;
   cursor: pointer;
-  font-family: 'AlrightSansRegular';
 }
 .explicit-video-overlay .dismiss-explicit:hover,
 .explicit-image-overlay .dismiss-explicit:hover {
@@ -1009,11 +998,9 @@ a {
 */
 .sources-list .source:before {
   color: #000;
-  font-family: 'AlrightSansRegular';
   font-size: 10px;
 }
 .sources-list .source {
-  font-family: 'AlrightSansRegular';
   border-bottom-color: #e5e5e5;
   border-bottom-style: solid;
 }
