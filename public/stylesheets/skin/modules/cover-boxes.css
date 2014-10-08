@@ -34,8 +34,8 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 0 0 3px 3px;
-    -webkit-transition: -webkit-transform 400ms ease-out;
-            transition:         transform 400ms ease-out;
+    -webkit-transition: -webkit-transform 230ms ease-out;
+            transition:         transform 230ms ease-out;
 }
     .green .home-cover__actions   {border-top-color: #50b347}
     .blue .home-cover__actions    {border-top-color: #4cb5ff}

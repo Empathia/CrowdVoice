@@ -106,15 +106,19 @@ body {background: #d9d9d9 url('/images/v3/about/noise.png') 0 0 repeat}
   .green .menu-item.active .icon--stats {
     background-position: -28px -14px;
   }
+
   .blue .menu-item.active .icon--stats {
     background-position: -28px -28px;
   }
+
   .yellow .menu-item.active .icon--stats {
     background-position: -28px -42px;
   }
+
   .red .menu-item.active .icon--stats {
     background-position: -28px -56px;
   }
+
   .orange .menu-item.active .icon--stats {
     background-position: -28px -70px;
   }
