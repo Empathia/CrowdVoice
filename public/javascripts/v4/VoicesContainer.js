@@ -55,6 +55,10 @@ Class('VoicesContainer').inherits(Widget)({
 
             // Render here for better UI performance
             voices.forEach(function(voice) {
+                voice.element.css({
+                    'display' : 'none'
+                });
+
                 voice.render(window.voicesContainer.element);
             })
 
@@ -62,8 +66,10 @@ Class('VoicesContainer').inherits(Widget)({
             Timeline.options.overlays.unbindEvents().bindEvents();
             Timeline.options.votes.unbindEvents().bindEvents();
             setTimeout(function() {
+                $(elements).fadeIn(300);
+
                 Timeline.afterFetchActions();
-            }, 0);
+            }, 500);
         }
     }
 });

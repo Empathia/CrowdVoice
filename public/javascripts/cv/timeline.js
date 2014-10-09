@@ -89,16 +89,17 @@ Class('Timeline')({
             this.voiceScroller.scroll(function(e){
                 var maxScrollY = e.target.scrollHeight - e.target.offsetHeight,
                     hasMinPostCount = $('.voice-box').length >= _postCount,
-                    isAtBottom = e.target.scrollTop === maxScrollY,
+                    isAtBottom = e.target.scrollTop >= (maxScrollY - 300),
                     isSmallScreen = window.innerWidth <= 1024;
+                
                 that.debouncePositionUpdate();
+
                 if (isAtBottom && !isSmallScreen && hasMinPostCount) {
                     that.fetchPosts(false);
-                } else {
-                    return false;
                 }
             });
         }
+
         this.element.bind('posts:served', function(ev, data){
             that.afterFetchActions(data);
         });
