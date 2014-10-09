@@ -26,7 +26,7 @@ Class('VoicesContainer').inherits(Widget)({
                     id            : post.id,
                     image         : post.image,
                     apporved      : post.approved,
-                    description   : post.description,
+                    description   : CV.getExcerpt(post.description, 250),
                     imageWidth    : post.image_width,
                     imageHeight   : post.image_height,
                     thumbURL      : post.image.thumb.url,
@@ -61,7 +61,9 @@ Class('VoicesContainer').inherits(Widget)({
             voicesContainer.element.isotope('appended', $(elements));
             Timeline.options.overlays.unbindEvents().bindEvents();
             Timeline.options.votes.unbindEvents().bindEvents();
-            Timeline.afterFetchActions();
+            setTimeout(function() {
+                Timeline.afterFetchActions();
+            }, 0);
         }
     }
 });

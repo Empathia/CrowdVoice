@@ -88,6 +88,21 @@
       voice.render(window.voicesContainer.element);
       window.voicesContainer.appendChild(voice);
     <% end %>
+      Timeline.currentPage = 2;
+
+      var page = Timeline.currentPage;
+
+      console.log('preloadpage', page)
+
+      var params = '?page=' + page;
+      
+      if ($.deparam.querystring().mod) {
+          params += '&mod=1';
+      }
+    
+      $.getJSON(location.pathname + params, function(data) {
+          Timeline.preloadedVoices = data;
+      });
     });
   </script>
 
