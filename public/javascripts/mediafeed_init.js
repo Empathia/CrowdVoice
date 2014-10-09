@@ -149,6 +149,11 @@ $(function () {
         voicesContainer.isotope({
             transitionDuration: 0,
             animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
+             animationOptions: {
+                 duration: 0,
+                easing: 'linear',
+                queue: false
+            },
             resizable: false,
             itemSelector: '.voice-box',
             masonry: {
