@@ -158,7 +158,6 @@ $(function () {
     });
 
     if ( $('.header-sponsor').is(':visible') === true ) {
-         $('.voice-subtitle').addClass('sponsor-padding');
          $('.voice-info').css('min-height', '131px');
     }
 

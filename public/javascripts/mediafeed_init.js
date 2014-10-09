@@ -67,7 +67,6 @@ $(function () {
                             showTooltip : !sidebarDisplay
                         });
 
-//    new Excerpt('.voice-subtitle');
     new Message('.flash-message');
     new FacebookNavButton({
         fbPath : _fbPath
@@ -196,11 +195,6 @@ $(function () {
 
         tweetsSidebar.bind('tweets.change', function(){
             resizePostWall();
-        });
-
-        $('.voice-subtitle').bind('excerpt.toggle', function () {
-            DynamicMeasures.setTopFaces();
-            TweetsSidebar.updatePosition();
         });
     };
 

@@ -500,9 +500,6 @@ table.datatable > tbody > tr > td > .delete:hover {background-position: -30px -2
 .clipart-editor .image-display {border: 1px solid #CCCCCC; border-radius: 4px 4px 4px 4px; background-color: rgba(255,255,255,0.3)}
 
 /* Events editor */
-#sources .tooltip .media-type-title {
-  font-family: 'AlrightSansRegular';
-}
 .form.voices .background-image img,
 .related.image img {
   border-radius: 2px;
