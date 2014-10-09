@@ -191,33 +191,28 @@
             display: block;
           }
 
-          .green .media-type.image-tool:hover i,
-          .green .media-type.video-tool:hover i,
-          .green .media-type.link-tool:hover i {
+          .green .media-type:hover i,
+          .green .media-type.active i {
             background-position-y: -96px;
           }
 
-          .blue .media-type.image-tool:hover i,
-          .blue .media-type.video-tool:hover i,
-          .blue .media-type.link-tool:hover i {
+          .blue .media-type:hover i,
+          .blue .media-type.active i {
             background-position-y: -120px;
           }
 
-          .yellow .media-type.image-tool:hover i,
-          .yellow .media-type.video-tool:hover i,
-          .yellow .media-type.link-tool:hover i {
+          .yellow .media-type:hover i,
+          .yellow .media-type.active i {
             background-position-y: -144px;
           }
 
-          .red .media-type.image-tool:hover i,
-          .red .media-type.video-tool:hover i,
-          .red .media-type.link-tool:hover i {
+          .red .media-type:hover i,
+          .red .media-type.active i {
             background-position-y: -168px;
           }
 
-          .orange .media-type.image-tool:hover i,
-          .orange .media-type.video-tool:hover i,
-          .orange .media-type.link-tool:hover i {
+          .orange .media-type:hover i,
+          .orange .media-type.active i {
             background-position-y: -192px;
           }
 
