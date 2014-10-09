@@ -172,6 +172,7 @@ stylesheets:
     - public/stylesheets/jscrollpane.css
     - public/stylesheets/v4/utilities.css
     - public/stylesheets/v4/buttons.css
+    - public/stylesheets/v4/icons.css
     - public/stylesheets/layout/modules/sidebar.css
     - public/stylesheets/skin/modules/sidebar.css
     - public/stylesheets/layout/modules/simple-tooltips.css
