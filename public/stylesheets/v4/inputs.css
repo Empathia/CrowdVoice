@@ -1,0 +1,43 @@
+.cv-input {
+  padding: 0 1em;
+  border: 1px solid #b2b2b2;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1);
+}
+
+.cv-input--small {
+  height: 21px;
+}
+
+.cv-input--small.cv-input--rounded {
+  border-radius: 11px;
+}
+
+.green .cv-input--dynamic-color:focus {
+  border-color: #50b347;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1),
+    0 0 5px rgba(80, 179, 71, .5);
+}
+
+.blue .cv-input--dynamic-color:focus {
+  border-color: #4db5ff;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1),
+    0 0 5px rgba(77, 181, 255, .5);
+}
+
+.yellow .cv-input--dynamic-color:focus {
+  border-color: #ebc91c;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1),
+    0 0 5px rgba(235, 201, 28, .5);
+}
+
+.red .cv-input--dynamic-color:focus {
+  border-color: #f10f2a;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1),
+    0 0 5px rgba(241, 15, 42, .5);
+}
+
+.orange .cv-input--dynamic-color:focus {
+  border-color: #ec9415;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1),
+    0 0 5px rgba(236, 148, 21, .5);
+}
