@@ -77,6 +77,13 @@ Class('VoiceElement').inherits(Widget)({
             this.postURL = this.isRawImage() ? this.image.url : this.sourceURL;
 
             this.setupElements();
+
+            if ($.deparam.querystring().post && $.deparam.querystring().post === this.id.toString()) {
+                var link = this.sourceElement;
+                if ( link.length ) {
+                    window.overlays.buildOverlay( link );
+                }
+            }
         },
 
         setupElements : function() {

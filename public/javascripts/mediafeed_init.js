@@ -1,8 +1,8 @@
 $(function () {
 
+    window.overlays        = new Overlay('.voice-box')
     var voice_loaded    = false,
         votes           = new Votes('.vote-post'),
-        overlays        = new Overlay('.voice-box'),
         gazaOverlay     = new VideoOverlay('.view-video li'),
         postFilter      = new Filters('.filters', '.voice-box'),
         voicesSidebarControl    = $('.tab-controller'),
@@ -71,13 +71,6 @@ $(function () {
     new FacebookNavButton({
         fbPath : _fbPath
       });
-
-    if ( $.deparam.querystring().post ) {
-        var link = $('.source-url.post-' + $.deparam.querystring().post);
-        if ( link.length ) {
-            overlays.buildOverlay( link );
-        }
-    }
 
     if ( !$.isEmptyObject( window.timeline_dates ) ){
         Timeline.build($('.timeliner-group'), {
