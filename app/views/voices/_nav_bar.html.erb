@@ -1,23 +1,47 @@
-<div class="voice-info <%= "gaza" if @is_gaza %>" style="background-image: url( 'https://crowdvoice-production-bucket.s3.amazonaws.com/uploads/voice/background/1736/islamicstate.jpg');">
+<div class="voice-info <%= "gaza" if @is_gaza %>" style="background-image: url( '<%= @voice.background %>');">
   <div class="hgroup-theme-image">
     <div class="theme-image">
       <p class="top-line <%= "gaza" if @is_gaza %>"></p>
     </div>
   </div>
   <h2 class="voice-title"><%= @voice.title %></h2>
-  <a class="cv-button--small more-button">More</a>
-  <h4 class="voice-subtitle">
-    <%= @voice.description %>
-  </h4>
+  <div class="description-wrapper">
+    <a class="cv-button cv-button--small more-button">More Info</a>
+    <div class="tooltip">
+      <div class="tooltip-positioner">
+        <p class="tooltip-arrow"><span></span></p>
+        <div class="media-type-info">
+          <p class="voice-description">
+            <%= @voice.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="nav-bar">
     <ul class="top-left-navigation">
       <% if !subdomain_present? && (@voice.has_timeline || (@voice.events.present? && current_user && current_user.is_admin?)) %>
-        <li name="Backstory" class="menu-item backstory-menu-item <%= "active" if params[:backstory] %>"><a href="<%= voice_url(@voice) %>?backstory=true" class="menu-link">Backstory</a></li>
+        <li name="Backstory" class="menu-item backstory-menu-item <%= "active" if params[:backstory] %>">
+          <a href="<%= voice_url(@voice) %>?backstory=true" class="menu-link">
+            <i class="icon--14 icon--backstory"></i>
+            <span class="text">Backstory</span>
+          </a>
+        </li>
       <% end %>
       <% if !@blocks.empty? %>
-        <li name="Infographic" class="menu-item infographics-menu-item <%= "active" if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] %>"><a href="<%= voice_url(@voice) %>" class="menu-link">Infographic</a></li>
+        <li name="Infographic" class="menu-item infographics-menu-item <%= "active" if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] %>">
+          <a href="<%= voice_url(@voice) %>" class="menu-link">
+            <i class="icon--14 icon--infographic"></i>
+            <span class="text">Infographic</span>
+          </a>
+        </li>
       <% end %>
-      <li name="Media Feed" class="menu-item media-feed-menu-item <%= "active" if params[:tags].present? || params[:all] %>"><a href="<%= voice_url(@voice) %>?all=true" class="menu-link">Media feed</a></li>
+      <li name="Media Feed" class="menu-item media-feed-menu-item <%= "active" if params[:tags].present? || params[:all] %>">
+        <a href="<%= voice_url(@voice) %>?all=true" class="menu-link">
+          <i class="icon--14 icon--stats"></i>
+          <span class="text">Media feed</span>
+        </a>
+      </li>
     </ul>
     <ul class="voice-info-tools top-right" data-hansel-component-id="posts-voice-info-tool">
       <li class="info-tool maps">

@@ -68,7 +68,6 @@ Class('Timeline')({
         this.announcementBar    = $('.flash-message');
         this.postFetcher        = $('.post-fetch-trigger');
         this.voiceTitle         = $('.voice-title');
-        this.voiceSubtitle      = $('.voice-subtitle');
         this.loadingScript      = false;
         this.needsScrollTop      = false;
 
@@ -112,10 +111,6 @@ Class('Timeline')({
         });
 
         this.announcementBar.bind('flash.close', function () {
-            that._setHeight();
-        });
-
-        this.voiceSubtitle.bind('excerpt.toggle', function(){
             that._setHeight();
         });
 

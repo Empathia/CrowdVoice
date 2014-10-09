@@ -9,7 +9,6 @@ Class('Message')({
             this.element        = typeof element == "string" ? $(element) : element;
             this.closeBtn       = $(this.options.closeBtn);
             this.mainHeader     = $('.main-header');
-            this.voiceSubtitle  = $('.voice-subtitle');
             this.userWindow     = $(window);
             this._bindEvents();
         },
@@ -22,9 +21,6 @@ Class('Message')({
                 return false;
             });
             this.userWindow.bind('resize smartresize', function(){
-                that.setTopPosition();
-            });
-            this.voiceSubtitle.bind('excerpt.toggle', function(){
                 that.setTopPosition();
             });
         },

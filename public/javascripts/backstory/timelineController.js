@@ -12,8 +12,6 @@ Class('TimelineController')({
             this.timelineContainer = this.element.find('.timeline-container');
             // info box elements
             this.infoBox           = $('.voice-info');
-            this.excerptContainer  = this.infoBox.find('.voice-subtitle');
-            this.excerptToggler    = this.excerptContainer.find('.more-button');
             // sidebar elements
             this.sidebarWrapper    = $('.sidebar-wrapper');
             this.sidebar           = $('.voice, hgroup');
@@ -28,7 +26,6 @@ Class('TimelineController')({
 
             /* DEFAULT BEHAVIORS */
             new Tooltip('.widget', { hover: true });
-            this.excerpt           = new Excerpt(this.excerptContainer);
             new BlogWidget();
 
             DynamicMeasures.update();
@@ -124,10 +121,6 @@ Class('TimelineController')({
                 // that.elementsController.resetElements();
             }).bind('elements:reset', function(){
                 that.elementsController.resetElements();
-            });
-
-            this.excerptContainer.bind('excerpt.toggle', function(){
-                that.setTimelineHeight();
             });
 
             this.sidebarWrapper.bind('sidebar.toggle', function sidebarToggle() {

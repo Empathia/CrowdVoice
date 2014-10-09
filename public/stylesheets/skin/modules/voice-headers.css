@@ -85,11 +85,9 @@
     }
 .voice-title {
 }
-.voice-info .voice-subtitle,
-.voice-info .voice-subtitle .extract {
+.voice-info .description-wrapper .tooltip {
+  color: #404040;
 }
-  .voice-subtitle > em {
-  }
 
 .post > .post-paceholder {color: #b2b2b2}
 .post > .post-paceholder > .cover {background: #FFF}
@@ -145,14 +143,22 @@ body.yellow .post-type > .media > .media-type {background-image: url('/images/bg
 body.orange .post-type > .media > .media-type {background-image: url('/images/bg/sprites/post_type_orange.png'); background-repeat: no-repeat}
 body.blue .post-type > .media > .media-type {background-image: url('/images/bg/sprites/post_type_blue.png'); background-repeat: no-repeat}*/
 
-.tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip.png') no-repeat 0 0}
+.tooltip-positioner > .tooltip-arrow > span {
+  border-style: solid;
+  border-color: rgba(0,0,0,.2) transparent;
+}
+.tooltip-positioner > .tooltip-arrow > span:after {
+  content: '';
+  border-style: solid;
+  border-color: white transparent;
+}
 .tooltip > .tooltip-positioner > .media-type-info,
 .tooltip-positioner > form > .grab-blog-widget {
-  border-color: #ffffff;
+  border-color: rgba(0,0,0,.3);
   border-style: solid;
-  background-color: #f3f3f3;
+  background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, .4);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, .4);
 }
 .with-image .tooltip-label {
   color: #909090;
