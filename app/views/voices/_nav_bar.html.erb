@@ -6,7 +6,7 @@
   </div>
   <h2 class="voice-title"><%= @voice.title %></h2>
   <div class="description-wrapper">
-    <a class="cv-button cv-button--small more-button">More Info</a>
+    <a class="cv-button cv-button--small cv-button--trans more-button">More Info</a>
     <div class="tooltip">
       <div class="tooltip-positioner">
         <p class="tooltip-arrow"><span></span></p>
@@ -45,15 +45,15 @@
     </ul>
     <ul class="voice-info-tools top-right" data-hansel-component-id="posts-voice-info-tool">
       <li>
-        <a class="cv-button--small" title="Follow">Follow</a>
+        <a class="cv-button--small cv-button--trans" title="Follow">Follow</a>
       </li>
       <li class="info-tool maps">
-        <a title="Map" class="cv-button--small info-tool-link map">
+        <a title="Map" class="cv-button--small cv-button--trans info-tool-link map">
           <i class="mediafeed-sprite pin-icon"></i>
         </a>
       </li>
       <li class="info-tool widget">
-        <a class="cv-button--small info-tool-link" href="#" title="widget">
+        <a class="cv-button--small cv-button--trans info-tool-link" href="#" title="widget">
           <i class="mediafeed-sprite gear-icon"></i>
         </a>
         <div class="tooltip">
@@ -79,7 +79,7 @@
         </div>
       </li>
       <li class="info-tool rss">
-        <%= link_to voice_path(@voice, :format => :rss), :class => 'cv-button--small info-tool-link', :title => 'RSS feed' do %>
+        <%= link_to voice_path(@voice, :format => :rss), :class => 'cv-button--small cv-button--trans info-tool-link', :title => 'RSS feed' do %>
           <i class="mediafeed-sprite rss-icon"></i>
         <% end %>
       </li>
