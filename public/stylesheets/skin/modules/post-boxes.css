@@ -55,6 +55,29 @@
   border-style:solid;
   border-color: #d9d9d9;
 }
+
+.voice-action > .actions .mediafeed-sprite.twitter {
+  margin-top: 1px;
+}
+
+.voice-action > .actions > li > a:hover .mediafeed-sprite.twitter {
+  background-position: -72px 0;
+}
+
+.voice-action > .actions > li > a:hover .mediafeed-sprite.facebook {
+  background-position: -96px 0;
+}
+
+.mediafeed-sprite.allow-post {
+  margin-top: .45em;
+  margin-right: .25em;
+}
+
+.mediafeed-sprite.deny-post {
+  margin-top: .45em;
+  margin-right: .25em;
+}
+
 .voice-box > .voice-unmoderated {
   opacity: 1;
   border-style:solid;
@@ -114,43 +137,6 @@
 .voice-box > .voice-unmoderated > ul > .up_hover:hover {
   border:2px solid;
   border-color: #8b8a84 #828079 #74726a #77746b;
-}
-.mediafeed-sprite {
-  background: url('/images/v4/sprite-media-feed.png') no-repeat;
-}
-.mediafeed-sprite.link-icon {
-  background-position: 0 -24px;
-}
-.mediafeed-sprite.image-icon {
-  background-position: -48px -24px;
-}
-.mediafeed-sprite.video-icon {
-  background-position: -24px -24px;
-}
-.mediafeed-sprite.twitter {
-  background-position: 0 0;
-}
-.voice-action > .actions > li > a:hover .mediafeed-sprite.twitter {
-  background-position: -72px 0;
-}
-.mediafeed-sprite.facebook {
-  background-position: -24px 0;
-}
-.voice-action > .actions > li > a:hover .mediafeed-sprite.facebook {
-  background-position: -96px 0;
-}
-.mediafeed-sprite.flag {
-  background-position: -48px 0;
-}
-.mediafeed-sprite.flag:hover,
-.mediafeed-sprite.flag-pressed {
-  background-position: -120px 0;
-}
-.mediafeed-sprite.allow-post {
-  background-position: 0 -48px;
-}
-.mediafeed-sprite.deny-post {
-  background-position: -24px -48px;
 }
 
 .voice-action > .actions > li > a {

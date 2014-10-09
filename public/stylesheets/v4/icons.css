@@ -1,0 +1,79 @@
+.mediafeed-sprite {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url('/images/v4/sprite-media-feed.png') no-repeat;
+}
+
+.mediafeed-sprite.twitter {
+  width: 14px;
+  height: 13px;
+  background-position: 0 0;
+}
+
+.mediafeed-sprite.facebook {
+  width: 7px;
+  height: 14px;
+  background-position: -24px 0;
+}
+
+.mediafeed-sprite.link-icon {
+  width: 16px;
+  height: 16px;
+  background-position: 0 -24px;
+}
+
+.mediafeed-sprite.image-icon {
+  width: 16px;
+  height: 16px;
+  background-position: -48px -24px;
+}
+
+.mediafeed-sprite.video-icon {
+  width: 16px;
+  height: 16px;
+  background-position: -24px -24px;
+}
+
+.mediafeed-sprite.flag {
+  width: 14px;
+  height: 15px;
+  background-position: -48px 0;
+}
+
+.mediafeed-sprite.flag:hover,
+.mediafeed-sprite.flag-pressed {
+  width: 14px;
+  height: 15px;
+  background-position: -120px 0;
+}
+
+.mediafeed-sprite.allow-post {
+  width: 12px;
+  height: 19px;
+  background-position: 0 -48px;
+}
+
+.mediafeed-sprite.deny-post {
+  width: 12px;
+  height: 19px;
+  background-position: -24px -48px;
+}
+
+.mediafeed-sprite.pin-icon {
+  width: 7px;
+  height: 11px;
+  background-position: -48px -48px;
+}
+
+.mediafeed-sprite.gear-icon {
+  width: 11px;
+  height: 11px;
+  background-position: -72px -48px;
+}
+
+.mediafeed-sprite.rss-icon {
+  width: 9px;
+  height: 9px;
+  background-position: -96px -48px;
+}
