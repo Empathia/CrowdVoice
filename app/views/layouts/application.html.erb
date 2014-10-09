@@ -58,6 +58,24 @@
       } else {
         document.body.className += " not-touch";
       }
+
+      window.CV = {};
+
+      CV.isAdmin = <%= current_user && current_user.is_admin? ? true : false %>;
+
+      CV.getExcerpt = function(string, length) {
+            string = string.replace("\r\n", '').replace("\n");
+
+            var str = string.substr(0, length);
+
+            if (string.length > length) {
+                str = str.split(' ');
+                str.pop(str[str.length - 1]);
+                str = str.join(' ') + '...';
+            }
+
+            return str;
+        }
     </script>
 
     <div id="fb-root"></div>

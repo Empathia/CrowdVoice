@@ -1,17 +1,30 @@
 Class('Timeline')({
     currentPage: 1,
+    preloadedVoices : [],
 
     loadPage: function (page) {
+        var timeline = this;
+
         page = page || Timeline.currentPage;
+
+        console.log('loadpage', page)
         var params = '?page=' + page;
+        
         if ($.deparam.querystring().mod) {
             params += '&mod=1';
         }
+        
         if (this.startDate) {
             params += '&start=' + this.startDate;
         }
+        
         Timeline.applySpinner();
-        $.getScript(location.pathname + params);
+        
+        window.voicesContainer.appendFromJSON(timeline.preloadedVoices);
+
+        $.getJSON(location.pathname + params, function(data) {
+            timeline.preloadedVoices = data;
+        });
     },
 
     loadDate: function (date, callback) {
