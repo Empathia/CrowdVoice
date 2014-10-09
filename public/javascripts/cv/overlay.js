@@ -44,12 +44,12 @@ Class('Overlay')({
         bindEvents: function(){
             var that = this;
             this.element = $(this._elementSelector);
-            this.element.find('.voice-cont').click(function () {
+            this.element.find('.voice-cont').live('click', function () {
                 that.buildOverlay($(this).find('.source-url'));
                 return false;
             });
 
-            this.element.find('.comments').click(function () {
+            this.element.find('.comments').live('click', function () {
                 that.buildOverlay($(this).parent().prev().find('.source-url'));
                 return false;
             });
