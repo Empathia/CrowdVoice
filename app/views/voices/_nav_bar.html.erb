@@ -44,11 +44,18 @@
       </li>
     </ul>
     <ul class="voice-info-tools top-right" data-hansel-component-id="posts-voice-info-tool">
+      <li>
+        <a class="cv-button--small" title="Follow">Follow</a>
+      </li>
       <li class="info-tool maps">
-        <a title="Map" class="cv-button--small info-tool-link map"></a>
+        <a title="Map" class="cv-button--small info-tool-link map">
+          <i class="mediafeed-sprite pin-icon"></i>
+        </a>
       </li>
       <li class="info-tool widget">
-        <a class="cv-button--small info-tool-link" href="#" title="widget"></a>
+        <a class="cv-button--small info-tool-link" href="#" title="widget">
+          <i class="mediafeed-sprite gear-icon"></i>
+        </a>
         <div class="tooltip">
           <div class="tooltip-positioner">
             <p class="tooltip-arrow"><span></span></p>
@@ -72,7 +79,9 @@
         </div>
       </li>
       <li class="info-tool rss">
-        <%= link_to '', voice_path(@voice, :format => :rss), :class => 'cv-button--small info-tool-link', :title => 'RSS feed' %>
+        <%= link_to voice_path(@voice, :format => :rss), :class => 'cv-button--small info-tool-link', :title => 'RSS feed' do %>
+          <i class="mediafeed-sprite rss-icon"></i>
+        <% end %>
       </li>
       <li class="info-tool facebook-like-button" id="facebook-nav-button">
       </li>

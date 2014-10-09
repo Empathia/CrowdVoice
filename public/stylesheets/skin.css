@@ -195,59 +195,10 @@ a.mobile-menu__list-item-anchor:hover {
 
 hgroup {background-color: #121212; border-top-style: solid; border-top-color: #595959; box-shadow: -1px 0 0 rgba(255, 255, 255, 0.1) inset}
 .gaza-header {background: url('/images/bg/gaza-header.png') no-repeat}
-.info-tool-link {
-  background-image: url('/images/bg/sprites/voice_info_tools.png');
-  background-repeat: no-repeat;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, .5);
-}
-
-body.green .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools.png'); background-repeat: no-repeat}
-body.orange .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_orange.png'); background-repeat: no-repeat}
-body.yellow .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_yellow.png'); background-repeat: no-repeat}
-body.red .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_red.png'); background-repeat: no-repeat}
-body.blue .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_blue.png'); background-repeat: no-repeat}
-
-body.green .voice-headline-holder .info-tool-link,
-body.green .no-caption .info-tool-link,
-body.green .infobox-header .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_dark.png'); background-repeat: no-repeat}
-
-body.orange .voice-headline-holder .info-tool-link,
-body.orange .no-caption .info-tool-link,
-body.orange .infobox-header .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_dark.png'); background-repeat: no-repeat}
-
-body.yellow .voice-headline-holder .info-tool-link,
-body.yellow .no-caption .info-tool-link,
-body.yellow .infobox-header .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_dark.png'); background-repeat: no-repeat}
-
-body.red .voice-headline-holder .info-tool-link,
-body.red .no-caption .info-tool-link,
-body.red .infobox-header .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_dark.png'); background-repeat: no-repeat}
-
-body.blue .voice-headline-holder .info-tool-link,
-body.blue .no-caption .info-tool-link,
-body.blue .infobox-header .info-tool-link {background-image: url('/images/bg/sprites/voice_info_tools_dark.png'); background-repeat: no-repeat}
 
 .map-container {
   background-color: rgb(42, 43, 44);
 }
-
-.maps > .info-tool-link {background-position: 0 0}
-.maps > .info-tool-link:hover {background-position: 0 -25px}
-.widget > .info-tool-link {background-position: -25px 0}
-.widget > .info-tool-link:hover {background-position: -25px -25px}
-.rss > .info-tool-link {background-position: -50px 0}
-.rss > .info-tool-link:hover {background-position: -50px -25px}
-.twitter > .info-tool-link {background-position: -75px 0}
-.twitter > .info-tool-link:hover {background-position: -75px -25px}
-
-
-
-body.green .info-tool-link:hover {background-image: url('/images/bg/sprites/voice_info_tools.png'); background-repeat: no-repeat}
-body.orange .info-tool-link:hover {background-image: url('/images/bg/sprites/voice_info_tools_orange.png'); background-repeat: no-repeat}
-body.yellow .info-tool-link:hover {background-image: url('/images/bg/sprites/voice_info_tools_yellow.png'); background-repeat: no-repeat}
-body.red .info-tool-link:hover {background-image: url('/images/bg/sprites/voice_info_tools_red.png'); background-repeat: no-repeat}
-body.blue .info-tool-link:hover {background-image: url('/images/bg/sprites/voice_info_tools_blue.png'); background-repeat: no-repeat}
 
 .flag-tip > .tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip_down.png') no-repeat 0 0}
 .flag-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {color: #404040;}
@@ -430,111 +381,46 @@ body.blue .media-type-link {color: #2378ab}
 .menu-item.active:hover .menu-lines:after {
   background-color: #fff;
 }
-.nav-bar .info-tool-link {
-    border-radius: 2px;
-}
-.nav-bar .info-tool-link:hover {
-    background-color: #292929;
-}
-.nav-bar .maps .info-tool-link {
-    background-position: -24px 5px;
-}
-.nav-bar .widget .info-tool-link {
-    background-position: -54px 5px;
-}
-.nav-bar .rss .info-tool-link {
-    background-position: -85px 5px;
-}
-.nav-bar .maps .info-tool-link:hover {
-    background-position: -24px -24px;
-}
-.nav-bar .widget .info-tool-link:hover {
-    background-position: -54px -24px;
-}
-.nav-bar .rss .info-tool-link:hover {
-    background-position: -85px -24px;
-}
-/*
-    Info panel
-*/
-.more-button > span,
-.more-button > span:hover {
-    background: none repeat scroll 0 0 transparent;
-    border: medium none;
-    font-size: 12px;
-    text-decoration: underline;
-}
+
 /*
     Color overrides
 */
-body.yellow .nav-bar .info-tool-link,
-body.orange .nav-bar .info-tool-link,
-body.blue .nav-bar .info-tool-link,
-body.red .nav-bar .info-tool-link,
-body.green .nav-bar .info-tool-link {
-    background-image: url("/images/icons/sidebar-sprite.png");
-}
-.yellow .more-button > span:hover,
-.orange .more-button > span:hover,
-.blue .more-button > span:hover,
-.red .more-button > span:hover,
-.green .more-button > span:hover {
-  background: none;
-  border: none;
-  text-decoration: underline;
-}
-
 /************ yellow ************/
 .yellow .menu-item .menu-link {
     background: #EBC91C;
 }
-.yellow .more-button:hover {
-    background: none;
-}
-.yellow .more-button > span {
-    color: #EBC91C;
+.yellow .more-button {
+    border-color: #ebc91c;
 }
 
 /************ orange ************/
 .orange .menu-item .menu-link {
     background: #EC9415;
 }
-.orange .more-button:hover {
-    background: none;
-}
-.orange .more-button > span {
-    color: #EC9415;
+.orange .more-button {
+    border-color: #ec9415;
 }
 
 /************ blue ************/
 .blue .menu-item .menu-link {
     background: #4DB5FF;
 }
-.blue .more-button:hover {
-    background: none;
-}
-.blue .more-button > span {
-    color: #4DB5FF;
+.blue .more-button {
+    border-color: #4db5ff;
 }
 
 /************ red ************/
 .red .menu-item .menu-link {
     background: #F10F2A;
 }
-.red .more-button:hover {
-    background: none;
-}
-.red .more-button > span {
-    color: #F10F2A;
+.red .more-button {
+    border-color: #f10f2a;
 }
 
 /************ green ************/
 .green .menu-item .menu-link {
     background: #50B347;
 }
-.green .more-button:hover {
-    background: none;
-}
-.green .more-button > span {
-    color: #50B347;
+.green .more-button {
+    border-color: #50b347;
 }
