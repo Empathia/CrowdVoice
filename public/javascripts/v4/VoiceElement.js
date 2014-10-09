@@ -26,14 +26,14 @@ Class('VoiceElement').inherits(Widget)({
                 <div class="flag-div">\
                     <a href="" class="vote-post mediafeed-sprite flag" data-method="post" rel="nofollow" />\
                     <div class="tooltip flag-tip" data-post-id="">\
-                        <div class="tooltip-positioner">\
-                            <p class="tooltip-arrow"><span></span></p>\
+                        <div class="tooltip-positioner bottom">\
                             <div class="media-type-info">\
                                 <strong class="media-type-title"></strong>\
                                 <p class="flag-tooltip">\
                                     <span>Flag Inappropiate Content</span>\
                                 </p>\
                             </div>\
+                            <p class="tooltip-arrow"><span></span></p>\
                         </div>\
                     </div>\
                 </div>\

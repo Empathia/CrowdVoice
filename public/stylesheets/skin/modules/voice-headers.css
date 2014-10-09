@@ -109,23 +109,6 @@ body.orange .post > .post-paceholder > a {color: #ec9415}
 body.yellow .post > .post-paceholder > a {color: #ebc91c}
 body.blue .post > .post-paceholder > a {color: #4cb5ff}
 
-.tooltip-positioner > .tooltip-arrow > span {
-  border-style: solid;
-  border-color: rgba(0,0,0,.2) transparent;
-}
-.tooltip-positioner > .tooltip-arrow > span:after {
-  content: '';
-  border-style: solid;
-  border-color: white transparent;
-}
-.tooltip > .tooltip-positioner > .media-type-info,
-.tooltip-positioner > form > .grab-blog-widget {
-  border-color: rgba(0,0,0,.3);
-  border-style: solid;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, .4);
-}
 .with-image .tooltip-label {
   color: #909090;
 }

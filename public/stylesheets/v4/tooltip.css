@@ -1,0 +1,74 @@
+.tooltip {
+  display:none;
+  left: 50%;
+  position: absolute;
+  top: 25px;
+  z-index: 100;
+}
+
+.tooltip > .tooltip-positioner {
+  position: relative;
+  top: 0;
+  left: -30%;
+}
+
+.tooltip-positioner > .tooltip-arrow {
+  position: absolute;
+  width: 16px;
+  height: 12px;
+  top: 0;
+  left: 30%;
+  z-index: 40;
+}
+
+.tooltip-positioner > .tooltip-arrow > span {
+  position: relative;
+  border-width: 0 7px 7px;
+  top: 4px;
+  left: -50%;
+  display: block;
+
+  border-style: solid;
+  border-color: rgba(0,0,0,.2) transparent;
+}
+
+.tooltip-positioner > .tooltip-arrow > span:after {
+  position: absolute;
+  left: -6px;
+  top: 1px;
+  border-width: 0 7px 7px;
+
+  content: '';
+  border-style: solid;
+  border-color: white transparent;
+}
+
+.tooltip > .tooltip-positioner.bottom > .tooltip-arrow {
+  bottom: -7px;
+  top: initial;
+}
+.tooltip > .tooltip-positioner.bottom > .tooltip-arrow > span,
+.tooltip > .tooltip-positioner.bottom > .tooltip-arrow > span:after {
+  border-width: 7px 7px 0;
+}
+.tooltip > .tooltip-positioner.bottom > .tooltip-arrow > span:after {
+  top: -7px;
+}
+
+.tooltip > .tooltip-positioner > .media-type-info,
+.tooltip-positioner > form > .grab-blog-widget {
+  border-color: rgba(0,0,0,.3);
+  border-style: solid;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, .4);
+}
+
+.tooltip-positioner.notice {
+  display: none;
+}
+
+.tooltip-positioner.carousel {
+  display:none;
+}
+

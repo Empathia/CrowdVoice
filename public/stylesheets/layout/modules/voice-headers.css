@@ -224,45 +224,7 @@
         .post-type > .media > .tooltip {
           top: 24px;
         }
-        .tooltip {
-          display:none;
-          left: 50%;
-          position: absolute;
-          top: 25px;
-          z-index: 100;
-        }
-        .tooltip > .tooltip-positioner {
-          position: relative;
-          top: 0;
-          left: -30%;
-        }
-        .tooltip-positioner > .tooltip-arrow {
-          position: absolute;
-          width: 16px;
-          height: 12px;
-          top: 0;
-          left: 30%;
-          z-index: 40;
-        }
-        .tooltip-positioner > .tooltip-arrow > span {
-          position: relative;
-          border-width: 0 7px 7px;
-          top: 4px;
-          left: -50%;
-          display: block;
-        }
-        .tooltip-positioner > .tooltip-arrow > span:after {
-          position: absolute;
-          left: -6px;
-          top: 1px;
-          border-width: 0 7px 7px;
-        }
-        .tooltip-positioner.notice {
-          display: none;
-        }
-        .tooltip-positioner.carousel {
-          display:none;
-        }
+
         .media-type-info  {
           position: relative;
           top: 10px;
@@ -587,12 +549,6 @@
       padding: 2px 10px 1px;
       font-size: 11px;
       line-height: 11px;
-      float: left;
-    }
-    .tooltip .mode-button > .button > a {
-      padding: 2px 10px 3px;
-      font-size: 11px;
-      line-height: 10px;
       float: left;
     }
     .mode-button.selected:first-child > .button {
