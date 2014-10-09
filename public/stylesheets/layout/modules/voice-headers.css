@@ -531,8 +531,30 @@
       left: 10px;
     }
     .filters .search-input-wrapper .cv-input {
-      padding-left: 2.3em;
+      padding: 0 5.8em 0 2.3em;
       width: 236px;
+    }
+
+    .search-input-wrapper .results-feedback {
+      position: absolute;
+      top: .3em;
+      right: 2.5em;
+      font-size: 10px;
+      color: #a6a6a6;
+      padding: 0 0 0 1em;
+    }
+
+    .search-input-wrapper .results-feedback em {
+      font-style: normal;
+    }
+
+    .search-input-wrapper .search-clear {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: .15em .7em .5em .3em;
+      cursor: pointer;
+      color: #a6a6a6;
     }
 
     .mode > p {
