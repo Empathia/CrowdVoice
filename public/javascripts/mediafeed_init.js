@@ -147,6 +147,7 @@ $(function () {
         //remove all thumbnail pictures from posts
         voicesContainer.find('[src*="thumb_link-default.png"]').hide();
         voicesContainer.isotope({
+            transitionDuration: 0,
             animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
             resizable: false,
             itemSelector: '.voice-box',
@@ -159,6 +160,7 @@ $(function () {
                 voiceWrapper.removeClass('initial-state');
                 DynamicMeasures.update();
                 // re-trigger resize to help slow devices on proper arrangement
+                // Timeline.afterFetchActions();
                 setTimeout(function(){win.smartresize();}, 500);
             }
         });

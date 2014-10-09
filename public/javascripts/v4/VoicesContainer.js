@@ -59,14 +59,17 @@ Class('VoicesContainer').inherits(Widget)({
                     'display' : 'none'
                 });
 
-                voice.render(window.voicesContainer.element);
+                setTimeout(function(){
+                    voice.render(window.voicesContainer.element);    
+                }, 0);
+                
             })
 
             voicesContainer.element.isotope('appended', $(elements));
             Timeline.options.overlays.unbindEvents().bindEvents();
             Timeline.options.votes.unbindEvents().bindEvents();
             setTimeout(function() {
-                $(elements).fadeIn(300);
+                $(elements).hide().fadeIn(600);
 
                 Timeline.afterFetchActions();
             }, 500);
