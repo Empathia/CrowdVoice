@@ -42,10 +42,16 @@ Class('VoiceElement').inherits(Widget)({
             <div class="voice-unmoderated">\
               <ul class="clearfix">\
                 <li class="up flag-div">\
-                    <span><a class="vote-post thumb" data-method="post" rel="nofollow"></a></span>\
+                    <a class="vote-post thumb" data-method="post" rel="nofollow">\
+                        <i class="mediafeed-sprite allow-post"></i>\
+                        <span class="text">Allow</span>\
+                    </a>\
                 </li>\
                 <li class="down flag-div">\
-                  <span><a class="vote-post thumb" data-method="post" rel="nofollow"></a></span>\
+                  <a class="vote-post thumb" data-method="post" rel="nofollow">\
+                      <i class="mediafeed-sprite deny-post"></i>\
+                      <span class="text">Deny</span>\
+                  </a>\
                 </li>\
               </ul>\
               <div style="clear:both"></div>\
@@ -101,7 +107,7 @@ Class('VoiceElement').inherits(Widget)({
             var voice = this;
 
             this.element.addClass(this.sourceType);
-            
+
             if (!this.approved) {
                 this.element.addClass('unmoderated');
 
@@ -122,7 +128,7 @@ Class('VoiceElement').inherits(Widget)({
             });
 
             if (CV.isAdmin) {
-                this.element.find('a.close-voice-box').attr('href', this.postURL);    
+                this.element.find('a.close-voice-box').attr('href', this.postURL);
             } else {
                 this.element.find('a.close-voice-box').hide();
             }
@@ -204,7 +210,7 @@ Class('VoiceElement').inherits(Widget)({
             if (params.all) {
                 url = url + '&all=' + params.all;
             }
-            
+
             return url;
         }
     }

@@ -58,6 +58,10 @@
   line-height: 1.5;
   overflow:hidden;
 }
+
+.voice-box.unmoderated .voice-action {
+  display: none;
+}
 .voice-box > .voice-unmoderated {
   border-width: 1px 0 0 0;
 }
