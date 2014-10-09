@@ -67,7 +67,7 @@
             url : "<%= post.image.widget_thumb.url %>"
           } 
         },
-        apporved      : <%= post.approved? %>,
+        approved      : <%= post.approved? %>,
         description   : "<%= get_excerpt(post.description, 250) if post.description && post.description != '(no description)' %>",
         imageWidth    : <%= post.image_width %>,
         imageHeight   : <%= post.image_height %>,

@@ -39,6 +39,17 @@ Class('VoiceElement').inherits(Widget)({
                 </div>\
                 <div style="clear:both"></div>\
             </div>\
+            <div class="voice-unmoderated">\
+              <ul class="clearfix">\
+                <li class="up flag-div">\
+                    <span><a class="vote-post thumb" data-method="post" rel="nofollow"></a></span>\
+                </li>\
+                <li class="down flag-div">\
+                  <span><a class="vote-post thumb" data-method="post" rel="nofollow"></a></span>\
+                </li>\
+              </ul>\
+              <div style="clear:both"></div>\
+            </div>\
     ',
     VOICE_TYPE_HTML : '\
         <div class="voice-content-type-wrapper">\
@@ -50,7 +61,7 @@ Class('VoiceElement').inherits(Widget)({
         id            : 0,
         URL           : null,
         postURL       : null,
-        apporved      : false,
+        approved      : false,
         description   : null,
         imageWidth    : 0,
         imageHeight   : 0,
@@ -90,9 +101,19 @@ Class('VoiceElement').inherits(Widget)({
             var voice = this;
 
             this.element.addClass(this.sourceType);
-
-            if (this.approved) {
+            
+            if (!this.approved) {
                 this.element.addClass('unmoderated');
+
+                this.element.find('.voice-unmoderated');
+
+                this.element.find('.up.flag-div a').attr({
+                    'href' : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=1'
+                });
+
+                this.element.find('.down.flag-div a').attr({
+                    'href' : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
+                });
             }
 
             this.element.attr({

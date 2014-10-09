@@ -25,7 +25,7 @@ Class('VoicesContainer').inherits(Widget)({
                     name          : 'post_' + post.id,
                     id            : post.id,
                     image         : post.image,
-                    apporved      : post.approved,
+                    approved      : post.approved,
                     description   : CV.getExcerpt(post.description, 250),
                     imageWidth    : post.image_width,
                     imageHeight   : post.image_height,
