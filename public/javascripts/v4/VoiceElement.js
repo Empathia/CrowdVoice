@@ -74,7 +74,7 @@ Class('VoiceElement').inherits(Widget)({
             this.sourceElement = this.element.find('a.source-url');
 
             this.URL     = this.getURL();
-            this.postURL = this.isRawImage ? this.image.url : this.sourceURL;
+            this.postURL = this.isRawImage() ? this.image.url : this.sourceURL;
 
             this.setupElements();
         },

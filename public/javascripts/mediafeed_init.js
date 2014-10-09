@@ -150,7 +150,7 @@ $(function () {
             transitionDuration: 0,
             animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
              animationOptions: {
-                 duration: 0,
+                duration: 0,
                 easing: 'linear',
                 queue: false
             },
@@ -165,22 +165,11 @@ $(function () {
                 voiceWrapper.removeClass('initial-state');
                 DynamicMeasures.update();
                 // re-trigger resize to help slow devices on proper arrangement
-                // Timeline.afterFetchActions();
                 setTimeout(function(){win.smartresize();}, 500);
             }
         });
         isotopeReady = true;
     };
-
-    // isotope_init = function() {
-    //     $('.updating-wrapper').hide();
-    //     $('body').css('overflow', 'hidden');
-    //     voiceWrapper.removeClass('initial-state');
-    //     DynamicMeasures.update();
-    //     // re-trigger resize to help slow devices on proper arrangement
-    //     setTimeout(function(){win.smartresize();}, 500);
-    // }
-
 
     var bindEvents = function (){
         var infoSidebarTabController    = $('.info-tab-controller'),
