@@ -65,19 +65,25 @@ body{overflow: hidden;}
   display: inline-block;
   position: relative;
   float: left;
-  width: 45px;
-  height: 21px;
-  margin: 0 20px 0 0;
-  padding: 1px 0;
+  margin: 0 10px 0 0;
 }
-.tags-container .info-tags__tooltip {text-align: left; top: 18px}
+.tags-container .info-tags__tooltip {
+  text-align: left;
+  top: 18px;
+}
 .info-tags__tooltip .tooltip-positioner {left: -15%}
-.info-tags__tooltip .tooltip-arrow {left: 14%}
 .info-tags__tooltip .tag-tooltip-trigger {height: 10px}
-.info-tags__tooltip .media-type-info {padding: 5px 0 0 0}
-.info-tags__tooltip .mode-button {padding: 2px 0;}
-.info-tags__tooltip .mode-button .button { padding: 2px; float: left; border-width: 1px; margin: 4px 5px; }
-.voice-tags {min-width: 150px; padding: 5px;}
+.info-tags__tooltip .media-type-info {
+  padding: 0;
+}
+.info-tags__tooltip .footer {
+  padding: 10px 15px;
+  border-top: 1px solid #cccccc;
+}
+.voice-tags {
+  min-width: 150px;
+  padding: 10px 15px;
+}
 .voice-tags li {padding: 3px 0; font-size: 12px;}
 /*
   < 768

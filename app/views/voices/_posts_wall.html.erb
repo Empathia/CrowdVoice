@@ -5,7 +5,7 @@
       infosidebarIsPresent = true
     end
   end
-  
+
   mod = (params[:mod] ? 'mod' : 'public')
   mobile = (is_mobile? ? 'mobile' : 'other')
 %>
@@ -29,7 +29,9 @@
             <p class="post-paceholder"><span>Post a URL or </span><%= f.file_field :image %><a href="#" title="Upload an Image">Upload an Image</a><span class="cover"></span></p>
             <ul class="post-type">
               <li class="media tool-image">
-                <a class="media-type image-tool" href="#" title="Image"></a>
+                <a class="media-type image-tool" href="#" title="Image">
+                  <i class="mediafeed-sprite image-type-icon"></i>
+                </a>
                 <div class="tooltip">
                   <div class="tooltip-positioner">
                     <p class="tooltip-arrow"><span></span></p>
@@ -51,7 +53,9 @@
                 </div>
               </li>
               <li class="media tool-video">
-                <a class="media-type video-tool" href="#" title="Video"></a>
+                <a class="media-type video-tool" href="#" title="Video">
+                  <i class="mediafeed-sprite video-type-icon"></i>
+                </a>
                 <div class="tooltip">
                   <div class="tooltip-positioner">
                     <p class="tooltip-arrow"><span></span></p>
@@ -62,7 +66,9 @@
                 </div>
               </li>
               <li class="media tool-link">
-                <a class="media-type link-tool" href="#" title="Link"></a>
+                <a class="media-type link-tool" href="#" title="Link">
+                  <i class="mediafeed-sprite link-type-icon"></i>
+                </a>
                 <div class="tooltip link-img-post">
                   <div class="tooltip-positioner normal">
                     <p class="tooltip-arrow"><span></span></p>
@@ -95,8 +101,8 @@
                 </div>
               </li>
             </ul>
-            <%= f.text_field :source_url %>
-            <div class="post-button"><%= f.submit 'Post' %>
+            <%= f.text_field :source_url, :class => "cv-input cv-input--dynamic-color" %>
+            <div class="post-button"><%= f.submit 'Post', :class => "cv-button cv-button--dynamic-color" %>
               <div class="tooltip notice">
                 <div class="tooltip-positioner">
                   <p class="tooltip-arrow"><span></span></p>
@@ -114,41 +120,42 @@
       <div>
         <form>
           <div class="tags-container">
-            <div class="tag-tooltip-trigger">
-              Tags
+            <div class="tag-tooltip-trigger cv-button cv-button--small cv-button--light">
+              TAGS
             </div>
-              <div class="tooltip">
-                <div class="tooltip-positioner">
-                  <p class="tooltip-arrow"><span></span></p>
-                  <div class="media-type-info">
-                      <ul class="voice-tags"></ul>
-                      <div class="mode-button">
-                        <p class="button">
-                          <a href="<%= voice_path(@voice)%>?tags=" class="active filter-apply-button">
-                            Apply
-                          </a>
-                        </p>
-                      </div>
-                      <div class="clearfix"></div>
+            <div class="tooltip">
+              <div class="tooltip-positioner">
+                <div class="media-type-info">
+                  <ul class="voice-tags"></ul>
+                  <div class="footer">
+                    <a href="<%= voice_path(@voice)%>?tags=" class="active filter-apply-button cv-button--small cv-button--light dynamic">
+                      Apply
+                    </a>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
 
           <fieldset class="filters">
-            <p>Show</p>
+            <p>Show:</p>
             <label class="photos-label"><input type="checkbox" name="image" class="filter" checked="checked" />Photos</label>
             <label class="videos-label"><input type="checkbox" name="video" class="filter" checked="checked" />Videos</label>
             <label class="links-label"><input type="checkbox" name="link"  class="filter" checked="checked" />Links</label>
             <label class="tweets-label"><input type="checkbox" name="tweets" />Tweets</label>
+            <div class="search-input-wrapper">
+              <input class="cv-input cv-input--small cv-input--dynamic-color cv-input--rounded" type="text" placeholder="Search content"/>
+              <i class="mediafeed-sprite search-icon"></i>
+            </div>
           </fieldset>
         </form>
       </div>
       <form class="form-right">
         <fieldset class="mode">
-          <p>Mode</p>
+          <p>Mode:</p>
           <ul>
-            <li class="mode-button <%= 'selected' unless params[:mod] %> public"><p class="button"><%= link_to "Public", voice_path(@voice, :all => true) %></p>
+            <li class="mode-button <%= 'selected' unless params[:mod] %> public">
+              <%= link_to "Public", voice_path(@voice, :all => true), :class => "cv-button--small cv-button--light dynamic" %>
               <div class="tooltip">
                 <div class="tooltip-positioner">
                   <p class="tooltip-arrow"><span></span></p>
@@ -161,7 +168,8 @@
                 </div>
               </div>
             </li>
-            <li class="mode-button <%= 'selected' if params[:mod] %> mod"><p class="button"><%= link_to "Moderator", voice_path(@voice, params.merge({:mod => 1}) ) %></p>
+            <li class="mode-button <%= 'selected' if params[:mod] %> mod">
+              <%= link_to "Moderator", voice_path(@voice, params.merge({:mod => 1}) ), :class => "cv-button--small cv-button--light dynamic" %>
               <div class="tooltip">
                 <div class="tooltip-positioner">
                   <p class="tooltip-arrow"><span></span></p>

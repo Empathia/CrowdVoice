@@ -17,22 +17,38 @@
   background-position: -24px 0;
 }
 
-.mediafeed-sprite.link-icon {
+.mediafeed-sprite.link-icon,
+.mediafeed-sprite.link-type-icon,
+.mediafeed-sprite.image-icon,
+.mediafeed-sprite.image-type-icon,
+.mediafeed-sprite.video-icon,
+.mediafeed-sprite.video-type-icon {
   width: 16px;
   height: 16px;
+}
+
+.mediafeed-sprite.link-icon {
   background-position: 0 -24px;
 }
 
 .mediafeed-sprite.image-icon {
-  width: 16px;
-  height: 16px;
   background-position: -48px -24px;
 }
 
 .mediafeed-sprite.video-icon {
-  width: 16px;
-  height: 16px;
   background-position: -24px -24px;
+}
+
+.mediafeed-sprite.link-type-icon {
+  background-position: 0 -72px;
+}
+
+.mediafeed-sprite.image-type-icon {
+  background-position: -24px -72px;
+}
+
+.mediafeed-sprite.video-type-icon {
+  background-position: -48px -72px;
 }
 
 .mediafeed-sprite.flag {
@@ -76,4 +92,10 @@
   width: 9px;
   height: 9px;
   background-position: -96px -48px;
+}
+
+.mediafeed-sprite.search-icon {
+  width: 10px;
+  height: 10px;
+  background-position: -120px -48px;
 }

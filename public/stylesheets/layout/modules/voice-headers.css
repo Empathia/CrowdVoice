@@ -58,9 +58,6 @@
         right: 0;
         margin: 5px 0;
       }
-        .top-right .facebook-like-button {
-            width: 90px;
-        }
       .hgroup-theme-image {
         border-bottom-width: 1px;
         position: absolute;
@@ -116,9 +113,8 @@
     }
 
   .post-and-actions {
-		height: 54px;
-		padding-bottom: 9px;
-		padding-top: 10px;
+		height: 48px;
+		padding-top: 1em;
 		position: relative;
 		width: 100%;
 	}
@@ -153,11 +149,10 @@
           right: -84px;
         }
           .post > .post-button > input[type='submit'] {
-            float: left;
             font-size: 18px;
             padding:0 18px;
+            width: 85px;
             height: 35px;
-            border-width: 0;
           }
         .post > .post-paceholder, .empty-msg {
           font-size: 15px;
@@ -185,19 +180,47 @@
         .post > .post-type {
           position: absolute;
           right: 6px;
-          top: 7px;
-          /*z-index: 3*/
+          top: 10px;
         }
         .post-type > .media {
           float: left;
-          margin-right: 5px;
+          margin-right: 1em;
           position: relative;
         }
           .post-type > .media > .media-type {
             display: block;
-            width: 22px;
-            height: 25px;
           }
+
+          .green .media-type.image-tool:hover i,
+          .green .media-type.video-tool:hover i,
+          .green .media-type.link-tool:hover i {
+            background-position-y: -96px;
+          }
+
+          .blue .media-type.image-tool:hover i,
+          .blue .media-type.video-tool:hover i,
+          .blue .media-type.link-tool:hover i {
+            background-position-y: -120px;
+          }
+
+          .yellow .media-type.image-tool:hover i,
+          .yellow .media-type.video-tool:hover i,
+          .yellow .media-type.link-tool:hover i {
+            background-position-y: -144px;
+          }
+
+          .red .media-type.image-tool:hover i,
+          .red .media-type.video-tool:hover i,
+          .red .media-type.link-tool:hover i {
+            background-position-y: -168px;
+          }
+
+          .orange .media-type.image-tool:hover i,
+          .orange .media-type.video-tool:hover i,
+          .orange .media-type.link-tool:hover i {
+            background-position-y: -192px;
+          }
+
         .post-type > .media > .tooltip {
           top: 24px;
         }
@@ -408,7 +431,7 @@
 		float: left;
 		padding-bottom: 10px;
 		padding-left: 28px;
-		padding-top: 11px;
+		padding-top: 10px;
 		width: 100%;
 	}
     .form-right {
@@ -481,7 +504,6 @@
       width: 157px;
     }
     .filters {
-      padding:3px 0 0 0;
     }
     .filters,
     .mode {
@@ -492,9 +514,30 @@
       font-size: 12px;
       margin-top: -1px;
     }
+
+    .filters > p,
+    .filters > label {
+      padding-top: 1px;
+    }
+
+    .filters .search-input-wrapper {
+      position: relative;
+      float: left;
+      margin-left: 5px;
+    }
+    .filters .search-input-wrapper i {
+      position: absolute;
+      top: 6px;
+      left: 10px;
+    }
+    .filters .search-input-wrapper .cv-input {
+      padding-left: 2.3em;
+      width: 236px;
+    }
+
     .mode > p {
       font-size: 12px;
-      padding: 3px 10px 0 0;
+      padding: 1px 10px 0 0;
     }
     .filters > label {
       padding-right: 10px;
@@ -686,14 +729,6 @@
     padding: 7px 5px 5px 5px;
     height: 39px;
     z-index: 2;
-  }
-  .filters-and-mode .tags-container {
-    height: 26px;
-    width: 45px;
-  }
-  .filters-and-mode .tags-container .tag-tooltip-trigger {
-    height: auto;
-    line-height: 2em;
   }
   .info-tags__tooltip.tooltip {
     bottom: 0;
