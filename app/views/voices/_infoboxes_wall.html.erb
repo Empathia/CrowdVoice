@@ -37,7 +37,7 @@
 <%= include_javascripts :infographics_pack %>
 
 <script type="text/javascript">
-  var posts_votes = <%= @votes.to_json.html_safe %>;
+  CV.posts_votes = <%= @votes.to_json.html_safe %>;
   new FacebookNavButton({
         fbPath : "<%= fb_path %>"
       });

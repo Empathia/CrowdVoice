@@ -88,6 +88,8 @@ Class('VoiceElement').inherits(Widget)({
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
+            var voice = this;
+
             this.sourceElement = this.element.find('a.source-url');
 
             this.URL     = this.getURL();
@@ -101,6 +103,17 @@ Class('VoiceElement').inherits(Widget)({
                     window.overlays.buildOverlay( link );
                 }
             }
+
+            if (!this.approved) {
+                this.element.find('.vote-post.thumb').bind('click', function() {
+                    $.post(this.href, function(data) {
+                        voice.element.find('.voice-unmoderated').remove();
+                        voice.element.removeClass('unmoderated');
+                    });
+                    return false;
+                });
+            }
+            
         },
 
         setupElements : function() {

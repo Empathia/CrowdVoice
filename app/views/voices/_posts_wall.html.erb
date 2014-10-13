@@ -198,7 +198,7 @@
   </header>
   <section class="voice-wrapper initial-state">
     <script>
-      var posts_votes = <%= @votes.to_json.html_safe %>;
+      CV.posts_votes = <%= @votes.to_json.html_safe %>;
     </script>
     <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
 
