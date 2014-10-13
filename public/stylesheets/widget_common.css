@@ -1,0 +1,140 @@
+/* RESET
+----------------------------------*/
+* {margin: 0; padding: 0}
+ul, li {list-style-type: none}
+a {text-decoration: none}
+img {border: none}
+
+/* INIT
+----------------------------------*/
+.left  {float: left}
+.right {float: right}
+.clear {clear: both}
+.hide-text {display: block; font-size: 0; line-height: 0; text-indent: -9999px; color: transparent}
+
+/* TYPO
+----------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  color: #909090;
+}
+.widget-rtl .widget-voice h3 {float: right}
+.widget-voice p {line-height: 18px; margin: 0}
+
+/* GENERAL
+----------------------------------*/
+.widget-rtl .voice-thumb {float: right}
+.voice-thumb {float: left; display: inline; border-radius: 4px; overflow: hidden;}
+.voice-thumb img {display: block}
+a.widget-icon {background: transparent url('/images/sprite-widget-2.png') no-repeat}
+a.widget-icon.crowdvoice-logo {width: 107px; height: 18px; margin-top: 8px;}
+a.widget-icon.twitter {width: 17px; height: 17px; background-position: -17px -18px}
+a.widget-icon.facebook {width: 17px; height: 17px; background-position: 0 -18px}
+a.widget-icon.rss {width: 17px; height: 17px; background-position: -34px -18px}
+a.widget-icon.follow {width: 52px; height: 17px; background-position: -51px -18px;}
+a.widget-icon.see-more {background-position: 0 -40px; margin: 5px auto 0; height: 20px; width: 104px}
+
+/* HEADER
+----------------------------------*/
+.voice-header {background-color: #000; border-radius: 3px 3px 0 0;}
+.voice-header > .voice-nav {padding: 0 7px;}
+.voice-header > .voice-nav ul.voice-social {text-align: right}
+.voice-header > .voice-nav ul.voice-social li {float: left; display: inline; margin-left: 5px}
+.voice-header > .voice-info {
+  position: relative;
+  background-color: #333;
+}
+.voice-header > .voice-info::before {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+}
+
+.voice-header > .voice-info h3 {
+  position: relative;
+  text-align: center; text-transform: uppercase;
+}
+.voice-header .voice-nav ul.voice-social {padding-right:0px;}
+
+/* CONTENT
+----------------------------------*/
+.voice-content {
+  position: relative;
+}
+.voice-content::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background-color: rgba(0,0,0,.15);
+}
+.voice-content ul.voice-posts {padding: 0; overflow-y: auto; overflow-x: hidden; margin: 0}
+.voice-content ul.voice-posts li a {display: block}
+.voice-content ul.voice-posts .title {
+  display: block;
+  text-transform: capitalize
+}
+.voice-content ul.voice-posts .description {
+  display: block;
+}
+
+/* FOOTER
+----------------------------------*/
+.voice-footer {
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  height: 21px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2),
+    inset 0 -5px 0 rgba(0,0,0,.1);
+}
+
+.voice-footer a {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.voice-footer span {
+  float: right;
+  margin: 3px 0 0 6px;
+  border-width: 4px 0 4px 4px;
+  border-style: solid;
+  border-color: transparent inherit;
+}
+
+/* WIDGET SIZES
+----------------------------------*/
+    /* DEFAULT ----------------------------*/
+/*    .default-size ul.voice-posts::-webkit-scrollbar {width: 15px; height: 15px} */
+    .default-size .voice-header .voice-nav ul.voice-social {margin: 8px 0}
+    .default-size .voice-header .voice-info {padding: 15px}
+    .default-size .voice-content {background: #f5f6f6 url('/images/dot-gray.gif') right top repeat-y; border-width: 1px; border-color: #d4d4d4; border-style: none solid}
+    .default-size .voice-content ul.voice-posts li a {margin: 0; font-size: 13px; overflow: hidden;}
+
+    /* SMALL ----------------------------*/
+    .small-size ul.voice-posts::-webkit-scrollbar {width: 13px; height: 13px}
+    .small-size .voice-header .voice-nav ul.voice-social {margin-top: 8px}
+    .small-size .voice-header .voice-info {padding: 10px 15px}
+    .small-size .voice-content {background-color: #fff}
+
+/* LISTS SIZES
+----------------------------------*/
+    /* SMALL ----------------------------*/
+    .small-list ul.voice-posts {height: 230px}
+
+    /* MEDIUM ---------------------------*/
+    .medium-list ul.voice-posts {height: 330px}
+
+    /* TALL -----------------------------*/
+    .tall-list ul.voice-posts {height: 430px}
+
+.widget-rtl .voice-footer span {
+  float: left;
+  margin: 3px 6px 0 0;
+  border-width: 4px 4px 4px 0;
+}

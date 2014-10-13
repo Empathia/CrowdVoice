@@ -1,4 +1,4 @@
-<div class="widget-voice <%= @list_height_size %> <%= @list_width_size %> <%= 'widget-all-voices' unless @scope_this %> <%= 'widget-rtl' if @rtl%>" <%= "DIR='rtl'" if @rtl %> >
+<div class="widget-voice <%= @list_height_size %> <%= @list_width_size %> <%= 'widget-all-voices' unless @scope_this %> <%= @voice.theme if @scope_this %> <%= 'widget-rtl' if @rtl%>" <%= "DIR='rtl'" if @rtl %> >
   <%= render :partial => "top_header" %>
   <div class="voice-content">
     <ul class="voice-posts">

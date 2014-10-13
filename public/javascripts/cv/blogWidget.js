@@ -7,6 +7,7 @@ Class('BlogWidget')({
             this.show_description = this.element.find('.description-checkbox');
             this.show_rtl = this.element.find('.rtl-checkbox');
             this.field = this.element.find('.blog-widget-textarea');
+            this.preview = this.element.find('.preview-placeholder');
             this._template = this.field.data('template');
             this._bindEvents();
         },
@@ -22,19 +23,24 @@ Class('BlogWidget')({
         },
 
         _updateCode: function() {
-            var params = {
+            var params, code;
+
+            params = {
                 size: this.size(),
                 show_description: this.showDescription(),
                 scope: this.scope(),
                 rtl: this.rtl(),
                 height: this.height()
-            },
+            };
+
             code = this._template.replace(/{{size}}/g, params.size)
                 .replace(/{{show_description}}/g, params.show_description)
                 .replace(/{{scope}}/g, params.scope)
                 .replace(/{{height}}/g, params.height)
                 .replace(/{{rtl}}/g, params.rtl);
+
             this.field.val(code);
+            this.preview.empty().append(code);
         },
 
         height: function () {

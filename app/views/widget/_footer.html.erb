@@ -1,11 +1,13 @@
 <% if @scope_this %>
   <div class="voice-footer">
-    <%= link_to "See More", (@scope_this ? @voice : root_url), :title => "See More", :class => "hide-text see-more widget-icon", :target => "_top" %>
+    <% link_to @voice, :title => "See More", :class => "", :target => "_top" do %>
+      See More <span></span>
+    <% end %>
   </div>
 <% else %>
   <div class="voice-footer">
-    <div>
-      <%= link_to "More Topics", (@scope_this ? @voice : root_url), :title => "More Topics", :class => "hide-text see-more widget-icon", :target => "_top" %>
-    </div>
+    <% link_to root_url, :title => "More Topics", :class => "", :target => "_top" do %>
+      See More Topics <span></span>
+    <% end %>
   </div>
 <% end %>

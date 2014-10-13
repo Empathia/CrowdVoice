@@ -574,6 +574,10 @@
     top: 50%;
     margin-top: -28px;
   }
+
+  .info-tool.widget .tooltip {
+    display: block !important;
+  }
 /*
   < 768
 */

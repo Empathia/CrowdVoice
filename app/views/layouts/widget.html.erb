@@ -10,6 +10,7 @@
         <%= stylesheet_link_tag 'https://crowdvoice-production-bucket.s3.amazonaws.com/widget.css' %>
       <% end %>
     <% else %>
+      <%= stylesheet_link_tag 'widget_common' %>
       <% unless @scope_this %>
         <%= stylesheet_link_tag 'widget_all' %>
       <% else %>

@@ -31,9 +31,6 @@ a {
   color: #000;
 }
 /************ yellow ************/
-.yellow .more-button:hover {
-  background: none;
-}
 .yellow .more-button .button-content {
   color: #EBC91C;
 }
@@ -120,9 +117,6 @@ a {
 }
 /************ yellow ************/
 /************ orange ************/
-.orange .more-button:hover {
-    background: none;
-}
 .orange .day .element:hover,
 .orange .day .element.active {
   box-shadow: 0 0 3px 1px #EC9415;
@@ -208,9 +202,6 @@ a {
 }
 /************ orange ************/
 /************ blue ************/
-.blue .more-button:hover {
-    background: none;
-}
 .blue .day .element:hover,
 .blue .day .element.active {
   box-shadow: 0 0 3px 1px #4DB5FF;
@@ -296,9 +287,6 @@ a {
 }
 /************ blue ************/
 /************ red ************/
-.red .more-button:hover {
-    background: none;
-}
 .red .day .element:hover,
 .red .day .element.active {
   box-shadow: 0 0 3px 1px #F10F2A;
@@ -384,9 +372,6 @@ a {
 }
 /************ red ************/
 /************ green ************/
-.green .more-button:hover {
-    background: none;
-}
 .green .day .element:hover,
 .green .day .element.active {
   box-shadow: 0 0 3px 1px #50B347;
