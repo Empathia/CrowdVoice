@@ -111,8 +111,6 @@ Class('VoiceElement').inherits(Widget)({
             if (!this.approved) {
                 this.element.addClass('unmoderated');
 
-                this.element.find('.voice-unmoderated');
-
                 this.element.find('.up.flag-div a').attr({
                     'href' : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=1'
                 });
@@ -120,6 +118,8 @@ Class('VoiceElement').inherits(Widget)({
                 this.element.find('.down.flag-div a').attr({
                     'href' : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
                 });
+            } else {
+                this.element.find('.voice-unmoderated').hide();
             }
 
             this.element.attr({
