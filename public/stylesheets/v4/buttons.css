@@ -79,7 +79,7 @@
 .blue .cv-button--light.dynamic {
   color: #4db5ff;
 }
-.yelow .cv-button--light.dynamic {
+.yellow .cv-button--light.dynamic {
   color: #ebc91c;
 }
 .red .cv-button--light.dynamic {
@@ -112,4 +112,20 @@
 
 .orange .cv-button--dynamic-color {
   background-color: #ec9415;
+}
+
+/*
+ * variations
+ */
+.cv-button.with-arrow:hover .cv-button--arrow {
+  border-width: 0 .3em .3em;
+}
+
+.cv-button--arrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: .2em;
+  border-width: .3em .3em 0;
+  border-style: solid;
+  border-color: #999 transparent;
 }
