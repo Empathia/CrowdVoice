@@ -20,11 +20,11 @@ Class('Timeline')({
         
         Timeline.applySpinner();
         
-        window.voicesContainer.appendFromJSON(timeline.preloadedVoices);
+        CV.voicesContainer.appendNextPage();
 
-        $.getJSON(location.pathname + params, function(data) {
-            timeline.preloadedVoices = data;
-        });
+        // $.getJSON(location.pathname + params, function(data) {
+        //     timeline.preloadedVoices = data;
+        // });
     },
 
     loadDate: function (date, callback) {
@@ -85,17 +85,19 @@ Class('Timeline')({
     bindEvents: function(){
         var that = this;
         if (!isDevice){
-            this.voiceScroller.scroll(function(e){
-                var maxScrollY = e.target.scrollHeight - e.target.offsetHeight,
+
+            this.voiceScroller.bind('mousewheel', function(e) {
+                var maxScrollY = this.scrollHeight - this.offsetHeight,
                     hasMinPostCount = $('.voice-box').length >= _postCount,
-                    isAtBottom = e.target.scrollTop >= (maxScrollY - 300),
+                    isAtBottom = this.scrollTop >= (maxScrollY - 300),
                     isSmallScreen = window.innerWidth <= 1024;
                 
                 that.debouncePositionUpdate();
 
-                if (isAtBottom && !isSmallScreen && hasMinPostCount) {
+                if (isAtBottom && !isSmallScreen) {
                     that.fetchPosts(false);
                 }
+
             });
         }
 

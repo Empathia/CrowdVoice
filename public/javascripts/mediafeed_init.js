@@ -18,8 +18,9 @@ $(function () {
         columns         = null,
         TweetsSidebar   = new ToggleTweets('.tweets-sidebar', { hidden : true, specialClass: 'media_feed' }),
         sidebarDisplay  = true,
-        isotopeReady    = false,
         sidebarToggler, relayoutTimeout, backgroundTimeout, wallSizeTimeout;
+
+        window.isotopeReady    = false;
 
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );

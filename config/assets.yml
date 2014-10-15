@@ -15,6 +15,7 @@ javascripts:
     - *neon
     - public/javascripts/include/jquery.placeholder.js
     - public/javascripts/application.js
+    - public/javascripts/v4/DelayedEventEmitter.js
   jscroll: &jscroll
     - public/javascripts/include/jquery.jscrollpane.min.js
     - public/javascripts/include/jquery.mousewheel.js
@@ -72,6 +73,7 @@ javascripts:
     - public/javascripts/cv/filters.js
     - public/javascripts/cv/votes.js
     - public/javascripts/cv/blogWidget.js
+    - public/javascripts/v4/jquery.mousewheel.js
     - public/javascripts/cv/timeline.js
     - public/javascripts/cv/toggleTweets.js
     - public/javascripts/include/highcharts.js
@@ -80,6 +82,8 @@ javascripts:
     - public/javascripts/mediafeed_init.js
     - public/javascripts/v4/VoicesContainer.js
     - public/javascripts/v4/VoiceElement.js
+    - public/javascripts/v4/vendor/fuse.js
+    - public/javascripts/v4/MediaFeedSearch.js
   infobox: &infobox
     - public/javascripts/include/jquery.isotope.1.5.19.min.js
     - public/javascripts/include/smart-resize.js

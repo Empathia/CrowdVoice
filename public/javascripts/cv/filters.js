@@ -14,24 +14,24 @@ Class('Filters')({
         _bindEvents: function () {
             var that = this;
 
-            this.filters.click(function () {
-                var self = this;
-                var checked = that.filters.filter(':checked');
-                var href = '';
+            // this.filters.click(function () {
+            //     var self = this;
+            //     var checked = that.filters.filter(':checked');
+            //     var href = '';
 
-                if(checked.length > 0) {
-                    var filters = $('.filters input:checkbox:checked').map(function(){
-                        return $(this).attr('name');
-                    }).get().join(',');
-                    href = location.href.split('?')[0].replace('#', '') + '/?filters=' + filters;
-                } else {
-                    href = location.href.split('?')[0].replace('#', '');
-                }
-                $.getScript(href, function(){
-                    that.filter(self.name, $(self).is(':checked'));
-                });
-                that.element.trigger('filter.apply');
-            });
+            //     if(checked.length > 0) {
+            //         var filters = $('.filters input:checkbox:checked').map(function(){
+            //             return $(this).attr('name');
+            //         }).get().join(',');
+            //         href = location.href.split('?')[0].replace('#', '') + '/?filters=' + filters;
+            //     } else {
+            //         href = location.href.split('?')[0].replace('#', '');
+            //     }
+            //     $.getScript(href, function(){
+            //         that.filter(self.name, $(self).is(':checked'));
+            //     });
+            //     that.element.trigger('filter.apply');
+            // });
         },
 
         toggleModerator: function (on) {

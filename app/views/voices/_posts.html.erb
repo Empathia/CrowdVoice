@@ -46,63 +46,36 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      window.voicesContainer = new VoicesContainer({
+      CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
-        element  : $('.voices-container')
-      });
-      
-      var voice;
-
-    <% @posts.each  do |post| %>
-
-      voice = new VoiceElement({
-        name          : 'post_' + <%= post.id %>,
-        id            : <%= post.id %>,
-        image         : {
-          thumb : {
-            url : "<%= post.image.thumb.url %>"
-          },
-          url : "<%= post.image.url %>",
-          widgetThumb : {
-            url : "<%= post.image.widget_thumb.url %>"
-          } 
-        },
-        approved      : <%= post.approved? %>,
-        description   : "<%= get_excerpt(post.description, 250) if post.description && post.description != '(no description)' %>",
-        imageWidth    : <%= post.image_width %>,
-        imageHeight   : <%= post.image_height %>,
-        thumbURL      : "<%= post.image.thumb.url %>",
-        negativeVotes : <%= post.negative_votes_count %>,
-        positiveVotes : <%= post.positive_votes_count %>,
-        overallScore  : <%= post.overall_score %>,
-        sourceService : "<%= post.source_service %>",
-        sourceType    : "<%= post.source_type %>",
-        sourceURL     : "<%= post.source_url %>",
-        title         : "<%= post.title if post.title != '(no title)' %>",
-        voiceID       : <%= post.voice_id %>,
-        createdAt     : "<%= post.created_at.beginning_of_day.to_date %>",
-        timeAgo       : "<%= time_ago_in_words(post.created_at) %>",
-        service       : "<%= post.source_url.nil? ? Post.detect_service(post.source_url) : post.source_url %>"
+        element  : $('.voices-container'),
+        perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
 
-      voice.render(window.voicesContainer.element);
-      window.voicesContainer.appendChild(voice);
-    <% end %>
-      Timeline.currentPage = 2;
+      CV.mediaFeedSearch = new MediaFeedSearch({
+        element : $('.mediafeed-search')
+      });
 
-      var page = Timeline.currentPage;
-
-      console.log('preloadpage', page)
+      var page = CV.voicesContainer.currentPage;
 
       var params = '?page=' + page;
       
       if ($.deparam.querystring().mod) {
           params += '&mod=1';
       }
+
+      params += "&fetchAll=1"
     
       $.getJSON(location.pathname + params, function(data) {
-          Timeline.preloadedVoices = data;
+          CV.voicesContainer.preloadedVoices = data;
+          CV.voicesContainer.page = page;
+          CV.voicesContainer.appendNextPage();
       });
+
+      CV.mediaFeedSearch = new MediaFeedSearch({
+        element : $('.mediafeed-search')
+      });
+
     });
   </script>
 

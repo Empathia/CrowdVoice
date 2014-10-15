@@ -30,11 +30,16 @@ class VoicesController < ApplicationController
 
     scope = scope.by_tags(params[:tags]) if params[:tags]
 
-    per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
+    if params[:fetchAll]
+      query = scope.to_sql
+    else
+      per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
 
-    query = scope.page(params[:page]).per(per_page).to_sql
+      query = scope.page(params[:page]).per(per_page).to_sql
+    end
 
-    # query = scope.page(params[:page]).per(10).to_sql
+
+    # query = scope.to_sql
 
     if params[:start]
       query.sub!("WHERE", "FORCE INDEX (index_posts_on_created_at) WHERE") unless params[:tags]
