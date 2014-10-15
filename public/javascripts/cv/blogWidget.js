@@ -6,7 +6,6 @@ Class('BlogWidget')({
             this.element = $('.grab-blog-widget');
             this.sizes = this.element.find('.widget-height');
             this.scopes = this.element.find('.widget-scope');
-            this.show_description = this.element.find('.description-checkbox');
             this.show_rtl = this.element.find('.rtl-checkbox');
             this.field = this.element.find('.blog-widget-textarea');
             this.preview = this.element.find('.preview-placeholder');
@@ -38,7 +37,7 @@ Class('BlogWidget')({
                 alert('Copied!');
             });
 
-            this.sizes.add(this.show_description).add(this.show_rtl).add(this.scopes).bind('click', function () {
+            this.sizes.add(this.show_rtl).add(this.scopes).bind('click', function () {
                 that._updateCode();
             });
 
@@ -54,14 +53,12 @@ Class('BlogWidget')({
 
             params = {
                 size: this.size(),
-                show_description: this.showDescription(),
                 scope: this.scope(),
                 rtl: this.rtl(),
                 height: this.height()
             };
 
             code = this._template.replace(/{{size}}/g, params.size)
-                .replace(/{{show_description}}/g, params.show_description)
                 .replace(/{{scope}}/g, params.scope)
                 .replace(/{{height}}/g, params.height)
                 .replace(/{{rtl}}/g, params.rtl);
@@ -92,10 +89,6 @@ Class('BlogWidget')({
 
         scope: function() {
             return this.scopes.filter(':checked').val();
-        },
-
-        showDescription: function() {
-            return this.show_description.is(':checked') ? '1' : '0';
         },
 
         rtl: function(){

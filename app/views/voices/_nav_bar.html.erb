@@ -92,12 +92,6 @@
                     </div>
                     <div class="misc-options options-container">
                       <p>
-                        <label class="blog-widget-label" for="blog-widget-show-description">
-                          <input id="blog-widget-show-description" class="description-checkbox" type="checkbox" value="1" name="description" />
-                          Include a description
-                        </label>
-                      </p>
-                      <p>
                         <label class="blog-widget-label" for="blog-widget-show-rtl">
                           <input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />
                           Set orientation from right to left (arabic)
@@ -105,7 +99,9 @@
                       </p>
                     </div>
                     <div class="code-output">
-                      <textarea id="js-widget-generated-code" class="blog-widget-textarea cv-input" data-template="<iframe src='http://localhost:3000/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&show_description={{show_description}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&show_description=0&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe></textarea>
+                      <textarea id="js-widget-generated-code"
+                        class="blog-widget-textarea cv-input"
+                        data-template="<iframe src='http://localhost:3000/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe></textarea>
                       <button id="js-copy-code-button" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>
                     </div>
                   </div>

@@ -5,9 +5,6 @@
       <%= image_tag post.image.url(:widget_thumb), :alt => title, :size => @post_image_size %>
     </div>
     <span class="title"><%= title %></span>
-    <% if @show_description %>
-      <span class="description"><%= post.description if post.description != '(no description)' %></span>
-    <% end %>
     <span class="clear"></span>
   <% end %>
 </li>

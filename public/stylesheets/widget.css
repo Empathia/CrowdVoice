@@ -1,24 +1,6 @@
-/* ELEMENTS
-----------------------------------*/
-/*
- * ul.voice-posts::-webkit-scrollbar {background: -webkit-gradient(linear, left center, right center, from(#f5f7f7), to(#eff3f4))}
-ul.voice-posts::-webkit-scrollbar-track:vertical:disabled:corner-present {margin-bottom: 5px}
-ul.voice-posts::-webkit-scrollbar-thumb:vertical {background: -webkit-gradient(linear, left center, right center, from(#e5e5e5), to(#d4d4d4)); -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, .4); border: 1px solid #c7c8c9; -webkit-border-radius: 8px}
-ul.voice-posts::-webkit-scrollbar-track-piece:vertical {background: -webkit-gradient(linear, left center, right center, from(#e7e8eb), to(#f3f4f6)); border-left: 1px solid #d6dbdc; border-right: 1px solid #ebeeee; border-top: 1px solid #d6dbdc; border-bottom: 1px solid #d6dbdc; -webkit-border-radius: 8px}
-ul.voice-posts::-webkit-scrollbar-track-piece:vertical:start {margin-top: -6px}
-ul.voice-posts::-webkit-scrollbar-track-piece:vertical:end {margin-bottom: -6px}
-ul.voice-posts::-webkit-scrollbar-button:vertical:decrement,
-ul.voice-posts::-webkit-scrollbar-button:vertical:increment {-webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, .4); border-left: 1px solid #d6dbdc; border-right: 1px solid #e1e1e1; height: 20px}
-ul.voice-posts::-webkit-scrollbar-button:vertical:decrement {background: transparent url('/images/scrollbar-top.gif') center 5px no-repeat}
-ul.voice-posts::-webkit-scrollbar-button:vertical:increment {background: transparent url('/images/scrollbar-bottom.gif') center 11px no-repeat}
-ul.voice-posts::-webkit-scrollbar-button:start:decrement,
-ul.voice-posts::-webkit-scrollbar-button:end:increment {display: block}
-ul.voice-posts::-webkit-scrollbar-button:start:increment,
-ul.voice-posts::-webkit-scrollbar-button:end:decrement {display: none}
-*/
-
-.widget-date {font-weight: normal; margin-top: 5px; font-size: 11px; color: #a2a4a6; text-transform: capitalize}
-.widget-voice.default-size .voice-content ul.voice-posts li a .widget-date > span {text-transform: lowercase; margin: 0; display: inline}
+.voice-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.3);
+}
 
 /* HEADER
  * -----------------------------*/
@@ -43,16 +25,20 @@ ul.voice-posts::-webkit-scrollbar-button:end:decrement {display: none}
 .yellow .voice-header > .voice-info::after {background-color: #ebc91c;}
 .orange .voice-header > .voice-info::after {background-color: #ec9415;}
 
-.voice-header > .voice-info > h3 {
+.voice-header > .voice-info h3 {
   font-size: 16px;
   line-height: 22px;
+  max-height: 60px;
   font-weight: 600;
 }
 
 /* CONTENT -----------------------------------*/
+.voice-content {
+  background-color: #d9d9d9;
+}
+
 .voice-content ul.voice-posts {
   padding: 14px;
-  background-color: #d9d9d9;
 }
 
 .voice-content ul.voice-posts li {
@@ -105,6 +91,13 @@ ul.voice-posts::-webkit-scrollbar-button:end:decrement {display: none}
 .yellow .voice-footer a {color: #ebc91c;}
 .orange .voice-footer a {color: #ec9415;}
 
+@media all and (max-width: 250px) {
+  .voice-header > .voice-nav ul.voice-social li.follow-button-wrapper {
+    display: none;
+  }
+}
+
+/* RTL */
 .widget-rtl .voice-content ul.voice-posts .title,
 .widget-rtl .voice-content ul.voice-posts .description {
   margin: 6px 95px 10px 20px;

@@ -3,7 +3,7 @@
     <%= link_to "Crowdvoice", root_url, :title => "Crowdvoice", :class => "hide-text crowdvoice-logo widget-icon left", :target => "_blank" %>
     <ul class="voice-social right">
       <% if @scope_this %>
-        <li>
+        <li class="follow-button-wrapper">
           <%= link_to "FOLLOW", "", :title => "Follow", :class => "hide-text widget-icon follow" %>
         </li>
         <li>
@@ -16,7 +16,7 @@
       <li>
         <%= link_to "Facebook", "http://facebook.com/crowdvoice", :title => "Facebook", :class => "hide-text widget-icon facebook", :target => "_blank" %>
       </li>
-      <% if @scope_this %>
+      <% unless @scope_this %>
         <li>
           <%= mail_to '', '', :subject => 'Crowdvoice.org Tracking voices of protest', :body => 'I highly recommend you to see this site. http://crowdvoice.org', :encode => 'hex', :title => "Email", :class => "hide-text widget-icon email" %>
         </li>
@@ -30,15 +30,15 @@
   <% else  %>
     <div class="voice-info" style="background-image: url('/images/widget-map.png');">
   <% end %>
-    <% if @scope_this %>
-      <h3><%= @voice.title %></h3>
-      <% if @show_description %>
-        <p><%=truncate @voice.description, :length => 25, :separator => ' ' %></p>
-      <% end %>
-      <div class="clear"></div>
-    <% else %>
-      <h3>Explore crowd sourced topics from around the world</h3>
-    <% end %>
+    <div class="voice-info-wrapper">
+      <div class="voice-info-inner">
+        <% if @scope_this %>
+          <h3><%= @voice.title %></h3>
+        <% else %>
+          <h3>Explore crowd sourced topics from around the world</h3>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

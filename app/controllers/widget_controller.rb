@@ -43,8 +43,6 @@ class WidgetController < ApplicationController
       @voice_image_size = "65x65"
       @list_width_size = "default-size"
     end
-
-    @show_description = params[:show_description] && params[:show_description].to_s == "1"
   end
 
   def get_width(width)
