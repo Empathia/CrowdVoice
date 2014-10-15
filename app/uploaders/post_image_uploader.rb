@@ -30,7 +30,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   end
 
   version :widget_thumb do
-    process :resize_to_fill => [55, 55]
+    process :resize_to_fill => [80, 80]
   end
 
   version :thumb do
