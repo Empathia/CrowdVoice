@@ -20,10 +20,6 @@ body, p, ol, ul, td, input {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-body.touch * {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
 .gelpen,
 .media-type-title {
   font-family: "GelPen";
