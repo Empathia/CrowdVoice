@@ -1,0 +1,27 @@
+.filters .tweets-label {
+  padding-right: 0;
+}
+
+.tooltip-mediafeed-tweets {
+  position: relative;
+  display: inline-block;
+  float: left;
+  font-size: 13px;
+  padding: 0 10px 0 5px;
+}
+
+.tooltip-mediafeed-tweets:hover > .tooltip {
+  display: block;
+}
+
+.tooltip-hoverable-area {
+  cursor: pointer;
+  color: #a6a6a6;
+}
+
+.tooltip-mediafeed-tweets > .tooltip {
+}
+
+.tooltip-mediafeed-tweets .media-type-info {
+  width: 300px;
+}

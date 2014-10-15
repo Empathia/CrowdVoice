@@ -183,7 +183,8 @@ stylesheets:
     - public/stylesheets/skin/modules/simple-tooltips.css
     - public/stylesheets/layout/modules/voice-headers.css
     - public/stylesheets/skin/modules/voice-headers.css
-    - public/stylesheets/v4/embeddable-widget.css
+    - public/stylesheets/v4/tooltips/mediafeed-tweets.css
+    - public/stylesheets/v4/tooltips/embeddable-widget.css
     - public/stylesheets/layout/modules/loaders.css
     - public/stylesheets/skin/modules/loaders.css
   home_pack:

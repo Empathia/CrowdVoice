@@ -315,11 +315,9 @@
           line-height: 1;
           padding: 7px 7px 0;
         }
-        .filters-and-mode .tooltip, .post-button > .tooltip {
-          position: absolute;
-          left: 50%;
+        .filters-and-mode .tooltip,
+        .post-button > .tooltip {
           z-index:7;
-          top: 31px;
         }
         .filters-and-mode .tooltip-positioner,
         .post-button > .tooltip > .tooltip-positioner {

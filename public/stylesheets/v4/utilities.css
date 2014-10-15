@@ -10,3 +10,23 @@
 .cv-center {
   text-align: center;
 }
+
+.green .cv-dynamic-text-color {
+  color: #50b347;
+}
+
+.blue .cv-dynamic-text-color {
+  color: #4db5ff;
+}
+
+.yellow .cv-dynamic-text-color {
+  color: #ebc91c;
+}
+
+.red .cv-dynamic-text-color {
+  color: #f10f2a;
+}
+
+.orange .cv-dynamic-text-color {
+  color: #ec9415;
+}
