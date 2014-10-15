@@ -93,6 +93,7 @@ javascripts:
     - *jscroll
     - *sidebar
     - *infobox
+    - public/javascripts/ZeroClipboard.js
     - public/javascripts/include/highcharts.js
     - public/javascripts/include/underscore-min.js
     - public/javascripts/cv/socialNavigationIcons.js
@@ -107,6 +108,7 @@ javascripts:
     - public/javascripts/cv/carousel.js
     - public/javascripts/cv/overlay.js
     - public/javascripts/cv/post.js
+    - public/javascripts/ZeroClipboard.js
     - public/javascripts/cv/blogWidget.js
     - public/javascripts/backstory/galleryController.js
     - public/javascripts/backstory/imageWidget.js

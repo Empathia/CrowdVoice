@@ -105,8 +105,8 @@
                       </p>
                     </div>
                     <div class="code-output">
-                      <textarea class="blog-widget-textarea cv-input" data-template="<iframe src='http://localhost:3000/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&show_description={{show_description}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&show_description=0&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe></textarea>
-                      <button class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>
+                      <textarea id="js-widget-generated-code" class="blog-widget-textarea cv-input" data-template="<iframe src='http://localhost:3000/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&show_description={{show_description}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&show_description=0&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe></textarea>
+                      <button id="js-copy-code-button" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>
                     </div>
                   </div>
                   <div class="preview">

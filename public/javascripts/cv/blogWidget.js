@@ -1,5 +1,7 @@
 Class('BlogWidget')({
     prototype: {
+        _copyCodeClip: null,
+        _copyCodeContent: null,
         init: function() {
             this.element = $('.grab-blog-widget');
             this.sizes = this.element.find('.widget-height');
@@ -9,17 +11,42 @@ Class('BlogWidget')({
             this.field = this.element.find('.blog-widget-textarea');
             this.preview = this.element.find('.preview-placeholder');
             this._template = this.field.data('template');
-            this._bindEvents();
+            this._copyCodeClip = new ZeroClipboard.Client();
+            this._copyCodeContent = this.element.find('#js-widget-generated-code');
+
+            this._setupCopyCodeToClipboard()._bindEvents()
+        },
+
+        _setupCopyCodeToClipboard : function _setupCopyCodeToClipboard() {
+            ZeroClipboard.setMoviePath('/javascripts/ZeroClipboard10.swf');
+
+            this._copyCodeClip.setText('');
+            this._copyCodeClip.setCSSEffects(true);
+            this._copyCodeClip.glue('js-copy-code-button');
+
+            return this;
         },
 
         _bindEvents: function() {
             var that = this;
+
+            this._copyCodeClip.addEventListener('onMouseDown', function() {
+                that._copyCodeClip.setText( that._copyCodeContent.val() );
+            });
+
+            this._copyCodeClip.addEventListener('complete', function(client, text) {
+                alert('Copied!');
+            });
+
             this.sizes.add(this.show_description).add(this.show_rtl).add(this.scopes).bind('click', function () {
                 that._updateCode();
             });
+
             this.field.bind('click', function () {
                 $(this).select();
             });
+
+            return this;
         },
 
         _updateCode: function() {
