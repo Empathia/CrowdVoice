@@ -157,19 +157,6 @@ body {
   margin-top: 4px;
 }
 
-.info-tool.widget > .tooltip > .tooltip-positioner {
-  left: -65%;
-}
-
-.info-tool.widget > .tooltip .tooltip-arrow {
-  left: 65%;
-}
-
-.grab-blog-widget.media-type-info {
-  width: 672px;
-  padding: 0;
-}
-
 .widget-height,
 .widget-scope {margin-right: 6px}
 .rtl-checkbox {margin-right: 6px}

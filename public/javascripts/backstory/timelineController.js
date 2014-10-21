@@ -25,7 +25,6 @@ Class('TimelineController')({
             this.mainHeader        = $('.main-header');
 
             /* DEFAULT BEHAVIORS */
-            new Tooltip('.widget', { hover: true });
             new BlogWidget();
 
             DynamicMeasures.update();

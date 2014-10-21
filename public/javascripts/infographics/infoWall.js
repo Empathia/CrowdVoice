@@ -16,7 +16,6 @@ Class('InfoWall')({
       this.voiceTools               = this.element.find('.no-caption .voice-info-tools li');
       this.overlay                  = this.element.find('.info-wall-overlay');
       this.voiceTitle               = this.mainContainer.find('.voice-title');
-      this.infowallTooltip          = new Tooltip('.widget', { hover: true });
       this.blogWidget               = new BlogWidget();
       // preloading vars must be declared beore the infobox building, because the charts report their load pretty fast
       this.currentImages            = 0;

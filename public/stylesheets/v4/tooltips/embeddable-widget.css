@@ -1,3 +1,19 @@
+.embeddable-widget-tooltip {
+  width: 672px;
+}
+
+.embeddable-widget-tooltip .tooltip-positioner {
+  left: -65%;
+}
+
+.embeddable-widget-tooltip .tooltip-arrow {
+  left: 65%;
+}
+
+.embeddable-widget-tooltip .cv-tooltip-inner {
+  padding: 0;
+}
+
 .blog-widget-title {
   font-size: 22px;
   line-height: 1;

@@ -45,7 +45,6 @@ $(function () {
 
         new Tooltip('.public');
         new Tooltip('.mod');
-        new Tooltip('.widget');
         new BlogWidget();
     }
 
@@ -269,7 +268,7 @@ $(function () {
     };
     /* INITS */
     background_loader_init();
-    
+
     setBackgroundSize();
     setPostWallSize();
     setNavigationBehaviors();

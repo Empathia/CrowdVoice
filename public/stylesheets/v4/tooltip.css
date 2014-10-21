@@ -1,5 +1,6 @@
 .cv-tooltip {
-  opacity: .8;
+  opacity: .2;
+  pointer-events: none;
 }
 
 .has-cv-tooltip:hover .cv-tooltip {

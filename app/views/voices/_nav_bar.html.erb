@@ -55,64 +55,66 @@
         <a class="cv-button--small cv-button--trans info-tool-link" href="#" title="widget">
           <i class="mediafeed-sprite gear-icon"></i>
         </a>
-        <div class="tooltip">
-          <div class="tooltip-positioner">
-            <p class="tooltip-arrow"><span></span></p>
-            <form>
-              <fieldset  class="grab-blog-widget media-type-info">
-                <strong class="blog-widget-title">Crowdvoice Embeddable Widget</strong>
-                <div class="info-wrapper clearfix">
-                  <div class="info">
-                    <div class="height-options options-container">
-                      <p class="blog-widget-subtitle">How tall would you like the widget to be?</p>
-                      <label class="blog-widget-label" for="blog-widget-size-small">
-                        <input id="blog-widget-size-small" class="widget-height" type="radio" value="small" name="height" checked="checked" />
-                        Short
-                      </label>
-                      <label class="blog-widget-label" for="blog-widget-size-medium">
-                        <input id="blog-widget-size-medium" class="widget-height" type="radio" value="medium" name="height" />
-                        Medium
-                      </label>
-                      <label class="blog-widget-label" for="blog-widget-size-tall">
-                        <input id="blog-widget-size-tall" class="widget-height" type="radio" value="tall" name="height" />
-                        Tall
-                      </label>
-                    </div>
-                    <div class="scope-options options-container">
-                      <p class="blog-widget-subtitle no-border">What would you like to showcase?</p>
-                      <label class="blog-widget-label" for="blog-widget-scope-this">
-                        <input id="blog-widget-scope-this" class="widget-scope" type="radio" value="this" name="scope" checked="checked" />
-                        Just this Voice
-                      </label>
-                      <label class="blog-widget-label" for="blog-widget-scope-all">
-                        <input id="blog-widget-scope-all" class="widget-scope" type="radio" value="all" name="scope" />
-                        All Voices
-                      </label>
-                    </div>
-                    <div class="misc-options options-container">
-                      <p>
-                        <label class="blog-widget-label" for="blog-widget-show-rtl">
-                          <input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />
-                          Set orientation from right to left (arabic)
-                        </label>
-                      </p>
-                    </div>
-                    <div class="code-output">
-                      <textarea id="js-widget-generated-code"
-                        class="blog-widget-textarea cv-input"
-                        data-template="<iframe src='http://localhost:3000/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"><iframe src='https://crowdvoice.org/widget/<%= @voice.slug %>?size=small&scope=this&rtl=0' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%;height:400px;' allowTransparency='true'></iframe></textarea>
-                      <button id="js-copy-code-button" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>
-                    </div>
-                  </div>
-                  <div class="preview">
-                    <div class="preview-placeholder"></div>
-                    <p class="cv-uppercase cv-center">Widget Preview</p>
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
+        <script>
+          new Tooltip2({
+            parentElement : $('.info-tool.widget'),
+            className : 'embeddable-widget-tooltip',
+            html : '\
+                <form>\
+                  <fieldset  class="grab-blog-widget">\
+                    <strong class="blog-widget-title">Crowdvoice Embeddable Widget</strong>\
+                    <div class="info-wrapper clearfix">\
+                      <div class="info">\
+                        <div class="height-options options-container">\
+                          <p class="blog-widget-subtitle">How tall would you like the widget to be?</p>\
+                          <label class="blog-widget-label" for="blog-widget-size-small">\
+                            <input id="blog-widget-size-small" class="widget-height" type="radio" value="small" name="height" checked="checked" />\
+                            Short\
+                          </label>\
+                          <label class="blog-widget-label" for="blog-widget-size-medium">\
+                            <input id="blog-widget-size-medium" class="widget-height" type="radio" value="medium" name="height" />\
+                            Medium\
+                          </label>\
+                          <label class="blog-widget-label" for="blog-widget-size-tall">\
+                            <input id="blog-widget-size-tall" class="widget-height" type="radio" value="tall" name="height" />\
+                            Tall\
+                          </label>\
+                        </div>\
+                        <div class="scope-options options-container">\
+                          <p class="blog-widget-subtitle no-border">What would you like to showcase?</p>\
+                          <label class="blog-widget-label" for="blog-widget-scope-this">\
+                            <input id="blog-widget-scope-this" class="widget-scope" type="radio" value="this" name="scope" checked="checked" />\
+                            Just this Voice\
+                          </label>\
+                          <label class="blog-widget-label" for="blog-widget-scope-all">\
+                            <input id="blog-widget-scope-all" class="widget-scope" type="radio" value="all" name="scope" />\
+                            All Voices\
+                          </label>\
+                        </div>\
+                        <div class="misc-options options-container">\
+                          <p>\
+                            <label class="blog-widget-label" for="blog-widget-show-rtl">\
+                              <input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />\
+                              Set orientation from right to left (arabic)\
+                            </label>\
+                          </p>\
+                        </div>\
+                        <div class="code-output">\
+                          <textarea id="js-widget-generated-code" class="blog-widget-textarea cv-input"\
+                            data-template="<iframe src=\'http://localhost:3000/widget/<%= @voice.slug %>?size={{size}}&scope={{scope}}&rtl={{rtl}}\' scrolling=\'no\' frameborder=\'0\' style=\'overflow:hidden; border:none; width:100%; height:{{height}}px;\' allowTransparency=\'true\'></iframe>"></textarea>\
+                          <button id="js-copy-code-button" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>\
+                        </div>\
+                      </div>\
+                      <div class="preview">\
+                        <div class="preview-placeholder"></div>\
+                        <p class="cv-uppercase cv-center">Widget Preview</p>\
+                      </div>\
+                    </div>\
+                  </fieldset>\
+                </form>\
+                '
+            });
+        </script>
       </li>
       <li class="info-tool rss">
         <%= link_to voice_path(@voice, :format => :rss), :class => 'cv-button--small cv-button--trans info-tool-link', :title => 'RSS feed' do %>
