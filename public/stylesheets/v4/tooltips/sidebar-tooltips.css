@@ -29,3 +29,40 @@
   line-height: 25px;
   padding: 1.5em 2.2em;
 }
+
+.public-mode-tooltip {
+  left: initial;
+  right: 0;
+  font-weight: bold;
+}
+.public-mode-tooltip .tooltip-positioner {
+  left: 0;
+}
+.public-mode-tooltip .tooltip-positioner > .tooltip-arrow {
+  right: 5px;
+  left: initial;
+}
+
+.moderator-mode-tooltip {
+  width: 233px;
+  left: initial;
+  right: 0;
+}
+.moderator-mode-tooltip .tooltip-positioner {
+  left: 0;
+}
+.moderator-mode-tooltip .tooltip-positioner > .tooltip-arrow {
+  right: 15px;
+  left: initial;
+}
+.moderator-mode-tooltip .cv-tooltip-inner {
+  padding: 1em;
+}
+.moderator-mode-tooltip .title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: .5em;
+}
+.moderator-mode-tooltip .description {
+  color: #a6a6a6;
+}

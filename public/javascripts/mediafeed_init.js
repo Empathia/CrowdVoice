@@ -43,8 +43,24 @@ $(function () {
             overlays    : overlays
         });
 
-        new Tooltip('.public');
-        new Tooltip('.mod');
+        new Tooltip2({
+            parentElement : $('.public'),
+            text : 'Go back to public mode',
+            className : 'public-mode-tooltip',
+            nowrap : true
+        });
+
+        new Tooltip2({
+            parentElement : $('.mod'),
+            className : 'moderator-mode-tooltip',
+            html : '\
+                <p class="title">Participate!</p>\
+                <p class="description">\
+                  Help us approve images, videos and external links. Deny any content that you feel should NOT be posted here.\
+                </p>\
+            '
+        });
+
         new BlogWidget();
     }
 

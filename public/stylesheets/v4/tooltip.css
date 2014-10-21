@@ -1,10 +1,8 @@
 .cv-tooltip {
-  opacity: .2;
-  pointer-events: none;
 }
 
 .has-cv-tooltip:hover .cv-tooltip {
-  opacity: 1;
+  display: block;
 }
 
 .cv-tooltip-inner {
@@ -52,7 +50,7 @@
 }
 
 .tooltip {
-  /*display:none;*/
+  display:none;
   left: 50%;
   position: absolute;
   top: 15px;

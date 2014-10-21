@@ -294,7 +294,6 @@
         .post-button > .tooltip {
           z-index:7;
         }
-        .filters-and-mode .tooltip-positioner,
         .post-button > .tooltip > .tooltip-positioner {
           position: relative;
           top: 0;
@@ -395,45 +394,6 @@
       cursor: pointer;
       display: block;
       padding: 3px 0;
-    }
-    .mode-button > .tooltip-positioner {
-      left: -30%;
-    }
-    .mode-button > .tooltip > .tooltip-positioner > .tooltip-arrow {
-      left: 50%;
-    }
-    .mode-button > .tooltip > .tooltip-positioner > .media-type-info {
-      padding: 5px 15px 5px 12px;
-      overflow: hidden;
-      left: -90px;
-      padding-bottom: 5px;
-    }
-    .mode-button > .tooltip > .tooltip-positioner > .media-type-info > .media-type-title {
-      font-size: 17px;
-      padding: 0;
-      line-height: 1.5em;
-    }
-    .mode-button.selected > .tooltip > .tooltip-positioner > .media-type-info > .media-type-title {
-      width:170px;
-    }
-    .mode-button.selected > .tooltip > .tooltip-positioner > .media-type-info {
-      left: -55px;
-    }
-    .moderate-tooltip {
-      line-height: 2;
-      font-size: 13px;
-      font-weight: normal;
-    }
-    .moderate-tooltip > span {
-      font-weight:bold;
-    }
-    .public > .tooltip > .tooltip-positioner > .media-type-info {
-      left: -62px;
-    }
-    .public .media-type-title {
-      width: 157px;
-    }
-    .filters {
     }
     .filters,
     .mode {

@@ -174,31 +174,9 @@
           <ul>
             <li class="mode-button <%= 'selected' unless params[:mod] %> public">
               <%= link_to "Public", voice_path(@voice, :all => true), :class => "cv-button--small cv-button--light dynamic" %>
-              <div class="tooltip">
-                <div class="tooltip-positioner">
-                  <p class="tooltip-arrow"><span></span></p>
-                  <div class="media-type-info">
-                    <strong class="media-type-title"></strong>
-                    <p class="moderate-tooltip">
-                      <span>Go back to public mode</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
             </li>
             <li class="mode-button <%= 'selected' if params[:mod] %> mod">
               <%= link_to "Moderator", voice_path(@voice, params.merge({:mod => 1}) ), :class => "cv-button--small cv-button--light dynamic" %>
-              <div class="tooltip">
-                <div class="tooltip-positioner">
-                  <p class="tooltip-arrow"><span></span></p>
-                  <div class="media-type-info">
-                    <strong class="media-type-title">Participate!</strong>
-                    <p class="moderate-tooltip">
-                      <span>Help us approve images, videos and external links.</span> Flag any content that you feel should not be posted here.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </li>
           </ul>
         </fieldset>
