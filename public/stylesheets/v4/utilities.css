@@ -7,6 +7,14 @@
   width: 100%;
 }
 
+.cv-pull-left {
+  float: left;
+}
+
+.cv-pull-right {
+  float: right;
+}
+
 .cv-center {
   text-align: center;
 }

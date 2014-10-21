@@ -1,5 +1,28 @@
+.cv-tooltip {
+  opacity: .5;
+}
+
+.has-cv-tooltip:hover .cv-tooltip {
+  opacity: 1;
+}
+
+.cv-tooltip-inner {
+  position: relative;
+  top: 10px;
+  left: 0;
+  padding: .6em 1em;
+  border: 1px solid rgba(0,0,0,.3);
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, .4);
+}
+
+.cv-tooltip--nowrap {
+  white-space: nowrap;
+}
+
 .tooltip {
-  display:none;
+  /*display:none;*/
   left: 50%;
   position: absolute;
   top: 15px;
