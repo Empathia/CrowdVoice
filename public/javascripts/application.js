@@ -72,13 +72,19 @@ $(function () {
         location.reload();
     });
 
-    var mapTooltip, mainContainer, mapContainer, mapButton, sidebarVoice,
-        infoSidebar, _mapVoices, initVoicesMap;
+    var aboutTooltip, mapTooltip, mainContainer, mapContainer, mapButton,
+        sidebarVoice, infoSidebar, _mapVoices, initVoicesMap;
+
+    aboutTooltip = new Tooltip2({
+        text : 'Find more info about CrowdVoice here!',
+        parentElement : $('.about-link-wrapper'),
+        className : 'more-about-cv-tooltip',
+        position : 'right'
+    });
 
     mapTooltip = new Tooltip2({
         text : 'Show Voices on the map.',
         parentElement : $('.mapit'),
-        targetElement : $('.map-btn'),
         className : 'tooltip-map',
         nowrap: true
     });

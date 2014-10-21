@@ -1,5 +1,5 @@
 .cv-tooltip {
-  opacity: .5;
+  opacity: .8;
 }
 
 .has-cv-tooltip:hover .cv-tooltip {
@@ -19,6 +19,35 @@
 
 .cv-tooltip--nowrap {
   white-space: nowrap;
+}
+
+.cv-tooltip.cv-tooltip--right {
+  right: -100%;
+  left: initial;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.tooltip.cv-tooltip--right > .tooltip-positioner {
+  right: -100%;
+  left: initial;
+}
+.tooltip.cv-tooltip--right > .tooltip-positioner > .tooltip-arrow {
+  left: -16px;
+  top: 50%;
+}
+.tooltip.cv-tooltip--right > .tooltip-positioner > .tooltip-arrow > span,
+.tooltip.cv-tooltip--right > .tooltip-positioner > .tooltip-arrow > span:after {
+  border-width: 7px 7px 7px 0;
+}
+.tooltip.cv-tooltip--right > .tooltip-positioner > .tooltip-arrow > span {
+  left: 0;
+  border-color: transparent rgba(0,0,0,.2);
+}
+.tooltip.cv-tooltip--right > .tooltip-positioner > .tooltip-arrow > span:after {
+  top: -7px;
+  left: 10px;
+  border-color: transparent #fff;
 }
 
 .tooltip {

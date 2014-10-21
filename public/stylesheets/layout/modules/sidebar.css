@@ -49,15 +49,6 @@ hgroup {
 .crowdvoice-about {height: 18px; width: 18px; margin-top: 3px}
 
 .about-link-wrapper {position: relative; display: inline-block}
-.about-link-wrapper:hover .tooltip {
-  display: block;
-}
-.about-link-wrapper .tooltip {display: none}
-.about-link-wrapper .media-type-title {font-size: 13px; line-height: 15px; width: 126px; padding: 4px 7px 1px}
-.about-link-wrapper .media-type-info {padding: 0}
-.about-link-wrapper .tooltip > .tooltip-positioner {top: -41px; left: 20px;}
-.about-link-wrapper .tooltip-positioner > .tooltip-arrow {top: 22px; left: -4px; float: left;}
-.about-link-wrapper .tooltip-positioner > .tooltip-arrow > span {background: none; border-width: 6px; width: 0; height: 0}
 
 .crowdvoice-slogan {
   width: 220px;

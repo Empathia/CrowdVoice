@@ -20,14 +20,6 @@
           %>
           <div class="about-link-wrapper">
             <%= link_to '?', custom_about_path, :title => t('layout.about'), :class => 'crowdvoice-custom-about' if @custom.about.present?%>
-            <div class="tooltip">
-              <div class="tooltip-positioner">
-                <p class="tooltip-arrow"><span></span></p>
-                <p class="media-type-info">
-                  <strong class="media-type-title">Find more info about CrowdVoice here!</strong>
-                </p>
-              </div>
-            </div>
           </div>
         <% else %>
           <%= link_to (root_path) do
@@ -36,14 +28,6 @@
           %>
           <div class="about-link-wrapper">
             <%= link_to '?', about_path, :title => t('layout.about'), :class => 'crowdvoice-about'%>
-           <div class="tooltip">
-              <div class="tooltip-positioner">
-                <p class="tooltip-arrow"><span></span></p>
-                <p class="media-type-info">
-                  <strong class="media-type-title">Find more info about CrowdVoice here!</strong>
-                </p>
-              </div>
-            </div>
           </div>
         <% end %>
       </div>

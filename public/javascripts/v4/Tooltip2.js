@@ -40,6 +40,10 @@ Class('Tooltip2').inherits(Widget)({
                 this.updateHTML(this.html);
             }
 
+            if (this.position) {
+                this.element.addClass('cv-tooltip--' + this.position);
+            }
+
             if (this.nowrap === true) {
                 this.element.addClass('cv-tooltip--nowrap');
             }

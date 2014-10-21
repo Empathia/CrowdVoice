@@ -31,9 +31,6 @@
 .notification.yellow .sprite-sidebar {background-position: -128px -64px}
 .notification.orange .sprite-sidebar {background-position: -192px -64px}
 
-.about-link-wrapper .tooltip > .tooltip-positioner > .media-type-info {border-radius: 3px; text-align: left}
-.about-link-wrapper .tooltip-positioner > .tooltip-arrow > span {border-style: solid; border-color: transparent white transparent transparent}
-
 .voice:not(.admin-sidebar-row) {background-color: #121212; box-shadow: -1px 0 0 rgba(255, 255, 255, 0.1) inset}
 
 /* Side Bar Register/Login */
