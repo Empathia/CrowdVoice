@@ -86,31 +86,6 @@
       position: relative;
       display: inline-block;
     }
-    .description-wrapper:hover .tooltip {
-      display: block;
-    }
-
-    .description-wrapper .tooltip {
-      top: 13px;
-      width: 635px;
-    }
-
-    .description-wrapper .tooltip .tooltip-positioner {
-      left: -50%;
-    }
-
-    .description-wrapper .tooltip-positioner .tooltip-arrow {
-      left: 50%;
-    }
-
-    .description-wrapper .media-type-info {
-      padding: 22px 30px;
-    }
-
-    .voice-description {
-      font-size: 14px;
-      line-height: 25px;
-    }
 
   .post-and-actions {
 		height: 48px;

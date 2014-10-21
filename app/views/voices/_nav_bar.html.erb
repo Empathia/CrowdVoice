@@ -7,16 +7,15 @@
   <h2 class="voice-title"><%= @voice.title %></h2>
   <div class="description-wrapper">
     <a class="cv-button cv-button--small cv-button--trans more-button">More Info</a>
-    <div class="tooltip">
-      <div class="tooltip-positioner">
-        <p class="tooltip-arrow"><span></span></p>
-        <div class="media-type-info">
-          <p class="voice-description">
-            <%= @voice.description %>
-          </p>
-        </div>
-      </div>
-    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          new Tooltip2({
+            html : '<%= @voice.description %>',
+            parentElement : $('.description-wrapper'),
+            className : 'voice-description-tooltip'
+          });
+      });
+    </script>
   </div>
   <div class="nav-bar">
     <ul class="top-left-navigation">
