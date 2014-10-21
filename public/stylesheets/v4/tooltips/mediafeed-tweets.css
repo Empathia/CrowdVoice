@@ -10,18 +10,11 @@
   padding: 0 10px 0 5px;
 }
 
-.tooltip-mediafeed-tweets:hover > .tooltip {
-  display: block;
-}
-
 .tooltip-hoverable-area {
   cursor: pointer;
   color: #a6a6a6;
 }
 
-.tooltip-mediafeed-tweets > .tooltip {
-}
-
-.tooltip-mediafeed-tweets .media-type-info {
+.mediafeed-tweets-tooltip {
   width: 300px;
 }

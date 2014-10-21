@@ -145,14 +145,19 @@
             <label class="tweets-label"><input type="checkbox" name="tweets" />Tweets</label>
             <div class="tooltip-mediafeed-tweets">
               <span class="tooltip-hoverable-area">(<span class="cv-dynamic-text-color">?</span>)</span>
-              <div class="tooltip">
-                <div class="tooltip-positioner">
-                  <span class="tooltip-arrow"><span></span></span>
-                  <div class="media-type-info">
-                    All tweets using <span class="cv-dynamic-text-color"><%= @voice.twitter_search %></span> will be published in this voice's stream!
-                  </div>
-                </div>
-              </div>
+              <script>
+                new Tooltip2({
+                  parentElement : $('.tooltip-mediafeed-tweets'),
+                  className : 'mediafeed-tweets-tooltip',
+                  html : '\
+                    All tweets using \
+                    <span class="cv-dynamic-text-color">\
+                      <%= @voice.twitter_search %>\
+                    </span> \
+                    will be published in this voice\'s stream!\
+                  '
+                });
+              </script>
             </div>
             <div class="search-input-wrapper">
               <input class="search cv-input cv-input--small cv-input--dynamic-color cv-input--rounded" type="text" placeholder="Search content"/>
