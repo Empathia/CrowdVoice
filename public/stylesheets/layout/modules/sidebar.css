@@ -97,8 +97,6 @@ hgroup {
   width: 170px;
   overflow: hidden;
 }
-.create-voice .media-type-title {float: left; font-size:13px; width: 102px; padding: 0; line-height:1.5}
-.create-voice .media-type-info > .pencil {width: 29px; height:26px; float: right; margin-top:7px}
 .create-voice > .view-video {
   height: 27px;
   text-align: center;

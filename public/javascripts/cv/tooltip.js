@@ -13,7 +13,6 @@ Class('Tooltip')({
 			this.userWindow = $(window);
 			this._get_tooltip_name();
 			this._hoverTooltip();
-			this._mapClick();
 			this._moderatorClick();
 			this._hide_extra_data();
 
@@ -119,20 +118,6 @@ Class('Tooltip')({
 						break;
 				}
 			}
-		},
-
-		_mapClick: function () {
-			var that = this;
-			this.element.children('a').click(function (){
-				if ( $(this).is('.map-btn') ) {
-					that.hide();
-					that.tooltip.children().children().children('strong').text('Hide Voices on the Map');
-				}
-				if ( $(this).is('.map-active') ) {
-					that.hide();
-					that.tooltip.children().children().children('strong').text('Show Voices on the Map');
-				}
-			});
 		},
 
 		_moderatorClick: function () {   //functionality for moderate public items view

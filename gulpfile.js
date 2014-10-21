@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 gulp.task('default', function() {
     livereload.listen();
     gulp.watch('public/stylesheets/**/*.css', livereload.changed);
-    gulp.watch('public/javascripts/**/*.css', livereload.changed);
+    gulp.watch('public/javascripts/**/*.js', livereload.changed);
     gulp.watch('app/views/**/*.erb').on('change', livereload.changed);
 });
 

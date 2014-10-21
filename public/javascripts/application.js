@@ -51,8 +51,6 @@ function whichTransitionEvent(){
 window.transitionEnd = whichTransitionEvent();
 
 $(function () {
-    new Tooltip('.mapit');
-    new Tooltip('.addVoice');
     new Accordion('.sidebar-scroller__accordion-arrow');
     new SlideSection({
         element : $('.login'),
@@ -74,16 +72,25 @@ $(function () {
         location.reload();
     });
 
-    var mainContainer   = $('.main-container'),
-        mapContainer    = $('.map-container'),
-        mapButton       = $('.map-btn'),
-        sidebarVoice    = $('.voice'),
-        infoSidebar     = $('.info-sidebar');
+    var mapTooltip, mainContainer, mapContainer, mapButton, sidebarVoice,
+        infoSidebar, _mapVoices, initVoicesMap;
 
-    var _mapVoices = null;
+    mapTooltip = new Tooltip2({
+        text : 'Show Voices on the map.',
+        parentElement : $('.mapit'),
+        targetElement : $('.map-btn'),
+        className : 'tooltip-map',
+        nowrap: true
+    });
 
-    var initVoicesMap = function() {
+    _mapVoices      = null;
+    mainContainer   = $('.main-container');
+    mapContainer    = $('.map-container');
+    mapButton       = $('.map-btn');
+    sidebarVoice    = $('.voice');
+    infoSidebar     = $('.info-sidebar');
 
+    initVoicesMap = function() {
         _mapVoices = new CVMap( mapContainer, {
             zoom    : 2,
             center  : new google.maps.LatLng(0, 0)
@@ -123,13 +130,20 @@ $(function () {
         mapContainer.toggleClass('shown');
         mapButton.toggleClass('map-active');
 
-        if( !_mapVoices ) {
-            if ( typeof google === "undefined" ) {
-                window.appendGoogleMapsScript( "initializeVoicesMap" );
+        if (mapButton.hasClass('map-active')) {
+            mapTooltip.updateText("Hide Voices on the map.");
+        } else {
+            mapTooltip.updateText("Show Voices on the map.");
+        }
+
+        if (!_mapVoices) {
+            if (typeof google === "undefined") {
+                window.appendGoogleMapsScript("initializeVoicesMap");
             } else {
                 initializeVoicesMap();
             }
         }
+
         return false;
     });
 

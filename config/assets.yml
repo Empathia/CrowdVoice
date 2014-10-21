@@ -22,6 +22,7 @@ javascripts:
     - public/javascripts/include/mwheelIntent.js
   sidebar: &sidebar
     - public/javascripts/cv/dynamicMeasures.js
+    - public/javascripts/v4/tooltip2.js
     - public/javascripts/cv/tooltip.js
     - public/javascripts/cv/sidebarToggler.js
     - public/javascripts/cv/accordion.js
@@ -187,6 +188,7 @@ stylesheets:
     - public/stylesheets/skin/modules/simple-tooltips.css
     - public/stylesheets/layout/modules/voice-headers.css
     - public/stylesheets/skin/modules/voice-headers.css
+    - public/stylesheets/v4/tooltips/sidebar-tooltips.css
     - public/stylesheets/v4/tooltips/mediafeed-tweets.css
     - public/stylesheets/v4/tooltips/embeddable-widget.css
     - public/stylesheets/layout/modules/loaders.css
