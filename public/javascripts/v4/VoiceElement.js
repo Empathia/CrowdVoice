@@ -114,10 +114,6 @@ Class('VoiceElement').inherits(Widget)({
                 });
             }
 
-            // if (voice.sourceType !== 'link' && voice.sourceType !== 'video') {
-                console.log(voice.sourceType)
-            // };
-
             CV.mediaFeedSearch.bind(voice.sourceType, function(e) {
                 if (e.value) {
                     CV.voicesContainer.element.append(voice.element);

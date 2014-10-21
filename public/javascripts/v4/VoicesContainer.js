@@ -10,7 +10,7 @@ Class('VoicesContainer').inherits(Widget)({
         fuse            : null,
         delayedEvent    : null,
         perPage         : 60,
-        preloadedVoices : 0,
+        preloadedVoices : [],
         lastVoiceIndex  : 0,
         currentPage     : 0,
         init : function(config) {
@@ -34,6 +34,40 @@ Class('VoicesContainer').inherits(Widget)({
             });
         },
 
+        goToDate : function(date) {
+            var voicesContainer = this;
+            var gotDate = false;
+
+            var date = date.match(/[\d]{4}-[\d]{2}/);
+
+            while (!gotDate) {
+                voicesContainer.appendNextPage();
+
+                for (var i = 0; i < voicesContainer.children.length; i++) {
+                    var voice = voicesContainer.children[i];
+
+                    var voiceDate = voice.createdAt.match(/[\d]{4}-[\d]{2}/);
+
+                    if (date[0] == voiceDate[0]) {
+                        gotDate = true;
+                        break;
+                    }
+
+                };
+
+                if (voicesContainer.lastVoiceIndex === (voicesContainer.preloadedVoices.length - 1)) {
+                    gotDate = true;
+                }
+
+                if (gotDate) {
+                    console.log('got date')
+                    setTimeout(function() {
+                        voicesContainer.element.parent().animate({ scrollTop: voicesContainer.element.height() - 2000 }, "slow");    
+                    }, 500);
+                };
+            }
+        },
+
         appendNextPage : function() {
             var voicesContainer = this;
             var elements = [];
@@ -42,7 +76,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             var last;
 
-            if (this.preloadedVoices.length < this.perPage * this.page) {
+            if (this.preloadedVoices.length < this.perPage * this.currentPage) {
                 last = this.preloadedVoices.length - 1
             } else {
                 last = this.perPage * this.currentPage;
@@ -53,8 +87,6 @@ Class('VoicesContainer').inherits(Widget)({
             }
 
             posts = this.preloadedVoices.splice(this.lastVoiceIndex, this.perPage);
-
-            console.log(posts.map(function(post){ return post.post.id;}))
 
             posts.forEach(function(post) {
                 if (post.post) {
@@ -95,15 +127,10 @@ Class('VoicesContainer').inherits(Widget)({
 
             // Render here for better UI performance
             voices.forEach(function(voice) {
-                // voice.element.css({
-                //     'display' : 'none'
-                // });
-
                 // setTimeout(function(){
                     if (CV.mediaFeedSearch[voice.sourceType]) {
                         voice.render(voicesContainer.element);    
                     }
-                    
                 // }, 100);
                 
             });

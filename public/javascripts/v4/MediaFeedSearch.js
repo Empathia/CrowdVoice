@@ -3,8 +3,12 @@ Class('MediaFeedSearch').inherits(Widget)({
         image       : true,
         video       : true,
         link        : true,
-        fuseOptions : {keys: ['title', 'description']},
+        fuseOptions : {
+            keys      : ['title', 'description'],
+            threshold : 0.4
+        },
         fuse        : null,
+        delayedEvent : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
@@ -26,8 +30,14 @@ Class('MediaFeedSearch').inherits(Widget)({
                 });
             });
 
+            this.delayedEvent = new DelayedEventEmitter({waitingTime : 300});
+
             this.element.find('input.search').bind('keyup', function(e) {
-                var value = $(this).val();
+                mediaFeedSearch.delayedEvent.dispatch('search');
+            });
+
+            this.delayedEvent.bind('search', function() {
+                var value = mediaFeedSearch.element.find('input.search').val();
 
                 if (value === '') {
                     mediaFeedSearch.reset();
@@ -45,7 +55,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         reloadFuse : function () {
             this.fuse = new Fuse(CV.voicesContainer.children, this.fuseOptions);
 
-            var query = this.element.find('input').val();
+            var query = this.element.find('input.search').val();
 
             if (query !== '') {
                 this.search(query);
@@ -53,7 +63,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         },
 
         reset : function() {
-            this.element.find('input').val('');
+            this.element.find('input.search').val('');
 
             this.element.find('.found').html(0);
 
@@ -68,6 +78,8 @@ Class('MediaFeedSearch').inherits(Widget)({
             var mediaFeedSearch = this;
 
             var result = mediaFeedSearch.fuse.search(query);
+
+            console.log(result, query)
 
             CV.voicesContainer.children.forEach(function(child) {
                 child.element && child.element.detach();

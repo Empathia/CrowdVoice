@@ -1,13 +1,10 @@
 Class('Timeline')({
-    currentPage: 1,
-    preloadedVoices : [],
-
     loadPage: function (page) {
         var timeline = this;
 
-        page = page || Timeline.currentPage;
+        page = page || CV.voicesContainer.currentPage;
 
-        console.log('loadpage', page)
+        
         var params = '?page=' + page;
         
         if ($.deparam.querystring().mod) {
@@ -18,6 +15,7 @@ Class('Timeline')({
             params += '&start=' + this.startDate;
         }
         
+        console.log('loadpage', params)
         Timeline.applySpinner();
         
         CV.voicesContainer.appendNextPage();
@@ -28,18 +26,29 @@ Class('Timeline')({
     },
 
     loadDate: function (date, callback) {
-        var params = '?start=' + date;
+
+        var params = {};
+
+        params.start = date;
+        
+        // var params = '?start=' + date;
+        
         this.startDate = date;
-        this.currentPage = 1;
+
         if ($.deparam.querystring().mod) {
-            params += '&mod=1';
+            params.mod = true;
         }
+
         Timeline.applySpinner();
-        $.getScript(location.pathname + params, function () {
-            $.isFunction(callback) && callback();
-            // Timeline.voiceScroller[0].scrollIntoView(true);
-            Timeline.voiceScroller.animate({'scrollTop':'0'},500);
-        });
+
+        CV.voicesContainer.goToDate(params.start);
+
+        // console.log(location.pathname + params)
+        // $.getScript(location.pathname + params, function () {
+        //     $.isFunction(callback) && callback();
+        //     // Timeline.voiceScroller[0].scrollIntoView(true);
+        //     Timeline.voiceScroller.animate({'scrollTop':'0'},500);
+        // });
     },
 
     months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -129,7 +138,6 @@ Class('Timeline')({
         this.applySpinner();
         if (!this.loadingScript) {
             this.loadingScript = true;
-            this.currentPage++;
             this.loadPage();
             return needsScrollTop ? this.needsScrollTop = true : this.needsScrollTop = false;
         }
