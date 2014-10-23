@@ -11,22 +11,55 @@ Class('Tooltip2').inherits(Widget)({
           </div>\
         </div>\
     ',
+    /**
+     * @constant HAS_TOOLTIP_CLASSNAME <private> [String]
+     * This css-class applied to the tooltip's parent will make the tooltip to
+     * be shown when the parent is hovered (pure css approach).
+     */
     HAS_TOOLTIP_CLASSNAME : 'has-cv-tooltip',
 
     prototype : {
+        /**
+         * The text to be shown on the tooltip.
+         * @property text <public> [String]
+         */
         text : null,
+        /**
+         * The HTML content to be appended to the tooltip.
+         * @property html <public> [String|jQueryElement|HTMLElement]
+         */
+        html : null,
+        /**
+         * The position in which the tooltip will be shown.
+         * @property position <public> [String] (top|right|bottom|left)
+         */
+        position : null,
+        /**
+         * Tells the tooltip to no break its contents. It applies a css-class
+         * that contains the rule: `white-space: nowrap'`
+         * @property nowrap <public> [Boolean]
+         */
         nowrap : false,
-        parentElement : null,
-        contentElement : null,
+
+        /**
+         * Holds the reference to the tooltip's body jQueryElement.
+         * @property _contentElement <private> [jQueryElement]
+         */
+        _contentElement : null,
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
-            this.contentElement = this.element.find('.cv-tooltip-inner');
+            this._contentElement = this.element.find('.cv-tooltip-inner');
 
             this._setup();
         },
 
+        /**
+         * Create the tooltip based on the passed properties.
+         * @method _setup <private> [Function]
+         * @return this [Tooltip]
+         */
         _setup : function _setup() {
             if (this.text) {
                 this.updateText(this.text);
@@ -47,18 +80,35 @@ Class('Tooltip2').inherits(Widget)({
             return this;
         },
 
+        /**
+         * Change the tooltip's single text.
+         * @method updateText <public> [Function]
+         * @usage tooltipInstance.upadteText('Lorem Ipsum');
+         * @return this [Tooltip]
+         */
         updateText : function updateText(value) {
-            this.contentElement.text(value);
+            this._contentElement.text(value);
 
             return this;
         },
 
+        /**
+         * Update the tooltip's HTML content.
+         * @method updateHTML <public> [Function]
+         * @usage tooltipInstance.updateHTML('<p>Lorem Ipsum</p>');
+         * @return this [Tooltip]
+         */
         updateHTML : function updateHTML(value) {
-            this.contentElement.html(value);
+            this._contentElement.html(value);
 
             return this;
         },
 
+        /**
+         * Extended render method to add a css-class to the tooltip's parent
+         * element. This class will make the tooltip to be shown when hover
+         * over the parent with pure css.
+         */
         render : function(element, beforeElement) {
             Widget.prototype.render.call(this, element, beforeElement);
 
