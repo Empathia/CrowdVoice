@@ -16,7 +16,7 @@
         <% unless current_user %>
           <script type="text/javascript">
             window.onload = function() {
-              new Tooltip2({
+              var tooltip = new Tooltip2({
                 html: '\
                   <span class="cv-pull-left">\
                     <%= t('layout.login_tool') %>\
@@ -24,10 +24,10 @@
                   </span>\
                   <span class="pencil cv-pull-right"></span>\
                 ',
-                parentElement : $('.addVoice'),
-                targetElement : $('.addVoice > .cv-button'),
                 className : 'add-a-voice-tooltip'
               });
+
+              tooltip.render($('.addVoice'));
             }
           </script>
         <% end %>

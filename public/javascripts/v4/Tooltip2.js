@@ -28,10 +28,6 @@ Class('Tooltip2').inherits(Widget)({
         },
 
         _setup : function _setup() {
-            this.parentElement
-                .addClass(this.constructor.HAS_TOOLTIP_CLASSNAME)
-                .append(this.element);
-
             if (this.text) {
                 this.updateText(this.text);
             }
@@ -59,6 +55,14 @@ Class('Tooltip2').inherits(Widget)({
 
         updateHTML : function updateHTML(value) {
             this.contentElement.html(value);
+
+            return this;
+        },
+
+        render : function(element, beforeElement) {
+            Widget.prototype.render.call(this, element, beforeElement);
+
+            element.addClass(this.constructor.HAS_TOOLTIP_CLASSNAME);
 
             return this;
         }

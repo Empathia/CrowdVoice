@@ -44,14 +44,12 @@ $(function () {
         });
 
         new Tooltip2({
-            parentElement : $('.public'),
             text : 'Go back to public mode',
             className : 'public-mode-tooltip',
             nowrap : true
-        });
+        }).render($('.public'));
 
         new Tooltip2({
-            parentElement : $('.mod'),
             className : 'moderator-mode-tooltip',
             html : '\
                 <p class="title">Participate!</p>\
@@ -59,7 +57,7 @@ $(function () {
                   Help us approve images, videos and external links. Deny any content that you feel should NOT be posted here.\
                 </p>\
             '
-        });
+        }).render($('.mod'));
 
         new BlogWidget();
     }

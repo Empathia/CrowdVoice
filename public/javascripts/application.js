@@ -77,17 +77,15 @@ $(function () {
 
     aboutTooltip = new Tooltip2({
         text : 'Find more info about CrowdVoice here!',
-        parentElement : $('.about-link-wrapper'),
         className : 'more-about-cv-tooltip',
         position : 'right'
-    });
+    }).render($('.about-link-wrapper'));
 
     mapTooltip = new Tooltip2({
         text : 'Show Voices on the map.',
-        parentElement : $('.mapit'),
         className : 'tooltip-map',
         nowrap: true
-    });
+    }).render($('.mapit'));
 
     _mapVoices      = null;
     mainContainer   = $('.main-container');

@@ -146,17 +146,20 @@
             <div class="tooltip-mediafeed-tweets">
               <span class="tooltip-hoverable-area">(<span class="cv-dynamic-text-color">?</span>)</span>
               <script>
-                new Tooltip2({
-                  parentElement : $('.tooltip-mediafeed-tweets'),
-                  className : 'mediafeed-tweets-tooltip',
-                  html : '\
-                    All tweets using \
-                    <span class="cv-dynamic-text-color">\
-                      <%= @voice.twitter_search %>\
-                    </span> \
-                    will be published in this voice\'s stream!\
-                  '
-                });
+                (function() {
+                  var tooltip = new Tooltip2({
+                    className : 'mediafeed-tweets-tooltip',
+                    html : '\
+                      All tweets using \
+                      <span class="cv-dynamic-text-color">\
+                        <%= @voice.twitter_search %>\
+                      </span> \
+                      will be published in this voice\'s stream!\
+                    '
+                  });
+
+                  tooltip.render($('.tooltip-mediafeed-tweets'));
+                })();
               </script>
             </div>
             <div class="search-input-wrapper">
