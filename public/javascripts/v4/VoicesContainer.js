@@ -11,6 +11,7 @@ Class('VoicesContainer').inherits(Widget)({
         delayedEvent    : null,
         perPage         : 60,
         preloadedVoices : [],
+        voicesToRender  : [],
         lastVoiceIndex  : 0,
         currentPage     : 0,
         init : function(config) {
@@ -24,29 +25,58 @@ Class('VoicesContainer').inherits(Widget)({
 
                 var keepFetching = true;
 
-                while (voicesContainer.element.parent().height() == voicesContainer.element.parent()[0].scrollHeight && keepFetching) {
-                    voicesContainer.appendNextPage();
+                console.log('relayout')
+
+                while (voicesContainer.element.height() <= voicesContainer.element.parent().height() && keepFetching) {
+                    voicesContainer.getNextPage(function(){
+                        voicesContainer.renderPages();
+                        CV.mediaFeedSearch.reloadFuse();
+                    });
+                    console.log('x')
 
                     if (voicesContainer.lastVoiceIndex === (voicesContainer.preloadedVoices.length - 1)) {
                         keepFetching = false;
                     }
                 }
             });
+
+
         },
 
         goToDate : function(date) {
             var voicesContainer = this;
-            var gotDate = false;
+            
+            var gotDate = false,
+                dateIsRendered = false;
 
             var date = date.match(/[\d]{4}-[\d]{2}/);
 
+            for (var i = 0; i < voicesContainer.children.length; i++) {
+                var child = voicesContainer.children[i];
+                var voiceDate = child.createdAt.match(/[\d]{4}-[\d]{2}/);
+
+                if (date[0] == voiceDate[0]) {
+                    dateIsRendered = true;
+                    break;
+                    
+                }
+            };
+
+            if (dateIsRendered) {
+                voicesContainer.element.parent().animate({ scrollTop: child.element.position().top }, "fast", function() {
+                    Timeline.updateSliderPosition();
+                });
+                console.log('dateIsRendered')
+                return
+            };
+
             while (!gotDate) {
-                voicesContainer.appendNextPage();
+                voicesContainer.getNextPage();
 
-                for (var i = 0; i < voicesContainer.children.length; i++) {
-                    var voice = voicesContainer.children[i];
+                for (var i = 0; i < voicesContainer.voicesToRender.length; i++) {
+                    var voice = voicesContainer.voicesToRender[i].post;
 
-                    var voiceDate = voice.createdAt.match(/[\d]{4}-[\d]{2}/);
+                    var voiceDate = voice.created_at.match(/[\d]{4}-[\d]{2}/);
 
                     if (date[0] == voiceDate[0]) {
                         gotDate = true;
@@ -60,20 +90,19 @@ Class('VoicesContainer').inherits(Widget)({
                 }
 
                 if (gotDate) {
-                    console.log('got date')
-                    setTimeout(function() {
-                        voicesContainer.element.parent().animate({ scrollTop: voicesContainer.element.height() - 2000 }, "slow");    
-                    }, 500);
+                    console.log('got date', voice, date[0])
+
+                    voicesContainer.renderPages(function() {
+                        voicesContainer.element.parent().animate({ scrollTop: $("div[data-post-id='" + voice.id + "']").position().top }, "fast", function() {
+                            Timeline.updateSliderPosition();
+                        });
+                    });
                 };
             }
         },
 
-        appendNextPage : function() {
+        getNextPage : function(callback) {
             var voicesContainer = this;
-            var elements = [];
-            var voices   = [];
-            var posts    = [];
-
             var last;
 
             if (this.preloadedVoices.length < this.perPage * this.currentPage) {
@@ -86,9 +115,22 @@ Class('VoicesContainer').inherits(Widget)({
                 }
             }
 
-            posts = this.preloadedVoices.splice(this.lastVoiceIndex, this.perPage);
+            this.voicesToRender = this.voicesToRender.concat(this.preloadedVoices.splice(this.lastVoiceIndex, this.perPage));
 
-            posts.forEach(function(post) {
+            this.lastVoiceIndex = last;
+            this.currentPage++;
+
+            if (callback) {
+                callback();
+            }
+        },
+
+        renderPages : function(callback) {
+            var voicesContainer = this;
+            var elements = [];
+            var voices   = [];
+
+            this.voicesToRender.forEach(function(post) {
                 if (post.post) {
                     post = post.post;
                 }
@@ -115,6 +157,8 @@ Class('VoicesContainer').inherits(Widget)({
                     service       : post.source_url
                 });
                 
+                voice.disabled = CV.mediaFeedSearch[voice.sourceType] ? false : true;
+                
                 // dont render here cause UI locking
                 // voice.render(window.voicesContainer.element);
 
@@ -127,12 +171,9 @@ Class('VoicesContainer').inherits(Widget)({
 
             // Render here for better UI performance
             voices.forEach(function(voice) {
-                // setTimeout(function(){
-                    if (CV.mediaFeedSearch[voice.sourceType]) {
-                        voice.render(voicesContainer.element);    
-                    }
-                // }, 100);
-                
+                if (CV.mediaFeedSearch[voice.sourceType]) {
+                    voice.render(voicesContainer.element);    
+                }
             });
 
 
@@ -146,10 +187,13 @@ Class('VoicesContainer').inherits(Widget)({
                 // $(elements).hide().fadeIn(600);
 
                 Timeline.afterFetchActions();
-            }, 500);
 
-            this.lastVoiceIndex = last;
-            this.currentPage++;
+                if (callback) {
+                    callback();
+                }
+            }, 1000);
+
+            this.voicesToRender = [];
         }
     }
 });

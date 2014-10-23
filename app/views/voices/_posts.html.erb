@@ -65,11 +65,10 @@
       $.getJSON(location.pathname + params, function(data) {
           CV.voicesContainer.preloadedVoices = data;
           CV.voicesContainer.page = page;
-          CV.voicesContainer.appendNextPage();
-
-          // CV.mediaFeedSearch = new MediaFeedSearch({
-          //   element : $('.mediafeed-search')
-          // });
+          CV.voicesContainer.getNextPage(function() {
+            CV.voicesContainer.renderPages();  
+          });
+          
 
           CV.mediaFeedSearch.reloadFuse();
       });

@@ -18,7 +18,10 @@ Class('Timeline')({
         console.log('loadpage', params)
         Timeline.applySpinner();
         
-        CV.voicesContainer.appendNextPage();
+        CV.voicesContainer.getNextPage(function() {
+            CV.voicesContainer.renderPages();    
+        });
+        
 
         // $.getJSON(location.pathname + params, function(data) {
         //     timeline.preloadedVoices = data;
@@ -96,9 +99,16 @@ Class('Timeline')({
         if (!isDevice){
 
             this.voiceScroller.bind('mousewheel', function(e) {
-                var maxScrollY = this.scrollHeight - this.offsetHeight,
-                    hasMinPostCount = $('.voice-box').length >= _postCount,
-                    isAtBottom = this.scrollTop >= (maxScrollY - 300),
+                var scroller = this;
+
+                clearTimeout( $.data( this, "scrollCheck" ) );
+                $.data( this, "scrollCheck", setTimeout(function() {
+                    
+                }, 200) );
+
+                var maxScrollY = scroller.scrollHeight - scroller.offsetHeight,
+                    // hasMinPostCount = CV.voicesContainer.children.length >= _postCount,
+                    isAtBottom = scroller.scrollTop >= (maxScrollY - 300),
                     isSmallScreen = window.innerWidth <= 1024;
                 
                 that.debouncePositionUpdate();
@@ -108,6 +118,7 @@ Class('Timeline')({
                 }
 
             });
+
         }
 
         this.element.bind('posts:served', function(ev, data){
@@ -398,6 +409,7 @@ Class('Timeline')({
 
     _setHeight: function() {
         var headerHeight = this.mainHeader.height();
+
         this.voiceScroller.css('height', window.innerHeight - headerHeight);
     }
 });

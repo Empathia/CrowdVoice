@@ -14,7 +14,7 @@ Class('MediaFeedSearch').inherits(Widget)({
 
             var mediaFeedSearch = this;
 
-            this.fuse = new Fuse(CV.voicesContainer.children, this.fuseOptions);
+            this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
 
             var checkboxes = ['image', 'video', 'link'];
 
@@ -26,13 +26,29 @@ Class('MediaFeedSearch').inherits(Widget)({
                         mediaFeedSearch[checkbox] = false;
                     }
 
-                    mediaFeedSearch.dispatch(checkbox, {value : mediaFeedSearch[checkbox]});
+                    // mediaFeedSearch.dispatch(checkbox, {value : mediaFeedSearch[checkbox]});
+
+                    CV.voicesContainer.children.forEach(function(child) {
+                        if (child.sourceType === checkbox) {
+                            if (mediaFeedSearch[checkbox]) {
+                                child.enable();
+                            } else {
+                                child.disable();
+                            }
+                        };
+                    });
+
+                    CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
                 });
             });
 
             this.delayedEvent = new DelayedEventEmitter({waitingTime : 300});
 
-            this.element.find('input.search').bind('keyup', function(e) {
+            this.element.find('input.search').bind('keydown', function(e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();     
+                };
+
                 mediaFeedSearch.delayedEvent.dispatch('search');
             });
 
@@ -52,8 +68,20 @@ Class('MediaFeedSearch').inherits(Widget)({
             });
         },
 
+        getEnabledVoices : function() {
+            var enabledVoices = CV.voicesContainer.children.filter(function(child) {
+                if (!child.disabled) {
+                    return child;
+                }
+            });
+
+            console.log('enabled voices: ', enabledVoices.length)
+
+            return enabledVoices;
+        },
+
         reloadFuse : function () {
-            this.fuse = new Fuse(CV.voicesContainer.children, this.fuseOptions);
+            this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
 
             var query = this.element.find('input.search').val();
 
@@ -68,7 +96,7 @@ Class('MediaFeedSearch').inherits(Widget)({
             this.element.find('.found').html(0);
 
             CV.voicesContainer.children.forEach(function(child) {
-                CV.voicesContainer.element.append(child.element);
+                child.enable();
             });
 
             CV.voicesContainer.element.isotope('reLayout');
@@ -79,14 +107,21 @@ Class('MediaFeedSearch').inherits(Widget)({
 
             var result = mediaFeedSearch.fuse.search(query);
 
+            // result = result.filter(function(item) {
+            //     if (!item.disabled) {
+            //         return item;
+            //     }
+            // })
+
             console.log(result, query)
 
             CV.voicesContainer.children.forEach(function(child) {
-                child.element && child.element.detach();
+                child.disable();
             });
 
             result.forEach(function(item) {
-                item && CV.voicesContainer.element.append(item.element);
+                // item && CV.voicesContainer.element.append(item.element);
+                item.enable();
             });
 
             mediaFeedSearch.element.find('.found').html(result.length);
