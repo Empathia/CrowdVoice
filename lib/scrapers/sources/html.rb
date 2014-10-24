@@ -5,9 +5,7 @@ require 'ext/string'
 module Scrapers
   module Sources
     class Html
-
-      DEFAULT_IMAGE = 'https://s3.amazonaws.com/crowdvoice-production-bucket/link-default.png'
-
+      DEFAULT_IMAGE = '/images/v4/carousel-not-image-found.jpg'
       attr_reader :document
 
       def initialize(url)

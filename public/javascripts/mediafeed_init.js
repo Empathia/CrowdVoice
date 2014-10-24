@@ -33,10 +33,8 @@ $(function () {
             new InfoSidebar('.info-sidebar', infoboxData);
         }
 
-        new Post('.post', {
-            tooltipImage: new Tooltip('.tool-image'),
-            tooltipVideo: new Tooltip('.tool-video'),
-            tooltipLink : new Tooltip('.tool-link'),
+        new Post({
+            element     : $('.post'),
             carousel    : new Carousel(),
             postFilter  : postFilter,
             votes       : votes,

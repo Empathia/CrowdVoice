@@ -1,7 +1,8 @@
 .cv-tooltip {
 }
 
-.has-cv-tooltip:hover .cv-tooltip {
+.has-cv-tooltip:hover .cv-tooltip,
+.cv-tooltip.active {
   display: block;
 }
 

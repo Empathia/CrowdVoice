@@ -104,24 +104,6 @@ body.orange .post > .post-paceholder > a {color: #ec9415}
 body.yellow .post > .post-paceholder > a {color: #ebc91c}
 body.blue .post > .post-paceholder > a {color: #4cb5ff}
 
-.with-image .tooltip-label {
-  color: #909090;
-}
-.media-type-info h3 {color:#404040}
-.media-type-info .description-link {color:#404040}
-.media-type-info .carousel-arrows > .carousel-counter {color:#404040}
-.media-type-info .carousel-arrows > .left-arrow {background: url('/images/bg/sprites/tooltip_arrows.png') no-repeat; background-position: 0 0; cursor:pointer}
-.media-type-info .carousel-arrows > .right-arrow {background: url('/images/bg/sprites/tooltip_arrows.png') no-repeat; background-position: 100% 0; cursor:pointer}
-.media-type-info .carousel-arrows > .left-arrow:hover {background-position: 0 -17px}
-.media-type-info .carousel-arrows > .right-arrow:hover {background-position: 100% -17px}
-.media-type-info .link-textarea {border-color: #9f9f9f; border-style: solid;
-        border-radius: 5px
-}
-.post > input[type='text'] {
-  border-style: solid;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
 .post > .post-button > input[type='submit'] {
   cursor: pointer;
   color: #fff;

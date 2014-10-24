@@ -1,0 +1,205 @@
+.post-media-tooltip-header {
+  padding: 1em 1.5em;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-media-tooltip-header .tooltip-close-btn {
+  font-size: 13px;
+  line-height: 19px;
+  text-decoration: underline;
+  color: #a6a6a6;
+}
+.post-media-tooltip-header .tooltip-close-btn:hover {
+  color: #b3b3b3;
+}
+
+.post-media-tooltip-header  .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.cv-tooltip .tooltip-label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: .5em;
+}
+
+.cv-tooltip .light {
+  color: #a6a6a6;
+}
+
+.post-media-tooltip-content label {
+  display: block;
+  margin: 0 0 1.5em;
+}
+
+/**
+ * Image Type
+ */
+.image-post-media-tooltip {
+  width: 415px;
+  left: -30px;
+}
+.image-post-media-tooltip .tooltip-positioner {
+  left: -50%;
+}
+
+.image-post-media-tooltip .tooltip-arrow {
+  left: 245px;
+}
+
+.default > .image-post-media-tooltip {
+  width: 245px;
+  left: 50%;
+}
+.default > .image-post-media-tooltip .tooltip-arrow {
+  left: 50%;
+}
+
+.image-post-media-tooltip .cv-tooltip-inner {
+  padding: 0;
+}
+
+.image-post-media-tooltip .post-media-tooltip-content {
+  padding: 1.5em 1.5em;
+}
+
+.image-post-media-tooltip textarea {
+  height: 116px;
+  padding: .7em 1em;
+}
+
+.image-post-media-tooltip .post-media-tooltip-footer {
+  font-size: 13px;
+  line-height: 19px;
+  padding: 1.3em 1.5em 1.5em;
+  border-top: 1px solid #ccc;
+}
+
+/**
+ * Video Type
+ */
+.video-post-media-tooltip {
+  width: 290px;
+}
+
+.video-post-media-tooltip .tooltip-positioner {
+  left: -50%;
+}
+.video-post-media-tooltip .tooltip-arrow {
+  left: 50%;
+}
+
+.video-post-media-tooltip .cv-tooltip-inner {
+  font-size: 15px;
+  line-height: 20px;
+  padding: 1em 1.2em;
+  font-weight: 600;
+}
+
+/**
+ * Link Type
+ */
+.link-post-media-tooltip {
+  width: 220px;
+}
+
+.link-post-media-tooltip .tooltip-positioner {
+  left: -50%;
+}
+
+.link-post-media-tooltip .tooltip-arrow {
+  left: 50%;
+}
+
+.link-post-media-tooltip .normal .cv-tooltip-inner {
+  font-size: 15px;
+  line-height: 20px;
+  padding: 1em 1.2em;
+  font-weight: 600;
+}
+
+.link-post-media-tooltip .carousel {
+  width: 400px;
+  left: -288px!important;
+}
+
+.link-post-media-tooltip .carousel .tooltip-arrow {
+  left: 72%;
+}
+
+.link-post-media-tooltip .carousel .cv-tooltip-inner {
+  padding: 0;
+}
+
+.link-post-media-tooltip .post-media-tooltip-content {
+  padding: 1.5em;
+}
+
+.carousel-image {
+  display: inline-block;
+  width: 160px;
+  overflow: hidden;
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+.carousel-image img {
+  max-width: 158px;
+  vertical-align: top;
+}
+.carousel-arrows {
+  overflow: hidden;
+  margin-bottom: 1.5em;
+}
+.carousel-arrows > .left-arrow {
+  width: 17px;
+  height: 17px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+  background: url('/images/bg/sprites/tooltip_arrows.png') no-repeat;
+  background-position: 0 0;
+  cursor:pointer;
+}
+.carousel-arrows > .left-arrow:hover {
+  background-position: 0 -17px;
+}
+
+.carousel-arrows > .right-arrow {
+  width: 17px;
+  height: 17px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+  background: url('/images/bg/sprites/tooltip_arrows.png') no-repeat;
+  background-position: 100% 0;
+  cursor:pointer;
+}
+.carousel-arrows > .right-arrow:hover {
+  background-position: 100% -17px;
+}
+
+.carousel-arrows > .carousel-counter {
+  font-size: 10px;
+  float: left;
+  padding-top: 5px;
+}
+
+.carousel-arrows > .carousel-counter {
+  color:#404040;
+}
+
+.link-post-media-tooltip .description-link {
+  font-size:12px;
+  margin:5px 0;
+}
+
+.link-post-media-tooltip textarea {
+  height: 116px;
+  padding: .7em 1em;
+}
+

@@ -28,80 +28,119 @@
           <fieldset class="post">
             <p class="post-paceholder"><span>Post a URL or </span><%= f.file_field :image %><a href="#" title="Upload an Image">Upload an Image</a><span class="cover"></span></p>
             <ul class="post-type">
-              <li class="media tool-image">
+
+              <li class="media tool-image has-cv-tooltip">
                 <a class="media-type image-tool" href="#" title="Image">
                   <i class="mediafeed-sprite image-type-icon"></i>
                 </a>
-                <div class="tooltip">
+                <div class="cv-tooltip tooltip image-post-media-tooltip">
                   <div class="tooltip-positioner">
-                    <p class="tooltip-arrow"><span></span></p>
-                    <div class="media-type-info image-tip">
-                      <div class="without-image">
-                        <strong class="media-type-title">Put the URL of your image to display in this voice.</strong>
+                    <span class="tooltip-arrow"><span></span></span>
+                    <div class="image-tip cv-tooltip-inner">
+                      <div class="post-media-tooltip-header clearfix with-image js-with-content">
+                        <div class="cv-pull-left">
+                          <span class="title">Post Image</span>
+                        </div>
+                        <div class="cv-pull-right">
+                          <a href="#" class="tooltip-close-btn">Cancel</a>
+                        </div>
                       </div>
-                      <div class="with-image">
-                        <span class="tooltip-label">Add a title to your image:</span>
-                          <input type="text" id="image_title" name="post[image_title]"/>
-                        <span class="tooltip-label">Add a message to your image:</span>
-                          <textarea id="image_description" class="link-textarea" name="post[image_description]"></textarea>
+                      <div class="post-media-tooltip-content with-image js-with-content">
+                        <label>
+                          <p class="tooltip-label">Add a title to your image</p>
+                          <input class="cv-input cv-input--medium cv-input--dynamic-color cv-block" type="text" id="image_title" name="post[image_title]"/>
+                        </label>
+                        <label>
+                          <p class="tooltip-label">
+                            Add a description to your image
+                            <span class="light">(140 character max)</span>
+                          </p>
+                          <textarea maxlength="140" id="image_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[image_description]"></textarea>
+                        </label>
+                        <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
                       </div>
-                      <span class="media-type-subtitle">Also you can send images to this email:</span>
-                      <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'media-type-link', :encode => "javascript" %>
-                      <em class="media-type-notice">(max-size for attachments is 2mb.)</em>
+                      <div class="post-media-tooltip-footer">
+                        <p class="tooltip-label js-default">Enter the URL of an image you want to display in this voice</p>
+                        <span class="light">You can also send images (2 mb max) as attachments to this email:</span>
+                        <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'cv-dynamic-text-color', :encode => "javascript" %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="media tool-video">
+
+              <li class="media tool-video has-cv-tooltip">
                 <a class="media-type video-tool" href="#" title="Video">
                   <i class="mediafeed-sprite video-type-icon"></i>
                 </a>
-                <div class="tooltip">
+                <div class="cv-tooltip tooltip video-post-media-tooltip">
                   <div class="tooltip-positioner">
-                    <p class="tooltip-arrow"><span></span></p>
-                    <p class="media-type-info">
-                      <strong class="media-type-title">Put the URL of a Youtube or Vimeo video to display in this voice.</strong>
-                    </p>
+                    <span class="tooltip-arrow"><span></span></span>
+                    <div class="cv-tooltip-inner clearfix">
+                      Enter the URL of a Youtube or Vimeo video you want to display in this voice.
+                    </div>
                   </div>
                 </div>
               </li>
-              <li class="media tool-link">
+
+              <li class="media tool-link has-cv-tooltip">
                 <a class="media-type link-tool" href="#" title="Link">
                   <i class="mediafeed-sprite link-type-icon"></i>
                 </a>
-                <div class="tooltip link-img-post">
+                <div class="cv-tooltip tooltip link-img-post link-post-media-tooltip">
                   <div class="tooltip-positioner normal">
-                    <p class="tooltip-arrow"><span></span></p>
-                    <p class="media-type-info">
-                      <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
-                    </p>
+                    <span class="tooltip-arrow"><span></span></span>
+                    <div class="cv-tooltip-inner">
+                      Put the URL of a Notice, Blog Post, or Article to display in this voice.
+                    </div>
                   </div>
                   <div class="tooltip-positioner carousel">
-                    <p class="tooltip-arrow"><span></span></p>
-                    <div class="media-type-info">
-                      <div class="without-link">
+                    <span class="tooltip-arrow"><span></span></span>
+                    <div class="cv-tooltip-inner">
+                      <div class="without-link js-default">
                         <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
                       </div>
-                      <div class="with-link">
+                      <div class="with-link js-with-content">
                         <%= f.hidden_field :remote_image_url %>
-                        <h3>Choose an image for this Link</h3>
-                        <div class="carousel-image">
-                          <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
+                        <div class="post-media-tooltip-header clearfix">
+                          <div class="cv-pull-left">
+                            <span class="title">Post Article Link</span>
+                          </div>
+                          <div class="cv-pull-right">
+                            <a href="#" class="tooltip-close-btn">Cancel</a>
+                          </div>
                         </div>
-                        <div class="carousel-arrows">
-                          <div id="carousel_left_arrow" class="left-arrow"></div>
-                          <div id="carousel_right_arrow" class="right-arrow"></div>
-                          <div class="carousel-counter"></div>
+                        <div class="post-media-tooltip-content">
+                          <label>
+                            <p class="tooltip-label">
+                              Add a description to the link
+                              <span class="light">(140 character max)</span>
+                            </p>
+                            <textarea id="link_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[description]"></textarea>
+                          </label>
+                          <label>
+                            <p class="tooltip-label">
+                              Choose a thumbnail image for the article
+                            </p>
+                          </label>
+                          <div class="carousel-image">
+                            <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
+                          </div>
+                          <div class="carousel-arrows">
+                            <div id="carousel_left_arrow" class="left-arrow"></div>
+                            <div id="carousel_right_arrow" class="right-arrow"></div>
+                            <div class="carousel-counter"></div>
+                          </div>
+                          <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
                         </div>
-                        <p class="description-link">Add custom description to the link</p>
-                        <textarea id="link_description" class="link-textarea" name="post[description]"></textarea>
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
+
             </ul>
-            <%= f.text_field :source_url, :class => "cv-input cv-input--dynamic-color" %>
+            <%= f.text_field :source_url, :autocomplete => "off", :class => "cv-input cv-input--medium cv-input--dynamic-color cv-pull-left cv-block" %>
             <div class="post-button"><%= f.submit 'Post', :class => "cv-button cv-button--dynamic-color" %>
               <div class="tooltip notice">
                 <div class="tooltip-positioner">
@@ -119,11 +158,11 @@
     <div class="filters-and-mode">
       <div>
         <form>
-          <div class="tags-container">
+          <div class="tags-container has-cv-tooltip">
             <div class="tag-tooltip-trigger cv-button cv-button--small cv-button--light with-arrow">
               TAGS <i class="cv-button--arrow"></i>
             </div>
-            <div class="tooltip">
+            <div class="cv-tooltip tooltip info-tags__tooltip">
               <div class="tooltip-positioner">
                 <div class="media-type-info">
                   <ul class="voice-tags"></ul>

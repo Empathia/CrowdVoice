@@ -7,14 +7,13 @@ Class('Carousel')({
                 index : 0,
                 images : [],
                 picture: null,
-                DEFAULT_IMAGE: "https://s3.amazonaws.com/crowdvoice-production-bucket/link-default.png",
+                DEFAULT_IMAGE: "/images/v4/carousel-not-image-found.jpg",
                 tooltipLink: null
             };
             $.extend(this.options, options);
 
             this.element = typeof element == "string" ? $(element) : element;
-            this.picture = $(document.createElement("img")).css({"width": 89}).attr({"id": "img_74dd65a7c6"});
-            // this.picture.attr({"src": ""});
+            this.picture = $(document.createElement("img")).attr({"id": "img_74dd65a7c6"});
             $(".carousel-image").append(this.picture);
             this._bindEvents();
         },

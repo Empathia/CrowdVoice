@@ -160,8 +160,6 @@ body {
 .widget-height,
 .widget-scope {margin-right: 6px}
 .rtl-checkbox {margin-right: 6px}
-.image-tip textarea {margin-top:4px; margin-bottom:5px; width: 210px; border-width:1px; padding: 7px 11px; overflow: hidden; height: 40px; font-size: 11px; line-height: 15px; margin-left: 7px}
-.image-tip input {margin-top:4px; width: 210px; border-width:1px; padding: 7px 11px; overflow: hidden; height: 30px; font-size: 12px; line-height: 15px; margin-left: 7px}
 .sweeper {position: relative; overflow: hidden; clear: both}
 .widget {position: relative}
 

@@ -1,11 +1,17 @@
 .cv-input {
   padding: 0 1em;
   border: 1px solid #b2b2b2;
+  border-radius: .25em;
   box-shadow: inset 0 2px 0 rgba(0,0,0,.1);
 }
 
 .cv-input--small {
   height: 21px;
+}
+
+.cv-input--medium {
+  font-size: 15px;
+  height: 35px;
 }
 
 .cv-input--small.cv-input--rounded {

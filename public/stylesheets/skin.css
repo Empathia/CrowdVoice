@@ -210,26 +210,8 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
 
 .media-type-link {color: #50b347}
 
-body.green .media-type-link {color: #50b347}
-body.red .media-type-link {color: #ed0c22}
-body.yellow .media-type-link {color: #e5b917}
-body.orange .media-type-link {color: #e67611}
-body.blue .media-type-link {color: #2378ab}
-
-.media-type-notice {color: #999999}
 .blog-widget-textarea {
   border-radius: 4px;
-}
-
-.image-tip textarea {
-  border-color: #9f9f9f;
-  border-style: solid;
-  border-radius: 5px;
-}
-.image-tip input {
-  border-color: #9f9f9f;
-  border-style: solid;
-  border-radius: 5px;
 }
 
 .header-sponsor {background: url('/images/bg/sponsor_header.png') top center no-repeat}

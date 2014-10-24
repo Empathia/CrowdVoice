@@ -11,7 +11,7 @@ Class('Tooltip')({
 			this.element = typeof element == "string" ? $(element) : element;
 			this.tooltip = this.element.find('.tooltip');
 			this.userWindow = $(window);
-			this._get_tooltip_name();
+//this._get_tooltip_name();
 			this._hoverTooltip();
 			this._moderatorClick();
 			this._hide_extra_data();
@@ -20,11 +20,12 @@ Class('Tooltip')({
 		},
 
 		_get_tooltip_name: function(){
-			this.tooltip_name = '';
+            console.error('get_tooltip_name')
+            /* this.tooltip_name = '';
 
 			if (this.element.find('a.media-type').attr('title') !== undefined ){
 				this.tooltip_name = this.element.find('a.media-type').attr('title').toLowerCase();
-			}
+			}*/
 		},
 
 		_hoverTooltip: function () {
@@ -93,7 +94,9 @@ Class('Tooltip')({
 		},
 
 		_hide_extra_data: function() {
-			switch(this.tooltip_name) {
+            console.error('hide_extra_data', this.tooltip.name);
+			/*
+            switch(this.tooltip_name) {
 				case 'image':
 					this.element.find('.with-image').hide();
 					this.element.find('.without-image').show();
@@ -103,10 +106,12 @@ Class('Tooltip')({
 					this.element.find('.with-link').hide();
 					break;
 			}
+            */
 		},
 
 		_show_extra_data: function() {
-			if ($('#post_source_url').val() !== ''){
+            console.error('show_extra_data', this.tooltip.name);
+			/*if ($('#post_source_url').val() !== ''){
 				switch(this.tooltip_name) {
 					case 'image':
 						this.element.find('.without-image').hide();
@@ -118,6 +123,7 @@ Class('Tooltip')({
 						break;
 				}
 			}
+            */
 		},
 
 		_moderatorClick: function () {   //functionality for moderate public items view
@@ -131,6 +137,7 @@ Class('Tooltip')({
 		},
 
 		detectContent: function() {
+            console.error('detect_content')
 			if ( $.inArray(this.tooltip_name, ['image','video','link'] ) >= 0 && $('#post_source_url').val() != '' && $('.media > a.active').length == 1 && !$('.tooltip.notice').is(':visible')) {
 				this.tooltip.parent().css('z-index', 10);
 			} else {
@@ -139,19 +146,33 @@ Class('Tooltip')({
 		},
 
 		show: function() {
+            console.error('show', this.element);
 			$('a', this.element).addClass('active');
 
 			if (typeof(Post) != 'undefined') {
 
-				if (Post.isVideo($('#post_source_url').val()) && $('a', this.element).hasClass('active') && this.tooltip_name == 'video' ){
+				if (
+                    Post.isVideo($('#post_source_url').val())
+                    && $('a', this.element).hasClass('active')
+                    && this.tooltip_name == 'video' ){
 					return false;
 				}
 
-				if ((Post.isImage($('#post_source_url').val()) || ($('#post_source_url').val() != '')) && $('#post_source_url').val() != '' && $('a', this.element).hasClass('active') && this.tooltip_name == 'image'){
+				if (
+                    (Post.isImage($('#post_source_url').val())
+                     || ($('#post_source_url').val() != '')
+                    )
+                    && $('#post_source_url').val() != ''
+                    && $('a', this.element).hasClass('active')
+                    && this.tooltip_name == 'image'){
 					this._show_extra_data();
 				}
 
-				if (Post.isLink($('#post_source_url').val()) && $('#post_source_url').val() != '' && $('a', this.element).hasClass('active') && this.tooltip_name == 'link'){
+				if (
+                    Post.isLink($('#post_source_url').val())
+                    && $('#post_source_url').val() != ''
+                    && $('a', this.element).hasClass('active')
+                    && this.tooltip_name == 'link'){
 					this._show_extra_data();
 				}
 			}
@@ -162,6 +183,7 @@ Class('Tooltip')({
 		},
 
 		hide: function() {
+            console.error('hide', this.element);
 			this.tooltip.hide();
 			this.tooltip.find('.dismiss-tooltip').remove();
 

@@ -70,6 +70,7 @@ javascripts:
     - public/javascripts/cv/overlay.js
     - public/javascripts/cv/video_overlay.js
     - public/javascripts/cv/message.js
+    - public/javascripts/v4/MediaTool.js
     - public/javascripts/cv/post.js
     - public/javascripts/cv/filters.js
     - public/javascripts/cv/votes.js
@@ -191,6 +192,7 @@ stylesheets:
     - public/stylesheets/v4/tooltips/sidebar-tooltips.css
     - public/stylesheets/v4/tooltips/mediafeed-tweets.css
     - public/stylesheets/v4/tooltips/embeddable-widget.css
+    - public/stylesheets/v4/tooltips/media-tools.css
     - public/stylesheets/layout/modules/loaders.css
     - public/stylesheets/skin/modules/loaders.css
   home_pack:

@@ -17,7 +17,6 @@ module Scrapers
     end
 
     def scraper
-      debugger
       @scraper ||=
         case url
         when Sources::Flickr.regexp : Sources::Flickr.new(APP_CONFIG[:flickr_key], url)

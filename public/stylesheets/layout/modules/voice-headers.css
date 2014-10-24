@@ -111,11 +111,7 @@
       }
         .post > input[type="text"]{
           min-width: 224px;
-          width: 100%;
           height: 35px;
-          font-size: 15px;
-          float: left;
-          border-width: 1px;
         }
         .post > .post-button {
           border-width: 1px;
@@ -192,7 +188,7 @@
           }
 
         .post-type > .media > .tooltip {
-          top: 24px;
+          top: 14px;
         }
 
         .media-type-info  {
@@ -224,72 +220,6 @@
           line-height: 1;
           padding: 6px 7px 0;
         }
-        .media-type-notice {
-          font-size: 11px;
-          display: block;
-          line-height: 1;
-          padding: 6px 0 0;
-        }
-        .media-type-info h3 {
-          width: 100%;
-          font-size: 1em;
-        }
-        .media-type-info .description-link {
-          font-size:12px;
-          margin:5px 0;
-        }
-        .media-type-info .carousel-image {
-          width: 100%;
-          overflow: hidden;
-          margin: 4px 0;
-          text-align: center;
-        }
-        .media-type-info .carousel-arrows {
-          overflow: hidden;
-        }
-        .media-type-info .carousel-arrows >  {
-          overflow: hidden;
-        }
-        .media-type-info .carousel-arrows > .left-arrow {
-          width: 17px;
-          height: 17px;
-          display: block;
-          float: left;
-          margin-right: 5px;
-          margin-top: 2px;
-        }
-        .media-type-info .carousel-arrows > .right-arrow {
-          width: 17px;
-          height: 17px;
-          display: block;
-          float: left;
-          margin-right: 5px;
-          margin-top: 2px;
-        }
-        .media-type-info .carousel-arrows > .carousel-counter {
-          font-size: 10px;
-          float: left;
-          padding-top: 5px;
-        }
-        .media-type-info .link-textarea {
-          width: 100%;
-          border-width:1px;
-          overflow: hidden;
-          height: 70px;
-          font-size: 11px;
-          line-height: 15px;
-          padding: 7px;
-          margin: 4px 0 0 0;
-        }
-        .media-type-info.image-tip input {
-          margin-left: 0;
-        }
-        .tooltip-label {
-          font-size: 12px;
-          display: block;
-          line-height: 1;
-          padding: 7px 7px 0;
-        }
         .filters-and-mode .tooltip,
         .post-button > .tooltip {
           z-index:7;
@@ -308,17 +238,7 @@
           left: 50%;
           z-index: 40;
         }
-        .post-and-actions .tool-image .tooltip-positioner,
-        .post-and-actions .tool-video .tooltip-positioner,
-        .post-and-actions .tool-link .tooltip-positioner {
-          left: -50%;
-        }
-        .post-and-actions .tool-image .tooltip-arrow,
-        .post-and-actions .tool-video .tooltip-arrow,
-        .post-and-actions .tool-link .tooltip-arrow {
-          left: 50%;
-        }
-          .post-button > .tooltip > .tooltip-positioner > .tooltip-arrow > span {
+        .post-button > .tooltip > .tooltip-positioner > .tooltip-arrow > span {
             position: relative;
             width: 16px;
             height: 12px;
@@ -353,10 +273,7 @@
           left: -9px;
           width: 204px;
         }
-        .tool-link .media-type-info .media-type-title {
-          width: 188px;
-        }
-	.filters-and-mode {
+  .filters-and-mode {
 		float: left;
 		padding-bottom: 10px;
 		padding-left: 28px;
