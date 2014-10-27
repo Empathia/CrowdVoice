@@ -153,48 +153,70 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
 .carousel-arrows {
   overflow: hidden;
   margin-bottom: 1.5em;
 }
-.carousel-arrows > .left-arrow {
-  width: 17px;
+.carousel-arrows-inner {
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #b3b3b3;
+  border-radius: 4px;
+}
+
+.carousel-arrows-inner > .carousel-arrow {
+  width: 30px;
   height: 17px;
   display: block;
+  vertical-align: top;
   float: left;
-  margin-right: 5px;
-  margin-top: 2px;
-  background: url('/images/bg/sprites/tooltip_arrows.png') no-repeat;
-  background-position: 0 0;
   cursor:pointer;
+  background-color: #fafafa;
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
 }
-.carousel-arrows > .left-arrow:hover {
-  background-position: 0 -17px;
+.carousel-arrows-inner > .carousel-arrow:hover {
+  background-color: #fff;
+}
+.carousel-arrows-inner > .carousel-arrow:active {
+  background-color: #ededed;
 }
 
-.carousel-arrows > .right-arrow {
-  width: 17px;
+.carousel-arrows-inner > .carousel-arrow > .arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-width: 4px;
+  border-style: solid;
+  position: relative;
+  top: -1px;
+}
+.carousel-arrows-inner > .left-arrow > .arrow {
+  border-left-width: 0;
+}
+.carousel-arrows-inner > .right-arrow > .arrow {
+  border-right-width: 0;
+}
+
+.carousel-arrows-inner > .left-arrow {
+  border-right: 1px solid #b3b3b3;
+  border-radius: 4px 0 0 4px;
+}
+
+.carousel-arrows-inner > .right-arrow {
+  border-left: 1px solid #b3b3b3;
+  border-radius: 0 4px 4px 0;
+}
+
+.carousel-arrows-inner > .carousel-counter {
+  font-size: 12px;
+  width: 98px;
   height: 17px;
-  display: block;
   float: left;
-  margin-right: 5px;
-  margin-top: 2px;
-  background: url('/images/bg/sprites/tooltip_arrows.png') no-repeat;
-  background-position: 100% 0;
-  cursor:pointer;
-}
-.carousel-arrows > .right-arrow:hover {
-  background-position: 100% -17px;
-}
-
-.carousel-arrows > .carousel-counter {
-  font-size: 10px;
-  float: left;
-  padding-top: 5px;
-}
-
-.carousel-arrows > .carousel-counter {
-  color:#404040;
+  background-color: #ededed;
+  color: #a6a6a6;
+  text-align: center;
 }
 
 .link-post-media-tooltip .description-link {

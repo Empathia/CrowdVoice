@@ -34,11 +34,13 @@ $(function () {
         }
 
         new Post({
-            element     : $('.post'),
-            carousel    : new Carousel(),
-            postFilter  : postFilter,
-            votes       : votes,
-            overlays    : overlays
+            element : $('.post'),
+            carousel : new Carousel({
+                element : $('.tool-link .cv-carousel-widget')
+            }),
+            postFilter : postFilter,
+            votes : votes,
+            overlays : overlays
         });
 
         new Tooltip2({

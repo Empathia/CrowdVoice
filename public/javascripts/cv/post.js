@@ -97,8 +97,7 @@ Class('Post').inherits(Widget)({
 
             if (type === 'link') {
                 this.linkMediaTool.activate();
-                $('.carousel-image').find("img:not('.carousel-loader')").hide();
-                $('.carousel-loader').show();
+                this.carousel.showLoader();
                 this.carousel.show();
                 this._call_for_page_info();
             }
@@ -245,8 +244,7 @@ Class('Post').inherits(Widget)({
                 dataType: "json",
                 success: function(data, status, xhr) {
                     that.carousel.loadHash(data);
-                    $('.carousel-image').find("img:not('.carousel-loader')").show();
-                    $('.carousel-loader').hide();
+                    that.carousel.hideLoader();
 
                     // wait a bit before doing another ajax call
                     setTimeout(function() {

@@ -1,33 +1,168 @@
-Class('Carousel')({
+Class('Carousel').inherits(Widget)({
+    DEFAULT_IMAGE: "/images/v4/carousel-not-image-found.jpg",
     prototype : {
-        init : function (element, options) {
-            this.options = {
-                description : 'No description set.',
-                title : 'No title set.',
-                index : 0,
-                images : [],
-                picture: null,
-                DEFAULT_IMAGE: "/images/v4/carousel-not-image-found.jpg",
-                tooltipLink: null
-            };
-            $.extend(this.options, options);
+        description : 'No description set.',
+        title : 'No title set',
+        index: 0,
+        images : [],
+        picture : null,
+        tooltipLink : null,
+        carouselImageElement : null,
+        carouselLoaderElement : null,
+        carouselLeftArrow : null,
+        carouselRightArrow : null,
+        carouselCounter : null,
 
-            this.element = typeof element == "string" ? $(element) : element;
-            this.picture = $(document.createElement("img")).attr({"id": "img_74dd65a7c6"});
-            $(".carousel-image").append(this.picture);
+        init : function init(config) {
+            Widget.prototype.init.call(this, config);
+
+            this.carouselImageElement = this.element.find('.carousel-image');
+            this.carouselLoaderElement = this.element.find('.carousel-loader');
+            this.carouselLeftArrow = this.element.find('.left-arrow');
+            this.carouselRightArrow = this.element.find('.right-arrow');
+            this.carouselCounter = this.element.find('.carousel-counter');
+            this.picture = $(document.createElement("img")).attr({
+                "id": "img_74dd65a7c6"
+            });
+
+            this.carouselImageElement.append(this.picture);
+
             this._bindEvents();
         },
 
-        loadHash : function (hash) {
+        _bindEvents: function () {
+            this.carouselRightArrow.bind('click', function () {
+                if (this.images.length > 1) {
+                    return this._updateCurrentImage(this._showNextImage());
+                }
+            }.bind(this));
+
+            this.carouselLeftArrow.bind('click', function () {
+                if (this.images.length > 1) {
+                    return this._updateCurrentImage(this._showPrevImage());
+                }
+            }.bind(this));
+
+            return this;
+        },
+
+        _addImage : function _addImage(imageSource) {
+            this.images.push(imageSource);
+            this._updateCurrentImage(this.current());
+
+            return this;
+        },
+
+        _showNextImage : function _showNextImage() {
+            this.index++;
+
+            if (this.index >= this.images.length) {
+                this.index = 0;
+            }
+
+            return this.current();
+        },
+
+        _showPrevImage : function _showPrevImage() {
+            this.index--;
+
+            if (this.index < 0) {
+                this.index = this.images.length - 1;
+            }
+
+            return this.current();
+        },
+
+        current : function current() {
+            if (this.images.length == 0) {
+                return this.constructor.DEFAULT_IMAGE;
+            }
+
+            return this.images[this.index];
+        },
+
+        label : function label() {
+            if (this.images.length == 0) {
+                return "no images found";
+            }
+
+            return (this.index + 1) + " of " + this.images.length;
+        },
+
+        serialize : function serialize() {
+            return ({
+                'description' : this.description,
+                'title' : this.title,
+                'images' : this.images,
+                'current' : this.current()
+            });
+        },
+
+        show : function show() {
+            $('.tooltip-positioner.normal').hide();
+            $('.tooltip-positioner.carousel').show();
+        },
+
+        hide : function hide() {
+            $('.tooltip-positioner.carousel').hide();
+            $('.tooltip-positioner.normal').show();
+        },
+
+        _updateCurrentImage : function _updateCurrentImage(element) {
+            this.carouselImageElement.find('img').attr('src', element);
+            this.carouselCounter.text(this.label());
+            $('#post_remote_image_url').val(element);
+        },
+
+        _updateDescription : function _updateDescription(){
+            if (!($('#post_source_url').val().indexOf('.pdf') > 0)) {
+                $("#link_description").val(this.description);
+            }
+        },
+
+        /**
+         * @method showLoader <public> [Fuction]
+         */
+        showLoader : function showLoader() {
+            this.carouselImageElement.find("img:not('.carousel-loader')").hide();
+            this.carouselLoaderElement.show();
+
+            return this;
+        },
+
+        /**
+         * @method hideLoader <public> [Fuction]
+         */
+        hideLoader : function hideLoader() {
+            this.carouselImageElement.find("img:not('.carousel-loader')").show();
+            this.carouselLoaderElement.hide();
+
+            return this;
+        },
+
+        /**
+         * @method clear <public> [Fuction]
+         */
+        clear : function clear() {
+            this.carouselCounter.text('');
+            $("#link_description").val('');
+            this.hide();
+
+            return this;
+        },
+
+        /**
+         * @method loadHash <public> [Fuction]
+         */
+        loadHash : function loadHash(hash) {
+            var self = this;
+
             this.index = 0;
             this.title = hash.title;
             this.description = hash.description;
             this.images = [];
-            this.picture.attr("src", this.options.DEFAULT_IMAGE);
-            //filter out the images that are useful
-            var self = this;
 
-            if(hash.error) {
+            if (hash.error) {
                 this.clear();
                 tt_link && tt_link.hide();
                 $('.tooltip.notice .moderate-tooltip').html(hash.error);
@@ -40,106 +175,24 @@ Class('Carousel')({
 
                    img.onload = function() {
                        if (this.width >= 50 && this.height >= 50) {
-                           self.addImage(this.src);
-                           if (self.images.length >= 1 && self.picture.attr("src") == self.options.DEFAULT_IMAGE) {
+                           self._addImage(this.src);
+                           if (self.images.length >= 1 && self.picture.attr("src") == self.constructor.DEFAULT_IMAGE) {
                                var src = self.current();
 
                                if (src != "") {
                                    self.picture.show();
                                    self.picture.attr("src", self.current());
-                                   $("#link_image").val(self.current());
-                                   self.update();
+                                   self._updateCurrentImage();
                                }
                            }
                        }
                    };
                 }
 
-                this.update(this.current());
-                this.update_description();
+                this._updateCurrentImage(this.current());
+                this._updateDescription();
             }
-        },
-
-        addImage : function(img_src) {
-            this.images.push(img_src);
-            this.update(this.current());
-        },
-
-        next : function () {
-            this.index++;
-            if (this.index >= this.images.length) { this.index = this.images.length -1 };
-            return this.current();
-        },
-
-        prev : function () {
-            this.index--;
-            if (this.index < 0) { this.index = 0 };
-            return this.current();
-        },
-
-        current : function () {
-            return this.images.length == 0 ? this.options.DEFAULT_IMAGE : this.images[this.index] ;
-        },
-
-        label : function () {
-            return this.images.length == 0 ? "no images found" : (this.index + 1) + " of " + this.images.length;
-        },
-
-        serialize : function () {
-            return ({
-                'description' : this.description,
-                'title' : this.title,
-                'images' : this.images,
-                'current' : this.current()
-            });
-        },
-
-        clear : function() {
-          // $('.carousel-image img').attr('src', '');
-          $('.carousel-counter').text('');
-          $("#link_image").val('');
-          $("#link_description").val('');
-          this.hide();
-        },
-
-        show : function() {
-          $('.tooltip-positioner.normal').hide();
-          $('.tooltip-positioner.carousel').show();
-        },
-
-        hide : function() {
-          $('.tooltip-positioner.carousel').hide();
-          $('.tooltip-positioner.normal').show();
-        },
-
-        update : function(element) {
-          $('.carousel-image img').attr('src', element);
-          $('.carousel-counter').text(this.label());
-          $("#link_image").val(this.current());
-          $('#post_remote_image_url').val(element);
-        },
-
-        update_description: function(){
-          var carousel = this;
-          $("#link_title").val(carousel.title);
-          if( !($('#post_source_url').val().indexOf('.pdf') > 0) ){
-            $("#link_description").val( carousel.description );
-          }
-          $("#link_image").val(carousel.current() == $(".carousel-loader").attr("src") ? "" : carousel.current());
-        },
-
-        _bindEvents: function () {
-          var self = this;
-
-          $('#carousel_right_arrow').unbind();
-          $('#carousel_right_arrow').click(function () {
-            self.update(self.next());
-          });
-
-          $('#carousel_left_arrow').unbind();
-          $('#carousel_left_arrow').click(function () {
-              self.update(self.prev());
-          });
+            return this;
         }
     }
 });
