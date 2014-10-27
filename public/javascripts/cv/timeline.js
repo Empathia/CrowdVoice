@@ -17,15 +17,10 @@ Class('Timeline')({
         
         console.log('loadpage', params)
         Timeline.applySpinner();
-        
+
         CV.voicesContainer.getNextPage(function() {
             CV.voicesContainer.renderPages();    
         });
-        
-
-        // $.getJSON(location.pathname + params, function(data) {
-        //     timeline.preloadedVoices = data;
-        // });
     },
 
     loadDate: function (date, callback) {
@@ -45,13 +40,6 @@ Class('Timeline')({
         Timeline.applySpinner();
 
         CV.voicesContainer.goToDate(params.start);
-
-        // console.log(location.pathname + params)
-        // $.getScript(location.pathname + params, function () {
-        //     $.isFunction(callback) && callback();
-        //     // Timeline.voiceScroller[0].scrollIntoView(true);
-        //     Timeline.voiceScroller.animate({'scrollTop':'0'},500);
-        // });
     },
 
     months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -81,7 +69,7 @@ Class('Timeline')({
         this.postFetcher        = $('.post-fetch-trigger');
         this.voiceTitle         = $('.voice-title');
         this.loadingScript      = false;
-        this.needsScrollTop      = false;
+        this.needsScrollTop     = false;
 
         this._createYearSliders();
         this._setHeight();
@@ -146,6 +134,14 @@ Class('Timeline')({
         }, 50);
     },
     fetchPosts: function(needsScrollTop){
+        var perPage     = CV.voicesContainer.perPage;
+        var totalVoices = CV.voicesContainer.preloadedVoices.length;
+        var currentPage = CV.voicesContainer.currentPage;
+
+        if (currentPage > (totalVoices / perPage)) {
+            return;
+        }
+
         this.applySpinner();
         if (!this.loadingScript) {
             this.loadingScript = true;

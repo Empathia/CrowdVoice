@@ -57,6 +57,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                 if (date[0] == voiceDate[0]) {
                     dateIsRendered = true;
+                    gotDate = true;
                     break;
                     
                 }
