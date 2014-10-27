@@ -150,8 +150,11 @@
         }
         .post > .post-type {
           position: absolute;
-          right: 6px;
-          top: 10px;
+          right: 0;
+          top: 5px;
+          height: 29px;
+          padding: 5px 0 0 20px;
+          background-image: linear-gradient(to right, transparent 0px, #fff 12px);
         }
         .post-type > .media {
           float: left;
