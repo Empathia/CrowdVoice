@@ -1,5 +1,39 @@
 Class('Timeline').inherits(Widget)({
     prototype : {
+        init : function(config) {
+            Widget.prototype.init.call(this, config);
+
+            var spinner =  new Loader({
+                name : 'spinner'
+            });
+
+            this.appendChild(spinner);
+
+            var voicesScrollerContainer = $('.voices-scroller').parent();
+
+            spinner.render(voicesScrollerContainer);
+
+            spinner.bind('beforeActivate', function() {
+                this.element.css({
+                    width : $(window).width(),
+                    height : $(window).height(),
+                    top  : 0,
+                    left : 0,
+                    zIndex : 2
+                }).show();
+
+                this.element.find('.modal').css({
+                    top : voicesScrollerContainer.height() / 2,
+                    left : (voicesScrollerContainer.width() / 2),
+                    position : 'relative'
+                })
+            });
+
+            spinner.bind('beforeDeactivate', function() {
+                this.element.hide();
+            });
+        },
+
         loadPage: function (page) {
             var timeline = this;
 
@@ -26,7 +60,7 @@ Class('Timeline').inherits(Widget)({
 
         loadDate: function (date, callback) {
             var timeline = this;
-            
+
             var params = {};
 
             params.start = date;
@@ -152,13 +186,16 @@ Class('Timeline').inherits(Widget)({
             }
         },
         applySpinner: function(){
-            voicesContainerHeight = this.voicesContainer.height();
-            this.postFetcher.addClass('fetcher-spinner');
-            isDevice && this.element.css({'position':'absolute','bottom':'auto','top': voicesContainerHeight});
+            // voicesContainerHeight = this.voicesContainer.height();
+            // this.postFetcher.addClass('fetcher-spinner');
+            // isDevice && this.element.css({'position':'absolute','bottom':'auto','top': voicesContainerHeight});
+
+            this.spinner.activate();
         },
         resetSpinner: function(){
-            this.postFetcher.removeClass('fetcher-spinner');
-            this.element.css({'position':'', 'top':'','bottom':''});
+            this.spinner.deactivate();
+            // this.postFetcher.removeClass('fetcher-spinner');
+            // this.element.css({'position':'', 'top':'','bottom':''});
         },
         afterFetchActions: function(images){
             this.voicesContainer.isotope('reLayout');

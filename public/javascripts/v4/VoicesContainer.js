@@ -67,6 +67,8 @@ Class('VoicesContainer').inherits(Widget)({
                 voicesContainer.element.parent().animate({ scrollTop: child.element.position().top }, "fast", function() {
                     CV.timeline.updateSliderPosition();
                 });
+                CV.timeline.afterFetchActions();
+                
                 console.log('dateIsRendered')
                 return
             };
