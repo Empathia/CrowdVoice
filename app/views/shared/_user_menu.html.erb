@@ -16,7 +16,7 @@
         <% unless current_user %>
           <script type="text/javascript">
             window.onload = function() {
-              var tooltip = new Tooltip2({
+              var tooltip = new CVTooltip({
                 html: '\
                   <span class="cv-pull-left">\
                     <%= t('layout.login_tool') %>\

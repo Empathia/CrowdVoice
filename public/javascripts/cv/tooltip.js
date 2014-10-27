@@ -148,7 +148,7 @@ Class('Tooltip')({
 		show: function() {
             console.error('show', this.element);
 			$('a', this.element).addClass('active');
-
+            /*
 			if (typeof(Post) != 'undefined') {
 
 				if (
@@ -175,7 +175,7 @@ Class('Tooltip')({
                     && this.tooltip_name == 'link'){
 					this._show_extra_data();
 				}
-			}
+			}*/
 			if (!this.element.is('.selected')) {
 				this.tooltip.show();
 			}

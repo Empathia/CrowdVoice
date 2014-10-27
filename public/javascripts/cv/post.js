@@ -1,35 +1,7 @@
 Class('Post').inherits(Widget)({
-    _reVideo : new RegExp("^https?:\\/\\/(?:www\\.)?(youtube\\.com\\/watch\\?.*v=[^&]|vimeo\\.com\\/(?:.*#)?(\\d+))", "i"),
-    _reImage : new RegExp("^https?:\\/\\/(?:www\\.)?(flickr\\.com\\/photos\\/[-\\w@]+\\/\\d+|twitpic\\.com\\/[^\\/]+$|yfrog\\.com\\/[^\\/]+$|.*\\/.*\\.(jpe?g|png|gif)(?:\\?.*)?$)", "i"),
-    _reLink : new RegExp("^https?:\\/\\/([\\w-]+\\.([\\w-]+)){1,}([\\/?#].*)?$", "i"),
-
-    detectUrl : function detectUrl(url) {
-        if (this.isVideo(url)) {
-            return 'video';
-        }
-
-        if (this.isImage(url)) {
-            return 'image';
-        }
-
-        if (this.isLink(url)) {
-            return 'link';
-        }
-
-        return false;
-    },
-
-    isVideo : function isVideo(url) {
-        return this._reVideo.test(url);
-    },
-
-    isImage : function isImage(url) {
-        return this._reImage.test(url);
-    },
-
-    isLink : function isLink(url) {
-        return this._reLink.test(url);
-    },
+    RE_VIDEO : new RegExp("^https?:\\/\\/(?:www\\.)?(youtube\\.com\\/watch\\?.*v=[^&]|vimeo\\.com\\/(?:.*#)?(\\d+))", "i"),
+    RE_IMAGE : new RegExp("^https?:\\/\\/(?:www\\.)?(flickr\\.com\\/photos\\/[-\\w@]+\\/\\d+|twitpic\\.com\\/[^\\/]+$|yfrog\\.com\\/[^\\/]+$|.*\\/.*\\.(jpe?g|png|gif)(?:\\?.*)?$)", "i"),
+    RE_LINK : new RegExp("^https?:\\/\\/([\\w-]+\\.([\\w-]+)){1,}([\\/?#].*)?$", "i"),
 
     prototype: {
         carousel : null,
@@ -71,6 +43,10 @@ Class('Post').inherits(Widget)({
             this.linkMediaTool = new MediaTool({
                 element : this.element.find('.media.tool-link')
             }).showTooltipDefaultContent();
+
+            this.carousel = new Carousel({
+                element : this.linkMediaTool.getElement().find('.cv-carousel-widget')
+            });
 
             this._bindEvents();
         },
@@ -131,7 +107,6 @@ Class('Post').inherits(Widget)({
                     that.postPlaceHolder.show();
                     that.imageMediaTool.showTooltipDefaultContent();
                     that.linkMediaTool.showTooltipDefaultContent();
-                    that.postPlaceHolder.hide();
                 }
             });
 
@@ -148,13 +123,13 @@ Class('Post').inherits(Widget)({
 
             that.inputPost.bind('keyup', function (e) {
                 if ((e.which <= 90 && e.which >= 48 && e.which != 86) || e.which == 8){
-                    that._showTooltip(that.constructor.detectUrl(that.inputPost.val()));
+                    that._showTooltip(that._detectUrl(that.inputPost.val()));
                 }
             });
 
             that.inputPost.bind('paste',function () {
                 setTimeout(function() {
-                    that._showTooltip(that.constructor.detectUrl(that.inputPost.val()));
+                    that._showTooltip(that._detectUrl(that.inputPost.val()));
                 }, 250);
             });
 
@@ -177,7 +152,7 @@ Class('Post').inherits(Widget)({
                 return false;
             }
 
-            if (that.constructor.detectUrl(that.inputPost.val()) || that.inputFile.val()) {
+            if (that._detectUrl(that.inputPost.val()) || that.inputFile.val()) {
                 that.form.ajaxSubmit({
                     dataType : 'json',
                     type : 'post',
@@ -232,6 +207,22 @@ Class('Post').inherits(Widget)({
                     }
                 });
             }
+        },
+
+        _detectUrl : function _detectUrl(url) {
+            if (this.constructor.RE_VIDEO.test(url)) {
+                return 'video';
+            }
+
+            if (this.constructor.RE_IMAGE.test(url)) {
+                return 'image';
+            }
+
+            if (this.constructor.RE_LINK.test(url)) {
+                return 'link';
+            }
+
+            return false;
         },
 
         _call_for_page_info: function(){

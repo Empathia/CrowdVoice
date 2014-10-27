@@ -30,7 +30,7 @@ Class('MediaTool').inherits(Widget)({
             Widget.prototype.init.call(this, config);
 
             this._anchorElement = this.element.find('.media-type');
-            this._tooltip = new Tooltip2({
+            this._tooltip = new CVTooltip({
                 element : this.element.find('.cv-tooltip')
             });
             this._closeTooltip = this._tooltip.element.find('.tooltip-close-btn');
@@ -84,6 +84,15 @@ Class('MediaTool').inherits(Widget)({
          */
         getTooltip : function getTooltip() {
             return this._tooltip;
+        },
+
+        /**
+         * Returns the reference to the main widget element.
+         * @method getElement <public> [Function]
+         * @return this.element [Object]
+         */
+        getElement : function getElement() {
+            return this.element;
         },
 
         _activate : function _activate() {

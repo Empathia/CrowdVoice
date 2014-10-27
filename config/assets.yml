@@ -22,8 +22,7 @@ javascripts:
     - public/javascripts/include/mwheelIntent.js
   sidebar: &sidebar
     - public/javascripts/cv/dynamicMeasures.js
-    - public/javascripts/v4/tooltip2.js
-    - public/javascripts/cv/tooltip.js
+    - public/javascripts/v4/CVTooltip.js
     - public/javascripts/cv/sidebarToggler.js
     - public/javascripts/cv/accordion.js
     - public/javascripts/cv/slideSection.js

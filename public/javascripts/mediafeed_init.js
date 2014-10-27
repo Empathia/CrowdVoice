@@ -25,6 +25,14 @@ $(function () {
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
 
+    new CVTooltip({
+        element : $('.voice-description-tooltip'),
+    });
+
+    new CVTooltip({
+        element: $('.embeddable-widget-tooltip')
+    });
+
     // check if it's a mobile device so we don't unnnecessarily instanciate the post interface and the infosidebar
     if (!isDevice) {
         //instanciate infosidebar
@@ -35,21 +43,18 @@ $(function () {
 
         new Post({
             element : $('.post'),
-            carousel : new Carousel({
-                element : $('.tool-link .cv-carousel-widget')
-            }),
             postFilter : postFilter,
             votes : votes,
             overlays : overlays
         });
 
-        new Tooltip2({
+        new CVTooltip({
             text : 'Go back to public mode',
             className : 'public-mode-tooltip',
             nowrap : true
         }).render($('.public'));
 
-        new Tooltip2({
+        new CVTooltip({
             className : 'moderator-mode-tooltip',
             html : '\
                 <p class="title">Participate!</p>\
