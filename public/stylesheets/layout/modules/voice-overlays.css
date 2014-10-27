@@ -56,6 +56,7 @@
 }
   .link-overlay-scrollable {
     height: 100%;
+    padding-top: 56px;
   }
   .link-overlay-scrollable > iframe {
     overflow: auto;
@@ -69,11 +70,10 @@
   }
 
 .link-base-container {
-  /*display: none;*/
   position: absolute;
   width: 100%;
   clear: both;
-  bottom: 0px;
+  top: 0px;
   width: 100%;
   z-index: 7;
 }
@@ -102,37 +102,8 @@
 .back-to-voice > ul > li > a {width:14px; height:19px; display:block; cursor:pointer; margin-top:10px}
 .back-to-voice > ul > li > .prev {margin-right: 10px}
 .back-to-voice > ul > li > .next {margin-left: 10px}
-.link-base-border {
-  position: relative;
-  min-width: 100%;
-  border-width: 1px 0 0 0;
-}
-.link-base-border > .link-base-action {width: 100%; border-width: 2px 0 0 0; height:45px}
-.link-base-border > .link-base-action > ul {float:left; margin: 9px 0 0 10px; clear: both}
-.link-base-border > .link-base-action > ul > li {display: block; float:left; padding-right: 7px; cursor: pointer;}
-.link-base-border > .link-base-action > ul > li > a {border-width: 1px; display:block; float: left; font-size: 12px; padding: 4px 12px; font-size:13px}
-.link-base-border > .link-base-action > .right-action {float: right; margin-top:10px; padding-right: 5px}
-.link-base-action > .right-action > span {
-  font-size: 11px;
-  font-family: Arial;
-  float: left;
-  margin-top: 4px;
-}
-.link-base-action > .right-action > .actions {
-  float: left;
-  margin-left: 14px;
-  overflow:hidden;
-}
-.right-action > .actions > li {float:left; margin-right: 5px}
-.right-action > .actions > li > a {display:block; width: 25px; height: 25px}
-.right-action > .actions > .flag-div {width: 31px; margin-right: 0}
-.right-action > .actions > li > .flag {float: right}
-.right-action > .actions > li > .flag-pressed {float: right}
-.right-action > .actions > li > .flag-over, .flag-over {float: right}
-.right-action  > .comments {float: left; margin-top: 5px; margin-left: 22px; cursor: pointer; height:16px}
-.right-action  > .comments > li {font-size: 12px; font-weight: bold; height: 17px; width: 30px; line-height: 19px;  padding-left: 20px}
 
-.touch .link-base-border > .link-base-action > ul > li.copy-url {
+.touch .copy-url {
   display: none;
 }
 

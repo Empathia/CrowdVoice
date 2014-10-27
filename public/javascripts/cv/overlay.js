@@ -90,7 +90,7 @@ Class('Overlay')({
                 return false;
             });
 
-            $('.back-to-voice span').live('click', function () {
+            $('.js-back-to-voice-button').live('click', function () {
                 that._hideLinkOver();
             });
         },

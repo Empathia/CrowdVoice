@@ -1,0 +1,24 @@
+.cv-overlay {
+}
+
+.cv-overlay-theme-color-line {
+  height: 4px;
+}
+
+.cv-overlay-header {
+  height: 56px;
+  border-bottom: 4px solid transparent;
+  background: #000;
+}
+
+.cv-overlay-title {
+  font-size: 16px;
+  line-height: 26px;
+  margin: .8em 0 0 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.cv-overlay-buttons-wrapper {
+  margin-top: 14px;
+}

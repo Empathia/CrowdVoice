@@ -49,47 +49,68 @@
   <div class="link-overlay-scrollable">
     <iframe class="scroll-primary" src="about:blank" width="100%" height="100%"></iframe>
   </div>
-  <div class="link-base-container">
-    <div class="back-to-voice">
-      <span>back to Voice</span>
-      <ul class="arrows">
-        <li class="prev"><a href="#" class="voice-arrow prev" title="{{prev_title}}" data-id="{{prev_id}}"></a></li>
-        <li class="next"><a href="#" class="voice-arrow next" title="{{next_title}}" data-id="{{next_id}}"></a></li>
+  <div class="link-base-container cv-overlay-header cv-dynamic-border-color clearfix">
+    <div class="cv-pull-left">
+      [logo]
+      <p class="cv-overlay-title cv-inline-block"><%= @voice.title %></p>
+
+      <ul class="cv-overlay-buttons-wrapper cv-inline-block">
+        <li class="cv-inline-block">
+          <a class="cv-button cv-button--dynamic-color cv-uppercase" href="{{source_url}}">View Original</a>
+        </li>
+        <li class="copy-url cv-inline-block" id="d_clip_container" style="position:relative">
+          <a class="cv-button cv-button--dynamic-color cv-uppercase" id="d_clip_button" href="#">Copy URL</a>
+        </li>
       </ul>
-    </div>
-    <div class="link-base-border">
-      <div class="link-base-action">
-        <ul>
-          <li class="copy-url" id="d_clip_container" style="position:relative"><a id="d_clip_button" href="#">Copy URL</a></li>
-          <li><a href="{{source_url}}">View Original</a></li>
-        </ul>
-        <% if params[:tags].present? #TODO pass to a helper
-          url = voice_url(@voice, :post => params[:post], :tags=>params[:tags])
-        elsif params[:all].present?
-          url = voice_url(@voice, :post => params[:post], :all=>1)
-        else
-          url = voice_url(@voice, :post => params[:post])
-        end%>
-        <div class="right-action">
-          <span>{{time_ago}} ago</span>
-          <ul class="actions">
-            <li><%= link_to '', "http://facebook.com/sharer.php?u={{post_permalink}}", :class => 'facebook', :target => '_blank' %></li>
-            <li><%= link_to '', "http://twitter.com/intent/tweet?text={{escaped_title}}&url={{post_permalink}}&via=#{@custom.name.split(".").first.parameterize('_')}", :class => 'twitter', :target => '_blank' %></li>
-            <li class="flag-div">
-              <%= link_to '', "/{{voice_slug}}/posts/{{post_id}}/votes.json?rating={{rating}}", :format => :json , :class => "flag overlay-vote-post", :method => :post %>
-              <div class="tooltip flag-tip" data-post-id="post_{{post_id}}">
-                <div class="tooltip-positioner">
-                <p class="tooltip-arrow"><span></span></p>
-                <div class="media-type-info">
-                  <strong class="media-type-title"></strong>
-                  <p class="flag-tooltip">
-                    <span>Flag Inappropiate Content</span>
-                  </p>
-                </div>
+
+      <% if params[:tags].present? #TODO pass to a helper
+        url = voice_url(@voice, :post => params[:post], :tags=>params[:tags])
+      elsif params[:all].present?
+        url = voice_url(@voice, :post => params[:post], :all=>1)
+      else
+        url = voice_url(@voice, :post => params[:post])
+      end%>
+
+      <div class="right-action cv-overlay-buttons-wrapper cv-inline-block">
+        <ul class="actions">
+          <li>
+            <% link_to "http://facebook.com/sharer.php?u={{post_permalink}}", :class => 'facebook', :target => '_blank' do %>
+              <i class="mediafeed-sprite facebook"></i>
+            <% end %>
+          </li>
+          <li>
+            <% link_to "http://twitter.com/intent/tweet?text={{escaped_title}}&url={{post_permalink}}&via=#{@custom.name.split(".").first.parameterize('_')}", :class => 'twitter', :target => '_blank' do %>
+              <i class="mediafeed-sprite twitter"></i>
+            <% end %>
+          </li>
+          <li class="flag-div">
+            <%= link_to '', "/{{voice_slug}}/posts/{{post_id}}/votes.json?rating={{rating}}", :format => :json , :class => "flag overlay-vote-post", :method => :post %>
+            <div class="tooltip flag-tip" data-post-id="post_{{post_id}}">
+              <div class="tooltip-positioner">
+              <p class="tooltip-arrow"><span></span></p>
+              <div class="media-type-info">
+                <strong class="media-type-title"></strong>
+                <p class="flag-tooltip">
+                  <span>Flag Inappropiate Content</span>
+                </p>
               </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-pull-right">
+      <div class="cv-overlay-buttons-wrapper cv-inline-block">
+        <ul class="arrows cv-inline-block">
+          <li class="prev cv-inline-block">
+            <a href="#" class="voice-arrow prev cv-button" title="{{prev_title}}" data-id="{{prev_id}}"></a>
+          </li>
+          <li class="next cv-inline-block">
+            <a href="#" class="voice-arrow next cv-button" title="{{next_title}}" data-id="{{next_id}}"></a>
+          </li>
+        </ul>
+        <button class="js-back-to-voice-button cv-button cv-uppercase cv-inline-block">back to Voice</button>
       </div>
     </div>
   </div>

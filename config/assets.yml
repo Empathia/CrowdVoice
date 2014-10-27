@@ -223,6 +223,7 @@ stylesheets:
     - public/stylesheets/skin/modules/post-boxes.css
     - public/stylesheets/layout/modules/tweets-sidebar.css
     - public/stylesheets/skin/modules/tweets-sidebar.css
+    - public/stylesheets/v4/overlays.css
     - public/stylesheets/layout/modules/voice-overlays.css
     - public/stylesheets/skin/modules/voice-overlays.css
     - public/stylesheets/layout/infobox.css
