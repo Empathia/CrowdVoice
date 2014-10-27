@@ -55,28 +55,9 @@
       background-color: #e2e2e2;
       border-style: solid none;
       border-color: #c9c9c9 transparent #ebebeb;
-      box-shadow:0 -1px 1px rgba(255, 255, 255, 0.6) inset;
     }
     body .top-line.gaza {
       background:#fcfcfc url('/images/bg/gaza_top_line.png') repeat-x !important;
-    }
-    .green .top-line {
-      background-color: #50b347;
-    }
-    .blue .top-line {
-      background-color: #4db5ff;
-    }
-    .red .top-line {
-      background-color: #f10f2a;
-    }
-    .yellow .top-line {
-      background-color: #ebc91c;
-    }
-    .orange .top-line {
-      background-color: #ec9415;
-    }
-    .white .top-line {
-      background-color: #d5d5d5;
     }
     .voice-info.gaza {
       background: #E3E5E2 url("/images/bg/gaza_flag.jpg") no-repeat scroll -22px -2px;

@@ -7,6 +7,11 @@
   width: 100%;
 }
 
+.cv-inline-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
 .cv-pull-left {
   float: left;
 }
@@ -19,6 +24,7 @@
   text-align: center;
 }
 
+/* DYNAMIC TEXT COLOR */
 .green .cv-dynamic-text-color {
   color: #50b347;
 }
@@ -35,6 +41,41 @@
   color: #ec9415;
 }
 
+/* DYNAMIC BACKGROUND COLOR */
+.green .cv-dynamic-background-color {
+  background-color: #50b347;
+}
+.blue .cv-dynamic-background-color {
+  background-color: #4db5ff;
+}
+.yellow .cv-dynamic-background-color {
+  background-color: #ebc91c;
+}
+.red .cv-dynamic-background-color {
+  background-color: #f10f2a;
+}
+.orange .cv-dynamic-background-color {
+  background-color: #ec9415;
+}
+
+/* DYNAMIC BORDER COLORS */
+.green .cv-dynamic-border-color {
+  border-color: #50b347;
+}
+.blue .cv-dynamic-border-color {
+  border-color: #4db5ff;
+}
+.yellow .cv-dynamic-border-color {
+  border-color: #3bc91c;
+}
+.red .cv-dynamic-border-color {
+  border-color: #f10f2a;
+}
+.orange .cv-dynamic-border-color {
+  border-color: transparent #ec9415;
+}
+
+/* DYNAMIC ARROW COLORS */
 .green .cv-dynamic-horizontal-arrow {
   border-color: transparent #50b347;
 }
