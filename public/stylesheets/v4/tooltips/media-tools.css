@@ -139,6 +139,7 @@
 .carousel-image {
   display: inline-block;
   width: 160px;
+  height: 120px;
   overflow: hidden;
   border: 1px solid #b3b3b3;
   border-radius: 3px;
@@ -146,8 +147,11 @@
   background-color: #f2f2f2;
 }
 .carousel-image img {
+  position: relative;
   max-width: 158px;
   vertical-align: top;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .carousel-arrows {
   overflow: hidden;
