@@ -65,7 +65,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             if (dateIsRendered) {
                 voicesContainer.element.parent().animate({ scrollTop: child.element.position().top }, "fast", function() {
-                    Timeline.updateSliderPosition();
+                    CV.timeline.updateSliderPosition();
                 });
                 console.log('dateIsRendered')
                 return
@@ -95,7 +95,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                     voicesContainer.renderPages(function() {
                         voicesContainer.element.parent().animate({ scrollTop: $("div[data-post-id='" + voice.id + "']").position().top }, "fast", function() {
-                            Timeline.updateSliderPosition();
+                            CV.timeline.updateSliderPosition();
                         });
                     });
                 };
@@ -182,12 +182,12 @@ Class('VoicesContainer').inherits(Widget)({
                 voicesContainer.element.isotope('appended', $(elements));
             }
 
-            Timeline.options.overlays.unbindEvents().bindEvents();
-            Timeline.options.votes.unbindEvents().bindEvents();
+            CV.timeline.options.overlays.unbindEvents().bindEvents();
+            CV.timeline.options.votes.unbindEvents().bindEvents();
             setTimeout(function() {
                 // $(elements).hide().fadeIn(600);
 
-                Timeline.afterFetchActions();
+                CV.timeline.afterFetchActions();
 
                 if (callback) {
                     callback();
