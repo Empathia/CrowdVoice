@@ -1,0 +1,23 @@
+.loader.overlay {
+	position : absolute;
+	background : rgba(255,255,255, 0.3);
+}
+
+.loader.overlay .modal {
+	width : 46px;
+	height : 38px;
+	background : #FFF;
+	border : 1px solid #CCC;
+	position : relative;
+	border-radius : 3px;
+	padding : 5px 10px;
+}
+
+.loader.overlay .modal .spinner {
+	background : url("/images/loader.gif") no-repeat 50% 50%;
+	width : 24px;
+	height : 24px;
+	text-shadow: none;
+	box-shadow : none;
+	border : none;
+}
