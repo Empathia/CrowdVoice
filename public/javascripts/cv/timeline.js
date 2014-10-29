@@ -75,7 +75,10 @@ Class('Timeline').inherits(Widget)({
 
             timeline.applySpinner();
 
-            CV.voicesContainer.goToDate(params.start);
+            setTimeout(function() {
+                CV.voicesContainer.goToDate(params.start);    
+            });
+            
         },
 
         months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
