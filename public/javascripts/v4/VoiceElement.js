@@ -84,6 +84,7 @@ Class('VoiceElement').inherits(Widget)({
         timeAgo       : null,
         service       : null,
         sourceElement : null,
+        disabled      : false,
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
@@ -113,20 +114,6 @@ Class('VoiceElement').inherits(Widget)({
                     return false;
                 });
             }
-
-            // if (voice.sourceType !== 'link' && voice.sourceType !== 'video') {
-                console.log(voice.sourceType)
-            // };
-
-            CV.mediaFeedSearch.bind(voice.sourceType, function(e) {
-                if (e.value) {
-                    CV.voicesContainer.element.append(voice.element);
-                } else {
-                    voice.element.detach();
-                }
-
-                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
-            });
             
         },
 
@@ -239,6 +226,29 @@ Class('VoiceElement').inherits(Widget)({
             }
 
             return url;
+        },
+
+        _enable : function() {
+            // Widget.prototype._enable.call(this);
+            this.disabled = false;
+
+            this.element.removeClass('disabled').css({
+                display : 'block'
+            });
+
+            this.element[0].style.removeProperty('height');
+            this.element[0].style.removeProperty('width');
+        },
+
+        _disable : function() {
+            // Widget.prototype._disable.call(this);
+            this.disabled = true;
+
+            this.element.addClass('disabled').css({
+                display : 'none',
+                width : 0,
+                height : 0
+            });
         }
     }
 });

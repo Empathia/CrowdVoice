@@ -52,10 +52,6 @@
         perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
 
-      CV.mediaFeedSearch = new MediaFeedSearch({
-        element : $('.mediafeed-search')
-      });
-
       var page = CV.voicesContainer.currentPage;
 
       var params = '?page=' + page;
@@ -69,7 +65,12 @@
       $.getJSON(location.pathname + params, function(data) {
           CV.voicesContainer.preloadedVoices = data;
           CV.voicesContainer.page = page;
-          CV.voicesContainer.appendNextPage();
+          CV.voicesContainer.getNextPage(function() {
+            CV.voicesContainer.renderPages();  
+          });
+          
+
+          CV.mediaFeedSearch.reloadFuse();
       });
 
       CV.mediaFeedSearch = new MediaFeedSearch({
