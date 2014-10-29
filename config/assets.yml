@@ -75,6 +75,7 @@ javascripts:
     - public/javascripts/cv/votes.js
     - public/javascripts/cv/blogWidget.js
     - public/javascripts/v4/jquery.mousewheel.js
+    - public/javascripts/v4/Loader.js
     - public/javascripts/cv/timeline.js
     - public/javascripts/cv/toggleTweets.js
     - public/javascripts/include/highcharts.js
@@ -227,6 +228,7 @@ stylesheets:
     - public/stylesheets/skin/modules/voice-overlays.css
     - public/stylesheets/layout/infobox.css
     - public/stylesheets/skin/infobox.css
+    - public/javascripts/v4/Loader/Loader.css
   backstory:
     - *defaults
     - public/stylesheets/skin/backstory.css

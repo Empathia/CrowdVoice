@@ -92,7 +92,9 @@ $(function () {
       });
 
     if ( !$.isEmptyObject( window.timeline_dates ) ){
-        Timeline.build($('.timeliner-group'), {
+        CV.timeline = new Timeline();
+
+        CV.timeline.build($('.timeliner-group'), {
             dates   : window.timeline_dates,
             overlays: overlays,
             votes   : votes
