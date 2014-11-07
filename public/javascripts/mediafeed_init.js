@@ -1,6 +1,5 @@
 $(function () {
 
-    window.overlays        = new Overlay('.voice-box')
     var voice_loaded    = false,
         votes           = new Votes('.vote-post'),
         gazaOverlay     = new VideoOverlay('.view-video li'),
@@ -45,7 +44,6 @@ $(function () {
             element : $('.post'),
             postFilter : postFilter,
             votes : votes,
-            overlays : overlays
         });
 
         new CVTooltip({
@@ -96,7 +94,6 @@ $(function () {
 
         CV.timeline.build($('.timeliner-group'), {
             dates   : window.timeline_dates,
-            overlays: overlays,
             votes   : votes
         });
     }

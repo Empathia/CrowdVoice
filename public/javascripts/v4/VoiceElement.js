@@ -84,6 +84,7 @@ Class('VoiceElement').inherits(Widget)({
         timeAgo       : null,
         service       : null,
         sourceElement : null,
+        contentElement: null,
         disabled      : false,
 
         init : function(config) {
@@ -92,17 +93,15 @@ Class('VoiceElement').inherits(Widget)({
             var voice = this;
 
             this.sourceElement = this.element.find('a.source-url');
+            this.contentElement = this.element.find('.voice-cont');
 
             this.URL     = this.getURL();
             this.postURL = this.isRawImage() ? this.image.url : this.sourceURL;
 
-            this.setupElements();
+            this.setupElements()._bindEvents();
 
             if ($.deparam.querystring().post && $.deparam.querystring().post === this.id.toString()) {
-                var link = this.sourceElement;
-                if ( link.length ) {
-                    window.overlays.buildOverlay( link );
-                }
+                window.CV.OverlaysController.showOverlay(this);
             }
 
             if (!this.approved) {
@@ -114,7 +113,7 @@ Class('VoiceElement').inherits(Widget)({
                     return false;
                 });
             }
-            
+
         },
 
         setupElements : function() {
@@ -187,6 +186,17 @@ Class('VoiceElement').inherits(Widget)({
             this.element.find('a.twitter').attr({
                 'href' : 'http://twitter.com/intent/tweet?text=' +  escape(voice.title) + '&url=' + escape(voice.URL) +'&via=crowdvoice'
             });
+
+            return this;
+        },
+
+        _bindEvents : function _bindEvents() {
+            this.contentElement.bind('click', function(event) {
+                event.preventDefault();
+                window.CV.OverlaysController.showOverlay(this);
+            }.bind(this));
+
+            return this;
         },
 
         isRawImage : function() {
@@ -249,6 +259,91 @@ Class('VoiceElement').inherits(Widget)({
                 width : 0,
                 height : 0
             });
+        },
+
+        /**
+         * Returns an array of its siblings filtered by the passed sourceTypes.
+         * @property getSiblingsBySourceType <public> [Function]
+         * @argument sourceTypes <required> [Array]
+         * @example voiceElementInstance.getSiblingsBySourceType(['link']);
+         * @return this.parent.children | filter [Array]
+         */
+        getSiblingsBySourceType : function getSiblingsBySourceType(sourceTypes) {
+            var childs, currentIndex;
+
+            if (this.parent === 'undefined') {
+                return [];
+            }
+
+            return this.parent.children.filter(function(child) {
+                return sourceTypes.some(function(type) {
+                    if (child.sourceType === type) {
+                        return child;
+                    }
+                });
+            });
+        },
+
+        /**
+         * Returns its previous sibling with the same sourceType if found.
+         * @property getPreviousSiblingBySourceType <public> [Function]
+         * @argument sourceTypes <required> [Array]
+         * @example voiceElementInstance.getPreviousSiblingBySourceType(['image', 'video']);
+         * @return this.parent.children[ previous ] [VoiceElement | undefined]
+         */
+        getPreviousSiblingBySourceType : function getPreviousSiblingBySourceType(sourceTypes) {
+            var childs, currentIndex;
+
+            if (this.parent === 'undefined') {
+                return;
+            }
+
+            childs = this.parent.children.filter(function(child) {
+                return sourceTypes.some(function(type) {
+                    if (child.sourceType === type) {
+                        return child;
+                    }
+                });
+            });
+
+            currentIndex = childs.indexOf(this);
+
+            if (currentIndex === 0) {
+                return;
+            }
+
+            return childs[currentIndex - 1];
+        },
+
+        /**
+         * Returns its next sibling with the same sourceType if found.
+         * @property getNextSiblingBySourceType <public> [Function]
+         * @argument sourceTypes <required> [Array]
+         * @example voiceElementInstance.getNextSiblingBySourceType(['image']);
+         * @return this.parent.children[ next ] [VoiceElement | undefined]
+         */
+        getNextSiblingBySourceType : function getNextSiblingBySourceType(sourceTypes) {
+            var childs, currentIndex;
+
+            if (this.parent === 'undefined') {
+                return;
+            }
+
+            childs = this.parent.children.filter(function(child) {
+                return sourceTypes.some(function(type) {
+                    if (child.sourceType === type) {
+                        return child;
+                    }
+                });
+            });
+
+            currentIndex = childs.indexOf(this);
+
+            if (currentIndex === (childs.length - 1)) {
+                return;
+            }
+
+            return childs[currentIndex + 1];
         }
     }
 });

@@ -45,7 +45,7 @@ Class('VoicesContainer').inherits(Widget)({
 
         goToDate : function(date) {
             var voicesContainer = this;
-            
+
             var gotDate = false,
                 dateIsRendered = false;
 
@@ -59,7 +59,7 @@ Class('VoicesContainer').inherits(Widget)({
                     dateIsRendered = true;
                     gotDate = true;
                     break;
-                    
+
                 }
             };
 
@@ -68,7 +68,7 @@ Class('VoicesContainer').inherits(Widget)({
                     CV.timeline.updateSliderPosition();
                 });
                 CV.timeline.afterFetchActions();
-                
+
                 console.log('dateIsRendered')
                 return
             };
@@ -159,9 +159,9 @@ Class('VoicesContainer').inherits(Widget)({
                     timeAgo       : post.created_at,
                     service       : post.source_url
                 });
-                
+
                 voice.disabled = CV.mediaFeedSearch[voice.sourceType] ? false : true;
-                
+
                 // dont render here cause UI locking
                 // voice.render(window.voicesContainer.element);
 
@@ -169,13 +169,13 @@ Class('VoicesContainer').inherits(Widget)({
 
                 elements.push(voice.element[0]);
                 voices.push(voice);
-                
+
             });
 
             // Render here for better UI performance
             voices.forEach(function(voice) {
                 if (CV.mediaFeedSearch[voice.sourceType]) {
-                    voice.render(voicesContainer.element);    
+                    voice.render(voicesContainer.element);
                 }
             });
 
@@ -184,7 +184,6 @@ Class('VoicesContainer').inherits(Widget)({
                 voicesContainer.element.isotope('appended', $(elements));
             }
 
-            CV.timeline.options.overlays.unbindEvents().bindEvents();
             CV.timeline.options.votes.unbindEvents().bindEvents();
             setTimeout(function() {
                 // $(elements).hide().fadeIn(600);

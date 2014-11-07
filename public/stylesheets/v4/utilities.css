@@ -1,3 +1,35 @@
+.cv-branding--arrow {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 38px;
+  height: 52px;
+  margin-right: 2em;
+}
+.cv-branding--arrow:before,
+.cv-branding--arrow:after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 53%;
+  top: 0;
+  right: 0;
+  background-color: #4c4c4c;
+}
+.cv-branding--arrow:before {
+  transform-origin: 0 0;
+  transform: rotate(-22deg);
+}
+.cv-branding--arrow:after {
+  transform-origin: 0 100%;
+  transform: rotate(22deg);
+  top: initial;
+  bottom: 0;
+}
+.cv-branding--arrow .logo {
+  transform: translate(.8em, 1.2em);
+}
+
 .cv-uppercase {
   text-transform: uppercase;
 }
@@ -59,20 +91,25 @@
 }
 
 /* DYNAMIC BORDER COLORS */
-.green .cv-dynamic-border-color {
+.green .cv-dynamic-border-color,
+.green .cv-dynamic-border-color.active {
   border-color: #50b347;
 }
-.blue .cv-dynamic-border-color {
+.blue .cv-dynamic-border-color,
+.blue .cv-dynamic-border-color.active {
   border-color: #4db5ff;
 }
-.yellow .cv-dynamic-border-color {
+.yellow .cv-dynamic-border-color,
+.yellow .cv-dynamic-border-color.active {
   border-color: #3bc91c;
 }
-.red .cv-dynamic-border-color {
+.red .cv-dynamic-border-color,
+.red .cv-dynamic-border-color.active {
   border-color: #f10f2a;
 }
-.orange .cv-dynamic-border-color {
-  border-color: transparent #ec9415;
+.orange .cv-dynamic-border-color,
+.orange .cv-dynamic-border-color.active {
+  border-color: #ec9415;
 }
 
 /* DYNAMIC ARROW COLORS */

@@ -15,7 +15,7 @@ body {background: #d9d9d9 url('/images/v3/about/noise.png') 0 0 repeat}
   scrollbar-arrow-color: #666;
   scrollbar-shadow-color: #999;
 }
-.not-touch .scroll-primary::-webkit-scrollbar {width: 6px; height: }
+.not-touch .scroll-primary::-webkit-scrollbar {width: 6px; height: 6px}
 .not-touch .scroll-primary::-webkit-scrollbar-track {background-color: transparent;}
 .not-touch .scroll-primary::-webkit-scrollbar-track-piece {background-color: transparent;}
 .not-touch .scroll-primary::-webkit-scrollbar-thumb {
@@ -32,7 +32,7 @@ body {background: #d9d9d9 url('/images/v3/about/noise.png') 0 0 repeat}
   scrollbar-arrow-color: #333;
   scrollbar-shadow-color: #888;
 }
-.not-touch .scroll-secondary::-webkit-scrollbar {width: 6px}
+.not-touch .scroll-secondary::-webkit-scrollbar {width: 6px; height: 6px}
 .not-touch .scroll-secondary::-webkit-scrollbar-track {background-color: transparent;}
 .not-touch .scroll-secondary::-webkit-scrollbar-track-piece {background-color: transparent;}
 .not-touch .scroll-secondary::-webkit-scrollbar-thumb {

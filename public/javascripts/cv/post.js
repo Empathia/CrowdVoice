@@ -7,7 +7,6 @@ Class('Post').inherits(Widget)({
         carousel : null,
         postFilter : null,
         votes : null,
-        overlays : null,
 
         postPlaceHolder : null,
         inputPost : null,
@@ -180,7 +179,6 @@ Class('Post').inherits(Widget)({
                                         $(this).hide();
                                     }
 
-                                    that.overlays.unbindEvents().bindEvents();
                                     that.votes.unbindEvents().bindEvents();
 
                                     $('.voices-container')

@@ -39,22 +39,22 @@ Class('Timeline').inherits(Widget)({
 
             page = page || CV.voicesContainer.currentPage;
 
-            
+
             var params = '?page=' + page;
-            
+
             if ($.deparam.querystring().mod) {
                 params += '&mod=1';
             }
-            
+
             if (this.startDate) {
                 params += '&start=' + this.startDate;
             }
-            
+
             console.log('loadpage', params)
             timeline.applySpinner();
 
             CV.voicesContainer.getNextPage(function() {
-                CV.voicesContainer.renderPages();    
+                CV.voicesContainer.renderPages();
             });
         },
 
@@ -64,9 +64,9 @@ Class('Timeline').inherits(Widget)({
             var params = {};
 
             params.start = date;
-            
+
             // var params = '?start=' + date;
-            
+
             this.startDate = date;
 
             if ($.deparam.querystring().mod) {
@@ -76,9 +76,9 @@ Class('Timeline').inherits(Widget)({
             timeline.applySpinner();
 
             setTimeout(function() {
-                CV.voicesContainer.goToDate(params.start);    
+                CV.voicesContainer.goToDate(params.start);
             });
-            
+
         },
 
         months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -87,7 +87,6 @@ Class('Timeline').inherits(Widget)({
         build: function (element, options) {
             this.options = {
                 dates   : window.timeline_dates,
-                overlays: null,
                 votes   : null
             };
             $.extend(this.options, options);
@@ -130,14 +129,14 @@ Class('Timeline').inherits(Widget)({
 
                     clearTimeout( $.data( this, "scrollCheck" ) );
                     $.data( this, "scrollCheck", setTimeout(function() {
-                        
+
                     }, 200) );
 
                     var maxScrollY = scroller.scrollHeight - scroller.offsetHeight,
                         // hasMinPostCount = CV.voicesContainer.children.length >= _postCount,
                         isAtBottom = scroller.scrollTop >= (maxScrollY - 300),
                         isSmallScreen = window.innerWidth <= 1024;
-                    
+
                     that.debouncePositionUpdate();
 
                     if (isAtBottom && !isSmallScreen) {

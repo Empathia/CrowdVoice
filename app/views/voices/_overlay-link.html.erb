@@ -1,0 +1,80 @@
+<div id="overlay" class="cv-overlay-backdrop cv-link-gallery"></div>
+
+<div class="cv-overlay cv-link-gallery" data-custom-name="<%= @custom.name.split(".").first.parameterize('_') %>">
+
+  <div class="link-overlay-scrollable">
+    <iframe class="scroll-primary" src="about:blank" width="100%" height="100%"></iframe>
+  </div>
+
+  <div class="cv-overlay-header cv-dynamic-border-color clearfix">
+    <div class="cv-pull-left">
+      <div class="cv-branding--arrow">
+        <i class="mediafeed-sprite logo"></i>
+      </div>
+      <p class="cv-overlay-title cv-inline-block"><%= @voice.title %></p>
+
+      <ul class="cv-overlay-buttons-wrapper cv-inline-block">
+        <li class="cv-inline-block">
+          <a class="js-link-gallery-source-button cv-button cv-button--dynamic-color cv-uppercase">View Original</a>
+        </li>
+        <li class="copy-url cv-inline-block" id="d_clip_container" style="position:relative">
+          <a class="cv-button cv-button--dynamic-color cv-uppercase" id="d_clip_button" href="#">Copy URL</a>
+        </li>
+      </ul>
+
+      <div class="right-action cv-overlay-buttons-wrapper cv-inline-block">
+        <ul class="actions">
+          <li>
+            <a href="" class="facebook" target="_blank">
+              <i class="mediafeed-sprite facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="" class="twitter" target="_blank">
+              <i class="mediafeed-sprite twitter"></i>
+            </a>
+          </li>
+          <li class="vertical-divider"></li>
+          <li class="flag-div">
+            <a href="" format="json" class="flag overlay-vote-post" data-method="post" rel="nofollow">
+              <i class="mediafeed-sprite flag"></i>
+            </a>
+            <div class="tooltip flag-tip" data-post-id="post_{{post_id}}">
+              <div class="tooltip-positioner">
+              <p class="tooltip-arrow"><span></span></p>
+              <div class="media-type-info">
+                <strong class="media-type-title"></strong>
+                <p class="flag-tooltip">
+                  <span>Flag Inappropiate Content</span>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-pull-right">
+      <div class="cv-overlay-buttons-wrapper cv-inline-block">
+        <ul class="arrows cv-inline-block">
+          <li class="prev cv-inline-block">
+            <a href="#" class="voice-arrow prev cv-button" title="{{prev_title}}" data-id="{{prev_id}}">
+              <i class="mediafeed-sprite left-arrow"></i>
+            </a>
+          </li>
+          <li class="next cv-inline-block">
+            <a href="#" class="voice-arrow next cv-button" title="{{next_title}}" data-id="{{next_id}}">
+              <i class="mediafeed-sprite right-arrow"></i>
+            </a>
+          </li>
+          <li class="vertical-divider cv-inline-block"></li>
+        </ul>
+        <button class="js-back-to-voice-button cv-button cv-uppercase cv-inline-block">
+          <i class="mediafeed-sprite back-arrow"></i>
+          Back to Voice
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -52,23 +52,24 @@
         perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
 
+      CV.OverlaysController = new OverlaysController();
+
       var page = CV.voicesContainer.currentPage;
 
       var params = '?page=' + page;
-      
+
       if ($.deparam.querystring().mod) {
           params += '&mod=1';
       }
 
       params += "&fetchAll=1"
-    
+
       $.getJSON(location.pathname + params, function(data) {
           CV.voicesContainer.preloadedVoices = data;
           CV.voicesContainer.page = page;
           CV.voicesContainer.getNextPage(function() {
-            CV.voicesContainer.renderPages();  
+            CV.voicesContainer.renderPages();
           });
-          
 
           CV.mediaFeedSearch.reloadFuse();
       });
@@ -76,11 +77,10 @@
       CV.mediaFeedSearch = new MediaFeedSearch({
         element : $('.mediafeed-search')
       });
-
     });
   </script>
 
-  
+
 
   <ul class="timeliner-group <%= 'with-announcement' if @voice.announcement.present? %>">
     <li class="post-fetch-trigger timeline-tab _medium-font">See More</li>

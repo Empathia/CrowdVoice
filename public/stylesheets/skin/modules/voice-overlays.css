@@ -67,8 +67,3 @@
 .share-voice-container > .actions > li > .flag:hover {background-position: -48px -25px}
 .voice-over-info > .comments {background: url('/images/icons/comments.png') no-repeat; background-position:0 0}
 .voice-over-info > .comments > li { color: #1b181a}
-#overlay {
-  background:#000000 url('/images/loader-over.gif') no-repeat scroll center center;
-  background-position: 50% 50%;
-  opacity: 0.7;
-}
