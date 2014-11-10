@@ -123,3 +123,9 @@
   height: 21px;
   background-position: -72px -72px;
 }
+
+.mediafeed-sprite.play-icon {
+  width: 47px;
+  height: 47px;
+  background-position: -96px -72px;
+}
