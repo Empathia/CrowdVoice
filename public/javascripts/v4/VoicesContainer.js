@@ -15,7 +15,7 @@ Class('VoicesContainer').inherits(Widget)({
         lastVoiceIndex  : 0,
         currentPage     : 0,
         init : function(config) {
-        	Widget.prototype.init.call(this, config);
+            Widget.prototype.init.call(this, config);
             var voicesContainer = this;
 
             this.delayedEvent = new DelayedEventEmitter();
@@ -25,14 +25,11 @@ Class('VoicesContainer').inherits(Widget)({
 
                 var keepFetching = true;
 
-                console.log('relayout')
-
                 while (voicesContainer.element.height() <= voicesContainer.element.parent().height() && keepFetching) {
                     voicesContainer.getNextPage(function(){
                         voicesContainer.renderPages();
                         CV.mediaFeedSearch.reloadFuse();
                     });
-                    console.log('x')
 
                     if (voicesContainer.lastVoiceIndex === (voicesContainer.preloadedVoices.length - 1)) {
                         keepFetching = false;
@@ -69,7 +66,6 @@ Class('VoicesContainer').inherits(Widget)({
                 });
                 CV.timeline.afterFetchActions();
 
-                console.log('dateIsRendered')
                 return
             };
 
@@ -93,8 +89,6 @@ Class('VoicesContainer').inherits(Widget)({
                 }
 
                 if (gotDate) {
-                    console.log('got date', voice, date[0])
-
                     voicesContainer.renderPages(function() {
                         voicesContainer.element.parent().animate({ scrollTop: $("div[data-post-id='" + voice.id + "']").position().top }, "fast", function() {
                             CV.timeline.updateSliderPosition();
@@ -131,7 +125,7 @@ Class('VoicesContainer').inherits(Widget)({
         renderPages : function(callback) {
             var voicesContainer = this;
             var elements = [];
-            var voices   = [];
+            var fragment = document.createDocumentFragment();
 
             this.voicesToRender.forEach(function(post) {
                 if (post.post) {
@@ -168,31 +162,28 @@ Class('VoicesContainer').inherits(Widget)({
                 voicesContainer.appendChild(voice);
 
                 elements.push(voice.element[0]);
-                voices.push(voice);
+                fragment.appendChild(voice.element[0]);
 
             });
 
-            // Render here for better UI performance
-            voices.forEach(function(voice) {
-                if (CV.mediaFeedSearch[voice.sourceType]) {
-                    voice.render(voicesContainer.element);
-                }
-            });
-
-
+            voicesContainer.element[0].appendChild(fragment);
+            
             if (window.isotopeReady) {
                 voicesContainer.element.isotope('appended', $(elements));
             }
 
             CV.timeline.options.votes.unbindEvents().bindEvents();
+            
             setTimeout(function() {
-                // $(elements).hide().fadeIn(600);
-
                 CV.timeline.afterFetchActions();
 
                 if (callback) {
                     callback();
                 }
+
+                // if (window.isotopeReady) {
+                //     voicesContainer.element.isotope('appended', $(elements));
+                // }
             }, 1000);
 
             this.voicesToRender = [];
