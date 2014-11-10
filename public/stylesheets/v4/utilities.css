@@ -18,11 +18,11 @@
 }
 .cv-branding--arrow:before {
   transform-origin: 0 0;
-  transform: rotate(-22deg);
+  transform: rotate(-20deg);
 }
 .cv-branding--arrow:after {
   transform-origin: 0 100%;
-  transform: rotate(22deg);
+  transform: rotate(20deg);
   top: initial;
   bottom: 0;
 }
