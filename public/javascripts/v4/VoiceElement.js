@@ -63,6 +63,7 @@ Class('VoiceElement').inherits(Widget)({
             <b class="time-ago"></b>\
         </div>\
     ',
+    PLAY_ICON : '<i class="mediafeed-sprite play-icon"></i>',
     prototype     : {
         id            : 0,
         URL           : null,
@@ -175,6 +176,8 @@ Class('VoiceElement').inherits(Widget)({
 
             if (this.sourceType == 'link' || this.sourceType == 'image') {
                 this.element.find('p.description').html(this.description);
+            } else {
+                this.sourceElement.append(this.constructor.PLAY_ICON);
             }
 
             this.element.find('.post-icon-type').addClass(this.sourceType + '-icon');

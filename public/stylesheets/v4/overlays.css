@@ -94,20 +94,28 @@
 }
 
 /* ------------------- */
-  .link-overlay-scrollable {
-    height: 100%;
-    padding-top: 56px;
-  }
-  .link-overlay-scrollable > iframe {
-    overflow: auto;
-    display: inline-block;
-    border: none;
-  }
-  .touch .link-overlay-scrollable {
-    overflow-x: hidden !important;
-    overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch;
-  }
+.cv-link-gallery .copy-url {
+  margin-left: .25em;
+}
+
+.cv-link-gallery .arrows .vertical-divider {
+  height: 24px;
+}
+
+.link-overlay-scrollable {
+  height: 100%;
+  padding-top: 56px;
+}
+.link-overlay-scrollable > iframe {
+  overflow: auto;
+  display: inline-block;
+  border: none;
+}
+.touch .link-overlay-scrollable {
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch;
+}
 
 /** ---------------- */
 .cv-media-gallery .cv-overlay-header {
@@ -141,6 +149,27 @@
   overflow: hidden;
 }
 
+.cv-media-gallery-carrousel:before,
+.cv-media-gallery-carrousel:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  z-index: 1;
+}
+
+.cv-media-gallery-carrousel:before {
+  left: -.5em;
+  background-image: -webkit-linear-gradient(left, black, transparent);
+  background-image: linear-gradient(to right, black, transparent);
+}
+
+.cv-media-gallery-carrousel:after {
+  right: 0;
+  background-image: -webkit-linear-gradient(left, transparent, black);
+  background-image: linear-gradient(to right, transparent, black);
+}
 .cv-media-gallery-carrousel > ul {
   white-space: nowrap;
   overflow-x: auto;
@@ -153,6 +182,13 @@
   margin: 0 .5em;
   border: 2px solid transparent;
   border-radius: 2px;
+  opacity: .6;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+
+.cv-media-gallery-carrousel > ul > li:hover {
+  opacity: 1;
 }
 
 .cv-media-gallery-carrousel > ul > li.cv-dynamic-border-color {
@@ -161,6 +197,7 @@
 
 .cv-media-gallery-carrousel > ul > li.active {
   border-color: inherit;
+  opacity: 1;
 }
 
 .cv-media-gallery-carrousel > ul > li > img {

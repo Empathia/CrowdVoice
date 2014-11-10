@@ -26,6 +26,8 @@ Class('LinkOverlay').inherits(Widget)({
 
         _prevVoiceElementData : null,
         _nextVoiceElementData : null,
+        _clip : null,
+        _clipGlued : false,
 
         init : function init(config) {
             Widget.prototype.init.call(this, config);
@@ -41,16 +43,29 @@ Class('LinkOverlay').inherits(Widget)({
             this._twitterButtonElement = this.element.find('.actions .twitter');
             this._flagButtonElement = this.element.find('.flag-div .flag');
 
-            this._bindEvents();
+            this._setupCopyToClipbard()._bindEvents();
+        },
+
+        _setupCopyToClipbard : function _setupCopyToClipbard() {
+            ZeroClipboard.setMoviePath( '/javascripts/ZeroClipboard10.swf' );
+            this._clip = new ZeroClipboard.Client();
+            this._clip.setText('');
+
+            return this;
         },
 
         _bindEvents : function _bindEvents() {
             this._closeButtonElement.bind('click', this.deactivate.bind(this));
             this._prevArrowElement.bind('click', this._prevArrowClickHandler.bind(this));
             this._nextArrowElement.bind('click', this._nextArrowClickHandler.bind(this));
+
             this._iframeElement.load(function() {
                 this.overlay.hide();
             }.bind(this));
+
+            this._clip.addEventListener('complete',function(client,text) {
+              alert('copied!');
+            });
 
             return this;
         },
@@ -94,7 +109,18 @@ Class('LinkOverlay').inherits(Widget)({
             this._updateDynamicSources(voiceElement);
             this._updateArrowState();
 
-            this.element.slideDown(this.animationSpeed);
+            this.element.slideDown(this.animationSpeed, function() {
+                if (!this._clipGlued) {
+                    /* the button should glued just once, also the element
+                     * should be visible, that's why we wait until the
+                     * animation has finished.
+                     * */
+                    this._clip.glue('d_clip_button');
+                    this._clipGlued = true;
+                }
+
+                this._clip.setText(voiceElement.postURL);
+            }.bind(this));
 
             return this;
         },
@@ -109,6 +135,7 @@ Class('LinkOverlay').inherits(Widget)({
             this._facebookButtonElement[0].href = this.FACEBOOK_URL_BASE + "u=" + voiceElement.URL;
             this._twitterButtonElement[0].href = this.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;
             this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + (voiceElement.sourceElement.data('voted') ? 1 : -1);
+            this._sourceButtonElement[0].href = voiceElement.postURL;
             this._iframeElement[0].src = voiceElement.postURL;
 
             return this;
