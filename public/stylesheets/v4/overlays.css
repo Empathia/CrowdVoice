@@ -94,20 +94,28 @@
 }
 
 /* ------------------- */
-  .link-overlay-scrollable {
-    height: 100%;
-    padding-top: 56px;
-  }
-  .link-overlay-scrollable > iframe {
-    overflow: auto;
-    display: inline-block;
-    border: none;
-  }
-  .touch .link-overlay-scrollable {
-    overflow-x: hidden !important;
-    overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch;
-  }
+.cv-link-gallery .copy-url {
+  margin-left: .25em;
+}
+
+.cv-link-gallery .arrows .vertical-divider {
+  height: 24px;
+}
+
+.link-overlay-scrollable {
+  height: 100%;
+  padding-top: 56px;
+}
+.link-overlay-scrollable > iframe {
+  overflow: auto;
+  display: inline-block;
+  border: none;
+}
+.touch .link-overlay-scrollable {
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch;
+}
 
 /** ---------------- */
 .cv-media-gallery .cv-overlay-header {
