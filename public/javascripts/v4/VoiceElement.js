@@ -114,7 +114,7 @@ Class('VoiceElement').inherits(Widget)({
                     return false;
                 });
             }
-            
+
         },
 
         setupElements : function() {
