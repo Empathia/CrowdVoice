@@ -135,7 +135,13 @@
 .number-graphic-top .graphic img {max-width: 140px; max-height: 140px}
 
 .collapsed .graphic {width:90px; max-height: 90px; float: left}
-.collapsed .caption {width: 60%; float: right; margin: 0}
+.collapsed .caption {
+  width: 60%;
+  float: right;
+  font-size: 13px;
+  line-height: 17px;
+  margin: 0;
+}
 
 .area-chart-key {padding: 0 0 0 20px}
 
