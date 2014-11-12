@@ -72,10 +72,10 @@ end
 #   command "#{cmd_prefix} rake hoptoad:deploy TO=#{node.environment.framework_env}"
 # end
 
-execute 'Migrate all databases' do
-  always_run true
-  owner app[:user]
-  path release_path
-  command "#{cmd_prefix} bundle exec rake migrations"
-end
+# execute 'Migrate all databases' do
+#   always_run true
+#   owner app[:user]
+#   path release_path
+#   command "#{cmd_prefix} bundle exec rake migrations"
+# end
 
