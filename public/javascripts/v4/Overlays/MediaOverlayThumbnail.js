@@ -4,6 +4,7 @@ Class('MediaOverlayThumbnail').inherits(Widget)({
             <img/>\
         </li>\
     ',
+    PLAY_ICON : '<i class="mediafeed-sprite play-icon--small"></i>',
     prototype : {
         /**
          * The source of the thumbnial image.
@@ -38,6 +39,10 @@ Class('MediaOverlayThumbnail').inherits(Widget)({
          */
         _setup : function _setup() {
             this._imageElement[0].src = this.imageSource || this.voiceElementData.thumbURL;
+
+            if (this.voiceElementData.sourceType === "video") {
+                this.element.append(this.constructor.PLAY_ICON);
+            }
 
             return this;
         },

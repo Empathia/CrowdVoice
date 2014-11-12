@@ -209,6 +209,13 @@
   border-radius: 2px;
 }
 
+.cv-media-gallery-carrousel .play-icon--small {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .cv-media-gallery-wrapper {
   display: table-cell;
   vertical-align: middle;
