@@ -24,7 +24,11 @@
 }
 .infobox-wall .infobox.no-caption {overflow: visible; padding: 0}
 .infobox.no-caption .graphic {margin: 20px 25px 0 25px}
-.infobox.no-caption .divline {display: block; margin: 12px 25px; width: auto}
+.infobox.no-caption .divline {
+  display: block;
+  margin: 12px 25px;
+  width: auto;
+}
 .infobox.no-caption .voice-info-tools {margin: 23px 0 0 25px; float: none}
 .infobox.no-caption .description {margin: 0 25px 10px; width: auto}
 
@@ -78,7 +82,11 @@
   font-size: 17px;
   line-height: 24px;
 }
-.infobox .divline {height: 1px; margin: 12px 0; display: inline-block}
+.infobox .divline {
+  height: 2px;
+  margin: 12px 0;
+  display: inline-block;
+}
 .infobox .description {
   height: auto;
   font-size: 13px;
