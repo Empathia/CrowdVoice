@@ -6,7 +6,9 @@
 .right-pane-container .isotope {-webkit-transition-property: none; -moz-transition-property: none; transition-property: none}
 .right-pane-container .isotope .isotope-item {-webkit-transition-property: none; -moz-transition-property: none; transition-property: none}
 
-.right-pane-container {background-color: #3d3d3d}
+.right-pane-container {
+  background-color: #4c4c4c;
+}
 
 .infobox-header {background: #303030; border-bottom: solid 1px rgba(0,0,0,0.2); box-shadow: 0 0 3px #222222}
 .infobox-header .color-line,
@@ -24,17 +26,13 @@
 .infobox-header .view-all:hover {color: #AAAAAA}
 
 .infobox {
-  border: 1px solid; border-color: #4C4C4C #2C2C2C #101010;
+  will-change: transform, top, left;
+  text-align: center;
+  border-style: solid;
+  border-color: rgba(0,0,0,.7);
   border-radius: 4px;
   background-clip: padding-box;
-  background: #373737;
-  background: -moz-linear-gradient(top,  #373737 0%, #303030 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#373737), color-stop(100%,#303030));
-  background: -webkit-linear-gradient(top,  #373737 0%,#303030 100%);
-  background: -o-linear-gradient(top,  #373737 0%,#303030 100%);
-  background: -ms-linear-gradient(top,  #373737 0%,#303030 100%);
-  background: linear-gradient(to bottom,  #373737 0%,#303030 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#373737', endColorstr='#303030',GradientType=0 );
+  background: #2e2e2e;
 }
 
 .infobox .info:last-child {
@@ -85,9 +83,14 @@
   background-image: linear-gradient(top, #2a2a2a, #242424);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a2a2a', endColorstr='#242424',GradientType=0 );
 }
-.infobox .caption {color: #cccccc; text-shadow: 0 -1px 1px #000000}
+.infobox .caption {
+  text-align: center;
+}
 .infobox .divline {background-color: #53b74a}
-.infobox .description {color: #888888}
+.infobox .description {
+  color: #b2b2b2;
+  text-align: left;
+}
 .infobox .graphic,
 .infobox .graphic-number,
 .infobox .caption {color: #cccccc; text-shadow: 0 -1px 1px #000000}
@@ -124,7 +127,17 @@
 .sources-list-wrapper .list-item a:hover {color: #aaa}
 
 .highlight .tagbox {border-top-color: #2E2E2E}
-.infobox .tag { color: #53b74a; text-shadow: 0 -1px 1px #000000}
+.infobox .tag {
+  color: #53b74a;
+  text-shadow: 0 -1px 1px #000000;
+}
+.infobox .tag:after {
+  content: ',';
+}
+.infobox .tag:last-child:after {
+  content: '';
+}
+
 .infobox .tag a,
 .infobox .tag a:hover { color: #6aeb5e; text-decoration: none}
 .chart-bullet {background-color: #5ccc52}
@@ -293,6 +306,17 @@ body .infobox.collapsed .divline {background: none}
 .infobox-wall-container .voice-info {
   background: #232323;
 }
+
+.infobox-wall-container .voice-info:after {
+  content: '';
+  position: relative;
+  display: block;
+  background: #f2f2f2;
+  height: 6px;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+  box-shadow: 0 2px 0 rgba(0,0,0,.1);
+}
+
 .infobox-wall-container .voice-info .voice-title {
   color: #ffffff;
 }
