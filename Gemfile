@@ -36,6 +36,7 @@ gem "hominid"
 gem 'newrelic_rpm'
 gem "haml-rails"
 gem 'rack', '~> 1.2.8'
+gem 'abstract', '1.0.0'
 
 group :staging, :staging do
 	# gem "rack-mini-profiler", "0.1.30"
