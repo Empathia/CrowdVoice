@@ -33,7 +33,7 @@ gem 'acts_as_list', '~> 0.1.4'
 gem 'acts-as-taggable-on', :git => "git://github.com/mbleigh/acts-as-taggable-on.git", :ref => "53e2e14f3cf4d3359ef740c78bec7a36c5378bc6"
 gem "foreman", "~> 0.60.2"
 gem "hominid"
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem "haml-rails"
 gem 'rack', '~> 1.2.8'
 gem 'abstract', '1.0.0'
