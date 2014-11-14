@@ -35,7 +35,7 @@ gem "foreman", "~> 0.60.2"
 gem "hominid"
 gem 'newrelic_rpm'
 gem "haml-rails"
-gem 'rack', '~> 1.5.2', :require => false
+gem 'rack', '~> 1.2.8'
 
 group :staging, :staging do
 	# gem "rack-mini-profiler", "0.1.30"
