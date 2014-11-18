@@ -64,14 +64,29 @@
 
       params += "&fetchAll=1"
 
-      $.getJSON(location.pathname + params, function(data) {
-          CV.voicesContainer.preloadedVoices = data;
-          CV.voicesContainer.page = page;
-          CV.voicesContainer.getNextPage(function() {
-            CV.voicesContainer.renderPages();
-          });
+      // $.getJSON(location.pathname + params, function(data) {
+      //     CV.voicesContainer.preloadedVoices = data;
+      //     CV.voicesContainer.page = page;
+      //     CV.voicesContainer.getNextPage(function() {
+      //       CV.voicesContainer.renderPages();
+      //     });
 
-          CV.mediaFeedSearch.reloadFuse();
+      //     CV.mediaFeedSearch.reloadFuse();
+      // });
+
+      $.ajax({
+        dataType  : "json",
+        async     : true,
+        url       : location.pathname + params,
+        success   : function(data) {
+         CV.voicesContainer.preloadedVoices = data;
+         CV.voicesContainer.page = page;
+         CV.voicesContainer.getNextPage(function() {
+           CV.voicesContainer.renderPages();
+         });
+
+         CV.mediaFeedSearch.reloadFuse(); 
+        }
       });
 
       CV.mediaFeedSearch = new MediaFeedSearch({

@@ -77,7 +77,13 @@ class VoicesController < ApplicationController
       end
     end
 
-    respond_with(@posts, :location => @voice)
+    if request.format.html?
+      respond_with(@posts, :location => @voice)
+    else
+      render :json => MultiJson.dump(@posts), :layout => false
+    end
+
+    
   end
 
   def fetch_feeds
