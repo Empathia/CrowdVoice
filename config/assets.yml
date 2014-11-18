@@ -67,11 +67,11 @@ javascripts:
     - public/javascripts/include/jquery.imgloaded.js
     - public/javascripts/cv/carousel.js
     - public/javascripts/cv/overlay.js
-    - public/javascripts/v4/overlays/OverlaysController.js
-    - public/javascripts/v4/overlays/LinkOverlay.js
-    - public/javascripts/v4/overlays/MediaOverlay.js
-    - public/javascripts/v4/overlays/MediaOverlayCarousel.js
-    - public/javascripts/v4/overlays/MediaOverlayThumbnail.js
+    - public/javascripts/v4/Overlays/OverlaysController.js
+    - public/javascripts/v4/Overlays/LinkOverlay.js
+    - public/javascripts/v4/Overlays/MediaOverlay.js
+    - public/javascripts/v4/Overlays/MediaOverlayCarousel.js
+    - public/javascripts/v4/Overlays/MediaOverlayThumbnail.js
     - public/javascripts/cv/video_overlay.js
     - public/javascripts/cv/message.js
     - public/javascripts/v4/MediaTool.js
