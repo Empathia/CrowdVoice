@@ -79,7 +79,7 @@ javascripts:
     - public/javascripts/cv/filters.js
     - public/javascripts/cv/votes.js
     - public/javascripts/cv/blogWidget.js
-    - public/javascripts/v4/jquery.mousewheel.js
+    - public/javascripts/v4/vendor/jquery.mousewheel.js
     - public/javascripts/v4/Loader.js
     - public/javascripts/cv/timeline.js
     - public/javascripts/cv/toggleTweets.js
