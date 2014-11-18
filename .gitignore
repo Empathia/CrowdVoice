@@ -14,3 +14,5 @@ public/images/related_image
 nbproject/*
 db/schema.rb
 node_modules
+public/assets
+public/assets/*
