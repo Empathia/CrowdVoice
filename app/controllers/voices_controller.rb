@@ -80,7 +80,7 @@ class VoicesController < ApplicationController
     if request.format.html?
       respond_with(@posts, :location => @voice)
     else
-      render :json => MultiJson.dump(@posts), :layout => false
+      render :json => Oj.dump(@posts, :mode => :compat), :layout => false
     end
 
     

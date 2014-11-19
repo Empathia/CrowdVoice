@@ -79,13 +79,13 @@
         async     : true,
         url       : location.pathname + params,
         success   : function(data) {
-         CV.voicesContainer.preloadedVoices = data;
-         CV.voicesContainer.page = page;
-         CV.voicesContainer.getNextPage(function() {
-           CV.voicesContainer.renderPages();
-         });
+          CV.voicesContainer.preloadedVoices = data;
+          CV.voicesContainer.page = page;
+          CV.voicesContainer.getNextPage(function() {
+            CV.voicesContainer.renderPages();
+          });
 
-         CV.mediaFeedSearch.reloadFuse(); 
+          CV.mediaFeedSearch.reloadFuse(); 
         }
       });
 
