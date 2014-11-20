@@ -80,7 +80,9 @@ class VoicesController < ApplicationController
     if request.format.html?
       respond_with(@posts, :location => @voice)
     else
-      render :json => ActiveRecord::Base.connection.select_all(query), :layout => false
+      puts query
+      render :json => Oj.dump(ActiveRecord::Base.connection.execute(query) , :mode => :compat), :layout => false
+      # render :json => ActiveRecord::Base.connection.select_all(query), :layout => false
     end
 
     
