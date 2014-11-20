@@ -140,7 +140,6 @@ Class('VoicesContainer').inherits(Widget)({
                     description   : CV.getExcerpt(post.description, 250),
                     imageWidth    : post.image_width,
                     imageHeight   : post.image_height,
-                    thumbURL      : post.image.thumb.url,
                     negativeVotes : post.negative_votes_count,
                     positiveVotes : post.positive_votes_count,
                     overallScore  : post.overall_score,

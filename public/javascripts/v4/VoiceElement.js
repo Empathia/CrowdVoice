@@ -93,6 +93,20 @@ Class('VoiceElement').inherits(Widget)({
 
             var voice = this;
 
+            // Build thumbURL
+            var bucket = "http://crowdvoice-production-bucket.s3.amazonaws.com/uploads/";
+
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic"];
+
+            var date    = new Date(this.createdAt);
+            var year    = date.getUTCFullYear();
+            var month   = months[date.getUTCMonth()];
+            var day     = (date.getDate() < 10 ? '0' : '') + date.getDate();
+            var model   = 'image';
+            var version = 'thumb_';
+
+            this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
+
             this.sourceElement = this.element.find('a.source-url');
             this.contentElement = this.element.find('.voice-cont');
 
