@@ -37,7 +37,11 @@
 }
 
 .cv-timeline-breadcrum__points {
-  float: left;
+  white-space: nowrap;
+  position: absolute;
+  overflow: auto;
+  right: 0;
+  left: 95px;
 }
 
 .cv-timeline-breadcrum__point-item {
