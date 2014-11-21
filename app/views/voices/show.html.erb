@@ -17,7 +17,7 @@
 <% if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] && !params[:post] %>
   <%= render 'infoboxes_wall' %>
 <% elsif params[:backstory] %>
-  <%= render 'backstory_wall' %>
+  <%= render 'backstory' %>
 <% else %>
   <%= render 'posts_wall' %>
 <% end %>
