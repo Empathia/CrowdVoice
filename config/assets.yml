@@ -138,16 +138,16 @@ javascripts:
     #- public/javascripts/backstory/timelineController.js
     #- public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/v4/Utils.js
-    - public/javascripts/v4/backstory/BackstoryRegistry.js
-    - public/javascripts/v4/backstory/BackstoryController.js
-    - public/javascripts/v4/backstory/BackstoryUIComponent.js
-    - public/javascripts/v4/backstory/BackstoryBreadcrumb.js
-    - public/javascripts/v4/backstory/BackstoryBreadcrumbItem.js
-    - public/javascripts/v4/backstory/BackstoryTimeline.js
-    - public/javascripts/v4/backstory/BackstoryTimelineYear.js
-    - public/javascripts/v4/backstory/BackstoryTimelineMonth.js
-    - public/javascripts/v4/backstory/BackstoryTimelineElement.js
-    - public/javascripts/v4/backstory/BackstoryTimelineCard.js
+    - public/javascripts/v4/Backstory/BackstoryRegistry.js
+    - public/javascripts/v4/Backstory/BackstoryController.js
+    - public/javascripts/v4/Backstory/BackstoryUIComponent.js
+    - public/javascripts/v4/Backstory/BackstoryBreadcrumb.js
+    - public/javascripts/v4/Backstory/BackstoryBreadcrumbItem.js
+    - public/javascripts/v4/Backstory/BackstoryTimeline.js
+    - public/javascripts/v4/Backstory/BackstoryTimelineYear.js
+    - public/javascripts/v4/Backstory/BackstoryTimelineMonth.js
+    - public/javascripts/v4/Backstory/BackstoryTimelineElement.js
+    - public/javascripts/v4/Backstory/BackstoryTimelineCard.js
     - public/javascripts/backstory/backstory_init.js
 
   admin:
