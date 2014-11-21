@@ -155,9 +155,6 @@ Class('VoicesContainer').inherits(Widget)({
 
                 voice.disabled = CV.mediaFeedSearch[voice.sourceType] ? false : true;
 
-                // dont render here cause UI locking
-                // voice.render(window.voicesContainer.element);
-
                 voicesContainer.appendChild(voice);
 
                 elements.push(voice.element[0]);
@@ -165,7 +162,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             });
 
-            voicesContainer.element[0].appendChild(fragment);
+            voicesContainer.element[0].appendChild(fragment);    
             
             if (window.isotopeReady) {
                 voicesContainer.element.isotope('appended', $(elements));
@@ -180,9 +177,6 @@ Class('VoicesContainer').inherits(Widget)({
                     callback();
                 }
 
-                // if (window.isotopeReady) {
-                //     voicesContainer.element.isotope('appended', $(elements));
-                // }
             }, 1000);
 
             this.voicesToRender = [];

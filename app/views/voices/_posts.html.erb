@@ -38,8 +38,13 @@
     <%= render :partial => "voices/info-sidebar" %>
   <% end %>
 
-  <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>">
-    <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>">
+  <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>" style="height: 1167px; width: 959px;">
+    <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
+      <div class="placeholders">
+      <% 30.times do %>
+        <img src="/images/voice-placeholder.gif" style="margin:5px;" />
+      <% end %>
+      </div>
     </div>
   </div>
 
@@ -56,6 +61,8 @@
 
       var page = CV.voicesContainer.currentPage;
 
+      CV.voicesContainer.renderPages();
+
       var params = '?page=' + page;
 
       if ($.deparam.querystring().mod) {
@@ -64,23 +71,11 @@
 
       params += "&fetchAll=1"
 
-      // $.getJSON(location.pathname + params, function(data) {
-      //     CV.voicesContainer.preloadedVoices = data;
-      //     CV.voicesContainer.page = page;
-      //     CV.voicesContainer.getNextPage(function() {
-      //       CV.voicesContainer.renderPages();
-      //     });
-
-      //     CV.mediaFeedSearch.reloadFuse();
-      // });
-
       $.ajax({
         dataType  : "json",
         async     : true,
         url       : location.pathname + params,
         success   : function(data) {
-          var posts = [];
-
           data.forEach(function(item) {
             var post = {};
 
@@ -90,7 +85,7 @@
             post.title = item[3];
             post.description = item[4];
             post.positive_votes_count = item[5];
-            post.negative_votes_count - item[6];
+            post.negative_votes_count = item[6];
             post.overall_score = item[7];
             post.source_url = item[8];
             post.source_type = item[9];
@@ -103,13 +98,40 @@
             post.image_width = item[16];
             post.image_height = item[17];
 
-            posts.push(post);
+            CV.voicesContainer.preloadedVoices.push(post);
           });
 
-          CV.voicesContainer.preloadedVoices = posts;
+          
           CV.voicesContainer.page = page;
           CV.voicesContainer.getNextPage(function() {
-            CV.voicesContainer.renderPages();
+            CV.voicesContainer.renderPages(function() {
+              CV.voicesContainer.element.find('.placeholders').remove();
+
+              CV.voicesContainer.element.isotope({
+                  transitionDuration: 0,
+                  animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
+                   animationOptions: {
+                      duration: 0,
+                      easing: 'linear',
+                      queue: false
+                  },
+                  resizable: false,
+                  itemSelector: '.voice-box',
+                  masonry: {
+                      columnWidth: 200 - 5
+                  },
+                  callback: function(){
+                      $('.updating-wrapper').hide();
+                      $('body').css('overflow', 'hidden');
+                      $('.voice-wrapper').removeClass('initial-state');
+                      DynamicMeasures.update();
+                      // re-trigger resize to help slow devices on proper arrangement
+                      setTimeout(function(){window.smartresize();}, 500);
+                  }
+              });
+              
+              window.isotopeReady = true;
+            });
           });
 
           CV.mediaFeedSearch.reloadFuse(); 

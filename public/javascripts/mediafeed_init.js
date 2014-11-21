@@ -132,19 +132,19 @@ $(function () {
                 voiceBox.find('img').imagesLoaded(function (e) {
                     boxCounter++;
                     if(boxCounter == voiceBox.length){
-                        isotope_init();
+                        // isotope_init();
                         voice_loaded = true;
                     }
                 });
                 // fallback in case images fail
                 setTimeout(function() {
                     if (!voice_loaded){
-                        isotope_init();
+                        // isotope_init();
                     }
                 }, 5000);
             } ).attr('src', loader.data('background-loading-image'));
         } else {
-            isotope_init();
+            // isotope_init();
         }
 
         if (voiceBox.length === 0){
@@ -156,7 +156,13 @@ $(function () {
         // REMOVED BY CLIENT REQUEST UNCOMMENT TO RE-APPLY THE GAPLESS ALGORITHM:
         // colWidth = setPostMeasures();
         //remove all thumbnail pictures from posts
-        voicesContainer.find('[src*="thumb_link-default.png"]').hide();
+        // voicesContainer.find('[src*="thumb_link-default.png"]').hide();
+        
+        // voiceWrapper.removeClass('initial-state');
+        // DynamicMeasures.update();
+        // re-trigger resize to help slow devices on proper arrangement
+        // setTimeout(function(){win.smartresize();}, 500);
+
         voicesContainer.isotope({
             transitionDuration: 0,
             animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
