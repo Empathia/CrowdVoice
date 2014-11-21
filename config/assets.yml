@@ -113,30 +113,41 @@ javascripts:
     - *defaults
     - *jscroll
     - *sidebar
-    - public/javascripts/include/jquery-ui.min.js
-    - public/javascripts/include/CSSPlugin.min.js
-    - public/javascripts/include/TweenLite.min.js
-    - public/javascripts/cv/carousel.js
-    - public/javascripts/cv/overlay.js
+    #- public/javascripts/include/jquery-ui.min.js
+    #- public/javascripts/include/CSSPlugin.min.js
+    #- public/javascripts/include/TweenLite.min.js
+    #- public/javascripts/cv/carousel.js
+    #- public/javascripts/cv/overlay.js
     - public/javascripts/cv/post.js
-    - public/javascripts/ZeroClipboard.js
+    #- public/javascripts/ZeroClipboard.js
     - public/javascripts/cv/blogWidget.js
-    - public/javascripts/backstory/galleryController.js
-    - public/javascripts/backstory/imageWidget.js
-    - public/javascripts/backstory/videoWidget.js
-    - public/javascripts/backstory/paginationWidget.js
-    - public/javascripts/backstory/captionWidget.js
-    - public/javascripts/backstory/timelineWidthController.js
-    - public/javascripts/backstory/dragBar.js
-    - public/javascripts/backstory/timelineSlideController.js
-    - public/javascripts/backstory/detailsViewController.js
-    - public/javascripts/backstory/elementTooltip.js
-    - public/javascripts/backstory/timelineElement.js
-    - public/javascripts/backstory/timelineElementController.js
-    - public/javascripts/backstory/timelineEvent.js
-    - public/javascripts/backstory/timelineEventController.js
-    - public/javascripts/backstory/timelineController.js
-    - public/javascripts/cv/socialNavigationIcons.js
+    #- public/javascripts/backstory/galleryController.js
+    #- public/javascripts/backstory/imageWidget.js
+    #- public/javascripts/backstory/videoWidget.js
+    #- public/javascripts/backstory/paginationWidget.js
+    #- public/javascripts/backstory/captionWidget.js
+    #- public/javascripts/backstory/timelineWidthController.js
+    #- public/javascripts/backstory/dragBar.js
+    #- public/javascripts/backstory/timelineSlideController.js
+    #- public/javascripts/backstory/detailsViewController.js
+    #- public/javascripts/backstory/elementTooltip.js
+    #- public/javascripts/backstory/timelineElement.js
+    #- public/javascripts/backstory/timelineElementController.js
+    #- public/javascripts/backstory/timelineEvent.js
+    #- public/javascripts/backstory/timelineEventController.js
+    #- public/javascripts/backstory/timelineController.js
+    #- public/javascripts/cv/socialNavigationIcons.js
+    - public/javascripts/v4/Utils.js
+    - public/javascripts/v4/backstory/BackstoryRegistry.js
+    - public/javascripts/v4/backstory/BackstoryController.js
+    - public/javascripts/v4/backstory/BackstoryUIComponent.js
+    - public/javascripts/v4/backstory/BackstoryBreadcrumb.js
+    - public/javascripts/v4/backstory/BackstoryBreadcrumbItem.js
+    - public/javascripts/v4/backstory/BackstoryTimeline.js
+    - public/javascripts/v4/backstory/BackstoryTimelineYear.js
+    - public/javascripts/v4/backstory/BackstoryTimelineMonth.js
+    - public/javascripts/v4/backstory/BackstoryTimelineElement.js
+    - public/javascripts/v4/backstory/BackstoryTimelineCard.js
     - public/javascripts/backstory/backstory_init.js
 
   admin:
@@ -237,14 +248,15 @@ stylesheets:
     - public/javascripts/v4/Loader/Loader.css
   backstory:
     - *defaults
-    - public/stylesheets/skin/backstory.css
+    - public/stylesheets/v4/backstory/backstory.css
+    # - public/stylesheets/skin/backstory.css
     - public/stylesheets/layout/voices.css
     # - public/stylesheets/skin/voices.css
     - public/stylesheets/layout/infobox.css
     # - public/stylesheets/skin/infobox.css
     - public/stylesheets/layout/modules/voice-overlays.css
     - public/stylesheets/skin/modules/voice-overlays.css
-    - public/stylesheets/layout/backstory.css
+    #- public/stylesheets/layout/backstory.css
   infographics:
     - *defaults
     - public/stylesheets/layout/infobox.css

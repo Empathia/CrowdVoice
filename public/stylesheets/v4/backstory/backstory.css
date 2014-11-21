@@ -1,0 +1,305 @@
+/* -- Breadcrum -- */
+.cv-timeline-breadcrum {
+  position: relative;
+  z-index: 4;
+  padding: 10px 10px 10px 27px;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 0 0 rgba(0,0,0,.1);
+}
+
+.cv-timeline-breadcrum__title {
+  font-size: 12px;
+  position: relative;
+  float: left;
+  padding: 1px 18px 1px 0;
+  margin-right: 5px;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.cv-timeline-breadcrum__title:before,
+.cv-timeline-breadcrum__title:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background: #b2b2b2;
+}
+.cv-timeline-breadcrum__title:before {
+  transform-origin: 0 100%;
+  transform: rotateZ(-25deg);
+}
+.cv-timeline-breadcrum__title:after {
+  top: 50%;
+  transform-origin: 0 0;
+  transform: rotateZ(25deg);
+}
+
+.cv-timeline-breadcrum__points {
+  float: left;
+}
+
+.cv-timeline-breadcrum__point-item {
+  font-size: 12px;
+  display: inline-block;
+  padding: 1px 5px;
+  margin: 0 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cv-timeline-breadcrum__point-item:hover {
+  background-color: rgba(166,166,166,.15);
+}
+.cv-timeline-breadcrum__point-item.active {
+  color: #fff;
+  background-color: #a6a6a6;
+  box-shadow: inset 0 2px 0 0 rgba(0,0,0,.15);
+}
+
+/* -- Backstory Timeline -- */
+.cv-timeline-wrapper {
+  background: #000;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: calc(100vh - 98px - 38px);
+}
+
+.cv-timeline__background {
+  position: absolute;
+  width: 100%;
+  height: 270px;
+  background-color: rgba(255,255,255,1);
+}
+.cv-timeline__background > div {
+  height: 100%;
+  background-size: cover;
+  opacity: .15;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
+.cv-timeline__info-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 270px;
+  background: #fff;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
+}
+
+.cv-timeline {
+  position: relative;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 100%;
+  padding: 37px 10px 0 50px;
+}
+.cv-timeline:before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 25px;
+  top: 275px;
+  left: 0;
+  background-image: linear-gradient(to right, #d9d9d9 0, transparent 1px);
+  background-size: 6px 6px;
+  //background-color: rgba(255,0,0,0.1);
+}
+
+.cv-timeline-year {
+  //background-color: #333;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: -3px;
+}
+
+.cv-timeline-month {
+  //background-color: #666;
+  position: relative;
+  display: inline-block;
+  //padding-left: 60px;
+}
+.cv-timeline-month__label {
+  position: absolute;
+  top: 238px;
+  left: 0;
+  height: 25px;
+  padding-top: 3px;
+  background: #fff;
+  z-index: 1;
+}
+.cv-timeline-month__label--upper {
+  font-size: 14px;
+  line-height: 11px;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.cv-timeline-month__label--small {
+  font-size: 11px;
+  line-height: 1em;
+  color: #a6a6a6;
+  letter-spacing: 1px;
+}
+
+.cv-timeline-element {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  //float: left;
+  padding-left: 40px;
+}
+
+.cv-timeline-element:before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 25px;
+  top: 238px;
+  left: 0;
+  background-image: linear-gradient(to right, #d9d9d9 0, transparent 1px);
+  background-size: 6px 6px;
+  //background-color: rgba(255,0,0,0.1);
+}
+
+.cv-timeline-element + .cv-timeline-element {
+  padding-left: 40px;
+}
+
+.cv-timeline-element__title {
+  font-size: 30px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: #b2b2b2;
+  font-weight: 300;
+}
+
+.cv-timeline-element__description {
+  font-size: 16px;
+  line-height: 21px;
+  margin-bottom: 12px;
+  color: #4c4c4c;
+  font-weight: 400;
+}
+
+.cv-timeline-view-button {
+  padding-left: 6px;
+  padding-right: 6px;
+  font-weight: 600;
+}
+
+.cv-timeline-element__gallery-wrapper {
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: #fff;
+  padding: 10px 15px 15px;
+}
+.cv-timeline-element__gallery {
+  position: relative;
+}
+.cv-timeline-element__gallery-frame {
+  padding: 4px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 1px -1px 3px rgba(0,0,0,0.2);
+}
+.cv-timeline-element__gallery-frame > img {
+  display: block;
+  width: 314px;
+  height: 200px;
+  border-radius: 2px;
+}
+.cv-timeline-element__gallery-frame:first-child {
+  position: relative;
+  z-index: 4;
+}
+.cv-timeline-element__gallery-frame + .cv-timeline-element__gallery-frame {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.cv-timeline-element__gallery-frame:nth-child(2) {
+  transform: translateX(3px) translateY(-3px);
+  z-index: 3;
+}
+.cv-timeline-element__gallery-frame:nth-child(3) {
+  transform: translateX(6px) translateY(-6px);
+  z-index: 2;
+  opacity: .8;
+}
+.cv-timeline-element__gallery-frame:nth-child(4) {
+  transform: translateX(8px) translateY(-8px);
+  z-index: 1;
+  opacity: .6;
+}
+.cv-timeline-element__gallery-frame:nth-child(5) {
+  transform: translateX(20px) translateY(-20px);
+  z-index: 0;
+  opacity: .4;
+}
+
+.cv-timeline-element__time-ticks {
+  height: 25px;
+  margin: 5px 0 5px 1px;
+  border-left: 1px solid transparent;
+  background-image: linear-gradient(to right, #d9d9d9 0, transparent 1px);
+  background-size: 6px 6px;
+}
+.cv-timeline-element__info {
+  width: 230px;
+  white-space: normal;
+  padding: 10px 15px;
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: #fff;
+}
+
+
+/* -- CARDS -- */
+.cv-timeline-cards {
+  width: 326px;
+  white-space: normal;
+  position: absolute;
+  top: 390px;
+  left: 256px;
+}
+.cv-timeline-cards:before {
+  content: '';
+  width: 1px;
+  height: 160px;
+  background: #ccc;
+  position: absolute;
+  bottom: 50%;
+  left: 27px;
+}
+
+.cv-timeline-card > img {
+  position: absolute;
+  border-radius: 50%;
+  width: 56px;
+}
+
+.cv-timeline-card__info {
+  padding-left: 67px;
+}
+
+.cv-timeline-card__info-date {
+  font-size: 15px;
+  color: #b2b2b2;
+  text-transform: uppercase;
+}
+
+.cv-timeline-card__info-desc {
+  font-size: 12px;
+  color: #666666;
+  font-style: italic;
+  line-height: 16px;
+}

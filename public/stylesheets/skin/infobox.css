@@ -36,6 +36,11 @@
   box-shadow: 0 2px 6px rgba(0,0,0,.3);
 }
 
+.info-sidebar .infobox {
+  border-color: #4c4c4c #2c2c2c #101010;
+  border-radius: 0;
+}
+
 .infobox .info:last-child {
   -webkit-border-radius: 0 0 4px 4px;
      -moz-border-radius: 0 0 4px 4px;
@@ -83,9 +88,6 @@
   background-image: -webkit-linear-gradient(#2a2a2a, #242424);
   background-image: linear-gradient(top, #2a2a2a, #242424);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a2a2a', endColorstr='#242424',GradientType=0 );
-}
-.infobox .caption {
-  text-align: center;
 }
 .infobox .divline {background-color: #53b74a}
 .infobox .description {
@@ -197,7 +199,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#303030',GradientType=0 )}
 body .infobox.collapsed.infobox {border-left-color: #2C2C2C}
 .collapsed.number-graphic-top .graphic-number {color: #bcbcbc; font-size: 19px}
-.collapsed .caption {color: #aaa;font-size: 13px; font-weight: normal}
+.collapsed .caption {color: #aaa; font-weight: normal}
 body .infobox.collapsed .divline {background: none}
 
 /*

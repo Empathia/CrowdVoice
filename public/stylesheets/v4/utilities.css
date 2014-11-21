@@ -101,7 +101,7 @@
 }
 .yellow .cv-dynamic-border-color,
 .yellow .cv-dynamic-border-color.active {
-  border-color: #3bc91c;
+  border-color: #ebc91c;
 }
 .red .cv-dynamic-border-color,
 .red .cv-dynamic-border-color.active {
@@ -120,7 +120,7 @@
   border-color: transparent #4db5ff;
 }
 .yellow .cv-dynamic-horizontal-arrow {
-  border-color: transparent #3bc91c;
+  border-color: transparent #ebc91c;
 }
 .red .cv-dynamic-horizontal-arrow {
   border-color: transparent #f10f2a;

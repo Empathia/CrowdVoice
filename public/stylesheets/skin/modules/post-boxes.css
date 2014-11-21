@@ -12,6 +12,7 @@
 }
 
 .voices-container > .voice-box {
+  will-change: transform, top, left;
   box-shadow: none;
   background-color: #fff;
   border-radius: 3px;
