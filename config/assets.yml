@@ -246,6 +246,7 @@ stylesheets:
     - public/stylesheets/layout/infobox.css
     - public/stylesheets/skin/infobox.css
     - public/javascripts/v4/Loader/Loader.css
+    - public/stylesheets/v4/VoiceElement.css
   backstory:
     - *defaults
     - public/stylesheets/v4/backstory/backstory.css

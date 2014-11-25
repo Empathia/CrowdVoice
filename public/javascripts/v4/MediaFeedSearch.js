@@ -5,12 +5,14 @@ Class('MediaFeedSearch').inherits(Widget)({
         link        : true,
         fuseOptions : {
             keys      : ['title', 'description'],
-            threshold : 0.4
+            threshold : 0.0,
+            distance  : 0
         },
         fuse        : null,
         delayedEvent : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
+            return;
 
             var mediaFeedSearch = this;
 
@@ -69,6 +71,8 @@ Class('MediaFeedSearch').inherits(Widget)({
         },
 
         getEnabledVoices : function() {
+            return [];
+
             var enabledVoices = CV.voicesContainer.children.filter(function(child) {
                 if (!child.disabled) {
                     return child;
@@ -91,6 +95,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         },
 
         reset : function() {
+            return;
             this.element.find('input.search').val('');
 
             this.element.find('.found').html(0);
@@ -103,6 +108,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         },
 
         search : function (query) {
+            return;
             var mediaFeedSearch = this;
 
             var result = mediaFeedSearch.fuse.search(query);

@@ -163,28 +163,28 @@ $(function () {
         // re-trigger resize to help slow devices on proper arrangement
         // setTimeout(function(){win.smartresize();}, 500);
 
-        voicesContainer.isotope({
-            transitionDuration: 0,
-            animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
-             animationOptions: {
-                duration: 0,
-                easing: 'linear',
-                queue: false
-            },
-            resizable: false,
-            itemSelector: '.voice-box',
-            masonry: {
-                columnWidth: colW - 5
-            },
-            callback: function(){
-                $('.updating-wrapper').hide();
-                $('body').css('overflow', 'hidden');
-                voiceWrapper.removeClass('initial-state');
-                DynamicMeasures.update();
-                // re-trigger resize to help slow devices on proper arrangement
-                setTimeout(function(){win.smartresize();}, 500);
-            }
-        });
+        // voicesContainer.isotope({
+        //     transitionDuration: 0,
+        //     animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
+        //      animationOptions: {
+        //         duration: 0,
+        //         easing: 'linear',
+        //         queue: false
+        //     },
+        //     resizable: false,
+        //     itemSelector: '.voice-box',
+        //     masonry: {
+        //         columnWidth: colW - 5
+        //     },
+        //     callback: function(){
+        //         $('.updating-wrapper').hide();
+        //         $('body').css('overflow', 'hidden');
+        //         voiceWrapper.removeClass('initial-state');
+        //         DynamicMeasures.update();
+        //         // re-trigger resize to help slow devices on proper arrangement
+        //         setTimeout(function(){win.smartresize();}, 500);
+        //     }
+        // });
         isotopeReady = true;
     };
 

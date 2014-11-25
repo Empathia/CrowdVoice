@@ -50,12 +50,17 @@ Class('Timeline').inherits(Widget)({
                 params += '&start=' + this.startDate;
             }
 
-            console.log('loadpage', params)
+            // console.log('loadpage', params)
             timeline.applySpinner();
 
-            CV.voicesContainer.getNextPage(function() {
-                CV.voicesContainer.renderPages();
+            CV.voicesContainer.enableNextPage(function(){
+                // CV.timeline.resetSpinner();
+                CV.timeline.afterFetchActions();
             });
+
+            // CV.voicesContainer.getNextPage(function() {
+            //     CV.voicesContainer.renderPages();
+            // });
         },
 
         loadDate: function (date, callback) {
@@ -75,9 +80,9 @@ Class('Timeline').inherits(Widget)({
 
             timeline.applySpinner();
 
-            setTimeout(function() {
+            // setTimeout(function() {
                 CV.voicesContainer.goToDate(params.start);
-            });
+            // });
 
         },
 
@@ -179,13 +184,12 @@ Class('Timeline').inherits(Widget)({
             if (currentPage > (totalVoices / perPage)) {
                 return;
             }
-
+            
             this.applySpinner();
-            if (!this.loadingScript) {
-                this.loadingScript = true;
-                this.loadPage();
-                return needsScrollTop ? this.needsScrollTop = true : this.needsScrollTop = false;
-            }
+            
+            this.loadPage();
+
+            return needsScrollTop ? this.needsScrollTop = true : this.needsScrollTop = false;
         },
         applySpinner: function(){
             // voicesContainerHeight = this.voicesContainer.height();
@@ -202,9 +206,9 @@ Class('Timeline').inherits(Widget)({
         afterFetchActions: function(images){
             this.voicesContainer.isotope('reLayout');
             this.resetSpinner();
-            if(this.needsScrollTop){
-                this.voiceScroller[0].scrollTop = 0;
-            }
+            // if(this.needsScrollTop){
+            //     this.voiceScroller[0].scrollTop = 0;
+            // }
             this.updateSliderPosition();
             this.loadingScript = false;
         },

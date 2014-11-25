@@ -259,23 +259,17 @@ Class('VoiceElement').inherits(Widget)({
             // Widget.prototype._enable.call(this);
             this.disabled = false;
 
-            this.element.removeClass('disabled').css({
-                display : 'block'
-            });
+            this.element.removeClass('disabled');
 
-            this.element[0].style.removeProperty('height');
-            this.element[0].style.removeProperty('width');
+            // this.element[0].style.removeProperty('height');
+            // this.element[0].style.removeProperty('width');
         },
 
         _disable : function() {
             // Widget.prototype._disable.call(this);
             this.disabled = true;
 
-            this.element.addClass('disabled').css({
-                display : 'none',
-                width : 0,
-                height : 0
-            });
+            this.element.addClass('disabled');
         },
 
         /**

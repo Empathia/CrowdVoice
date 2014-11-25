@@ -59,9 +59,11 @@
 
       CV.OverlaysController = new OverlaysController();
 
-      var page = CV.voicesContainer.currentPage;
+      // var page = CV.voicesContainer.currentPage;
 
-      CV.voicesContainer.renderPages();
+      var page = 0;
+
+      // CV.voicesContainer.renderPages();
 
       var params = '?page=' + page;
 
@@ -103,35 +105,42 @@
 
           
           CV.voicesContainer.page = page;
-          CV.voicesContainer.getNextPage(function() {
-            CV.voicesContainer.renderPages(function() {
-              CV.voicesContainer.element.find('.placeholders').remove();
+          // CV.voicesContainer.getNextPage(function() {
 
-              CV.voicesContainer.element.isotope({
-                  transitionDuration: 0,
-                  animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
-                   animationOptions: {
-                      duration: 0,
-                      easing: 'linear',
-                      queue: false
-                  },
-                  resizable: false,
-                  itemSelector: '.voice-box',
-                  masonry: {
-                      columnWidth: 200 - 5
-                  },
-                  callback: function(){
-                      $('.updating-wrapper').hide();
-                      $('body').css('overflow', 'hidden');
-                      $('.voice-wrapper').removeClass('initial-state');
-                      DynamicMeasures.update();
-                      // re-trigger resize to help slow devices on proper arrangement
-                      setTimeout(function(){window.smartresize();}, 500);
-                  }
-              });
-              
-              window.isotopeReady = true;
+          // });
+
+          CV.voicesContainer.createVoiceWidgets(function() {
+            CV.voicesContainer.element.find('.placeholders').remove();
+            
+            CV.voicesContainer.element.isotope({
+                transitionDuration: 0,
+                animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
+                 animationOptions: {
+                    duration: 0,
+                    easing: 'linear',
+                    queue: false
+                },
+                resizable: false,
+                itemSelector: '.voice-box',
+                filter : function() {
+                  return !$(this).hasClass('disabled');
+                },
+                masonry: {
+                    columnWidth: 200 - 5
+                },
+                callback: function(){
+                    $('.updating-wrapper').hide();
+                    $('body').css('overflow', 'hidden');
+                    $('.voice-wrapper').removeClass('initial-state');
+                    DynamicMeasures.update();
+                    // re-trigger resize to help slow devices on proper arrangement
+                    setTimeout(function(){$(window).smartresize();}, 500);
+                }
             });
+            
+            window.isotopeReady = true;
+
+            CV.voicesContainer.enableNextPage();
           });
 
           CV.mediaFeedSearch.reloadFuse(); 

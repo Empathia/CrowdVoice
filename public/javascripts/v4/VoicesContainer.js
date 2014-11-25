@@ -26,11 +26,11 @@ Class('VoicesContainer').inherits(Widget)({
                 var keepFetching = true;
 
                 while (voicesContainer.element.height() <= voicesContainer.element.parent().height() && keepFetching) {
-                    voicesContainer.getNextPage(function(){
-                        voicesContainer.renderPages();
-                        CV.mediaFeedSearch.reloadFuse();
+                    voicesContainer.enableNextPage(function() {
+                        // voicesContainer.renderPages();
+                        // CV.mediaFeedSearch.reloadFuse();
                     });
-
+                    
                     if (voicesContainer.lastVoiceIndex === (voicesContainer.preloadedVoices.length - 1)) {
                         keepFetching = false;
                     }
@@ -43,8 +43,10 @@ Class('VoicesContainer').inherits(Widget)({
         goToDate : function(date) {
             var voicesContainer = this;
 
-            var gotDate = false,
-                dateIsRendered = false;
+            var gotDate         = false,
+                dateIsEnabled   = false,
+                voiceIndex      = 0,
+                foundVoice      = null;
 
             var date = date.match(/[\d]{4}-[\d]{2}/);
 
@@ -52,82 +54,51 @@ Class('VoicesContainer').inherits(Widget)({
                 var child = voicesContainer.children[i];
                 var voiceDate = child.createdAt.match(/[\d]{4}-[\d]{2}/);
 
+                voiceIndex      = i;
+
                 if (date[0] == voiceDate[0]) {
-                    dateIsRendered = true;
+                    if (child.disabled === true) {
+                        dateIsEnabled   = false;
+                         
+                    } else {
+                        dateIsEnabled = true;    
+                    }
+                    foundVoice = child;
                     gotDate = true;
                     break;
 
                 }
             };
 
-            if (dateIsRendered) {
-                voicesContainer.element.parent().animate({ scrollTop: child.element.position().top }, "fast", function() {
-                    CV.timeline.updateSliderPosition();
-                });
-                CV.timeline.afterFetchActions();
+            if (!dateIsEnabled) {
+                
+                var voices = voicesContainer.children.slice(0, voiceIndex + this.perPage);
 
-                return
-            };
+                var elements = [];
 
-            while (!gotDate) {
-                voicesContainer.getNextPage();
-
-                for (var i = 0; i < voicesContainer.voicesToRender.length; i++) {
-                    var voice = voicesContainer.voicesToRender[i].post;
-
-                    var voiceDate = voice.created_at.match(/[\d]{4}-[\d]{2}/);
-
-                    if (date[0] == voiceDate[0]) {
-                        gotDate = true;
-                        break;
+                voices.forEach(function(voice) {
+                    if (voice.disabled === true) {
+                        elements.push(voice.element[0]);
+                        voice.enable();
                     }
+                });
 
-                };
-
-                if (voicesContainer.lastVoiceIndex === (voicesContainer.preloadedVoices.length - 1)) {
-                    gotDate = true;
-                }
-
-                if (gotDate) {
-                    voicesContainer.renderPages(function() {
-                        voicesContainer.element.parent().animate({ scrollTop: $("div[data-post-id='" + voice.id + "']").position().top }, "fast", function() {
-                            CV.timeline.updateSliderPosition();
-                        });
-                    });
-                };
+                voicesContainer.element.isotope('appended', $(elements));
             }
+
+            voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, "fast", function() {
+                CV.timeline.afterFetchActions();
+                CV.timeline.updateSliderPosition();
+            });
         },
 
-        getNextPage : function(callback) {
+        createVoiceWidgets : function(callback) {
             var voicesContainer = this;
-            var last;
-
-            if (this.preloadedVoices.length < this.perPage * this.currentPage) {
-                last = this.preloadedVoices.length - 1
-            } else {
-                last = this.perPage * this.currentPage;
-
-                if (last > (this.preloadedVoices.length - 1)) {
-                    last = this.preloadedVoices.length - 1;
-                }
-            }
-
-            this.voicesToRender = this.voicesToRender.concat(this.preloadedVoices.splice(this.lastVoiceIndex, this.perPage));
-
-            this.lastVoiceIndex = last;
-            this.currentPage++;
-
-            if (callback) {
-                callback();
-            }
-        },
-
-        renderPages : function(callback) {
-            var voicesContainer = this;
-            var elements = [];
             var fragment = document.createDocumentFragment();
 
-            this.voicesToRender.forEach(function(post) {
+            // this.voicesToRender = this.preloadedVoices;
+
+            this.preloadedVoices.forEach(function(post) {
                 if (post.post) {
                     post = post.post;
                 }
@@ -148,31 +119,24 @@ Class('VoicesContainer').inherits(Widget)({
                     sourceURL     : post.source_url,
                     title         : post.title,
                     voiceID       : post.voice_id,
-                    createdAt     : post.created_at,
                     timeAgo       : post.created_at,
+                    createdAt     : post.created_at,
                     service       : post.source_url
                 });
 
-                voice.disabled = CV.mediaFeedSearch[voice.sourceType] ? false : true;
+                voice.disable();
 
                 voicesContainer.appendChild(voice);
 
-                elements.push(voice.element[0]);
                 fragment.appendChild(voice.element[0]);
 
             });
 
             voicesContainer.element[0].appendChild(fragment);    
             
-            if (window.isotopeReady) {
-                voicesContainer.element.isotope('appended', $(elements));
-            }
-
             CV.timeline.options.votes.unbindEvents().bindEvents();
             
             setTimeout(function() {
-                CV.timeline.afterFetchActions();
-
                 if (callback) {
                     callback();
                 }
@@ -180,6 +144,33 @@ Class('VoicesContainer').inherits(Widget)({
             }, 1000);
 
             this.voicesToRender = [];
+        },
+
+        enableNextPage : function(callback) {
+            var elements = [];
+
+            this.lastVoiceIndex = this.perPage * this.currentPage;
+
+            if (this.lastVoiceIndex > this.children.length) {
+                this.lastVoiceIndex = this.children.length;
+            }
+
+            var voices = this.children.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
+
+            console.log(voices.length);
+
+            voices.forEach(function(voice) {
+                elements.push(voice.element[0]);
+                voice.enable();  
+            });
+
+            if (window.isotopeReady) {
+                this.element.isotope('appended', $(elements));
+            }
+
+            if (callback) {
+                callback();
+            };
         }
     }
 });
