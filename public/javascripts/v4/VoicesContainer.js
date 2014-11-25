@@ -117,14 +117,14 @@ Class('VoicesContainer').inherits(Widget)({
 
             voicesContainer.element[0].appendChild(fragment);    
             
-            CV.timeline.options.votes.unbindEvents().bindEvents();
+            // CV.timeline.options.votes.unbindEvents().bindEvents();
             
-            setTimeout(function() {
-                if (callback) {
-                    callback();
-                }
+            // setTimeout(function() {
+            if (callback) {
+                callback();
+            }
 
-            }, 1000);
+            // }, 1000);
 
             this.voicesToRender = [];
         },
