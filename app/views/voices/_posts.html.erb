@@ -78,7 +78,11 @@
         async     : true,
         url       : location.pathname + params,
         success   : function(data) {
-          data.forEach(function(item) {
+          var firsts  = data.slice(0, 59);
+
+          var lasts   = data.slice(60, data.length - 1);
+          
+          firsts.forEach(function(item) {
             var post = {};
 
             post.id = item[0];
@@ -106,10 +110,7 @@
 
           
           CV.voicesContainer.page = page;
-          // CV.voicesContainer.getNextPage(function() {
-
-          // });
-
+          
           CV.voicesContainer.createVoiceWidgets(function() {
             CV.voicesContainer.element.find('.placeholders').remove();
             
@@ -142,9 +143,40 @@
             window.isotopeReady = true;
 
             CV.voicesContainer.enableNextPage();
+
+            setTimeout(function() {
+              lasts.forEach(function(item) {
+                var post = {};
+
+                post.id = item[0];
+                post.voice_id = item[1];
+                post.user_id = item[2];
+                post.title = item[3];
+                post.description = item[4];
+                post.positive_votes_count = item[5];
+                post.negative_votes_count = item[6];
+                post.overall_score = item[7];
+                post.source_url = item[8];
+                post.source_type = item[9];
+                post.source_service = item[10];
+                post.image = item[11];
+                post.approved = item[12];
+                post.created_at = item[13];
+                post.updated_at = item[14];
+                post.copyright = item[15];
+                post.image_width = item[16];
+                post.image_height = item[17];
+                post.active = false;
+
+                CV.voicesContainer.preloadedVoices.push(post);
+              });
+
+              CV.voicesContainer.createVoiceWidgets()
+            }, 3000);
+
           });
 
-          CV.mediaFeedSearch.reloadFuse(); 
+          // CV.mediaFeedSearch.reloadFuse();
         }
       });
 
