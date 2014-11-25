@@ -190,6 +190,7 @@ stylesheets:
     - public/stylesheets/reset.css
     - public/stylesheets/scaffold.css
     - public/stylesheets/fonts.css
+    - public/stylesheets/icon-font.css
     - public/stylesheets/layout.css
     - public/stylesheets/skin.css
     - public/stylesheets/grid.css
