@@ -92,23 +92,23 @@
 
 /* DYNAMIC BORDER COLORS */
 .green .cv-dynamic-border-color,
-.green .cv-dynamic-border-color.active {
+.green .cv-dynamic-active-border-color.active {
   border-color: #50b347;
 }
 .blue .cv-dynamic-border-color,
-.blue .cv-dynamic-border-color.active {
+.blue .cv-dynamic-active-border-color.active {
   border-color: #4db5ff;
 }
 .yellow .cv-dynamic-border-color,
-.yellow .cv-dynamic-border-color.active {
+.yellow .cv-dynamic-active-border-color.active {
   border-color: #ebc91c;
 }
 .red .cv-dynamic-border-color,
-.red .cv-dynamic-border-color.active {
+.red .cv-dynamic-active-border-color.active {
   border-color: #f10f2a;
 }
 .orange .cv-dynamic-border-color,
-.orange .cv-dynamic-border-color.active {
+.orange .cv-dynamic-active-border-color.active {
   border-color: #ec9415;
 }
 
