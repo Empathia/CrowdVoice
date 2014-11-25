@@ -181,7 +181,7 @@ Class('Timeline').inherits(Widget)({
             var that = this,
                 itemsOnViewport, itemsDate;
 
-            itemsOnViewport = $.grep( that.voicesContainer.find('> .voice-box'), function (n) {
+            itemsOnViewport = $.grep( that.voicesContainer.find('> .voice-box').not('.disabled'), function (n) {
                 var viewportTop     = that.voiceScroller.offset().top,
                     viewportHeight  = that._body.height() - viewportTop,
                     itemTop         = $(n).offset().top;
