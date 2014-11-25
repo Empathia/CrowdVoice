@@ -22,22 +22,9 @@ Class('VoicesContainer').inherits(Widget)({
 
             this.delayedEvent.bind('isotope-relayout', function(){
                 voicesContainer.element.isotope('reLayout');
-
-                var keepFetching = true;
-
-                while (voicesContainer.element.height() <= voicesContainer.element.parent().height() && keepFetching) {
-                    voicesContainer.enableNextPage(function() {
-                        // voicesContainer.renderPages();
-                        // CV.mediaFeedSearch.reloadFuse();
-                    });
-                    
-                    if (voicesContainer.lastVoiceIndex === (voicesContainer.preloadedVoices.length - 1)) {
-                        keepFetching = false;
-                    }
-                }
             });
 
-
+            this.element.timeago('refresh');
         },
 
         goToDate : function(date) {
@@ -57,12 +44,7 @@ Class('VoicesContainer').inherits(Widget)({
                 voiceIndex      = i;
 
                 if (date[0] == voiceDate[0]) {
-                    if (child.disabled === true) {
-                        dateIsEnabled   = false;
-                         
-                    } else {
-                        dateIsEnabled = true;    
-                    }
+                    
                     foundVoice = child;
                     gotDate = true;
                     break;
@@ -70,25 +52,26 @@ Class('VoicesContainer').inherits(Widget)({
                 }
             };
 
-            if (!dateIsEnabled) {
+            if (!child.active) {
                 
                 var voices = voicesContainer.children.slice(0, voiceIndex + this.perPage);
 
                 var elements = [];
 
                 voices.forEach(function(voice) {
-                    if (voice.disabled === true) {
+                    if (voice.active === false) {
                         elements.push(voice.element[0]);
-                        voice.enable();
+                        voice.activate();
                     }
                 });
 
                 voicesContainer.element.isotope('appended', $(elements));
             }
 
-            voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, "fast", function() {
+            voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1500, function() {
                 CV.timeline.afterFetchActions();
                 CV.timeline.updateSliderPosition();
+                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
             });
         },
 
@@ -124,7 +107,7 @@ Class('VoicesContainer').inherits(Widget)({
                     service       : post.source_url
                 });
 
-                voice.disable();
+                voice.deactivate();
 
                 voicesContainer.appendChild(voice);
 
@@ -157,20 +140,22 @@ Class('VoicesContainer').inherits(Widget)({
 
             var voices = this.children.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
 
-            console.log(voices.length);
-
             voices.forEach(function(voice) {
                 elements.push(voice.element[0]);
-                voice.enable();  
+                voice.activate();  
             });
 
             if (window.isotopeReady) {
                 this.element.isotope('appended', $(elements));
             }
 
+            this.element.timeago('refresh');
+
+            this.currentPage++;
+            
             if (callback) {
                 callback();
-            };
+            }
         }
     }
 });

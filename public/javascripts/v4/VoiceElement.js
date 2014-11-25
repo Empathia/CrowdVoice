@@ -87,6 +87,7 @@ Class('VoiceElement').inherits(Widget)({
         sourceElement : null,
         contentElement: null,
         disabled      : false,
+        thumbElement  : null,
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
@@ -114,6 +115,12 @@ Class('VoiceElement').inherits(Widget)({
             this.postURL = this.isRawImage() ? this.image.url : this.sourceURL;
 
             this.setupElements()._bindEvents();
+
+            this.thumbElement = this.element.find('.thumb-preview');
+
+            this.thumbElement.bind('load', function() {
+                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
+            })
 
             if ($.deparam.querystring().post && $.deparam.querystring().post === this.id.toString()) {
                 window.CV.OverlaysController.showOverlay(this);
@@ -172,12 +179,6 @@ Class('VoiceElement').inherits(Widget)({
                 'href'           : voice.postURL
             });
 
-            this.element.find('.thumb-preview').attr({
-                'src'   : voice.thumbURL,
-                'width' : voice.imageWidth,
-                'height' : voice.imageHeight
-            });
-
             this.element.find('h3').html(this.title);
 
             if (this.sourceType == 'link') {
@@ -186,7 +187,7 @@ Class('VoiceElement').inherits(Widget)({
                 this.sourceElement.append(this.constructor.VOICE_TYPE_HTML);
             }
 
-            this.element.find('.time-ago').html(this.timeAgo);
+            this.element.find('.time-ago').attr('created-at', this.timeAgo);
 
             if (this.sourceType == 'link' || this.sourceType == 'image') {
                 this.element.find('p.description').html(this.description);
@@ -255,20 +256,26 @@ Class('VoiceElement').inherits(Widget)({
             return url;
         },
 
-        _enable : function() {
-            // Widget.prototype._enable.call(this);
-            this.disabled = false;
+        _activate : function() {
+            Widget.prototype._activate.call(this);
 
+            var voice = this;
+            
             this.element.removeClass('disabled');
+
+            this.thumbElement.attr({
+                'src'   : voice.thumbURL,
+                'width' : voice.imageWidth,
+                'height' : voice.imageHeight
+            });
 
             // this.element[0].style.removeProperty('height');
             // this.element[0].style.removeProperty('width');
         },
 
-        _disable : function() {
-            // Widget.prototype._disable.call(this);
-            this.disabled = true;
-
+        _deactivate : function() {
+            Widget.prototype._deactivate.call(this);
+            
             this.element.addClass('disabled');
         },
 

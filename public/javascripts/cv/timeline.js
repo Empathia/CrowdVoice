@@ -39,28 +39,11 @@ Class('Timeline').inherits(Widget)({
 
             page = page || CV.voicesContainer.currentPage;
 
-
-            var params = '?page=' + page;
-
-            if ($.deparam.querystring().mod) {
-                params += '&mod=1';
-            }
-
-            if (this.startDate) {
-                params += '&start=' + this.startDate;
-            }
-
-            // console.log('loadpage', params)
             timeline.applySpinner();
 
             CV.voicesContainer.enableNextPage(function(){
-                // CV.timeline.resetSpinner();
                 CV.timeline.afterFetchActions();
             });
-
-            // CV.voicesContainer.getNextPage(function() {
-            //     CV.voicesContainer.renderPages();
-            // });
         },
 
         loadDate: function (date, callback) {
@@ -70,8 +53,6 @@ Class('Timeline').inherits(Widget)({
 
             params.start = date;
 
-            // var params = '?start=' + date;
-
             this.startDate = date;
 
             if ($.deparam.querystring().mod) {
@@ -80,10 +61,7 @@ Class('Timeline').inherits(Widget)({
 
             timeline.applySpinner();
 
-            // setTimeout(function() {
-                CV.voicesContainer.goToDate(params.start);
-            // });
-
+            CV.voicesContainer.goToDate(params.start);
         },
 
         months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -127,29 +105,27 @@ Class('Timeline').inherits(Widget)({
         },
         bindEvents: function(){
             var that = this;
+
             if (!isDevice){
 
                 this.voiceScroller.bind('mousewheel', function(e) {
                     var scroller = this;
 
                     clearTimeout( $.data( this, "scrollCheck" ) );
+                    
                     $.data( this, "scrollCheck", setTimeout(function() {
-
+                        that.debouncePositionUpdate();
                     }, 200) );
 
                     var maxScrollY = scroller.scrollHeight - scroller.offsetHeight,
-                        // hasMinPostCount = CV.voicesContainer.children.length >= _postCount,
                         isAtBottom = scroller.scrollTop >= (maxScrollY - 300),
                         isSmallScreen = window.innerWidth <= 1024;
 
-                    that.debouncePositionUpdate();
-
                     if (isAtBottom && !isSmallScreen) {
-                        that.fetchPosts(false);
+                        that.fetchPosts();
                     }
 
                 });
-
             }
 
             this.element.bind('posts:served', function(ev, data){
@@ -157,7 +133,7 @@ Class('Timeline').inherits(Widget)({
             });
 
             this.postFetcher.bind('click', function(){
-                that.fetchPosts(false);
+                that.fetchPosts();
             });
 
             this.userWindow.bind('resize smartresize', function() {
@@ -188,29 +164,18 @@ Class('Timeline').inherits(Widget)({
             this.applySpinner();
             
             this.loadPage();
-
-            return needsScrollTop ? this.needsScrollTop = true : this.needsScrollTop = false;
         },
         applySpinner: function(){
-            // voicesContainerHeight = this.voicesContainer.height();
-            // this.postFetcher.addClass('fetcher-spinner');
-            // isDevice && this.element.css({'position':'absolute','bottom':'auto','top': voicesContainerHeight});
-
             this.spinner.activate();
         },
         resetSpinner: function(){
             this.spinner.deactivate();
-            // this.postFetcher.removeClass('fetcher-spinner');
-            // this.element.css({'position':'', 'top':'','bottom':''});
         },
         afterFetchActions: function(images){
             this.voicesContainer.isotope('reLayout');
             this.resetSpinner();
-            // if(this.needsScrollTop){
-            //     this.voiceScroller[0].scrollTop = 0;
-            // }
+            
             this.updateSliderPosition();
-            this.loadingScript = false;
         },
         updateSliderPosition: function () {
             var that = this,
@@ -383,22 +348,7 @@ Class('Timeline').inherits(Widget)({
         },
 
         scrollToDate: function (date, callback) {
-            this.sliding = true;
-            ele = this.voicesContainer.find('> [data-created-at=' + date + ']').eq(0);
-            if (ele.length) {
-                this.scrollToElement(ele);
-                $.isFunction(callback) && callback();
-            } else {
-                this.loadDate(date, callback);
-                this.needsScrollTop = true;
-            }
-            this.sliding = false;
-        },
-        scrollToElement: function(ele){
-            var that                = this,
-                elementScrollPos    = ele.scrollTop;
-
-                this.voiceScroller[0].scrollTop = elementScrollPos;
+            this.loadDate(date, callback);
         },
         scrollByY: function(delta){
             var currentScrollPos    = this.voiceScroller[0].scrollTop,
@@ -437,15 +387,17 @@ Class('Timeline').inherits(Widget)({
         },
 
         _autoScroll: function (delta) {
-            var that = this;
-            if (!this.sliding) {
-                this.scrollByY(delta);
-                if (this.autoScrollOn) {
-                    setTimeout(function () {
-                        that._autoScroll(delta);
-                    }, 50);
-                }
-            }
+            return;
+
+            // var that = this;
+            // if (!this.sliding) {
+            //     this.scrollByY(delta);
+            //     if (this.autoScrollOn) {
+            //         setTimeout(function () {
+            //             that._autoScroll(delta);
+            //         }, 50);
+            //     }
+            // }
         },
 
         _setHeight: function() {

@@ -87,6 +87,7 @@ javascripts:
     - public/javascripts/infographics/infoSidebar.js
     - public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/mediafeed_init.js
+    - public/javascripts/v4/vendor/jquery.timeago.js
     - public/javascripts/v4/VoicesContainer.js
     - public/javascripts/v4/VoiceElement.js
     - public/javascripts/v4/vendor/fuse.js
