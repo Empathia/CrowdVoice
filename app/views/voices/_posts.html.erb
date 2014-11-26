@@ -106,38 +106,39 @@
 
           
           CV.voicesContainer.page = page;
+
+          CV.voicesContainer.element.isotope({
+              transitionDuration: 0,
+              animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
+               animationOptions: {
+                  duration: 0,
+                  easing: 'linear',
+                  queue: false
+              },
+              resizable: false,
+              itemSelector: '.voice-box',
+              filter : function() {
+                return !$(this).hasClass('disabled');
+              },
+              masonry: {
+                  columnWidth: 200 - 5
+              }
+          });
+
+          var complete = function( isoInstance, laidOutItems ) {
+            $('.updating-wrapper').hide();
+            $('body').css('overflow', 'hidden');
+            $('.voice-wrapper').removeClass('initial-state');
+            DynamicMeasures.update();
+            CV.voicesContainer.element.isotope( 'off', 'layoutComplete', complete);
+          }
+
+          CV.voicesContainer.element.isotope( 'on', 'layoutComplete', complete);
+          
+          window.isotopeReady = true;
           
           CV.voicesContainer.createVoiceWidgets(function() {
             CV.voicesContainer.element.find('.placeholders').remove();
-            
-            CV.voicesContainer.element.isotope({
-                transitionDuration: 0,
-                animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
-                 animationOptions: {
-                    duration: 0,
-                    easing: 'linear',
-                    queue: false
-                },
-                resizable: false,
-                itemSelector: '.voice-box',
-                filter : function() {
-                  return !$(this).hasClass('disabled');
-                },
-                masonry: {
-                    columnWidth: 200 - 5
-                }
-            });
-
-            CV.voicesContainer.element.isotope( 'on', 'layoutComplete',
-              function( isoInstance, laidOutItems ) {
-                $('.updating-wrapper').hide();
-                $('body').css('overflow', 'hidden');
-                $('.voice-wrapper').removeClass('initial-state');
-                DynamicMeasures.update();
-              }
-            );
-            
-            window.isotopeReady = true;
 
             CV.voicesContainer.enableNextPage();
           });

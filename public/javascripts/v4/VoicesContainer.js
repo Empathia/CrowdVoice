@@ -21,7 +21,7 @@ Class('VoicesContainer').inherits(Widget)({
             this.delayedEvent = new DelayedEventEmitter();
 
             this.delayedEvent.bind('isotope-relayout', function(){
-                voicesContainer.element.isotope('layout');
+                // voicesContainer.element.isotope('layout');
             });
 
             this.element.timeago('refresh');
@@ -54,7 +54,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             if (!child.active) {
                 
-                var voices = voicesContainer.children.slice(0, voiceIndex + this.perPage);
+                var voices = voicesContainer.children.slice(0, voiceIndex + 60);
 
                 var elements = [];
 
@@ -65,14 +65,14 @@ Class('VoicesContainer').inherits(Widget)({
                     }
                 });
 
-                voicesContainer.element.isotope('appended', $(elements));
-            }
-
-            voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1500, function() {
+                voicesContainer.element.isotope('appended', elements);
+            } 
+            
+            voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
                 CV.timeline.afterFetchActions();
                 CV.timeline.updateSliderPosition();
-                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
             });
+            
         },
 
         createVoiceWidgets : function(callback) {
@@ -146,9 +146,8 @@ Class('VoicesContainer').inherits(Widget)({
                 voice.activate();  
             });
 
-            if (window.isotopeReady) {
-                this.element.isotope('appended', $(elements));
-            }
+            
+            this.element.isotope('appended', elements);
 
             this.element.timeago('refresh');
 

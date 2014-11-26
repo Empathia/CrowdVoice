@@ -1,5 +1,6 @@
 <% if @posts.length > 0 %>
 (function() {
+    console.log('posts')
     var posts     = $("<%= escape_javascript render(@posts) %>"),
         items     = $('.voice-box'),
         images    = posts.find('img'),

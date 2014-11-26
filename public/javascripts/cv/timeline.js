@@ -172,7 +172,7 @@ Class('Timeline').inherits(Widget)({
             this.spinner.deactivate();
         },
         afterFetchActions: function(images){
-            this.voicesContainer.isotope('reLayout');
+            // this.voicesContainer.isotope('layout');
             this.resetSpinner();
             
             this.updateSliderPosition();
