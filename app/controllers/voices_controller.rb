@@ -31,7 +31,8 @@ class VoicesController < ApplicationController
     scope = scope.by_tags(params[:tags]) if params[:tags]
 
     if params[:fetchAll]
-      query = scope.to_sql
+      # query = scope.to_sql
+      query = scope.page(1).per(60).to_sql
     else
       per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
 
@@ -48,7 +49,14 @@ class VoicesController < ApplicationController
       query.sub!("WHERE", "FORCE INDEX (PRIMARY, index_posts_on_approved_and_voice_id) WHERE") unless params[:tags]
     end
 
-    @posts = Post.find_by_sql(query)
+    # if request.format.js?
+      puts ""
+      puts "=" * 80
+      @posts = Post.find_by_sql(query)  
+    # else
+    #   @posts = Post.first();
+    # end
+    
 
     @blocks = @voice.blocks.map(&:data_parsed)
     
@@ -80,7 +88,6 @@ class VoicesController < ApplicationController
     if request.format.html?
       respond_with(@posts, :location => @voice)
     else
-      puts query
       render :json => Oj.dump(ActiveRecord::Base.connection.execute(query) , :mode => :compat), :layout => false
       # render :json => ActiveRecord::Base.connection.select_all(query), :layout => false
     end
