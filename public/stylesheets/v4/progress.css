@@ -1,0 +1,27 @@
+.progressjs-inner {
+    width: 0;
+}
+.progressjs-progress {
+    z-index: 9999999;
+}
+
+/* blue theme, like iOS 7 progress bar */
+.progressjs-theme .progressjs-inner {
+    height: 6px;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+}
+
+.progressjs-theme .progressjs-percent {
+    display: none;
+}
+
+.progressjs-theme.shown {
+    opacity : 1;
+}
+
+.progressjs-theme {
+    opacity : 0;
+}

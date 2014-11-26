@@ -41,7 +41,8 @@ Class('InfoSidebar')({
 	},
 	addInfobox: function(infoboxData) {
 		var infobox = new InfoBox(infoboxData, '.infobox-sidebar-template', true).render();
-		return this.scrollMask.append(infobox.addClass('collapsed'));
+		infobox.addClass('collapsed')
+		return this.scrollMask.append(infobox);
 	},
 	reportLoad: function(type) {
 		switch (type) {

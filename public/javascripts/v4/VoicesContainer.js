@@ -18,16 +18,48 @@ Class('VoicesContainer').inherits(Widget)({
             Widget.prototype.init.call(this, config);
             var voicesContainer = this;
 
+            voicesContainer.element.isotope({
+                transitionDuration: 0,
+                animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
+                 animationOptions: {
+                    duration: 0,
+                    easing: 'linear',
+                    queue: false
+                },
+                resizable: false,
+                itemSelector: '.voice-box',
+                filter : function() {
+                  return !$(this).hasClass('disabled');
+                },
+                masonry: {
+                    columnWidth: 200 - 5
+                }
+            });
+
+            var complete = function( isoInstance, laidOutItems ) {
+              $('.updating-wrapper').hide();
+              $('body').css('overflow', 'hidden');
+              $('.voice-wrapper').removeClass('initial-state');
+              DynamicMeasures.update();
+              voicesContainer.element.isotope( 'off', 'layoutComplete', complete);
+            }
+
+            voicesContainer.element.isotope( 'on', 'layoutComplete', complete);
+            
+            window.isotopeReady = true;
+
             this.delayedEvent = new DelayedEventEmitter();
 
             this.delayedEvent.bind('isotope-relayout', function(){
-                // voicesContainer.element.isotope('layout');
+                voicesContainer.element.isotope('layout');
             });
 
             this.element.timeago('refresh');
         },
 
         goToDate : function(date) {
+            // CV.timeline.afterFetchActions();
+            // return;
             var voicesContainer = this;
 
             var gotDate         = false,
@@ -52,26 +84,34 @@ Class('VoicesContainer').inherits(Widget)({
                 }
             };
 
-            if (!child.active) {
+            // _.defer(function() {
+                if (!child.active) {
+
+                    var page = Math.floor((voiceIndex) / voicesContainer.perPage);
+
+                    console.log('page', page)
+                    
+                    var voices = voicesContainer.children.slice(0, voiceIndex + 60);
+
+                    var elements = [];
+
+                    _.each(voices, function(voice) {
+                        if (voice.active === false) {
+                            elements.push(voice.element[0]);
+                            voice.activate();
+                        }
+                    });
+
+                    voicesContainer.element.isotope('appended', elements);
+
+                    voicesContainer.currentPage = page;
+                } 
                 
-                var voices = voicesContainer.children.slice(0, voiceIndex + 60);
-
-                var elements = [];
-
-                voices.forEach(function(voice) {
-                    if (voice.active === false) {
-                        elements.push(voice.element[0]);
-                        voice.activate();
-                    }
+                voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
+                    CV.timeline.afterFetchActions();
+                    CV.timeline.updateSliderPosition();
                 });
-
-                voicesContainer.element.isotope('appended', elements);
-            } 
-            
-            voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
-                CV.timeline.afterFetchActions();
-                CV.timeline.updateSliderPosition();
-            });
+            // });
             
         },
 
@@ -83,7 +123,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             // this.preloadedVoices = this.preloadedVoices.slice(0, 59)
 
-            this.preloadedVoices.forEach(function(post) {
+            _.each(this.preloadedVoices, function(post) {
                 if (post.post) {
                     post = post.post;
                 }
@@ -111,12 +151,9 @@ Class('VoicesContainer').inherits(Widget)({
                     active        : false
                 });
 
-                // voice.deactivate();
-
                 voicesContainer.appendChild(voice);
 
                 fragment.appendChild(voice.element[0]);
-
             });
 
             voicesContainer.element[0].appendChild(fragment);    
@@ -141,11 +178,10 @@ Class('VoicesContainer').inherits(Widget)({
 
             var voices = this.children.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
 
-            voices.forEach(function(voice) {
+            _.each(voices, function(voice) {
                 elements.push(voice.element[0]);
                 voice.activate();  
-            });
-
+            })
             
             this.element.isotope('appended', elements);
 

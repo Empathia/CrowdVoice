@@ -212,6 +212,7 @@ stylesheets:
     - public/stylesheets/v4/tooltips/media-tools.css
     - public/stylesheets/layout/modules/loaders.css
     - public/stylesheets/skin/modules/loaders.css
+    - public/stylesheets/v4/progress.css
   home_pack:
     - *defaults
     - public/stylesheets/layout/modules/notifications.css

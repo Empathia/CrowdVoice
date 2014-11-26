@@ -1,37 +1,38 @@
 Class('Timeline').inherits(Widget)({
     prototype : {
+        progress : false,
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
-            var spinner =  new Loader({
-                name : 'spinner'
+            var progressHTML = '<div class="progressjs-progress progressjs-theme" style="position: fixed; left: 0px; top: 0px; width: 1440px;">\
+                                    <div class="progressjs-inner" style="width: 0%; background-color: ' + CV.theme + ';">\
+                                        <div class="progressjs-percent">0%</div>\
+                                    </div>\
+                                </div>';
+
+            var progress = new Widget({
+                name : 'progress',
+                element : $(progressHTML),
+                _activate : function() {
+                    Widget.prototype._activate.call(this);
+                    this.element.find('.progressjs-inner').css('width', '0%');
+                    this.element.addClass('shown');
+                    this.element.find('.progressjs-inner').css('width', '100%');
+                },
+                _deactivate : function() {
+                    Widget.prototype._deactivate.call(this);
+                    var that = this;
+                    this.element.removeClass('shown');
+                    that.element.find('.progressjs-inner').css('width', '0%');    
+                    
+                }
             });
 
-            this.appendChild(spinner);
+            this.appendChild(progress)
 
+            progress.render($('body'));
+            
             var voicesScrollerContainer = $('.voices-scroller').parent();
-
-            spinner.render(voicesScrollerContainer);
-
-            spinner.bind('beforeActivate', function() {
-                this.element.css({
-                    width : $(window).width(),
-                    height : $(window).height(),
-                    top  : 0,
-                    left : 0,
-                    zIndex : 2
-                }).show();
-
-                this.element.find('.modal').css({
-                    top : voicesScrollerContainer.height() / 2,
-                    left : (voicesScrollerContainer.width() / 2),
-                    position : 'relative'
-                })
-            });
-
-            spinner.bind('beforeDeactivate', function() {
-                this.element.hide();
-            });
         },
 
         loadPage: function (page) {
@@ -39,7 +40,7 @@ Class('Timeline').inherits(Widget)({
 
             page = page || CV.voicesContainer.currentPage;
 
-            timeline.applySpinner();
+            this.progress.activate();
 
             CV.voicesContainer.enableNextPage(function(){
                 CV.timeline.afterFetchActions();
@@ -49,6 +50,8 @@ Class('Timeline').inherits(Widget)({
         loadDate: function (date, callback) {
             var timeline = this;
 
+            timeline.progress.activate();
+            
             var params = {};
 
             params.start = date;
@@ -59,9 +62,10 @@ Class('Timeline').inherits(Widget)({
                 params.mod = true;
             }
 
-            timeline.applySpinner();
-
-            CV.voicesContainer.goToDate(params.start);
+            setTimeout(function() {
+                CV.voicesContainer.goToDate(params.start);    
+            }, 100);
+            
         },
 
         months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -161,19 +165,11 @@ Class('Timeline').inherits(Widget)({
                 return;
             }
             
-            this.applySpinner();
-            
             this.loadPage();
-        },
-        applySpinner: function(){
-            this.spinner.activate();
-        },
-        resetSpinner: function(){
-            this.spinner.deactivate();
         },
         afterFetchActions: function(images){
             // this.voicesContainer.isotope('layout');
-            this.resetSpinner();
+            this.progress.deactivate();
             
             this.updateSliderPosition();
         },
@@ -188,19 +184,22 @@ Class('Timeline').inherits(Widget)({
                 return itemTop < viewportHeight && itemTop > viewportTop;
             });
 
-            itemsDate = $.map(itemsOnViewport, function (n, i) {
-                return n.getAttribute('data-created-at').match(/[\d]{4}-[\d]{2}/);
+            itemsDate = _.map(itemsOnViewport, function(n, i) {
+                return n.getAttribute('data-created-at').match(/[\d]{4}-[\d]{2}/)[0];
             });
 
             if (itemsDate.length) {
                 var topYear = itemsDate[itemsDate.length - 1].match(/[\d]{4}/);
+
                 this.slider.find('.linkable').removeClass('active').each(function() {
                     var that = this;
-                    itemsDate.map(function(d) {
+
+                    _.each(itemsDate, function(d, i) {
                         if (d == that.getAttribute('data-date').match(/[\d]{4}-[\d]{2}/)) {
                             $(that).addClass('active');
                         }
                     });
+
                 });
 
                 if (parseInt(topYear, 10) != parseInt(this.current_year, 10)) {
@@ -298,12 +297,14 @@ Class('Timeline').inherits(Widget)({
                 timelineMonths = [];
 
             i = 1;
+
             while (i <= this.months.length - 1) {
                 timelineMonths.push(emptyMonthStart + that.months[i] + emptyMonthMid + that.monthsFullNames[i] + ' ' + emptyMonthEnd);
                 i += 1;
             }
 
             i = dates_length - 1;
+
             for (; i >= 0; i--) {
                 date = this.currentYearDates()[i];
                 dateparts = (/\d{4}-(\d{2})-(\d{2})/).exec(date);
