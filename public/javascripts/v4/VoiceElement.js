@@ -114,7 +114,7 @@ Class('VoiceElement').inherits(Widget)({
             this.URL     = this.getURL();
             this.postURL = this.isRawImage() ? this.image.url : this.sourceURL;
 
-            this.setupElements()._bindEvents();
+            // this.setupElements()._bindEvents();
 
             this.thumbElement = this.element.find('.thumb-preview');
 
@@ -268,6 +268,8 @@ Class('VoiceElement').inherits(Widget)({
                 'width' : voice.imageWidth,
                 'height' : voice.imageHeight
             });
+
+            this.setupElements()._bindEvents();
 
             // this.element[0].style.removeProperty('height');
             // this.element[0].style.removeProperty('width');
