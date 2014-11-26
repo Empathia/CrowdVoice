@@ -104,10 +104,12 @@ Class('VoicesContainer').inherits(Widget)({
                     voiceID       : post.voice_id,
                     timeAgo       : post.created_at,
                     createdAt     : post.created_at,
-                    service       : post.source_url
+                    service       : post.source_url,
+                    disabled      : true,
+                    active        : false
                 });
 
-                voice.deactivate();
+                // voice.deactivate();
 
                 voicesContainer.appendChild(voice);
 

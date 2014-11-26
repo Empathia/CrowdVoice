@@ -1,7 +1,7 @@
 Class('VoiceElement').inherits(Widget)({
     ELEMENT_CLASS  : '',
     HTML           : '\
-        <div class="voice-box">\
+        <div class="voice-box disabled">\
             <a href="" class="close-voice-box" data-confirm="Are you sure?" data-method="delete" rel="nofollow" />\
             <div class="voice-cont">\
                 <a class="source-url" href="">\
