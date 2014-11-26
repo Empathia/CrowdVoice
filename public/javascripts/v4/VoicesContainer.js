@@ -21,7 +21,7 @@ Class('VoicesContainer').inherits(Widget)({
             this.delayedEvent = new DelayedEventEmitter();
 
             this.delayedEvent.bind('isotope-relayout', function(){
-                voicesContainer.element.isotope('reLayout');
+                voicesContainer.element.isotope('layout');
             });
 
             this.element.timeago('refresh');
@@ -81,6 +81,8 @@ Class('VoicesContainer').inherits(Widget)({
 
             // this.voicesToRender = this.preloadedVoices;
 
+            // this.preloadedVoices = this.preloadedVoices.slice(0, 59)
+
             this.preloadedVoices.forEach(function(post) {
                 if (post.post) {
                     post = post.post;
@@ -119,14 +121,11 @@ Class('VoicesContainer').inherits(Widget)({
 
             voicesContainer.element[0].appendChild(fragment);    
             
-            // CV.timeline.options.votes.unbindEvents().bindEvents();
+            CV.timeline.options.votes.unbindEvents().bindEvents();
             
-            // setTimeout(function() {
             if (callback) {
                 callback();
             }
-
-            // }, 1000);
 
             this.voicesToRender = [];
         },

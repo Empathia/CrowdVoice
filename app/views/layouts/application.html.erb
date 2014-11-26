@@ -64,18 +64,18 @@
       CV.isAdmin = <%= current_user && current_user.is_admin? ? true : false %>;
 
       CV.getExcerpt = function(string, length) {
-            string = string.replace("\r\n", '').replace("\n");
+        string = string.replace("\r\n", '').replace("\n");
 
-            var str = string.substr(0, length);
+        var str = string.substr(0, length);
 
-            if (string.length > length) {
-                str = str.split(' ');
-                str.pop(str[str.length - 1]);
-                str = str.join(' ') + '...';
-            }
-
-            return str;
+        if (string.length > length) {
+          str = str.split(' ');
+          str.pop(str[str.length - 1]);
+          str = str.join(' ') + '...';
         }
+
+        return str;
+      }
     </script>
 
     <div id="fb-root"></div>
@@ -121,15 +121,15 @@
     <%= google_analytics %>
     <%= chartbeat %>
     <script>
-      // $(document).ready(function(){
-      //   (function(d, s, id) {
-      //     var js, fjs = d.getElementsByTagName(s)[0];
-      //     if (d.getElementById(id)) return;
-      //     js = d.createElement(s); js.id = id;
-      //     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-      //     fjs.parentNode.insertBefore(js, fjs);
-      //   }(document, 'script', 'facebook-jssdk'));
-      // });
+      $(document).ready(function(){
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      });
     </script>
 
   </body>

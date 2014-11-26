@@ -125,16 +125,17 @@
                 },
                 masonry: {
                     columnWidth: 200 - 5
-                },
-                callback: function(){
-                    $('.updating-wrapper').hide();
-                    $('body').css('overflow', 'hidden');
-                    $('.voice-wrapper').removeClass('initial-state');
-                    DynamicMeasures.update();
-                    // re-trigger resize to help slow devices on proper arrangement
-                    setTimeout(function(){$(window).smartresize();}, 500);
                 }
             });
+
+            CV.voicesContainer.element.isotope( 'on', 'layoutComplete',
+              function( isoInstance, laidOutItems ) {
+                $('.updating-wrapper').hide();
+                $('body').css('overflow', 'hidden');
+                $('.voice-wrapper').removeClass('initial-state');
+                DynamicMeasures.update();
+              }
+            );
             
             window.isotopeReady = true;
 

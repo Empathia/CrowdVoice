@@ -71,6 +71,7 @@ $(function () {
     } else {
         $('.tags-container').hide();
     }
+    
     // The requirement is as follows:
     // if there's an infosidebar, don't display the main sidebar
     // if there's no infosidebar, display sidebar by default
@@ -78,6 +79,7 @@ $(function () {
     if (window.innerWidth <= 768 || typeof infoboxData !== 'undefined' && infoboxData.length) {
         sidebarDisplay = false;
     }
+
     sidebarToggler =    new SidebarToggler({
                             showSidebar : sidebarDisplay,
                             showToggler : true,
@@ -85,6 +87,7 @@ $(function () {
                         });
 
     new Message('.flash-message');
+    
     new FacebookNavButton({
         fbPath : _fbPath
       });
@@ -200,11 +203,11 @@ $(function () {
             infoSidebarTabController.trigger('infoSidebar.hide');
         });
 
-        win.bind('ready resize smartresize', function(){
-            resizePostWall();
-            setNavigationBehaviors();
-            setBackgroundSize();
-        }).smartresize();
+        // win.bind('ready resize smartresize', function(){
+        //     resizePostWall();
+        //     setNavigationBehaviors();
+        //     setBackgroundSize();
+        // }).smartresize();
 
         tweetsSidebar.bind('tweets.change', function(){
             resizePostWall();

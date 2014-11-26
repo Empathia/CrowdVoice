@@ -49,21 +49,17 @@ class VoicesController < ApplicationController
       query.sub!("WHERE", "FORCE INDEX (PRIMARY, index_posts_on_approved_and_voice_id) WHERE") unless params[:tags]
     end
 
-    # if request.format.js?
-      puts ""
-      puts "=" * 80
-      @posts = Post.find_by_sql(query)  
-    # else
-    #   @posts = Post.first();
-    # end
     
-
-    @blocks = @voice.blocks.map(&:data_parsed)
+    @posts = Post.find_by_sql(query)  
     
-    if request.format.html? || request.format.js?
-      @next_page = (params[:page].nil? ? 1 : params[:page].to_i) + 1
-      #@posts_count = scope.count
+    if request.format.html?
+      @blocks = @voice.blocks.map(&:data_parsed)
     end
+    
+    # if request.format.html? || request.format.js?
+    #   @next_page = (params[:page].nil? ? 1 : params[:page].to_i) + 1
+    #   #@posts_count = scope.count
+    # end
 
     if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
       @votes = get_votes
@@ -89,7 +85,6 @@ class VoicesController < ApplicationController
       respond_with(@posts, :location => @voice)
     else
       render :json => Oj.dump(ActiveRecord::Base.connection.execute(query) , :mode => :compat), :layout => false
-      # render :json => ActiveRecord::Base.connection.select_all(query), :layout => false
     end
 
     

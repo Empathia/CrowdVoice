@@ -77,12 +77,12 @@ Class('InfoSidebar')({
 			}
 		});
 		// refresh scroll calculations upon resize
-		this.userWindow.smartresize(function() {
-			that.scrollMask.height(that.setSize());
-			return that.scrollMask.data('jsp').reinitialise();
-		}).resize(function(){
-			that.responsiveHide();
-		});
+		// this.userWindow.smartresize(function() {
+		// 	that.scrollMask.height(that.setSize());
+		// 	return that.scrollMask.data('jsp').reinitialise();
+		// }).resize(function(){
+		// 	that.responsiveHide();
+		// });
 
 		this.scrollMask.delegate('.infobox.active .infobox-extract, .infobox.active .infobox-extract .highcharts-container, .infobox.collapsed', 'click', function(ev) {
 			if (ev.target.tagName !== 'a' && ev.target.tagName !== 'A') {
