@@ -54,8 +54,20 @@ Class('VoicesContainer').inherits(Widget)({
                 voicesContainer.element.isotope('layout');
             });
 
-            this.delayedEvent.bind('resize', function(e){
-                e.fn();
+            this.element.parent().bind('scroll', function(){
+                clearTimeout( $.data( this, "scrollCheck" ) );
+                
+                $.data( this, "scrollCheck", setTimeout(function() {
+                    _.each(voicesContainer.children, function(voice) {
+                        if (voice.active) {
+                            if (voice.element.visible(true)) {
+                                voice.element.removeClass('no-events');
+                            } else {
+                                voice.element.addClass('no-events');
+                            }
+                        }
+                    });
+                }, 200) );
             })
 
             this.element.timeago('refresh');
@@ -88,23 +100,36 @@ Class('VoicesContainer').inherits(Widget)({
                 }
             };
 
-            // _.defer(function() {
+            _.defer(function(){
                 if (!child.active) {
+                    var page = Math.ceil((voiceIndex) / voicesContainer.perPage);
 
-                    var page = Math.floor((voiceIndex) / voicesContainer.perPage);
+                    var voices = voicesContainer.children.slice(0, voiceIndex + 1);
 
-                    console.log('page', page)
-                    
-                    var voices = voicesContainer.children.slice(0, voiceIndex + 60);
+                    var fragment = document.createDocumentFragment();
+
+                    // Sample
+                    voices = _.filter(voices, function(voice) {
+                        if (voice.active === false) {
+                            return true;
+                        }
+                    });
 
                     var elements = [];
 
                     _.each(voices, function(voice) {
-                        if (voice.active === false) {
-                            elements.push(voice.element[0]);
-                            voice.activate();
-                        }
+                        voice.element.detach();
+                        voice.activate();
+                        fragment.appendChild(voice.element[0]);
+                        elements.push(voice.element[0]);
                     });
+
+                    // Get the last voice index in children
+                    var index = voicesContainer.children.indexOf(voices[voices.length - 1]);
+
+                    var beforeIndex = index + 1;
+
+                    voicesContainer.element[0].insertBefore(fragment, voicesContainer.children[beforeIndex].element[0]);
 
                     voicesContainer.element.isotope('appended', elements);
 
@@ -115,7 +140,8 @@ Class('VoicesContainer').inherits(Widget)({
                     CV.timeline.afterFetchActions();
                     CV.timeline.updateSliderPosition();
                 });
-            // });
+            });
+            
             
         },
 
@@ -123,10 +149,7 @@ Class('VoicesContainer').inherits(Widget)({
             var voicesContainer = this;
             var fragment = document.createDocumentFragment();
 
-            // this.voicesToRender = this.preloadedVoices;
-
-            // this.preloadedVoices = this.preloadedVoices.slice(0, 59)
-
+            
             _.each(this.preloadedVoices, function(post) {
                 if (post.post) {
                     post = post.post;
