@@ -96,6 +96,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._sourcesElement = this.element.find('.cv-backstory-overlay__sources');
             this._sourcesElementList = this._sourcesElement.find('ul');
             this._sourceCloseButton = this._sourcesElement.find('.cv-backstory-overlay__sources-close');
+            this._arrows = this.element.find('.cv-backstory-overlay-arrows');
             this._prevArrow = this.element.find('.cv-backstory-overlay-arrow.left');
             this._nextArrow = this.element.find('.cv-backstory-overlay-arrow.right');
 
@@ -110,11 +111,20 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
             this._prevArrow.bind('click', function() {
                 window.CV.backstoryUIComponent.loadPreviousGallery();
-            });
+            }).bind('mouseenter', function() {
+                this._arrows.addClass('past-intent');
+            }.bind(this)).bind('mouseleave', function() {
+                this._arrows.removeClass('past-intent');
+            }.bind(this));
 
             this._nextArrow.bind('click', function() {
                 window.CV.backstoryUIComponent.loadNextGallery();
-            });
+            }).bind('mouseenter', function() {
+                this._arrows.addClass('future-intent');
+            }.bind(this)).bind('mouseleave', function() {
+                this._arrows.removeClass('future-intent');
+            }.bind(this))
+
 
             this._sourcesLinkElement.bind('click', function(ev) {
                 ev.preventDefault();

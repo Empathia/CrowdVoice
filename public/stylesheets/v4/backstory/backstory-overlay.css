@@ -37,6 +37,35 @@
   background-size: 6px 6px;
   z-index: -1;
 }
+.cv-backstory-overlay-arrows.future-intent > .lines {
+  -webkit-animation: movelinesf linear 260ms forwards infinite;
+  -moz-animation: movelinesf linear 260ms forwards infinite;
+  animation: movelinesf linear 260ms forwards infinite;
+}
+.cv-backstory-overlay-arrows.past-intent > .lines {
+  -webkit-animation: movelinesb linear 260ms forwards infinite;
+  -moz-animation: movelinesb linear 260ms forwards infinite;
+  animation: movelinesb linear 260ms forwards infinite;
+}
+
+@-webkit-keyframes movelinesf {
+  100% {background-position: -6px}
+}
+@-moz-keyframes movelinesf {
+  100% {background-position: -6px}
+}
+@keyframes movelinesf {
+  100% {background-position: -6px}
+}
+@-webkit-keyframes movelinesb {
+  100% {background-position: 6px}
+}
+@-moz-keyframes movelinesb {
+  100% {background-position: 6px}
+}
+@keyframes movelinesb {
+  100% {background-position: 6px}
+}
 
 .cv-backstory-overlay-arrow {
   position: absolute;
@@ -45,18 +74,28 @@
   z-index: 1;
   color: #fff;
   cursor: pointer;
+  transition: left 800ms ease-out, right 800ms ease-out;
+}
+.cv-backstory-overlay-arrow:hover {
+  opacity: 0.8;
 }
 
 .cv-backstory-overlay-arrow.left {
-  left: 0;
+  left: -84px;
   padding: 0 0 0 25px;
   text-align: left;
 }
+.cv-backstory-overlay.active .cv-backstory-overlay-arrow.left {
+  left: 0;
+}
 
 .cv-backstory-overlay-arrow.right {
-  right: 0;
+  right: -84px;
   padding: 0 25px 0 0;
   text-align: right;
+}
+.cv-backstory-overlay.active .cv-backstory-overlay-arrow.right {
+  right: 0;
 }
 
 .cv-backstory-overlay__wrapper {
