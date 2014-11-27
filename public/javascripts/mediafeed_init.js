@@ -105,8 +105,7 @@ $(function () {
 
     /* ---------------- FUNCTIONS ------------------ */
     var resizePostWall = function(){
-        var sidebarWidth        = infoSidebar.hasClass('closed') || $(this).width() <= 1024 ? 0 : infoSidebar.outerWidth(true),
-            // tweetsWidth     = TweetsSidebar.element.outerWidth(true) + parseInt(TweetsSidebar.element.css('right'), 10),
+        var sidebarWidth        = infoSidebar.hasClass('closed') || $(window).width() <= 1024 ? 0 : infoSidebar.outerWidth(true),
             timelineSpace       = window.innerWidth <= 768 ? 0 : 40,
             tweetsSidebarWidth  = window.innerWidth <= 768 ? 0 : (tweetsSidebar.hasClass('open') ? tweetsSidebar.width() : 0),
             wrapperSpace        = $sweeper.width() - timelineSpace - sidebarWidth - tweetsSidebarWidth,
@@ -117,6 +116,13 @@ $(function () {
             containerWidth = columns * colW;
             voicesContainer.css('width', containerWidth);
         }
+
+        if (sidebarWidth === 0) {
+            voiceScroller.removeClass('with-infosidebar');
+        } else {
+            voiceScroller.addClass('with-infosidebar');
+        }
+
         setPostWallSize();
     };
 
@@ -203,11 +209,21 @@ $(function () {
             infoSidebarTabController.trigger('infoSidebar.hide');
         });
 
-        // win.bind('ready resize smartresize', function(){
+        win.bind('ready resize smartresize', function(){
+            resizePostWall();
+            setNavigationBehaviors();
+            setBackgroundSize();
+        }).smartresize();
+
+        // $(window).bind('ready resize smartresize', function() {
         //     resizePostWall();
         //     setNavigationBehaviors();
         //     setBackgroundSize();
-        // }).smartresize();
+        //     // CV.voicesContainer.delayedEvent.dispatch('resize', {fn : resizePostWall});
+        // });
+
+        var $win = $(window);
+        $win.smartresize();
 
         tweetsSidebar.bind('tweets.change', function(){
             resizePostWall();
@@ -287,17 +303,22 @@ $(function () {
             infoSidebarWidth        = infoSidebar.hasClass('closed') || windowWidth <= 1024 ? 0 : infoSidebar.width(),
             scrollerWidth           = windowWidth - voiceSidebarWidth - infoSidebarWidth - tweetsSidebarWidth - 2;
         voiceScroller.width(scrollerWidth);
-        if (isotopeReady) {
-            setTimeout(function(){
-                voicesContainer.isotope('reLayout');
-            }, 500);
-        }
+        
+        // var complete = function( isoInstance, laidOutItems ) {
+        //     DynamicMeasures.update();
+        //     CV.voicesContainer.element.isotope( 'off', 'layoutComplete', complete);
+        // }
+
+        // CV.voicesContainer.element.isotope( 'on', 'layoutComplete', complete);
+
+        // CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
+        voicesContainer.isotope('layout')
     };
     /* INITS */
     background_loader_init();
 
     setBackgroundSize();
-    setPostWallSize();
+    // setPostWallSize();
     setNavigationBehaviors();
     bindEvents();
 

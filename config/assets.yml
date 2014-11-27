@@ -16,6 +16,7 @@ javascripts:
     - public/javascripts/include/jquery.placeholder.js
     - public/javascripts/application.js
     - public/javascripts/v4/DelayedEventEmitter.js
+    - public/javascripts/include/smart-resize.js
   jscroll: &jscroll
     - public/javascripts/include/jquery.jscrollpane.min.js
     - public/javascripts/include/jquery.mousewheel.js

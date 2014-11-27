@@ -1,22 +1,33 @@
 Class('Loader').inherits(Widget)({
-	ELEMENT_CLASS  : 'loader',
-    HTML           : 	'<div class="overlay">\
-    						<div class="modal">\
-    							<div class="spinner"></div>\
-    						</div>\
-    					</div>',
+    HTML           : 	'<div class="progressjs-progress progressjs-theme" style="position: fixed; left: 0px; top: 0px; width: 1440px;">\
+                            <div class="progressjs-inner" style="width: 0%; background-color: ' + CV.theme + ';">\
+                                <div class="progressjs-percent">0%</div>\
+                            </div>\
+                        </div>',
 	prototype : {
 		init : function(config) {
 			Widget.prototype.init.call(this, config);
-		},
+			var loader = this;
 
-		// _activate : function() {
+			loader.element.css('width', $(document).width());
 			
-		// },
-
-		// _deactivate : function() {
-		// 	this.element.hide();
-		// }
+			$(window).resize(function() {
+				loader.element.css('width', $(document).width());
+			})
+		},
+		_activate : function() {
+		    Widget.prototype._activate.call(this);
+		    this.element.find('.progressjs-inner').css('width', '0%');
+		    this.element.addClass('shown');
+		    this.element.find('.progressjs-inner').css('width', '100%');
+		},
+		_deactivate : function() {
+		    Widget.prototype._deactivate.call(this);
+		    var that = this;
+		    this.element.removeClass('shown');
+		    that.element.find('.progressjs-inner').css('width', '0%');    
+		    
+		}
 
 	}
 });

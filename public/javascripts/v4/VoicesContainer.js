@@ -54,6 +54,10 @@ Class('VoicesContainer').inherits(Widget)({
                 voicesContainer.element.isotope('layout');
             });
 
+            this.delayedEvent.bind('resize', function(e){
+                e.fn();
+            })
+
             this.element.timeago('refresh');
         },
 
