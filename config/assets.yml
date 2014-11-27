@@ -150,6 +150,9 @@ javascripts:
     - public/javascripts/v4/Backstory/BackstoryTimelineMonth.js
     - public/javascripts/v4/Backstory/BackstoryTimelineElement.js
     - public/javascripts/v4/Backstory/BackstoryTimelineCard.js
+    - public/javascripts/v4/Backstory/BackstoryGalleryOverlay.js
+    - public/javascripts/v4/Backstory/BackstoryGalleryCarrousel.js
+    - public/javascripts/v4/Backstory/BackstoryGalleryThumb.js
     - public/javascripts/backstory/backstory_init.js
 
   admin:
@@ -192,6 +195,7 @@ stylesheets:
     - public/stylesheets/reset.css
     - public/stylesheets/scaffold.css
     - public/stylesheets/fonts.css
+    - public/stylesheets/icon-font.css
     - public/stylesheets/layout.css
     - public/stylesheets/skin.css
     - public/stylesheets/grid.css
@@ -253,6 +257,7 @@ stylesheets:
   backstory:
     - *defaults
     - public/stylesheets/v4/backstory/backstory.css
+    - public/stylesheets/v4/backstory/backstory-overlay.css
     # - public/stylesheets/skin/backstory.css
     - public/stylesheets/layout/voices.css
     # - public/stylesheets/skin/voices.css

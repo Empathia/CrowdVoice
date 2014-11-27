@@ -19,6 +19,8 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
                 background : wrapper.dataset.background
             })).render(wrapper).showSpinner();
 
+            window.CV.backstoryUIComponent = this.backstoryUIComponent;
+
             this._getDataModel(window.currentVoice.id, function(error, res) {
                 var data;
 
