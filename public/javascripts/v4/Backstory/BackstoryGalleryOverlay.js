@@ -1,13 +1,14 @@
 Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
     HTML : '\
     <div class="cv-backstory-overlay">\
-    <div class="cv-backstory-overlay-arrow left">\
-      <span class="lines"></span>\
-      <i class="icon-arrow-left-light"></i>\
-    </div>\
-    <div class="cv-backstory-overlay-arrow right">\
-      <span class="lines"></span>\
-      <i class="icon-arrow-right-light"></i>\
+    <div class="cv-backstory-overlay-arrows">\
+        <span class="lines"></span>\
+        <div class="cv-backstory-overlay-arrow left">\
+          <i class="icon-arrow-left-light"></i>\
+        </div>\
+        <div class="cv-backstory-overlay-arrow right">\
+          <i class="icon-arrow-right-light"></i>\
+        </div>\
     </div>\
       <div class="cv-backstory-overlay__wrapper">\
         <div class="cv-backstory-overlay__inner">\

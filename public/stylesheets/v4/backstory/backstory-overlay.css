@@ -26,18 +26,16 @@
   transform: scale(1);
 }
 
-.cv-backstory-overlay-arrow {
-  font-size: 46px;
+.cv-backstory-overlay-arrows {
   position: absolute;
   top: 50%;
+  left: 0;
+  right: 0;
+  height: 46px;
   margin-top: -23px;
-  width: 84px;
-  z-index: 1;
-  color: #fff;
-  cursor: pointer;
 }
 
-.cv-backstory-overlay-arrow > .lines {
+.cv-backstory-overlay-arrows > .lines {
   display: block;
   position: absolute;
   left: 0;
@@ -45,8 +43,17 @@
   width: 100%;
   height: 26px;
   background-image: linear-gradient(to right, #575757 0, transparent 1px);
-  background-size: 6px;
+  background-size: 6px 6px;
   z-index: -1;
+}
+
+.cv-backstory-overlay-arrow {
+  position: absolute;
+  font-size: 46px;
+  width: 84px;
+  z-index: 1;
+  color: #fff;
+  cursor: pointer;
 }
 
 .cv-backstory-overlay-arrow.left {
