@@ -119,9 +119,7 @@ $(function () {
 
         if (sidebarWidth === 0) {
             voiceScroller.removeClass('with-infosidebar');
-        } else {
-            voiceScroller.addClass('with-infosidebar');
-        }
+        } 
 
         setPostWallSize();
     };
@@ -161,41 +159,6 @@ $(function () {
         }
     };
 
-    var isotope_init = function (){
-        // REMOVED BY CLIENT REQUEST UNCOMMENT TO RE-APPLY THE GAPLESS ALGORITHM:
-        // colWidth = setPostMeasures();
-        //remove all thumbnail pictures from posts
-        // voicesContainer.find('[src*="thumb_link-default.png"]').hide();
-        
-        // voiceWrapper.removeClass('initial-state');
-        // DynamicMeasures.update();
-        // re-trigger resize to help slow devices on proper arrangement
-        // setTimeout(function(){win.smartresize();}, 500);
-
-        // voicesContainer.isotope({
-        //     transitionDuration: 0,
-        //     animationEngine: $.browser.mozilla || $.browser.msie ? 'jquery' : 'best-available',
-        //      animationOptions: {
-        //         duration: 0,
-        //         easing: 'linear',
-        //         queue: false
-        //     },
-        //     resizable: false,
-        //     itemSelector: '.voice-box',
-        //     masonry: {
-        //         columnWidth: colW - 5
-        //     },
-        //     callback: function(){
-        //         $('.updating-wrapper').hide();
-        //         $('body').css('overflow', 'hidden');
-        //         voiceWrapper.removeClass('initial-state');
-        //         DynamicMeasures.update();
-        //         // re-trigger resize to help slow devices on proper arrangement
-        //         setTimeout(function(){win.smartresize();}, 500);
-        //     }
-        // });
-        isotopeReady = true;
-    };
 
     var bindEvents = function (){
         var infoSidebarTabController    = $('.info-tab-controller'),
@@ -303,22 +266,17 @@ $(function () {
             infoSidebarWidth        = infoSidebar.hasClass('closed') || windowWidth <= 1024 ? 0 : infoSidebar.width(),
             scrollerWidth           = windowWidth - voiceSidebarWidth - infoSidebarWidth - tweetsSidebarWidth - 2;
         voiceScroller.width(scrollerWidth);
+
+        if (window.isotopeReady) {
+            voicesContainer.isotope('layout');    
+        }
         
-        // var complete = function( isoInstance, laidOutItems ) {
-        //     DynamicMeasures.update();
-        //     CV.voicesContainer.element.isotope( 'off', 'layoutComplete', complete);
-        // }
-
-        // CV.voicesContainer.element.isotope( 'on', 'layoutComplete', complete);
-
-        // CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
-        voicesContainer.isotope('layout')
     };
     /* INITS */
     background_loader_init();
 
     setBackgroundSize();
-    // setPostWallSize();
+    setPostWallSize();
     setNavigationBehaviors();
     bindEvents();
 

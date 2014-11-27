@@ -118,6 +118,11 @@ Class('VoiceElement').inherits(Widget)({
 
             this.thumbElement = this.element.find('.thumb-preview');
 
+            this.thumbElement.css({
+                width  : voice.imageWidth,
+                height : voice.imageHeight
+            });
+
             this.thumbElement.bind('load', function() {
                 CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
             })
@@ -256,21 +261,19 @@ Class('VoiceElement').inherits(Widget)({
             return url;
         },
 
-        _activate : function() {
-            Widget.prototype._activate.call(this);
-
+        setImage : function() {
             var voice = this;
-            
-            this.element.removeClass('disabled');
-
             this.thumbElement.attr({
                 'src'   : voice.thumbURL,
                 'width' : voice.imageWidth,
                 'height' : voice.imageHeight
             });
+        },
 
-            // this.element[0].style.removeProperty('height');
-            // this.element[0].style.removeProperty('width');
+        _activate : function() {
+            Widget.prototype._activate.call(this);
+
+            this.element.removeClass('disabled');
         },
 
         _deactivate : function() {

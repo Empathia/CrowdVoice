@@ -5,3 +5,7 @@
 	height : 0;
 	position:absolute;
 }
+
+.voice-box.no-events {
+	pointer-events : none;
+}
