@@ -105,7 +105,7 @@ Class('VoicesContainer').inherits(Widget)({
                 if (!child.active) {
                     var page = Math.ceil((voiceIndex) / voicesContainer.perPage);
 
-                    var voices = voicesContainer.children.slice(0, voiceIndex + 1);
+                    var voices = voicesContainer.children.slice(0, voiceIndex + 61);
 
                     var fragment = document.createDocumentFragment();
 
@@ -134,7 +134,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                     voicesContainer.element.isotope('appended', elements);
 
-                    voicesContainer.currentPage = page;
+                    voicesContainer.currentPage = page + 1;
                 } 
                 
                 voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
