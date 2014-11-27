@@ -191,12 +191,7 @@
   opacity: 1;
 }
 
-.cv-media-gallery-carrousel > ul > li.cv-dynamic-border-color {
-  border-color: transparent;
-}
-
 .cv-media-gallery-carrousel > ul > li.active {
-  border-color: inherit;
   opacity: 1;
 }
 

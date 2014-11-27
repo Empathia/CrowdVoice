@@ -57,19 +57,24 @@
 }
 
 /* DYNAMIC TEXT COLOR */
-.green .cv-dynamic-text-color {
+.green .cv-dynamic-text-color,
+.green .cv-dynamic-hover-text-color:hover {
   color: #50b347;
 }
-.blue .cv-dynamic-text-color {
+.blue .cv-dynamic-text-color,
+.blue .cv-dynamic-hover-text-color:hover {
   color: #4db5ff;
 }
-.yellow .cv-dynamic-text-color {
+.yellow .cv-dynamic-text-color,
+.yellow .cv-dynamic-hover-text-color:hover {
   color: #ebc91c;
 }
-.red .cv-dynamic-text-color {
+.red .cv-dynamic-text-color,
+.red .cv-dynamic-hover-text-color:hover {
   color: #f10f2a;
 }
-.orange .cv-dynamic-text-color {
+.orange .cv-dynamic-text-color,
+.orange .cv-dynamic-hover-text-color:hover {
   color: #ec9415;
 }
 

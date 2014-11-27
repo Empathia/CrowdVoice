@@ -11,7 +11,6 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
         days : null,
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('timeline month')
 
             this.monthElement = this.element.find('.cv-timeline-month__label--upper');
             this.yearElement = this.element.find('.cv-timeline-month__label--small');

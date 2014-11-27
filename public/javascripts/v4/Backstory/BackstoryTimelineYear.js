@@ -4,7 +4,6 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
         months : null,
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('timeline year')
 
             Object.keys(this.months).forEach(function(propertyName) {
                 this.appendChild(new CV.BackstoryTimelineMonth({
