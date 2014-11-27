@@ -110,8 +110,9 @@ $(function() {
         .bind('ajax:success', function(xhr, data, status) {
             if (data.created === true) {
                 // added
-                input_subscribe.removeClass('error').addClass('success');
-                feedback.removeClass('error').addClass('success').html('Subscribed - look for the confirmation email!');
+                // input_subscribe.removeClass('error').addClass('success');
+                // feedback.removeClass('error').addClass('success').html('Subscribed - look for the confirmation email!');
+                window.locaton = window.location.pathname + '?tnx=Subscribed - look for the confirmation email!';
                 return;
             }
             if (data.created === false && data.error) {

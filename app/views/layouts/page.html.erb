@@ -80,7 +80,11 @@
           </span>
         </div>
       </div>
-
+      <% if params[:tnx] %>
+      <div class="flash success" style="padding:15px;font-size:22px;">
+        <p><%= t(params[:tnx]) %></p>
+      </div> 
+      <% end %>
       <div class="main-container--inner scroll-primary">
         <section class="voice-wrapper">
           <%= yield %>
@@ -90,6 +94,27 @@
 
     <%= google_analytics %>
     <%= chartbeat %>
+
+    <% if params[:tnx] %>
+      <!-- Google Code for Newsletter Subscription Conversion Page -->
+      <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 998052476;
+      var google_conversion_language = "en";
+      var google_conversion_format = "2";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "PwC9CM_n4VcQ_KT02wM";
+      var google_remarketing_only = false;
+      /* ]]> */
+      </script>
+      <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+      </script>
+      <noscript>
+      <div style="display:inline;">
+      <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/998052476/?label=PwC9CM_n4VcQ_KT02wM&amp;guid=ON&amp;script=0"/>
+      </div>
+      </noscript>
+    <% end %>
 
   </body>
 </html>
