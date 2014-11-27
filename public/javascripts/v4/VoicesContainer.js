@@ -195,6 +195,8 @@ Class('VoicesContainer').inherits(Widget)({
         },
 
         enableNextPage : function(callback) {
+            var voicesContainer = this;
+            var fragment = document.createDocumentFragment();
             var elements = [];
 
             this.lastVoiceIndex = this.perPage * this.currentPage;
@@ -207,8 +209,16 @@ Class('VoicesContainer').inherits(Widget)({
 
             _.each(voices, function(voice) {
                 elements.push(voice.element[0]);
-                voice.activate();  
-            })
+                voice.element.detach();
+                voice.activate();
+                fragment.appendChild(voice.element[0]);
+            });
+
+            if (this.lastVoiceIndex === 0) {
+                voicesContainer.element[0].appendChild(fragment);
+            } else {
+                voicesContainer.element[0].insertBefore(fragment, voicesContainer.children[this.lastVoiceIndex - 1].element[0]);
+            }
             
             this.element.isotope('appended', elements);
 
