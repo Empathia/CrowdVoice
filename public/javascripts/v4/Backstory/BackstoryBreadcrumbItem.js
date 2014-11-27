@@ -7,7 +7,7 @@ Class(CV, 'BackstoryBreadcrumbItem').inherits(Widget)({
             Widget.prototype.init.call(this, config);
             console.log('breadcrum item')
 
-            this.element.text(CV.Utils.getMonthName(this.month) + " " + this.year);
+            this.element.text(this.text);
         }
     }
 });

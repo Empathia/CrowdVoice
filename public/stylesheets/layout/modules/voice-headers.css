@@ -6,7 +6,6 @@
   display: inline-block;
   position: relative;
   width: 100%;
-  z-index: 4;
 }
 	.voice-info {
 		border-bottom-width: 1px;
@@ -28,7 +27,6 @@
   	  height: 35px;
   	  width: 100%;
       position: relative;
-      z-index: 1; /* I know it's relative, but fixes the 'more' button overlap, tell ios */
   	}
       .top-left-navigation {
         float: left;

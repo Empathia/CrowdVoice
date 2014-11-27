@@ -1,3 +1,8 @@
+.cv-backstory-ui-wrapper {
+  position: relative;
+  z-index: inherit;
+}
+
 /* -- Breadcrum -- */
 .cv-timeline-breadcrum {
   position: relative;
@@ -101,7 +106,8 @@
   overflow-x: scroll;
   overflow-y: hidden;
   height: 100%;
-  padding: 37px 10px 0 50px;
+  padding: 37px 10px 0 33px;
+  margin-left: 17px;
 }
 .cv-timeline:before {
   content: '';
@@ -202,6 +208,7 @@
   border-left-style: solid;
   border-left-color: #fff;
   padding: 10px 15px 15px;
+  cursor: pointer;
 }
 .cv-timeline-element__gallery {
   position: relative;

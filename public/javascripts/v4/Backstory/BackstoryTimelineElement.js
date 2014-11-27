@@ -20,29 +20,63 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
         </div>\
     ',
     prototype : {
+
+        /**
+         * Timeline element data holder
+         * @property data <public> [Object]
+         */
         data : null,
+
+        _galleryWrapperElement : null,
+        _coverImageElement : null,
+        _dateElement : null,
+        _titleElement : null,
+        _viewButtonElement : null,
+
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('timeline element')
 
-            this.coverImage = this.element.find('.cv-timeline-element__gallery-frame').eq(0).find('img');
-            this.dateElement = this.element.find('.cv-timeline-element__title');
-            this.titleElement = this.element.find('.cv-timeline-element__description')
+            this._galleryWrapperElement = this.element.find('.cv-timeline-element__gallery-wrapper');
+            this._coverImageElement = this.element.find('.cv-timeline-element__gallery-frame').eq(0).find('img');
+            this._dateElement = this.element.find('.cv-timeline-element__title');
+            this._titleElement = this.element.find('.cv-timeline-element__description')
+            this._viewButtonElement  = this.element.find('.cv-timeline-view-button');
 
-            this._setupElements();
+            this._setupElements()._bindEvents();
         },
 
+        /**
+         * Upates the elements information to be displayed correctly.
+         * @method _setupElements <private> [Function]
+         */
         _setupElements : function _setupElements() {
             var day, month, year, date;
+
+            window.CV.backstoryUIComponent.elements.push(this.data);
 
             year = this.data.event_date.substring(0,4);
             month = this.data.event_date.substring(5,7);
             day = this.data.event_date.substring(8,10);
             date = CV.Utils.getMonthShortName(month) + " " + day + ", " + year;
 
-            this.coverImage.attr('src', this.data.background_image);
-            this.dateElement.text(date);
-            this.titleElement.text(this.data.name);
+            this._coverImageElement.attr('src', this.data.background_image);
+            this._dateElement.text(date);
+            this._titleElement.text(this.data.name);
+
+            day = month = year = date = null;
+
+            return this;
+        },
+
+        _bindEvents : function _bindEvents() {
+            this._galleryWrapperElement.bind('click', this._showOverlayHandler.bind(this));
+            this._viewButtonElement.bind('click', this._showOverlayHandler.bind(this));
+
+            return this;
+        },
+
+        _showOverlayHandler : function _showOverlayHandler() {
+            window.CV.backstoryUIComponent.showOverlay(this.data);
         }
     }
 });

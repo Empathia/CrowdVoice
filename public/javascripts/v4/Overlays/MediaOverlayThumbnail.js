@@ -1,6 +1,6 @@
 Class('MediaOverlayThumbnail').inherits(Widget)({
     HTML : '\
-        <li class="cv-dynamic-border-color">\
+        <li class="cv-dynamic-active-border-color">\
             <img/>\
         </li>\
     ',
