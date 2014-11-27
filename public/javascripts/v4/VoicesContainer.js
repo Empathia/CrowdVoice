@@ -62,6 +62,7 @@ Class('VoicesContainer').inherits(Widget)({
                         if (voice.active) {
                             if (voice.element.visible(true)) {
                                 voice.element.removeClass('no-events');
+                                voice.setImage();
                             } else {
                                 voice.element.addClass('no-events');
                             }
@@ -211,6 +212,7 @@ Class('VoicesContainer').inherits(Widget)({
                 elements.push(voice.element[0]);
                 voice.element.detach();
                 voice.activate();
+                voice.setImage();
                 fragment.appendChild(voice.element[0]);
             });
 
