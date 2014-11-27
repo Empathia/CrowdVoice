@@ -212,6 +212,8 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                     _as = Math.min(iw / (this.ASW - 310))
                 //} else if (iw < this.MD) {
                 //    _w = this.MD;
+                } else if (iw < 520) {
+                    _w = 520
                 } else {
                     _w = iw + 310;
                 }
@@ -226,6 +228,8 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
             if (_as) {
                 _h = ~~((ih / _as) + 76)
+            } else if (ih < 520) {
+                _h = 520
             } else {
                 if ((ih + 76) > this.ASH)  {
                     _h = this.ASH
