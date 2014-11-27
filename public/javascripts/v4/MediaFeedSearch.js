@@ -3,6 +3,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         image       : true,
         video       : true,
         link        : true,
+        types       : [],
         fuseOptions : {
             keys      : ['title', 'description'],
             threshold : 0.0,
@@ -12,11 +13,10 @@ Class('MediaFeedSearch').inherits(Widget)({
         delayedEvent : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
-            return;
 
             var mediaFeedSearch = this;
 
-            this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
+            // this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
 
             var checkboxes = ['image', 'video', 'link'];
 
@@ -28,17 +28,29 @@ Class('MediaFeedSearch').inherits(Widget)({
                         mediaFeedSearch[checkbox] = false;
                     }
 
+                    mediaFeedSearch.types = [];
+
+                    _.each(checkboxes, function(cb) {
+                        if (mediaFeedSearch[cb] === true) {
+                            mediaFeedSearch.types.push(cb);
+                        }
+                    });
+
+                    console.log('click', mediaFeedSearch.types)
+
+                    mediaFeedSearch.search();
+
                     // mediaFeedSearch.dispatch(checkbox, {value : mediaFeedSearch[checkbox]});
 
-                    CV.voicesContainer.children.forEach(function(child) {
-                        if (child.sourceType === checkbox) {
-                            if (mediaFeedSearch[checkbox]) {
-                                child.enable();
-                            } else {
-                                child.disable();
-                            }
-                        };
-                    });
+                    // CV.voicesContainer.children.forEach(function(child) {
+                    //     if (child.sourceType === checkbox) {
+                    //         if (mediaFeedSearch[checkbox]) {
+                    //             child.enable();
+                    //         } else {
+                    //             child.disable();
+                    //         }
+                    //     };
+                    // });
 
                     CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
                 });
@@ -71,10 +83,8 @@ Class('MediaFeedSearch').inherits(Widget)({
         },
 
         getEnabledVoices : function() {
-            return [];
-
             var enabledVoices = CV.voicesContainer.children.filter(function(child) {
-                if (!child.disabled) {
+                if (child.active) {
                     return child;
                 }
             });
@@ -85,6 +95,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         },
 
         reloadFuse : function () {
+            return;
             this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
 
             var query = this.element.find('input.search').val();
@@ -107,32 +118,66 @@ Class('MediaFeedSearch').inherits(Widget)({
             CV.voicesContainer.element.isotope('reLayout');
         },
 
-        search : function (query) {
-            return;
+        search : function () {
             var mediaFeedSearch = this;
+            
+            var voices = CV.voicesContainer.children;
 
-            var result = mediaFeedSearch.fuse.search(query);
+            var elements = [];
 
-            // result = result.filter(function(item) {
-            //     if (!item.disabled) {
-            //         return item;
-            //     }
-            // })
+            var removedElements = [];
+            
+            var result = [];
+            
+            var query = this.element.find('input.search').val();
 
-            console.log(result, query)
-
-            CV.voicesContainer.children.forEach(function(child) {
-                child.disable();
+            _.each(voices, function(voice) {
+                removedElements.push(voice.element[0]);
+                voice.deactivate();
             });
 
-            result.forEach(function(item) {
-                // item && CV.voicesContainer.element.append(item.element);
-                item.enable();
+            CV.voicesContainer.element.isotope('remove', removedElements);
+
+            console.log('children', voices.length)
+
+            _.each(voices, function(voice) {
+                if (mediaFeedSearch.types.indexOf(voice.sourceType) !== -1) {
+                    result.push(voice);
+                } else {
+                    voice.deactivate();
+                }
             });
 
-            mediaFeedSearch.element.find('.found').html(result.length);
+            console.log('result',result.length)
 
-            CV.voicesContainer.element.isotope('reLayout');
+            CV.voicesContainer.filteredResults = result;
+
+            // if (result.length ===) {};
+            CV.voicesContainer.currentPage = 1;
+
+            result = result.slice(0, 59);
+
+            _.each(result, function(voice) {
+                elements.push(voice.element[0])
+                voice.activate();
+            })
+
+            // console.log(result, query)
+
+            // CV.voicesContainer.children.forEach(function(child) {
+            //     child.deactivate();
+            // });
+
+            // result.forEach(function(item) {
+            //     // item && CV.voicesContainer.element.append(item.element);
+            //     item.activate();
+            // });
+
+            // mediaFeedSearch.element.find('.found').html(result.length);
+
+            CV.voicesContainer.element.isotope('appended', elements);
+
+            // CV.voicesContainer.element.isotope('layout');
         }
     }
 });

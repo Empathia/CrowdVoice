@@ -1,3 +1,14 @@
+// ============================================================================
+// * CAUTION  * CAUTION  * CAUTION  * CAUTION  * CAUTION  * CAUTION  * CAUTION 
+// * CAUTION  * CAUTION  * CAUTION  * CAUTION  * CAUTION  * CAUTION  * CAUTION 
+// Do not update this lib.
+// 
+// Modified by sgarza
+// Line: 2586
+// Do not remove the node from the node
+
+
+
 /*!
  * Isotope PACKAGED v2.1.0
  * Filter & sort magical layouts
@@ -2570,7 +2581,7 @@ Outlayer.prototype.remove = function( elems ) {
 
   for ( var i=0, len = removeItems.length; i < len; i++ ) {
     var item = removeItems[i];
-    item.remove();
+    // item.remove();
     // remove item from collection
     removeFrom( item, this.items );
   }

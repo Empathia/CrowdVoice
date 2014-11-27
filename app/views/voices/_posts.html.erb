@@ -59,11 +59,7 @@
 
       CV.OverlaysController = new OverlaysController();
 
-      // var page = CV.voicesContainer.currentPage;
-
       var page = 0;
-
-      // CV.voicesContainer.renderPages();
 
       var params = '?page=' + page;
 
@@ -108,6 +104,8 @@
 
           CV.voicesContainer.createVoiceWidgets(function() {
             CV.voicesContainer.element.find('.placeholders').remove();
+
+            CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
             CV.voicesContainer.enableNextPage();
           });

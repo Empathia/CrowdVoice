@@ -14,6 +14,7 @@ Class('VoicesContainer').inherits(Widget)({
         voicesToRender  : [],
         lastVoiceIndex  : 0,
         currentPage     : 0,
+        filteredResults : [],
         init : function(config) {
             Widget.prototype.init.call(this, config);
             var voicesContainer = this;
@@ -75,8 +76,6 @@ Class('VoicesContainer').inherits(Widget)({
         },
 
         goToDate : function(date) {
-            // CV.timeline.afterFetchActions();
-            // return;
             var voicesContainer = this;
 
             var gotDate         = false,
@@ -86,13 +85,13 @@ Class('VoicesContainer').inherits(Widget)({
 
             var date = date.match(/[\d]{4}-[\d]{2}/);
 
-            for (var i = 0; i < voicesContainer.children.length; i++) {
-                var child = voicesContainer.children[i];
+            for (var i = 0; i < voicesContainer.filteredResults.length; i++) {
+                var child = voicesContainer.filteredResults[i];
                 var voiceDate = child.createdAt.match(/[\d]{4}-[\d]{2}/);
 
                 voiceIndex      = i;
 
-                if (date[0] == voiceDate[0]) {
+                if (date[0] === voiceDate[0]) {
                     
                     foundVoice = child;
                     gotDate = true;
@@ -101,11 +100,17 @@ Class('VoicesContainer').inherits(Widget)({
                 }
             };
 
+            console.log(date[0], voiceDate[0])
+
             _.defer(function(){
-                if (!child.active) {
+                if (!foundVoice) {
+                    return;
+                }
+
+                if (!foundVoice.active) {
                     var page = Math.ceil((voiceIndex) / voicesContainer.perPage);
 
-                    var voices = voicesContainer.children.slice(0, voiceIndex + 61);
+                    var voices = voicesContainer.filteredResults.slice(0, voiceIndex + 60);
 
                     var fragment = document.createDocumentFragment();
 
@@ -126,11 +131,17 @@ Class('VoicesContainer').inherits(Widget)({
                     });
 
                     // Get the last voice index in children
-                    var index = voicesContainer.children.indexOf(voices[voices.length - 1]);
+                    var index = voicesContainer.filteredResults.indexOf(voices[voices.length - 1]);
 
                     var beforeIndex = index + 1;
 
-                    voicesContainer.element[0].insertBefore(fragment, voicesContainer.children[beforeIndex].element[0]);
+                    console.log(fragment, beforeIndex, voicesContainer.filteredResults.length);
+
+                    if (beforeIndex >= voicesContainer.filteredResults.length) {
+                        voicesContainer.element[0].appendChild(fragment);
+                    } else {
+                        voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[beforeIndex].element[0]);
+                    }
 
                     voicesContainer.element.isotope('appended', elements);
 
@@ -206,7 +217,7 @@ Class('VoicesContainer').inherits(Widget)({
                 this.lastVoiceIndex = this.children.length;
             }
 
-            var voices = this.children.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
+            var voices = this.filteredResults.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
 
             _.each(voices, function(voice) {
                 elements.push(voice.element[0]);
@@ -219,7 +230,7 @@ Class('VoicesContainer').inherits(Widget)({
             if (this.lastVoiceIndex === 0) {
                 voicesContainer.element[0].appendChild(fragment);
             } else {
-                voicesContainer.element[0].insertBefore(fragment, voicesContainer.children[this.lastVoiceIndex - 1].element[0]);
+                voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[this.lastVoiceIndex - 1].element[0]);
             }
             
             this.element.isotope('appended', elements);
