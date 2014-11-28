@@ -4,19 +4,14 @@ Class('MediaFeedSearch').inherits(Widget)({
         video       : true,
         link        : true,
         types       : ['image', 'video', 'link'],
-        fuseOptions : {
-            keys      : ['title', 'description'],
-            threshold : 0.0,
-            distance  : 0
-        },
-        fuse        : null,
         delayedEvent : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
             var mediaFeedSearch = this;
 
-            // this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
+            mediaFeedSearch.element.find('.results-feedback').hide();
+            mediaFeedSearch.element.find('.search-clear').hide();
 
             var checkboxes = ['image', 'video', 'link'];
 
@@ -118,6 +113,14 @@ Class('MediaFeedSearch').inherits(Widget)({
             }
 
             mediaFeedSearch.element.find('.found').html(foundCount);
+
+            if (query === '') {
+                mediaFeedSearch.element.find('.results-feedback').hide();
+                mediaFeedSearch.element.find('.search-clear').hide();
+            } else {
+                mediaFeedSearch.element.find('.results-feedback').show();
+                mediaFeedSearch.element.find('.search-clear').show();
+            }
             
             CV.voicesContainer.currentPage = 1;
 
