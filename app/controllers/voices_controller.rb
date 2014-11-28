@@ -18,36 +18,36 @@ class VoicesController < ApplicationController
   def show
     @voice = Voice.find_by_slug!(params[:id])
 
-    filters = params[:filters] ? params[:filters].split(',') : ['image', 'video', 'link']
+    # filters = params[:filters] ? params[:filters].split(',') : ['image', 'video', 'link']
 
-    if params[:filters]
-      scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved).by_type(filters)
-    else
-      scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved)
-    end
+    # if params[:filters]
+    #   scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved).by_type(filters)
+    # else
+    scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved)
+    # end
 
-    scope = scope.where("created_at <= ?", Date.parse(params[:start]) + 1) if params[:start]
+    # scope = scope.where("created_at <= ?", Date.parse(params[:start]) + 1) if params[:start]
 
-    scope = scope.by_tags(params[:tags]) if params[:tags]
+    # scope = scope.by_tags(params[:tags]) if params[:tags]
 
-    if params[:fetchAll]
-      query = scope.to_sql
-      # query = scope.page(1).per(60).to_sql
-    else
-      per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
+    # if params[:fetchAll]
+    #   query = scope.to_sql
+    #   # query = scope.page(1).per(60).to_sql
+    # else
+    #   per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
 
-      query = scope.page(params[:page]).per(per_page).to_sql
-    end
+    #   query = scope.page(params[:page]).per(per_page).to_sql
+    # end
 
 
-    # query = scope.to_sql
+    query = scope.to_sql
 
-    if params[:start]
-      query.sub!("WHERE", "FORCE INDEX (index_posts_on_created_at) WHERE") unless params[:tags]
-      query.sub!("ORDER BY id", "ORDER BY created_at") unless params[:tags]
-    else
-      query.sub!("WHERE", "FORCE INDEX (PRIMARY, index_posts_on_approved_and_voice_id) WHERE") unless params[:tags]
-    end
+    # if params[:start]
+    #   query.sub!("WHERE", "FORCE INDEX (index_posts_on_created_at) WHERE") unless params[:tags]
+    #   query.sub!("ORDER BY id", "ORDER BY created_at") unless params[:tags]
+    # else
+    #   query.sub!("WHERE", "FORCE INDEX (PRIMARY, index_posts_on_approved_and_voice_id) WHERE") unless params[:tags]
+    # end
 
     
     @posts = Post.find_by_sql(query)  
