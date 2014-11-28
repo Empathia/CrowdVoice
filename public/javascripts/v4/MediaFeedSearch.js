@@ -36,21 +36,7 @@ Class('MediaFeedSearch').inherits(Widget)({
                         }
                     });
 
-                    console.log('click', mediaFeedSearch.types)
-
                     mediaFeedSearch.search();
-
-                    // mediaFeedSearch.dispatch(checkbox, {value : mediaFeedSearch[checkbox]});
-
-                    // CV.voicesContainer.children.forEach(function(child) {
-                    //     if (child.sourceType === checkbox) {
-                    //         if (mediaFeedSearch[checkbox]) {
-                    //             child.enable();
-                    //         } else {
-                    //             child.disable();
-                    //         }
-                    //     };
-                    // });
 
                     CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
                 });
@@ -140,6 +126,12 @@ Class('MediaFeedSearch').inherits(Widget)({
             _.each(result, function(voice) {
                 elements.push(voice.element[0])
                 voice.activate();
+
+                _.defer(function() {
+                    if (voice.element.visible(true)) {
+                        voice.setImage();
+                    };
+                });
             });
 
             CV.voicesContainer.element.isotope('appended', elements);

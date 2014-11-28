@@ -120,12 +120,19 @@ Class('VoiceElement').inherits(Widget)({
 
             this.thumbElement.css({
                 width  : voice.imageWidth,
-                height : voice.imageHeight
+                height : voice.imageHeight,
+                background : "#EEE url('/images/image-placeholder.gif') no-repeat 50% 50%"
             });
 
             this.thumbElement.bind('load', function() {
+                voice.thumbElement.addClass('set').css({background : 'none'});
                 CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
-            })
+            });
+
+            this.thumbElement.bind('error', function() {
+                voice.thumbElement.addClass('na')[0].removeAttribute('src');
+                voice.thumbElement.css({background : "#EEE url('/images/image-not-available.gif') no-repeat 50% 50%"});
+            });
 
             if ($.deparam.querystring().post && $.deparam.querystring().post === this.id.toString()) {
                 window.CV.OverlaysController.showOverlay(this);
@@ -263,11 +270,13 @@ Class('VoiceElement').inherits(Widget)({
 
         setImage : function() {
             var voice = this;
-            this.thumbElement.attr({
-                'src'   : voice.thumbURL,
-                'width' : voice.imageWidth,
-                'height' : voice.imageHeight
-            });
+            if (!this.thumbElement.hasClass('na') || !this.thumbElement.hasClass('set')) {
+                this.thumbElement.attr({
+                    'src'   : voice.thumbURL,
+                    'width' : voice.imageWidth,
+                    'height' : voice.imageHeight
+                });
+            }
         },
 
         _activate : function() {

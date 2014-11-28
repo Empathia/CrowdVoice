@@ -63,7 +63,10 @@ Class('VoicesContainer').inherits(Widget)({
                         if (voice.active) {
                             if (voice.element.visible(true)) {
                                 voice.element.removeClass('no-events');
-                                voice.setImage();
+                                if (!voice.thumbElement.hasClass('na')) {
+                                    voice.setImage();    
+                                };
+                                
                             } else {
                                 voice.element.addClass('no-events');
                             }
@@ -100,8 +103,6 @@ Class('VoicesContainer').inherits(Widget)({
                 }
             };
 
-            console.log(date[0], voiceDate[0])
-
             _.defer(function(){
                 if (!foundVoice) {
                     return;
@@ -134,8 +135,6 @@ Class('VoicesContainer').inherits(Widget)({
                     var index = voicesContainer.filteredResults.indexOf(voices[voices.length - 1]);
 
                     var beforeIndex = index + 1;
-
-                    console.log(fragment, beforeIndex, voicesContainer.filteredResults.length);
 
                     if (beforeIndex >= voicesContainer.filteredResults.length) {
                         voicesContainer.element[0].appendChild(fragment);
@@ -223,7 +222,12 @@ Class('VoicesContainer').inherits(Widget)({
                 elements.push(voice.element[0]);
                 voice.element.detach();
                 voice.activate();
-                voice.setImage();
+                _.defer(function(){
+                    if (voice.element.visible(true)) {
+                        voice.setImage();
+                    }
+                });
+                
                 fragment.appendChild(voice.element[0]);
             });
 
