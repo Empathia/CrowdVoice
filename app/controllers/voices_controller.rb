@@ -30,14 +30,14 @@ class VoicesController < ApplicationController
 
     scope = scope.by_tags(params[:tags]) if params[:tags]
 
-    # if params[:fetchAll]
+    if params[:fetchAll]
       query = scope.to_sql
       # query = scope.page(1).per(60).to_sql
-    # else
-      # per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
+    else
+      per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
 
-      # query = scope.page(params[:page]).per(per_page).to_sql
-    # end
+      query = scope.page(params[:page]).per(per_page).to_sql
+    end
 
 
     # query = scope.to_sql
@@ -81,8 +81,6 @@ class VoicesController < ApplicationController
       end
     end
 
-    @posts = Oj.dump(ActiveRecord::Base.connection.execute(query) , :mode => :compat)
-    
     if request.format.html?
       respond_with(@posts, :location => @voice)
     else

@@ -37,7 +37,7 @@
   <% if  infosidebarIsPresent && !is_mobile? %>
     <%= render :partial => "voices/info-sidebar" %>
   <% end %>
-
+  
   <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>" style="height: 1167px; width: 959px;">
     <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
       <div class="placeholders">
@@ -50,8 +50,6 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-
-      posts = <%= raw @posts %>;
 
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
@@ -71,45 +69,49 @@
 
       params += "&fetchAll=1"
 
-      _.each(posts, function(item) {
-        if (item.post) {
-          item = item.post
-        };
-        var post = {};
+      $.ajax({
+        dataType  : "json",
+        async     : true,
+        url       : location.pathname + params,
+        success   : function(data) {
+          _.each(data, function(item) {
+            var post = {};
 
-        post.id = item[0];
-        post.voice_id = item[1];
-        post.user_id = item[2];
-        post.title = item[3];
-        post.description = item[4];
-        post.positive_votes_count = item[5];
-        post.negative_votes_count = item[6];
-        post.overall_score = item[7];
-        post.source_url = item[8];
-        post.source_type = item[9];
-        post.source_service = item[10];
-        post.image = item[11];
-        post.approved = item[12];
-        post.created_at = item[13];
-        post.updated_at = item[14];
-        post.copyright = item[15];
-        post.image_width = item[16];
-        post.image_height = item[17];
-        post.active = false;
+            post.id = item[0];
+            post.voice_id = item[1];
+            post.user_id = item[2];
+            post.title = item[3];
+            post.description = item[4];
+            post.positive_votes_count = item[5];
+            post.negative_votes_count = item[6];
+            post.overall_score = item[7];
+            post.source_url = item[8];
+            post.source_type = item[9];
+            post.source_service = item[10];
+            post.image = item[11];
+            post.approved = item[12];
+            post.created_at = item[13];
+            post.updated_at = item[14];
+            post.copyright = item[15];
+            post.image_width = item[16];
+            post.image_height = item[17];
+            post.active = false;
 
-        CV.voicesContainer.preloadedVoices.push(post);
+            CV.voicesContainer.preloadedVoices.push(post);
+          });
+          
+          CV.voicesContainer.page = page;
+
+          CV.voicesContainer.createVoiceWidgets(function() {
+            CV.voicesContainer.element.find('.placeholders').remove();
+
+            CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+
+            CV.voicesContainer.enableNextPage();
+          });
+        }
       });
-      
-      CV.voicesContainer.page = page;
 
-      CV.voicesContainer.createVoiceWidgets(function() {
-        CV.voicesContainer.element.find('.placeholders').remove();
-
-        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
-
-        CV.voicesContainer.enableNextPage();
-      });
-  
       CV.mediaFeedSearch = new MediaFeedSearch({
         element : $('.mediafeed-search')
       });
