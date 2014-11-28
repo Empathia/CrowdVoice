@@ -3,7 +3,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         image       : true,
         video       : true,
         link        : true,
-        types       : [],
+        types       : ['image', 'video', 'link'],
         fuseOptions : {
             keys      : ['title', 'description'],
             threshold : 0.0,
@@ -67,14 +67,8 @@ Class('MediaFeedSearch').inherits(Widget)({
             });
 
             this.delayedEvent.bind('search', function() {
-                var value = mediaFeedSearch.element.find('input.search').val();
 
-                if (value === '') {
-                    mediaFeedSearch.reset();
-                    return false;
-                }
-
-                mediaFeedSearch.search(value);
+                mediaFeedSearch.search();
             });
 
             this.element.find('.search-clear').bind('click', function() {
@@ -82,40 +76,12 @@ Class('MediaFeedSearch').inherits(Widget)({
             });
         },
 
-        getEnabledVoices : function() {
-            var enabledVoices = CV.voicesContainer.children.filter(function(child) {
-                if (child.active) {
-                    return child;
-                }
-            });
-
-            console.log('enabled voices: ', enabledVoices.length)
-
-            return enabledVoices;
-        },
-
-        reloadFuse : function () {
-            return;
-            this.fuse = new Fuse(this.getEnabledVoices(), this.fuseOptions);
-
-            var query = this.element.find('input.search').val();
-
-            if (query !== '') {
-                this.search(query);
-            }
-        },
-
         reset : function() {
-            return;
             this.element.find('input.search').val('');
 
             this.element.find('.found').html(0);
 
-            CV.voicesContainer.children.forEach(function(child) {
-                child.enable();
-            });
-
-            CV.voicesContainer.element.isotope('reLayout');
+            this.search();
         },
 
         search : function () {
@@ -138,21 +104,35 @@ Class('MediaFeedSearch').inherits(Widget)({
 
             CV.voicesContainer.element.isotope('remove', removedElements);
 
-            console.log('children', voices.length)
-
             _.each(voices, function(voice) {
                 if (mediaFeedSearch.types.indexOf(voice.sourceType) !== -1) {
-                    result.push(voice);
+                    query                   = query.toLowerCase();
+                    
+                    var voiceTitle          = voice.title.toLowerCase();
+                    var voiceDescription    = voice.description.toLowerCase();
+                    
+                    if (query !== '') {
+                        if (voiceTitle.search(query) !== -1 || voiceDescription.search(query) !== -1) {
+                            result.push(voice);
+                        }    
+                    } else {
+                        result.push(voice);
+                    }
                 } else {
                     voice.deactivate();
                 }
             });
 
-            console.log('result',result.length)
-
             CV.voicesContainer.filteredResults = result;
 
-            // if (result.length ===) {};
+            var foundCount = result.length;
+
+            if (result.length === voices.length) {
+                foundCount = 0;
+            }
+
+            mediaFeedSearch.element.find('.found').html(foundCount);
+            
             CV.voicesContainer.currentPage = 1;
 
             result = result.slice(0, 59);
@@ -160,24 +140,11 @@ Class('MediaFeedSearch').inherits(Widget)({
             _.each(result, function(voice) {
                 elements.push(voice.element[0])
                 voice.activate();
-            })
-
-            // console.log(result, query)
-
-            // CV.voicesContainer.children.forEach(function(child) {
-            //     child.deactivate();
-            // });
-
-            // result.forEach(function(item) {
-            //     // item && CV.voicesContainer.element.append(item.element);
-            //     item.activate();
-            // });
-
-            // mediaFeedSearch.element.find('.found').html(result.length);
+            });
 
             CV.voicesContainer.element.isotope('appended', elements);
 
-            // CV.voicesContainer.element.isotope('layout');
+            CV.voicesContainer.element.isotope('layout');
         }
     }
 });
