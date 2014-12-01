@@ -6,7 +6,6 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
     ',
     prototype : {
         data : null,
-        _imageTmp : null,
 
         init : function init(config) {
             Widget.prototype.init.call(this, config);
@@ -17,24 +16,16 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
         },
 
         _setupElements : function _setupElements() {
-            this._imageTmp = new Image();
-            this._imageTmp.src = this.data.image;
-
             this._imageElement.attr('src', this.data.image);
 
             return this;
         },
 
         _bindEvents: function _bindEvents() {
-            /*
-            $(this._imageTmp).bind('load', function(ev) {
-            }.bind(this));
-            */
-
             this.element.bind('click', function() {
                 if (this.active) return;
 
-                this.parent.deactivateAll();
+                this.parent.deactivateAll()._activeIndex = this.element.index();
                 this.activate();
             }.bind(this));
 

@@ -273,6 +273,31 @@
   right: 0;
   height: 100%;
   padding: 23px 18px 0 18px;
+  background-color: #000;
+}
+.cv-backstory-overlay__arrows:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 50px;
+  bottom: 0;
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 0%, #000 60%);
+}
+
+.cv-backstory-overlay__arrows > .cv-button {
+  margin-left: 7px;
+  vertical-align: top;
+}
+
+.cv-backstory-overlay__arrows .icon {
+  font-size: 13px;
+  position: relative;
+  top: 2px;
+}
+
+.cv-backstory-overlay__arrows > .cv-button:first-child {
+  margin-left: 0;
 }
 
 .cv-backstory-overlay__info {

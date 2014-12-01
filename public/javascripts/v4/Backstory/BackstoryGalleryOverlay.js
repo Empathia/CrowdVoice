@@ -30,16 +30,6 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                 </div>\
               </div>\
               <div class="cv-backstory-overlay__gallery-nav">\
-                <div class="cv-backstory-overlay__thumbs">\
-                </div>\
-                <div class="cv-backstory-overlay__arrows">\
-                  <a href="#" class="cv-button">\
-                    <i class="mediafeed-sprite left-arrow"></i>\
-                  </a>\
-                  <a href="#" class="cv-button">\
-                    <i class="mediafeed-sprite right-arrow"></i>\
-                  </a>\
-                </div>\
               </div>\
             </div>\
             <div class="cv-backstory-overlay__info cv-pull-right">\
@@ -73,6 +63,11 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         _document : null,
         _window : null,
 
+        /*
+         * BackstoryGalleryCarrousel instance reference holder.
+         */
+        _carrousel : null,
+
         init : function init(config) {
             Widget.prototype.init.call(this, config);
             console.log('timeline gallery overlay');
@@ -84,7 +79,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._shotCaptionElement = this.element.find('.cv-backstory-overlay__shot-caption');
             this._warningMessage = this.element.find('.cv-backstory-overlay__warning-message');
             this._warningButtonView = this.element.find('.cv-backstory-overlay__warning-button-show');
-            this._thumbsWrapperElement = this.element.find('.cv-backstory-overlay__thumbs');
+            this._carouselWrapperElement = this.element.find('.cv-backstory-overlay__gallery-nav');
             this._headerElement = this.element.find('.cv-backstory-overlay__info-header');
             this._infoBodyElement = this.element.find('.cv-backstory-overlay__info-body');
             this._closeElement = this.element.find('.cv-backstory-overlay__info-header > .close-icon');
@@ -156,14 +151,16 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._descriptionElement.text(data.description);
             this._suggestCorrectionElement.attr('src', this.constructor.SUGGESTION_MAILTO + data.name);
 
-            if (this.carrousel) {
-                this.carrousel.destroy();
+            if (this._carrousel) {
+                this._carrousel.destroy();
             }
-            this.appendChild(new CV.BackstoryGalleryCarrousel({
-                name : 'carrousel'
-            })).addThumbs(data.images).render(this._thumbsWrapperElement);
 
-            this.carrousel.activateFirst();
+            this.appendChild(new CV.BackstoryGalleryCarrousel({
+                name : '_carrousel'
+            })).addThumbs(data.images).render(this._carouselWrapperElement);
+
+            this._carrousel.activateByIndex(0);
+
             /*
              * TODO: grab screenshot from youtube
             */
@@ -266,8 +263,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         },
 
         _resetVars : function _resetVars() {
-            this.LW = 0;
-            this.LH = 0;
+            this.LW = 0; this.LH = 0;
             this._shotElement.css({height: '', width: ''})
             this._imageElement.css({height: '', width: ''})
         },
