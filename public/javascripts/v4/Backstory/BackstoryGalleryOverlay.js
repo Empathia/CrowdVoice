@@ -1,13 +1,14 @@
 Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
     HTML : '\
     <div class="cv-backstory-overlay">\
-    <div class="cv-backstory-overlay-arrow left">\
-      <span class="lines"></span>\
-      <i class="icon-arrow-left-light"></i>\
-    </div>\
-    <div class="cv-backstory-overlay-arrow right">\
-      <span class="lines"></span>\
-      <i class="icon-arrow-right-light"></i>\
+    <div class="cv-backstory-overlay-arrows">\
+        <span class="lines"></span>\
+        <div class="cv-backstory-overlay-arrow left">\
+          <i class="icon-arrow-left-light"></i>\
+        </div>\
+        <div class="cv-backstory-overlay-arrow right">\
+          <i class="icon-arrow-right-light"></i>\
+        </div>\
     </div>\
       <div class="cv-backstory-overlay__wrapper">\
         <div class="cv-backstory-overlay__inner">\
@@ -29,16 +30,6 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                 </div>\
               </div>\
               <div class="cv-backstory-overlay__gallery-nav">\
-                <div class="cv-backstory-overlay__thumbs">\
-                </div>\
-                <div class="cv-backstory-overlay__arrows">\
-                  <a href="#" class="cv-button">\
-                    <i class="mediafeed-sprite left-arrow"></i>\
-                  </a>\
-                  <a href="#" class="cv-button">\
-                    <i class="mediafeed-sprite right-arrow"></i>\
-                  </a>\
-                </div>\
               </div>\
             </div>\
             <div class="cv-backstory-overlay__info cv-pull-right">\
@@ -72,6 +63,11 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         _document : null,
         _window : null,
 
+        /*
+         * BackstoryGalleryCarrousel instance reference holder.
+         */
+        _carrousel : null,
+
         init : function init(config) {
             Widget.prototype.init.call(this, config);
             console.log('timeline gallery overlay');
@@ -83,7 +79,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._shotCaptionElement = this.element.find('.cv-backstory-overlay__shot-caption');
             this._warningMessage = this.element.find('.cv-backstory-overlay__warning-message');
             this._warningButtonView = this.element.find('.cv-backstory-overlay__warning-button-show');
-            this._thumbsWrapperElement = this.element.find('.cv-backstory-overlay__thumbs');
+            this._carouselWrapperElement = this.element.find('.cv-backstory-overlay__gallery-nav');
             this._headerElement = this.element.find('.cv-backstory-overlay__info-header');
             this._infoBodyElement = this.element.find('.cv-backstory-overlay__info-body');
             this._closeElement = this.element.find('.cv-backstory-overlay__info-header > .close-icon');
@@ -95,6 +91,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._sourcesElement = this.element.find('.cv-backstory-overlay__sources');
             this._sourcesElementList = this._sourcesElement.find('ul');
             this._sourceCloseButton = this._sourcesElement.find('.cv-backstory-overlay__sources-close');
+            this._arrows = this.element.find('.cv-backstory-overlay-arrows');
             this._prevArrow = this.element.find('.cv-backstory-overlay-arrow.left');
             this._nextArrow = this.element.find('.cv-backstory-overlay-arrow.right');
 
@@ -109,11 +106,20 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
             this._prevArrow.bind('click', function() {
                 window.CV.backstoryUIComponent.loadPreviousGallery();
-            });
+            }).bind('mouseenter', function() {
+                this._arrows.addClass('past-intent');
+            }.bind(this)).bind('mouseleave', function() {
+                this._arrows.removeClass('past-intent');
+            }.bind(this));
 
             this._nextArrow.bind('click', function() {
                 window.CV.backstoryUIComponent.loadNextGallery();
-            });
+            }).bind('mouseenter', function() {
+                this._arrows.addClass('future-intent');
+            }.bind(this)).bind('mouseleave', function() {
+                this._arrows.removeClass('future-intent');
+            }.bind(this))
+
 
             this._sourcesLinkElement.bind('click', function(ev) {
                 ev.preventDefault();
@@ -145,14 +151,16 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._descriptionElement.text(data.description);
             this._suggestCorrectionElement.attr('src', this.constructor.SUGGESTION_MAILTO + data.name);
 
-            if (this.carrousel) {
-                this.carrousel.destroy();
+            if (this._carrousel) {
+                this._carrousel.destroy();
             }
-            this.appendChild(new CV.BackstoryGalleryCarrousel({
-                name : 'carrousel'
-            })).addThumbs(data.images).render(this._thumbsWrapperElement);
 
-            this.carrousel.activateFirst();
+            this.appendChild(new CV.BackstoryGalleryCarrousel({
+                name : '_carrousel'
+            })).addThumbs(data.images).render(this._carouselWrapperElement);
+
+            this._carrousel.activateByIndex(0);
+
             /*
              * TODO: grab screenshot from youtube
             */
@@ -212,6 +220,8 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                     _as = Math.min(iw / (this.ASW - 310))
                 //} else if (iw < this.MD) {
                 //    _w = this.MD;
+                } else if (iw < 520) {
+                    _w = 520
                 } else {
                     _w = iw + 310;
                 }
@@ -226,6 +236,8 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
             if (_as) {
                 _h = ~~((ih / _as) + 76)
+            } else if (ih < 520) {
+                _h = 520
             } else {
                 if ((ih + 76) > this.ASH)  {
                     _h = this.ASH
@@ -251,8 +263,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         },
 
         _resetVars : function _resetVars() {
-            this.LW = 0;
-            this.LH = 0;
+            this.LW = 0; this.LH = 0;
             this._shotElement.css({height: '', width: ''})
             this._imageElement.css({height: '', width: ''})
         },

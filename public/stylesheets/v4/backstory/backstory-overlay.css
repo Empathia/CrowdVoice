@@ -1,7 +1,4 @@
 .cv-backstory-overlay {
-  //display: none;
-  visibility: hidden;
-  opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -9,35 +6,27 @@
   bottom: 0;
   background-color: rgba(0,0,0,0.9);
   z-index: 3;
-  transition: all 200ms ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 400ms ease;
+  will-change: visibility, opacity;
 }
 
 .cv-backstory-overlay.active {
   visibility: visible;
   opacity: 1;
-  //display: block;
 }
 
-.cv-backstory-overlay__wrapper {
-  transform: scale(0.2);
-  transition: all 400ms ease;
-}
-.cv-backstory-overlay.active .cv-backstory-overlay__wrapper {
-  transform: scale(1);
-}
-
-.cv-backstory-overlay-arrow {
-  font-size: 46px;
+.cv-backstory-overlay-arrows {
   position: absolute;
   top: 50%;
+  left: 0;
+  right: 0;
+  height: 46px;
   margin-top: -23px;
-  width: 84px;
-  z-index: 1;
-  color: #fff;
-  cursor: pointer;
 }
 
-.cv-backstory-overlay-arrow > .lines {
+.cv-backstory-overlay-arrows > .lines {
   display: block;
   position: absolute;
   left: 0;
@@ -45,20 +34,68 @@
   width: 100%;
   height: 26px;
   background-image: linear-gradient(to right, #575757 0, transparent 1px);
-  background-size: 6px;
+  background-size: 6px 6px;
   z-index: -1;
+}
+.cv-backstory-overlay-arrows.future-intent > .lines {
+  -webkit-animation: movelinesf linear 260ms forwards infinite;
+  -moz-animation: movelinesf linear 260ms forwards infinite;
+  animation: movelinesf linear 260ms forwards infinite;
+}
+.cv-backstory-overlay-arrows.past-intent > .lines {
+  -webkit-animation: movelinesb linear 260ms forwards infinite;
+  -moz-animation: movelinesb linear 260ms forwards infinite;
+  animation: movelinesb linear 260ms forwards infinite;
+}
+
+@-webkit-keyframes movelinesf {
+  100% {background-position: -6px}
+}
+@-moz-keyframes movelinesf {
+  100% {background-position: -6px}
+}
+@keyframes movelinesf {
+  100% {background-position: -6px}
+}
+@-webkit-keyframes movelinesb {
+  100% {background-position: 6px}
+}
+@-moz-keyframes movelinesb {
+  100% {background-position: 6px}
+}
+@keyframes movelinesb {
+  100% {background-position: 6px}
+}
+
+.cv-backstory-overlay-arrow {
+  position: absolute;
+  font-size: 46px;
+  width: 84px;
+  z-index: 1;
+  color: #fff;
+  cursor: pointer;
+  transition: left 800ms ease-out, right 800ms ease-out;
+}
+.cv-backstory-overlay-arrow:hover {
+  opacity: 0.8;
 }
 
 .cv-backstory-overlay-arrow.left {
-  left: 0;
+  left: -84px;
   padding: 0 0 0 25px;
   text-align: left;
 }
+.cv-backstory-overlay.active .cv-backstory-overlay-arrow.left {
+  left: 0;
+}
 
 .cv-backstory-overlay-arrow.right {
-  right: 0;
+  right: -84px;
   padding: 0 25px 0 0;
   text-align: right;
+}
+.cv-backstory-overlay.active .cv-backstory-overlay-arrow.right {
+  right: 0;
 }
 
 .cv-backstory-overlay__wrapper {
@@ -236,6 +273,31 @@
   right: 0;
   height: 100%;
   padding: 23px 18px 0 18px;
+  background-color: #000;
+}
+.cv-backstory-overlay__arrows:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 50px;
+  bottom: 0;
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 0%, #000 60%);
+}
+
+.cv-backstory-overlay__arrows > .cv-button {
+  margin-left: 7px;
+  vertical-align: top;
+}
+
+.cv-backstory-overlay__arrows .icon {
+  font-size: 13px;
+  position: relative;
+  top: 2px;
+}
+
+.cv-backstory-overlay__arrows > .cv-button:first-child {
+  margin-left: 0;
 }
 
 .cv-backstory-overlay__info {
