@@ -51,6 +51,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
+      var tags = <%= raw @tags.to_json %>;
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
         element  : $('.voices-container'),
@@ -96,6 +97,16 @@
             post.image_width = item[16];
             post.image_height = item[17];
             post.active = false;
+            post.tags = [];
+            
+            for (var i = 0; i < tags.length; i++) {
+              var tag = tags[i];
+
+              if (tag.id === post.id) {
+                post.tags = tag.tags;
+                break
+              }
+            };
 
             CV.voicesContainer.preloadedVoices.push(post);
           });
@@ -113,7 +124,7 @@
       });
 
       CV.mediaFeedSearch = new MediaFeedSearch({
-        element : $('.mediafeed-search')
+        element : $('.filters-and-mode')
       });
     });
   </script>

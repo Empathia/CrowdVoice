@@ -88,6 +88,7 @@ Class('VoiceElement').inherits(Widget)({
         contentElement: null,
         disabled      : false,
         thumbElement  : null,
+        tags          : [],
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
