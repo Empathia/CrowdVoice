@@ -30,7 +30,7 @@ Class('MediaTool').inherits(Widget)({
             Widget.prototype.init.call(this, config);
 
             this._anchorElement = this.element.find('.media-type');
-            this._tooltip = new CVTooltip({
+            this._tooltip = new CV.Tooltip({
                 element : this.element.find('.cv-tooltip')
             });
             this._closeTooltip = this._tooltip.element.find('.tooltip-close-btn');

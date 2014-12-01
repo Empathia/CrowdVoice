@@ -1,12 +1,12 @@
 <script>
-    $(function() {
+    (function() {
 
         var _mapVoice   = null,
             lat         = <%= @voice.latitude.present? ? @voice.latitude : '-34.397' %>,
             lng         = <%= @voice.longitude.present? ? @voice.longitude : '150.644' %>,
-            $mapOverlay = $('.map-overlay'),
-            $mapLink    = $('.info-tool-link.map'),
-            $backToVoice= $('.back-to-voice span', $mapOverlay);
+            $mapOverlay = document.querySelector('.map-overlay'),
+            $mapLink    = document.querySelector('.info-tool-link.map');
+            //$backToVoice= $('.back-to-voice span', $mapOverlay);
 
         var initVoiceMap = function() {
             _mapVoice = new CVMap('.js-voice-map', {
@@ -16,34 +16,32 @@
         };
 
         window.initializeVoiceMap = function() {
-            ( typeof CVMap === "undefined" )
-                ? window.appendMapScript( initVoiceMap )
+            (typeof CVMap === "undefined")
+                ? window.appendMapScript(initVoiceMap)
                 : initVoiceMap();
         }
 
-        $mapLink.bind('click', function(){
-            $mapOverlay.css({
-                'visibility': 'visible',
-                'z-index'   : '5'
-            });
-
-            if ( !_mapVoice ) {
-                ( typeof google === "undefined" )
-                    ? window.appendGoogleMapsScript( "initializeVoiceMap" )
+        $mapLink.addEventListener('click', function(){
+            //$mapOverlay.style.visibility = 'visible';
+            //$mapOverlay.style.zIndex = 5;
+            $mapOverlay.classList.toggle('active');
+            if (!_mapVoice) {
+                (typeof google === "undefined")
+                    ? window.appendGoogleMapsScript("initializeVoiceMap")
                     : initializeVoiceMap();
             }
 
             return false;
-        });
-
+        }, false);
+        /*
         $backToVoice.bind('click', function(event) {
             $mapOverlay.css({
                 'visibility': 'hidden',
                 'z-index'   : '0'
             });
         });
-
-    });
+        */
+    })();
 </script>
 
 <div class="js-voice-map">

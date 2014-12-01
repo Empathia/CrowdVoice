@@ -53,15 +53,28 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
             var day, month, year, date;
 
             window.CV.backstoryUIComponent.elements.push(this.data);
+            window.CV.backstoryUIComponent.timelineElements.push(this);
 
             year = this.data.event_date.substring(0,4);
             month = this.data.event_date.substring(5,7);
             day = this.data.event_date.substring(8,10);
             date = CV.Utils.getMonthShortName(month) + " " + day + ", " + year;
 
+            this.data.year = year;
+            this.data.month = month;
+            this.data.day = day;
+
             this._coverImageElement.attr('src', this.data.background_image);
             this._dateElement.text(date);
             this._titleElement.text(this.data.name);
+
+            if (this.data.images.length) {
+                this._titleElement.append('<i class="icon icon-photo"></i>');
+            }
+
+            if (this.data.videos.length) {
+                this._titleElement.append('<i class="icon icon-video"></i>');
+            }
 
             day = month = year = date = null;
 

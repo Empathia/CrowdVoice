@@ -28,6 +28,41 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
             }
         },
 
+        scrollTo : function scrollTo(year, month, day) {
+            var element;
+
+            if (this.type === "month") {
+                window.CV.backstoryUIComponent.timelineElements.some(function(el) {
+                    if ((el.data.year === year) && (el.data.month === month)) {
+                        element = el;
+                        return;
+                    }
+                });
+            } else if (this.type === "year") {
+                window.CV.backstoryUIComponent.timelineElements.some(function(el) {
+                    if (el.data.year === year) {
+                        element = el;
+                        return;
+                    }
+                });
+            } else if (this.type === "decade") {
+                window.CV.backstoryUIComponent.timelineElements.some(function(el) {
+                    if (el.data.year <= year) {
+                        element = el;
+                        return;
+                    }
+                });
+            }
+
+            if (element) {
+                CV.backstoryUIComponent.timeline._timelineElement.animate({
+                    scrollLeft : element.element[0].offsetParent.offsetLeft
+                }, 400);
+            }
+
+            return this;
+        },
+
         /**
          * Creates breadcrum items per month. ex: "JAN 2014", "FEB 2014"
          * @method _perMonth <private> [Function]
@@ -45,7 +80,10 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
 
                     this.appendChild(new CV.BackstoryBreadcrumbItem({
                         name : year + '-' + propertyName,
-                        text : text
+                        text : text,
+                        year : year,
+                        month : propertyName,
+                        day : null
                     })).render(this.pointsElement);
                 }, this);
             }, this);
@@ -60,7 +98,10 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
             Object.keys(this.data).forEach(function(propertyName) {
                 this.appendChild(new CV.BackstoryBreadcrumbItem({
                     name : propertyName,
-                    text : propertyName
+                    text : propertyName,
+                    year : propertyName,
+                    month : null,
+                    day : null
                 })).render(this.pointsElement);
             }, this);
         },
@@ -85,13 +126,19 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                         console.log(year + '-' + buffer);
                         this.appendChild(new CV.BackstoryBreadcrumbItem({
                             name : year,
-                            text : year + '-' + buffer
+                            text : year + '-' + buffer,
+                            year : year,
+                            month : null,
+                            day : null
                         })).render(this.pointsElement);
                     } else {
                         console.log(year + '-' + currentYear);
                         this.appendChild(new CV.BackstoryBreadcrumbItem({
                             name : year,
-                            text : year + '-' + currentYear
+                            text : year + '-' + currentYear,
+                            year : year,
+                            month : null,
+                            day : null
                         })).render(this.pointsElement);
                     }
                 } else {
@@ -106,19 +153,38 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                             console.log(year + '-' + future);
                             this.appendChild(new CV.BackstoryBreadcrumbItem({
                                 name : year,
-                                text : year + '-' + future
+                                text : year + '-' + future,
+                                year : year,
+                                month : null,
+                                day : null
                             })).render(this.pointsElement);
                         } else if (last === false) {
                             last = true;
                             this.appendChild(new CV.BackstoryBreadcrumbItem({
                                 name : year,
-                                text : year + '-' + currentYear
+                                text : year + '-' + currentYear,
+                                year : year,
+                                month : null,
+                                day : null
                             })).render(this.pointsElement);
                             console.log(year + '-' + currentYear);
                         }
                     }
                 }
             }, this);
+        },
+
+        /**
+         * Deactivate all its children.
+         * @prototype deactivateAll <public> [Function]
+         * @return this [MediaOverlayCarousel]
+         */
+        deactivateAll : function deactivateAll() {
+            this.children.forEach(function(child) {
+                child.deactivate();
+            });
+
+            return this;
         }
     }
 });

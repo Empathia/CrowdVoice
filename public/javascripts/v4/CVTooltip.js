@@ -1,4 +1,4 @@
-Class('CVTooltip').inherits(Widget)({
+Class(CV, 'Tooltip').inherits(Widget)({
     ELEMENT_CLASS : 'cv-tooltip',
     HTML : '\
         <div class="tooltip">\

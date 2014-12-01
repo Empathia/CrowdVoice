@@ -12,7 +12,6 @@ Class('LinkOverlay').inherits(Widget)({
          */
         TWITTER_URL_BASE : "http://twitter.com/intent/tweet?",
 
-        overlay : null,
         customName : null,
         animationSpeed : 400,
         _nextArrowElement : null,
@@ -32,7 +31,6 @@ Class('LinkOverlay').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
-            this.overlay = $('.cv-overlay-backdrop.cv-link-gallery');
             this.customName = this.element.data('custom-name');
             this._nextArrowElement = this.element.find('.voice-arrow.next');
             this._prevArrowElement = this.element.find('.voice-arrow.prev');
@@ -58,10 +56,6 @@ Class('LinkOverlay').inherits(Widget)({
             this._closeButtonElement.bind('click', this.deactivate.bind(this));
             this._prevArrowElement.bind('click', this._prevArrowClickHandler.bind(this));
             this._nextArrowElement.bind('click', this._nextArrowClickHandler.bind(this));
-
-            this._iframeElement.load(function() {
-                this.overlay.hide();
-            }.bind(this));
 
             this._clip.addEventListener('complete',function(client,text) {
               alert('copied!');
@@ -101,8 +95,6 @@ Class('LinkOverlay').inherits(Widget)({
          * @return this [LinkOverlay]
          */
         updateWith : function updateWith(voiceElement) {
-            this.overlay.show();
-
             this._prevVoiceElementData = voiceElement.getPreviousSiblingBySourceType(['link']);
             this._nextVoiceElementData = voiceElement.getNextSiblingBySourceType(['link']);
 

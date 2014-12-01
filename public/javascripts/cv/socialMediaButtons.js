@@ -10,7 +10,7 @@ Class('SocialMediaButtons')({
                 },
                 twitterFollow       : {
                     element: null,
-                    showCount: false,
+                    showCount: 'none',
                     showScreenName: false
                 }
             };
@@ -44,7 +44,7 @@ Class('SocialMediaButtons')({
         appendTwitterFollowButton: function() {
             var ssn     = this.options.twitterFollow.showScreenName,
                 sc      = this.options.twitterFollow.showCount,
-                button  = '<a href="https://twitter.com/CrowdVoice" class="twitter-follow-button" data-show-screen-name="' + ssn + '" data-show-count="' + sc + '">Follow @CrowdVoice</a>';
+                button  = '<a href="https://twitter.com/CrowdVoice" class="twitter-follow-button" data-show-screen-name="' + ssn + '" data-count="' + sc + '">Follow @CrowdVoice</a>';
 
             this.options.twitterFollow.element.innerHTML = button;
 

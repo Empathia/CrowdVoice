@@ -37,7 +37,7 @@
   <% if  infosidebarIsPresent && !is_mobile? %>
     <%= render :partial => "voices/info-sidebar" %>
   <% end %>
-  
+
   <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>" style="height: 1167px; width: 959px;">
     <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
       <div class="placeholders">
@@ -45,6 +45,9 @@
         <img src="/images/voice-placeholder.gif" style="margin:5px;" />
       <% end %>
       </div>
+    </div>
+    <div class="map-overlay">
+      <%= render 'map' %>
     </div>
   </div>
 
@@ -97,7 +100,7 @@
             post.image_height = item[17];
             post.active = false;
             post.tags = [];
-            
+
             for (var i = 0; i < data.tags.length; i++) {
               var tag = data.tags[i];
 
@@ -108,7 +111,7 @@
 
             CV.voicesContainer.preloadedVoices.push(post);
           });
-          
+
           CV.voicesContainer.page = page;
 
           CV.voicesContainer.createVoiceWidgets(function() {

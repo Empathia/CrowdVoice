@@ -1,6 +1,7 @@
 Class(CV, 'BackstoryUIComponent').inherits(Widget)({
     prototype : {
         elements : [],
+        timelineElements : [],
         init : function init(config) {
             Widget.prototype.init.call(this, config);
             console.log('ui component')

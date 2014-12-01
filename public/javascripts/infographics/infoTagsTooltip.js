@@ -15,7 +15,7 @@ Class('InfoTagsTooltip')({
         tag = infoboxTags[i];
         this.voiceTags.append(this.createTagCheckbox(tag, i));
       }
-      new CVTooltip({
+      new CV.Tooltip({
           element: this.element.find('.cv-tooltip')
       });
 

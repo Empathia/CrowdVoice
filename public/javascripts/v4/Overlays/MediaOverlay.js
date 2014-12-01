@@ -40,7 +40,7 @@ Class('MediaOverlay').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
-            this.overlay = $('.cv-overlay-backdrop.cv-media-gallery');
+            this.overlay = this.element.find('.cv-overlay-backdrop.cv-media-gallery');
             this.customName = this.element.data('custom-name');
             this._carouselWrapper = this.element.find('.cv-media-gallery-carrousel');
             this._nextArrowElement = this.element.find('.voice-arrow.next');
