@@ -24,11 +24,11 @@ $(function () {
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
 
-    new CVTooltip({
+    new CV.Tooltip({
         element : $('.voice-description-tooltip'),
     });
 
-    new CVTooltip({
+    new CV.Tooltip({
         element: $('.embeddable-widget-tooltip')
     });
 
@@ -46,13 +46,13 @@ $(function () {
             votes : votes,
         });
 
-        new CVTooltip({
+        new CV.Tooltip({
             text : 'Go back to public mode',
             className : 'public-mode-tooltip',
             nowrap : true
         }).render($('.public'));
 
-        new CVTooltip({
+        new CV.Tooltip({
             className : 'moderator-mode-tooltip',
             html : '\
                 <p class="title">Participate!</p>\
@@ -71,7 +71,7 @@ $(function () {
     } else {
         $('.tags-container').hide();
     }
-    
+
     // The requirement is as follows:
     // if there's an infosidebar, don't display the main sidebar
     // if there's no infosidebar, display sidebar by default
@@ -87,7 +87,7 @@ $(function () {
                         });
 
     new Message('.flash-message');
-    
+
     new FacebookNavButton({
         fbPath : _fbPath
       });
@@ -119,7 +119,7 @@ $(function () {
 
         if (sidebarWidth === 0) {
             voiceScroller.removeClass('with-infosidebar');
-        } 
+        }
 
         setPostWallSize();
     };
@@ -268,9 +268,9 @@ $(function () {
         voiceScroller.width(scrollerWidth);
 
         if (window.isotopeReady) {
-            voicesContainer.isotope('layout');    
+            voicesContainer.isotope('layout');
         }
-        
+
     };
     /* INITS */
     background_loader_init();

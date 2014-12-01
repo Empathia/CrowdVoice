@@ -75,13 +75,13 @@ $(function () {
     var aboutTooltip, mapTooltip, mainContainer, mapContainer, mapButton,
         sidebarVoice, infoSidebar, _mapVoices, initVoicesMap;
 
-    aboutTooltip = new CVTooltip({
+    aboutTooltip = new CV.Tooltip({
         text : 'Find more info about CrowdVoice here!',
         className : 'more-about-cv-tooltip',
         position : 'right'
     }).render($('.about-link-wrapper'));
 
-    mapTooltip = new CVTooltip({
+    mapTooltip = new CV.Tooltip({
         text : 'Show Voices on the map.',
         className : 'tooltip-map',
         nowrap: true
