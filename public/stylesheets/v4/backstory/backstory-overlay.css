@@ -4,7 +4,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.9);
   z-index: 3;
   opacity: 0;
   visibility: hidden;
@@ -15,6 +14,15 @@
 .cv-backstory-overlay.active {
   visibility: visible;
   opacity: 1;
+}
+
+.cv-backstory-overlay__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9);
 }
 
 .cv-backstory-overlay-arrows {

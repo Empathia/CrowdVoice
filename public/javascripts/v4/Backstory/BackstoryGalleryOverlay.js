@@ -1,61 +1,61 @@
 Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
     HTML : '\
     <div class="cv-backstory-overlay">\
-    <div class="cv-backstory-overlay-arrows">\
-        <span class="lines"></span>\
-        <div class="cv-backstory-overlay-arrow left">\
-          <i class="icon-arrow-left-light"></i>\
+        <div class="cv-backstory-overlay__backdrop"></div>\
+        <div class="cv-backstory-overlay-arrows">\
+            <span class="lines"></span>\
+            <div class="cv-backstory-overlay-arrow left">\
+                <i class="icon-arrow-left-light"></i>\
+            </div>\
+            <div class="cv-backstory-overlay-arrow right">\
+                <i class="icon-arrow-right-light"></i>\
+            </div>\
         </div>\
-        <div class="cv-backstory-overlay-arrow right">\
-          <i class="icon-arrow-right-light"></i>\
+        <div class="cv-backstory-overlay__wrapper">\
+            <div class="cv-backstory-overlay__inner">\
+                <div class="cv-backstory-overlay__body clearfix">\
+                    <div class="cv-backstory-overlay__gallery cv-pull-left">\
+                        <div class="cv-backstory-overlay__shot">\
+                            <div class="cv-backstory-overlay__shot-image">\
+                                <img />\
+                            </div>\
+                            <div class="cv-backstory-overlay__shot-caption"></div>\
+                            <div class="cv-backstory-overlay__warning-message">\
+                                <div class="cv-backstory-overlay__warning-message-inner">\
+                                    <div class="cv-backstory-overlay__warning-message-content">\
+                                        <p class="title">Warning!</p>\
+                                        <p>This image may contain sensitive material.</p>\
+                                        <button class="cv-backstory-overlay__warning-button-show cv-button">Click To View</button>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="cv-backstory-overlay__gallery-nav"></div>\
+                    </div>\
+                    <div class="cv-backstory-overlay__info cv-pull-right">\
+                        <div class="cv-backstory-overlay__info-header">\
+                            <a href="#" alt="close" class="close-icon icon-x cv-dynamic-hover-text-color"></a>\
+                            <p class="cv-backstory-overlay__info-date">{{May 15, 2014}}</p>\
+                            <p class="cv-backstory-overlay__info-title">{{title}}</p>\
+                        </div>\
+                        <div class="cv-backstory-overlay__info-body">\
+                            <div class="cv-backstory-overlay__info-body-inner">\
+                                <p class="cv-backstory-overlay__info-description">{{description}}</p>\
+                                <p>\
+                                    <a class="cv-backstory-overlay__info-suggest-correction" href="#" target="_blank">Suggest a Correction</a>\
+                                </p>\
+                            </div>\
+                            <a href="#" class="cv-backstory-overlay__sources-link cv-dynamic-text-color">Sources ›</a>\
+                            <div class="cv-backstory-overlay__sources">\
+                                <a href="#" class="cv-backstory-overlay__sources-close cv-dynamic-text-color">Close ›</a>\
+                                <ul class="sources"></ul>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
         </div>\
     </div>\
-      <div class="cv-backstory-overlay__wrapper">\
-        <div class="cv-backstory-overlay__inner">\
-          <div class="cv-backstory-overlay__body clearfix">\
-            <div class="cv-backstory-overlay__gallery cv-pull-left">\
-              <div class="cv-backstory-overlay__shot">\
-                <div class="cv-backstory-overlay__shot-image">\
-                  <img />\
-                </div>\
-                <div class="cv-backstory-overlay__shot-caption"></div>\
-                <div class="cv-backstory-overlay__warning-message">\
-                  <div class="cv-backstory-overlay__warning-message-inner">\
-                    <div class="cv-backstory-overlay__warning-message-content">\
-                      <p class="title">Warning!</p>\
-                      <p>This image may contain sensitive material.</p>\
-                      <button class="cv-backstory-overlay__warning-button-show cv-button">Click To View</button>\
-                    </div>\
-                  </div>\
-                </div>\
-              </div>\
-              <div class="cv-backstory-overlay__gallery-nav">\
-              </div>\
-            </div>\
-            <div class="cv-backstory-overlay__info cv-pull-right">\
-              <div class="cv-backstory-overlay__info-header">\
-                <a href="#" alt="close" class="close-icon icon-x cv-dynamic-hover-text-color"></a>\
-                <p class="cv-backstory-overlay__info-date">{{May 15, 2014}}</p>\
-                <p class="cv-backstory-overlay__info-title">{{title}}</p>\
-              </div>\
-              <div class="cv-backstory-overlay__info-body">\
-                <div class="cv-backstory-overlay__info-body-inner">\
-                  <p class="cv-backstory-overlay__info-description">{{description}}</p>\
-                  <p>\
-                    <a class="cv-backstory-overlay__info-suggest-correction" href="#" target="_blank">Suggest a Correction</a>\
-                  </p>\
-                </div>\
-                <a href="#" class="cv-backstory-overlay__sources-link cv-dynamic-text-color">Sources ›</a>\
-                <div class="cv-backstory-overlay__sources">\
-                  <a href="#" class="cv-backstory-overlay__sources-close cv-dynamic-text-color">Close ›</a>\
-                  <ul class="sources">\
-                  </ul>\
-                </div>\
-              </div>\
-            </div>\
-          </div>\
-        </div>\
-      </div>\
     ',
     SUGGESTION_MAILTO: 'mailto:crowdvoice@mideastyouth.com?subject=I%20have%20a%20correction&body=I\'d%20like%20to%20suggest%20a%20correction%20for%20the%20topic%20',
 
@@ -73,6 +73,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             console.log('timeline gallery overlay');
 
             this._document = $(document);
+            this._backropElement = this.element.find('.cv-backstory-overlay__backdrop');
             this._bodyElement = this.element.find('.cv-backstory-overlay__body');
             this._shotElement = this.element.find('.cv-backstory-overlay__shot');
             this._imageElement = this.element.find('.cv-backstory-overlay__shot-image > img');
@@ -99,6 +100,8 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         },
 
         _bindEvents : function _bindEvents() {
+            this._backropElement.bind('click', this.deactivate.bind(this));
+
             this._closeElement.bind('click', function(ev) {
                 ev.preventDefault();
                 this.deactivate();
