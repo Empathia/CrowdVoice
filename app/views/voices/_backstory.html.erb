@@ -13,4 +13,10 @@
 <div class="cv-backstory-ui-wrapper" data-background="<%= @voice.background %>"></div>
 
 <%= include_javascripts :backstory_pack %>
+<script type="text/javascript">
+  new FacebookNavButton({
+    fbPath : "<%= fb_path %>"
+  });
+</script>
+
 

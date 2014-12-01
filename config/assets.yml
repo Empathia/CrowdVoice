@@ -139,7 +139,7 @@ javascripts:
     #- public/javascripts/backstory/timelineEvent.js
     #- public/javascripts/backstory/timelineEventController.js
     #- public/javascripts/backstory/timelineController.js
-    #- public/javascripts/cv/socialNavigationIcons.js
+    - public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/v4/Utils.js
     - public/javascripts/v4/Backstory/BackstoryRegistry.js
     - public/javascripts/v4/Backstory/BackstoryController.js
