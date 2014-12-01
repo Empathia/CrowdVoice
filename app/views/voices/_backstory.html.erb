@@ -10,7 +10,11 @@
 
 <!--<div class="sweeper header-sep"></div>-->
 
-<div class="cv-backstory-ui-wrapper" data-background="<%= @voice.background %>"></div>
+<div class="cv-backstory-ui-wrapper" data-background="<%= @voice.background %>">
+  <div class="map-overlay">
+    <%= render 'map' %>
+  </div>
+</div>
 
 <%= include_javascripts :backstory_pack %>
 <script type="text/javascript">
