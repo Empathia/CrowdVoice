@@ -5,6 +5,7 @@ Class('MediaFeedSearch').inherits(Widget)({
         link        : true,
         types       : ['image', 'video', 'link'],
         delayedEvent : null,
+        filterTagButton : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
@@ -35,6 +36,12 @@ Class('MediaFeedSearch').inherits(Widget)({
 
                     CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
                 });
+            });
+
+            this.filterTagButton = this.element.find('.filter-apply-button');
+
+            this.filterTagButton.bind('click', function() {
+                mediaFeedSearch.search();
             });
 
             this.delayedEvent = new DelayedEventEmitter({waitingTime : 300});
@@ -78,12 +85,24 @@ Class('MediaFeedSearch').inherits(Widget)({
             
             var query = this.element.find('input.search').val();
 
+            var tagElements = this.element.find('ul.voice-tags input');
+
+            var tags = [];
+
+            _.each(tagElements, function(tagElement) {
+                if (tagElement.checked) {
+                    tags.push(tagElement.getAttribute('data-tag'));
+                };
+            });
+
             _.each(voices, function(voice) {
                 removedElements.push(voice.element[0]);
                 voice.deactivate();
             });
 
             CV.voicesContainer.element.isotope('remove', removedElements);
+
+            var shouldShow = false;
 
             _.each(voices, function(voice) {
                 if (mediaFeedSearch.types.indexOf(voice.sourceType) !== -1) {
@@ -94,15 +113,40 @@ Class('MediaFeedSearch').inherits(Widget)({
                     
                     if (query !== '') {
                         if (voiceTitle.search(query) !== -1 || voiceDescription.search(query) !== -1) {
-                            result.push(voice);
-                        }    
+                            shouldShow = true;
+                        } else {
+                            shouldShow = false;
+                        }   
                     } else {
-                        result.push(voice);
+                        shouldShow = true;
                     }
-                } else {
-                    voice.deactivate();
                 }
+
+                var hasTags = false
+
+                if (tags.length === 0) {
+                    hasTags = true;
+                } else {
+                    for (var i = 0; i < voice.tags.length; i++) {
+                        var tag = voice.tags[i];
+                        if (tags.indexOf(tag) !== -1) {
+                            hasTags = true;
+                            break;
+                        } else {
+                            hasTags = false;
+                        }
+                    };
+                    
+                }
+
+                console.log(shouldShow, hasTags)
+
+                if (shouldShow && hasTags) {
+                    result.push(voice);
+                };
             });
+
+            console.log(result.length)
 
             CV.voicesContainer.filteredResults = result;
 

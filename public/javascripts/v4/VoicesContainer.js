@@ -186,7 +186,8 @@ Class('VoicesContainer').inherits(Widget)({
                     createdAt     : post.created_at,
                     service       : post.source_url,
                     disabled      : true,
-                    active        : false
+                    active        : false,
+                    tags          : post.tags
                 });
 
                 voicesContainer.appendChild(voice);

@@ -40,7 +40,7 @@ class VoicesController < ApplicationController
     # end
 
 
-    query = scope.to_sql
+    query = scope.includes(:tags).to_sql
 
     # if params[:start]
     #   query.sub!("WHERE", "FORCE INDEX (index_posts_on_created_at) WHERE") unless params[:tags]
@@ -50,8 +50,21 @@ class VoicesController < ApplicationController
     # end
 
     
-    @posts = Post.find_by_sql(query)  
+    @posts = Post.find_by_sql(query)
     
+    @tags = []
+
+    @posts.each do |post|
+      p = {}
+
+      p[:id] = post.id
+
+      p[:tags] = post.tags.map(&:name)
+
+      @tags.push(p)
+
+    end
+
     if request.format.html?
       @blocks = @voice.blocks.map(&:data_parsed)
     end
