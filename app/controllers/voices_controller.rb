@@ -51,19 +51,7 @@ class VoicesController < ApplicationController
 
     
     @posts = Post.find_by_sql(query)
-    
-    @tags = []
 
-    @posts.each do |post|
-      p = {}
-
-      p[:id] = post.id
-
-      p[:tags] = post.tags.map(&:name)
-
-      @tags.push(p)
-
-    end
 
     if request.format.html?
       @blocks = @voice.blocks.map(&:data_parsed)
@@ -97,7 +85,28 @@ class VoicesController < ApplicationController
     if request.format.html?
       respond_with(@posts, :location => @voice)
     else
-      render :json => Oj.dump(ActiveRecord::Base.connection.execute(query) , :mode => :compat), :layout => false
+      posts_ids = @posts.map(&:id)
+
+      @tags = ActsAsTaggableOn::Tagging.includes(:tag).where(:taggable_id => posts_ids).map { |tagging| 
+        name = 'none'
+        
+        if tagging.tag
+          name = tagging.tag.name
+        end
+
+        {
+          :id => tagging.taggable_id, 
+          :name => name
+        } 
+      }
+      
+
+      response = {
+        # :tags => Oj.dump(@tags, :mode => :compat),
+        :tags => @tags,
+        :posts => ActiveRecord::Base.connection.execute(query)
+      }
+      render :json => Oj.dump(response, :mode => :compat), :layout => false
     end
 
     

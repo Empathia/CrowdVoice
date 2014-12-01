@@ -139,8 +139,6 @@ Class('MediaFeedSearch').inherits(Widget)({
                     
                 }
 
-                console.log(shouldShow, hasTags)
-
                 if (shouldShow && hasTags) {
                     result.push(voice);
                 };

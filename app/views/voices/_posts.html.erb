@@ -51,7 +51,6 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      var tags = <%= raw @tags.to_json %>;
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
         element  : $('.voices-container'),
@@ -75,7 +74,7 @@
         async     : true,
         url       : location.pathname + params,
         success   : function(data) {
-          _.each(data, function(item) {
+          _.each(data.posts, function(item) {
             var post = {};
 
             post.id = item[0];
@@ -99,12 +98,11 @@
             post.active = false;
             post.tags = [];
             
-            for (var i = 0; i < tags.length; i++) {
-              var tag = tags[i];
+            for (var i = 0; i < data.tags.length; i++) {
+              var tag = data.tags[i];
 
               if (tag.id === post.id) {
-                post.tags = tag.tags;
-                break
+                post.tags.push(tag.name);
               }
             };
 
