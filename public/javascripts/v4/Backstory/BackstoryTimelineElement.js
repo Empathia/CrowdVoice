@@ -68,6 +68,14 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
             this._dateElement.text(date);
             this._titleElement.text(this.data.name);
 
+            if (this.data.images.length) {
+                this._titleElement.append('<i class="icon icon-photo"></i>');
+            }
+
+            if (this.data.videos.length) {
+                this._titleElement.append('<i class="icon icon-video"></i>');
+            }
+
             day = month = year = date = null;
 
             return this;

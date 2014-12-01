@@ -197,6 +197,16 @@
   font-weight: 400;
 }
 
+.cv-timeline-element__description .icon:first-child {
+  margin-left: 10px;
+}
+.cv-timeline-element__description .icon {
+  position: relative;
+  margin: 1px 0 0 5px;
+  top: 1px;
+  color: #cccccc;
+}
+
 .cv-timeline-view-button {
   padding-left: 6px;
   padding-right: 6px;
