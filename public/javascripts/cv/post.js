@@ -6,7 +6,6 @@ Class('Post').inherits(Widget)({
     prototype: {
         carousel : null,
         postFilter : null,
-        votes : null,
 
         postPlaceHolder : null,
         inputPost : null,
@@ -178,8 +177,6 @@ Class('Post').inherits(Widget)({
                                     if ($(this).attr('src').indexOf('thumb_link-default.png') > 0){
                                         $(this).hide();
                                     }
-
-                                    that.votes.unbindEvents().bindEvents();
 
                                     $('.voices-container')
                                         .isotope('addItems', post)

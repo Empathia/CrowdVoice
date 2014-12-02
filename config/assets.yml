@@ -78,7 +78,6 @@ javascripts:
     - public/javascripts/v4/MediaTool.js
     - public/javascripts/cv/post.js
     - public/javascripts/cv/filters.js
-    - public/javascripts/cv/votes.js
     - public/javascripts/cv/blogWidget.js
     - public/javascripts/v4/vendor/jquery.mousewheel.js
     - public/javascripts/v4/Loader.js
@@ -88,7 +87,7 @@ javascripts:
     - public/javascripts/infographics/infoSidebar.js
     - public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/mediafeed_init.js
-    - public/javascripts/v4/vendor/jquery.timeago.js
+    - public/javascripts/v4/vendor/moment.min.js
     - public/javascripts/v4/vendor/jquery.visible.js
     - public/javascripts/v4/VoicesContainer.js
     - public/javascripts/v4/VoiceElement.js

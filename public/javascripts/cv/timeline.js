@@ -53,8 +53,7 @@ Class('Timeline').inherits(Widget)({
 
         build: function (element, options) {
             this.options = {
-                dates   : window.timeline_dates,
-                votes   : null
+                dates   : window.timeline_dates
             };
             $.extend(this.options, options);
 

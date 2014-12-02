@@ -73,9 +73,7 @@ Class('VoicesContainer').inherits(Widget)({
                         }
                     });
                 }, 200) );
-            })
-
-            this.element.timeago('refresh');
+            });
         },
 
         goToDate : function(date) {
@@ -197,7 +195,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             voicesContainer.element[0].appendChild(fragment);    
             
-            CV.timeline.options.votes.unbindEvents().bindEvents();
+            // CV.timeline.options.votes.unbindEvents().bindEvents();
             
             if (callback) {
                 callback();
@@ -239,8 +237,6 @@ Class('VoicesContainer').inherits(Widget)({
             }
             
             this.element.isotope('appended', elements);
-
-            this.element.timeago('refresh');
 
             this.currentPage++;
             

@@ -1,7 +1,6 @@
 $(function () {
 
     var voice_loaded    = false,
-        votes           = new Votes('.vote-post'),
         gazaOverlay     = new VideoOverlay('.view-video li'),
         postFilter      = new Filters('.filters', '.voice-box'),
         voicesSidebarControl    = $('.tab-controller'),
@@ -42,8 +41,7 @@ $(function () {
 
         new Post({
             element : $('.post'),
-            postFilter : postFilter,
-            votes : votes,
+            postFilter : postFilter
         });
 
         new CV.Tooltip({
@@ -96,8 +94,7 @@ $(function () {
         CV.timeline = new Timeline();
 
         CV.timeline.build($('.timeliner-group'), {
-            dates   : window.timeline_dates,
-            votes   : votes
+            dates   : window.timeline_dates
         });
     }
 

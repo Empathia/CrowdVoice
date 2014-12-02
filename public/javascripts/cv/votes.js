@@ -6,6 +6,7 @@ Class('Votes')({
 		},
 
 		bindEvents: function () {
+			return
 			var that = this;
 			this.element = $(this._elementSelector);
 			this.element.bind('click', function (e) {
@@ -58,6 +59,7 @@ Class('Votes')({
 		},
 
 		unbindEvents: function(){
+			return;
 			var that = this;
 			this.element.unbind('click');
 			return that;

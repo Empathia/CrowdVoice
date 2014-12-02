@@ -24,7 +24,7 @@ Class('VoiceElement').inherits(Widget)({
                     </li>\
                 </ul>\
                 <div class="flag-div">\
-                    <a href="" class="vote-post mediafeed-sprite flag" data-method="post" rel="nofollow" />\
+                    <a href="" class="vote-post mediafeed-sprite flag" data-method="post" rel="nofollow"></a>\
                     <div class="tooltip flag-tip" data-post-id="">\
                         <div class="tooltip-positioner bottom">\
                             <div class="media-type-info">\
@@ -89,6 +89,7 @@ Class('VoiceElement').inherits(Widget)({
         disabled      : false,
         thumbElement  : null,
         tags          : [],
+        flagElement   : null,
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
@@ -115,9 +116,11 @@ Class('VoiceElement').inherits(Widget)({
             this.URL     = this.getURL();
             this.postURL = this.isRawImage() ? this.image.url : this.sourceURL;
 
-            this.setupElements()._bindEvents();
+            this.flagElement = this.element.find('a.vote-post.mediafeed-sprite.flag');
 
             this.thumbElement = this.element.find('.thumb-preview');
+
+            this.setupElements()._bindEvents();
 
             this.thumbElement.css({
                 width  : voice.imageWidth,
@@ -200,7 +203,9 @@ Class('VoiceElement').inherits(Widget)({
                 this.sourceElement.append(this.constructor.VOICE_TYPE_HTML);
             }
 
-            this.element.find('.time-ago').attr('created-at', this.timeAgo);
+            var date = moment(this.timeAgo).format('MMM-DD-YYYY');
+
+            this.element.find('.time-ago').html(date);
 
             if (this.sourceType == 'link' || this.sourceType == 'image') {
                 this.element.find('p.description').html(this.description);
@@ -218,18 +223,53 @@ Class('VoiceElement').inherits(Widget)({
                 'href' : 'http://twitter.com/intent/tweet?text=' +  escape(voice.title) + '&url=' + escape(voice.URL) +'&via=crowdvoice'
             });
 
-            this.element.find('a.vote-post.mediafeed-sprite.flag').attr({
+            this.flagElement.attr({
                 href : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
-            })
+            });
 
             return this;
         },
 
         _bindEvents : function _bindEvents() {
+            var voice = this;
+
             this.contentElement.bind('click', function(event) {
                 event.preventDefault();
                 window.CV.OverlaysController.showOverlay(this);
             }.bind(this));
+
+            this.flagElement.bind('click', function() {
+                var self = $(this);
+
+                $.ajax({
+                    url: this.href,
+                    data: $.extend({ authenticity_token : $('meta[name=csrf-token]').attr('content')}, $(this).data('params')),
+                    type: $(this).data('method'),
+                    dataType: 'json',
+                    success: function (data) {
+                        // that._handleSuccess(data, self);
+
+                        post_id = voice.id;
+                        // flag = $('div[data-post-id=' + post_id + ']');
+
+                        //Logic for flags
+                        if (voice.flagElement.hasClass('flag')){
+
+                            voice.element.find('.flag-tooltip span').addClass('flagged').html('Unflag Content');
+                            voice.flagElement.attr('data-voted', true);
+                            voice.flagElement.toggleClass('flag flag-pressed').attr('href', [voice.flagElement.attr('href').split('?')[0], 'rating=1'].join('?') );
+
+                        } else if (voice.flagElement.hasClass('flag-pressed')){
+
+                            voice.element.find('.flag-tooltip span').removeClass('flagged').html('Flag Inappropiate Content');
+                            voice.flagElement.attr('data-voted', false);
+                            voice.flagElement.toggleClass('flag flag-pressed').attr('href', [voice.flagElement.attr('href').split('?')[0], 'rating=-1'].join('?') );
+                        }
+                    }
+                });
+
+                return false;
+            })
 
             return this;
         },
