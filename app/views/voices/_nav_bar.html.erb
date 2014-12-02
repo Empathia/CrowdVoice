@@ -6,7 +6,7 @@
   </div>
   <h2 class="voice-title"><%= @voice.title %></h2>
   <div class="description-wrapper has-cv-tooltip">
-    <a class="cv-button cv-button--small cv-button--trans more-button">More Info</a>
+    <a class="more-button cv-button--small cv-button--trans cv-dynamic-border-color">More Info</a>
     <div class="tooltip cv-tooltip voice-description-tooltip">
       <div class="tooltip-positioner">
         <span class="tooltip-arrow"><span></span></span>
@@ -20,7 +20,7 @@
     <ul class="top-left-navigation">
       <% if !subdomain_present? && (@voice.has_timeline || (@voice.events.present? && current_user && current_user.is_admin?)) %>
         <li name="Backstory" class="menu-item backstory-menu-item <%= "active" if params[:backstory] %>">
-          <a href="<%= voice_url(@voice) %>?backstory=true" class="menu-link">
+          <a href="<%= voice_url(@voice) %>?backstory=true" class="menu-link cv-button--dynamic-color">
             <i class="icon--14 icon--backstory"></i>
             <span class="text">Backstory</span>
           </a>
@@ -28,14 +28,14 @@
       <% end %>
       <% if !@blocks.empty? %>
         <li name="Infographic" class="menu-item infographics-menu-item <%= "active" if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] %>">
-          <a href="<%= voice_url(@voice) %>" class="menu-link">
+          <a href="<%= voice_url(@voice) %>" class="menu-link cv-button--dynamic-color">
             <i class="icon--14 icon--infographic"></i>
             <span class="text">Infographic</span>
           </a>
         </li>
       <% end %>
       <li name="Media Feed" class="menu-item media-feed-menu-item <%= "active" if params[:tags].present? || params[:all] %>">
-        <a href="<%= voice_url(@voice) %>?all=true" class="menu-link">
+        <a href="<%= voice_url(@voice) %>?all=true" class="menu-link cv-button--dynamic-color">
           <i class="icon--14 icon--stats"></i>
           <span class="text">Media feed</span>
         </a>

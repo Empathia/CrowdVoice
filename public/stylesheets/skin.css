@@ -336,6 +336,7 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 2px 2px 0 0;
+  box-shadow: none;
 }
 
 .top-left-navigation .menu-item.active .menu-link {
@@ -358,47 +359,4 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
 .menu-item.active:hover .menu-lines:before,
 .menu-item.active:hover .menu-lines:after {
   background-color: #fff;
-}
-
-/*
-    Color overrides
-*/
-/************ yellow ************/
-.yellow .menu-item .menu-link {
-    background: #EBC91C;
-}
-.yellow .more-button {
-    border-color: #ebc91c;
-}
-
-/************ orange ************/
-.orange .menu-item .menu-link {
-    background: #EC9415;
-}
-.orange .more-button {
-    border-color: #ec9415;
-}
-
-/************ blue ************/
-.blue .menu-item .menu-link {
-    background: #4DB5FF;
-}
-.blue .more-button {
-    border-color: #4db5ff;
-}
-
-/************ red ************/
-.red .menu-item .menu-link {
-    background: #F10F2A;
-}
-.red .more-button {
-    border-color: #f10f2a;
-}
-
-/************ green ************/
-.green .menu-item .menu-link {
-    background: #50B347;
-}
-.green .more-button {
-    border-color: #50b347;
 }
