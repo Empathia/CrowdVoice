@@ -297,7 +297,7 @@ Class('Timeline').inherits(Widget)({
                 if (month === next_month || first_thick()) {
                     month_days_counter += 1;
                     if (month_days_counter === 1) {
-                        timelineMonths[month - 1] = '<li class="linkable" data-date="'+
+                        timelineMonths[month - 1] = '<li class="linkable cv-dynamic-text-color" data-date="'+
                                                         date +
                                                     '"><span class="month-label short">' +
                                                         this.months[month] +
