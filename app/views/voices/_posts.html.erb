@@ -39,7 +39,7 @@
   <% end %>
 
   <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>" style="height: 1167px; width: 959px;">
-    <div class="voices-container initial-state <%= 'with-announcement' if @voice.announcement.present? %>" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
+    <div class="voices-container initial-state" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
       <div class="placeholders">
       <% 30.times do %>
         <img src="/images/voice-placeholder.gif" style="margin:5px;" />
@@ -132,7 +132,7 @@
 
 
 
-  <ul class="timeliner-group <%= 'with-announcement' if @voice.announcement.present? %>">
+  <ul class="timeliner-group">
     <li class="post-fetch-trigger timeline-tab _medium-font">See More</li>
     <li class="timeliner current">
       <div id="slider-vertical"></div>

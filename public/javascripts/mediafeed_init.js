@@ -84,7 +84,9 @@ $(function () {
                             showTooltip : !sidebarDisplay
                         });
 
-    new Message('.flash-message');
+    new CV.FlashMessage({
+        element : $('.flash-message')
+    });
 
     new FacebookNavButton({
         fbPath : _fbPath
