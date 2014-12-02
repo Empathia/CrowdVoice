@@ -218,6 +218,10 @@ Class('VoiceElement').inherits(Widget)({
                 'href' : 'http://twitter.com/intent/tweet?text=' +  escape(voice.title) + '&url=' + escape(voice.URL) +'&via=crowdvoice'
             });
 
+            this.element.find('a.vote-post.mediafeed-sprite.flag').attr({
+                href : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
+            })
+
             return this;
         },
 
