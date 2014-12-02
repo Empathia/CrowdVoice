@@ -43,6 +43,9 @@
   border-radius: 3px;
   box-shadow: inset 0 -1px 0 #000;
 }
+  .cv-button--small:active {
+    padding-top: 0;
+  }
 
 .cv-button--medium {
   font-size: 18px;
@@ -57,12 +60,15 @@
   background-color: rgba(0,0,0,.2);
   color: #fff;
   border: 1px solid rgba(255,255,255,.5);
+  background-clip: padding-box;
 }
 .cv-button--trans:hover {
   text-decoration: none;
   background-color: #000;
+  border-color: rgba(255,255,255,.7);
 }
 
+/* light color */
 .cv-button--light {
   background-color: #fafafa;
   border: 1px solid #b2b2b2;
@@ -73,6 +79,10 @@
   background-color: #fff;
   text-decoration: none;
 }
+.cv-button--light:active {
+  box-shadow: inset 0 1px 0 #ccc;
+}
+
 .green .cv-button--light.dynamic {
   color: #50b347;
 }
@@ -89,34 +99,54 @@
   color: #ec9415;
 }
 
+/* dynamic background color */
 .cv-button--dynamic-color {
   box-shadow: inset 0 -4px 0 rgba(0,0,0,.2);
   text-shadow: none;
 }
+.cv-button--dynamic-color:active {
+  box-shadow: inset 0 4px 0 rgba(0,0,0,.2);
+}
+
 .green .cv-button--dynamic-color {
   background-color: #50b347;
   color: #fff;
 }
+  .green .cv-button--dynamic-color:hover {
+    background-color: #32bb25;
+  }
 
 .blue .cv-button--dynamic-color {
   background-color: #4db5ff;
   color: #fff;
 }
+  .blue .cv-button--dynamic-color:hover {
+    background-color: #66bfff;
+  }
 
 .yellow .cv-button--dynamic-color {
   background-color: #ebc91c;
   color: #fff;
 }
+  .yellow .cv-button--dynamic-color:hover {
+    background-color: #edcf35;
+  }
 
 .red .cv-button--dynamic-color {
   background-color: #f10f2a;
   color: #fff;
 }
+  .red .cv-button--dynamic-color:hover {
+    background-color: #f33047;
+  }
 
 .orange .cv-button--dynamic-color {
   background-color: #ec9415;
   color: #fff;
 }
+  .orange .cv-button--dynamic-color:hover {
+    background-color: #ee9d2b;
+  }
 
 /*
  * variations
