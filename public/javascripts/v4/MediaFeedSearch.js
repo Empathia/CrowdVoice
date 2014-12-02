@@ -5,7 +5,6 @@ Class('MediaFeedSearch').inherits(Widget)({
         link        : true,
         types       : ['image', 'video', 'link'],
         delayedEvent : null,
-        filterTagButton : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
@@ -38,9 +37,7 @@ Class('MediaFeedSearch').inherits(Widget)({
                 });
             });
 
-            this.filterTagButton = this.element.find('.filter-apply-button');
-
-            this.filterTagButton.bind('click', function() {
+            this.element.find('.voice-tags input').bind('click', function() {
                 mediaFeedSearch.search();
             });
 
