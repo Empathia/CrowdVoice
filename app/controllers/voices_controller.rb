@@ -100,12 +100,12 @@ class VoicesController < ApplicationController
         } 
       }
       
-
       response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
         :tags => @tags,
         :posts => ActiveRecord::Base.connection.execute(query)
       }
+
       render :json => Oj.dump(response, :mode => :compat), :layout => false
     end
 
