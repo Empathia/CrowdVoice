@@ -42,6 +42,8 @@
       } else {
         document.body.className += " not-touch";
       }
+
+      window.CV = {};
     </script>
 
     <div class="sidebar-wrapper">
@@ -83,7 +85,7 @@
       <% if params[:tnx] %>
       <div class="flash success" style="padding:15px;font-size:22px;">
         <p><%= t(params[:tnx]) %></p>
-      </div> 
+      </div>
       <% end %>
       <div class="main-container--inner scroll-primary">
         <section class="voice-wrapper">
