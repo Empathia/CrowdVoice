@@ -1,41 +1,32 @@
-Class('Message')({
+Class(CV, 'FlashMessage').inherits(Widget)({
     prototype : {
-        init : function (element, options) {
-            this.options = {
-                closeBtn : '.close-message',
-                effect   : true
-            };
-            $.extend(this.options, options);
-            this.element        = typeof element == "string" ? $(element) : element;
-            this.closeBtn       = $(this.options.closeBtn);
-            this.mainHeader     = $('.main-header');
-            this.userWindow     = $(window);
+        closeBtn: null,
+
+        init : function init(config) {
+            Widget.prototype.init.call(this, config);
+       
+            this.closeBtn = this.closeBtn || this.element.find('.close-message');
+
             this._bindEvents();
         },
 
-        _bindEvents: function () {
-            var closeBtn = this.element.children().children(this.options.closeBtn),
-                that = this;
-            closeBtn.click(function () {
-                that.hide();
+        _bindEvents: function _bindEvents() {
+            this.closeBtn.click(function () {
+                this.close();
                 return false;
-            });
-            this.userWindow.bind('resize smartresize', function(){
-                that.setTopPosition();
-            });
+            }.bind(this));
+
+            return this;
         },
 
-        hide: function () {
-            var that = this;
-            (this.options.effect ? this.element.fadeOut(function () {
-                that.element.trigger('flash.close')
-            }) : this.element.hide() && this.element.trigger('flash.close'));
-            $('.with-announcement').removeClass('with-announcement');
-        },
+        close : function close() {
+            var flashMessage = this;
+            
+            this.element.slideUp(200, function () {
+                flashMessage.element.trigger('flash.close');
+            });
 
-        setTopPosition: function(){
-            var newTopPosition = this.mainHeader.height();
-            this.element.css('top', newTopPosition);
+            return this;
         }
     }
 });

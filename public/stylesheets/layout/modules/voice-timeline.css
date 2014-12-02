@@ -7,9 +7,6 @@
   width: 40px;
   z-index: 2;
 }
-.timeliner-group.with-announcement {
-  top: 80px;
-}
 .timeliner-group > .timeliner {position: relative; line-height: 20px}
 #current_date {position: relative}
 .timeliner-group > .timeliner.current {margin-bottom: 5px}

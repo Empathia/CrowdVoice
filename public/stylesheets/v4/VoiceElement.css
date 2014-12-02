@@ -1,3 +1,30 @@
+.voice-box {
+  will-change: box-shadow;
+  transition: box-shadow 100ms;
+}
+
+.green .voice-box:hover {box-shadow: 0 0 0 1px rgba(80, 179, 71, 0.5), 0 0 7px rgba(80, 179, 71, 0.5)}
+.blue .voice-box:hover {box-shadow: 0 0 0 1px rgba(77, 181, 255, 0.5), 0 0 7px rgba(77, 181, 255, 0.5)}
+.yellow .voice-box:hover {box-shadow: 0 0 0 1px rgba(235, 201, 28, 0.5), 0 0 7px rgba(235, 201, 28, 0.5)}
+.red .voice-box:hover {box-shadow: 0 0 0 1px rgba(241, 15, 42, 0.5), 0 0 7px rgba(241, 15, 42, 0.5)}
+.orange .voice-box:hover {box-shadow: 0 0 0 1px rgba(236, 148, 21, 0.5), 0 0 7px rgba(236, 148, 21, 0.5)}
+
+.voice-box:hover > .voice-cont:after {
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.voice-box > .voice-cont:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 3px 3px 0 0;
+  will-change: box-shadow;
+  transition: box-shadow 100ms;
+}
+
 .voice-box.disabled {
 	display : none;
 	pointer-events : none;
@@ -7,5 +34,4 @@
 }
 
 .voice-box.no-events {
-	pointer-events : none;
-}
+	pointer-events : none; }

@@ -1,8 +1,5 @@
 .main-container {
-  background: #bdbdbd;
-}
-.voices-scroller {
-  background-color: #bdbdbd;
+  background-color: #dedede;
 }
 
 /* Voice Boxes Area */
@@ -16,20 +13,7 @@
      -moz-box-shadow: none;
           box-shadow: none;
 }
-.flash-message {background: #fff;
-  border-radius: 0;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.28);
-}
-.message {
-  background: #e3edec;
-  background: -moz-linear-gradient(top,  #e3edec 0%, #edf7f6 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e3edec), color-stop(100%,#edf7f6));
-  background: -webkit-linear-gradient(top,  #e3edec 0%,#edf7f6 100%);
-  background: -o-linear-gradient(top,  #e3edec 0%,#edf7f6 100%);
-  background: -ms-linear-gradient(top,  #e3edec 0%,#edf7f6 100%);
-  background: linear-gradient(to bottom,  #e3edec 0%,#edf7f6 100%);
-  border-radius: 0;
-}
+
 .flash {background: #f5f572 url('../../images/bg/notifications.png') 0 0 repeat-x; border-style: solid; border-color: #d5d653;
     -moz-box-shadow: 0 2px 2px 0px #1e1e1e;
     -webkit-box-shadow: 0 2px 2px 0px #1e1e1e;

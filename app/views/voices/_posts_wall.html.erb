@@ -9,255 +9,261 @@
   mod = (params[:mod] ? 'mod' : 'public')
   mobile = (is_mobile? ? 'mobile' : 'other')
 %>
+
 <% head do %>
   <% @is_gaza = @voice.is_witness_gaza %>
   <%= include_stylesheets :mediafeed_pack %>
 <% end %>
+
 <%= include_javascripts :mediafeed_pack %>
-<!-- this preloads the background image, used instead of script since script is fired after dom ready -->
+
 <img src="<%= @voice.background %>" class="hidden">
 <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
-  <header class="main-header">
+<header class="main-header">
+  <%= render :partial => "nav_bar" %>
 
-      <%= render :partial => "nav_bar" %>
+  <div class="post-and-actions">
+    <div class="post-width">
+      <%= form_for Post.new, :url => voice_posts_path(@voice, :format => :json), :html => { :multipart => true } do |f| %>
+        <%= f.text_field :url_check, :style => "display:none" %>
+        <fieldset class="post">
+          <p class="post-paceholder"><span>Post a URL or </span><%= f.file_field :image %><a href="#" title="Upload an Image">Upload an Image</a><span class="cover"></span></p>
+          <ul class="post-type">
 
-    <div class="post-and-actions">
-      <div class="post-width">
-        <%= form_for Post.new, :url => voice_posts_path(@voice, :format => :json), :html => { :multipart => true } do |f| %>
-          <%= f.text_field :url_check, :style => "display:none" %>
-          <fieldset class="post">
-            <p class="post-paceholder"><span>Post a URL or </span><%= f.file_field :image %><a href="#" title="Upload an Image">Upload an Image</a><span class="cover"></span></p>
-            <ul class="post-type">
+            <li class="media tool-image has-cv-tooltip">
+              <a class="media-type image-tool" href="#" title="Image">
+                <i class="mediafeed-sprite image-type-icon"></i>
+              </a>
+              <div class="cv-tooltip tooltip image-post-media-tooltip">
+                <div class="tooltip-positioner">
+                  <span class="tooltip-arrow"><span></span></span>
+                  <div class="image-tip cv-tooltip-inner">
+                    <div class="post-media-tooltip-header clearfix with-image js-with-content">
+                      <div class="cv-pull-left">
+                        <span class="title">Post Image</span>
+                      </div>
+                      <div class="cv-pull-right">
+                        <a href="#" class="tooltip-close-btn">Cancel</a>
+                      </div>
+                    </div>
+                    <div class="post-media-tooltip-content with-image js-with-content">
+                      <label>
+                        <p class="tooltip-label">Add a title to your image</p>
+                        <input class="cv-input cv-input--medium cv-input--dynamic-color cv-block" type="text" id="image_title" name="post[image_title]"/>
+                      </label>
+                      <label>
+                        <p class="tooltip-label">
+                          Add a description to your image
+                          <span class="light">(140 character max)</span>
+                        </p>
+                        <textarea maxlength="140" id="image_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[image_description]"></textarea>
+                      </label>
+                      <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
+                    </div>
+                    <div class="post-media-tooltip-footer">
+                      <p class="tooltip-label js-default">Enter the URL of an image you want to display in this voice</p>
+                      <span class="light">You can also send images (2 mb max) as attachments to this email:</span>
+                      <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'cv-dynamic-text-color', :encode => "javascript" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
 
-              <li class="media tool-image has-cv-tooltip">
-                <a class="media-type image-tool" href="#" title="Image">
-                  <i class="mediafeed-sprite image-type-icon"></i>
-                </a>
-                <div class="cv-tooltip tooltip image-post-media-tooltip">
-                  <div class="tooltip-positioner">
-                    <span class="tooltip-arrow"><span></span></span>
-                    <div class="image-tip cv-tooltip-inner">
-                      <div class="post-media-tooltip-header clearfix with-image js-with-content">
+            <li class="media tool-video has-cv-tooltip">
+              <a class="media-type video-tool" href="#" title="Video">
+                <i class="mediafeed-sprite video-type-icon"></i>
+              </a>
+              <div class="cv-tooltip tooltip video-post-media-tooltip">
+                <div class="tooltip-positioner">
+                  <span class="tooltip-arrow"><span></span></span>
+                  <div class="cv-tooltip-inner clearfix">
+                    Enter the URL of a Youtube or Vimeo video you want to display in this voice.
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="media tool-link has-cv-tooltip">
+              <a class="media-type link-tool" href="#" title="Link">
+                <i class="mediafeed-sprite link-type-icon"></i>
+              </a>
+              <div class="cv-tooltip tooltip link-img-post link-post-media-tooltip">
+                <div class="tooltip-positioner normal">
+                  <span class="tooltip-arrow"><span></span></span>
+                  <div class="cv-tooltip-inner">
+                    Put the URL of a Notice, Blog Post, or Article to display in this voice.
+                  </div>
+                </div>
+                <div class="tooltip-positioner carousel">
+                  <span class="tooltip-arrow"><span></span></span>
+                  <div class="cv-tooltip-inner">
+                    <div class="without-link js-default">
+                      <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
+                    </div>
+                    <div class="with-link js-with-content">
+                      <%= f.hidden_field :remote_image_url %>
+                      <div class="post-media-tooltip-header clearfix">
                         <div class="cv-pull-left">
-                          <span class="title">Post Image</span>
+                          <span class="title">Post Article Link</span>
                         </div>
                         <div class="cv-pull-right">
                           <a href="#" class="tooltip-close-btn">Cancel</a>
                         </div>
                       </div>
-                      <div class="post-media-tooltip-content with-image js-with-content">
+                      <div class="post-media-tooltip-content">
                         <label>
-                          <p class="tooltip-label">Add a title to your image</p>
-                          <input class="cv-input cv-input--medium cv-input--dynamic-color cv-block" type="text" id="image_title" name="post[image_title]"/>
+                          <p class="tooltip-label">
+                            Add a description to the link
+                            <span class="light">(140 character max)</span>
+                          </p>
+                          <textarea id="link_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[description]"></textarea>
                         </label>
                         <label>
                           <p class="tooltip-label">
-                            Add a description to your image
-                            <span class="light">(140 character max)</span>
+                            Choose a thumbnail image for the article
                           </p>
-                          <textarea maxlength="140" id="image_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[image_description]"></textarea>
                         </label>
-                        <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
-                      </div>
-                      <div class="post-media-tooltip-footer">
-                        <p class="tooltip-label js-default">Enter the URL of an image you want to display in this voice</p>
-                        <span class="light">You can also send images (2 mb max) as attachments to this email:</span>
-                        <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'cv-dynamic-text-color', :encode => "javascript" %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li class="media tool-video has-cv-tooltip">
-                <a class="media-type video-tool" href="#" title="Video">
-                  <i class="mediafeed-sprite video-type-icon"></i>
-                </a>
-                <div class="cv-tooltip tooltip video-post-media-tooltip">
-                  <div class="tooltip-positioner">
-                    <span class="tooltip-arrow"><span></span></span>
-                    <div class="cv-tooltip-inner clearfix">
-                      Enter the URL of a Youtube or Vimeo video you want to display in this voice.
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li class="media tool-link has-cv-tooltip">
-                <a class="media-type link-tool" href="#" title="Link">
-                  <i class="mediafeed-sprite link-type-icon"></i>
-                </a>
-                <div class="cv-tooltip tooltip link-img-post link-post-media-tooltip">
-                  <div class="tooltip-positioner normal">
-                    <span class="tooltip-arrow"><span></span></span>
-                    <div class="cv-tooltip-inner">
-                      Put the URL of a Notice, Blog Post, or Article to display in this voice.
-                    </div>
-                  </div>
-                  <div class="tooltip-positioner carousel">
-                    <span class="tooltip-arrow"><span></span></span>
-                    <div class="cv-tooltip-inner">
-                      <div class="without-link js-default">
-                        <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
-                      </div>
-                      <div class="with-link js-with-content">
-                        <%= f.hidden_field :remote_image_url %>
-                        <div class="post-media-tooltip-header clearfix">
-                          <div class="cv-pull-left">
-                            <span class="title">Post Article Link</span>
+                        <div class="cv-carousel-widget">
+                          <div class="carousel-image">
+                            <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
                           </div>
-                          <div class="cv-pull-right">
-                            <a href="#" class="tooltip-close-btn">Cancel</a>
-                          </div>
-                        </div>
-                        <div class="post-media-tooltip-content">
-                          <label>
-                            <p class="tooltip-label">
-                              Add a description to the link
-                              <span class="light">(140 character max)</span>
-                            </p>
-                            <textarea id="link_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[description]"></textarea>
-                          </label>
-                          <label>
-                            <p class="tooltip-label">
-                              Choose a thumbnail image for the article
-                            </p>
-                          </label>
-                          <div class="cv-carousel-widget">
-                            <div class="carousel-image">
-                              <img src="/images/loader.gif" border="0" class="carousel-loader" style="display: none"/>
-                            </div>
-                            <div class="carousel-arrows">
-                              <div class="carousel-arrows-inner">
-                                <div id="carousel_left_arrow" class="carousel-arrow left-arrow">
-                                  <span class="arrow cv-dynamic-horizontal-arrow"></span>
-                                </div>
-                                <div class="carousel-counter"></div>
-                                <div id="carousel_right_arrow" class="carousel-arrow right-arrow">
-                                  <span class="arrow cv-dynamic-horizontal-arrow"></span>
-                                </div>
+                          <div class="carousel-arrows">
+                            <div class="carousel-arrows-inner">
+                              <div id="carousel_left_arrow" class="carousel-arrow left-arrow">
+                                <span class="arrow cv-dynamic-horizontal-arrow"></span>
+                              </div>
+                              <div class="carousel-counter"></div>
+                              <div id="carousel_right_arrow" class="carousel-arrow right-arrow">
+                                <span class="arrow cv-dynamic-horizontal-arrow"></span>
                               </div>
                             </div>
                           </div>
-                          <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
                         </div>
+                        <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
                       </div>
                     </div>
                   </div>
                 </div>
-              </li>
-
-            </ul>
-            <%= f.text_field :source_url, :autocomplete => "off", :class => "cv-input cv-input--medium cv-input--dynamic-color cv-pull-left cv-block" %>
-            <div class="post-button"><%= f.submit 'Post', :class => "cv-button cv-button--dynamic-color" %>
-              <div class="tooltip notice">
-                <div class="tooltip-positioner">
-                  <p class="tooltip-arrow"><span></span></p>
-                  <div class="media-type-info">
-                    <p class="moderate-tooltip"></p>
-                  </div>
-                </div>
               </div>
-            </div>
-          </fieldset>
-        <% end %>
-      </div>
-    </div>
-    <div class="filters-and-mode">
-      <div>
-        <form>
-          <div class="tags-container has-cv-tooltip">
-            <div class="tag-tooltip-trigger cv-button cv-button--small cv-button--light with-arrow">
-              TAGS <i class="cv-button--arrow"></i>
-            </div>
-            <div class="cv-tooltip tooltip info-tags__tooltip">
+            </li>
+
+          </ul>
+          <%= f.text_field :source_url, :autocomplete => "off", :class => "cv-input cv-input--medium cv-input--dynamic-color cv-pull-left cv-block" %>
+          <div class="post-button"><%= f.submit 'Post', :class => "cv-button cv-button--dynamic-color" %>
+            <div class="tooltip notice">
               <div class="tooltip-positioner">
+                <p class="tooltip-arrow"><span></span></p>
                 <div class="media-type-info">
-                  <ul class="voice-tags"></ul>
+                  <p class="moderate-tooltip"></p>
                 </div>
               </div>
             </div>
           </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
 
-          <fieldset class="filters mediafeed-search">
-            <p>Show:</p>
-            <label class="links-label"><input class="link" type="checkbox" name="link"  class="filter" checked="checked" />Links</label>
-            <label class="videos-label"><input class="video" type="checkbox" name="video" class="filter" checked="checked" />Videos</label>
-            <label class="photos-label"><input class="image" type="checkbox" name="image" class="filter" checked="checked" />Photos</label>
-            <label class="tweets-label"><input type="checkbox" name="tweets" />Tweets</label>
-            <div class="tooltip-mediafeed-tweets has-cv-tooltip">
-              <span class="tooltip-hoverable-area">(<span class="cv-dynamic-text-color">?</span>)</span>
-              <div class="tooltip cv-tooltip mediafeed-tweets-tooltip">
-                <div class="tooltip-positioner">
-                  <span class="tooltip-arrow"><span></span></span>
-                  <div class="cv-tooltip-inner clearfix">
-                    All tweets using <span class="cv-dynamic-text-color"><%= @voice.twitter_search %></span>
-                    will be published in this voice's stream!
-                  </div>
+  <div class="filters-and-mode">
+    <div>
+      <form>
+        <div class="tags-container has-cv-tooltip">
+          <div class="tag-tooltip-trigger cv-button cv-button--small cv-button--light with-arrow">
+            TAGS <i class="cv-button--arrow"></i>
+          </div>
+          <div class="cv-tooltip tooltip info-tags__tooltip">
+            <div class="tooltip-positioner">
+              <div class="media-type-info">
+                <ul class="voice-tags"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <fieldset class="filters mediafeed-search">
+          <p>Show:</p>
+          <label class="links-label"><input class="link" type="checkbox" name="link"  class="filter" checked="checked" />Links</label>
+          <label class="videos-label"><input class="video" type="checkbox" name="video" class="filter" checked="checked" />Videos</label>
+          <label class="photos-label"><input class="image" type="checkbox" name="image" class="filter" checked="checked" />Photos</label>
+          <label class="tweets-label"><input type="checkbox" name="tweets" />Tweets</label>
+          <div class="tooltip-mediafeed-tweets has-cv-tooltip">
+            <span class="tooltip-hoverable-area">(<span class="cv-dynamic-text-color">?</span>)</span>
+            <div class="tooltip cv-tooltip mediafeed-tweets-tooltip">
+              <div class="tooltip-positioner">
+                <span class="tooltip-arrow"><span></span></span>
+                <div class="cv-tooltip-inner clearfix">
+                  All tweets using <span class="cv-dynamic-text-color"><%= @voice.twitter_search %></span>
+                  will be published in this voice's stream!
                 </div>
               </div>
             </div>
-            <div class="search-input-wrapper">
-              <input class="search cv-input cv-input--small cv-input--dynamic-color cv-input--rounded" type="text" placeholder="Search content"/>
-              <i class="mediafeed-sprite search-icon"></i>
-              <span class="results-feedback"><em class="found">0</em> total results</span>
-              <span class="search-clear">&times;</span>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <form class="form-right">
-        <fieldset class="mode">
-          <p>Mode:</p>
-          <ul>
-            <li class="mode-button <%= 'selected' unless params[:mod] %> public">
-              <%= link_to "Public", voice_path(@voice, :all => true), :class => "cv-button--small cv-button--light dynamic" %>
-            </li>
-            <li class="mode-button <%= 'selected' if params[:mod] %> mod">
-              <%= link_to "Moderator", voice_path(@voice, params.merge({:mod => 1}) ), :class => "cv-button--small cv-button--light dynamic" %>
-            </li>
-          </ul>
+          </div>
+          <div class="search-input-wrapper">
+            <input class="search cv-input cv-input--small cv-input--dynamic-color cv-input--rounded" type="text" placeholder="Search content"/>
+            <i class="mediafeed-sprite search-icon"></i>
+            <span class="results-feedback"><em class="found">0</em> total results</span>
+            <span class="search-clear">&times;</span>
+          </div>
         </fieldset>
       </form>
     </div>
+    <form class="form-right">
+      <fieldset class="mode">
+        <p>Mode:</p>
+        <ul>
+          <li class="mode-button <%= 'selected' unless params[:mod] %> public">
+            <%= link_to "Public", voice_path(@voice, :all => true), :class => "cv-button--small cv-button--light dynamic" %>
+          </li>
+          <li class="mode-button <%= 'selected' if params[:mod] %> mod">
+            <%= link_to "Moderator", voice_path(@voice, params.merge({:mod => 1}) ), :class => "cv-button--small cv-button--light dynamic" %>
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+  </div>
 
-    <% if @voice.logo.url %>
-      <div class="header-sponsor">
-        <%= link_to_if @voice.logo_link.present?, image_tag(@voice.logo.url, :title => "Sponsored by #{@voice.sponsor}", :alt => @voice.sponsor), @voice.logo_link %>
-        <span class="sponsor-slogan"><%= @voice.sponsor_slogan %></span>
-      </div>
-    <% end %>
-  </header>
-  <section class="voice-wrapper initial-state">
-    <script>
-      CV.posts_votes = <%= @votes.to_json.html_safe %>;
-    </script>
-    <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
+  <% if @voice.logo.url %>
+    <div class="header-sponsor">
+      <%= link_to_if @voice.logo_link.present?, image_tag(@voice.logo.url, :title => "Sponsored by #{@voice.sponsor}", :alt => @voice.sponsor), @voice.logo_link %>
+      <span class="sponsor-slogan"><%= @voice.sponsor_slogan %></span>
+    </div>
+  <% end %>
+</header>
 
-      <% if @posts.empty? %>
-        <div class="panel-padding sweeper">
-          <div class="voices-container">
-          </div>
-        </div>
-
-        <div class="empty-msg" style="position:relative; text-align: center; top: 120px">
-          All items for this tag have been moderated! Find a missing link, video or image? Add it here for moderation.
-        </div>
-      <% else %>
-        <%= render :partial => "posts" %>
-      <% end %>
-    <%= render :partial => "tweets" %>
-    <%# end %>
-  </section>
-
-<% if @voice.announcement.present? %>
+<section class="voice-wrapper initial-state">
+  <script>
+    CV.posts_votes = <%= @votes.to_json.html_safe %>;
+  </script>
+  <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
+  
+  <% if @voice.announcement.present? %>
     <div class="flash-message <%= 'with-infosidebar' if infosidebarIsPresent %>">
       <div class="message">
-        <p><span><%= link_to_if @voice.announcement.url, @voice.announcement.title, @voice.announcement.url %></span> <%= @voice.announcement.content %></p>
-        <a class="close-message"></a>
+        <p>
+          <%= link_to_if @voice.announcement.url, @voice.announcement.title, @voice.announcement.url %>
+          <%= @voice.announcement.content %>
+        </p>
+        <i class="close-message icon-x"></i>
       </div>
     </div>
   <% end %>
+
+  <% if @posts.empty? %>
+    <div class="panel-padding sweeper">
+      <div class="voices-container"></div>
+    </div>
+
+    <div class="empty-msg" style="position:relative; text-align: center; top: 120px">
+      All items for this tag have been moderated! Find a missing link, video or image? Add it here for moderation.
+    </div>
+  <% else %>
+    <%= render :partial => "posts" %>
+  <% end %>
+
+  <%= render :partial => "tweets" %>
+</section>
+
 <script type="text/javascript">
   var infoboxTags = <%=raw @voice.blocks.map(&:tag_list).flatten.uniq.to_json %>,
       _postCount  = <%= Setting.posts_per_page %>,

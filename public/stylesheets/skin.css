@@ -231,32 +231,32 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
 
 
 /* Messages Styles */
-
-.flash-message {background: #fff;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.28);
+.flash-message {
+  background: #fff;  
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.05);
   -webkit-transition: left 300ms linear;
   transition: left 300ms linear;
 }
 .message {
-  background: #f2fbff;
-  border-color: transparent #66CCFF #66CCFF #66CCFF;
-  border-style: solid;
-  border-radius: 0 0 4px 4px;
-  background-image: -moz-linear-gradient(top, #f5fcff, #ecf9ff);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #f5fcff), color-stop(1.0, #ecf9ff));
-  background-image: -webkit-linear-gradient(#f5fcff, #ecf9ff);
-  background-image: linear-gradient(top, #f5fcff, #ecf9ff);
+  border-bottom: 1px solid rgba(178, 134, 0, 0.75);
+  background-color: #ffedb8;
+  background-image: -webkit-linear-gradient(top, #fdefc4, #fce7ac);
+  background-image:         linear-gradient(to bottom, #fdefc4, #fce7ac);
 }
-.message p {color: #454a4c}
-.message p a {color: #454a4c}
+.message p a {
+  text-decoration: underline;
+}
+.message p a:hover {
+  color: #bf8f00;
+}
 .close-message {
-  background-image: url('/images/icons/sidebar-sprite.png');
-  background-position: -173px -2px;
-  background-repeat: no-repeat;
+  cursor: pointer;
+  color: #bf8f00;
 }
+.message,
+.message p a,
 .close-message:hover {
-  background-position: -173px -24px;
+  color: #806000;
 }
 
 /* loading wrapper MEDIAFEED */

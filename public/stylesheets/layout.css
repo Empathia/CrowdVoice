@@ -203,11 +203,21 @@ body {
 }
 
 /* Messages Styles */
-.message {border-width: 1px; padding: 11px 8px 8px 15px}
+.flash-message {
+  position: relative; 
+  z-index: 2;
+}
+.message {
+  padding: 9px 8px 8px 15px;
+}
 .message:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
-.message p {font-size: 16px; float: left; padding-top: 2px}
-.message p span {font-weight: bold}
-.close-message {width: 22px; height: 22px; float: right}
+.message p {font-size: 14px}
+.close-message {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 9px;
+}
 
 /* Map Styles */
 .map-container {
