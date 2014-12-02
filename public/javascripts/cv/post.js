@@ -160,32 +160,50 @@ Class('Post').inherits(Widget)({
                             that.inputFile.val('');
                             that.inputPost.val('').blur();
 
-                            $.get('/' + window.currentVoice.slug + '/posts/' + data.post.id, function(html) {
-                                var post    = $(html);
+                            var post = {}
 
-                                that.imageMediaTool.deactivate();
-                                that.videoMediaTool.deactivate();
-                                that.linkMediaTool.deactivate();
+                            post.name          = 'post_' + data.post.id,
+                            post.id            = data.post.id,
+                            post.image         = data.post.image,
+                            post.approved      = data.post.approved,
+                            post.description   = CV.getExcerpt(data.post.description, 250),
+                            post.imageWidth    = data.post.image_width,
+                            post.imageHeight   = data.post.image_height,
+                            post.negativeVotes = data.post.negative_votes_count,
+                            post.positiveVotes = data.post.positive_votes_count,
+                            post.overallScore  = data.post.overall_score,
+                            post.sourceService = data.post.source_service,
+                            post.sourceType    = data.post.source_type,
+                            post.sourceURL     = data.post.source_url,
+                            post.title         = data.post.title,
+                            post.voiceID       = data.post.voice_id,
+                            post.timeAgo       = data.post.created_at,
+                            post.createdAt     = data.post.created_at,
+                            post.service       = data.post.source_url,
+                            post.disabled      = true,
+                            post.active        = false,
+                            post.tags          = []
+                            
+                            var voice = new VoiceElement(post);
 
-                                that.postFilter.toggleModerator(true);
-                                that.carousel.clear();
+                            CV.voicesContainer.preloadedVoices.unshift(voice);
+                            CV.voicesContainer.appendChild(voice);
 
-                                $('.voices-container').prepend(post);
+                            voice.render(CV.voicesContainer.element, CV.voicesContainer.element.find('.voice-box').first());
 
-                                post.find('img.thumb-preview').bind('load',function(){
-                                    //if thumbnail bug, hide it
-                                    if ($(this).attr('src').indexOf('thumb_link-default.png') > 0){
-                                        $(this).hide();
-                                    }
+                            voice.activate();
 
-                                    $('.voices-container')
-                                        .isotope('addItems', post)
-                                        .isotope('reloadItems')
-                                        .isotope({ sortBy: 'original-order' })
-                                        .isotope();
-                                });
+                            voice.setImage();
+                            
+                            CV.voicesContainer.element.isotope('prepended', voice.element[0]);
 
-                            });
+                            that.imageMediaTool.deactivate();
+                            that.videoMediaTool.deactivate();
+                            that.linkMediaTool.deactivate();
+
+                            that.postFilter.toggleModerator(true);
+                            that.carousel.clear();
+
                             // TODO: show tooltip confirmation
                         } else { //error -- doesn't work with $.ajax error callback
                             for(var error in data){

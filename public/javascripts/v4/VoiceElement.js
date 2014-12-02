@@ -108,7 +108,14 @@ Class('VoiceElement').inherits(Widget)({
             var model   = 'image';
             var version = 'thumb_';
 
-            this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
+            
+            if (typeof this.image == "string") {
+                this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
+            } else {
+                this.thumbURL = this.image.thumb.url;
+            }
+
+            
 
             this.sourceElement = this.element.find('a.source-url');
             this.contentElement = this.element.find('.voice-cont');

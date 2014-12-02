@@ -104,9 +104,9 @@ class Post < ActiveRecord::Base
     source_type == 'image' && !(source_url =~ Scrapers::Sources::Flickr.regexp) && !(source_url =~ Scrapers::Sources::Twitpic.regexp) && !(source_url =~ Scrapers::Sources::Yfrog.regexp)
   end
 
-  def title
-    read_attribute(:title).gsub("\r", '').gsub("\n", '')
-  end
+  # def title
+  #   read_attribute(:title).gsub("\r", '').gsub("\n", '')
+  # end
 
   private
 
