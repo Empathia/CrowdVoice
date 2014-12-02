@@ -16,7 +16,7 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
         },
 
         _setupElements : function _setupElements() {
-            this._imageElement.attr('src', this.data.image);
+            this._imageElement.attr('src', this.thumbImageURL);
 
             return this;
         },

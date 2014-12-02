@@ -18,6 +18,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                         <div class="cv-backstory-overlay__shot">\
                             <div class="cv-backstory-overlay__shot-image">\
                                 <img />\
+                                <iframe frameborder="0" allowfullscreen></iframe>\
                             </div>\
                             <div class="cv-backstory-overlay__shot-caption"></div>\
                             <div class="cv-backstory-overlay__warning-message">\
@@ -77,6 +78,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._bodyElement = this.element.find('.cv-backstory-overlay__body');
             this._shotElement = this.element.find('.cv-backstory-overlay__shot');
             this._imageElement = this.element.find('.cv-backstory-overlay__shot-image > img');
+            this._iframeElement = this.element.find('.cv-backstory-overlay__shot-image > iframe');
             this._shotCaptionElement = this.element.find('.cv-backstory-overlay__shot-caption');
             this._warningMessage = this.element.find('.cv-backstory-overlay__warning-message');
             this._warningButtonView = this.element.find('.cv-backstory-overlay__warning-button-show');
@@ -160,13 +162,10 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
             this.appendChild(new CV.BackstoryGalleryCarrousel({
                 name : '_carrousel'
-            })).addThumbs(data.images).render(this._carouselWrapperElement);
+            })).addThumbs(data.images.concat(data.videos)).render(this._carouselWrapperElement);
 
+            /* activate the first/default option */
             this._carrousel.activateByIndex(0);
-
-            /*
-             * TODO: grab screenshot from youtube
-            */
 
             this._sourcesElementList.empty();
             data.sources.forEach(function(source)  {
@@ -191,6 +190,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
         updateImage : function updateImage(data)  {
             this._imageElement.hide();
+            this._iframeElement.hide().attr('src', '');
             this._shotCaptionElement.hide();
 
             if (data.is_explicit) {
@@ -199,16 +199,23 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                 this._warningMessage.hide();
             }
 
-            this._imgTmp = new Image();
-            this._imgTmp.src = data.image;
-            this._$imgTmp = $(this._imgTmp);
+            if (data.image) {
+                this._imgTmp = new Image();
+                this._imgTmp.src = data.image;
+                this._$imgTmp = $(this._imgTmp);
 
-            this.W = window.innerWidth
-            this.H = window.innerHeight
-            this.ASW = (this.W - (this.arrowsWidth))
-            this.ASH = (this.H - (40))
+                this.W = window.innerWidth
+                this.H = window.innerHeight
+                this.ASW = (this.W - (this.arrowsWidth))
+                this.ASH = (this.H - (40))
 
-            this._$imgTmp.unbind('load').bind('load', this._imageLoadHandler.bind(this, data));
+                this._$imgTmp.unbind('load').bind('load', this._imageLoadHandler.bind(this, data));
+            } else {
+                this._iframeElement[0].src = "//www.youtube.com/embed/" + data.videoID;
+                this._iframeElement.show();
+            }
+
+            return this;
         },
 
         _imageLoadHandler : function _imageLoadHandler(data, ev) {
@@ -303,6 +310,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._document.unbind('keyup.bg');
             this._document.unbind('keydown.bg');
             this._sourcesElement.removeClass('active');
+            this._iframeElement.attr('src', '');
         }
     }
 });
