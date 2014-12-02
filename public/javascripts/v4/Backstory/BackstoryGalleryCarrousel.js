@@ -51,9 +51,20 @@ Class(CV, 'BackstoryGalleryCarrousel').inherits(Widget)({
         /*
          */
         addThumbs : function addThumbs(data) {
+            var videoID, imageURL;
+
             data.forEach(function(item) {
+                if (item.video) {
+                    videoID = item.video.match(/watch\?v=(.*)/)[1];
+                    imageURL = 'http://img.youtube.com/vi/' + videoID + '/1.jpg';
+                    item.videoID = videoID;
+                } else {
+                    imageURL = item.image;
+                }
+
                 this.appendChild(new CV.BackstoryGalleryThumb({
-                    data: item
+                    data : item,
+                    thumbImageURL : imageURL
                 })).render(this._thumbsWrapperElement);
             }, this);
 
