@@ -2,7 +2,7 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
     HTML : '\
         <div class="cv-timeline-breadcrum clearfix">\
             <div class="cv-timeline-breadcrum__title">Jump to</div>\
-            <ul class="cv-timeline-breadcrum__points"></ul>\
+            <ul class="cv-timeline-breadcrum__points scroll-primary"></ul>\
         </div>\
     ',
     prototype : {

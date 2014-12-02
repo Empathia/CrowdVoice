@@ -244,6 +244,9 @@
   white-space: nowrap;
   padding: 9px 90px 9px 10px;
 }
+.cv-backstory-overlay__thumbs > ul {
+  overflow: auto;
+}
 
 .cv-backstory-overlay__thumbs li {
   cursor: pointer;
