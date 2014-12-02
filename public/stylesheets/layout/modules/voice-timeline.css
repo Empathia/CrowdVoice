@@ -2,14 +2,13 @@
 .main-container {position: relative}
 .timeliner-group {
   position: absolute;
-  top: 40px;
+  top: 26px;
   right: 21px;
   width: 40px;
   z-index: 2;
 }
 .timeliner-group > .timeliner {position: relative; line-height: 20px}
 #current_date {position: relative}
-.timeliner-group > .timeliner.current {margin-bottom: 5px}
 
 .disactivated-timeliner > a > .year-label,
 #current_date .year-label {font-size: 11px; padding-left: 12px; line-height: 20px}

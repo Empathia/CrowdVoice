@@ -4,10 +4,11 @@
 */
 
 /* Timeline */
-#current_date .year-label {color: #666}
-.disactivated-timeliner > a {text-decoration: none}
-.disactivated-timeliner > a > .year-label {color: #666}
-.disactivated-timeliner > a:hover .year-text {text-decoration: underline}
+#current_date .year-label {
+  color: #666;
+  font-weight: 600;
+}
+.disactivated-timeliner > a {text-decoration: underline}
 
 .timeliner-group .inner-dot-icn,
 .timeliner-group #current_date .inner-dot-icn,
@@ -24,7 +25,9 @@
 
 #current_date .inner-dot-icn {background-position: -264px 0}
 
-.slider-values {color: #333}
+.slider-values {
+  color: #999;
+}
 .slider-values > li {
   font-weight: normal;
   background-position: -266px -43px;
@@ -32,9 +35,12 @@
 .slider-values > li:last-child {
   background-position: -266px -86px;
 }
-.slider-values .linkable {cursor: pointer}
-.slider-values .empty-month .month-label {opacity: 0.5; pointer-events: none}
-.slider-values .active .month-label {color: #333; font-weight: bold; text-decoration: underline}
+.slider-values .linkable {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.slider-values .empty-month .month-label {pointer-events: none}
+.slider-values .active .month-label {color: #666; font-weight: bold; text-decoration: underline}
 .slider-values .linkable:hover .month-label {text-decoration: underline}
 .post-fetch-trigger {
   background: #F5F5F5;
