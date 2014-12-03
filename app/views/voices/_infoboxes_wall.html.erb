@@ -24,17 +24,19 @@
 
       <%= render :partial => "nav_bar" %>
 
-      <div class="infobox-wall scroll-secondary">
+      <div class="sweeper panel-padding">
+        <div class="infobox-wall scroll-secondary">
           <div class="infobox-pane panel-padding">
             <!-- begin infoboxes -->
             <!-- end infoboxes  -->
           </div>
-          <div class="infographics-map-wrapper" 
+        </div>
+
+        <div class="infographics-map-wrapper"
               data-lat="<%= @voice.latitude.present? ? @voice.latitude : '-34.397' %>"
               data-lng="<%= @voice.longitude.present? ? @voice.longitude : '150.644' %>">
-          </div>
+        </div>
       </div>
-
   </div>
 </div>
 
