@@ -7,14 +7,14 @@
     <% end %>
 
     <% if voice.is_infographic? %>
-      <a href="<%= "/#{voice.slug}" %>" class="icon hoverable simple-tooltip cv-dynamic-hover-text-color" data-tooltip-text="Infographics" data-tooltip-position="top right">
-        <i class="icon-infographics"></i>
+      <a href="<%= "/#{voice.slug}" %>" class="anchor simple-tooltip cv-dynamic-hover-text-color" data-tooltip-text="Infographics" data-tooltip-position="top right">
+        <i class="icon icon-infographics"></i>
       </a>
     <% end %>
 
     <% if !subdomain_present? && voice.has_timeline %>
-      <a href="<%= "/#{voice.slug}" %>?backstory=true" class="icon hoverable simple-tooltip cv-dynamic-hover-text-color" data-tooltip-text="Backstory" data-tooltip-position="top right">
-        <i class="icon-backstory"></i>
+      <a href="<%= "/#{voice.slug}" %>?backstory=true" class="anchor simple-tooltip cv-dynamic-hover-text-color" data-tooltip-text="Backstory" data-tooltip-position="top right">
+        <i class="icon icon-backstory"></i>
       </a>
     <% end %>
 
