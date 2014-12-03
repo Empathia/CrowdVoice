@@ -168,33 +168,16 @@
             display: block;
           }
 
-          .green .media-type:hover i,
-          .green .media-type.active i {
-            background-position-y: -96px;
-          }
-
-          .blue .media-type:hover i,
-          .blue .media-type.active i {
-            background-position-y: -120px;
-          }
-
-          .yellow .media-type:hover i,
-          .yellow .media-type.active i {
-            background-position-y: -144px;
-          }
-
-          .red .media-type:hover i,
-          .red .media-type.active i {
-            background-position-y: -168px;
-          }
-
-          .orange .media-type:hover i,
-          .orange .media-type.active i {
-            background-position-y: -192px;
+          .media-type .icon {
+            font-size: 16px;
+            vertical-align: top;
+            display: inline-block;
+            color: #ccc;
           }
 
         .post-type > .media > .tooltip {
           top: 14px;
+          color: #333;
         }
 
         .media-type-info  {
