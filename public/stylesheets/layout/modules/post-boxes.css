@@ -125,14 +125,9 @@
 
 .voice-cont .post-icon-type {
   float: left;
+  font-size: 16px;
   display: block;
   margin-right: 7px;
-}
-
-.voice-cont .post-icon-type {
-}
-
-.voice-cont .post-icon-type {
 }
 
 .voice-box > .voice-action {

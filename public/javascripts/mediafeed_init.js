@@ -18,7 +18,36 @@ $(function () {
         sidebarDisplay  = true,
         sidebarToggler, relayoutTimeout, backgroundTimeout, wallSizeTimeout;
 
-        window.isotopeReady    = false;
+    window.isotopeReady = false;
+
+    var _mapCreated, $mapWrapper, lat, lng, voiceMapWidget, $mapLink;
+
+    _mapCreated = false;
+    $mapWrapper = $('.mediafeed-map-wrapper');
+    lat = $mapWrapper.data('lat');
+    lng = $mapWrapper.data('lng');
+    voiceMapWidget = new CV.Map({zoom : 8}).render($mapWrapper);
+    $mapLink = $(document.querySelector('.info-tool-link.map'));
+
+   window.addCoordsToMap = function addCoordsToMap() {
+        _mapCreated = true;
+        voiceMapWidget.setMapCenter(lat, lng).createMap();
+    } 
+
+    $mapLink.bind('click', function(){
+        $mapWrapper[0].classList.toggle('active');
+
+        if (voiceMapWidget.active) voiceMapWidget.deactivate();
+        else voiceMapWidget.activate();
+
+        if (CV.Map.isGoogleScriptInyected === false) {
+            CV.Map.inyectGoogleMapsScript("addCoordsToMap");
+        } else if (_mapCreated === false) {
+            addCoordsToMap();
+        }
+
+        return false;
+    }); 
 
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
@@ -100,7 +129,7 @@ $(function () {
         });
     }
 
-    DynamicMeasures.setTopFaces();
+    // DynamicMeasures.setTopFaces();
 
     /* ---------------- FUNCTIONS ------------------ */
     var resizePostWall = function(){
@@ -280,5 +309,5 @@ $(function () {
     bindEvents();
 
     DynamicMeasures.update();
-    DynamicMeasures.setTopFaces();
+    //DynamicMeasures.setTopFaces();
 });

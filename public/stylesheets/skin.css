@@ -338,6 +338,9 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
   border-radius: 2px 2px 0 0;
   box-shadow: none;
 }
+.menu-item .menu-link:active {
+  box-shadow: none;
+}
 
 .top-left-navigation .menu-item.active .menu-link {
   background-color: #f2f2f2;

@@ -59,7 +59,7 @@ Class('VoiceElement').inherits(Widget)({
     ',
     VOICE_TYPE_HTML : '\
         <div class="voice-content-type-wrapper">\
-            <i class="mediafeed-sprite post-icon-type"></i>\
+            <i class="post-icon-type"></i>\
             <b class="time-ago"></b>\
         </div>\
     ',
@@ -220,7 +220,7 @@ Class('VoiceElement').inherits(Widget)({
                 this.sourceElement.append(this.constructor.PLAY_ICON);
             }
 
-            this.element.find('.post-icon-type').addClass(this.sourceType + '-icon');
+            this.element.find('.post-icon-type').addClass('icon-' + this.sourceType);
 
             this.element.find('a.facebook').attr({
                 'href' : 'http://facebook.com/sharer.php?u=' + voice.URL

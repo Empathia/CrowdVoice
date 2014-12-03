@@ -14,6 +14,7 @@ javascripts:
     - public/javascripts/include/rails.js
     - *neon
     - public/javascripts/include/jquery.placeholder.js
+    - public/javascripts/v4/map.js
     - public/javascripts/application.js
     - public/javascripts/v4/DelayedEventEmitter.js
     - public/javascripts/include/smart-resize.js

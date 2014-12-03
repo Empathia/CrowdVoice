@@ -5,7 +5,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 <div></div>\
             </div>\
             <div class="cv-timeline__info-mask"></div>\
-            <div class="cv-timeline"></div>\
+            <div class="cv-timeline scroll-primary"></div>\
         </div>\
     ',
     prototype : {

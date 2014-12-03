@@ -2,7 +2,7 @@ Class(CV, 'BackstoryGalleryCarrousel').inherits(Widget)({
     HTML : '\
         <div>\
             <div class="cv-backstory-overlay__thumbs">\
-                <ul></ul>\
+                <ul class="scroll-secondary"></ul>\
             </div>\
             <div class="cv-backstory-overlay__arrows">\
                 <a href="#" class="cv-button left-arrow">\

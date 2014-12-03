@@ -11,8 +11,9 @@
 <!--<div class="sweeper header-sep"></div>-->
 
 <div class="cv-backstory-ui-wrapper" data-background="<%= @voice.background %>">
-  <div class="map-overlay">
-    <%= render 'map' %>
+  <div class="backstory-map-wrapper" 
+      data-lat="<%= @voice.latitude.present? ? @voice.latitude : '-34.397' %>"
+      data-lng="<%= @voice.longitude.present? ? @voice.longitude : '150.644' %>">
   </div>
 </div>
 
