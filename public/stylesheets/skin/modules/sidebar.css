@@ -178,11 +178,13 @@
     background-color: #383838;
   }
 
-  .sidebar-scroller__list-item .icon--14 {
+  .sidebar-scroller__list-item .icon {
+    color: #fff;
     opacity: .4;
   }
-  .sidebar-scroller__list-item .icon--14:hover {
+  .sidebar-scroller__list-item .icon:hover {
     opacity: 1;
+    text-decoration: none;
   }
 
 .sidebar-scroller__list-item.select,

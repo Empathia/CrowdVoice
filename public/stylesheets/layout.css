@@ -21,13 +21,6 @@ body {
   overflow-y: auto;
 }
 
-.icon--14 {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  vertical-align: top;
-}
-
 .avoid-scrolling-content .scroll-primary,
 .avoid-scrolling-content .scroll-secondary {
   overflow-y: hidden !important;
@@ -212,7 +205,7 @@ body {
 
 /* Messages Styles */
 .flash-message {
-  position: relative; 
+  position: relative;
   z-index: 2;
 }
 .message {

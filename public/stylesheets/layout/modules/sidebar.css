@@ -218,12 +218,15 @@ hgroup {
   .sidebar-scroller .backstory .sidebar-scroller__list-item-anchor {padding-right: 37px}
   .sidebar-scroller .is_infographic.backstory .sidebar-scroller__list-item-anchor {padding-right: 49px}
 
-.sidebar-scroller__list-item .icon--14 {
-  position: absolute!important;
+.sidebar-scroller__list-item .icon {
+  position: absolute !important;
   top: 12px;
   right: 10px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 12px;
 }
-.sidebar-scroller__list-item .icon--14 + .icon--14 {
+.sidebar-scroller__list-item .icon + .icon {
   right: 30px;
 }
 
@@ -299,8 +302,7 @@ hgroup {
   .create-voice,
   .voice-search > ul,
   .map-container,
-  .tab-controller .sprite-sidebar,
-  .icon--backstory {
+  .tab-controller .sprite-sidebar {
     display: none;
   }
 
@@ -330,8 +332,7 @@ hgroup {
   .create-voice,
   .voice-search > ul,
   .map-container,
-  .tab-controller .sprite-sidebar,
-  .icon--backstory {
+  .tab-controller .sprite-sidebar {
     display: none;
   }
 
