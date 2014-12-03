@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-93dfuy');
-	src:url('fonts/icomoon.eot?#iefix-93dfuy') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-93dfuy') format('woff'),
-		url('fonts/icomoon.ttf?-93dfuy') format('truetype'),
-		url('fonts/icomoon.svg?-93dfuy#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-lmt0o6');
+	src:url('fonts/icomoon.eot?#iefix-lmt0o6') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-lmt0o6') format('woff'),
+		url('fonts/icomoon.ttf?-lmt0o6') format('truetype'),
+		url('fonts/icomoon.svg?-lmt0o6#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,72 +23,72 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow-left-light:before {
-	content: "\e615";
-}
-.icon-arrow-right-light:before {
-	content: "\e616";
-}
 .icon-arrow-back:before {
 	content: "\e600";
 }
-.icon-arrow-left:before {
+.icon-arrow-left-light:before {
 	content: "\e601";
 }
-.icon-arrow-right:before {
+.icon-arrow-left:before {
 	content: "\e602";
 }
-.icon-backstory:before {
+.icon-arrow-right-light:before {
 	content: "\e603";
 }
-.icon-facebook:before {
+.icon-arrow-right:before {
 	content: "\e604";
 }
-.icon-flag:before {
+.icon-backstory:before {
 	content: "\e605";
 }
-.icon-gear:before {
+.icon-facebook:before {
 	content: "\e606";
 }
-.icon-infographics:before {
+.icon-flag:before {
 	content: "\e607";
 }
-.icon-link:before {
+.icon-gear:before {
 	content: "\e608";
 }
-.icon-map-pin:before {
+.icon-image:before {
 	content: "\e609";
 }
-.icon-photo:before {
+.icon-infographics:before {
 	content: "\e60a";
 }
-.icon-play:before {
+.icon-link:before {
 	content: "\e60b";
 }
-.icon-rss:before {
+.icon-map-pin:before {
 	content: "\e60c";
 }
-.icon-search:before {
+.icon-play:before {
 	content: "\e60d";
 }
-.icon-star:before {
+.icon-rss:before {
 	content: "\e60e";
 }
-.icon-thumbs-down:before {
+.icon-search:before {
 	content: "\e60f";
 }
-.icon-thumbs-up:before {
+.icon-star:before {
 	content: "\e610";
 }
-.icon-twitter:before {
+.icon-thumbs-down:before {
 	content: "\e611";
 }
-.icon-video:before {
+.icon-thumbs-up:before {
 	content: "\e612";
 }
-.icon-voice:before {
+.icon-twitter:before {
 	content: "\e613";
 }
-.icon-x:before {
+.icon-video:before {
 	content: "\e614";
+}
+.icon-voice:before {
+	content: "\e615";
+}
+.icon-x:before {
+	content: "\e616";
 }

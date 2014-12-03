@@ -73,7 +73,7 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
             this._titleElement.text(this.data.name);
 
             if (totalImages > 0) {
-                this._titleElement.append('<i class="icon icon-photo"></i>');
+                this._titleElement.append('<i class="icon icon-image"></i>');
 
                 if (totalImages >= 2) {
                     this._frameElement.after(this.constructor.FRAME_STRING_TEMPLATE);
