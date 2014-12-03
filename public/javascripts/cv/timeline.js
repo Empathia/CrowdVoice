@@ -11,8 +11,6 @@ Class('Timeline').inherits(Widget)({
             this.appendChild(progress)
 
             progress.render($('body'));
-            
-            var voicesScrollerContainer = $('.voices-scroller').parent();
         },
 
         loadPage: function (page) {
@@ -31,7 +29,7 @@ Class('Timeline').inherits(Widget)({
             var timeline = this;
 
             timeline.progress.activate();
-            
+
             var params = {};
 
             params.start = date;
@@ -43,9 +41,9 @@ Class('Timeline').inherits(Widget)({
             }
 
             setTimeout(function() {
-                CV.voicesContainer.goToDate(params.start);    
+                CV.voicesContainer.goToDate(params.start);
             }, 100);
-            
+
         },
 
         months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -95,7 +93,7 @@ Class('Timeline').inherits(Widget)({
                     var scroller = this;
 
                     clearTimeout( $.data( this, "scrollCheck" ) );
-                    
+
                     $.data( this, "scrollCheck", setTimeout(function() {
                         that.debouncePositionUpdate();
                     }, 200) );
@@ -143,13 +141,13 @@ Class('Timeline').inherits(Widget)({
             if (currentPage > (totalVoices / perPage)) {
                 return;
             }
-            
+
             this.loadPage();
         },
         afterFetchActions: function(images){
             // this.voicesContainer.isotope('layout');
             this.progress.deactivate();
-            
+
             this.updateSliderPosition();
         },
         updateSliderPosition: function () {
