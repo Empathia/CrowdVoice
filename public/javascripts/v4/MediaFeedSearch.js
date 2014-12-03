@@ -82,6 +82,8 @@ Class('MediaFeedSearch').inherits(Widget)({
             
             var query = this.element.find('input.search').val();
 
+            query = query.toLowerCase();
+
             var tagElements = this.element.find('ul.voice-tags input');
 
             var tags = [];
@@ -101,22 +103,22 @@ Class('MediaFeedSearch').inherits(Widget)({
 
             var shouldShow = false;
 
-            _.each(voices, function(voice) {
+            _.each(CV.voicesContainer.children, function(voice) {
                 if (mediaFeedSearch.types.indexOf(voice.sourceType) !== -1) {
-                    query                   = query.toLowerCase();
-                    
                     var voiceTitle          = voice.title.toLowerCase();
                     var voiceDescription    = voice.description.toLowerCase();
                     
+                    shouldShow = true;
+
                     if (query !== '') {
                         if (voiceTitle.search(query) !== -1 || voiceDescription.search(query) !== -1) {
                             shouldShow = true;
                         } else {
                             shouldShow = false;
                         }   
-                    } else {
-                        shouldShow = true;
                     }
+                } else {
+                    shouldShow = false;
                 }
 
                 var hasTags = false
@@ -140,8 +142,6 @@ Class('MediaFeedSearch').inherits(Widget)({
                     result.push(voice);
                 };
             });
-
-            console.log(result.length)
 
             CV.voicesContainer.filteredResults = result;
 
