@@ -17,9 +17,6 @@ body{overflow: hidden;}
 .voice-wrapper.initial-state > .sweeper.panel-padding {
   height: 100%;
 }
-.updating-wrapper {
-  z-index: 4;
-}
 
 .flash-message {
   margin-left: 16px;

@@ -169,16 +169,6 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
 }
 
 /* loading wrapper MEDIAFEED */
-.updating-wrapper {
-  background-color: rgb(6, 6, 6);
-  background-color: rgba(0, 0, 0, .6);
-  background-repeat: no-repeat;
-  background-position: center;
-  -webkit-background-size: 100% auto;
-    -moz-background-size: 100% auto;
-       -o-background-size: 100% auto;
-          background-size: 100% auto
-}
 .image-bg-patter {background: transparent url('/images/bg/load-pattern.png') repeat;}
 .spinner {
   background: #a5a5a5 url('/images/bg/more-noise.png') 100% 100% repeat-x;

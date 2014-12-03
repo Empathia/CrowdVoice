@@ -38,7 +38,6 @@ Class('VoicesContainer').inherits(Widget)({
             });
 
             var complete = function( isoInstance, laidOutItems ) {
-              $('.updating-wrapper').hide();
               $('body').css('overflow', 'hidden');
               $('.voice-wrapper').removeClass('initial-state');
               DynamicMeasures.update();
@@ -46,7 +45,7 @@ Class('VoicesContainer').inherits(Widget)({
             }
 
             voicesContainer.element.isotope( 'on', 'layoutComplete', complete);
-            
+
             window.isotopeReady = true;
 
             this.delayedEvent = new DelayedEventEmitter();
@@ -57,16 +56,16 @@ Class('VoicesContainer').inherits(Widget)({
 
             this.element.parent().bind('scroll', function(){
                 clearTimeout( $.data( this, "scrollCheck" ) );
-                
+
                 $.data( this, "scrollCheck", setTimeout(function() {
                     _.each(voicesContainer.children, function(voice) {
                         if (voice.active) {
                             if (voice.element.visible(true)) {
                                 voice.element.removeClass('no-events');
                                 if (!voice.thumbElement.hasClass('na')) {
-                                    voice.setImage();    
+                                    voice.setImage();
                                 };
-                                
+
                             } else {
                                 voice.element.addClass('no-events');
                             }
@@ -93,7 +92,7 @@ Class('VoicesContainer').inherits(Widget)({
                 voiceIndex      = i;
 
                 if (date[0] === voiceDate[0]) {
-                    
+
                     foundVoice = child;
                     gotDate = true;
                     break;
@@ -143,22 +142,22 @@ Class('VoicesContainer').inherits(Widget)({
                     voicesContainer.element.isotope('appended', elements);
 
                     voicesContainer.currentPage = page + 1;
-                } 
-                
+                }
+
                 voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
                     CV.timeline.afterFetchActions();
                     CV.timeline.updateSliderPosition();
                 });
             });
-            
-            
+
+
         },
 
         createVoiceWidgets : function(callback) {
             var voicesContainer = this;
             var fragment = document.createDocumentFragment();
 
-            
+
             _.each(this.preloadedVoices, function(post) {
                 if (post.post) {
                     post = post.post;
@@ -193,10 +192,10 @@ Class('VoicesContainer').inherits(Widget)({
                 fragment.appendChild(voice.element[0]);
             });
 
-            voicesContainer.element[0].appendChild(fragment);    
-            
+            voicesContainer.element[0].appendChild(fragment);
+
             // CV.timeline.options.votes.unbindEvents().bindEvents();
-            
+
             if (callback) {
                 callback();
             }
@@ -226,7 +225,7 @@ Class('VoicesContainer').inherits(Widget)({
                         voice.setImage();
                     }
                 });
-                
+
                 fragment.appendChild(voice.element[0]);
             });
 
@@ -235,11 +234,11 @@ Class('VoicesContainer').inherits(Widget)({
             } else {
                 voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[this.lastVoiceIndex - 1].element[0]);
             }
-            
+
             this.element.isotope('appended', elements);
 
             this.currentPage++;
-            
+
             if (callback) {
                 callback();
             }

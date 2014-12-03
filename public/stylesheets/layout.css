@@ -245,14 +245,6 @@ body {
   }
 
 /*loading wrapper MEDIAFEED */
-.updating-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 3;
-}
 .image-bg-patter {position: absolute; height: 100%; width: 100%; top: 0; left: 0; z-index: 1;}
 .loading-wrapper {width: 150px; position: absolute;  top: 40%; left: 50%; margin: -18px 0 0 -75px; display: block;}
 

@@ -32,7 +32,7 @@ $(function () {
    window.addCoordsToMap = function addCoordsToMap() {
         _mapCreated = true;
         voiceMapWidget.setMapCenter(lat, lng).createMap();
-    } 
+    }
 
     $mapLink.bind('click', function(){
         $mapWrapper[0].classList.toggle('active');
@@ -47,7 +47,7 @@ $(function () {
         }
 
         return false;
-    }); 
+    });
 
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
@@ -152,42 +152,6 @@ $(function () {
         setPostWallSize();
     };
 
-    var background_loader_init = function(){
-        var loader = $('.updating-wrapper'),
-            voiceBox = $('.voice-box'),
-            boxCounter = 0;
-
-        loader.parent().css({
-            position: 'relative'
-        });
-
-        if ( loader.data('background-loading-image') ){
-            $('<img/>').bind('load error', function(){
-
-                voiceBox.find('img').imagesLoaded(function (e) {
-                    boxCounter++;
-                    if(boxCounter == voiceBox.length){
-                        // isotope_init();
-                        voice_loaded = true;
-                    }
-                });
-                // fallback in case images fail
-                setTimeout(function() {
-                    if (!voice_loaded){
-                        // isotope_init();
-                    }
-                }, 5000);
-            } ).attr('src', loader.data('background-loading-image'));
-        } else {
-            // isotope_init();
-        }
-
-        if (voiceBox.length === 0){
-            $('.updating-wrapper').hide();
-        }
-    };
-
-
     var bindEvents = function (){
         var infoSidebarTabController    = $('.info-tab-controller'),
             voiceSidebarTabController   = $('.tab-controller');
@@ -203,7 +167,6 @@ $(function () {
         win.bind('ready resize smartresize', function(){
             resizePostWall();
             setNavigationBehaviors();
-            setBackgroundSize();
         }).smartresize();
 
         // $(window).bind('ready resize smartresize', function() {
@@ -219,37 +182,6 @@ $(function () {
         tweetsSidebar.bind('tweets.change', function(){
             resizePostWall();
         });
-    };
-
-    var setBackgroundSize = function() {
-        var ghostImg        = $(document.createElement('img')),
-            bgReceiver      = $('.updating-wrapper'),
-            // wrapperHeight   = win.height() - $('header').height(),
-            wrapperHeight   = bgReceiver.height(),
-            bgSrc           = bgReceiver.css('background-image'),
-            bgUrl           = /^url\((['"]?)(.*)\1\)$/.exec(bgSrc),
-            bgPath          = bgUrl ? bgUrl[2] : "",
-            bgSize;
-        if (bgReceiver.css('display') === 'block') {
-            ghostImg.css({
-                'opacity':'0',
-                'position':'absolute',
-                'width':'100%'
-            }).appendTo(bgReceiver).attr('src', bgPath);
-            if (ghostImg.height() > 0) {
-                bgSize = ghostImg.height() < wrapperHeight ? 'auto 100%' : '100% auto';
-                // bgReceiver.css('backgroundSize','auto 100%');
-                bgReceiver.css('backgroundSize',bgSize);
-            } else {
-                if (backgroundTimeout != undefined) {
-                    clearTimeout(backgroundTimeout);
-                }
-                backgroundTimeout = setTimeout(function(){
-                    setBackgroundSize();
-                }, 100);
-            }
-            ghostImg.remove();
-        }
     };
 
     var setNavigationBehaviors = function(){
@@ -301,13 +233,9 @@ $(function () {
 
     };
     /* INITS */
-    background_loader_init();
-
-    setBackgroundSize();
     setPostWallSize();
     setNavigationBehaviors();
     bindEvents();
 
     DynamicMeasures.update();
-    //DynamicMeasures.setTopFaces();
 });
