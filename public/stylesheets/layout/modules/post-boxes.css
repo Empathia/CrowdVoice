@@ -148,6 +148,9 @@
   display: block;
   width: 20px;
 }
+.voice-action > .actions > li > a > .icon {
+  font-size: 13px;
+}
 
 .voice-action .flag-div {
   float: right;

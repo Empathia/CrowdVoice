@@ -143,3 +143,17 @@
 .orange .cv-dynamic-horizontal-arrow {
   border-color: transparent #ec9415;
 }
+
+/* hover misc */
+.cv-hover-twitter-brand-color:hover,
+.cv-hover-twitter-brand-color:hover .icon {
+  color: #55acee;
+}
+.cv-hover-facebook-brand-color:hover,
+.cv-hover-facebook-brand-color:hover .icon {
+  color: #3b5998;
+}
+.cv-hover-danger-brand-color:hover,
+.cv-hover-danger-brand-color:hover .icon {
+  color: #dd0017;
+}

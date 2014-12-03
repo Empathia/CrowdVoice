@@ -13,18 +13,20 @@ Class('VoiceElement').inherits(Widget)({
             <div class="voice-action">\
                 <ul class="actions">\
                     <li>\
-                        <a class="twitter" target="_blank">\
-                            <i class="mediafeed-sprite twitter"></i>\
+                        <a class="twitter cv-hover-twitter-brand-color" target="_blank">\
+                            <i class="icon icon-twitter"></i>\
                         </a>\
                     </li>\
                     <li>\
-                        <a class="facebook" target="_blank">\
-                            <i class="mediafeed-sprite facebook"></i>\
+                        <a class="facebook cv-hover-facebook-brand-color" target="_blank">\
+                            <i class="icon icon-facebook"></i>\
                         </a>\
                     </li>\
                 </ul>\
                 <div class="flag-div">\
-                    <a href="" class="vote-post mediafeed-sprite flag" data-method="post" rel="nofollow"></a>\
+                    <a href="" class="vote-post flag cv-hover-danger-brand-color" data-method="post" rel="nofollow">\
+                        <i class="icon icon-flag"></i>\
+                    </a>\
                     <div class="tooltip flag-tip" data-post-id="">\
                         <div class="tooltip-positioner bottom">\
                             <div class="media-type-info">\
@@ -108,14 +110,14 @@ Class('VoiceElement').inherits(Widget)({
             var model   = 'image';
             var version = 'thumb_';
 
-            
+
             if (typeof this.image == "string") {
                 this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
             } else {
                 this.thumbURL = this.image.thumb.url;
             }
 
-            
+
 
             this.sourceElement = this.element.find('a.source-url');
             this.contentElement = this.element.find('.voice-cont');
@@ -339,7 +341,7 @@ Class('VoiceElement').inherits(Widget)({
 
         _deactivate : function() {
             Widget.prototype._deactivate.call(this);
-            
+
             this.element.addClass('disabled');
         },
 
