@@ -61,7 +61,13 @@
     line-height: 18px;
     margin-bottom: 7px;
 }
-.home-cover__header-title .icon--14 {margin-right: 2px}
+.home-cover__header-title .icon {
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 2px 2px 0 0;
+    color: #fff;
+}
 .home-cover__title {
     font-size: 22px;
     line-height: 1.45em;
@@ -70,12 +76,15 @@
 .home-cover__media-info {
     font-size: 11px;
 }
-    .home-cover__media-info .icon--14 {
+    .home-cover__media-info .icon {
+        font-size: 13px;
         margin: 0 2px;
+        color: #fff;
     }
-    .home-cover__media-info .icon--14:first-child {
+    .home-cover__media-info .icon:first-child {
         margin-left: 0;
     }
+
     .home-cover__total-voices {
       margin-top: -2px;
       display: inline-block;

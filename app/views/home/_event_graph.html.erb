@@ -2,19 +2,24 @@
   <div class="home-cover home-cover--infographic home-cover--1-6 <%= item.voice.theme %>">
     <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>">
       <div class="home-cover__header-title">
-        <span class="icon--14 icon--infographic opacity--40"></span> know the facts behind
+        <i class="icon icon-infographics opacity--40"></i>
+        know the facts behind
       </div>
       <div class="home-cover__title"><%= item.voice.title %></div>
       <div class="home-cover__media-info">
         <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory hoverable simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
+            <i class="icon icon-backstory"></i>
+          </a>
           <span class="char--dot">•</span>
         <% end %>
         <% if !item.voice.blocks.empty? %>
-          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic hoverable simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
+            <i class="icon icon-infographics"></i>
+          </a>
           <span class="char--dot">•</span>
         <% end %>
-        <span class="icon--14 icon--stats"></span>
+        <i class="icon icon-voice"></i>
         <span class="home-cover__total-voices"><%= item.voice.posts.size %></span>
         <span class="home-cover__time-ago">Updated <%= time_ago_in_words(item.voice.posts.where(:approved => true).first.updated_at) %> ago</span>
       </div>
@@ -41,20 +46,24 @@
   <div class="home-cover home-cover--backstory home-cover--1-6 <%= item.voice.theme %>">
     <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>?backstory=true">
       <div class="home-cover__header-title">
-        <span class="icon--14 icon--backstory opacity--40"></span>
+        <i class="icon icon-backstory opacity--40"></i>
         understand the events behind
       </div>
       <div class="home-cover__title"><%= item.voice.title %></div>
       <div class="home-cover__media-info">
         <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="icon--14 icon--backstory hoverable simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
+            <i class="icon icon-backstory"></i>
+          </a>
           <span class="char--dot">•</span>
         <% end %>
         <% if !item.voice.blocks.empty? %>
-          <a href="<%= "/#{item.voice.slug}" %>" class="icon--14 icon--infographic hoverable simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top"></a>
+          <a href="<%= "/#{item.voice.slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
+            <i class="icon icon-infographics"></i>
+          </a>
           <span class="char--dot">•</span>
         <% end %>
-        <span class="icon--14 icon--stats"></span>
+        <i class="icon icon-voice"></i>
         <span class="home-cover__total-voices"><%= item.voice.posts.size %></span>
         <span class="home-cover__time-ago">
           Updated <%= time_ago_in_words(item.voice.posts.where(:approved => true).first.updated_at) %> ago
