@@ -45,13 +45,13 @@ Class('VoiceElement').inherits(Widget)({
               <ul class="clearfix">\
                 <li class="up flag-div">\
                     <a class="vote-post thumb" data-method="post" rel="nofollow">\
-                        <i class="mediafeed-sprite allow-post"></i>\
+                        <i class="allow-post icon icon-thumbs-up"></i>\
                         <span class="text">Allow</span>\
                     </a>\
                 </li>\
                 <li class="down flag-div">\
                   <a class="vote-post thumb" data-method="post" rel="nofollow">\
-                      <i class="mediafeed-sprite deny-post"></i>\
+                      <i class="deny-post icon icon-thumbs-down"></i>\
                       <span class="text">Deny</span>\
                   </a>\
                 </li>\

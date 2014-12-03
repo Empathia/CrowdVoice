@@ -76,15 +76,17 @@
 .voice-action > .actions > li > a:hover .mediafeed-sprite.facebook {
   background-position: -96px 0;
 }
-
-.mediafeed-sprite.allow-post {
-  margin-top: .45em;
-  margin-right: .25em;
+.vote-post .icon {
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .18em;
+  margin-right: .2em;
 }
 
-.mediafeed-sprite.deny-post {
-  margin-top: .45em;
-  margin-right: .25em;
+.vote-post .icon-flag {
+  font-size: 14px;
+  margin: 0;
 }
 
 .voice-box > .voice-unmoderated {
