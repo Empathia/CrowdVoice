@@ -45,6 +45,9 @@
             border-bottom-width: 2px;
             max-height: 28px;
           }
+            .menu-item .menu-link > .icon {
+              font-size: 13px;
+            }
           .menu-item .menu-link .text {
             display: inline-block;
             vertical-align: middle;

@@ -21,7 +21,7 @@
       <% if !subdomain_present? && (@voice.has_timeline || (@voice.events.present? && current_user && current_user.is_admin?)) %>
         <li name="Backstory" class="menu-item backstory-menu-item <%= "active" if params[:backstory] %>">
           <a href="<%= voice_url(@voice) %>?backstory=true" class="menu-link cv-button--dynamic-color">
-            <i class="icon--14 icon--backstory"></i>
+            <i class="icon icon-backstory cv-dynamic-active-text-color"></i>
             <span class="text">Backstory</span>
           </a>
         </li>
@@ -29,14 +29,14 @@
       <% if !@blocks.empty? %>
         <li name="Infographic" class="menu-item infographics-menu-item <%= "active" if !@blocks.empty? && !params[:tags].present? && !params[:all] && !params[:backstory] %>">
           <a href="<%= voice_url(@voice) %>" class="menu-link cv-button--dynamic-color">
-            <i class="icon--14 icon--infographic"></i>
+            <i class="icon icon-infographics cv-dynamic-active-text-color"></i>
             <span class="text">Infographic</span>
           </a>
         </li>
       <% end %>
       <li name="Media Feed" class="menu-item media-feed-menu-item <%= "active" if params[:tags].present? || params[:all] %>">
         <a href="<%= voice_url(@voice) %>?all=true" class="menu-link cv-button--dynamic-color">
-          <i class="icon--14 icon--stats"></i>
+          <i class="icon icon-voice cv-dynamic-active-text-color"></i>
           <span class="text">Media feed</span>
         </a>
       </li>
@@ -47,11 +47,13 @@
       </li>
       <li class="info-tool maps">
         <a title="Map" class="cv-button--small cv-button--trans info-tool-link map">
+          <i class="icon-map-pin"></i>
           <i class="mediafeed-sprite pin-icon"></i>
         </a>
       </li>
       <li class="info-tool widget has-cv-tooltip">
         <a class="cv-button--small cv-button--trans info-tool-link" href="#" title="widget">
+          <i class="icon-gear"></i>
           <i class="mediafeed-sprite gear-icon"></i>
         </a>
 
@@ -117,6 +119,7 @@
       </li>
       <li class="info-tool rss">
         <%= link_to voice_path(@voice, :format => :rss), :class => 'cv-button--small cv-button--trans info-tool-link', :title => 'RSS feed' do %>
+          <i class="icon-rss"></i>
           <i class="mediafeed-sprite rss-icon"></i>
         <% end %>
       </li>
