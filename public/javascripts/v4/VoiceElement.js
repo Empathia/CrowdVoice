@@ -75,6 +75,7 @@ Class('VoiceElement').inherits(Widget)({
         imageWidth    : 0,
         imageHeight   : 0,
         thumbURL      : null,
+        coverURL      : null,
         negativeVotes : 0,
         positiveVotes : 0,
         overallScore  : 0,
@@ -113,8 +114,10 @@ Class('VoiceElement').inherits(Widget)({
 
             if (typeof this.image == "string") {
                 this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
+                this.coverURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + this.image;
             } else {
                 this.thumbURL = this.image.thumb.url;
+                this.thumbURL = this.image.url;
             }
 
 
