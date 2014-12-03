@@ -145,6 +145,13 @@ body {
   margin-left: .6em;
 }
 
+.voice-info-tools > .info-tool .icon {
+  font-size: 11px;
+  display: inline-block;
+  vertical-align: top;
+  opacity: 0.8;
+}
+
 .voice-info-tools .pin-icon {
   margin-top: 3px;
 }
@@ -154,7 +161,7 @@ body {
 }
 
 .voice-info-tools .rss-icon {
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .widget-height,

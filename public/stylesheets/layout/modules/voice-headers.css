@@ -47,6 +47,8 @@
           }
             .menu-item .menu-link > .icon {
               font-size: 13px;
+              line-height: 14px;
+              vertical-align: middle;
             }
           .menu-item .menu-link .text {
             display: inline-block;
