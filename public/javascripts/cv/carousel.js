@@ -164,9 +164,6 @@ Class('Carousel').inherits(Widget)({
 
             if (hash.error) {
                 this.clear();
-                tt_link && tt_link.hide();
-                $('.tooltip.notice .moderate-tooltip').html(hash.error);
-                $('.tooltip.notice').show();
             } else {
                 for (var i = 0; i < hash.images.length; i++) {
                    var imgurl = hash.images[i];

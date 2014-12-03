@@ -11,6 +11,7 @@ Class('Post').inherits(Widget)({
         inputPost : null,
         inputFile: null,
         form : null,
+        _keyupTimer : null,
 
         imageMediaTool : null,
         videoMediaTool : null,
@@ -120,9 +121,15 @@ Class('Post').inherits(Widget)({
             });
 
             that.inputPost.bind('keyup', function (e) {
-                if ((e.which <= 90 && e.which >= 48 && e.which != 86) || e.which == 8){
-                    that._showTooltip(that._detectUrl(that.inputPost.val()));
-                }
+                if (that._keyupTimer) window.clearTimeout(that._keyupTimer);
+
+                that._keyupTimer = window.setTimeout(function() {
+                    if ((e.which <= 90 && e.which >= 48 && e.which != 86) || e.which == 8) {
+                        that._showTooltip(that._detectUrl(that.inputPost.val()));
+                    }
+
+                    window.clearTimeout(that._keyupTimer);
+                }, 500);
             });
 
             that.inputPost.bind('paste',function () {
@@ -183,7 +190,7 @@ Class('Post').inherits(Widget)({
                             post.disabled      = true,
                             post.active        = false,
                             post.tags          = []
-                            
+
                             var voice = new VoiceElement(post);
 
                             CV.voicesContainer.preloadedVoices.unshift(voice);
@@ -194,7 +201,7 @@ Class('Post').inherits(Widget)({
                             voice.activate();
 
                             voice.setImage();
-                            
+
                             CV.voicesContainer.element.isotope('prepended', voice.element[0]);
 
                             that.imageMediaTool.deactivate();
@@ -206,12 +213,12 @@ Class('Post').inherits(Widget)({
 
                             // TODO: show tooltip confirmation
                         } else { //error -- doesn't work with $.ajax error callback
-                            for(var error in data){
+                            for(var error in data) {
                                 that.imageMediaTool.deactivate();
                                 that.videoMediaTool.deactivate();
                                 that.linkMediaTool.deactivate();
 
-                                if (data.hasOwnProperty(error) && error == 'source_url'){
+                                if (data.hasOwnProperty(error) && error == 'source_url') {
                                     $('.tooltip.notice .moderate-tooltip').html('Url '+data[error]);
                                     $('.tooltip.notice').show();
                                 }
