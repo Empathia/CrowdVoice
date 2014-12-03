@@ -36,6 +36,11 @@ class GenericImageUploader < CarrierWave::Uploader::Base
   version :thumb do
     process :resize_to_fill => [90, 90]
   end
+
+  version :thumb_timeline do
+    process :resize_to_fill => [314, 200]
+  end
+
   version :gray do
     process :resize_to_limit => [1024, 768]
     process :grayed

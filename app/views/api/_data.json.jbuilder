@@ -2,7 +2,7 @@ json.version @version
 
 json.events @events do |j, event|
   j.extract! event, :id, :name, :description, :event_date
-  j.background_image event.background_image.thumb.url
+  j.background_image event.background_image.thumb_timeline.url
   j.fade_image event.background_image.gray.url
   j.is_event event.is_event
   j.images event.related_images do |j2, image|
