@@ -4,7 +4,7 @@ Class('MediaOverlayThumbnail').inherits(Widget)({
             <img/>\
         </li>\
     ',
-    PLAY_ICON : '<i class="mediafeed-sprite play-icon--small"></i>',
+    PLAY_ICON : '<i class="icon icon-play"></i>',
     prototype : {
         /**
          * The source of the thumbnial image.

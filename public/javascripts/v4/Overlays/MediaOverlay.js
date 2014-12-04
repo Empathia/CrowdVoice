@@ -193,7 +193,7 @@ Class('MediaOverlay').inherits(Widget)({
         _updateDynamicSources : function _updateDynamicSources(voiceElement) {
             this._sourceTypeIcon.removeClass(function (index, css) {
                 return (css.match (/(^|\s)icon-\S+/g) || []).join(' ');
-            }).addClass(voiceElement.sourceType + '-icon');
+            }).addClass('icon-' + voiceElement.sourceType);
 
             this._facebookButtonElement[0].href = this.FACEBOOK_URL_BASE + "u=" + voiceElement.URL;
             this._twitterButtonElement[0].href = this.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;

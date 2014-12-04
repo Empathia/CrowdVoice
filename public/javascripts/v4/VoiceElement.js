@@ -65,7 +65,7 @@ Class('VoiceElement').inherits(Widget)({
             <b class="time-ago"></b>\
         </div>\
     ',
-    PLAY_ICON : '<i class="mediafeed-sprite play-icon"></i>',
+    PLAY_ICON : '<i class="icon icon-play"></i>',
     prototype     : {
         id            : 0,
         URL           : null,
