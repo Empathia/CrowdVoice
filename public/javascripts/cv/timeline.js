@@ -34,7 +34,6 @@ Class('Timeline').inherits(Widget)({
                 }
             });
 
-            console.log('dates:', dates)
 
             return dates;
         },
@@ -122,7 +121,6 @@ Class('Timeline').inherits(Widget)({
 
                     $.data( this, "scrollCheck", setTimeout(function() {
                         that.debouncePositionUpdate();
-                        console.log('check')
                     }, 200) );
 
                     var maxScrollY = scroller.scrollHeight - scroller.offsetHeight,

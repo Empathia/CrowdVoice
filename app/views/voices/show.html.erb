@@ -8,8 +8,6 @@
   <meta property="fb:app_id" content="101972966529938"/>
 
   <script type="text/javascript">
-    window.timeline_dates = <%= @timeline.to_json.html_safe %>;
-
     // dummy data
     var infoboxData = [<%= raw @blocks.join(',') %>];
   </script>
