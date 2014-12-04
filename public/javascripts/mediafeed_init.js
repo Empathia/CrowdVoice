@@ -122,7 +122,9 @@ $(function () {
       });
 
     
-    CV.timeline = new Timeline();
+    CV.timeline = new Timeline({
+        name : 'timeline'
+    });
 
 
     // DynamicMeasures.setTopFaces();
@@ -206,9 +208,9 @@ $(function () {
                 }
 
                 if (window.innerWidth <= 1024) {
-                    voiceScroller.append(timeline);
+                    voiceScroller.append(CV.timeline.element);
                 } else {
-                    voiceScroller.after(timeline);
+                    voiceScroller.after(CV.timeline.element);
                 }
 
                 clearTimeout(detachTimeout);

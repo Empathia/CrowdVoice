@@ -1,8 +1,18 @@
 Class('Timeline').inherits(Widget)({
+    HTML : '<ul class="timeliner-group">\
+                <li class="post-fetch-trigger timeline-tab _medium-font">See More</li>\
+                <li class="timeliner current">\
+                    <div id="slider-vertical"></div>\
+                </li>\
+            </ul>',
     prototype : {
         progress : false,
+        dates    : {},
+
         init : function(config) {
             Widget.prototype.init.call(this, config);
+
+            // this.dates = this.getDates();
 
             var progress = new Loader({
                 name : 'progress'
@@ -74,16 +84,16 @@ Class('Timeline').inherits(Widget)({
         months: [0, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         monthsFullNames: [0, 'January ', 'February ', 'March ', 'April ', 'May ', 'June ', 'July ', 'August ', 'September ', 'October ', 'November ', 'December '],
 
-        build: function (element, options) {
-            this.options = {
-                dates   : window.timeline_dates
-            };
-            $.extend(this.options, options);
+        update: function () {
+            this.element.find('#slider-vertical').html('');
+            this.element.find('.timeliner').not('.current').remove();
+
+            this.dates = this.getDates();
 
             var that                = this;
-            this.element            = element;
+            
             this.slider             = this.element.find('#slider-vertical');
-            this.dates              = this.options.dates;
+            
             this.userWindow         = $(window);
             this._body              = $('body');
             this.mainHeader         = $('.main-header');
@@ -93,10 +103,7 @@ Class('Timeline').inherits(Widget)({
             this.voiceScroller      = $('.voices-scroller');
             this.voicesContainer    = $('.voices-container');
             this.announcementBar    = $('.flash-message');
-            this.postFetcher        = $('.post-fetch-trigger');
-            this.voiceTitle         = $('.voice-title');
-            this.loadingScript      = false;
-            this.needsScrollTop     = false;
+            
 
             this._createYearSliders();
             this._setHeight();
@@ -138,10 +145,6 @@ Class('Timeline').inherits(Widget)({
                 that.afterFetchActions(data);
             });
 
-            this.postFetcher.bind('click', function(){
-                that.fetchPosts();
-            });
-
             this.userWindow.bind('resize smartresize', function() {
                 that._setHeight();
             });
@@ -164,7 +167,6 @@ Class('Timeline').inherits(Widget)({
             var currentPage = CV.voicesContainer.currentPage;
 
             if (currentPage > (totalVoices / perPage)) {
-                console.log('return')
                 return;
             }
 
@@ -222,6 +224,8 @@ Class('Timeline').inherits(Widget)({
             this.min_year = 3000;
             this.max_year = 0;
 
+            this.element.find('.disactivated-timeliner').unbind('click');
+
             for (year in this.dates) {
                 if (this.dates.hasOwnProperty(year)) {
                     year = parseInt(year, 10);
@@ -240,7 +244,7 @@ Class('Timeline').inherits(Widget)({
             }
             if (items.length) {
                 this.element.append(items);
-                this.element.delegate('.disactivated-timeliner', 'click', function () {
+                this.element.find('.disactivated-timeliner').bind('click', function () {
                     that._setYear($(this).data('year'));
                     return false;
                 });

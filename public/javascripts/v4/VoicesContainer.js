@@ -143,7 +143,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                     voicesContainer.currentPage = page + 1;
                 }
-
+                
                 voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
                     CV.timeline.afterFetchActions();
                     CV.timeline.updateSliderPosition();

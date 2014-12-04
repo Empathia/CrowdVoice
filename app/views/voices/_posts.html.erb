@@ -115,14 +115,12 @@
 
             CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
-            CV.voicesContainer.enableNextPage();
+            CV.voicesContainer.enableNextPage(function(){
+              CV.voicesContainer.element.isotope('layout');
+              CV.timeline.update();
+            });
           });
 
-          setTimeout(function(){
-            CV.timeline.build($('.timeliner-group'), {
-                dates   : CV.timeline.getDates()
-            });  
-          }, 500)
           
         }
       });
@@ -132,15 +130,3 @@
       });
     });
   </script>
-
-
-
-  <ul class="timeliner-group">
-    <li class="post-fetch-trigger timeline-tab _medium-font">See More</li>
-    <li class="timeliner current">
-      <div id="slider-vertical"></div>
-    </li>
-  </ul>
-</div>
-
-
