@@ -112,12 +112,12 @@ Class('VoiceElement').inherits(Widget)({
             var version = 'thumb_';
 
 
-            if (typeof this.image == "string") {
+            if (this.image && typeof this.image == "string") {
                 this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
                 this.coverURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + this.image;
             } else {
-                this.thumbURL = this.image.thumb.url;
-                this.thumbURL = this.image.url;
+                this.thumbURL = this.image ? this.image.thumb.url : '';
+                this.coverURL = this.image ? this.image.url : '';
             }
 
 
