@@ -60,31 +60,36 @@
 .green .cv-dynamic-text-color,
 .green .active .cv-dynamic-active-text-color,
 .green .cv-dynamic-hover-text-color:hover,
-.green .cv-dynamic-hover-text-color:hover .icon {
+.green .cv-dynamic-hover-text-color:hover .icon,
+.green a.cv-dynamic-hover-text-color:hover .icon {
   color: #50b347;
 }
 .blue .cv-dynamic-text-color,
 .blue .active .cv-dynamic-active-text-color,
 .blue .cv-dynamic-hover-text-color:hover,
-.blue .cv-dynamic-hover-text-color:hover .icon {
+.blue .cv-dynamic-hover-text-color:hover .icon,
+.blue > a.cv-dynamic-hover-text-color:hover .icon {
   color: #4db5ff;
 }
 .yellow .cv-dynamic-text-color,
 .yellow .active .cv-dynamic-active-text-color,
 .yellow .cv-dynamic-hover-text-color:hover,
-.yellow .cv-dynamic-hover-text-color:hover .icon {
+.yellow .cv-dynamic-hover-text-color:hover .icon,
+.yellow > a.cv-dynamic-hover-text-color:hover .icon {
   color: #ebc91c;
 }
 .red .cv-dynamic-text-color,
 .red .active .cv-dynamic-active-text-color,
 .red .cv-dynamic-hover-text-color:hover,
-.red .cv-dynamic-hover-text-color:hover .icon {
+.red .cv-dynamic-hover-text-color:hover .icon,
+.red > a.cv-dynamic-hover-text-color:hover .icon {
   color: #f10f2a;
 }
 .orange .cv-dynamic-text-color,
 .orange .active .cv-dynamic-active-text-color,
 .orange .cv-dynamic-hover-text-color:hover,
-.orange .cv-dynamic-hover-text-color:hover .icon {
+.orange .cv-dynamic-hover-text-color:hover .icon,
+.orange > a.cv-dynamic-hover-text-color:hover .icon {
   color: #ec9415;
 }
 

@@ -40,10 +40,11 @@
       <% end %>
       </div>
     </div>
-    <div class="mediafeed-map-wrapper"
-        data-lat="<%= @voice.latitude.present? ? @voice.latitude : '-34.397' %>"
-        data-lng="<%= @voice.longitude.present? ? @voice.longitude : '150.644' %>">
-    </div>
+  </div>
+
+  <div class="mediafeed-map-wrapper"
+      data-lat="<%= @voice.latitude.present? ? @voice.latitude : '-34.397' %>"
+      data-lng="<%= @voice.longitude.present? ? @voice.longitude : '150.644' %>">
   </div>
 
   <script type="text/javascript">

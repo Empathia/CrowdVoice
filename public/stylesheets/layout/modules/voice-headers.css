@@ -157,7 +157,8 @@
           top: 5px;
           height: 29px;
           padding: 5px 0 0 20px;
-          background-image: linear-gradient(to right, transparent 0px, #fff 12px);
+          background-image: -webkit-linear-gradient(left, rgba(255,255,255,0) 0, #ffffff 12px);
+          background-image: linear-gradient(to right, rgba(255,255,255,0) 0, #ffffff 12px);
         }
         .post-type > .media {
           float: left;

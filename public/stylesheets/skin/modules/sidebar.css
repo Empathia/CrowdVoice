@@ -178,11 +178,11 @@
     background-color: #383838;
   }
 
-  .sidebar-scroller__list-item .icon {
+  .sidebar-scroller__list-item .anchor {
     color: #fff;
     opacity: .4;
   }
-  .sidebar-scroller__list-item .icon:hover {
+  .sidebar-scroller__list-item .anchor:hover {
     opacity: 1;
     text-decoration: none;
   }
