@@ -39,6 +39,7 @@ body {
   -ms-transform: translateX(0);
   transform: translateX(0);
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .main-container--inner {
   -webkit-transform: translateZ(0);
