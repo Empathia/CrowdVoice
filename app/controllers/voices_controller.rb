@@ -64,15 +64,6 @@ class VoicesController < ApplicationController
 
     if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
       @votes = get_votes
-      # @twitter = TwitterSearch.search(@voice.twitter_search) if @voice.twitter_search
-      mod = params[:mod] ? 1 : 0
-      # TODO: Slow query improve it
-      @timeline = Rails.cache.fetch("#{current_connection}_timeline_for_voice_#{@voice.id}_on_#{Date.today.to_s}_#{mod}") {
-         Rails.logger.info ">>>> Getting timeline for #{current_connection}_timeline_for_voice_#{@voice.id}_on_#{Date.today.to_s}"
-         scope.select('posts.created_at').group_by { |p| p.created_at.beginning_of_day.to_date }.keys.group_by { |date| date.year }
-      }
-      Rails.cache.delete("#{current_connection}_timeline_for_voice_#{@voice.id}_on_#{Date.today.to_s}_#{mod}") if @timeline.empty?
-      @timeline = ActiveSupport::OrderedHash[@timeline.sort]
     end
 
     if params[:post]
@@ -103,7 +94,8 @@ class VoicesController < ApplicationController
       response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
         :tags => @tags,
-        :posts => ActiveRecord::Base.connection.execute(query)
+        :posts => ActiveRecord::Base.connection.execute(query),
+        :timeline => @timeline
       }
 
       render :json => Oj.dump(response, :mode => :compat), :layout => false

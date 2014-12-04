@@ -55,17 +55,17 @@ Class('VoicesContainer').inherits(Widget)({
             });
 
             this.element.parent().bind('scroll', function(){
-                clearTimeout( $.data( this, "scrollCheck" ) );
+                clearTimeout( $.data( this, "scrollChecker" ) );
 
-                $.data( this, "scrollCheck", setTimeout(function() {
+                $.data( this, "scrollChecker", setTimeout(function() {
                     _.each(voicesContainer.children, function(voice) {
                         if (voice.active) {
                             if (voice.element.visible(true)) {
                                 voice.element.removeClass('no-events');
+                                voice.setImage();
                                 if (!voice.thumbElement.hasClass('na')) {
                                     voice.setImage();
-                                };
-
+                                }
                             } else {
                                 voice.element.addClass('no-events');
                             }
@@ -193,8 +193,6 @@ Class('VoicesContainer').inherits(Widget)({
             });
 
             voicesContainer.element[0].appendChild(fragment);
-
-            // CV.timeline.options.votes.unbindEvents().bindEvents();
 
             if (callback) {
                 callback();

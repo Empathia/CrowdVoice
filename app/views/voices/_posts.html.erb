@@ -117,6 +117,13 @@
 
             CV.voicesContainer.enableNextPage();
           });
+
+          setTimeout(function(){
+            CV.timeline.build($('.timeliner-group'), {
+                dates   : CV.timeline.getDates()
+            });  
+          }, 500)
+          
         }
       });
 
