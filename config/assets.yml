@@ -168,6 +168,9 @@ javascripts:
     - public/javascripts/include/ajaxfileupload.js
     - public/javascripts/include/jquery.tokeninput.js
 
+    - *neon
+    - public/javascripts/v4/Map.js
+
     # normal
     - public/javascripts/slider.js
     - public/javascripts/global.js

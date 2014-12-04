@@ -55,7 +55,7 @@ $(document).ready(function() {
             .parent().disableSelection();
     });
 
-    var geocoder = new CVMap.geocoder();
+    var geocoder = new CV.Map.geocoder();
     $('#voice_location').change(function() {
         geocoder.geocode({address: this.value}, function(results, statusResponse) {
             if(statusResponse == "OK" && results && !results[0].partial_match) {
