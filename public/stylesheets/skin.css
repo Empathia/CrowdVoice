@@ -81,6 +81,7 @@ body {background: #d9d9d9 url('/images/v3/about/noise.png') 0 0 repeat}
   -webkit-transition: margin-left 300ms linear, -webkit-transform 300ms linear;
       -ms-transition: margin-left 300ms linear, -ms-transform 300ms linear;
           transition: margin-left 300ms linear, transform 300ms linear;
+  will-change: margin-left, transform;
 }
   .main-container--disable-overlay {
     background: rgba(255, 255, 255, .5);
