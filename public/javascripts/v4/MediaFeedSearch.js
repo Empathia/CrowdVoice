@@ -163,6 +163,30 @@ Class('MediaFeedSearch').inherits(Widget)({
             
             CV.voicesContainer.currentPage = 1;
 
+            var timelineHTML    = '<ul class="timeliner-group">\
+                            <li class="post-fetch-trigger timeline-tab _medium-font">See More</li>\
+                            <li class="timeliner current">\
+                              <div id="slider-vertical"></div>\
+                            </li>\
+                          </ul>';
+            var timeline        = $(timelineHTML);
+
+            if (window.innerWidth <= 1024) {
+                CV.voicesContainer.element.parent().append(timeline);
+            } else {
+                CV.voicesContainer.element.parent().after(timeline);
+            }
+
+            CV.timeline.disable();
+
+            CV.timeline = new Timeline();
+
+            CV.timeline.build($('.timeliner-group'), {
+                dates   : CV.timeline.getDates()
+            });
+
+            CV.timeline.debouncePositionUpdate();
+
             result = result.slice(0, 59);
 
             _.each(result, function(voice) {

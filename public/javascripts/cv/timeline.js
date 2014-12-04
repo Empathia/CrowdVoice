@@ -15,6 +15,32 @@ Class('Timeline').inherits(Widget)({
             var voicesScrollerContainer = $('.voices-scroller').parent();
         },
 
+        getDates : function() {
+            // Create timeline dates
+
+            var dates = {};
+
+            _.each(CV.voicesContainer.filteredResults, function(voice) {
+                var date  = new Date(voice.createdAt);
+                var year  = date.getUTCFullYear();
+                var monthIdx = date.getUTCMonth() + 1;
+                var month = (monthIdx < 10 ? '0' : '') + monthIdx;
+                var day = (date.getUTCDate() < 10 ? '0' : '') + date.getUTCDate();
+
+                if (!dates[year]) {
+                    dates[year] = [];
+                }
+
+                if (dates[year].indexOf(year + '-' + month + '-' + day) === -1) {
+                    dates[year].push(year + '-' + month + '-' + day);
+                }
+            });
+
+            console.log('dates:', dates)
+
+            return dates;
+        },
+
         loadPage: function (page) {
             var timeline = this;
 
@@ -78,7 +104,7 @@ Class('Timeline').inherits(Widget)({
             this._createYearSliders();
             this._setHeight();
             this._createSlider();
-
+            
             $('> li:last', this.element).addClass('last');
 
             this.voicesContainer.removeClass('initial-state');
@@ -91,13 +117,14 @@ Class('Timeline').inherits(Widget)({
 
             if (!isDevice){
 
-                this.voiceScroller.bind('mousewheel', function(e) {
+                this.voiceScroller.bind('scroll', function(e) {
                     var scroller = this;
 
                     clearTimeout( $.data( this, "scrollCheck" ) );
                     
                     $.data( this, "scrollCheck", setTimeout(function() {
                         that.debouncePositionUpdate();
+                        console.log('check')
                     }, 200) );
 
                     var maxScrollY = scroller.scrollHeight - scroller.offsetHeight,
@@ -137,10 +164,11 @@ Class('Timeline').inherits(Widget)({
         },
         fetchPosts: function(needsScrollTop){
             var perPage     = CV.voicesContainer.perPage;
-            var totalVoices = CV.voicesContainer.preloadedVoices.length;
+            var totalVoices = CV.voicesContainer.filteredResults.length;
             var currentPage = CV.voicesContainer.currentPage;
 
             if (currentPage > (totalVoices / perPage)) {
+                console.log('return')
                 return;
             }
             
@@ -384,6 +412,10 @@ Class('Timeline').inherits(Widget)({
             var headerHeight = this.mainHeader.height();
 
             this.voiceScroller.css('height', window.innerHeight - headerHeight);
+        },
+
+        disable : function() {
+            this.element.detach();
         }
     }
 });

@@ -122,11 +122,11 @@ $(function () {
       });
 
     if ( !$.isEmptyObject( window.timeline_dates ) ){
-        CV.timeline = new Timeline();
+        // CV.timeline = new Timeline();
 
-        CV.timeline.build($('.timeliner-group'), {
-            dates   : window.timeline_dates
-        });
+        // CV.timeline.build($('.timeliner-group'), {
+        //     dates   : window.timeline_dates
+        // });
     }
 
     // DynamicMeasures.setTopFaces();

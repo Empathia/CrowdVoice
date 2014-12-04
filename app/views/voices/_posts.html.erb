@@ -116,6 +116,12 @@
 
             CV.voicesContainer.enableNextPage();
           });
+
+          CV.timeline = new Timeline();
+
+          CV.timeline.build($('.timeliner-group'), {
+              dates   : CV.timeline.getDates()
+          });
         }
       });
 
