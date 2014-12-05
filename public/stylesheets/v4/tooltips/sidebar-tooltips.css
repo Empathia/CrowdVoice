@@ -2,10 +2,18 @@
   width: 150px;
 }
 
-.add-a-voice-tooltip {
+.cv-tooltip.add-a-voice-tooltip {
   width: 170px;
 }
-
+.cv-tooltip.add-a-voice-tooltip {
+  left: 6px;
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+}
+.cv-tooltip.add-a-voice-tooltip .cv-tooltip__arrow {
+  left: 40px;
+}
 .add-a-voice-tooltip .pencil {
   width: 29px;
   height: 26px;
