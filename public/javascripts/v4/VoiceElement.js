@@ -37,27 +37,27 @@ Class('VoiceElement').inherits(Widget)({
                                 <span>Flag Inappropiate Content</span>\
                             </p>\
                         </div>\
-                        </div>\
                     </div>\
                 </div>\
             </div>\
             <div class="voice-unmoderated">\
-              <ul class="clearfix">\
-                <li class="up flag-div">\
-                    <a class="vote-post thumb" data-method="post" rel="nofollow">\
-                        <i class="allow-post icon icon-thumbs-up"></i>\
-                        <span class="text">Allow</span>\
-                    </a>\
-                </li>\
-                <li class="down flag-div">\
-                  <a class="vote-post thumb" data-method="post" rel="nofollow">\
-                      <i class="deny-post icon icon-thumbs-down"></i>\
-                      <span class="text">Deny</span>\
-                  </a>\
-                </li>\
-              </ul>\
-              <div style="clear:both"></div>\
+                <ul class="clearfix">\
+                    <li class="up flag-div">\
+                        <a class="vote-post thumb" data-method="post" rel="nofollow">\
+                            <i class="allow-post icon icon-thumbs-up"></i>\
+                            <span class="text">Allow</span>\
+                        </a>\
+                    </li>\
+                    <li class="down flag-div">\
+                        <a class="vote-post thumb" data-method="post" rel="nofollow">\
+                            <i class="deny-post icon icon-thumbs-down"></i>\
+                            <span class="text">Deny</span>\
+                        </a>\
+                    </li>\
+                </ul>\
+                <div style="clear:both"></div>\
             </div>\
+        </div>\
     ',
     VOICE_TYPE_HTML : '\
         <div class="voice-content-type-wrapper">\
