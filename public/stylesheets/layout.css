@@ -167,11 +167,9 @@ body {
 
 .sponsor-padding {padding-right: 440px}
 .hiden-input {display: none}
-.tooltip.flag-tip{ display:none; top: -54px; left:89%; z-index: 99}
-.flag-tip > .tooltip-positioner > .tooltip-arrow {top: 51px}
-.flag-tip > .tooltip-positioner > .media-type-info {padding: 7px 9px; top: 0}
-.flag-tip > .tooltip-positioner > .media-type-info > .media-type-title  {width: 130px}
-.flag-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {text-align:center}
+.flag-tip .media-type-info {padding: 7px 9px}
+.flag-tip .media-type-info > .media-type-title  {width: 130px}
+.flag-tip .media-type-info > .flag-tooltip {text-align:center}
 .flag-tooltip .flagged {
   line-height: 2.9em;
 }

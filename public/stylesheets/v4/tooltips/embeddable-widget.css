@@ -1,16 +1,15 @@
-.embeddable-widget-tooltip {
-  width: 672px;
+.cv-tooltip.embeddable-widget-tooltip {
+  width: 666px;
+  right: 0;
+  left: initial;
+  transform: translateX(150px);
+}
+.cv-tooltip.embeddable-widget-tooltip .cv-tooltip__arrow {
+  left: initial;
+  right: 157px;
 }
 
-.embeddable-widget-tooltip .tooltip-positioner {
-  left: -65%;
-}
-
-.embeddable-widget-tooltip .tooltip-arrow {
-  left: 65%;
-}
-
-.embeddable-widget-tooltip .cv-tooltip-inner {
+.cv-tooltip.embeddable-widget-tooltip .cv-tooltip-inner {
   padding: 0;
 }
 
@@ -33,8 +32,8 @@
   vertical-align: top;
 }
 
-.info-tool.widget .tooltip .info {
-  width: 288px;
+.cv-tooltip.embeddable-widget-tooltip .info {
+  width: 282px;
   margin-right: 50px;
 }
 
@@ -57,11 +56,11 @@
   padding-left: 20px;
 }
 
-.info-tool.widget .tooltip .preview {
+.cv-tooltip.embeddable-widget-tooltip .preview {
   width: 280px;
 }
 
-.info-tool.widget .tooltip .preview > .preview-placeholder {
+.cv-tooltip.embeddable-widget-tooltip .preview > .preview-placeholder {
   background: #d9d9d9;
   min-height: 310px;
   border-radius: 4px;
@@ -70,7 +69,7 @@
   display: block;
 }
 
-.info-tool.widget .tooltip .preview > p {
+.cv-tooltip.embeddable-widget-tooltip .preview > p {
   font-size: 11px;
   margin: .8em 0 0;
   color: #a6a6a6;

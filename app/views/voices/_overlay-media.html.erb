@@ -54,14 +54,15 @@
               </a>
             </li>
             <li class="vertical-divider"></li>
-            <li class="flag-div">
+            <li class="flag-div has-cv-tooltip">
               <a href="" format="json" class="flag overlay-vote-post cv-hover-danger-brand-color" data-method="post" rel="nofollow">
                 <i class="icon icon-flag"></i>
               </a>
-              <div class="tooltip flag-tip" data-post-id="post_{{post_id}}">
-                <div class="tooltip-positioner">
-                <p class="tooltip-arrow"><span></span></p>
-                <div class="media-type-info">
+              <div class="cv-tooltip cv-tooltip--bottom flag-tip" data-post-id="post_{{post_id}}">
+                <span class="cv-tooltip__arrow">
+                  <span class="cv-tooltip__arrow-item"></span>
+                </span>
+                <div class="media-type-info cv-tooltip-inner">
                   <strong class="media-type-title"></strong>
                   <p class="flag-tooltip">
                     <span>Flag Inappropiate Content</span>

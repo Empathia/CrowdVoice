@@ -142,6 +142,11 @@
   position:relative;
   z-index:1;
 }
+.voice-box > .voice-action:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 .voice-action > .actions {
   float: left;
 }

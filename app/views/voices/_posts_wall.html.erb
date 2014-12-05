@@ -34,37 +34,37 @@
               <a class="media-type image-tool" href="#" title="Image">
                 <i class="icon icon-image cv-dynamic-active-text-color"></i>
               </a>
-              <div class="cv-tooltip tooltip image-post-media-tooltip">
-                <div class="tooltip-positioner">
-                  <span class="tooltip-arrow"><span></span></span>
-                  <div class="image-tip cv-tooltip-inner">
-                    <div class="post-media-tooltip-header clearfix with-image js-with-content">
-                      <div class="cv-pull-left">
-                        <span class="title">Post Image</span>
-                      </div>
-                      <div class="cv-pull-right">
-                        <a href="#" class="tooltip-close-btn">Cancel</a>
-                      </div>
+              <div class="cv-tooltip image-post-media-tooltip">
+                <span class="cv-tooltip__arrow">
+                  <span class="cv-tooltip__arrow-item"></span>
+                </span>
+                <div class="image-tip cv-tooltip-inner">
+                  <div class="post-media-tooltip-header clearfix with-image js-with-content">
+                    <div class="cv-pull-left">
+                      <span class="title">Post Image</span>
                     </div>
-                    <div class="post-media-tooltip-content with-image js-with-content">
-                      <label>
-                        <p class="tooltip-label">Add a title to your image</p>
-                        <input class="cv-input cv-input--medium cv-input--dynamic-color cv-block" type="text" id="image_title" name="post[image_title]"/>
-                      </label>
-                      <label>
-                        <p class="tooltip-label">
-                          Add a description to your image
-                          <span class="light">(140 character max)</span>
-                        </p>
-                        <textarea maxlength="140" id="image_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[image_description]"></textarea>
-                      </label>
-                      <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
+                    <div class="cv-pull-right">
+                      <a href="#" class="tooltip-close-btn">Cancel</a>
                     </div>
-                    <div class="post-media-tooltip-footer">
-                      <p class="tooltip-label js-default">Enter the URL of an image you want to display in this voice</p>
-                      <span class="light">You can also send images (2 mb max) as attachments to this email:</span>
-                      <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'cv-dynamic-text-color', :encode => "javascript" %>
-                    </div>
+                  </div>
+                  <div class="post-media-tooltip-content with-image js-with-content">
+                    <label>
+                      <p class="tooltip-label">Add a title to your image</p>
+                      <input class="cv-input cv-input--medium cv-input--dynamic-color cv-block" type="text" id="image_title" name="post[image_title]"/>
+                    </label>
+                    <label>
+                      <p class="tooltip-label">
+                        Add a description to your image
+                        <span class="light">(140 character max)</span>
+                      </p>
+                      <textarea maxlength="140" id="image_description" class="link-textarea cv-input cv-input--medium cv-block" name="post[image_description]"></textarea>
+                    </label>
+                    <input value="Post" type="submit" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase"/>
+                  </div>
+                  <div class="post-media-tooltip-footer">
+                    <p class="tooltip-label js-default">Enter the URL of an image you want to display in this voice</p>
+                    <span class="light">You can also send images (2 mb max) as attachments to this email:</span>
+                    <%= mail_to "voice+#{@voice.id}@crowdvoice.org", nil, :class => 'cv-dynamic-text-color', :encode => "javascript" %>
                   </div>
                 </div>
               </div>
@@ -74,12 +74,12 @@
               <a class="media-type video-tool" href="#" title="Video">
                 <i class="icon icon-video cv-dynamic-active-text-color"></i>
               </a>
-              <div class="cv-tooltip tooltip video-post-media-tooltip">
-                <div class="tooltip-positioner">
-                  <span class="tooltip-arrow"><span></span></span>
-                  <div class="cv-tooltip-inner clearfix">
-                    Enter the URL of a Youtube or Vimeo video you want to display in this voice.
-                  </div>
+              <div class="cv-tooltip video-post-media-tooltip">
+                <span class="cv-tooltip__arrow">
+                  <span class="cv-tooltip__arrow-item"></span>
+                </span>
+                <div class="cv-tooltip-inner clearfix">
+                  Enter the URL of a Youtube or Vimeo video you want to display in this voice.
                 </div>
               </div>
             </li>
@@ -88,19 +88,20 @@
               <a class="media-type link-tool" href="#" title="Link">
                 <i class="icon icon-link cv-dynamic-active-text-color"></i>
               </a>
-              <div class="cv-tooltip tooltip link-img-post link-post-media-tooltip">
+              <div class="cv-tooltip link-img-post link-post-media-tooltip">
                 <div class="tooltip-positioner normal">
-                  <span class="tooltip-arrow"><span></span></span>
+                  <span class="cv-tooltip__arrow">
+                    <span class="cv-tooltip__arrow-item"></span>
+                  </span>
                   <div class="cv-tooltip-inner">
                     Put the URL of a Notice, Blog Post, or Article to display in this voice.
                   </div>
                 </div>
                 <div class="tooltip-positioner carousel">
-                  <span class="tooltip-arrow"><span></span></span>
+                  <span class="cv-tooltip__arrow">
+                    <span class="cv-tooltip__arrow-item"></span>
+                  </span>
                   <div class="cv-tooltip-inner">
-                    <div class="without-link js-default">
-                      <strong class="media-type-title">Put the URL of your Notice, Blog Post, or Article to display in this voice.</strong>
-                    </div>
                     <div class="with-link js-with-content">
                       <%= f.hidden_field :remote_image_url %>
                       <div class="post-media-tooltip-header clearfix">
@@ -152,12 +153,12 @@
           <%= f.text_field :source_url, :autocomplete => "off", :class => "cv-input cv-input--medium cv-input--dynamic-color cv-pull-left cv-block" %>
           <div class="post-button">
             <%= f.submit 'Post', :class => "cv-button cv-button--dynamic-color" %>
-            <div class="tooltip notice">
-              <div class="tooltip-positioner">
-                <p class="tooltip-arrow"><span></span></p>
-                <div class="media-type-info">
-                  <p class="moderate-tooltip"></p>
-                </div>
+            <div class="cv-tooltip notice">
+              <span class="cv-tooltip__arrow">
+                <span class="cv-tooltip__arrow-item"></span>
+              </span>
+              <div class="media-type-info cv-tooltip-inner">
+                <p class="moderate-tooltip"></p>
               </div>
             </div>
           </div>
@@ -173,11 +174,9 @@
           <div class="tag-tooltip-trigger cv-button cv-button--small cv-button--light with-arrow">
             TAGS <i class="cv-button--arrow"></i>
           </div>
-          <div class="cv-tooltip tooltip info-tags__tooltip">
-            <div class="tooltip-positioner">
-              <div class="media-type-info">
-                <ul class="voice-tags"></ul>
-              </div>
+          <div class="cv-tooltip cv-tooltip--bottom info-tags__tooltip">
+            <div class="cv-tooltip-inner">
+              <ul class="voice-tags"></ul>
             </div>
           </div>
         </div>
@@ -190,13 +189,13 @@
           <label class="tweets-label"><input type="checkbox" name="tweets" />Tweets</label>
           <div class="tooltip-mediafeed-tweets has-cv-tooltip">
             <span class="tooltip-hoverable-area">(<span class="cv-dynamic-text-color">?</span>)</span>
-            <div class="tooltip cv-tooltip mediafeed-tweets-tooltip">
-              <div class="tooltip-positioner">
-                <span class="tooltip-arrow"><span></span></span>
-                <div class="cv-tooltip-inner clearfix">
-                  All tweets using <span class="cv-dynamic-text-color"><%= @voice.twitter_search %></span>
-                  will be published in this voice's stream!
-                </div>
+            <div class="cv-tooltip cv-tooltip--bottom mediafeed-tweets-tooltip">
+              <span class="cv-tooltip__arrow">
+                <span class="cv-tooltip__arrow-item"></span>
+              </span>
+              <div class="cv-tooltip-inner clearfix">
+                All tweets using <span class="cv-dynamic-text-color"><%= @voice.twitter_search %></span>
+                will be published in this voice's stream!
               </div>
             </div>
           </div>
@@ -237,7 +236,7 @@
     CV.posts_votes = <%= @votes.to_json.html_safe %>;
   </script>
   <%# cache_if(!params[:tags].present?, "#{current_connection}_mediafeed_#{@voice.id}_#{mod}_#{mobile}") do %>
-  
+
   <% if @voice.announcement.present? %>
     <div class="flash-message <%= 'with-infosidebar' if infosidebarIsPresent %>">
       <div class="message">
