@@ -49,18 +49,17 @@ body{overflow: hidden;}
   float: left;
   margin: 0 10px 0 0;
 }
-.tags-container .info-tags__tooltip {
-  text-align: left;
+.cv-tooltip.info-tags__tooltip {
   top: 18px;
+  left: 0;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0);
+  text-align: left;
 }
-.info-tags__tooltip .tooltip-positioner {left: -15%}
 .info-tags__tooltip .tag-tooltip-trigger {height: 10px}
-.info-tags__tooltip .media-type-info {
+.info-tags__tooltip .cv-tooltip-inner {
   padding: 0;
-}
-.info-tags__tooltip .footer {
-  padding: 10px 15px;
-  border-top: 1px solid #cccccc;
 }
 .voice-tags {
   min-width: 150px;

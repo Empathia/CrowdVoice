@@ -5,14 +5,14 @@
     </div>
   </div>
   <h2 class="voice-title"><%= @voice.title %></h2>
-  <div class="description-wrapper has-cv-tooltip">
+  <div class="description-wrapper">
     <a class="more-button cv-button--small cv-button--trans cv-dynamic-border-color">More Info</a>
-    <div class="tooltip cv-tooltip voice-description-tooltip">
-      <div class="tooltip-positioner">
-        <span class="tooltip-arrow"><span></span></span>
-        <div class="cv-tooltip-inner clearfix">
-          <%= @voice.description %>
-        </div>
+    <div class="voice-description-tooltip cv-tooltip">
+      <div class="cv-tooltip__arrow">
+        <span class="cv-tooltip__arrow-item"></span>
+      </div>
+      <div class="cv-tooltip-inner clearfix">
+        <%= @voice.description %>
       </div>
     </div>
   </div>
@@ -55,63 +55,63 @@
           <i class="gear-icon icon icon-gear"></i>
         </a>
 
-        <div class="tooltip cv-tooltip embeddable-widget-tooltip">
-          <div class="tooltip-positioner">
-            <span class="tooltip-arrow"><span></span></span>
-            <div class="cv-tooltip-inner clearfix">
-              <form>
-                <fieldset  class="grab-blog-widget">
-                  <strong class="blog-widget-title">Crowdvoice Embeddable Widget</strong>
-                  <div class="info-wrapper clearfix">
-                    <div class="info">
-                      <div class="height-options options-container">
-                        <p class="blog-widget-subtitle">How tall would you like the widget to be?</p>
-                        <label class="blog-widget-label" for="blog-widget-size-small">
-                          <input id="blog-widget-size-small" class="widget-height" type="radio" value="small" name="height" checked="checked" />
-                          Short
-                        </label>
-                        <label class="blog-widget-label" for="blog-widget-size-medium">
-                          <input id="blog-widget-size-medium" class="widget-height" type="radio" value="medium" name="height" />
-                          Medium
-                        </label>
-                        <label class="blog-widget-label" for="blog-widget-size-tall">
-                          <input id="blog-widget-size-tall" class="widget-height" type="radio" value="tall" name="height" />
-                          Tall
-                        </label>
-                      </div>
-                      <div class="scope-options options-container">
-                        <p class="blog-widget-subtitle no-border">What would you like to showcase?</p>
-                        <label class="blog-widget-label" for="blog-widget-scope-this">
-                          <input id="blog-widget-scope-this" class="widget-scope" type="radio" value="this" name="scope" checked="checked" />
-                          Just this Voice
-                        </label>
-                        <label class="blog-widget-label" for="blog-widget-scope-all">
-                          <input id="blog-widget-scope-all" class="widget-scope" type="radio" value="all" name="scope" />
-                          All Voices
-                        </label>
-                      </div>
-                      <div class="misc-options options-container">
-                        <p>
-                          <label class="blog-widget-label" for="blog-widget-show-rtl">
-                            <input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />
-                            Set orientation from right to left (arabic)
-                          </label>
-                        </p>
-                      </div>
-                      <div class="code-output">
-                        <textarea id="js-widget-generated-code" class="blog-widget-textarea cv-input"
-                          data-template="<iframe src='http://localhost:3000/widget/<%= @voice.default_slug %>?size={{size}}&scope={{scope}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"></textarea>
-                        <button id="js-copy-code-button" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>
-                      </div>
+        <div class="cv-tooltip embeddable-widget-tooltip">
+          <span class="cv-tooltip__arrow">
+            <span class="cv-tooltip__arrow-item"></span>
+          </span>
+          <div class="cv-tooltip-inner clearfix">
+            <form>
+              <fieldset  class="grab-blog-widget">
+                <strong class="blog-widget-title">Crowdvoice Embeddable Widget</strong>
+                <div class="info-wrapper clearfix">
+                  <div class="info">
+                    <div class="height-options options-container">
+                      <p class="blog-widget-subtitle">How tall would you like the widget to be?</p>
+                      <label class="blog-widget-label" for="blog-widget-size-small">
+                        <input id="blog-widget-size-small" class="widget-height" type="radio" value="small" name="height" checked="checked" />
+                        Short
+                      </label>
+                      <label class="blog-widget-label" for="blog-widget-size-medium">
+                        <input id="blog-widget-size-medium" class="widget-height" type="radio" value="medium" name="height" />
+                        Medium
+                      </label>
+                      <label class="blog-widget-label" for="blog-widget-size-tall">
+                        <input id="blog-widget-size-tall" class="widget-height" type="radio" value="tall" name="height" />
+                        Tall
+                      </label>
                     </div>
-                    <div class="preview">
-                      <div class="preview-placeholder"></div>
-                      <p class="cv-uppercase cv-center">Widget Preview</p>
+                    <div class="scope-options options-container">
+                      <p class="blog-widget-subtitle no-border">What would you like to showcase?</p>
+                      <label class="blog-widget-label" for="blog-widget-scope-this">
+                        <input id="blog-widget-scope-this" class="widget-scope" type="radio" value="this" name="scope" checked="checked" />
+                        Just this Voice
+                      </label>
+                      <label class="blog-widget-label" for="blog-widget-scope-all">
+                        <input id="blog-widget-scope-all" class="widget-scope" type="radio" value="all" name="scope" />
+                        All Voices
+                      </label>
+                    </div>
+                    <div class="misc-options options-container">
+                      <p>
+                        <label class="blog-widget-label" for="blog-widget-show-rtl">
+                          <input id="blog-widget-show-rtl" class="rtl-checkbox" type="checkbox" value="1" name="rtl" />
+                          Set orientation from right to left (arabic)
+                        </label>
+                      </p>
+                    </div>
+                    <div class="code-output">
+                      <textarea id="js-widget-generated-code" class="blog-widget-textarea cv-input"
+                        data-template="<iframe src='http://localhost:3000/widget/<%= @voice.default_slug %>?size={{size}}&scope={{scope}}&rtl={{rtl}}' scrolling='no' frameborder='0' style='overflow:hidden; border:none; width:100%; height:{{height}}px;' allowTransparency='true'></iframe>"></textarea>
+                      <button id="js-copy-code-button" class="cv-button cv-button--medium cv-button--dynamic-color cv-uppercase cv-block">Copy code to clipboard</button>
                     </div>
                   </div>
-                </fieldset>
-              </form>
-            </div>
+                  <div class="preview">
+                    <div class="preview-placeholder"></div>
+                    <p class="cv-uppercase cv-center">Widget Preview</p>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
           </div>
         </div>
       </li>

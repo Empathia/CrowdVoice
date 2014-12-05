@@ -43,7 +43,7 @@ Class(CV, 'Map').inherits(Widget)({
         }.bind(this));
     },
 
-    /* 
+    /*
      * Inyects GoogleMaps script.
      * @method inyectGoogleMapsScript <public> [Function]
      * @argument callback <optional> [Function] function to be run after the
@@ -75,8 +75,8 @@ Class(CV, 'Map').inherits(Widget)({
         _map : null,
         _infowindows : [],
 
-        /** 
-         * Google Map Options 
+        /**
+         * Google Map Options
          */
         zoom : 2,
         mapTypeControlOptions : {
@@ -89,14 +89,14 @@ Class(CV, 'Map').inherits(Widget)({
         init : function init (config) {
             Widget.prototype.init.call(this, config);
 
-            this.element[0].style.backgroundColor = '#2A2B2C';
+            this.element[0].style.backgroundColor = '#d3d3d3';
         },
-        
+
         /**
          * Create the map using google maps API.
          * @method createMap <public> [Function]
          * @return this [CV.Map]
-         */ 
+         */
         createMap : function createMap() {
             if (this.constructor._markerLabelAdded === false) {
                 CV.AddGoogleMapsMarkers();
@@ -115,7 +115,7 @@ Class(CV, 'Map').inherits(Widget)({
             this._applyMapStyles();
 
             return this;
-        }, 
+        },
 
         _bindEvents : function _bindEvents() {
             google.maps.event.addListener(this._map, 'bounds_changed', function boundsChanged() {
@@ -128,32 +128,7 @@ Class(CV, 'Map').inherits(Widget)({
         _applyMapStyles : function _applyMapStyles() {
             var styledMap, styles;
 
-            styles = [
-                {
-                    "stylers": [
-                        { "hue": "#0077ff" },
-                        { "saturation": -95 },
-                        { "lightness": -68 }
-                    ]
-                }, {
-                    "featureType": "water",
-                    "stylers": [
-                        { "hue": "#00bbff" },
-                        { "lightness": -30 }
-                    ]
-                },{
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        { "lightness": 40 }
-                    ]
-                },{
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        { "lightness": -50 }
-                    ]
-                },{
-                }
-            ];
+            styles = [{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}];
             styledMap = new google.maps.StyledMapType(styles, {name: "Map"});
 
             this._map.mapTypes.set('map_style', styledMap);
@@ -171,7 +146,7 @@ Class(CV, 'Map').inherits(Widget)({
          */
         setMapCenter : function setMapCenter(lat, lon) {
             this.center = this.constructor.at(lat, lon);
-        
+
             return this;
         },
 
@@ -216,9 +191,9 @@ Class(CV, 'Map').inherits(Widget)({
         },
 
         createLabel : function createLabel(text) {
-            return new MarkerLabel({ 
-                map : this._map, 
-                label : text 
+            return new MarkerLabel({
+                map : this._map,
+                label : text
             });
         }
     }

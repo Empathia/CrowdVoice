@@ -51,7 +51,7 @@ Class('Post').inherits(Widget)({
         },
 
         _showTooltip : function _showTooltip(type) {
-            $('.tooltip.notice').hide();
+            $('.cv-tooltip.notice').hide();
             this._remoteImageUrl.val('');
             this.carousel.clear();
 
@@ -219,8 +219,8 @@ Class('Post').inherits(Widget)({
                                 that.linkMediaTool.deactivate();
 
                                 if (data.hasOwnProperty(error) && error == 'source_url') {
-                                    $('.tooltip.notice .moderate-tooltip').html('Url '+data[error]);
-                                    $('.tooltip.notice').show();
+                                    $('.cv-tooltip.notice .moderate-tooltip').html('Url '+data[error]);
+                                    $('.cv-tooltip.notice').show();
                                 }
                             }
                         }

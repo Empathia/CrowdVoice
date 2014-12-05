@@ -23,23 +23,23 @@ Class('VoiceElement').inherits(Widget)({
                         </a>\
                     </li>\
                 </ul>\
-                <div class="flag-div">\
+                <div class="flag-div has-cv-tooltip">\
                     <a href="" class="vote-post flag cv-hover-danger-brand-color" data-method="post" rel="nofollow">\
                         <i class="icon icon-flag"></i>\
                     </a>\
-                    <div class="tooltip flag-tip" data-post-id="">\
-                        <div class="tooltip-positioner bottom">\
-                            <div class="media-type-info">\
-                                <strong class="media-type-title"></strong>\
-                                <p class="flag-tooltip">\
-                                    <span>Flag Inappropiate Content</span>\
-                                </p>\
-                            </div>\
-                            <p class="tooltip-arrow"><span></span></p>\
+                    <div class="cv-tooltip cv-tooltip--top flag-tip" data-post-id="">\
+                        <span class="cv-tooltip__arrow">\
+                            <span class="cv-tooltip__arrow-item"></span>\
+                        </span>\
+                        <div class="media-type-info cv-tooltip-inner">\
+                            <strong class="media-type-title"></strong>\
+                            <p class="flag-tooltip">\
+                                <span>Flag Inappropiate Content</span>\
+                            </p>\
+                        </div>\
                         </div>\
                     </div>\
                 </div>\
-                <div style="clear:both"></div>\
             </div>\
             <div class="voice-unmoderated">\
               <ul class="clearfix">\

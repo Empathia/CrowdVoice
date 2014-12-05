@@ -110,8 +110,7 @@ hgroup {background-color: #121212; border-top-style: solid; border-top-color: #5
   background-color: rgb(42, 43, 44);
 }
 
-.flag-tip > .tooltip-positioner > .tooltip-arrow > span {background: url('/images/bg/arrow_tooltip_down.png') no-repeat 0 0}
-.flag-tip > .tooltip-positioner > .media-type-info > .flag-tooltip {color: #404040;}
+.flag-tip .media-type-info > .flag-tooltip {color: #404040;}
 
 .media-type-title,
 .grab-blog-widget {color: #404040}

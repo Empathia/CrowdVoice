@@ -160,12 +160,6 @@ body.blue .post > .post-paceholder > a {color: #4cb5ff}
     background-color: rgba(242, 242, 242, 0.97);
     border-top: 1px solid rgba(0, 0, 0, 0.3);
   }
-  .info-tags__tooltip > .tooltip-positioner > .media-type-info {
-    background: rgba(244,244,244,0.95);
-    border: medium none;
-    border-radius: 0 0 0 0;
-    box-shadow: none;
-  }
   .info-tags__tooltip .voice-tags li {
     border-bottom: 1px solid #aeaeae;
   }

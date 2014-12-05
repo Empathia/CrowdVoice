@@ -20,6 +20,7 @@
 
 .cv-tooltip .tooltip-label {
   font-size: 15px;
+  color: #333;
   font-weight: 600;
   margin-bottom: .5em;
 }
@@ -36,24 +37,17 @@
 /**
  * Image Type
  */
+.default > .image-post-media-tooltip {
+  width: 245px;
+}
+
 .image-post-media-tooltip {
   width: 415px;
   left: -30px;
 }
-.image-post-media-tooltip .tooltip-positioner {
-  left: -50%;
-}
 
-.image-post-media-tooltip .tooltip-arrow {
+.image-post-media-tooltip .cv-tooltip__arrow {
   left: 245px;
-}
-
-.default > .image-post-media-tooltip {
-  width: 245px;
-  left: 50%;
-}
-.default > .image-post-media-tooltip .tooltip-arrow {
-  left: 50%;
 }
 
 .image-post-media-tooltip .cv-tooltip-inner {
@@ -83,13 +77,6 @@
   width: 290px;
 }
 
-.video-post-media-tooltip .tooltip-positioner {
-  left: -50%;
-}
-.video-post-media-tooltip .tooltip-arrow {
-  left: 50%;
-}
-
 .video-post-media-tooltip .cv-tooltip-inner {
   font-size: 15px;
   line-height: 20px;
@@ -104,14 +91,6 @@
   width: 220px;
 }
 
-.link-post-media-tooltip .tooltip-positioner {
-  left: -50%;
-}
-
-.link-post-media-tooltip .tooltip-arrow {
-  left: 50%;
-}
-
 .link-post-media-tooltip .normal .cv-tooltip-inner {
   font-size: 15px;
   line-height: 20px;
@@ -120,8 +99,9 @@
 }
 
 .link-post-media-tooltip .carousel {
+  display: none;
   width: 400px;
-  left: -288px!important;
+  margin-left: -180px !important;
 }
 
 .link-post-media-tooltip .carousel .tooltip-arrow {

@@ -1,14 +1,11 @@
 Class(CV, 'Tooltip').inherits(Widget)({
     ELEMENT_CLASS : 'cv-tooltip',
     HTML : '\
-        <div class="tooltip">\
-          <div class="tooltip-positioner">\
-            <span class="tooltip-arrow">\
-                <span></span>\
-            </span>\
-            <div class="cv-tooltip-inner clearfix">\
+        <div>\
+            <div class="cv-tooltip__arrow">\
+                <span class="cv-tooltip__arrow-item"></span>\
             </div>\
-          </div>\
+            <div class="cv-tooltip-inner clearfix"></div>\
         </div>\
     ',
     /**
@@ -31,7 +28,7 @@ Class(CV, 'Tooltip').inherits(Widget)({
         html : null,
         /**
          * The position in which the tooltip will be shown.
-         * @property position <public> [String] (top|right|bottom|left)
+         * @property position <public> [String] {top|right|bottom|left} (bottom)
          */
         position : null,
         /**
@@ -42,6 +39,25 @@ Class(CV, 'Tooltip').inherits(Widget)({
         nowrap : false,
 
         /**
+         */
+        showOnCssHover : true,
+
+        /**
+         */
+        toggler: null,
+         /**
+          */
+        enterTogglerElementEvent: null,
+        /**
+         */
+        leaveTogglerElementEvent: null,
+
+        /**
+         * Holds the reference to the tooltip's arrow element.
+         * @property _arrowElement <private> [jQueryElement]
+         */
+         _arrowElement : null,
+        /**
          * Holds the reference to the tooltip's body jQueryElement.
          * @property _contentElement <private> [jQueryElement]
          */
@@ -51,8 +67,9 @@ Class(CV, 'Tooltip').inherits(Widget)({
             Widget.prototype.init.call(this, config);
 
             this._contentElement = this.element.find('.cv-tooltip-inner');
+            this._arrowElement = this.element.find('.cv-tooltip__arrow');
 
-            this._setup();
+            this._setup()._bindEvents();
         },
 
         /**
@@ -61,6 +78,8 @@ Class(CV, 'Tooltip').inherits(Widget)({
          * @return this [Tooltip]
          */
         _setup : function _setup() {
+            this.element.addClass('cv-tooltip--' + (this.position || 'bottom'));
+
             if (this.text) {
                 this.updateText(this.text);
             }
@@ -69,12 +88,26 @@ Class(CV, 'Tooltip').inherits(Widget)({
                 this.updateHTML(this.html);
             }
 
-            if (this.position) {
-                this.element.addClass('cv-tooltip--' + this.position);
-            }
-
             if (this.nowrap === true) {
                 this.element.addClass('cv-tooltip--nowrap');
+            }
+
+            return this;
+        },
+
+        _bindEvents : function _bindEvents() {
+            if (this.toggler) {
+                if (this.enterTogglerElementEvent) {
+                    this.toggler.bind('mouseenter', function(ev) {
+                        this.enterTogglerElementEvent(ev);
+                    }.bind(this));
+                }
+
+                if (this.leaveTogglerElementEvent) {
+                    this.toggler.bind('mouseleave', function(ev) {
+                        this.leaveTogglerElementEvent(ev);
+                    }.bind(this));
+                }
             }
 
             return this;
@@ -91,14 +124,13 @@ Class(CV, 'Tooltip').inherits(Widget)({
 
             return this;
         },
-
         /**
          * Update the tooltip's HTML content.
          * @method updateHTML <public> [Function]
          * @usage tooltipInstance.updateHTML('<p>Lorem Ipsum</p>');
          * @return this [Tooltip]
          */
-        updateHTML : function updateHTML(value) {
+         updateHTML : function updateHTML(value) {
             this._contentElement.html(value);
 
             return this;
@@ -109,10 +141,12 @@ Class(CV, 'Tooltip').inherits(Widget)({
          * element. This class will make the tooltip to be shown when hover
          * over the parent with pure css.
          */
-        render : function(element, beforeElement) {
+        render : function render(element, beforeElement) {
             Widget.prototype.render.call(this, element, beforeElement);
 
-            element.addClass(this.constructor.HAS_TOOLTIP_CLASSNAME);
+            if (this.showOnCssHover) {
+                element.addClass(this.constructor.HAS_TOOLTIP_CLASSNAME);
+            }
 
             return this;
         }

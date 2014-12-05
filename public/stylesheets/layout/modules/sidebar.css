@@ -22,7 +22,7 @@
   Fix sidebar items rendering issue on safari
   5.1.7 && 6.0.5
 */
-.sidebar-wrapper * {
+.sidebar-wrapper .sidebar-scroller {
   -webkit-transform: translate3d(0,0,0);
 }
 
@@ -144,7 +144,7 @@ hgroup {
 }
 .voice-search > ul > li > .map-btn {height: 25px; width: 25px; display: block; border-width: 1px;}
 .voice-search .map-btn .sprite-sidebar {width: 9px; height: 14px; margin-top: 6px}
-.voice-search > ul > li > .tooltip {top: 29px}
+/*.tooltip-map {top: 29px}*/
 .mapit {
   position: relative;
   margin: 9px 0 0 15px;

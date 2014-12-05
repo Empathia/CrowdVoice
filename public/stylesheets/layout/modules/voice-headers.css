@@ -176,18 +176,14 @@
             color: #ccc;
           }
 
-        .post-type > .media > .tooltip {
-          top: 14px;
+        .post-type > .media > .cv-tooltip {
           color: #333;
         }
 
         .media-type-info  {
           position: relative;
-          top: 10px;
-          left: 0;
           border-width: 1px;
           padding: 15px 11px;
-          z-index: 30px;
         }
         .media-type-title {
           font-size: 15px;
@@ -209,10 +205,6 @@
           display: block;
           line-height: 1;
           padding: 6px 7px 0;
-        }
-        .filters-and-mode .tooltip,
-        .post-button > .tooltip {
-          z-index:7;
         }
         .post-button > .tooltip > .tooltip-positioner {
           position: relative;
@@ -544,7 +536,7 @@
     height: 39px;
     z-index: 2;
   }
-  .info-tags__tooltip.tooltip {
+  .cv-tooltip.info-tags__tooltip {
     bottom: 0;
     left: 0;
     margin: 0;
@@ -553,22 +545,6 @@
     right: 0;
     top: 36px;
     z-index: 999999;
-  }
-  .info-tags__tooltip.tooltip .tooltip-positioner {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-  }
-  .info-tags__tooltip.tooltip .tooltip-arrow {
-    display: none;
-  }
-  .info-tags__tooltip.tooltip .media-type-info {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    top: 0;
-    width: 100%;
   }
   .info-tags__tooltip .voice-tags {
     bottom: 40px;
