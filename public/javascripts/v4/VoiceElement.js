@@ -150,10 +150,6 @@ Class('VoiceElement').inherits(Widget)({
                 voice.thumbElement.css({background : "#EEE url('/images/image-not-available.gif') no-repeat 50% 50%"});
             });
 
-            if ($.deparam.querystring().post && $.deparam.querystring().post === this.id.toString()) {
-                window.CV.OverlaysController.showOverlay(this);
-            }
-
             if (!this.approved) {
                 this.element.find('.vote-post.thumb').bind('click', function() {
                     $.post(this.href, function(data) {
