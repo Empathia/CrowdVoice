@@ -16,40 +16,13 @@ class VoicesController < ApplicationController
   end
 
   def show
-    @voice = Voice.find_by_slug!(params[:id])
+    slug   = Slug.find_by_text!(params[:id])
+    @voice = slug.voice
 
-    # filters = params[:filters] ? params[:filters].split(',') : ['image', 'video', 'link']
-
-    # if params[:filters]
-    #   scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved).by_type(filters)
-    # else
     scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved)
-    # end
-
-    # scope = scope.where("created_at <= ?", Date.parse(params[:start]) + 1) if params[:start]
-
-    # scope = scope.by_tags(params[:tags]) if params[:tags]
-
-    # if params[:fetchAll]
-    #   query = scope.to_sql
-    #   # query = scope.page(1).per(60).to_sql
-    # else
-    #   per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i
-
-    #   query = scope.page(params[:page]).per(per_page).to_sql
-    # end
-
-
+    
     query = scope.includes(:tags).to_sql
 
-    # if params[:start]
-    #   query.sub!("WHERE", "FORCE INDEX (index_posts_on_created_at) WHERE") unless params[:tags]
-    #   query.sub!("ORDER BY id", "ORDER BY created_at") unless params[:tags]
-    # else
-    #   query.sub!("WHERE", "FORCE INDEX (PRIMARY, index_posts_on_approved_and_voice_id) WHERE") unless params[:tags]
-    # end
-
-    
     @posts = Post.find_by_sql(query)
 
 
@@ -57,11 +30,6 @@ class VoicesController < ApplicationController
       @blocks = @voice.blocks.map(&:data_parsed)
     end
     
-    # if request.format.html? || request.format.js?
-    #   @next_page = (params[:page].nil? ? 1 : params[:page].to_i) + 1
-    #   #@posts_count = scope.count
-    # end
-
     if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
       @votes = get_votes
     end
@@ -120,7 +88,8 @@ class VoicesController < ApplicationController
   end
 
   def block_tags
-    @voice = Voice.find_by_slug!(params[:voice_id])
+    slug = Slug.find_by_text!(params[:voice_id])
+    @voice = slug.voice
     tags = @voice.blocks.map(&:tag_list).flatten
 
     render :json => tags, :layout => false
@@ -135,7 +104,8 @@ class VoicesController < ApplicationController
 
 private
   def redirect_gaza_voices
-    voice = Voice.find_by_slug(params[:id])
+    slug  = Slug.find_by_text!(params[:id])
+    voice = slug.voice
 
     if voice && voice.is_witness_gaza && !(request.path =~ /^\/gaza/)
       redirect_to gaza_path_helper(voice)

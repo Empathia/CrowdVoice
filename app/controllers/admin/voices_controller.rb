@@ -39,6 +39,7 @@ class Admin::VoicesController < ApplicationController
 
   def update
     if @voice.update_attributes(params[:voice])
+
       redirect_to admin_voices_path, :notice => t('flash.admin.voices.update.notice')
     else
       render :edit
@@ -87,7 +88,8 @@ class Admin::VoicesController < ApplicationController
 
   private
   def find_voice
-    @voice = scoped_voice.find_by_slug!(params[:id])
+    slug = Slug.find_by_text!(params[:id])
+    @voice = scoped_voice.find(slug.voice_id)
   end
 
   def build_scoped_voice(*args)

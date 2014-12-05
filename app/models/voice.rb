@@ -5,7 +5,7 @@ class Voice < ActiveRecord::Base
   attr_accessible :title, :description, :theme, :logo_link,
     :latitude, :longitude, :location, :map_url, :twitter_search, :background, :is_witness_gaza,
     :featured, :archived, :logo, :sponsor_slogan, :sponsor, :rss_feed, :approved,
-    :background_version, :square_background, :wide_background, :posts_attributes, :has_timeline
+    :background_version, :square_background, :wide_background, :posts_attributes, :has_timeline, :slugs_attributes
 
   mount_uploader :logo, LogoUploader
   mount_uploader :background, BackgroundUploader
@@ -19,9 +19,11 @@ class Voice < ActiveRecord::Base
   has_many :events, :dependent => :destroy, :order => 'event_date DESC'
   has_many :subscriptions, :dependent => :destroy
   has_many :supporters, :dependent => :destroy
+  has_many :slugs, :dependent => :destroy
   has_one :announcement, :dependent => :destroy
 
   accepts_nested_attributes_for :posts
+  accepts_nested_attributes_for :slugs, :reject_if => proc { |attributes| attributes['text'].blank? && attributes['is_default'] == '0' && attributes['id'].nil?}
 
   validates_presence_of :title, :description
   validates_inclusion_of :theme, :in => THEMES
@@ -119,6 +121,10 @@ class Voice < ActiveRecord::Base
       base_slug = "#{base_slug}--#{count}"
     end
     base_slug
+  end
+
+  def slug
+    self.slugs.default[0].text
   end
 
   # Reset last timestamp of the RSS and twitter inclusion

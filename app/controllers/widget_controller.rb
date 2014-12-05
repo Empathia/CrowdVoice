@@ -7,7 +7,8 @@ class WidgetController < ApplicationController
 
   def show
     if @scope_this = (params[:scope] != 'all')
-      @voice = Voice.find_by_slug!(params[:id])
+      slug = Slug.find_by_text!(params[:id])
+      @voice = slug.voice
       filter_posts = @voice.posts.approved.limit(50)
       @posts = filter_posts
     else

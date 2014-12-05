@@ -1,4 +1,4 @@
-<%= form_for [:admin, @voice], :html => { :multipart => true, :class => "form voices" } do |f| %>
+<%= form_for [:admin, setup_voice(@voice)], :html => { :multipart => true, :class => "form voices" } do |f| %>
   <section class="clearfix" style="width:600px; float:left;">
     <div class="clearfix">
       <div class="label-form">
@@ -7,6 +7,22 @@
       <small class="answere">Add a title to your Voice</small>
       <%= f.text_field :title, :class => 'title' %>
       <%= render 'shared/error_messages_for', :object => @voice, :field => :title %>
+    </div>
+    <div class="clearfix">
+      <div class="label-form">
+        <p><%= f.label 'Page Slug' %> <span class="red">*</span></p>
+
+        <%= f.fields_for :slugs do |slug_fields| %>
+        <div class="clearfix">
+          <div class="label-form slug">
+            <%= slug_fields.label :is_default, 'Default' %>
+            <%= slug_fields.check_box :is_default, :style => "width:26px;" %>
+            <%= slug_fields.text_field :text, :label => 'Slug', :disabled => true %>
+            <%= render 'shared/error_messages_for', :object => @voice, :field => :slugs %>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
     <div class="clearfix">
       <div class="label-form">
@@ -185,6 +201,72 @@
           <%= f.hidden_field :wide_background_cache %>
         </div>
       </div>
+
+      <script type="text/javascript">
+        (function() {
+          var slug = function(str) {
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+
+            // remove accents, swap ñ for n, etc
+            var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+            var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+            for (var i=0, l=from.length ; i<l ; i++) {
+              str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+              .replace(/\s+/g, '-') // collapse whitespace and replace by -
+              .replace(/-+/g, '-'); // collapse dashes
+
+            return str;
+          }
+
+          $('.slug input[type="checkbox"]').bind('click', function() {
+            var that = this;
+            $('.slug input[type="checkbox"]').each(function(){
+              if (that !== this) {
+                $(this).attr({'checked': false});
+              };
+            })
+          });
+
+          $('.slug input[type="checkbox"]').each(function() {
+            var checkbox = $(this);
+            var input;
+
+            if (checkbox.siblings('input[type="text"]').length !== 0) {
+              input = checkbox.siblings('input[type="text"]');
+            } else {
+              input = checkbox.siblings('.field_with_errors').find('input');
+            }
+
+            input.bind('blur', function() {
+              var text = slug(input.val());
+
+              input.val(text);  
+            });
+            
+            
+          })
+
+          var inputs = $('input[type="text"]');
+
+          inputs.each(function(){
+            var input = this;
+
+            if ($(this).val() === '' || $(this).parent().hasClass('field_with_errors')) {
+              $(this).attr('disabled', false)
+            };
+
+            $(this).bind('click', function(e) {
+              if (!$(input).siblings('input[type="checkbox"]').attr('checked')) {
+                $(input).siblings('input[type="checkbox"]').trigger('click', e);  
+              }
+            });
+          });
+        })()
+        </script>
       
     <% end %>
   </section>
