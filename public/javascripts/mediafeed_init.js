@@ -52,8 +52,44 @@ $(function () {
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
 
+    var mainContainer = $('.main-container');
     new CV.Tooltip({
         element : $('.voice-description-tooltip'),
+        showOnCssHover : false,
+        toggler: $('.description-wrapper'),
+        enterTogglerElementEvent : function(ev) {
+            var tooltipWidth, parentElement, parentOffsetLeft, tooltipOffsetLeft, mainContainerOffset;
+
+            tooltipWidth = this.element.width();
+            parentElement = this.element.parent();
+            parentOffsetLeft = parentElement.offset().left;
+            parentWidth = parentElement.width();
+            mainContainerOffset = mainContainer.offset().left;
+
+            this.activate();
+
+            tooltipOffsetLeft = this.element.offset().left;
+
+            if ((tooltipOffsetLeft - mainContainerOffset) < 0) {
+                this.element.css({
+                    left : (parentOffsetLeft * -1) + mainContainerOffset + 20,
+                    transform : 'none'
+                });
+
+                this._arrowElement.css('left', ((parentOffsetLeft - mainContainerOffset) - 20) + (parentWidth / 2));
+            }
+
+            outScreen = (this.element.offset().left + tooltipWidth) - window.innerWidth;
+
+            if (outScreen > 0) {
+                this.element.width(tooltipWidth - outScreen - 20);
+            }
+        },
+        leaveTogglerElementEvent : function(ev) {
+            this.deactivate();
+            this.element.css({left: "", transform: "", width: ""});
+            this._arrowElement.css('left', "");
+        }
     });
 
     new CV.Tooltip({
@@ -121,7 +157,7 @@ $(function () {
         fbPath : _fbPath
       });
 
-    
+
     CV.timeline = new Timeline({
         name : 'timeline'
     });
