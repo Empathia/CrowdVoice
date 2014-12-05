@@ -1,5 +1,9 @@
-.more-about-cv-tooltip {
+.cv-tooltip.more-about-cv-tooltip {
   width: 150px;
+  top: 100%;
+}
+.cv-tooltip.more-about-cv-tooltip .cv-tooltip__arrow {
+  top: 19px;
 }
 
 .cv-tooltip.add-a-voice-tooltip {
