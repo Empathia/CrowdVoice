@@ -39,6 +39,7 @@ class Admin::PostsController < ApplicationController
   private
 
   def find_voice
-    @voice = Voice.find_by_slug(params[:voice_id])
+    slug = Slug.find_by_text(params[:voice_id])
+    @voice = slug.voice
   end
 end

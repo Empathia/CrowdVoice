@@ -11,7 +11,7 @@ class CreateSlugs < ActiveRecord::Migration
     voices = Voice.all
 
     voices.each do |voice|
-      slug = voice.slug
+      slug = voice.default_slug
 
       voice.slugs.create(:text => slug, :is_default => true)
     end

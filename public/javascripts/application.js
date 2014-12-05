@@ -115,7 +115,7 @@ $(function () {
                     if (!position) {
                         position = CV.Map.at(voice.latitude, voice.longitude);
                     }
-                    content += '<li><a href="/' + voice.slug + '">' + voice.title + '</a></li>';
+                    content += '<li><a href="/' + voice.default_slug + '">' + voice.title + '</a></li>';
                 }
                 content += '</ul>';
 

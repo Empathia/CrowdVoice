@@ -1,6 +1,6 @@
 <% if item.item_type == 'graph' %>
   <div class="home-cover home-cover--infographic home-cover--1-6 <%= item.voice.theme %>">
-    <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>">
+    <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.default_slug}" %>">
       <div class="home-cover__header-title">
         <i class="icon icon-infographics opacity--40"></i>
         know the facts behind
@@ -8,13 +8,13 @@
       <div class="home-cover__title"><%= item.voice.title %></div>
       <div class="home-cover__media-info">
         <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
+          <a href="<%= "/#{item.voice.default_slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
             <i class="icon icon-backstory"></i>
           </a>
           <span class="char--dot">•</span>
         <% end %>
         <% if !item.voice.blocks.empty? %>
-          <a href="<%= "/#{item.voice.slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
+          <a href="<%= "/#{item.voice.default_slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
             <i class="icon icon-infographics"></i>
           </a>
           <span class="char--dot">•</span>
@@ -44,7 +44,7 @@
   </div>
 <% else %>
   <div class="home-cover home-cover--backstory home-cover--1-6 <%= item.voice.theme %>">
-    <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>?backstory=true">
+    <div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.default_slug}" %>?backstory=true">
       <div class="home-cover__header-title">
         <i class="icon icon-backstory opacity--40"></i>
         understand the events behind
@@ -52,13 +52,13 @@
       <div class="home-cover__title"><%= item.voice.title %></div>
       <div class="home-cover__media-info">
         <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-          <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
+          <a href="<%= "/#{item.voice.default_slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
             <i class="icon icon-backstory"></i>
           </a>
           <span class="char--dot">•</span>
         <% end %>
         <% if !item.voice.blocks.empty? %>
-          <a href="<%= "/#{item.voice.slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
+          <a href="<%= "/#{item.voice.default_slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
             <i class="icon icon-infographics"></i>
           </a>
           <span class="char--dot">•</span>

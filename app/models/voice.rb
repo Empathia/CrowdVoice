@@ -30,7 +30,7 @@ class Voice < ActiveRecord::Base
   validates_format_of :rss_feed, :with => Scrapers::Feed.regexp, :if => :check_rss_feed
   validates_inclusion_of :background_version, :in => BACKGROUND_VERSIONS
   validates :title, :exclusion => { :in => RESERVED, :message => "\"%{value}\" is reserved word."}
-  before_save :generate_slug
+  # before_save :generate_slug
   before_save :reset_feed_timestamps
   before_save :ensure_gaza_approved
   after_save :add_content
@@ -66,7 +66,7 @@ class Voice < ActiveRecord::Base
     c.expire_fragment("#{current_connection}_mediafeed_#{id}_mod_other")
     c.expire_fragment("#{current_connection}_mediafeed_#{id}_public_mobile")
     c.expire_fragment("#{current_connection}_mediafeed_#{id}_public_other")
-    c.expire_page("/#{slug}.rss")
+    c.expire_page("/#{default_slug}.rss")
   end
 
   def square_version?
@@ -90,7 +90,7 @@ class Voice < ActiveRecord::Base
   end
 
   def to_param
-    slug
+    default_slug
   end
 
   # Builds map link.
@@ -123,7 +123,7 @@ class Voice < ActiveRecord::Base
     base_slug
   end
 
-  def slug
+  def default_slug
     self.slugs.default[0].text
   end
 

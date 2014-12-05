@@ -37,7 +37,7 @@
 <% end %>
 
 <header class='form'>
-  <%= form_for @voice, :url => admin_voice_bulk_update_path(@voice.slug), :html => { :class => "form" } do |f| %>
+  <%= form_for @voice, :url => admin_voice_bulk_update_path(@voice.default_slug), :html => { :class => "form" } do |f| %>
   <ul class="action-buttons clearfix fr">
     <li><%= text_field_tag :tags, nil,:placeholder =>  t('admin.voices.input'), :id => 'main_tags_input' %></li>
     <li>

@@ -1,4 +1,4 @@
-<div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.slug}" %>?all=true">
+<div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.default_slug}" %>?all=true">
   <div class="home-cover__header-title">
     <% if item.item_type == 'featured' %>
       <i class="icon icon-star opacity--40"></i>
@@ -11,13 +11,13 @@
   <div class="home-cover__title"><%= item.voice.title %></div>
   <div class="home-cover__media-info">
     <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
-      <a href="<%= "/#{item.voice.slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
+      <a href="<%= "/#{item.voice.default_slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
         <i class="icon icon-backstory"></i>
       </a>
       <span class="char--dot">•</span>
     <% end %>
     <% if !item.voice.blocks.empty? %>
-      <a href="<%= "/#{item.voice.slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
+      <a href="<%= "/#{item.voice.default_slug}" %>" class="simple-tooltip" data-tooltip-text="Infographic" data-tooltip-position="top">
         <i class="icon icon-infographics"></i>
       </a>
       <span class="char--dot">•</span>

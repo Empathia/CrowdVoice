@@ -2,7 +2,7 @@
   $(window).load(function(){
     new sortBlocks('.ui-sortable')
   })
-  var voiceId = '<%= @voice.slug %>';
+  var voiceId = '<%= @voice.default_slug %>';
 </script>
 <div id="overlay" style="display: none"><div class="serverResponse"></div></div>
 <header class='form'>

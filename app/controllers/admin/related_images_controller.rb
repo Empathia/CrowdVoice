@@ -1,6 +1,7 @@
 class Admin::RelatedImagesController < ApplicationController
   def destroy
-    voice = Voice.find_by_slug(params[:voice_id])
+  	slug = Slug.find_by_text(params[:voice_id])
+    voice = slug.voice
     @image = voice.events.find(params[:event_id]).related_images.find(params[:id])
     @image.destroy
   end
