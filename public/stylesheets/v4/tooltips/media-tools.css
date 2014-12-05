@@ -101,7 +101,7 @@
 .link-post-media-tooltip .carousel {
   display: none;
   width: 400px;
-  left: -288px!important;
+  margin-left: -180px !important;
 }
 
 .link-post-media-tooltip .carousel .tooltip-arrow {
