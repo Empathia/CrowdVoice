@@ -119,17 +119,9 @@
               CV.voicesContainer.element.isotope('layout');
               CV.timeline.update();
             });
+
+            CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
           });
-
-          var postIdParam = $.deparam.querystring().post;
-          if (postIdParam) {
-            CV.voicesContainer.children.some(function(voice) {
-              if (voice.id == postIdParam) {
-                return window.CV.OverlaysController.showOverlay(voice);
-              }
-            });
-          }
-
         }
       });
 

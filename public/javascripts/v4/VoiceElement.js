@@ -43,13 +43,13 @@ Class('VoiceElement').inherits(Widget)({
             <div class="voice-unmoderated">\
                 <ul class="clearfix">\
                     <li class="up flag-div">\
-                        <a class="vote-post thumb" data-method="post" rel="nofollow">\
+                        <a class="vote-post thumb" rel="nofollow">\
                             <i class="allow-post icon icon-thumbs-up"></i>\
                             <span class="text">Allow</span>\
                         </a>\
                     </li>\
                     <li class="down flag-div">\
-                        <a class="vote-post thumb" data-method="post" rel="nofollow">\
+                        <a class="vote-post thumb" rel="nofollow">\
                             <i class="deny-post icon icon-thumbs-down"></i>\
                             <span class="text">Deny</span>\
                         </a>\
@@ -151,11 +151,26 @@ Class('VoiceElement').inherits(Widget)({
             });
 
             if (!this.approved) {
-                this.element.find('.vote-post.thumb').bind('click', function() {
+                this.element.find('.vote-post.thumb').bind('click', function(ev) {
+                    ev.preventDefault();
+
+                    var b = $(ev.currentTarget),
+                        p = b.parent();
+
+                    if (p.hasClass('down_hover')) return;
+
                     $.post(this.href, function(data) {
-                        voice.element.find('.voice-unmoderated').remove();
-                        voice.element.removeClass('unmoderated');
+                        p.siblings().hide();
+
+                        if (p.hasClass('down')) {
+                            p.addClass('down_hover');
+                        } else {
+                            p.addClass('up_hover');
+                            voice.element.removeClass('unmoderated');
+                            voice.element.find('.voice-unmoderated').remove();
+                        }
                     });
+
                     return false;
                 });
             }

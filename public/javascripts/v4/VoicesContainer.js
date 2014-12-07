@@ -143,7 +143,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                     voicesContainer.currentPage = page + 1;
                 }
-                
+
                 voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
                     CV.timeline.afterFetchActions();
                     CV.timeline.updateSliderPosition();
@@ -240,6 +240,63 @@ Class('VoicesContainer').inherits(Widget)({
             if (callback) {
                 callback();
             }
+        },
+
+        /**
+         * Check the URL looking for the 'post' param. If the URL contains the
+         * 'post' params, then we check the 'post' param value agains the VoiceElements
+         * looking for a match by id. If found, then we open the Overlay.
+         * @method checkURLToShowOverlay <public> [Function]
+         * @return this [VoicesContainer]
+         */
+        checkURLToShowOverlay : function (argument) {
+            var postIdParam = $.deparam.querystring().post;
+
+            if (postIdParam) {
+                this.children.some(function(voiceElement) {
+                  if (voiceElement.id == postIdParam) {
+                    window.CV.OverlaysController.showOverlay(voiceElement);
+                    return true;
+                  }
+                });
+            }
+
+            return this;
+        },
+
+        /**
+         * Iterate over 'CV.post_votes' Object if defined, looking for
+         * voiceElements to match. If a match if found, then the voiceElement
+         * is updated to inform that the user has already casted a vote
+         * for this voice.
+         * @method checkVotedVoices <public> [Function]
+         * @return this [VoicesContainer]
+         *
+         */
+        checkVotedVoices : function() {
+            var voicesContainer = this;
+
+            if (!CV.posts_votes) {
+                return this;
+            }
+
+            _.each(CV.posts_votes, function(voteObject) {
+                voicesContainer.children.some(function(voiceElement) {
+                    if (voiceElement.id == voteObject.id) {
+                        if (voteObject.positive) {
+                            voiceElement.element.find('.voice-unmoderated li.up').addClass('up_hover');
+                            voiceElement.element.find('.voice-unmoderated li.down').remove();
+                        } else {
+                            voiceElement.element.find('.voice-unmoderated li.down').addClass('down_hover');
+                            voiceElement.element.find('.voice-unmoderated li.up').remove();
+                        }
+
+                        return true;
+                    }
+                });
+            });
+
+            return this;
         }
     }
 });
