@@ -251,7 +251,7 @@ Class('Post').inherits(Widget)({
             $.ajax({
                 url: "/remote_page_info",
                 type: 'POST',
-                data: "url=" + encodeURIComponent(this.inputPost[0].value),
+                data: "url=" + encodeURIComponent(this.inputPost[0].value) + "&voice_id=" + window.currentVoice.slug,
                 dataType: "json",
                 success: function(data, status, xhr) {
                     that.carousel.loadHash(data);

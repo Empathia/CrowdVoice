@@ -1,6 +1,9 @@
 class VoiceFeeder
   def self.feed_voice(voice_id)
     voice = Voice.find(voice_id)
+    puts voice.id
+    puts voice.rss_feed
+    puts voice.twitter_search
     voice.rss_feed.blank? ? Rails.logger.info("   - Rss empty.") : fetch_rss(voice)
     voice.twitter_search.blank? ? Rails.logger.info("    - Twitter search empty (shouldn't be).") : fetch_tweets(voice)
   end
@@ -37,6 +40,7 @@ class VoiceFeeder
     source = TwitterSearch.search(voice.twitter_search)
     last_tweet = source.last[:id] unless (source.nil? || source.empty?)
     urls = TwitterSearch.get_valid_urls(source, voice.last_tweet)
+    Rails.logger.info "URLs : #{urls.to_json}"
     Rails.logger.info "    - Getting urls from twitter search"
     if ConnectionAdapter.connected_to != "crowdvoice_production"
       Rails.logger.info "    - Limiting Twitter scraping to 500"
