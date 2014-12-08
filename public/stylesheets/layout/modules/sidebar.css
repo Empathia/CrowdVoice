@@ -138,6 +138,13 @@ hgroup {
   border-width: 1px 0 0 0;
   font-size: 12px;
 }
+.voice-search .icon-search {
+  color: #bbb;
+  position: absolute;
+  left: 18px;
+  top: 15px;
+  font-size: 12px;
+}
 .voice-search > ul {
   display: inline-block;
   vertical-align: top;

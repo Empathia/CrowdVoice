@@ -20,7 +20,7 @@ class VoicesController < ApplicationController
     @voice = slug.voice
 
     scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved)
-    
+
     query = scope.includes(:tags).to_sql
 
     @posts = Post.find_by_sql(query)
@@ -29,7 +29,7 @@ class VoicesController < ApplicationController
     if request.format.html?
       @blocks = @voice.blocks.map(&:data_parsed)
     end
-    
+
     if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
       @votes = get_votes
     end
@@ -46,19 +46,19 @@ class VoicesController < ApplicationController
     else
       posts_ids = @posts.map(&:id)
 
-      @tags = ActsAsTaggableOn::Tagging.includes(:tag).where(:taggable_id => posts_ids).map { |tagging| 
+      @tags = ActsAsTaggableOn::Tagging.includes(:tag).where(:taggable_id => posts_ids).map { |tagging|
         name = 'none'
-        
+
         if tagging.tag
           name = tagging.tag.name
         end
 
         {
-          :id => tagging.taggable_id, 
+          :id => tagging.taggable_id,
           :name => name
-        } 
+        }
       }
-      
+
       response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
         :tags => @tags,
@@ -69,7 +69,7 @@ class VoicesController < ApplicationController
       render :json => Oj.dump(response, :mode => :compat), :layout => false
     end
 
-    
+
   end
 
   def fetch_feeds
@@ -81,7 +81,7 @@ class VoicesController < ApplicationController
 
   def locations
     voices = Voice.where("latitude IS NOT NULL AND TRIM(latitude) <> '' AND longitude IS NOT NULL AND TRIM(longitude) <> ''").group_by(&:location).map do |location, voices|
-      voices = voices.map { |v| { :default_slug => v.default_slug, :title => v.title, :latitude => v.latitude, :longitude => v.longitude } }
+      voices = voices.map { |v| { :default_slug => v.default_slug, :title => v.title, :latitude => v.latitude, :longitude => v.longitude, :theme => v.theme } }
       {:location => location, :voices => voices}
     end
     render :json => voices

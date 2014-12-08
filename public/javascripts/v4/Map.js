@@ -38,7 +38,6 @@ Class(CV, 'Map').inherits(Widget)({
      */
     getLocations : function getLocations(callback) {
         $.getJSON('/locations.json', function (data) {
-            this.voices_locations = data;
             callback(data);
         }.bind(this));
     },
@@ -177,19 +176,28 @@ Class(CV, 'Map').inherits(Widget)({
             return this;
         },
 
-        addMarker : function addMarker (_position, _title, _label, _content) {
-            var marker, label, infowindow;
+        addMarker : function addMarker (_position, _title, _label, _content, _theme) {
+            var marker, label, infowindow, icon_image;
+
+            icon_image = 'images/v4/google-maps/markerclusterer/ms.png';
+
+            if (_label === 1) {
+                icon_image = 'images/v4/google-maps/marker/' + _theme + '.png';
+            }
 
             marker = new google.maps.Marker({
                 map : this._map,
                 position : _position,
-                title : _title
+                title : _title,
+                icon : icon_image
             });
 
-            label = this.createLabel(_label);
-            infowindow = this.createInfoWindow(_content);
+            // if (_label > 1) {
+            //     label = this.createLabel(_label);
+            //     label.bindTo('position', marker, 'position');
+            // }
 
-            label.bindTo('position', marker, 'position');
+            infowindow = this.createInfoWindow(_content);
 
             google.maps.event.addListener(marker, 'click', function () {
                 this.closeAllInfowindows();
@@ -201,14 +209,15 @@ Class(CV, 'Map').inherits(Widget)({
 
         makeCluster : function makeCluster (markers) {
             var mcOptions = {
-                gridSize: 50,
-                maxZoom: 15,
+                // gridSize: 100,
+                // maxZoom: 15,
                 styles: [
                     {
+                        textColor: '#404040',
                         width: 60,
                         height: 62,
                         url: "images/v4/google-maps/markerclusterer/m.png"
-                    }
+                    },
                 ]
             };
 
@@ -256,7 +265,10 @@ Class(CV, 'Map').inherits(Widget)({
     window.MarkerLabel = function(opt_options) {
         this.setValues(opt_options);
         var span = this.span_ = document.createElement('span');
-        span.style.cssText = 'position: relative; font-size: 10px; left: -50%; top: -42px; z-index:900; white-space: nowrap; padding: 2px; color: white;';
+        span.style.cssText = '\
+            position: relative; font-size: 11px; left: -50%; \
+            top: -42px; z-index:900; white-space: nowrap; padding: 2px; color: #404040;\
+            font-family: Arial, sans-serif; font-weight: bold;';
         var div = this.div_ = document.createElement('div');
         div.appendChild(span);
         div.style.cssText = 'position: absolute; display: none;';
