@@ -26,6 +26,17 @@ $(function () {
         element : $('.voice-info')
     });
 
+    var twitterSearchWrapper = $('.tooltip-mediafeed-tweets');
+    var twitterSearchString = twitterSearchWrapper.data('twitter-search');
+    twitterSearchString = twitterSearchString.replace(/\sAND\s/, ' + ').split(/\sOR\s/).join(', ');
+    new CV.Tooltip({
+        html : '\
+            All tweets using <span class="cv-dynamic-text-color">' + twitterSearchString + '</span>\
+            will be published in this voice\'s stream!',
+        position : 'bottom',
+        className : 'mediafeed-tweets-tooltip active'
+    }).render(twitterSearchWrapper);
+
     new CV.Tooltip({
         element: $('.embeddable-widget-tooltip')
     });
