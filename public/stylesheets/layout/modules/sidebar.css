@@ -143,7 +143,12 @@ hgroup {
   vertical-align: top;
 }
 .voice-search > ul > li > .map-btn {height: 25px; width: 25px; display: block; border-width: 1px;}
-.voice-search .map-btn .sprite-sidebar {width: 9px; height: 14px; margin-top: 6px}
+.map-btn .icon {
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 4px;
+  color: #ccc;
+}
 /*.tooltip-map {top: 29px}*/
 .mapit {
   position: relative;

@@ -38,7 +38,7 @@ $(function () {
     mapContainer = $('.map-container');
     _mapVoices = new CV.Map({zoom : 2}).render(mapContainer);
     mapButton = $('.map-btn');
-    
+
     new Accordion('.sidebar-scroller__accordion-arrow');
     new SlideSection({
         element : $('.login'),
@@ -99,9 +99,13 @@ $(function () {
 
     window.initializeVoicesMap = function() {
         _voicesMapCreated = true;
+
+        CV.Map.inyectMapClusterScript();
         _mapVoices.setMapCenter(0, 0).createMap();
 
         CV.Map.getLocations(function (locations) {
+            var markers = [];
+
             for (var i = 0; i < locations.length; i++) {
                 var loc = locations[i].location,
                     position = null,
@@ -119,8 +123,10 @@ $(function () {
                 }
                 content += '</ul>';
 
-                _mapVoices.addPin(position, title, label, content);
+                markers.push(_mapVoices.addMarker(position, title, label, content));
             }
+
+            _mapVoices.makeCluster(markers);
         });
     };
 

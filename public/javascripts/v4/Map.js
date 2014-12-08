@@ -64,7 +64,19 @@ Class(CV, 'Map').inherits(Widget)({
         return this;
     },
 
+    inyectMapClusterScript : function inyectMapClusterScript () {
+        if (this.isMapClusterInyected === false) {
+            var script = document.createElement('script');
+            script.src = "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js";
+            document.getElementsByTagName('head')[0].appendChild(script);
+            this.isGoogleScriptInyected = true;
+        }
+
+        return this;
+    },
+
     isGoogleScriptInyected : false,
+    isMapClusterInyected : false,
     _markerLabelAdded : false,
 
     prototype: {
@@ -165,6 +177,44 @@ Class(CV, 'Map').inherits(Widget)({
             return this;
         },
 
+        addMarker : function addMarker (_position, _title, _label, _content) {
+            var marker, label, infowindow;
+
+            marker = new google.maps.Marker({
+                map : this._map,
+                position : _position,
+                title : _title
+            });
+
+            label = this.createLabel(_label);
+            infowindow = this.createInfoWindow(_content);
+
+            label.bindTo('position', marker, 'position');
+
+            google.maps.event.addListener(marker, 'click', function () {
+                this.closeAllInfowindows();
+                infowindow.open(this._map, marker);
+            }.bind(this, marker));
+
+            return marker;
+        },
+
+        makeCluster : function makeCluster (markers) {
+            var mcOptions = {
+                gridSize: 50,
+                maxZoom: 15,
+                styles: [
+                    {
+                        width: 60,
+                        height: 62,
+                        url: "images/v4/google-maps/markerclusterer/m.png"
+                    }
+                ]
+            };
+
+            return new MarkerClusterer(this._map, markers, mcOptions);
+        },
+
         closeAllInfowindows : function closeAllInfowindows() {
             for (var i = 0; i < this._infowindows.length; i++) {
                 this._infowindows[i].close();
@@ -183,7 +233,7 @@ Class(CV, 'Map').inherits(Widget)({
 
         createMarker : function createMarker(position, title) {
             return new google.maps.Marker({
-                icon : '/images/pin.png',
+                // icon : '/images/pin.png',
                 map : this._map,
                 position : position,
                 title : title
