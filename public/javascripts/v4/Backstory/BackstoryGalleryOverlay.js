@@ -279,15 +279,15 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         },
 
         _keyUpHandler : function _keyUpHandler(ev) {
-            if (ev.keyCode == 27) {
+            if (ev.keyCode == 27) { /* ESC */
                 return this.deactivate();
             }
 
-            if (ev.keyCode == 37) {
+            if (ev.keyCode == 37) { /* prev */
                 return window.CV.backstoryUIComponent.loadPreviousGallery();
             }
 
-            if (ev.keyCode == 39) {
+            if (ev.keyCode == 39) { /* next */
                 return window.CV.backstoryUIComponent.loadNextGallery();
             }
         },

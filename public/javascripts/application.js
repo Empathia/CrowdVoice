@@ -111,10 +111,12 @@ $(function () {
                     position = null,
                     label = locations[i].voices.length,
                     title = label + ' voice(s) in ' + loc,
-                    content = '<ul class="map-voices">';
+                    content = '<ul class="map-voices">',
+                    theme;
 
                 for (var j = 0; j < locations[i].voices.length; j++) {
                     var voice = locations[i].voices[j];
+                    theme = voice.theme;
 
                     if (!position) {
                         position = CV.Map.at(voice.latitude, voice.longitude);
@@ -123,7 +125,7 @@ $(function () {
                 }
                 content += '</ul>';
 
-                markers.push(_mapVoices.addMarker(position, title, label, content));
+                markers.push(_mapVoices.addMarker(position, title, label, content, theme));
             }
 
             _mapVoices.makeCluster(markers);

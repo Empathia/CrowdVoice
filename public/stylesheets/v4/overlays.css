@@ -36,6 +36,10 @@
   color: #fff;
 }
 
+.cv-gaza-video-overlay {
+  background-color: rgba(0,0,0,.93);
+}
+
 .cv-overlay-header {
   position: absolute;
   width: 100%;
@@ -81,8 +85,6 @@
 
 .cv-overlay .arrows i {
   font-size: 13px;
-  position: relative;
-  top: 2px;
 }
 
 .cv-overlay-header .actions > li,
@@ -119,19 +121,50 @@
   margin-left: .25em;
 }
 
+.cv-link-gallery .flag-div .flag-pressed .icon,
+.cv-media-gallery .flag-div .flag-pressed .icon {
+  color: #dd0017;
+}
+
 .cv-link-gallery .arrows .vertical-divider {
   height: 24px;
 }
 
+.cv-link-gallery .onboarding-wrapper {
+  position: relative;
+  height: 25px;
+}
+.cv-link-gallery .cv-tooltip.keyboard-onboarding-navigation {
+  width: 204px;
+  text-align: center;
+  color: #666666;
+}
+.cv-link-gallery .cv-tooltip .cv-tooltip-inner {
+  padding: 1em 1em 1.5em;
+}
+.onboarding-wrapper .arrows {
+  margin: 1em 0;
+}
+.onboarding-wrapper .arrows .cv-button {
+  position: relative;
+  vertical-align: top;
+}
+.onboarding-wrapper .arrows .icon {
+  font-size: 4px;
+  vertical-align: middle;
+  color: #4c4c4c;
+}
 .link-overlay-scrollable {
   height: 100%;
   padding-top: 56px;
 }
+
 .link-overlay-scrollable > iframe {
   overflow: auto;
   display: inline-block;
   border: none;
 }
+
 .touch .link-overlay-scrollable {
   overflow-x: hidden !important;
   overflow-y: scroll !important;

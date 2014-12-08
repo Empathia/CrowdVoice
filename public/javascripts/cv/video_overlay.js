@@ -2,7 +2,7 @@ Class('VideoOverlay')({
     prototype: {
         init: function (element, options) {
             this.options = {
-                overlay : '#overlay',
+                overlay : '.cv-gaza-video-overlay',
                 overlayContainer : '.vide-overlay-container',
                 closeBtn : '.close-voice-container'
             };

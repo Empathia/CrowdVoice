@@ -22,6 +22,7 @@ Class('LinkOverlay').inherits(Widget)({
         _twitterButtonElement : null,
         _flagButtonElement : null,
         _iframeElement : null,
+        _document : null,
 
         _prevVoiceElementData : null,
         _nextVoiceElementData : null,
@@ -31,6 +32,7 @@ Class('LinkOverlay').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
+            this._document = $(document);
             this.customName = this.element.data('custom-name');
             this._nextArrowElement = this.element.find('.voice-arrow.next');
             this._prevArrowElement = this.element.find('.voice-arrow.prev');
@@ -41,9 +43,14 @@ Class('LinkOverlay').inherits(Widget)({
             this._twitterButtonElement = this.element.find('.actions .twitter');
             this._flagButtonElement = this.element.find('.flag-div .flag');
 
-            this._setupCopyToClipbard()._bindEvents();
+            this._setupCopyToClipbard()._bindEvents()._checkOnboarding();
         },
 
+        /**
+         * Instatiate ZeroClipboard, so later it can be used to copy the "source url".
+         * @method _setupCopyToClipbard <private> [Function]
+         * @return this [LinkOverlay]
+         */
         _setupCopyToClipbard : function _setupCopyToClipbard() {
             ZeroClipboard.setMoviePath( '/javascripts/ZeroClipboard10.swf' );
             this._clip = new ZeroClipboard.Client();
@@ -67,10 +74,9 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Handle the next arrow button click event.
          * @method _nextArrowClickHandler <private> [Function]
+         * @return unfined
          */
-        _nextArrowClickHandler : function _nextArrowClickHandler(ev) {
-            ev.preventDefault();
-
+        _nextArrowClickHandler : function _nextArrowClickHandler() {
             if (this._nextVoiceElementData) {
                 return this.updateWith(this._nextVoiceElementData);
             }
@@ -79,10 +85,9 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Handle the prev arrow button click event.
          * @method _prevArrowClickHandler <private> [Function]
+         * @return unfined
          */
-        _prevArrowClickHandler : function _prevArrowClickHandler(ev) {
-            ev.preventDefault();
-
+        _prevArrowClickHandler : function _prevArrowClickHandler() {
             if (this._prevVoiceElementData) {
                 return this.updateWith(this._prevVoiceElementData);
             }
@@ -91,7 +96,7 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Rebuild the overlay itself with the passed voice data.
          * @method updateWith <public> [Function]
-         * @argument voiceElement <required> [Object]
+         * @argument voiceElement <required> [VoiceElement]
          * @return this [LinkOverlay]
          */
         updateWith : function updateWith(voiceElement) {
@@ -102,6 +107,8 @@ Class('LinkOverlay').inherits(Widget)({
             this._updateArrowState();
 
             this.element.slideDown(this.animationSpeed, function() {
+                this.activate();
+
                 if (!this._clipGlued) {
                     /* the button should glued just once, also the element
                      * should be visible, that's why we wait until the
@@ -120,7 +127,8 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Updates some dynamic information from the ui, such as the social
          * buttons, the iframe url and the flag button.
-         * @property _upadteDynamicSouces <private> [Function]
+         * @method _upadteDynamicSouces <private> [Function]
+         * @argument voiceElement <required> [VoiceElement]
          * @return this [LinkOverlay]
          */
         _updateDynamicSources : function _updateDynamicSources(voiceElement) {
@@ -129,6 +137,29 @@ Class('LinkOverlay').inherits(Widget)({
             this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + (voiceElement.sourceElement.data('voted') ? 1 : -1);
             this._sourceButtonElement[0].href = voiceElement.postURL;
             this._iframeElement[0].src = voiceElement.postURL;
+
+            this._flagButtonElement.unbind('click').bind('click', function() {
+                $.ajax({
+                    url : this._flagButtonElement[0].href,
+                    data : $.extend({ authenticity_token : $('meta[name=csrf-token]').attr('content')}, $(this).data('params')),
+                    type : 'POST',
+                    dataType : 'json',
+                    context : this,
+                    success: function (data) {
+                        if (this._flagButtonElement.hasClass('flag')) {
+                            this._flagButtonElement.siblings().find('.flag-tooltip span').addClass('flagged').html('Unflag Content');
+                            this._flagButtonElement.toggleClass('flag flag-pressed')
+                                .attr('href', [this._flagButtonElement.attr('href').split('?')[0], 'rating=1'].join('?'));
+                        } else {
+                            this._flagButtonElement.siblings().find('.flag-tooltip span').removeClass('flagged').html('Flag Inappropiate Content');
+                            this._flagButtonElement.toggleClass('flag flag-pressed')
+                                .attr('href', [this._flagButtonElement.attr('href').split('?')[0], 'rating=-1'].join('?'));
+                        }
+                    }
+                });
+
+                return false;
+            }.bind(this));
 
             return this;
         },
@@ -156,8 +187,68 @@ Class('LinkOverlay').inherits(Widget)({
             return this;
         },
 
+        _keyUpHandler : function _keyUpHandler(ev) {
+            if (ev.keyCode == 27) { /* ESC */
+                return this.deactivate();
+            }
+
+            if (ev.keyCode == 37) { /* prev */
+                return this._prevArrowClickHandler();
+            }
+
+            if (ev.keyCode == 39) { /* next */
+                return this._nextArrowClickHandler();
+            }
+        },
+
+        _checkOnboarding : function _checkOnboarding () {
+            var onboardingCookie, onboardingTooltip;
+
+            onboardingCookie = 'link-overlay-navigation';
+
+            if (CV.Utils.readCookie(onboardingCookie) === null) {
+                onboardingTooltip = new CV.Tooltip({
+                    html : '\
+                        <p>You can use your keyboard keys to navigate through the content</p>\
+                        <div class="arrows">\
+                          <button class="cv-button cv-button--light">\
+                            <i class="icon icon-arrow-left-small"></i>\
+                          </button>\
+                          <button class="cv-button cv-button--light">\
+                            <i class="icon icon-arrow-right-small"></i>\
+                          </button>\
+                        </div>\
+                        <p><a href="#" class="cv-dynamic-text-color cv-underline">Ok, got, it!</a></p>\
+                    ',
+                    className : 'keyboard-onboarding-navigation active'
+                }).render(this.element.find('.onboarding-wrapper'));
+
+                onboardingTooltip.element.find('a').bind('click', function (ev) {
+                    ev.preventDefault();
+                    onboardingTooltip.deactivate();
+                    onboardingTooltip.getElement().remove();
+                    CV.Utils.createCookie(onboardingCookie, false, 365);
+                });
+            }
+
+            return this;
+        },
+
+        _activate : function _activate () {
+            Widget.prototype._activate.call(this);
+
+            this._document.unbind('keydown.bg').bind('keydown.bg', function(ev) {
+                ev.preventDefault();
+            });
+
+            this._document.unbind('keyup.bg').bind('keyup.bg', this._keyUpHandler.bind(this));
+        },
+
         _deactivate : function _deactivate() {
             Widget.prototype._deactivate.call(this);
+
+            this._document.unbind('keyup.bg');
+            this._document.unbind('keydown.bg');
 
             this.element.slideUp(this.animationSpeed, function() {
                 this._iframeElement[0].src = "";

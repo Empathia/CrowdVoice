@@ -34,6 +34,10 @@
   text-transform: uppercase;
 }
 
+.cv-underline {
+  text-decoration: underline;
+}
+
 .cv-block {
   display: block;
   width: 100%;
