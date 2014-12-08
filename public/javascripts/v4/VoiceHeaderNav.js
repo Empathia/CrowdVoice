@@ -45,10 +45,15 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
 
         _bindEvents : function _bindEvents() {
             this._mapButtonElement.bind('click', function(){
-                this._mapElementWrapper.toggleClass('active');
-
-                if (this.voiceMapWidget.active) this.voiceMapWidget.deactivate();
-                else this.voiceMapWidget.activate();
+                if (this.voiceMapWidget.active) {
+                    this._mapButtonElement.removeClass('active');
+                    this._mapElementWrapper.removeClass('active');
+                    this.voiceMapWidget.deactivate();
+                } else {
+                    this._mapButtonElement.addClass('active');
+                    this._mapElementWrapper.addClass('active');
+                    this.voiceMapWidget.activate();
+                }
 
                 if (CV.Map.isGoogleScriptInyected === false) {
                     CV.Map.inyectGoogleMapsScript("addCoordsToMap");
