@@ -128,7 +128,7 @@ Class('VoiceElement').inherits(Widget)({
             this.URL     = this.getURL();
             this.postURL = this.isRawImage() ? this.coverURL : this.sourceURL;
 
-            this.flagElement = this.element.find('a.vote-post.mediafeed-sprite.flag');
+            this.flagElement = this.element.find('a.vote-post.flag.cv-hover-danger-brand-color');
 
             this.thumbElement = this.element.find('.thumb-preview');
 

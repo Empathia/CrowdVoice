@@ -156,6 +156,9 @@
 .voice-action .flag-div {
   text-align: center;
 }
+.voice-action .flag-div .flag-pressed .icon {
+  color: #dd0017;
+}
 
 .voice-action > .actions > li > .flag-over {background-position: -48px -25px}
 
