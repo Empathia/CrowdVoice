@@ -43,7 +43,7 @@ Class('LinkOverlay').inherits(Widget)({
             this._twitterButtonElement = this.element.find('.actions .twitter');
             this._flagButtonElement = this.element.find('.flag-div .flag');
 
-            this._setupCopyToClipbard()._bindEvents();
+            this._setupCopyToClipbard()._bindEvents()._checkOnboarding();
         },
 
         /**
@@ -199,6 +199,39 @@ Class('LinkOverlay').inherits(Widget)({
             if (ev.keyCode == 39) { /* next */
                 return this._nextArrowClickHandler();
             }
+        },
+
+        _checkOnboarding : function _checkOnboarding () {
+            var onboardingCookie, onboardingTooltip;
+
+            onboardingCookie = 'link-overlay-navigation';
+
+            if (CV.Utils.readCookie(onboardingCookie) === null) {
+                onboardingTooltip = new CV.Tooltip({
+                    html : '\
+                        <p>You can use your keyboard keys to navigate through the content</p>\
+                        <div class="arrows">\
+                          <button class="cv-button cv-button--light">\
+                            <i class="icon icon-arrow-left-small"></i>\
+                          </button>\
+                          <button class="cv-button cv-button--light">\
+                            <i class="icon icon-arrow-right-small"></i>\
+                          </button>\
+                        </div>\
+                        <p><a href="#" class="cv-dynamic-text-color cv-underline">Ok, got, it!</a></p>\
+                    ',
+                    className : 'keyboard-onboarding-navigation active'
+                }).render(this.element.find('.onboarding-wrapper'));
+
+                onboardingTooltip.element.find('a').bind('click', function (ev) {
+                    ev.preventDefault();
+                    onboardingTooltip.deactivate();
+                    onboardingTooltip.getElement().remove();
+                    CV.Utils.createCookie(onboardingCookie, false, 365);
+                });
+            }
+
+            return this;
         },
 
         _activate : function _activate () {

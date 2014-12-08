@@ -88,6 +88,7 @@ javascripts:
     - public/javascripts/infographics/infoSidebar.js
     - public/javascripts/cv/socialNavigationIcons.js
     - public/javascripts/v4/VoiceHeaderNav.js
+    - public/javascripts/v4/Utils.js
     - public/javascripts/mediafeed_init.js
     - public/javascripts/v4/vendor/moment.min.js
     - public/javascripts/v4/vendor/jquery.visible.js

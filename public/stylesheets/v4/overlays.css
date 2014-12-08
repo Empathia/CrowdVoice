@@ -130,6 +130,30 @@
   height: 24px;
 }
 
+.cv-link-gallery .onboarding-wrapper {
+  position: relative;
+  height: 25px;
+}
+.cv-link-gallery .cv-tooltip.keyboard-onboarding-navigation {
+  width: 204px;
+  text-align: center;
+  color: #666666;
+}
+.cv-link-gallery .cv-tooltip .cv-tooltip-inner {
+  padding: 1em 1em 1.5em;
+}
+.onboarding-wrapper .arrows {
+  margin: 1em 0;
+}
+.onboarding-wrapper .arrows .cv-button {
+  position: relative;
+  vertical-align: top;
+}
+.onboarding-wrapper .arrows .icon {
+  font-size: 4px;
+  vertical-align: middle;
+  color: #4c4c4c;
+}
 .link-overlay-scrollable {
   height: 100%;
   padding-top: 56px;
