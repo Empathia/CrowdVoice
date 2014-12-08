@@ -1,5 +1,5 @@
 Class('Carousel').inherits(Widget)({
-    DEFAULT_IMAGE: "/images/v4/carousel-not-image-found.jpg",
+    DEFAULT_IMAGE: "http://crowdvoice.org/images/v4/carousel-not-image-found.jpg",
     prototype : {
         description : 'No description set.',
         title : 'No title set',
