@@ -78,11 +78,12 @@
   border-top-color: #090909;
   color: #BBBBBB;
   border-radius: 13px;
-  background: #4d4d4d url('/images/icons/search-ico.png') no-repeat 8px 5px;
-  z-index: 1;
+  background-color: #4d4d4d;
 }
 .voice-search .search:focus {
-  background-color: #fff; color: #444444; border-color: #4c4c4c;
+  background-color: #fff;
+  color: #444444;
+  border-color: #4c4c4c;
 }
 
 .voice-search > ul > li > .map-btn {
