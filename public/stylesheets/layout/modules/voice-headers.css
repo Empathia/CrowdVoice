@@ -649,3 +649,27 @@
     float: left;
   }
 }
+
+.voice-map-wrapper {
+  position: fixed;
+  top: 98px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  border-top: 1px solid #b2b2b2;
+  visibility: hidden;
+}
+.voice-map-wrapper:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1);
+  z-index: 6;
+}
+.voice-map-wrapper.active {
+  visibility: visible;
+}

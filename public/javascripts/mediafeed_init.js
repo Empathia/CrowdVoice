@@ -1,11 +1,10 @@
 $(function () {
 
-    var voice_loaded    = false,
-        gazaOverlay     = new VideoOverlay('.view-video li'),
+    var gazaOverlay     = new VideoOverlay('.view-video li'),
         postFilter      = new Filters('.filters', '.voice-box'),
         voicesSidebarControl    = $('.tab-controller'),
         win             = $(window),
-        voiceWrapper    = $('.voice-wrapper'),
+        // voiceWrapper    = $('.voice-wrapper'),
         $sweeper        = $('.voice-wrapper .sweeper'),
         voicesContainer = $('.voices-container'),
         voiceScroller   = $('.voices-scroller'),
@@ -20,76 +19,11 @@ $(function () {
 
     window.isotopeReady = false;
 
-    var _mapCreated, $mapWrapper, lat, lng, voiceMapWidget, $mapLink;
-
-    _mapCreated = false;
-    $mapWrapper = $('.mediafeed-map-wrapper');
-    lat = $mapWrapper.data('lat');
-    lng = $mapWrapper.data('lng');
-    voiceMapWidget = new CV.Map({zoom : 8}).render($mapWrapper);
-    $mapLink = $(document.querySelector('.info-tool-link.map'));
-
-   window.addCoordsToMap = function addCoordsToMap() {
-        _mapCreated = true;
-        voiceMapWidget.setMapCenter(lat, lng).createMap();
-    }
-
-    $mapLink.bind('click', function(){
-        $mapWrapper[0].classList.toggle('active');
-
-        if (voiceMapWidget.active) voiceMapWidget.deactivate();
-        else voiceMapWidget.activate();
-
-        if (CV.Map.isGoogleScriptInyected === false) {
-            CV.Map.inyectGoogleMapsScript("addCoordsToMap");
-        } else if (_mapCreated === false) {
-            addCoordsToMap();
-        }
-
-        return false;
-    });
-
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
 
-    var mainContainer = $('.main-container');
-    new CV.Tooltip({
-        element : $('.voice-description-tooltip'),
-        showOnCssHover : false,
-        toggler: $('.description-wrapper'),
-        enterTogglerElementEvent : function(ev) {
-            var tooltipWidth, parentElement, parentOffsetLeft, tooltipOffsetLeft, mainContainerOffset;
-
-            tooltipWidth = this.element.width();
-            parentElement = this.element.parent();
-            parentOffsetLeft = parentElement.offset().left;
-            parentWidth = parentElement.width();
-            mainContainerOffset = mainContainer.offset().left;
-
-            this.activate();
-
-            tooltipOffsetLeft = this.element.offset().left;
-
-            if ((tooltipOffsetLeft - mainContainerOffset) < 0) {
-                this.element.css({
-                    left : (parentOffsetLeft * -1) + mainContainerOffset + 20,
-                    transform : 'none'
-                });
-
-                this._arrowElement.css('left', ((parentOffsetLeft - mainContainerOffset) - 20) + (parentWidth / 2));
-            }
-
-            outScreen = (this.element.offset().left + tooltipWidth) - window.innerWidth;
-
-            if (outScreen > 0) {
-                this.element.width(tooltipWidth - outScreen - 20);
-            }
-        },
-        leaveTogglerElementEvent : function(ev) {
-            this.deactivate();
-            this.element.css({left: "", transform: "", width: ""});
-            this._arrowElement.css('left', "");
-        }
+    new CV.VoiceHeaderNav({
+        element : $('.voice-info')
     });
 
     new CV.Tooltip({

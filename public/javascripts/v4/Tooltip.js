@@ -114,6 +114,43 @@ Class(CV, 'Tooltip').inherits(Widget)({
         },
 
         /**
+         * Return the tooltip element reference.
+         * @method getElement <public> [Function]
+         * @return this.element [jQuery Object]
+         */
+        getElement : function getElement() {
+            return this.element;
+        },
+
+        /**
+         * Set custom styles to the tooltip. Useful when we need to update its
+         * position on the fly.
+         * @method setTooltipStyles <public> [Function]
+         * @argument styles <required> [Object]
+         * @example tooltip.setTooltipStyles({width: 100, height: 200, left: 10})
+         * @return this [CV.Tooltip]
+         */
+        setTooltipStyles : function setTooltipStyles (styles) {
+            this.element.css(styles);
+
+            return this;
+        },
+
+        /**
+         * Set custom styles to the tooltip's arrow. Useful when we need to
+         * update its position on the fly.
+         * @method setArrowStyles <public> [Function]
+         * @argument styles <required> [Object]
+         * @example tooltip.setArrowStyles({width: 100})
+         * @return this [CV.Tooltip]
+         */
+        setArrowStyles : function setArrowStyles (styles) {
+            this._arrowElement.css(styles);
+
+            return this;
+        },
+
+        /**
          * Change the tooltip's single text.
          * @method updateText <public> [Function]
          * @usage tooltipInstance.upadteText('Lorem Ipsum');

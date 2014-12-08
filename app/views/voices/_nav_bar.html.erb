@@ -7,7 +7,7 @@
   <h2 class="voice-title"><%= @voice.title %></h2>
   <div class="description-wrapper">
     <a class="more-button cv-button--small cv-button--trans cv-dynamic-border-color">More Info</a>
-    <div class="voice-description-tooltip cv-tooltip">
+    <div class="voice-description-tooltip cv-tooltip cv-tooltip--bottom">
       <div class="cv-tooltip__arrow">
         <span class="cv-tooltip__arrow-item"></span>
       </div>
@@ -55,7 +55,7 @@
           <i class="gear-icon icon icon-gear"></i>
         </a>
 
-        <div class="cv-tooltip embeddable-widget-tooltip">
+        <div class="cv-tooltip cv-tooltip--bottom embeddable-widget-tooltip">
           <span class="cv-tooltip__arrow">
             <span class="cv-tooltip__arrow-item"></span>
           </span>
@@ -126,5 +126,10 @@
         <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
       </li>
     </ul>
+  </div>
+
+  <div class="voice-map-wrapper"
+      data-lat="<%= @voice.latitude.present? ? @voice.latitude : '-34.397' %>"
+      data-lng="<%= @voice.longitude.present? ? @voice.longitude : '150.644' %>">
   </div>
 </div>

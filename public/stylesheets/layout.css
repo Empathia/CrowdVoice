@@ -184,7 +184,6 @@ body {
 
 /* Overlay Link Styles */
 .map-overlay {
-  visibility: hidden;
   top: 0;
   left: 0;
   width: 100%;
@@ -193,8 +192,13 @@ body {
   z-index: 5;
   overflow: hidden;
   background: #000;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
 }
 .map-overlay.active {
+  opacity: 1;
   visibility: visible;
 }
 .map-overlay > iframe {

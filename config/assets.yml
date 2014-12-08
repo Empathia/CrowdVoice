@@ -87,6 +87,7 @@ javascripts:
     - public/javascripts/include/highcharts.js
     - public/javascripts/infographics/infoSidebar.js
     - public/javascripts/cv/socialNavigationIcons.js
+    - public/javascripts/v4/VoiceHeaderNav.js
     - public/javascripts/mediafeed_init.js
     - public/javascripts/v4/vendor/moment.min.js
     - public/javascripts/v4/vendor/jquery.visible.js
@@ -111,6 +112,7 @@ javascripts:
     - public/javascripts/include/highcharts.js
     - public/javascripts/include/underscore-min.js
     - public/javascripts/cv/socialNavigationIcons.js
+    - public/javascripts/v4/VoiceHeaderNav.js
     - public/javascripts/infographics/infoWall_init.js
   backstory_pack:
     - *defaults
@@ -154,6 +156,7 @@ javascripts:
     - public/javascripts/v4/Backstory/BackstoryGalleryOverlay.js
     - public/javascripts/v4/Backstory/BackstoryGalleryCarrousel.js
     - public/javascripts/v4/Backstory/BackstoryGalleryThumb.js
+    - public/javascripts/v4/VoiceHeaderNav.js
     - public/javascripts/backstory/backstory_init.js
 
   admin:
