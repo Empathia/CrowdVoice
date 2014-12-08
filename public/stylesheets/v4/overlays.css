@@ -123,6 +123,10 @@
   margin-left: .25em;
 }
 
+.cv-link-gallery .flag-div .flag-pressed .icon {
+  color: #dd0017;
+}
+
 .cv-link-gallery .arrows .vertical-divider {
   height: 24px;
 }
@@ -131,11 +135,13 @@
   height: 100%;
   padding-top: 56px;
 }
+
 .link-overlay-scrollable > iframe {
   overflow: auto;
   display: inline-block;
   border: none;
 }
+
 .touch .link-overlay-scrollable {
   overflow-x: hidden !important;
   overflow-y: scroll !important;

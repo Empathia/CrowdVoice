@@ -44,6 +44,11 @@ Class('LinkOverlay').inherits(Widget)({
             this._setupCopyToClipbard()._bindEvents();
         },
 
+        /**
+         * Instatiate ZeroClipboard, so later it can be used to copy the "source url".
+         * @method _setupCopyToClipbard <private> [Function]
+         * @return this [LinkOverlay]
+         */
         _setupCopyToClipbard : function _setupCopyToClipbard() {
             ZeroClipboard.setMoviePath( '/javascripts/ZeroClipboard10.swf' );
             this._clip = new ZeroClipboard.Client();
@@ -67,6 +72,7 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Handle the next arrow button click event.
          * @method _nextArrowClickHandler <private> [Function]
+         * @return unfined
          */
         _nextArrowClickHandler : function _nextArrowClickHandler(ev) {
             ev.preventDefault();
@@ -79,6 +85,7 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Handle the prev arrow button click event.
          * @method _prevArrowClickHandler <private> [Function]
+         * @return unfined
          */
         _prevArrowClickHandler : function _prevArrowClickHandler(ev) {
             ev.preventDefault();
@@ -91,7 +98,7 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Rebuild the overlay itself with the passed voice data.
          * @method updateWith <public> [Function]
-         * @argument voiceElement <required> [Object]
+         * @argument voiceElement <required> [VoiceElement]
          * @return this [LinkOverlay]
          */
         updateWith : function updateWith(voiceElement) {
@@ -120,7 +127,8 @@ Class('LinkOverlay').inherits(Widget)({
         /**
          * Updates some dynamic information from the ui, such as the social
          * buttons, the iframe url and the flag button.
-         * @property _upadteDynamicSouces <private> [Function]
+         * @method _upadteDynamicSouces <private> [Function]
+         * @argument voiceElement <required> [VoiceElement]
          * @return this [LinkOverlay]
          */
         _updateDynamicSources : function _updateDynamicSources(voiceElement) {
@@ -129,6 +137,29 @@ Class('LinkOverlay').inherits(Widget)({
             this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + (voiceElement.sourceElement.data('voted') ? 1 : -1);
             this._sourceButtonElement[0].href = voiceElement.postURL;
             this._iframeElement[0].src = voiceElement.postURL;
+
+            this._flagButtonElement.unbind('click').bind('click', function() {
+                $.ajax({
+                    url : this._flagButtonElement[0].href,
+                    data : $.extend({ authenticity_token : $('meta[name=csrf-token]').attr('content')}, $(this).data('params')),
+                    type : 'POST',
+                    dataType : 'json',
+                    context : this,
+                    success: function (data) {
+                        if (this._flagButtonElement.hasClass('flag')) {
+                            this._flagButtonElement.siblings().find('.flag-tooltip span').addClass('flagged').html('Unflag Content');
+                            this._flagButtonElement.toggleClass('flag flag-pressed')
+                                .attr('href', [this._flagButtonElement.attr('href').split('?')[0], 'rating=1'].join('?'));
+                        } else {
+                            this._flagButtonElement.siblings().find('.flag-tooltip span').removeClass('flagged').html('Flag Inappropiate Content');
+                            this._flagButtonElement.toggleClass('flag flag-pressed')
+                                .attr('href', [this._flagButtonElement.attr('href').split('?')[0], 'rating=-1'].join('?'));
+                        }
+                    }
+                });
+
+                return false;
+            }.bind(this));
 
             return this;
         },
