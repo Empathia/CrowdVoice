@@ -36,6 +36,10 @@
   color: #fff;
 }
 
+.cv-gaza-video-overlay {
+  background-color: rgba(0,0,0,.93);
+}
+
 .cv-overlay-header {
   position: absolute;
   width: 100%;
