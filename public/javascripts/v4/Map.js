@@ -179,10 +179,10 @@ Class(CV, 'Map').inherits(Widget)({
         addMarker : function addMarker (_position, _title, _label, _content, _theme) {
             var marker, label, infowindow, icon_image;
 
-            icon_image = 'images/v4/google-maps/markerclusterer/ms.png';
+            icon_image = '/images/v4/google-maps/markerclusterer/ms.png';
 
             if (_label === 1) {
-                icon_image = 'images/v4/google-maps/marker/' + _theme + '.png';
+                icon_image = '/images/v4/google-maps/marker/' + _theme + '.png';
             }
 
             marker = new google.maps.Marker({
@@ -216,7 +216,7 @@ Class(CV, 'Map').inherits(Widget)({
                         textColor: '#404040',
                         width: 60,
                         height: 62,
-                        url: "images/v4/google-maps/markerclusterer/m.png"
+                        url: "/images/v4/google-maps/markerclusterer/m.png"
                     },
                 ]
             };
