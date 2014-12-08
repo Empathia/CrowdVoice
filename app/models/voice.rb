@@ -20,6 +20,7 @@ class Voice < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
   has_many :supporters, :dependent => :destroy
   has_many :slugs, :dependent => :destroy
+  has_many :tweets, :dependent => :destroy
   has_one :announcement, :dependent => :destroy
 
   accepts_nested_attributes_for :posts
