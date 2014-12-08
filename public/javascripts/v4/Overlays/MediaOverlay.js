@@ -202,6 +202,29 @@ Class('MediaOverlay').inherits(Widget)({
             this._timeAgoElement.text(voiceElement.timeAgo);
             this._titleElement.text(voiceElement.title);
 
+            this._flagButtonElement.unbind('click').bind('click', function() {
+                $.ajax({
+                    url : this._flagButtonElement[0].href,
+                    data : $.extend({ authenticity_token : $('meta[name=csrf-token]').attr('content')}, $(this).data('params')),
+                    type : 'POST',
+                    dataType : 'json',
+                    context : this,
+                    success: function (data) {
+                        if (this._flagButtonElement.hasClass('flag')) {
+                            this._flagButtonElement.siblings().find('.flag-tooltip span').addClass('flagged').html('Unflag Content');
+                            this._flagButtonElement.toggleClass('flag flag-pressed')
+                                .attr('href', [this._flagButtonElement.attr('href').split('?')[0], 'rating=1'].join('?'));
+                        } else {
+                            this._flagButtonElement.siblings().find('.flag-tooltip span').removeClass('flagged').html('Flag Inappropiate Content');
+                            this._flagButtonElement.toggleClass('flag flag-pressed')
+                                .attr('href', [this._flagButtonElement.attr('href').split('?')[0], 'rating=-1'].join('?'));
+                        }
+                    }
+                });
+
+                return false;
+            }.bind(this));
+
             return this;
         },
 

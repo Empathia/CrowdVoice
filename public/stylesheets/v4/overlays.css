@@ -123,7 +123,8 @@
   margin-left: .25em;
 }
 
-.cv-link-gallery .flag-div .flag-pressed .icon {
+.cv-link-gallery .flag-div .flag-pressed .icon,
+.cv-media-gallery .flag-div .flag-pressed .icon {
   color: #dd0017;
 }
 
