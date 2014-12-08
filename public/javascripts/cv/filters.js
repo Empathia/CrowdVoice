@@ -14,6 +14,18 @@ Class('Filters')({
         _bindEvents: function () {
             var that = this;
 
+            this.toggleModerate.bind('click', function(ev) {
+                var item = $(ev.currentTarget);
+
+                if (item.hasClass('selected')) {
+                    ev.preventDefault();
+                }
+
+                if (item.hasClass('mod')) {
+                    item.find('.cv-tooltip-inner').empty().html('<p class="title">Thank you! The page is refreshing with unmoderated posts!</p>');
+                }
+            });
+
             // this.filters.click(function () {
             //     var self = this;
             //     var checked = that.filters.filter(':checked');

@@ -208,7 +208,7 @@ Class('Post').inherits(Widget)({
                             that.videoMediaTool.deactivate();
                             that.linkMediaTool.deactivate();
 
-                            that.postFilter.toggleModerator(true);
+                            // that.postFilter.toggleModerator(true);
                             that.carousel.clear();
 
                             // TODO: show tooltip confirmation

@@ -128,6 +128,18 @@
             width: 85px;
             height: 35px;
           }
+          .post > .post-button .cv-tooltip.notice {
+            width: 200px;
+            right: 0;
+            left: initial;
+            -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+            transform: translateX(0);
+          }
+          .post > .post-button .cv-tooltip.notice .cv-tooltip__arrow {
+            left: initial;
+            right: 35px;
+          }
         .post > .post-paceholder, .empty-msg {
           font-size: 15px;
           left: 11px;
@@ -282,6 +294,9 @@
     }
     .filters-and-mode .mode-button {
       overflow: visible;
+    }
+    .filters-and-mode .mode-button.selected:hover .cv-tooltip {
+      display: none;
     }
     .info-tags__tooltip .mode-button .dismiss-tooltip {
       display: none;
