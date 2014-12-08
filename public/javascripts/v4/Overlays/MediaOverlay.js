@@ -33,6 +33,7 @@ Class('MediaOverlay').inherits(Widget)({
         _facebookButtonElement : null,
         _twitterButtonElement : null,
         _flagButtonElement : null,
+        _document : null,
 
         _prevVoiceElementData : null,
         _nextVoiceElementData : null,
@@ -40,6 +41,7 @@ Class('MediaOverlay').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
+            this._document = $(document);
             this.overlay = this.element.find('.cv-overlay-backdrop.cv-media-gallery');
             this.customName = this.element.data('custom-name');
             this._carouselWrapper = this.element.find('.cv-media-gallery-carrousel');
@@ -81,9 +83,7 @@ Class('MediaOverlay').inherits(Widget)({
          * Handle the next arrow button click event.
          * @method _nextArrowClickHandler <private> [Function]
          */
-        _nextArrowClickHandler : function _nextArrowClickHandler(event) {
-            event.preventDefault();
-
+        _nextArrowClickHandler : function _nextArrowClickHandler() {
             if (this._nextVoiceElementData) {
                 return this.updateWith(this._nextVoiceElementData);
             }
@@ -93,9 +93,7 @@ Class('MediaOverlay').inherits(Widget)({
          * Handle the prev arrow button click event.
          * @method _prevArrowClickHandler <private> [Function]
          */
-        _prevArrowClickHandler : function _prevArrowClickHandler(event) {
-            event.preventDefault();
-
+        _prevArrowClickHandler : function _prevArrowClickHandler() {
             if (this._prevVoiceElementData) {
                 return this.updateWith(this._prevVoiceElementData);
             }
@@ -156,6 +154,7 @@ Class('MediaOverlay').inherits(Widget)({
 
             this.element.slideDown(this.animationSpeed, function() {
                 this.carousel.scrollToChild(currentThumb);
+                this.activate();
             }.bind(this));
 
             return this;
@@ -251,8 +250,35 @@ Class('MediaOverlay').inherits(Widget)({
             return this;
         },
 
+        _keyUpHandler : function _keyUpHandler(ev) {
+            if (ev.keyCode == 27) { /* ESC */
+                return this.deactivate();
+            }
+
+            if (ev.keyCode == 37) { /* prev */
+                this._prevArrowClickHandler();
+            }
+
+            if (ev.keyCode == 39) { /* next */
+                this._nextArrowClickHandler();
+            }
+        },
+
+        _activate : function _activate () {
+            Widget.prototype._activate.call(this);
+
+            this._document.unbind('keydown.bg').bind('keydown.bg', function(ev) {
+                ev.preventDefault();
+            });
+
+            this._document.unbind('keyup.bg').bind('keyup.bg', this._keyUpHandler.bind(this));
+        },
+
         _deactivate : function _deactivate() {
             Widget.prototype._deactivate.call(this);
+
+            this._document.unbind('keyup.bg');
+            this._document.unbind('keydown.bg');
 
             this.element.slideUp(this.animationSpeed, function() {
                 this._imageWrapper.empty();
