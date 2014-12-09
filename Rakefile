@@ -24,7 +24,7 @@ end
 
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
-  voices = Voice.where(:approved => true, :archived => false)
+  voices = Voice.where(["last_tweet > ?", 1.hour.ago])
 
   voices.each do |voice|
     voice.tweets.first() ? last_tweet = voice.tweets.first().id_str : last_tweet = nil
@@ -41,6 +41,9 @@ task :fetch_tweets => :environment do
         tweet[:voice_id]   = voice.id
         tweet.save
       end
+
+      voice.last_tweet = DateTime.now
+      voice.save
 
       puts "#{results.length} processed on Voice #{voice.id}"
     else
