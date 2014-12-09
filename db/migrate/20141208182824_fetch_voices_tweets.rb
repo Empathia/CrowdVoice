@@ -8,7 +8,7 @@ class FetchVoicesTweets < ActiveRecord::Migration
       if !voice.twitter_search.blank?
         puts "Last: #{last_tweet}"
         puts "Search term: #{voice.twitter_search}"
-        results = Twitter.search(voice.twitter_search, {:since_id => last_tweet, :count => 100}).results
+        results = Twitter.search(voice.twitter_search, {:since_id => last_tweet, :count => 20}).results
 
         results.each do |result|
           tweet           = Tweet.new
