@@ -24,7 +24,7 @@ end
 
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
-  voices = Voice.where(["last_tweet < ?", 1.hour.ago])
+  voices = Voice.where(["last_tweet < ? OR last_twitter_error IS NOT null", 1.hour.ago])
 
   voices.each do |voice|
     voice.tweets.first() ? last_tweet = voice.tweets.first().id_str : last_tweet = nil
