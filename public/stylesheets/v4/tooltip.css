@@ -3,13 +3,16 @@
 }
 .has-cv-tooltip:hover .cv-tooltip,
 .cv-tooltip.active {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .cv-tooltip {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   position: absolute;
   z-index: 100;
+  transition: all 300ms;
 }
 
 .cv-tooltip__arrow {
