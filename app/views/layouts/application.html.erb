@@ -31,7 +31,8 @@
       <script type="text/javascript">
         window.currentVoice = {
           id: <%= @voice.id %>,
-          slug: '<%= @voice.default_slug %>'
+          slug: '<%= @voice.default_slug %>',
+          tweets: <%= raw @tweets.to_json %>
         };
       </script>
     <% end %>

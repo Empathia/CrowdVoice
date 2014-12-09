@@ -31,6 +31,21 @@ Class('ToggleTweets')({
             if (this.options.specialClass) this.element.addClass( this.options.specialClass );
             this.toggler.prop('checked', false);
             this.bindEvents();
+
+            var toggleTweets = this;
+
+            $(window).load(function() {
+                _.each(window.currentVoice.tweets, function(tweet) {
+                    tweet = tweet.tweet;
+                    twttr.widgets.createTweet(
+                        tweet.id_str,
+                        toggleTweets.scroller[0],
+                        {
+                            theme : 'light'
+                        }
+                    );
+                });
+            });
         },
 
         bindEvents : function() {
@@ -136,9 +151,9 @@ Class('ToggleTweets')({
         show : function() {
             var selfclass = this;
 
-            if ( !this.element.data().loaded ) {
-                this.loadTweets();
-            }
+            // if ( !this.element.data().loaded ) {
+            //     this.loadTweets();
+            // }
 
             this.element.addClass('open');
             this.shown = true;

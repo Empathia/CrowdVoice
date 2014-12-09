@@ -25,6 +25,7 @@ class VoicesController < ApplicationController
 
     @posts = Post.find_by_sql(query)
 
+    @tweets = @voice.tweets
 
     if request.format.html?
       @blocks = @voice.blocks.map(&:data_parsed)
