@@ -209,9 +209,8 @@ Class(CV, 'Map').inherits(Widget)({
 
         makeCluster : function makeCluster (markers) {
             var mcOptions = {
-                // gridSize: 100,
-                // maxZoom: 15,
-                styles: [
+                maxZoom: 15,
+                styles : [
                     {
                         textColor: '#404040',
                         width: 60,

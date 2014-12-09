@@ -39,6 +39,11 @@
  */
 .default > .image-post-media-tooltip {
   width: 245px;
+  left: 50%;
+}
+
+.default > .image-post-media-tooltip .cv-tooltip__arrow {
+  left: 50%;
 }
 
 .image-post-media-tooltip {
