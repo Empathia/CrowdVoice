@@ -10,6 +10,33 @@ class TwitterSearch
     end
   end
 
+  def self.resolve_redirects(url)
+    response = self.fetch_response(url, 'head')
+    if response
+      return response.to_hash[:url].to_s
+    else
+      return nil
+    end
+  end
+   
+  def self.fetch_response(url, method = 'get')
+    conn = Faraday.new do |b|
+      b.use FaradayMiddleware::FollowRedirects;
+      b.adapter :net_http
+    end
+    
+    return conn.send method, url
+  rescue Faraday::Error, Faraday::Error::ConnectionFailed => e
+    return nil
+  end
+
+  def self.extract_tweet_urls(tweet)
+    links = tweet.text.scan( /https?:\/\/[^ ]+/ )
+
+    links.flatten.compact
+  end
+
+
   def self.get_valid_urls(source = nil, last_tweet = nil)
     tweet_links = source.map do |tweet|
       if !last_tweet.nil? && (tweet.id.to_i <= last_tweet.to_i)

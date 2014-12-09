@@ -30,6 +30,7 @@ task :fetch_tweets => :environment do
     voice.tweets.first() ? last_tweet = voice.tweets.first().id_str : last_tweet = nil
     
     if !voice.twitter_search.blank?
+      puts "\n\n"
       puts "Last: #{last_tweet} in Voice #{voice.id}"
       puts "Search term: #{voice.twitter_search}"
 
@@ -48,13 +49,22 @@ task :fetch_tweets => :environment do
 
       begin
         results = Twitter.search(term, {:since_id => last_tweet, :count => 20}).results
-
+        puts "\n"
+        puts "Processing #{results.length} results"
         results.each do |result|
           tweet           = Tweet.new
           tweet[:id_str]  = result[:id]
           tweet[:text]    = result[:full_text]
           tweet[:voice_id]   = voice.id
           tweet.save
+
+          urls = TwitterSearch.extract_tweet_urls(tweet)
+          urls.each do |url|
+            resolved_url = TwitterSearch.resolve_redirects(url)
+            puts "Saving #{resolved_url}"
+
+            voice.posts.new(:source_url => url).save
+          end
         end
 
         voice.last_tweet         = term
