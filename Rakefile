@@ -53,18 +53,21 @@ task :fetch_tweets => :environment do
           tweet.save
         end
 
-        voice.last_tweet = term
-        voice.last_tweet = DateTime.now
-        voice.save
-        
+        voice.last_tweet         = term
+        voice.last_twitter_error = nil
+
         puts "#{results.length} processed on Voice #{voice.id}"  
       rescue Exception => e
+        voice.last_twitter_error = e
         puts "Error #{e}"
       end
       
     else
       puts "Skiping Voice #{voice.id}"
     end
+
+    voice.last_tweet = DateTime.now
+    voice.save
   end
 end
 
