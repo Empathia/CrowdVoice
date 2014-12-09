@@ -32,6 +32,15 @@ task :fetch_tweets => :environment do
     if !voice.twitter_search.blank?
       puts "Last: #{last_tweet}"
       puts "Search term: #{voice.twitter_search}"
+
+      if voice.twitter_search[voice.twitter_search.length - 2, voice.twitter_search.length] == "OR"
+        voice.twitter_search = voice.twitter_search[0, voice.twitter_search - 2]
+      end
+
+      if voice.twitter_search[voice.twitter_search.length - 3, voice.twitter_search.length] == "AND"
+        voice.twitter_search = voice.twitter_search[0, voice.twitter_search - 3]
+      end
+
       results = Twitter.search(voice.twitter_search, {:since_id => last_tweet, :count => 20}).results
 
       results.each do |result|
@@ -42,13 +51,13 @@ task :fetch_tweets => :environment do
         tweet.save
       end
 
-      voice.last_tweet = DateTime.now
-      voice.save
-
       puts "#{results.length} processed on Voice #{voice.id}"
     else
       puts "Skiping Voice #{voice.id}"
     end
+    
+    voice.last_tweet = DateTime.now
+    voice.save
   end
 end
 
