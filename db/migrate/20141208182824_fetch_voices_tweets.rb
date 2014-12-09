@@ -1,6 +1,6 @@
 class FetchVoicesTweets < ActiveRecord::Migration
   def self.up
-  	voices = Voice.all
+  	voices = Voice.where(:approved => true, :archived => false)
 
   	voices.each do |voice|
   		voice.tweets.first() ? last_tweet = voice.tweets.first().id_str : last_tweet = nil
