@@ -38,6 +38,10 @@ task :fetch_tweets => :environment do
         term = term[0, term - 3]
       end
 
+      if term[term.length - 4, term.length] == " OR "
+        term = term[0, term - 4]
+      end
+
       if term[term.length - 4, term.length] == " AND"
         term = term[0, term - 4]
       end
