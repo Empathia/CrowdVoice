@@ -18,11 +18,13 @@ class FetchVoicesTweets < ActiveRecord::Migration
           tweet.save
         end
         
-        urls = TwitterSearch.get_valid_urls(results)
+        # urls = TwitterSearch.get_valid_urls(results)
 
-        urls.map{ |url| voice.posts.new(:source_url => url).save }
+        # urls.each do |url| 
+        #   voice.posts.new(:source_url => url).save 
+        # end
 
-        voice.expire_cache
+        # voice.expire_cache
 
         puts "#{results.length} processed on Voice #{voice.id}"
       else
