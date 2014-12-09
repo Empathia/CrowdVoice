@@ -299,17 +299,8 @@ body .infobox.collapsed .divline {background: none}
 .highcharts-tooltip tspan {fill: #939393}
 
 /*
-  New info panel styles
-  Added by Aaron
-  Project: backstory
-*/
-/*
   Info box
 */
-.infobox-wall-container .voice-info {
-  background: #232323;
-}
-
 .infobox-wall-container .voice-info:after {
   content: '';
   position: relative;

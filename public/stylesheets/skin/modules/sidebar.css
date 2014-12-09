@@ -184,6 +184,7 @@
   .sidebar-scroller__list-item .anchor {
     color: #fff;
     opacity: .4;
+    text-decoration: none;
   }
   .sidebar-scroller__list-item .anchor:hover {
     opacity: 1;
@@ -228,7 +229,6 @@ a.sidebar-scroller__list-item-anchor:hover {color: #d9d9d9; text-decoration:none
 
 .tab-controller {
   cursor: pointer;
-  box-shadow: 0 0 0 1px #141414;
 }
 
 .tab-controller,
