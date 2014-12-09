@@ -13,11 +13,13 @@ $(function () {
         infoSidebar     = $('.info-sidebar'),
         colW            = 200,
         columns         = null,
-        TweetsSidebar   = new ToggleTweets('.tweets-sidebar', { hidden : true, specialClass: 'media_feed' }),
+        
         sidebarDisplay  = true,
         sidebarToggler, relayoutTimeout, backgroundTimeout, wallSizeTimeout;
 
     window.isotopeReady = false;
+    window.TweetsSidebar   = new ToggleTweets('.tweets-sidebar', { hidden : true, specialClass: 'media_feed' });
+    TweetsSidebar = window.TweetsSidebar;
 
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );

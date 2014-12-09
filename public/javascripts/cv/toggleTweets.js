@@ -52,10 +52,12 @@ Class('ToggleTweets')({
             var selfclass = this;
 
             this.toggler.bind('change', function () {
-                selfclass.toggler.is(':checked')
-                    ? selfclass.show()
-                    : selfclass.hide();
-                return this;
+                if (selfclass.toggler.is(':checked')) {
+                    selfclass.show();
+                    selfclass.updatePosition();
+                } else {
+                    selfclass.hide();
+                }
             });
 
             this.win.bind('load resize', function(){
