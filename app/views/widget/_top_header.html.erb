@@ -3,9 +3,9 @@
     <%= link_to "Crowdvoice", root_url, :title => "Crowdvoice", :class => "hide-text crowdvoice-logo widget-icon left", :target => "_blank" %>
     <ul class="voice-social right">
       <% if @scope_this %>
-        <li class="follow-button-wrapper">
-          <%= link_to "FOLLOW", "", :title => "Follow", :class => "hide-text widget-icon follow" %>
-        </li>
+        <!-- <li class="follow-button-wrapper">
+          <%#= link_to "FOLLOW", "", :title => "Follow", :class => "hide-text widget-icon follow" %>
+        </li> -->
         <li>
           <%= link_to "RSS", voice_url(@voice, :rss), :title => "RSS", :class => "hide-text widget-icon rss", :target => "_blank" %>
         </li>

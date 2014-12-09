@@ -79,11 +79,13 @@
   color: #BBBBBB;
   border-radius: 13px;
   background-color: #4d4d4d;
+  transition: background-color 400ms;
 }
 .voice-search .search:focus {
   background-color: #fff;
   color: #444444;
   border-color: #4c4c4c;
+  transition: background-color 200ms;
 }
 
 .voice-search > ul > li > .map-btn {
@@ -182,6 +184,7 @@
   .sidebar-scroller__list-item .anchor {
     color: #fff;
     opacity: .4;
+    text-decoration: none;
   }
   .sidebar-scroller__list-item .anchor:hover {
     opacity: 1;
@@ -226,7 +229,6 @@ a.sidebar-scroller__list-item-anchor:hover {color: #d9d9d9; text-decoration:none
 
 .tab-controller {
   cursor: pointer;
-  box-shadow: 0 0 0 1px #141414;
 }
 
 .tab-controller,
