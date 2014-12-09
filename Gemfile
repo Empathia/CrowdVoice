@@ -24,6 +24,7 @@ gem "aws-s3"
 gem "aws-sdk", "~> 1.11.3"
 gem 'mysql2', '0.2.7'
 gem "faraday", "0.8.8"
+gem "faraday_middleware"
 gem 'twitter', '4.0.0'
 gem 'kaminari', '0.14.1'
 gem 'whenever', :require => false
