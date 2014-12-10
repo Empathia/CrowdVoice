@@ -1,0 +1,140 @@
+.map-container {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index: 5;
+  opacity: 0;
+  display: none;
+  background-color: rgb(42, 43, 44);
+}
+
+.map-container.shown {
+  opacity: 1;
+  display: block;
+}
+
+.map-container .loader {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -28px;
+}
+
+.main-map-widget {
+  height: 100%;
+}
+.map-container .map-overlay {
+  top: 41px;
+}
+
+.map-container__header {
+  position: relative;
+  z-index: 6;
+  height: 41px;
+  padding: 0 14px;
+  background-color: #262626;
+  box-shadow: inset 0 -4px 0 0 #000;
+}
+.map-container__header:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 5px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.2);
+}
+.map-container__header-rainbow {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background-image: linear-gradient(to right,
+    #66b3ff 0%, #66b3ff 20%,
+    #3c9b2e 20%, #3c9b2e 40%,
+    #d6b406 40%, #d6b406 60%,
+    #d57a05 60%, #d57a05 80%,
+    #dd071d 80%, #dd071d 100%);
+  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.3), 0 1px 0 0 rgba(0,0,0,0.25);
+}
+
+.map-container__header-title {
+  font-size: 16px;
+  line-height: 1;
+  padding: 10px 0 0 0;
+  color: #b2b2b2;
+}
+
+.map-container__header-filters {
+  padding: 9px 0 0 0;
+}
+
+.map-container__header-filters-title {
+  font-size: 12px;
+  padding: 0 10px 0 0;
+  color: #808080;
+}
+
+.map-container__header-filters .cv-inline-block {
+  position: relative;
+  padding: 0 10px 0 0;
+}
+
+.map-container__header-filters .cv-inline-block:last-child {
+  padding: 0;
+}
+
+.map-container__header-filters .cv-button {
+  border: 1px solid #000;
+}
+.map-container__header-filters .cv-button:active {
+  padding-top: 3px;
+}
+
+.map-container__header-filters .cv-button--arrow {
+  margin-left: .4em;
+}
+
+.map-container__header-filters .cv-tooltip-inner {
+  top: 5px;
+}
+
+.map-container__filter-region .cv-tooltip {
+  left: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.map-container__filter-theme {
+  display: none !important;
+}
+
+.map-container__filter-features .cv-tooltip {
+  left: initial;
+  right: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.map-container__header .cv-tooltip label {
+  font-size: 12px;
+  display: block;
+  white-space: nowrap;
+  margin: 0 0 .3em;
+}
+.map-container__header .cv-tooltip label input {
+  margin-right: .25em;
+}
+
+/* map overlay labels */
+.map-voices li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.map-voices a {
+  display: block;
+}
