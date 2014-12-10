@@ -54,13 +54,13 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this._regionsTooltip = new CV.Tooltip({
                 html : '\
                     <label><input type="checkbox" name="map-filter__region" value="all" checked disabled> All</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="northAmerica" checked> North America</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="southAmerica" checked> South America</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="europe" checked> Europe</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="middleEast" checked> Middle East</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="asia" checked> Asia</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="africa" checked> Africa</label>\
-                    <label><input type="checkbox" name="map-filter__region" value="oceania" checked> Oceania</label>\
+                    <label><input type="checkbox" name="map-filter__region" value="northAmerica" checked> North America <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__region" value="southAmerica" checked> South America <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__region" value="europe" checked> Europe <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__region" value="middleEast" checked> Middle East <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__region" value="asia" checked> Asia <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__region" value="africa" checked> Africa <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__region" value="oceania" checked> Oceania <span></span></label>\
                 ',
                 position : 'bottom',
                 showOnCssHover : false
@@ -71,9 +71,9 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this._featuresButton = this._featuresWrapper.find('.cv-button');
             this._featuresTooltip = new CV.Tooltip({
                 html : '\
-                    <label><input type="checkbox" name="map-filter__features" value="mediafeed" checked> Mediafeed</label>\
-                    <label><input type="checkbox" name="map-filter__features" value="backstories" checked> Backstories</label>\
-                    <label><input type="checkbox" name="map-filter__features" value="infographic" checked> Infographics</label>\
+                    <label><input type="checkbox" name="map-filter__features" value="mediafeed" checked> Mediafeed <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__features" value="backstories" checked> Backstories <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__features" value="infographic" checked> Infographics <span></span></label>\
                 ',
                 position : 'bottom',
                 showOnCssHover : false
@@ -104,6 +104,8 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                     mainMap._locations = locations;
                     mainMap._cluster = mainMap.mapWidget.getNewCluster();
 
+                    mainMap._addCounterToRegionOptions();
+                    mainMap._addCounterToFeaturesOptions();
                     mainMap.updateMap(mainMap._locations);
                 });
             }.bind(this));
@@ -275,6 +277,100 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             });
         },
 
+        filter : function filter () {
+            var r = this._getFilteredResultsByRegion();
+            r = this._getFilteredResultsByFeature(r);
+
+            this.updateMap(r);
+
+            return this;
+        },
+
+        updateMap : function updateMap(locations) {
+            var markers, i, l;
+
+            markers = [];
+            l = locations.length;
+
+            for (i = 0; i < l; i++) {
+                var loc = locations[i].location,
+                    position = null,
+                    label = locations[i].voices.length,
+                    title = label + ' voice(s) in ' + loc,
+                    content = '<ul class="map-voices">',
+                    theme;
+
+                for (var j = 0; j < locations[i].voices.length; j++) {
+                    var voice = locations[i].voices[j];
+                    theme = voice.theme;
+
+                    if (!position) {
+                        position = CV.Map.at(voice.latitude, voice.longitude);
+                    }
+
+                    content += '<li><a href="/' + voice.default_slug + '">' + voice.title + '</a></li>';
+                }
+
+                content += '</ul>';
+
+                markers.push(this.mapWidget.addMarker(position, title, label, content, theme));
+            }
+
+            this._cluster.clearMarkers();
+            this._cluster.addMarkers(markers);
+
+            return this;
+        },
+
+        _addCounterToRegionOptions : function _addCounterToRegionOptions() {
+            var na, sa, eu, me, as, af, oc;
+
+            na = sa = eu = me = as = af = oc = 0;
+
+            this._locations.forEach(function(l) {
+                l.voices.forEach(function(v) {
+                    var latLng = new google.maps.LatLng(v.latitude, v.longitude);
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["northAmerica"])) na++;
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["southAmerica"])) sa++;
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["europe"])) eu++;
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["middleEast"])) me++;
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["asia"])) as++;
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["africa"])) af++;
+                    if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["oceania"])) oc++;
+                });
+            });
+
+            this._filterRegionElements.filter("[value='northAmerica']").siblings('span').text('(' + na + ')');
+            this._filterRegionElements.filter("[value='southAmerica']").siblings('span').text('(' + sa + ')');
+            this._filterRegionElements.filter("[value='europe']").siblings('span').text('(' + eu + ')');
+            this._filterRegionElements.filter("[value='middleEast']").siblings('span').text('(' + me + ')');
+            this._filterRegionElements.filter("[value='asia']").siblings('span').text('(' + as + ')');
+            this._filterRegionElements.filter("[value='africa']").siblings('span').text('(' + af + ')');
+            this._filterRegionElements.filter("[value='oceania']").siblings('span').text('(' + oc + ')');
+
+            return this;
+        },
+
+        _addCounterToFeaturesOptions : function _addCounterToFeaturesOptions() {
+            var mediafeeds, backstories, infographics;
+
+            mediafeeds = backstories = infographics = 0;
+
+            this._locations.forEach(function(l) {
+                l.voices.forEach(function(v) {
+                    if (!v.is_backstory && !v.is_infographic) mediafeeds++;
+                    if (v.is_infographic) infographics++;
+                    if (v.is_backstory) backstories++;
+                });
+            });
+
+            this._filterFeaturesElements.filter("[value='mediafeed']").siblings('span').text('(' + mediafeeds + ')');
+            this._filterFeaturesElements.filter("[value='backstories']").siblings('span').text('(' + backstories + ')');
+            this._filterFeaturesElements.filter("[value='infographic']").siblings('span').text('(' + infographics + ')');
+
+            return this;
+        },
+
         _createContinentPolygons : function _createContinentPolygons() {
             this._polylines['northAmerica'] = new google.maps.Polygon({
                 path : this.getNorthAmericaPaths(),
@@ -325,51 +421,6 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this._polylines.asia.setMap(this.mapWidget._map);
             this._polylines.oceania.setMap(this.mapWidget._map);
             this._polylines.africa.setMap(this.mapWidget._map);
-
-            return this;
-        },
-
-        filter : function filter () {
-            var r = this._getFilteredResultsByRegion();
-            r = this._getFilteredResultsByFeature(r);
-
-            this.updateMap(r);
-
-            return this;
-        },
-
-        updateMap : function updateMap(locations) {
-            var markers, i, l;
-
-            markers = [];
-            l = locations.length;
-
-            for (i = 0; i < l; i++) {
-                var loc = locations[i].location,
-                    position = null,
-                    label = locations[i].voices.length,
-                    title = label + ' voice(s) in ' + loc,
-                    content = '<ul class="map-voices">',
-                    theme;
-
-                for (var j = 0; j < locations[i].voices.length; j++) {
-                    var voice = locations[i].voices[j];
-                    theme = voice.theme;
-
-                    if (!position) {
-                        position = CV.Map.at(voice.latitude, voice.longitude);
-                    }
-
-                    content += '<li><a href="/' + voice.default_slug + '">' + voice.title + '</a></li>';
-                }
-
-                content += '</ul>';
-
-                markers.push(this.mapWidget.addMarker(position, title, label, content, theme));
-            }
-
-            this._cluster.clearMarkers();
-            this._cluster.addMarkers(markers);
 
             return this;
         },
