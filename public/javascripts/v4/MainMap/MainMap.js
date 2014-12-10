@@ -46,6 +46,15 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
         _regionFilterSelectedOptions : [],
         _featuresFilterExpression : [],
 
+        _regionsWrapper : null,
+        _regionsButton : null,
+        _regionsTooltip : null,
+        _filterRegionElements : null,
+        _featuresWrapper : null,
+        _featuresButton : null,
+        _featuresTooltip : null,
+        _filterFeaturesElements : null,
+
         init : function init (config) {
             Widget.prototype.init.call(this, config);
 
@@ -112,6 +121,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
 
             this._regionsButton.bind('click', function(ev) {
                 this._featuresTooltip.deactivate();
+                this._featuresButton.removeClass('active');
 
                 if (this._regionsTooltip.active) {
                     this._regionsButton.removeClass('active');
@@ -124,6 +134,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
 
             this._featuresButton.bind('click', function(ev) {
                 this._regionsTooltip.deactivate();
+                this._regionsButton.removeClass('active');
 
                 if (this._featuresTooltip.active) {
                     this._featuresButton.removeClass('active');
