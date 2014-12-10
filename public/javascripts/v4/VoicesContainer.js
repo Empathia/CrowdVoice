@@ -62,7 +62,7 @@ Class('VoicesContainer').inherits(Widget)({
                         if (voice.active) {
                             if (voice.element.visible(true)) {
                                 voice.element.removeClass('no-events');
-                                voice.setImage();
+                                
                                 if (!voice.thumbElement.hasClass('na')) {
                                     voice.setImage();
                                 }
