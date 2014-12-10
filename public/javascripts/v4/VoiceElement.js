@@ -2,7 +2,7 @@ Class('VoiceElement').inherits(Widget)({
     ELEMENT_CLASS  : '',
     HTML           : '\
         <div class="voice-box disabled">\
-            <a href="" class="close-voice-box" data-confirm="Are you sure?" data-method="delete" rel="nofollow" />\
+            <a href="" class="close-voice-box" data-method="delete" rel="nofollow" />\
             <div class="voice-cont">\
                 <a class="source-url" href="">\
                     <img class="thumb-preview" />\
@@ -202,7 +202,31 @@ Class('VoiceElement').inherits(Widget)({
             });
 
             if (CV.isAdmin) {
-                this.element.find('a.close-voice-box').attr('href', window.location.pathname + '/posts/' + voice.id);
+                this.element.find('a.close-voice-box').bind('click', function() {
+                    var element = $(this);
+
+                    var c = confirm("Are you sure you want to delete this?");
+
+                    if (c) {
+                        // debugger;
+                        $.ajax({
+                            url : window.location.pathname + '/posts/' + voice.id,
+                            type : 'delete',
+                            data: $.extend({ authenticity_token : $('meta[name=csrf-token]').attr('content')}, {method : 'delete'}),
+                            success : function(data) {
+
+                                
+                                CV.voicesContainer.element.isotope('remove', voice.element);
+                                CV.voicesContainer.element.isotope('layout');
+                                
+                                voice.destroy();
+                            }
+
+                        });
+                    }
+
+                    return false;
+                });
             } else {
                 this.element.find('a.close-voice-box').hide();
             }

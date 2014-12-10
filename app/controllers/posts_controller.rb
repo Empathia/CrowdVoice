@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id]).destroy
-    redirect_to voice_url(Voice.find(post.voice_id))
+    render :json => post, :status => :ok
   end
 
   def notify_js_error
