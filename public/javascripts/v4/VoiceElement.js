@@ -202,7 +202,7 @@ Class('VoiceElement').inherits(Widget)({
             });
 
             if (CV.isAdmin) {
-                this.element.find('a.close-voice-box').attr('href', this.postURL);
+                this.element.find('a.close-voice-box').attr('href', window.location.pathname + '/posts/' + voice.id);
             } else {
                 this.element.find('a.close-voice-box').hide();
             }

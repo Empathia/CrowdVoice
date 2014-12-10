@@ -4,7 +4,11 @@ class GenericImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
    #include CarrierWave::RMagick
-   include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+
+  def remove!
+     return false
+  end
 
   def fog_directory
     APP_CONFIG['current_bucket']

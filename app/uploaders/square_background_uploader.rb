@@ -4,6 +4,10 @@ class SquareBackgroundUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  def remove!
+     return false
+  end
+
   # Choose what kind of storage to use for this uploader:
   # storage :s3
   def fog_directory
