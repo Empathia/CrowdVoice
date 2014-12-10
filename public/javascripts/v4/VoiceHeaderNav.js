@@ -45,6 +45,9 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
 
         _bindEvents : function _bindEvents() {
             this._mapButtonElement.bind('click', function(){
+                if ($('label.tweets-label input').attr('checked')) {
+                    $('label.tweets-label input').click();
+                };
                 if (this.voiceMapWidget.active) {
                     this._mapButtonElement.removeClass('active');
                     this._mapElementWrapper.removeClass('active');
