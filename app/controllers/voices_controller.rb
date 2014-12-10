@@ -19,7 +19,7 @@ class VoicesController < ApplicationController
     slug   = Slug.find_by_text!(params[:id])
     @voice = slug.voice
 
-    scope = (params[:mod] ? @voice.posts.unapproved : @voice.posts.approved)
+    scope = (params[:mod] ? @voice.posts.unapproved.where(["created_at > ?", 1.year.ago ] : @voice.posts.approved)
 
     query = scope.includes(:tags).to_sql
 
