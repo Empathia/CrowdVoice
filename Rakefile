@@ -31,7 +31,7 @@ task :fetch_tweets => :environment do
   end
   
   FileUtils.touch('/tmp/fetching_tweets')
-  voices = Voice.where(["last_tweet < ? OR last_twitter_error IS NOT null", 1.hour.ago])
+  voices = Voice.where(["last_tweet < ? OR last_twitter_error IS NOT null", 6.hour.ago])
 
   voices.each do |voice|
     voice.tweets.first() ? last_tweet = voice.tweets.first().id_str : last_tweet = nil
@@ -39,6 +39,7 @@ task :fetch_tweets => :environment do
     if !voice.twitter_search.blank?
       
       logger.info "\n\n"
+      logger.info "#{DateTime.now}"
       logger.info "Last: #{last_tweet} in Voice #{voice.id}"
       logger.info "Search term: #{voice.twitter_search}"
 
