@@ -28,7 +28,6 @@ end
 
 # Deliver digest mail
 every 1.days, :at => '12:00 am' do
-  #command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor subscriptions:digest"
   command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor post:clear_cache_files"
   command "cd #{@path} && rm public/about.html && public/index.html"
 end
@@ -36,6 +35,7 @@ end
 # Fetch RSS feed
 every 1.hours do
   command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor voices:update_feed_voices"
+  command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} rake fetch_tweets"
 end
 
 # Fetch RSS feed

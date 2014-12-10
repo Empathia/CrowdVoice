@@ -3,15 +3,15 @@ class VoiceFeeder
     voice = Voice.find(voice_id)
     puts voice.id
     puts voice.rss_feed
-    puts voice.twitter_search
+    # puts voice.twitter_search
     voice.rss_feed.blank? ? Rails.logger.info("   - Rss empty.") : fetch_rss(voice)
-    voice.twitter_search.blank? ? Rails.logger.info("    - Twitter search empty (shouldn't be).") : fetch_tweets(voice)
+    # voice.twitter_search.blank? ? Rails.logger.info("    - Twitter search empty (shouldn't be).") : fetch_tweets(voice)
   end
 
   def self.feed_voices
     Voice.all.each do |voice|
       voice.rss_feed.blank? ? put("    - Rss empty.") : fetch_rss(voice)
-      voice.twitter_search.blank? ? puts("    - Twitter search empty (shouldn't be).") : fetch_tweets(voice)
+      # voice.twitter_search.blank? ? puts("    - Twitter search empty (shouldn't be).") : fetch_tweets(voice)
     end
   end
 

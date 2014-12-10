@@ -24,15 +24,23 @@ end
 
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
+  logger = Logger.new("/data/crowdvoice/shared/log/fetch_tweets.log")
+
+  if File.exists?('/tmp/fetching_tweets')
+    logger.warn "Twitter Fetcher is already running, will check again in an hour..."
+  end
+  
+  FileUtils.touch('/tmp/fetching_tweets')
   voices = Voice.where(["last_tweet < ? OR last_twitter_error IS NOT null", 1.hour.ago])
 
   voices.each do |voice|
     voice.tweets.first() ? last_tweet = voice.tweets.first().id_str : last_tweet = nil
     
     if !voice.twitter_search.blank?
-      puts "\n\n"
-      puts "Last: #{last_tweet} in Voice #{voice.id}"
-      puts "Search term: #{voice.twitter_search}"
+      
+      logger.info "\n\n"
+      logger.info "Last: #{last_tweet} in Voice #{voice.id}"
+      logger.info "Search term: #{voice.twitter_search}"
 
       term = voice.twitter_search
       if term[term.length - 3, term.length] == " OR"
@@ -49,8 +57,10 @@ task :fetch_tweets => :environment do
 
       begin
         results = Twitter.search(term, {:since_id => last_tweet, :count => 20}).results
-        puts "\n"
-        puts "Processing #{results.length} results"
+
+        logger.info "\n"
+        logger.info "Processing #{results.length} results"
+
         results.each do |result|
           tweet           = Tweet.new
           tweet[:id_str]  = result[:id]
@@ -61,7 +71,8 @@ task :fetch_tweets => :environment do
           urls = TwitterSearch.extract_tweet_urls(tweet)
           urls.each do |url|
             resolved_url = TwitterSearch.resolve_redirects(url)
-            puts "Saving #{resolved_url}"
+            
+            logger.info "Saving #{resolved_url}"
 
             voice.posts.new(:source_url => url).save
           end
@@ -70,19 +81,21 @@ task :fetch_tweets => :environment do
         voice.last_tweet         = term
         voice.last_twitter_error = nil
 
-        puts "#{results.length} processed on Voice #{voice.id}"  
+        logger.info "#{results.length} processed on Voice #{voice.id}"  
       rescue Exception => e
         voice.last_twitter_error = e
-        puts "Error #{e}"
+        logger.error "Error #{e}"
       end
       
     else
-      puts "Skiping Voice #{voice.id}"
+      logger.warn "Skiping Voice #{voice.id}"
     end
 
     voice.last_tweet = DateTime.now
     voice.save
   end
+
+  FileUtils.rm('/tmp/fetching_tweets')
 end
 
 
