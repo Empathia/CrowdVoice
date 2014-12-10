@@ -313,7 +313,6 @@ hgroup {
 
   .create-voice,
   .voice-search > ul,
-  .map-container,
   .tab-controller .sprite-sidebar {
     display: none;
   }
@@ -343,7 +342,6 @@ hgroup {
 
   .create-voice,
   .voice-search > ul,
-  .map-container,
   .tab-controller .sprite-sidebar {
     display: none;
   }

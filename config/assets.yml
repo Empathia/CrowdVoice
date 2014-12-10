@@ -15,6 +15,8 @@ javascripts:
     - *neon
     - public/javascripts/include/jquery.placeholder.js
     - public/javascripts/v4/Map.js
+    - public/javascripts/v4/MainMap/MainMapHelper.js
+    - public/javascripts/v4/MainMap/MainMap.js
     - public/javascripts/application.js
     - public/javascripts/v4/DelayedEventEmitter.js
     - public/javascripts/include/smart-resize.js
@@ -205,6 +207,8 @@ stylesheets:
     - public/stylesheets/icon-font.css
     - public/stylesheets/layout.css
     - public/stylesheets/skin.css
+    - public/stylesheets/v4/maps/map.css
+    - public/stylesheets/v4/maps/main-map.css
     - public/stylesheets/grid.css
     - public/stylesheets/jscrollpane.css
     - public/stylesheets/v4/utilities.css

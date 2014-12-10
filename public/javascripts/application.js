@@ -25,20 +25,6 @@ function whichTransitionEvent(){
 window.transitionEnd = whichTransitionEvent();
 
 $(function () {
-    var mapTooltip, mapContainer, mapButton, _mapVoices, _voicesMapCreated;
-
-    _voicesMapCreated = false;
-
-    mapTooltip = new CV.Tooltip({
-        text : 'Show Voices on the map.',
-        className : 'tooltip-map',
-        nowrap: true
-    }).render($('.mapit'));
-
-    mapContainer = $('.map-container');
-    _mapVoices = new CV.Map({zoom : 2}).render(mapContainer);
-    mapButton = $('.map-btn');
-
     new Accordion('.sidebar-scroller__accordion-arrow');
     new SlideSection({
         element : $('.login'),
@@ -97,40 +83,17 @@ $(function () {
         DynamicMeasures.update();
     });
 
-    window.initializeVoicesMap = function() {
-        _voicesMapCreated = true;
+    var mapTooltip, mapContainer, mapButton;
 
-        CV.Map.inyectMapClusterScript();
-        _mapVoices.setMapCenter(0, 0).createMap();
+    mapTooltip = new CV.Tooltip({
+        text : 'Show Voices on the map.',
+        className : 'tooltip-map',
+        nowrap: true
+    }).render($('.mapit'));
 
-        CV.Map.getLocations(function (locations) {
-            var markers = [];
-
-            for (var i = 0; i < locations.length; i++) {
-                var loc = locations[i].location,
-                    position = null,
-                    label = locations[i].voices.length,
-                    title = label + ' voice(s) in ' + loc,
-                    content = '<ul class="map-voices">',
-                    theme;
-
-                for (var j = 0; j < locations[i].voices.length; j++) {
-                    var voice = locations[i].voices[j];
-                    theme = voice.theme;
-
-                    if (!position) {
-                        position = CV.Map.at(voice.latitude, voice.longitude);
-                    }
-                    content += '<li><a href="/' + voice.default_slug + '">' + voice.title + '</a></li>';
-                }
-                content += '</ul>';
-
-                markers.push(_mapVoices.addMarker(position, title, label, content, theme));
-            }
-
-            _mapVoices.makeCluster(markers);
-        });
-    };
+    mapContainer = $('.map-container');
+    mapButton = $('.map-btn');
+    window.mainMap = new CV.MainMap().render(mapContainer);
 
     mapButton.bind('click', function () {
         mapContainer.toggleClass('shown');
@@ -138,19 +101,13 @@ $(function () {
 
         if (mapButton.hasClass('map-active')) {
             mapTooltip.updateText("Hide Voices on the map.");
+            mainMap.activate();
         } else {
             mapTooltip.updateText("Show Voices on the map.");
-        }
-
-        if (_mapVoices.active) _mapVoices.deactivate();
-        else _mapVoices.activate();
-
-        if (CV.Map.isGoogleScriptInyected === false) {
-            CV.Map.inyectGoogleMapsScript("initializeVoicesMap");
-        } else if (_voicesMapCreated === false) {
-            initializeVoicesMap();
+            mainMap.deactivate();
         }
 
         return false;
     });
+
 });

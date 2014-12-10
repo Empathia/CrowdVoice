@@ -106,10 +106,6 @@ a.mobile-menu__list-item-anchor:hover {
 hgroup {background-color: #121212; border-top-style: solid; border-top-color: #595959; box-shadow: -1px 0 0 rgba(255, 255, 255, 0.1) inset}
 .gaza-header {background: url('/images/bg/gaza-header.png') no-repeat}
 
-.map-container {
-  background-color: rgb(42, 43, 44);
-}
-
 .flag-tip .media-type-info > .flag-tooltip {color: #404040;}
 
 .media-type-title,

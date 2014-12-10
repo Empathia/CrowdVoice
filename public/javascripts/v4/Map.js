@@ -116,6 +116,7 @@ Class(CV, 'Map').inherits(Widget)({
 
             this._map = new google.maps.Map(this.element[0], {
                 zoom : this.zoom,
+                // maxZoom : 15,
                 mapTypeControlOptions : this.mapTypeControlOptions,
                 mapTypeId : this.mapTypeId,
                 scrollwheel : this.scrollwheel,
@@ -189,7 +190,8 @@ Class(CV, 'Map').inherits(Widget)({
                 map : this._map,
                 position : _position,
                 title : _title,
-                icon : icon_image
+                icon : icon_image,
+                // animation: google.maps.Animation.DROP,
             });
 
             // if (_label > 1) {
@@ -207,7 +209,7 @@ Class(CV, 'Map').inherits(Widget)({
             return marker;
         },
 
-        makeCluster : function makeCluster (markers) {
+        getNewCluster : function getNewCluster () {
             var mcOptions = {
                 maxZoom: 15,
                 styles : [
@@ -220,7 +222,7 @@ Class(CV, 'Map').inherits(Widget)({
                 ]
             };
 
-            return new MarkerClusterer(this._map, markers, mcOptions);
+            return new MarkerClusterer(this._map, [], mcOptions);
         },
 
         closeAllInfowindows : function closeAllInfowindows() {
