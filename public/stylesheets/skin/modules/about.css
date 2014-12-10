@@ -359,11 +359,3 @@ button,
   background: transparent url('/images/v3/about/video.jpg') 0 0 no-repeat;
   background-size: 100% auto;
 }*/
-
-
-/* Tweets Sidebar */
-.tweets-sidebar {
-  background-color: #e5e5e5;
-  border-left-style: solid;
-  border-left-color: #363636;
-}

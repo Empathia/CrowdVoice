@@ -218,12 +218,8 @@ Class('VoicesContainer').inherits(Widget)({
                 elements.push(voice.element[0]);
                 voice.element.detach();
                 voice.activate();
-                _.defer(function(){
-                    if (voice.element.visible(true)) {
-                        voice.setImage();
-                    }
-                });
-
+                voice.setImage();
+                
                 fragment.appendChild(voice.element[0]);
             });
 
@@ -237,9 +233,7 @@ Class('VoicesContainer').inherits(Widget)({
 
             this.currentPage++;
 
-            if (callback) {
-                callback();
-            }
+            callback();    
         },
 
         /**

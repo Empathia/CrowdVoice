@@ -142,7 +142,7 @@ Class('VoiceElement').inherits(Widget)({
 
             this.thumbElement.bind('load', function() {
                 voice.thumbElement.addClass('set').css({background : 'none'});
-                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
+                // CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
             });
 
             this.thumbElement.bind('error', function() {

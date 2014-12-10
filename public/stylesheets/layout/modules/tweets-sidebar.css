@@ -1,5 +1,4 @@
 .tweets-sidebar {
-  border-left-width: 1px;
   bottom: 0;
   display: none;
   left: 0;
@@ -20,6 +19,8 @@
 /*.tweets-sidebar.media_feed {*/
 .tweets-sidebar {
   border-left-width: 1px;
+  border-left-color : rgba(0,0,0,0.3);
+  box-shadow: -3px 0px 0px rgba(0,0,0,0.05); 
   display: block;
   left: auto;
   padding-left: 10px;
