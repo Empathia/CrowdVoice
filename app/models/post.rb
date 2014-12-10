@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   attr_accessor :image_description, :image_title, :url_check, :modify_tags
 
   mount_uploader :image, PostImageUploader
+  skip_callback :commit, :after, :remove_image!
 
   validates :source_url, :presence => true,
     :uniqueness => { :case_sensitive => false },
