@@ -71,18 +71,18 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
         _perMonth : function _perMonth() {
             var year, month, text;
 
-            Object.keys(this.data).forEach(function(propertyName) {
-                year = propertyName;
-                months = this.data[propertyName];
+            this.data.forEach(function(propertyName) {
+                year = propertyName.year;
+                months = propertyName.months;
 
-                Object.keys(months).forEach(function(propertyName) {
-                    text = CV.Utils.getMonthName(propertyName) + " " + year;
+                months.forEach(function(propertyName) {
+                    text = CV.Utils.getMonthName(propertyName.numeric) + " " + year;
 
                     this.appendChild(new CV.BackstoryBreadcrumbItem({
-                        name : year + '-' + propertyName,
+                        name : year + '-' + propertyName.numeric,
                         text : text,
                         year : year,
-                        month : propertyName,
+                        month : propertyName.numeric,
                         day : null
                     })).render(this.pointsElement);
                 }, this);

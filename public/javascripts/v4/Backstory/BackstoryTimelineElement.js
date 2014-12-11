@@ -64,10 +64,6 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
             totalImages = this.data.images.length;
             totalVideos = this.data.videos.length;
 
-            this.data.year = year;
-            this.data.month = month;
-            this.data.day = day;
-
             this._coverImageElement.attr('src', this.data.background_image);
             this._dateElement.text(date);
             this._titleElement.text(this.data.name);
