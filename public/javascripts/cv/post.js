@@ -51,7 +51,7 @@ Class('Post').inherits(Widget)({
         },
 
         _showTooltip : function _showTooltip(type) {
-            $('.cv-tooltip.notice').hide();
+            $('.cv-tooltip.notice').removeClass('active');
             this._remoteImageUrl.val('');
             this.carousel.clear();
 
@@ -162,7 +162,6 @@ Class('Post').inherits(Widget)({
                     dataType : 'json',
                     type : 'post',
                     success : function (data) {
-                        debugger;
                         if (data.post) {
                             that._lastSearch = that.inputPost.val();
                             that.inputFile.val('');
@@ -221,7 +220,7 @@ Class('Post').inherits(Widget)({
 
                                 if (data.hasOwnProperty(error) && error == 'source_url') {
                                     $('.cv-tooltip.notice .moderate-tooltip').html('URL '+data[error]);
-                                    $('.cv-tooltip.notice').show();
+                                    $('.cv-tooltip.notice').addClass('active');
                                 }
                             }
                         }

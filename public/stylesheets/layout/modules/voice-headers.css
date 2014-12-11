@@ -140,6 +140,9 @@
             left: initial;
             right: 35px;
           }
+          .post > .post-button .cv-tooltip.notice .media-type-info {
+            padding: .6em 1em;
+          }
         .post > .post-paceholder, .empty-msg {
           font-size: 15px;
           left: 11px;
