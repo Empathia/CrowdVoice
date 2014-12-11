@@ -162,6 +162,14 @@
         </div>
         <div class="clearfix">
           <div class="label-form" style="width: 150px">
+            <%= f.label :backstory_breadcrumb_range %>
+            <small style="width:275px;">Time range between dates in backstory's breadcrumb navigation.</small>
+          </div>
+          
+          <div><%= f.collection_select :backstory_breadcrumb_range, ["Monthly", "Yearly", "Decade"], :to_s, :capitalize %></div>
+        </div>
+        <div class="clearfix">
+          <div class="label-form" style="width: 150px">
             <%= f.label :background_version %><span class="ask-me"></span>
           </div>
           <small class="answere">Image displayed in the homepage</small>
