@@ -74,6 +74,16 @@ Class(CV, 'Map').inherits(Widget)({
         return this;
     },
 
+    inyectOverlappingMarkerSpiderfier : function inyectOverlappingMarkerSpiderfier() {
+        if (typeof OverlappingMarkerSpiderfier === "undefined") {
+            var script = document.createElement('script');
+            script.src = "/javascripts/include/oms.min.js";
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
+
+        return this;
+    },
+
     isGoogleScriptInyected : false,
     isMapClusterInyected : false,
     _markerLabelAdded : false,
@@ -84,6 +94,8 @@ Class(CV, 'Map').inherits(Widget)({
          * @property _map <private> [Object]
          */
         _map : null,
+        _overlappingMarkerSpiderfier : null,
+        _infowindow : null,
         _infowindows : [],
 
         /**
@@ -125,6 +137,18 @@ Class(CV, 'Map').inherits(Widget)({
 
             this._bindEvents();
             this._applyMapStyles();
+
+            return this;
+        },
+
+        spiderfy : function spiderfy() {
+            this._overlappingMarkerSpiderfier = new OverlappingMarkerSpiderfier(this._map);
+            this._infowindow = new google.maps.InfoWindow({maxWidth: 400});
+
+            this._overlappingMarkerSpiderfier.addListener('click', function(marker, event) {
+                this._infowindow.setContent(marker.content);
+                this._infowindow.open(this._map, marker);
+            }.bind(this));
 
             return this;
         },
@@ -193,18 +217,20 @@ Class(CV, 'Map').inherits(Widget)({
                 icon : icon_image,
                 // animation: google.maps.Animation.DROP,
             });
-
+            marker.content = _content;
+            this._overlappingMarkerSpiderfier.addMarker(marker);
+// console.log('----------------')
             // if (_label > 1) {
             //     label = this.createLabel(_label);
             //     label.bindTo('position', marker, 'position');
             // }
 
-            infowindow = this.createInfoWindow(_content);
+            // infowindow = this.createInfoWindow(_content);
 
-            google.maps.event.addListener(marker, 'click', function () {
-                this.closeAllInfowindows();
-                infowindow.open(this._map, marker);
-            }.bind(this, marker));
+            // google.maps.event.addListener(marker, 'click', function () {
+            //     this.closeAllInfowindows();
+            //     infowindow.open(this._map, marker);
+            // }.bind(this, marker));
 
             return marker;
         },

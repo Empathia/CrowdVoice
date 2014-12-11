@@ -104,6 +104,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this.constructor.bind('googleMapsScriptInyected', function () {
                 var mainMap = this;
 
+                CV.Map.inyectOverlappingMarkerSpiderfier();
                 CV.Map.inyectMapClusterScript();
                 mainMap.mapWidget.setMapCenter(0, 0).createMap();
                 mainMap._createContinentPolygons();
@@ -115,6 +116,8 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
 
                     mainMap._addCounterToRegionOptions(mainMap._locations);
                     mainMap._addCounterToFeaturesOptions(mainMap._locations);
+
+                    mainMap.mapWidget.spiderfy();
                     mainMap.updateMap(mainMap._locations);
                 });
             }.bind(this));
@@ -322,7 +325,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                         position = CV.Map.at(voice.latitude, voice.longitude);
                     }
 
-                    content += '<li><a href="/' + voice.default_slug + '">' + voice.title + '</a></li>';
+                    content += '<li><a href="/' + voice.default_slug + '?all=true">' + voice.title + '</a></li>';
                 }
 
                 content += '</ul>';
