@@ -153,6 +153,14 @@
         </div>
       <% end %>
         <div class="clearfix">
+          <div class="label-form">
+            <%= f.label :blacklist %>
+            <small style="width:275px;">Comma-separated values (lorem, ipsum, lorem ipsum, quia, http://reddit.com, dolor)</small>
+          </div>
+          <%= f.text_area :blacklist, :style => "width:270px;height:50px;padding:5px;" %>
+          <%= render 'shared/error_messages_for', :object => @voice, :field => :is_witness_gaza %>
+        </div>
+        <div class="clearfix">
           <div class="label-form" style="width: 150px">
             <%= f.label :background_version %><span class="ask-me"></span>
           </div>

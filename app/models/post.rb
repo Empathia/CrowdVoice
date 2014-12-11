@@ -37,6 +37,48 @@ class Post < ActiveRecord::Base
 
   before_save :set_tags, :if => '["staging","production"].include?(Rails.env)'
 
+
+  def is_blacklisted?
+    puts self.inspect
+    blacklist = !self.voice.blacklist.blank? ? self.voice.blacklist.split(',') : []
+
+    blacklisted = false
+
+    blacklist.each do |word|
+      if self.source_url.include? word
+        blacklisted = true
+        break    
+      end
+
+      if !self.title.blank? and self.title.include? word
+        blacklisted = true
+        break    
+      end
+
+      if !self.description.blank? and self.description.include? word
+        blacklisted = true
+        break    
+      end
+    end
+
+    if blacklisted
+      puts "\n"
+      puts "-" * 80
+      puts "is blacklisted"
+    end
+
+    return blacklisted
+  end
+
+  def save
+    unless is_blacklisted?
+      super
+    else
+      errors.add(:source_url, "is blacklisted")
+      return false
+    end
+  end
+
   def validate_source_existance
     if self.class.exists?(:voice_id => voice_id, :source_url => source_url) && self.new_record?
       errors.add(:source_url, "is invalid or is already taken")

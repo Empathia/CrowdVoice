@@ -162,6 +162,7 @@ Class('Post').inherits(Widget)({
                     dataType : 'json',
                     type : 'post',
                     success : function (data) {
+                        debugger;
                         if (data.post) {
                             that._lastSearch = that.inputPost.val();
                             that.inputFile.val('');
@@ -219,7 +220,7 @@ Class('Post').inherits(Widget)({
                                 that.linkMediaTool.deactivate();
 
                                 if (data.hasOwnProperty(error) && error == 'source_url') {
-                                    $('.cv-tooltip.notice .moderate-tooltip').html('Url '+data[error]);
+                                    $('.cv-tooltip.notice .moderate-tooltip').html('URL '+data[error]);
                                     $('.cv-tooltip.notice').show();
                                 }
                             }
