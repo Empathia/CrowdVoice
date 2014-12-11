@@ -42,21 +42,21 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if ((el.data.year === year) && (el.data.month === month)) {
                         element = el;
-                        return;
+                        return true;
                     }
                 });
             } else if (this.range === "Yearly") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if (el.data.year === year) {
                         element = el;
-                        return;
+                        return true;
                     }
                 });
             } else if (this.range === "Decade") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
-                    if (el.data.year <= year) {
+                    if (el.data.year >= year) {
                         element = el;
-                        return;
+                        return true;
                     }
                 });
             }

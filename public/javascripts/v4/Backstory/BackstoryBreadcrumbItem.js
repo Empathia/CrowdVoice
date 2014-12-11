@@ -18,7 +18,7 @@ Class(CV, 'BackstoryBreadcrumbItem').inherits(Widget)({
 
         _bindEvents : function _bindEvents() {
             this.element.bind('click', function() {
-                this.parent.deactivateAll()
+                this.parent.deactivateAll();
                 this.activate();
                 this.parent.scrollTo(this.year, this.month, this.day);
             }.bind(this))

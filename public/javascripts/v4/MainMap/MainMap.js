@@ -267,7 +267,9 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                 var voices = l.voices.filter(function(v) {
                     var latLng = new google.maps.LatLng(v.latitude, v.longitude);
                     return mainMap._regionFilterSelectedOptions.some(function(option) {
-                        return (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines[option]));
+                        if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines[option])) {
+                            return true;
+                        }
                     });
                 });
 

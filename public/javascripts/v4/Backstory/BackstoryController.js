@@ -85,14 +85,20 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
                 event.year = year;
 
                 yearExists = result.some(function(r) {
-                    if (r['year'] == year) return _year = r;
+                    if (r['year'] == year) {
+                        _year = r;
+                        return true;
+                    }
                 });
 
                 if (!yearExists) {
                     result.push({year: year, months: [{ numeric: month, events: [event]}]});
                 } else {
                     monthExists = _year.months.some(function(m) {
-                        if (m.numeric == month) return _month = m;
+                        if (m.numeric == month) {
+                            _month = m;
+                            return true;
+                        }
                     });
 
                     if (!monthExists) _year.months.push({numeric: month, events: [event]});
