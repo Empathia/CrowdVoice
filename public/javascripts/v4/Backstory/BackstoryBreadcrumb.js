@@ -6,18 +6,25 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
         </div>\
     ',
     prototype : {
-        data : null,
+
+        _data : null,
+
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('breadcrum')
 
             this.pointsElement = this.element.find('.cv-timeline-breadcrum__points');
         },
 
-        updateUI : function updateUI() {
-            var year, months;
+        getData : function getData() {
+            return this._data;
+        },
 
-            this.data = CV.BackstoryRegistry.getInstance().get();
+        setData : function setData(data) {
+            this._data = data;
+        },
+
+        updateUI : function updateUI() {
+            this.setData(CV.BackstoryRegistry.getInstance().get());
 
             if (this.type === 'month') {
                 this._perMonth();
@@ -69,20 +76,20 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
          * return undefined
          */
         _perMonth : function _perMonth() {
-            var year, month, text;
+            var year, months, text;
 
-            this.data.forEach(function(propertyName) {
-                year = propertyName.year;
-                months = propertyName.months;
+            this.getData().forEach(function(item) {
+                year = item.year;
+                months = item.months;
 
-                months.forEach(function(propertyName) {
-                    text = CV.Utils.getMonthName(propertyName.numeric) + " " + year;
+                months.forEach(function(month) {
+                    text = CV.Utils.getMonthName(month.numeric) + " " + year;
 
                     this.appendChild(new CV.BackstoryBreadcrumbItem({
-                        name : year + '-' + propertyName.numeric,
+                        name : year + '-' + month.numeric,
                         text : text,
                         year : year,
-                        month : propertyName.numeric,
+                        month : month.numeric,
                         day : null
                     })).render(this.pointsElement);
                 }, this);
@@ -95,11 +102,11 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
          * return undefined
          */
         _perYear : function _perYear() {
-            Object.keys(this.data).forEach(function(propertyName) {
+            this.getData().forEach(function(item) {
                 this.appendChild(new CV.BackstoryBreadcrumbItem({
-                    name : propertyName,
-                    text : propertyName,
-                    year : propertyName,
+                    name : item.year,
+                    text : item.year,
+                    year : item.year,
                     month : null,
                     day : null
                 })).render(this.pointsElement);
@@ -118,39 +125,39 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
             currentYear = new Date().getFullYear();
             last = false;
 
-            Object.keys(this.data).forEach(function(year) {
+            this.getData().forEach(function(year) {
                 if (!buffer) {
-                    buffer = (~~(year) + 10);
+                    buffer = (~~(year.year) + 10);
 
                     if (buffer < currentYear) {
-                        console.log(year + '-' + buffer);
+                        console.log('1', year.year + '-' + buffer);
                         this.appendChild(new CV.BackstoryBreadcrumbItem({
-                            name : year,
-                            text : year + '-' + buffer,
-                            year : year,
+                            name : year.year,
+                            text : year.year + '-' + buffer,
+                            year : year.year,
                             month : null,
                             day : null
                         })).render(this.pointsElement);
                     } else {
-                        console.log(year + '-' + currentYear);
+                        console.log('2', year.year + '-' + currentYear);
                         this.appendChild(new CV.BackstoryBreadcrumbItem({
-                            name : year,
-                            text : year + '-' + currentYear,
-                            year : year,
+                            name : year.year,
+                            text : year.year + '-' + currentYear,
+                            year : year.year,
                             month : null,
                             day : null
                         })).render(this.pointsElement);
                     }
                 } else {
 
-                    if (year > buffer) {
+                    if (year.year > buffer) {
                         year = (buffer + 1);
 
                         var future = (~~(year) + 10);
 
                         if (future < currentYear) {
                             buffer = future;
-                            console.log(year + '-' + future);
+                            console.log('3', year + '-' + future);
                             this.appendChild(new CV.BackstoryBreadcrumbItem({
                                 name : year,
                                 text : year + '-' + future,
@@ -160,6 +167,7 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                             })).render(this.pointsElement);
                         } else if (last === false) {
                             last = true;
+                            console.log('4', year + '-' + currentYear);
                             this.appendChild(new CV.BackstoryBreadcrumbItem({
                                 name : year,
                                 text : year + '-' + currentYear,
@@ -167,7 +175,6 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                                 month : null,
                                 day : null
                             })).render(this.pointsElement);
-                            console.log(year + '-' + currentYear);
                         }
                     }
                 }
