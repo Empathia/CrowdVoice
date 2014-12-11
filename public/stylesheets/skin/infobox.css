@@ -26,14 +26,14 @@
 .infobox-header .view-all:hover {color: #AAAAAA}
 
 .infobox {
-  will-change: transform, top, left;
   text-align: center;
   border-style: solid;
   border-color: rgba(0,0,0,.7);
   border-radius: 3px;
   background-clip: padding-box;
-  background: #2e2e2e;
-  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  background-color: #333333;
+  background-image: -webkit-linear-gradient(top, #373737, #303030);
+  background-image: linear-gradient(to bottom, #373737, #303030);
 }
 
 .info-sidebar .infobox {
