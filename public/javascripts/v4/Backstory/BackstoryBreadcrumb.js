@@ -26,9 +26,9 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
         updateUI : function updateUI() {
             this.setData(CV.BackstoryRegistry.getInstance().get());
 
-            if (this.type === 'month') {
+            if (this.range === 'Monthly') {
                 this._perMonth();
-            } else if (this.type === 'year') {
+            } else if (this.range === 'Yearly') {
                 this._perYear();
             } else {
                 this._perDecade();
@@ -38,21 +38,21 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
         scrollTo : function scrollTo(year, month, day) {
             var element;
 
-            if (this.type === "month") {
+            if (this.range === "Monthly") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if ((el.data.year === year) && (el.data.month === month)) {
                         element = el;
                         return;
                     }
                 });
-            } else if (this.type === "year") {
+            } else if (this.range === "Yearly") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if (el.data.year === year) {
                         element = el;
                         return;
                     }
                 });
-            } else if (this.type === "decade") {
+            } else if (this.range === "Decade") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if (el.data.year <= year) {
                         element = el;
@@ -130,7 +130,6 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                     buffer = (~~(year.year) + 10);
 
                     if (buffer < currentYear) {
-                        console.log('1', year.year + '-' + buffer);
                         this.appendChild(new CV.BackstoryBreadcrumbItem({
                             name : year.year,
                             text : year.year + '-' + buffer,
@@ -139,7 +138,6 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                             day : null
                         })).render(this.pointsElement);
                     } else {
-                        console.log('2', year.year + '-' + currentYear);
                         this.appendChild(new CV.BackstoryBreadcrumbItem({
                             name : year.year,
                             text : year.year + '-' + currentYear,
@@ -157,7 +155,6 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
 
                         if (future < currentYear) {
                             buffer = future;
-                            console.log('3', year + '-' + future);
                             this.appendChild(new CV.BackstoryBreadcrumbItem({
                                 name : year,
                                 text : year + '-' + future,
@@ -167,7 +164,6 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                             })).render(this.pointsElement);
                         } else if (last === false) {
                             last = true;
-                            console.log('4', year + '-' + currentYear);
                             this.appendChild(new CV.BackstoryBreadcrumbItem({
                                 name : year,
                                 text : year + '-' + currentYear,

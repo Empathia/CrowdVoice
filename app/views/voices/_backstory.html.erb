@@ -8,7 +8,9 @@
   <%= render :partial => "nav_bar" %>
 </header>
 
-<div class="cv-backstory-ui-wrapper" data-background="<%= @voice.background %>" >
+<div class="cv-backstory-ui-wrapper"
+  data-background="<%= @voice.background %>"
+  data-breadcrumb-range="<%= @voice.backstory_breadcrumb_range %>">
 </div> <!-- backstory_breadcrumb_range Monthly|Yearly|Decade -->
 
 <%= include_javascripts :backstory_pack %>

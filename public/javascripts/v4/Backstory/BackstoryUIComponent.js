@@ -8,7 +8,7 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
 
             this.appendChild(new CV.BackstoryBreadcrumb({
                 name : 'breadcrumb',
-                type : 'month' /* year, month, decade */
+                range : this.breadcrumbRange || "Monthly"
             })).render(this.element);
 
             this.appendChild(new CV.BackstoryTimeline({
