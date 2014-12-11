@@ -36,15 +36,24 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
     prototype : {
         /**
          * Data holder cache. Provide the data to create the map's markers.
-         * @property _locations <private> [Array]
+         * @property _coordinates <private> [Array]
          */
-        _locations : [],
+        _coordinates : [],
         _cluster : null,
         _polylines : {},
         _created : false,
 
         _regionFilterSelectedOptions : [],
         _featuresFilterExpression : [],
+
+        _regionsWrapper : null,
+        _regionsButton : null,
+        _regionsTooltip : null,
+        _filterRegionElements : null,
+        _featuresWrapper : null,
+        _featuresButton : null,
+        _featuresTooltip : null,
+        _filterFeaturesElements : null,
 
         init : function init (config) {
             Widget.prototype.init.call(this, config);
@@ -100,18 +109,19 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                 mainMap._createContinentPolygons();
                 mainMap._created = true;
 
-                CV.Map.getLocations(function (locations) {
-                    mainMap._locations = locations;
+                CV.Map.getLocations(function (coordinates) {
+                    mainMap._coordinates = coordinates;
                     mainMap._cluster = mainMap.mapWidget.getNewCluster();
 
-                    mainMap._addCounterToRegionOptions();
-                    mainMap._addCounterToFeaturesOptions();
-                    mainMap.updateMap(mainMap._locations);
+                    mainMap._addCounterToRegionOptions(mainMap._coordinates);
+                    mainMap._addCounterToFeaturesOptions(mainMap._coordinates);
+                    mainMap.updateMap(mainMap._coordinates);
                 });
             }.bind(this));
 
             this._regionsButton.bind('click', function(ev) {
                 this._featuresTooltip.deactivate();
+                this._featuresButton.removeClass('active');
 
                 if (this._regionsTooltip.active) {
                     this._regionsButton.removeClass('active');
@@ -124,6 +134,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
 
             this._featuresButton.bind('click', function(ev) {
                 this._regionsTooltip.deactivate();
+                this._regionsButton.removeClass('active');
 
                 if (this._featuresTooltip.active) {
                     this._featuresButton.removeClass('active');
@@ -247,9 +258,12 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
         },
 
         _getFilteredResultsByRegion : function _getFilteredResultsByRegion() {
-            var mainMap = this;
+            var mainMap, coordinates;
 
-            return this._locations.filter(function(l) {
+            mainMap = this;
+            coordinates = JSON.parse(JSON.stringify(mainMap._coordinates));
+
+            return coordinates.filter(function(l) {
                 var voices = l.voices.filter(function(v) {
                     var latLng = new google.maps.LatLng(v.latitude, v.longitude);
                     return mainMap._regionFilterSelectedOptions.some(function(option) {
@@ -286,35 +300,32 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             return this;
         },
 
-        updateMap : function updateMap(locations) {
+        updateMap : function updateMap(coordinates) {
             var markers, i, l;
 
             markers = [];
-            l = locations.length;
+            l = coordinates.length;
 
             for (i = 0; i < l; i++) {
-                var loc = locations[i].location,
-                    position = null,
-                    label = locations[i].voices.length,
-                    title = label + ' voice(s) in ' + loc,
+                var loc = coordinates[i].coordinates,
+                    c = loc.split(","),
+                    position = CV.Map.at(c[0], c[1]),
+                    total_voices = coordinates[i].voices.length,
+                    title = total_voices + ' voice(s) in ' + loc,
                     content = '<ul class="map-voices">',
                     theme;
 
-                for (var j = 0; j < locations[i].voices.length; j++) {
-                    var voice = locations[i].voices[j];
+                for (var j = 0; j < total_voices; j++) {
+                    var voice = coordinates[i].voices[j];
                     theme = voice.theme;
-
-                    if (!position) {
-                        position = CV.Map.at(voice.latitude, voice.longitude);
-                    }
-
-                    content += '<li><a href="/' + voice.default_slug + '">' + voice.title + '</a></li>';
+                    content += '<li><a href="/' + voice.default_slug + '?all=true">' + voice.title + '</a></li>';
                 }
 
                 content += '</ul>';
 
-                markers.push(this.mapWidget.addMarker(position, title, label, content, theme));
+                markers.push(this.mapWidget.addMarker(position, title, total_voices, content, theme));
             }
+
 
             this._cluster.clearMarkers();
             this._cluster.addMarkers(markers);
@@ -322,12 +333,13 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             return this;
         },
 
-        _addCounterToRegionOptions : function _addCounterToRegionOptions() {
-            var na, sa, eu, me, as, af, oc;
+        _addCounterToRegionOptions : function _addCounterToRegionOptions(coordinates) {
+            var mainMap, na, sa, eu, me, as, af, oc;
 
+            mainMap = this;
             na = sa = eu = me = as = af = oc = 0;
 
-            this._locations.forEach(function(l) {
+            coordinates.forEach(function(l) {
                 l.voices.forEach(function(v) {
                     var latLng = new google.maps.LatLng(v.latitude, v.longitude);
                     if (google.maps.geometry.poly.containsLocation(latLng, mainMap._polylines["northAmerica"])) na++;
@@ -351,12 +363,12 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             return this;
         },
 
-        _addCounterToFeaturesOptions : function _addCounterToFeaturesOptions() {
+        _addCounterToFeaturesOptions : function _addCounterToFeaturesOptions(coordinates) {
             var mediafeeds, backstories, infographics;
 
             mediafeeds = backstories = infographics = 0;
 
-            this._locations.forEach(function(l) {
+            coordinates.forEach(function(l) {
                 l.voices.forEach(function(v) {
                     if (!v.is_backstory && !v.is_infographic) mediafeeds++;
                     if (v.is_infographic) infographics++;

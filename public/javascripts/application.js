@@ -83,7 +83,7 @@ $(function () {
         DynamicMeasures.update();
     });
 
-    var mapTooltip, mapContainer, mapButton;
+    var mapTooltip, mapContainer, mapButton, mainMap;
 
     mapTooltip = new CV.Tooltip({
         text : 'Show Voices on the map.',
@@ -93,7 +93,7 @@ $(function () {
 
     mapContainer = $('.map-container');
     mapButton = $('.map-btn');
-    window.mainMap = new CV.MainMap().render(mapContainer);
+    mainMap = new CV.MainMap().render(mapContainer);
 
     mapButton.bind('click', function () {
         mapContainer.toggleClass('shown');

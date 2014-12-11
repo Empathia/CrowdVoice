@@ -84,6 +84,8 @@ Class(CV, 'Map').inherits(Widget)({
          * @property _map <private> [Object]
          */
         _map : null,
+        _overlappingMarkerSpiderfier : null,
+        _infowindow : null,
         _infowindows : [],
 
         /**
@@ -116,12 +118,14 @@ Class(CV, 'Map').inherits(Widget)({
 
             this._map = new google.maps.Map(this.element[0], {
                 zoom : this.zoom,
-                // maxZoom : 15,
+                maxZoom : 18,
                 mapTypeControlOptions : this.mapTypeControlOptions,
                 mapTypeId : this.mapTypeId,
                 scrollwheel : this.scrollwheel,
                 center : this.center
             });
+
+            this._infowindow = new google.maps.InfoWindow({maxWidth: 400});
 
             this._bindEvents();
             this._applyMapStyles();
@@ -189,22 +193,24 @@ Class(CV, 'Map').inherits(Widget)({
             marker = new google.maps.Marker({
                 map : this._map,
                 position : _position,
-                title : _title,
+                // title : _title,
                 icon : icon_image,
                 // animation: google.maps.Animation.DROP,
             });
 
-            // if (_label > 1) {
-            //     label = this.createLabel(_label);
-            //     label.bindTo('position', marker, 'position');
-            // }
-
-            infowindow = this.createInfoWindow(_content);
-
+            marker.content = _content;
             google.maps.event.addListener(marker, 'click', function () {
-                this.closeAllInfowindows();
-                infowindow.open(this._map, marker);
+                this._infowindow.setContent(marker.content);
+                this._infowindow.open(this._map, marker);
             }.bind(this, marker));
+
+            if (_label > 1) {
+                label = this.createLabel(_label);
+                label.bindTo('position', marker, 'position');
+                (function(t, m,l){
+                    google.maps.event.addListener(m,'map_changed',function(){l.setMap(this.getMap());});
+                })(this, marker, label);
+            }
 
             return marker;
         },
@@ -268,7 +274,7 @@ Class(CV, 'Map').inherits(Widget)({
         var span = this.span_ = document.createElement('span');
         span.style.cssText = '\
             position: relative; font-size: 11px; left: -50%; \
-            top: -42px; z-index:900; white-space: nowrap; padding: 2px; color: #404040;\
+            top: -40px; z-index:900; white-space: nowrap; padding: 2px; color: #404040;\
             font-family: Arial, sans-serif; font-weight: bold;';
         var div = this.div_ = document.createElement('div');
         div.appendChild(span);
