@@ -14,46 +14,46 @@
   </div>
   <div class="sidebar-scroller scroll-secondary">
     <div class="searchable">
-      <% cache( from_gaza? ? "#{current_connection}_aside_menu_bar_gaza" : "#{current_connection}_aside_menu_bar") do %>
-        <% if from_gaza? %>
-          <div class="sidebar-scroller__accordion-toggler">
-            <span class="sidebar-scroller__accordion-arrow">more</span>
-            <h2>Gaza</h2>
-          </div>
-          <ul class="sidebar-scroller__list voice-gaza">
-            <%= render :partial => 'voices/voices', :object => @gaza_voices.order('created_at desc') %>
-          </ul>
-        <% end %>
 
-        <% unless @featured_voices.empty? %>
-          <div class="sidebar-scroller__accordion-toggler">
-            <span class="sidebar-scroller__accordion-arrow">more</span>
-            <h2>Featured Voices</h2>
-          </div>
-          <ul class="sidebar-scroller__list voice-feature">
-            <%= render :partial => 'voices/voices', :object => @featured_voices.order('created_at desc') %>
-          </ul>
-        <% end %>
-        <% unless @non_featured_voices.empty? %>
-          <div class="sidebar-scroller__accordion-toggler">
-            <span class="sidebar-scroller__accordion-arrow">more</span>
-            <h2>Current Voices</h2>
-          </div>
-          <ul class="sidebar-scroller__list voice-all">
-            <%= render :partial => 'voices/voices', :object => from_gaza? ? @all_voices : @non_featured_voices %>
-          </ul>
-        <% end %>
-
-        <% unless @archived_voices.empty? %>
-          <div class="sidebar-scroller__accordion-toggler">
-            <span class="sidebar-scroller__accordion-arrow">more</span>
-            <h2>Archived Voices</h2>
-          </div>
-          <ul class="sidebar-scroller__list voice-all">
-            <%= render :partial => 'voices/voices', :object => @archived_voices %>
-          </ul>
-        <% end %>
+      <% if from_gaza? %>
+        <div class="sidebar-scroller__accordion-toggler">
+          <span class="sidebar-scroller__accordion-arrow">more</span>
+          <h2>Gaza</h2>
+        </div>
+        <ul class="sidebar-scroller__list voice-gaza">
+          <%= render :partial => 'voices/voices', :object => @gaza_voices.order('created_at desc') %>
+        </ul>
       <% end %>
+
+      <% unless @featured_voices.empty? %>
+        <div class="sidebar-scroller__accordion-toggler">
+          <span class="sidebar-scroller__accordion-arrow">more</span>
+          <h2>Featured Voices</h2>
+        </div>
+        <ul class="sidebar-scroller__list voice-feature">
+          <%= render :partial => 'voices/voices', :object => @featured_voices.order('created_at desc') %>
+        </ul>
+      <% end %>
+      <% unless @non_featured_voices.empty? %>
+        <div class="sidebar-scroller__accordion-toggler">
+          <span class="sidebar-scroller__accordion-arrow">more</span>
+          <h2>Current Voices</h2>
+        </div>
+        <ul class="sidebar-scroller__list voice-all">
+          <%= render :partial => 'voices/voices', :object => from_gaza? ? @all_voices : @non_featured_voices %>
+        </ul>
+      <% end %>
+
+      <% unless @archived_voices.empty? %>
+        <div class="sidebar-scroller__accordion-toggler">
+          <span class="sidebar-scroller__accordion-arrow">more</span>
+          <h2>Archived Voices</h2>
+        </div>
+        <ul class="sidebar-scroller__list voice-all">
+          <%= render :partial => 'voices/voices', :object => @archived_voices %>
+        </ul>
+      <% end %>
+    
     </div>
   </div>
 </div>
