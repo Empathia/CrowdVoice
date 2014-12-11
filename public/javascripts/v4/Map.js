@@ -128,7 +128,7 @@ Class(CV, 'Map').inherits(Widget)({
 
             this._map = new google.maps.Map(this.element[0], {
                 zoom : this.zoom,
-                // maxZoom : 15,
+                maxZoom : 18,
                 mapTypeControlOptions : this.mapTypeControlOptions,
                 mapTypeId : this.mapTypeId,
                 scrollwheel : this.scrollwheel,
@@ -142,12 +142,26 @@ Class(CV, 'Map').inherits(Widget)({
         },
 
         spiderfy : function spiderfy() {
-            this._overlappingMarkerSpiderfier = new OverlappingMarkerSpiderfier(this._map);
+            this._overlappingMarkerSpiderfier = new OverlappingMarkerSpiderfier(this._map, {
+                markersWontMove : true,
+                keepSpiderfied : true,
+                circleFootSeparation : 50,
+                spiralFootSeparation : 50,
+                spiralLengthFactor : 20
+            });
             this._infowindow = new google.maps.InfoWindow({maxWidth: 400});
 
             this._overlappingMarkerSpiderfier.addListener('click', function(marker, event) {
                 this._infowindow.setContent(marker.content);
                 this._infowindow.open(this._map, marker);
+            }.bind(this));
+
+            this._overlappingMarkerSpiderfier.addListener('spiderfy', function(markers) {
+                this._infowindow.close();
+            }.bind(this));
+
+            this._overlappingMarkerSpiderfier.addListener('unspiderfy', function(markers) {
+                this._infowindow.close();
             }.bind(this));
 
             return this;
@@ -217,20 +231,18 @@ Class(CV, 'Map').inherits(Widget)({
                 icon : icon_image,
                 // animation: google.maps.Animation.DROP,
             });
+
             marker.content = _content;
             this._overlappingMarkerSpiderfier.addMarker(marker);
-// console.log('----------------')
+
             // if (_label > 1) {
             //     label = this.createLabel(_label);
             //     label.bindTo('position', marker, 'position');
+            //     label.bindTo('text', marker, 'position');
+            //     (function(t, m,l){
+            //         google.maps.event.addListener(m,'map_changed',function(){l.setMap(this.getMap());});
+            //     })(this, marker, label)
             // }
-
-            // infowindow = this.createInfoWindow(_content);
-
-            // google.maps.event.addListener(marker, 'click', function () {
-            //     this.closeAllInfowindows();
-            //     infowindow.open(this._map, marker);
-            // }.bind(this, marker));
 
             return marker;
         },
