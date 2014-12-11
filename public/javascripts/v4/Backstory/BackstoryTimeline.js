@@ -44,11 +44,11 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
 
             this._backgroundElement[0].style.backgroundImage = 'url(' + this.background + ')';
 
-            Object.keys(this._data).forEach(function(propertyName) {
+            this._data.forEach(function(item) {
                 this.appendChild(new CV.BackstoryTimelineYear({
-                    name : 'year-' + propertyName,
-                    year : propertyName,
-                    months : this._data[propertyName]
+                    name : 'year-' + item.year,
+                    year : item.year,
+                    months : item.months
                 })).render(this._timelineElement);
             }, this);
 

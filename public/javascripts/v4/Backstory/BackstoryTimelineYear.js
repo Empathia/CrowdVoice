@@ -5,14 +5,14 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
-            Object.keys(this.months).forEach(function(propertyName) {
+            this.months.forEach(function(month) {
                 this.appendChild(new CV.BackstoryTimelineMonth({
-                    name : 'month-' + propertyName,
+                    name : 'month-' + month.numeric,
                     year : this.year,
-                    month : propertyName,
-                    days : this.months[propertyName]
+                    month : month.numeric,
+                    days : month.events
                 })).render(this.element);
-            }, this)
+            }, this);
         }
     }
 });
