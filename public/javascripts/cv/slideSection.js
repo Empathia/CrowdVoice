@@ -35,6 +35,8 @@ Class('SlideSection')({
          */
         section : null,
 
+        duration : 200,
+
         /**
          * Holds the reference to the first input found, you we can autofocus
          * it when the section is opened.
@@ -81,7 +83,7 @@ Class('SlideSection')({
             var slideSection = this;
 
             this.constructor._closeAll();
-            this.section.slideDown('slow', function() {
+            this.section.slideDown(this.duration, function() {
                 slideSection._firstInput.focus();
             });
 
@@ -89,7 +91,7 @@ Class('SlideSection')({
         },
 
         _close : function _close() {
-            this.section.slideUp('slow');
+            this.section.slideUp(this.duration);
 
             return this;
         },
