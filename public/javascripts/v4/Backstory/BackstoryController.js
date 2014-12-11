@@ -2,8 +2,6 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
     API_PATH : '/api/data.json?voice_id=',
 
     prototype : {
-        _model : null,
-
         /**
          * Boot the app.
          * @method run <public> [Function]
@@ -31,9 +29,7 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
                 }
 
                 data = this._formatDataModel(res.events);
-
                 CV.BackstoryRegistry.getInstance().set(data);
-                this._model = CV.BackstoryRegistry.getInstance().get();
 
                 this.backstoryUIComponent.updateUI().hideSpinner();
             }.bind(this));
@@ -73,23 +69,52 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
          * @return result [Object]
          */
         _formatDataModel : function _formatDataModel(data) {
-            var result = {};
+            var result = [];
 
             data.forEach(function(event) {
-                var year, month;
+                var year, month, day, _year, _month, yearExists, monthExists;
 
                 year = event.event_date.substring(0,4);
                 month = event.event_date.substring(5,7);
+                day = event.event_date.substring(8,10);
 
-                if (!result[year]) {
-                    result[year] = {};
+                /* extend event */
+                event.day = day;
+                event.month = month;
+                event.year = year;
+
+                yearExists = result.some(function(r) {
+                    if (r['year'] == year) return _year = r;
+                });
+
+                if (!yearExists) {
+                    result.push({year: year, months: [{ numeric: month, events: [event]}]});
+                } else {
+                    monthExists = _year.months.some(function(m) {
+                        if (m.numeric == month) return _month = m;
+                    });
+
+                    if (!monthExists) _year.months.push({numeric: month, events: [event]});
+                    else _month.events.push(event);
                 }
+            });
 
-                if (!result[year][month]) {
-                    result[year][month] = [];
-                }
-
-                result[year][month].push(event);
+            result.sort(function(a, b) {
+                if (a.year > b.year) return 1;
+                if (a.year < b.year) return -1;
+                return 0;
+            }).forEach(function(e) {
+                return e.months.sort(function(a, b) {
+                    if (a.numeric > b.numeric) return 1;
+                    if (a.numeric > b.numeric) return -1;
+                    return 0;
+                }).forEach(function(e) {
+                    return e.events.sort(function(a, b) {
+                        if (a.day > b.day) return 1;
+                        if (a.day > b.day) return -1;
+                        return 0;
+                    });
+                });
             });
 
             return result;
