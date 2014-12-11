@@ -81,7 +81,7 @@ class VoicesController < ApplicationController
   end
 
   def locations
-    voices = Voice.where("latitude IS NOT NULL AND TRIM(latitude) <> '' AND longitude IS NOT NULL AND TRIM(longitude) <> ''").group_by(&:location).map do |location, voices|
+    voices = Voice.find_by_sql("SELECT *, CONCAT(TRUNCATE(latitude, 1), ',', TRUNCATE(longitude, 1)) AS latlong FROM voices").group_by(&:latlong).map do |coords, voices|
       voices = voices.map { |v| {
         :default_slug => v.default_slug,
         :title => v.title,
@@ -90,8 +90,8 @@ class VoicesController < ApplicationController
         :theme => v.theme,
         :is_infographic => v.is_infographic?,
         :is_backstory => !subdomain_present? && v.has_timeline
-      } }
-      {:location => location, :voices => voices}
+      }}
+      {:coordinates => coords, :voices => voices}
     end
     render :json => voices
   end

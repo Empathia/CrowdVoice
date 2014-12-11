@@ -74,16 +74,6 @@ Class(CV, 'Map').inherits(Widget)({
         return this;
     },
 
-    inyectOverlappingMarkerSpiderfier : function inyectOverlappingMarkerSpiderfier() {
-        if (typeof OverlappingMarkerSpiderfier === "undefined") {
-            var script = document.createElement('script');
-            script.src = "/javascripts/include/oms.min.js";
-            document.getElementsByTagName('head')[0].appendChild(script);
-        }
-
-        return this;
-    },
-
     isGoogleScriptInyected : false,
     isMapClusterInyected : false,
     _markerLabelAdded : false,
@@ -135,34 +125,10 @@ Class(CV, 'Map').inherits(Widget)({
                 center : this.center
             });
 
-            this._bindEvents();
-            this._applyMapStyles();
-
-            return this;
-        },
-
-        spiderfy : function spiderfy() {
-            this._overlappingMarkerSpiderfier = new OverlappingMarkerSpiderfier(this._map, {
-                markersWontMove : true,
-                keepSpiderfied : true,
-                circleFootSeparation : 50,
-                spiralFootSeparation : 50,
-                spiralLengthFactor : 20
-            });
             this._infowindow = new google.maps.InfoWindow({maxWidth: 400});
 
-            this._overlappingMarkerSpiderfier.addListener('click', function(marker, event) {
-                this._infowindow.setContent(marker.content);
-                this._infowindow.open(this._map, marker);
-            }.bind(this));
-
-            this._overlappingMarkerSpiderfier.addListener('spiderfy', function(markers) {
-                this._infowindow.close();
-            }.bind(this));
-
-            this._overlappingMarkerSpiderfier.addListener('unspiderfy', function(markers) {
-                this._infowindow.close();
-            }.bind(this));
+            this._bindEvents();
+            this._applyMapStyles();
 
             return this;
         },
@@ -227,22 +193,24 @@ Class(CV, 'Map').inherits(Widget)({
             marker = new google.maps.Marker({
                 map : this._map,
                 position : _position,
-                title : _title,
+                // title : _title,
                 icon : icon_image,
                 // animation: google.maps.Animation.DROP,
             });
 
             marker.content = _content;
-            this._overlappingMarkerSpiderfier.addMarker(marker);
+            google.maps.event.addListener(marker, 'click', function () {
+                this._infowindow.setContent(marker.content);
+                this._infowindow.open(this._map, marker);
+            }.bind(this, marker));
 
-            // if (_label > 1) {
-            //     label = this.createLabel(_label);
-            //     label.bindTo('position', marker, 'position');
-            //     label.bindTo('text', marker, 'position');
-            //     (function(t, m,l){
-            //         google.maps.event.addListener(m,'map_changed',function(){l.setMap(this.getMap());});
-            //     })(this, marker, label)
-            // }
+            if (_label > 1) {
+                label = this.createLabel(_label);
+                label.bindTo('position', marker, 'position');
+                (function(t, m,l){
+                    google.maps.event.addListener(m,'map_changed',function(){l.setMap(this.getMap());});
+                })(this, marker, label);
+            }
 
             return marker;
         },
@@ -306,7 +274,7 @@ Class(CV, 'Map').inherits(Widget)({
         var span = this.span_ = document.createElement('span');
         span.style.cssText = '\
             position: relative; font-size: 11px; left: -50%; \
-            top: -42px; z-index:900; white-space: nowrap; padding: 2px; color: #404040;\
+            top: -40px; z-index:900; white-space: nowrap; padding: 2px; color: #404040;\
             font-family: Arial, sans-serif; font-weight: bold;';
         var div = this.div_ = document.createElement('div');
         div.appendChild(span);
