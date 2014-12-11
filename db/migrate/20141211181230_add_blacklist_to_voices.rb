@@ -1,6 +1,6 @@
 class AddBlacklistToVoices < ActiveRecord::Migration
   def self.up
-  	add_column :voices, :blacklist, :text, :default => ""
+  	add_column :voices, :blacklist, :text
   end
 
   def self.down
