@@ -95,19 +95,27 @@ $(function () {
     mapButton = $('.map-btn');
     mainMap = new CV.MainMap().render(mapContainer);
 
+    var pathname = null;
+
     mapButton.bind('click', function () {
         mapContainer.toggleClass('shown');
         mapButton.toggleClass('map-active');
 
         if (mapButton.hasClass('map-active')) {
-            mapTooltip.updateText("Hide Voices on the map.");
+            mapTooltip.updateText("Hide the voice's map.");
+            window.location.hash = "#map";
             mainMap.activate();
         } else {
-            mapTooltip.updateText("Show Voices on the map.");
+            mapTooltip.updateText("Show the voice's map.");
+            window.location.hash = "";
             mainMap.deactivate();
         }
 
         return false;
     });
+
+    if (window.location.hash == "#map") {
+        mapButton.click();
+    };
 
 });
