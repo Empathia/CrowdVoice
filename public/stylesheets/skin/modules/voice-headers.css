@@ -112,6 +112,7 @@ body.blue .post > .post-paceholder > a {color: #4cb5ff}
 .mode-button.selected > a {
   background-color: #b6b6b6;
   color: #fff !important;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,0.1);
 }
 
 .moderate-tooltip {color: #595959}

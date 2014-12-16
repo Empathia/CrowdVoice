@@ -72,16 +72,18 @@
 /* light color */
 .cv-button--light {
   background-color: #fafafa;
-  border: 1px solid #b2b2b2;
+  border: 1px solid rgba(0,0,0,0.2);
   text-shadow: none;
-  box-shadow: inset 0 -1px 0 #ccc;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
 }
 .cv-button--light:hover {
   background-color: #fff;
   text-decoration: none;
 }
-.cv-button--light:active {
-  box-shadow: inset 0 1px 0 #ccc;
+.cv-button--light:active,
+.cv-button--light.active,
+.cv-button--light.selected {
+  box-shadow: inset 0 2px 0 rgba(0,0,0,0.1);
 }
 
 .green .cv-button--light.dynamic {
@@ -102,11 +104,11 @@
 
 /* dynamic background color */
 .cv-button--dynamic-color {
-  box-shadow: inset 0 -4px 0 rgba(0,0,0,.2);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.1);
   text-shadow: none;
 }
 .cv-button--dynamic-color:active {
-  box-shadow: inset 0 4px 0 rgba(0,0,0,.2);
+  box-shadow: inset 0 3px 0 rgba(0,0,0,.1);
 }
 
 .green .cv-button--dynamic-color {
