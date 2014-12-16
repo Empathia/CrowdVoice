@@ -22,15 +22,16 @@ class Vote < ActiveRecord::Base
 
   # updates the counters of the content depending on the vote
   def update_vote_counters
-    post.update_attribute(:positive_votes_count, Vote.where(:post_id => post_id, :rating => 1).count)
-    post.update_attribute(:negative_votes_count, Vote.where(:post_id => post_id, :rating => -1).count)
-    post.reload.update_attribute(:overall_score, post.reload.positive_votes_count - post.reload.negative_votes_count)
+    post[:positive_votes_count] = Vote.where(:post_id => post_id, :rating => 1).count
+    post[:negative_votes_count] = Vote.where(:post_id => post_id, :rating => -1).count
+    post.reload
+    post[:overall_score] = post.reload.positive_votes_count - post.reload.negative_votes_count
   end
 
   # Approves content if overall_score is greater than zero
   def update_content_approval
-    post.update_attribute(:approved, true) if post.overall_score >= Setting.positive_threshold.to_i
-    post.update_attribute(:approved, false) if post.overall_score <= Setting.negative_threshold.to_i
+    post.update_attributes(:approved => true) if post.overall_score >= Setting.positive_threshold.to_i
+    post.update_attributes(:approved => false) if post.overall_score <= Setting.negative_threshold.to_i
   end
 
 end
