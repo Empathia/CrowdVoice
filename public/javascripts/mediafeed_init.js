@@ -45,13 +45,13 @@ $(function () {
         clickHandler : function(ev) {
             if (this.active) {
                 this.deactivate();
-                CV.bolgWidget._copyCodeClip.glue('js-copy-code-button');
+                CV.blogWidget._copyCodeClip.glue('js-copy-code-button');
             } else {
                 this.activate();
-                CV.bolgWidget._copyCodeClip.setText('');
-                CV.bolgWidget._copyCodeClip.setCSSEffects(true);
-                CV.bolgWidget._copyCodeClip.glue('js-copy-code-button');
-                CV.bolgWidget._updateCode();
+                CV.blogWidget._copyCodeClip.setText('');
+                CV.blogWidget._copyCodeClip.setCSSEffects(true);
+                CV.blogWidget._copyCodeClip.glue('js-copy-code-button');
+                CV.blogWidget._updateCode();
             }
             return false
         },
@@ -89,7 +89,7 @@ $(function () {
             '
         }).render($('.mod'));
 
-        CV.bolgWidget = new BlogWidget();
+        CV.blogWidget = new BlogWidget();
     }
 
     //check for infobox Tags data

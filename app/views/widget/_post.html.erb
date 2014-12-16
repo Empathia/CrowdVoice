@@ -2,7 +2,7 @@
   <% title = post.title.eql?('(no title)') ? '' : post.title %>
   <%= link_to voice_url(@voice, :post => post), :title => title, :target => "_blank" do %>
     <div class="voice-thumb left">
-      <%= image_tag post.image.url(:widget_thumb), :alt => title, :size => @post_image_size %>
+      <%= image_tag post.image.url(:widget_thumb), :alt => title %>
     </div>
     <span class="title"><%= title %></span>
     <span class="clear"></span>
