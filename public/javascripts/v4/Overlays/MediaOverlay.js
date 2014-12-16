@@ -143,7 +143,7 @@ Class('MediaOverlay').inherits(Widget)({
                     console.error(data);
                 });
             }, 60000);
-
+            
             $.embedly(voiceElement.postURL, {
                 key : '7a45bbf49862423380410598ebf08688', /* TODO: Use Esra'a key */
                 maxWidth : parseInt($(document).width() * 0.80),
@@ -162,8 +162,9 @@ Class('MediaOverlay').inherits(Widget)({
 
         _embedlyCallbackHandler : function _embedlyCallbackHandler(oembed) {
             var secure_url;
-
             window.clearTimeout(this.timeoutRequest);
+
+            var maxHeight = this.element.find('.cv-media-gallery-wrapper').height();
 
             if (oembed.html) {
                 this._imageWrapper.html(oembed.html);
@@ -176,7 +177,7 @@ Class('MediaOverlay').inherits(Widget)({
                             <img src="' + oembed.thumbnail_url + '" width="' + oembed.thumbnail_width + '" height="' + oembed.thumbnail_height + '" />\
                         </a>');
                 } else {
-                    this._imageWrapper.html('<img src="' + secure_url + '"/>');
+                    this._imageWrapper.html('<img src="' + secure_url + '" style="max-height: ' + parseInt($(window).height() * 0.80) +'px;"/>');
                 }
             }
 
