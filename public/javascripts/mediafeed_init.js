@@ -39,9 +39,26 @@ $(function () {
         className : 'mediafeed-tweets-tooltip'
     }).render(twitterSearchWrapper);
 
-    new CV.Tooltip({
-        element: $('.embeddable-widget-tooltip')
+    CV.embeddableTooltip = new CV.Tooltip({
+        element: $('.embeddable-widget-tooltip'),
+        showOnCssHover : false,
+        clickHandler : function(ev) {
+            if (this.active) {
+                this.deactivate();
+                CV.bolgWidget._copyCodeClip.glue('js-copy-code-button');
+            } else {
+                this.activate();
+                CV.bolgWidget._copyCodeClip.setText('');
+                CV.bolgWidget._copyCodeClip.setCSSEffects(true);
+                CV.bolgWidget._copyCodeClip.glue('js-copy-code-button');
+                CV.bolgWidget._updateCode();
+            }
+            return false
+        },
+        toggler : $('.info-tool.widget a')
     });
+
+    CV.embeddableTooltip.element.parents('.has-cv-tooltip').removeClass('has-cv-tooltip');
 
     // check if it's a mobile device so we don't unnnecessarily instanciate the post interface and the infosidebar
     if (!isDevice) {
@@ -72,7 +89,7 @@ $(function () {
             '
         }).render($('.mod'));
 
-        new BlogWidget();
+        CV.bolgWidget = new BlogWidget();
     }
 
     //check for infobox Tags data

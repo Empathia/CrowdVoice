@@ -52,6 +52,8 @@ Class(CV, 'Tooltip').inherits(Widget)({
          */
         leaveTogglerElementEvent: null,
 
+        clickHandler : null,
+
         /**
          * Holds the reference to the tooltip's arrow element.
          * @property _arrowElement <private> [jQueryElement]
@@ -62,6 +64,7 @@ Class(CV, 'Tooltip').inherits(Widget)({
          * @property _contentElement <private> [jQueryElement]
          */
         _contentElement : null,
+        showOnClick : false,
 
         init : function(config) {
             Widget.prototype.init.call(this, config);
@@ -96,6 +99,8 @@ Class(CV, 'Tooltip').inherits(Widget)({
         },
 
         _bindEvents : function _bindEvents() {
+            var tooltip = this;
+
             if (this.toggler) {
                 if (this.enterTogglerElementEvent) {
                     this.toggler.bind('mouseenter', function(ev) {
@@ -106,6 +111,13 @@ Class(CV, 'Tooltip').inherits(Widget)({
                 if (this.leaveTogglerElementEvent) {
                     this.toggler.bind('mouseleave', function(ev) {
                         this.leaveTogglerElementEvent(ev);
+                    }.bind(this));
+                }
+
+                if (this.clickHandler) {
+                    this.toggler.bind('click', function(ev) {
+                        this.clickHandler(ev);
+                        return false;
                     }.bind(this));
                 }
             }

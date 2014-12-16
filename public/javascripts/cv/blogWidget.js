@@ -55,13 +55,15 @@ Class('BlogWidget')({
                 size: this.size(),
                 scope: this.scope(),
                 rtl: this.rtl(),
-                height: this.height()
+                height: this.height(),
+                host : window.location.origin
             };
 
             code = this._template.replace(/{{size}}/g, params.size)
                 .replace(/{{scope}}/g, params.scope)
                 .replace(/{{height}}/g, params.height)
-                .replace(/{{rtl}}/g, params.rtl);
+                .replace(/{{rtl}}/g, params.rtl)
+                .replace(/{{host}}/g, params.host);
 
             this.field.val(code);
             this.preview.empty().append(code);
