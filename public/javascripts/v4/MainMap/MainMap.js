@@ -44,6 +44,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
         _created : false,
 
         _regionFilterSelectedOptions : [],
+        _themeFilterSelectedOptions : [],
         _featuresFilterExpression : [],
 
         _regionsWrapper : null,
@@ -75,6 +76,22 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                 showOnCssHover : false
             }).render(this._regionsWrapper);
             this._filterRegionElements = this._regionsWrapper.find('input');
+
+            this._themesWrapper = this.element.find('.map-container__filter-theme');
+            this._themesButton = this._themesWrapper.find('.cv-button');
+            this._themesTooltip = new CV.Tooltip({
+                html : '\
+                    <label><input type="checkbox" name="map-filter__themes" value="all" checked disabled> All <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__themes" value="Human Rights" checked> Human Rights <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__themes" value="Environment" checked> Environment <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__themes" value="Freedom of Religion" checked> Freedom of Religion <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__themes" value="Elections" checked> Elections <span></span></label>\
+                    <label><input type="checkbox" name="map-filter__themes" value="Gender Equality" checked> Gender Equality <span></span></label>\
+                ',
+                position : 'bottom',
+                showOnCssHover : false
+            }).render(this._themesWrapper);
+            this._filterThemeElements = this.element.find('[name="map-filter__themes"]');
 
             this._featuresWrapper = this.element.find('.map-container__filter-features');
             this._featuresButton = this._featuresWrapper.find('.cv-button');
@@ -122,6 +139,8 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this._regionsButton.bind('click', function(ev) {
                 this._featuresTooltip.deactivate();
                 this._featuresButton.removeClass('active');
+                this._themesTooltip.deactivate();
+                this._themesButton.removeClass('active');
 
                 if (this._regionsTooltip.active) {
                     this._regionsButton.removeClass('active');
@@ -132,9 +151,26 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                 }
             }.bind(this));
 
+            this._themesButton.bind('click', function(ev) {
+                this._featuresTooltip.deactivate();
+                this._featuresButton.removeClass('active');
+                this._regionsTooltip.deactivate();
+                this._regionsButton.removeClass('active');
+
+                if (this._themesTooltip.active) {
+                    this._themesButton.removeClass('active');
+                    this._themesTooltip.deactivate();
+                } else {
+                    this._themesButton.addClass('active');
+                    this._themesTooltip.activate();
+                }
+            }.bind(this));
+
             this._featuresButton.bind('click', function(ev) {
                 this._regionsTooltip.deactivate();
                 this._regionsButton.removeClass('active');
+                this._themesTooltip.deactivate();
+                this._themesButton.removeClass('active');
 
                 if (this._featuresTooltip.active) {
                     this._featuresButton.removeClass('active');
@@ -146,6 +182,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             }.bind(this));
 
             this._filterRegionElements.bind('click', this._filterRegionClickHandler.bind(this));
+            this._filterThemeElements.bind('click', this._filterThemeClickHandlder.bind(this));
             this._filterFeaturesElements.bind('click', this._filterFeaturesClickHandler.bind(this));
 
             return this;
@@ -202,6 +239,57 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this.filter();
         },
 
+        _filterThemeClickHandlder : function _filterThemeClickHandlder(ev) {
+            var allOption;
+
+            var allDeselected = true;
+            this._filterThemeElements.each(function(i, el) {
+                if (el.checked === true) {
+                    allDeselected = false;
+                    return false;
+                }
+            });
+
+            if (allDeselected) {
+                ev.currentTarget.checked = false;
+                return false;
+            }
+
+            if (ev.currentTarget.value === "all") {
+                allOption = ev.currentTarget;
+
+                if (allOption.checked) {
+                    this._filterThemeElements.filter(function(i, opt) {
+                        return opt.value !== "all";
+                    }).each(function(i, opt) { opt.checked = true; });
+
+                    allOption.setAttribute('disabled', true);
+                }
+            } else {
+                allOption = this._filterThemeElements.filter(function(i, opt) { return opt.value === "all"; })[0];
+
+                if (ev.currentTarget.checked) {
+                    var areAllChecked = true;
+
+                    this._filterThemeElements.filter(function(i, opt) {
+                        return opt.value !== "all";
+                    }).each(function(i, opt) {
+                        if (opt.checked === false) {
+                            areAllChecked = false;
+                            return false;
+                        }
+                    });
+                } else areAllChecked = false;
+
+                allOption.checked = areAllChecked;
+                if (areAllChecked) allOption.setAttribute('disabled', true);
+                else allOption.removeAttribute('disabled');
+            }
+
+            this._updateSelectedThemeOptions();
+            this.filter();
+        },
+
         _filterFeaturesClickHandler : function _filterFeaturesClickHandler(ev) {
             var allDeselected = true;
             this._filterFeaturesElements.each(function(i, el) {
@@ -230,6 +318,24 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                     mainMap._regionFilterSelectedOptions.push(opt.value);
                 }
             });
+
+            return this;
+        },
+
+        _updateSelectedThemeOptions : function _updateSelectedThemeOptions() {
+            var mainMap = this;
+
+            this._themeFilterSelectedOptions = [];
+
+            this._filterThemeElements.filter(':checked').each(function(i, opt) {
+                if (opt.value !== "all") {
+                    mainMap._themeFilterSelectedOptions.push('(v.topic == "' + opt.value + '")');
+                } else {
+                    mainMap._themeFilterSelectedOptions.push('(v)');
+                }
+            });
+
+            this._themeFilterSelectedOptions = this._themeFilterSelectedOptions.join("||");
 
             return this;
         },
@@ -279,6 +385,20 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             });
         },
 
+        _getFilteredResultsByTheme : function _getFilteredResultsByTheme(data) {
+            var mainMap = this;
+
+            return data.filter(function(l) {
+                var voices = l.voices.filter(function(v) {
+                    return eval(mainMap._themeFilterSelectedOptions);
+                });
+
+                if (voices.length) {
+                    return l.voices = voices;
+                }
+            });
+        },
+
         _getFilteredResultsByFeature : function _getFilteredResultsByFeature(data) {
             var mainMap = this;
 
@@ -295,6 +415,7 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
 
         filter : function filter () {
             var r = this._getFilteredResultsByRegion();
+            r = this._getFilteredResultsByTheme(r);
             r = this._getFilteredResultsByFeature(r);
 
             this.updateMap(r);

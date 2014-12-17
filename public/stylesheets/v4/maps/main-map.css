@@ -98,8 +98,13 @@
   margin-left: .4em;
 }
 
+.map-container__header-filters .cv-tooltip {
+
+}
+
 .map-container__header-filters .cv-tooltip-inner {
-  top: 5px;
+  top: 10px;
+  padding: 0.6em 0.8em;
 }
 
 .map-container__filter-region .cv-tooltip {
@@ -107,9 +112,17 @@
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
+.map-container__filter-region .cv-tooltip__arrow {
+  left: 2.2em;
+}
 
-.map-container__filter-theme {
-  display: none !important;
+.map-container__filter-theme .cv-tooltip {
+  left: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.map-container__filter-theme .cv-tooltip__arrow {
+  left: 2em;
 }
 
 .map-container__filter-features .cv-tooltip {
@@ -117,6 +130,10 @@
   right: 0;
   -webkit-transform: translateX(0);
   transform: translateX(0);
+}
+.map-container__filter-features .cv-tooltip__arrow {
+  left: auto;
+  right: 2em;
 }
 
 .map-container__header .cv-tooltip label {

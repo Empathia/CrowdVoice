@@ -39,7 +39,7 @@ Class(CV, 'Map').inherits(Widget)({
     getLocations : function getLocations(callback) {
         $.getJSON('/locations.json', function (data) {
             callback(data);
-        }.bind(this));
+        });
     },
 
     /*

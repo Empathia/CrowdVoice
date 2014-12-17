@@ -5,7 +5,7 @@ class Voice < ActiveRecord::Base
   attr_accessible :title, :description, :theme, :logo_link,
     :latitude, :longitude, :location, :map_url, :twitter_search, :background, :is_witness_gaza,
     :featured, :archived, :logo, :sponsor_slogan, :sponsor, :rss_feed, :approved,
-    :background_version, :square_background, :wide_background, :posts_attributes, :has_timeline, :slugs_attributes, :blacklist, :backstory_breadcrumb_range
+    :background_version, :square_background, :wide_background, :posts_attributes, :has_timeline, :slugs_attributes, :blacklist, :backstory_breadcrumb_range, :topic
 
   mount_uploader :logo, LogoUploader
   mount_uploader :background, BackgroundUploader

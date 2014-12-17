@@ -89,7 +89,8 @@ class VoicesController < ApplicationController
         :longitude => v.longitude,
         :theme => v.theme,
         :is_infographic => v.is_infographic?,
-        :is_backstory => !subdomain_present? && v.has_timeline
+        :is_backstory => !subdomain_present? && v.has_timeline,
+        :topic => v.topic
       }}
       {:coordinates => coords, :voices => voices}
     end
