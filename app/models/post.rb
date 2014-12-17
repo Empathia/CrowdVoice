@@ -109,19 +109,23 @@ class Post < ActiveRecord::Base
   end
 
   def self.is_url_reachable?(url)
-    url = URI(url)
-    url.path = '/' if url.path == ''
-    return false if url.relative?
-    req = Net::HTTP.new(url.host, url.port)
-    if url.scheme == 'https'
-      req.use_ssl = true
-      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    end
-    res = req.head(url.path)
-    if res.kind_of?(Net::HTTPRedirection)
-      is_url_reachable? res['location']
-    else
-      res.code == '200'
+    begin
+      url = URI(url)
+      url.path = '/' if url.path == ''
+      return false if url.relative?
+      req = Net::HTTP.new(url.host, url.port)
+      if url.scheme == 'https'
+        req.use_ssl = true
+        req.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
+      res = req.head(url.path)
+      if res.kind_of?(Net::HTTPRedirection)
+        is_url_reachable? res['location']
+      else
+        res.code == '200'
+      end
+    rescue => e
+      puts "Error: #{e}"
     end
   end
 
