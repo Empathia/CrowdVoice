@@ -10,22 +10,6 @@
     </div>
     <div class="clearfix">
       <div class="label-form">
-        <p><%= f.label 'Page Slug' %> <span class="red">*</span></p>
-
-        <%= f.fields_for :slugs do |slug_fields| %>
-        <div class="clearfix">
-          <div class="label-form slug">
-            <%= slug_fields.label :is_default, 'Default' %>
-            <%= slug_fields.check_box :is_default, :style => "width:26px;" %>
-            <%= slug_fields.text_field :text, :label => 'Slug', :disabled => true %>
-            <%= render 'shared/error_messages_for', :object => @voice, :field => :slugs %>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="clearfix">
-      <div class="label-form">
         <%= f.label 'About this Voice'  %> <span class="red">*</span> <span class="ask-me"></span> <br>
       </div>
       <small class="answere">This is the brief description of the voice</small>
@@ -33,6 +17,29 @@
       <%= render 'shared/error_messages_for', :object => @voice, :field => :description %>
     </div>
     <div class="sweeper"></div>
+    <div class='page-slug'>
+      <div class="section-btn">
+          <p><span style="padding-left:50px;"></span>Page Slugs</p>
+      </div>
+      <div class="page-slug-info hide-panel">
+        <div class="clearfix">
+          <div class="label-form">
+            <p><%= f.label 'Page Slug' %> <span class="red">*</span></p>
+
+            <%= f.fields_for :slugs do |slug_fields| %>
+            <div class="clearfix">
+              <div class="label-form slug">
+                <%= slug_fields.label :is_default, 'Default' %>
+                <%= slug_fields.check_box :is_default, :style => "width:26px;" %>
+                <%= slug_fields.text_field :text, :label => 'Slug', :disabled => true %>
+                <%= render 'shared/error_messages_for', :object => @voice, :field => :slugs %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class='location'>
       <div class="section-btn">
           <p><span class="section-icon map"></span>Add Location Data</p>
@@ -167,6 +174,13 @@
           </div>
           
           <div><%= f.collection_select :backstory_breadcrumb_range, ["Monthly", "Yearly", "Decade"], :to_s, :capitalize %></div>
+        </div>
+        <div class="clearfix">
+          <div class="label-form" style="width: 150px">
+            <%= f.label "Voice Topic" %>
+          </div>
+          
+          <div><%= f.collection_select :topic, ["Human Rights", "Environment", "Freedom of Religion", "Elections", "Gender Equality"], :to_s, :capitalize %></div>
         </div>
         <div class="clearfix">
           <div class="label-form" style="width: 150px">
