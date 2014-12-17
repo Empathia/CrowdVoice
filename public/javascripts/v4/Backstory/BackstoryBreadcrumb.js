@@ -36,38 +36,87 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
         },
 
         scrollTo : function scrollTo(year, month, day) {
-            var element;
+            var _element;
 
             if (this.range === "Monthly") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if ((el.data.year === year) && (el.data.month === month)) {
-                        element = el;
+                        _element = el;
                         return true;
                     }
                 });
             } else if (this.range === "Yearly") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if (el.data.year === year) {
-                        element = el;
+                        _element = el;
                         return true;
                     }
                 });
             } else if (this.range === "Decade") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
                     if (el.data.year >= year) {
-                        element = el;
+                        _element = el;
                         return true;
                     }
                 });
             }
 
-            if (element) {
+            if (_element) {
                 CV.backstoryUIComponent.timeline._timelineElement.animate({
-                    scrollLeft : element.element[0].offsetParent.offsetLeft
+                    scrollLeft : _element.element[0].offsetParent.offsetLeft
                 }, 400);
             }
 
             return this;
+        },
+
+        /**
+         * Activate the closest 'BackstoryBreadcrumbItem' children that matches
+         * with the passed year, month params.
+         * @method activateItemByDate <public> [Function]
+         * @argument _year <reqired> [Number]
+         * @argument _month <reqired> [Number]
+         * @example this.activateItemByDate(1987, 07);
+         * @return this [BackstoryBreadcrumb]
+         */
+        activateItemByDate : function activateItemByDate(_year, _month) {
+            var backstoryBreadcrumb = this;
+
+            if (this.range === "Monthly") {
+                this.children.some(function(item) {
+                    if ((_year == item.year) && (_month == item.month)) {
+                        backstoryBreadcrumb.deactivateAll();
+                        item.activate();
+                        return true;
+                    }
+                });
+
+                return this;
+            }
+
+            if (this.range === "Yearly") {
+                this.children.some(function(item) {
+                    if (_year == item.year) {
+                        backstoryBreadcrumb.deactivateAll();
+                        item.activate();
+                        return true;
+                    }
+                });
+
+                return this;
+            }
+
+            if (this.range === "Decade") {
+                this.children.some(function(item) {
+                    if ((~~item.year + 10) >= _year) {
+                        backstoryBreadcrumb.deactivateAll();
+                        item.activate();
+                        return true;
+                    }
+                });
+
+                return this;
+            }
         },
 
         /**

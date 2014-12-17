@@ -9,7 +9,6 @@ Class(CV, 'BackstoryBreadcrumbItem').inherits(Widget)({
 
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('breadcrum item')
 
             this.element.text(this.text);
 
@@ -21,7 +20,9 @@ Class(CV, 'BackstoryBreadcrumbItem').inherits(Widget)({
                 this.parent.deactivateAll();
                 this.activate();
                 this.parent.scrollTo(this.year, this.month, this.day);
-            }.bind(this))
+            }.bind(this));
+
+            return this;
         }
     }
 });
