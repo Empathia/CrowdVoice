@@ -168,7 +168,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._carrousel.activateByIndex(0);
 
             this._sourcesElementList.empty();
-            data.sources.forEach(function(source)  {
+            (data.sources || []).forEach(function(source)  {
                 this._sourcesElementList.append(
                     $('<li class="source"><a href="' + source.url + '" target="_blank">' + source.label + '</a></li>')
                 )
