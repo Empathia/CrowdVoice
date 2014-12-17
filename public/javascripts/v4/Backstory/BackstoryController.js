@@ -107,19 +107,13 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
             });
 
             result.sort(function(a, b) {
-                if (a.year > b.year) return 1;
-                if (a.year < b.year) return -1;
-                return 0;
+                return a.year - b.year;
             }).forEach(function(e) {
                 return e.months.sort(function(a, b) {
-                    if (a.numeric > b.numeric) return 1;
-                    if (a.numeric > b.numeric) return -1;
-                    return 0;
+                    return a.numeric - b.numeric;
                 }).forEach(function(e) {
                     return e.events.sort(function(a, b) {
-                        if (a.day > b.day) return 1;
-                        if (a.day > b.day) return -1;
-                        return 0;
+                        return a.day - b.day;
                     });
                 });
             });
