@@ -341,6 +341,17 @@
   text-decoration: none;
 }
 
+.cv-backstory-overlay__info-header .close-icon:before {
+  -webkit-transition: transform 200ms;
+  transition: transform 200ms;
+}
+
+.cv-backstory-overlay__info-header .close-icon:hover:before {
+  -webkit-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
 .cv-backstory-overlay__info-body {
   position: relative;
   height: 399px;
