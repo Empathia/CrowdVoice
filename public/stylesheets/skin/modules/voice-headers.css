@@ -29,7 +29,7 @@
 
 .menu-item .menu-link {
   border-bottom-style: solid;
-  border-bottom-color: rgba(0,0,0,.2);
+  border-bottom-color: rgba(0,0,0,.1);
 }
 
 .menu-item.active .menu-link {
