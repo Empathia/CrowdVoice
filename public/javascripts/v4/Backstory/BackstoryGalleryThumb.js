@@ -4,6 +4,12 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
             <img />\
         </li>\
     ',
+    HTML_EXPLICIT_MESSAGE : '\
+        <div class="is_explicit">\
+            <i class="icon-warning"></i>\
+        </div>\
+    ',
+
     prototype : {
         data : null,
 
@@ -16,6 +22,10 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
         },
 
         _setupElements : function _setupElements() {
+            if (this.data.is_explicit) {
+                this.element.append(this.constructor.HTML_EXPLICIT_MESSAGE);
+            }
+
             this._imageElement.attr('src', this.thumbImageURL);
 
             return this;
