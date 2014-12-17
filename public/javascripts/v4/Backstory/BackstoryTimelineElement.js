@@ -1,19 +1,22 @@
 Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
     HTML : '\
         <div class="cv-timeline-element">\
-          <div class="cv-timeline-element__gallery-wrapper cv-dynamic-border-color">\
-            <div class="cv-timeline-element__gallery">\
-              <div class="cv-timeline-element__gallery-frame">\
-                <img/>\
-              </div>\
+            <div class="cv-timeline-element__gallery-wrapper cv-dynamic-border-color">\
+                <div class="cv-timeline-element__gallery">\
+                    <div class="cv-timeline-element__gallery-frame">\
+                        <img/>\
+                    </div>\
+                </div>\
             </div>\
-          </div>\
-          <div class="cv-timeline-element__time-ticks cv-dynamic-border-color"></div>\
-          <div class="cv-timeline-element__info cv-dynamic-border-color">\
-            <h3 class="cv-timeline-element__title">{{date}}</h3>\
-            <p class="cv-timeline-element__description">{{title}}</p>\
-            <button class="cv-timeline-view-button cv-button cv-button--small cv-button--light cv-dynamic-text-color">View</button>\
-          </div>\
+            <div class="cv-timeline-element__info-fake-bg"></div>\
+            <div class="cv-timeline-element__info-wrapper">\
+                <div class="cv-timeline-element__time-ticks cv-dynamic-border-color"></div>\
+                <div class="cv-timeline-element__info cv-dynamic-border-color">\
+                    <h3 class="cv-timeline-element__title">{{date}}</h3>\
+                    <p class="cv-timeline-element__description">{{title}}</p>\
+                    <button class="cv-timeline-view-button cv-button cv-button--small cv-button--light cv-dynamic-text-color">View</button>\
+                </div>\
+            </div>\
         </div>\
     ',
     FRAME_STRING_TEMPLATE : '<div class="cv-timeline-element__gallery-frame"></div>',

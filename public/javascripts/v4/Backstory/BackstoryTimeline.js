@@ -5,7 +5,11 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 <div></div>\
             </div>\
             <div class="cv-timeline__info-mask"></div>\
-            <div class="cv-timeline scroll-primary"></div>\
+            <div class="cv-timeline scroll-primary">\
+                <div class="cv-timeline__table">\
+                    <div class="cv-timeline__cell"></div>\
+                </div>\
+            </div>\
         </div>\
     ',
     prototype : {
@@ -49,7 +53,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                     name : 'year-' + item.year,
                     year : item.year,
                     months : item.months
-                })).render(this._timelineElement);
+                })).render(this.element.find('.cv-timeline__cell'));
             }, this);
 
             return this;

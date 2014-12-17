@@ -1,5 +1,9 @@
 .cv-backstory-ui-wrapper {
-  position: relative;
+  position: absolute;
+  top: 97px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: inherit;
 }
 
@@ -71,17 +75,21 @@
 
 /* -- Backstory Timeline -- */
 .cv-timeline-wrapper {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
   background: #000;
-  position: relative;
   display: inline-block;
   width: 100%;
   height: calc(100vh - 98px - 38px);
+  min-height: 450px;
 }
 
 .cv-timeline__background {
   position: absolute;
+  left: 0;
   width: 100%;
-  height: 270px;
+  height: 100%;
   background-color: rgba(255,255,255,1);
 }
 .cv-timeline__background > div {
@@ -92,10 +100,12 @@
   filter: blur(5px);
 }
 .cv-timeline__info-mask {
+  display: none;
   position: absolute;
+  left: 0;
   width: 100%;
-  height: 100%;
-  top: 270px;
+  height: 50%;
+  top: 50%;
   background: #fff;
   box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
 }
@@ -106,19 +116,23 @@
   overflow-x: scroll;
   overflow-y: hidden;
   height: 100%;
-  padding: 37px 10px 0 33px;
-  margin-left: 17px;
 }
-.cv-timeline:before {
-  content: '';
-  position: absolute;
-  width: 60px;
-  height: 25px;
-  top: 275px;
-  left: 0;
-  background-image: linear-gradient(to right, #d9d9d9 0, transparent 1px);
-  background-size: 6px 6px;
-  //background-color: rgba(255,0,0,0.1);
+
+.cv-timeline__table {
+  display: table;
+  height: 100%;
+}
+
+.cv-timeline__cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-month__label + .cv-timeline-element {
+  padding-left: 94px;
+}
+.cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-month__label {
+  left: 34px;
 }
 
 .cv-timeline-year {
@@ -141,7 +155,7 @@
   height: 25px;
   padding-top: 3px;
   background: #fff;
-  z-index: 1;
+  z-index: 2;
 }
 .cv-timeline-month__label--upper {
   font-size: 14px;
@@ -172,9 +186,10 @@
   height: 25px;
   top: 238px;
   left: 0;
-  background-image: linear-gradient(to right, #d9d9d9 0, transparent 1px);
+  background-image: -webkit-linear-gradient(left, #d9d9d9 1px, transparent 0);
+  background-image: linear-gradient(to right, #d9d9d9 1px, transparent 0);
   background-size: 6px 6px;
-  //background-color: rgba(255,0,0,0.1);
+  z-index: 1;
 }
 
 .cv-timeline-element + .cv-timeline-element {
@@ -200,6 +215,7 @@
 .cv-timeline-element__description .icon:first-child {
   margin-left: 10px;
 }
+
 .cv-timeline-element__description .icon {
   position: relative;
   margin: 1px 0 0 5px;
@@ -220,9 +236,11 @@
   padding: 10px 15px 15px;
   cursor: pointer;
 }
+
 .cv-timeline-element__gallery {
   position: relative;
 }
+
 .cv-timeline-element__gallery-frame {
   padding: 4px;
   background-color: #fff;
@@ -243,10 +261,12 @@
   height: 200px;
   border-radius: 2px;
 }
+
 .cv-timeline-element__gallery-frame:first-child {
   position: relative;
   z-index: 4;
 }
+
 .cv-timeline-element__gallery-frame:first-child:before {
   content: '';
   background: #000;
@@ -266,15 +286,18 @@
   right: 0;
   bottom: 0;
 }
+
 .cv-timeline-element__gallery-frame:nth-child(2) {
   transform: translateX(3px) translateY(-3px);
   z-index: 3;
 }
+
 .cv-timeline-element__gallery-frame:nth-child(3) {
   transform: translateX(6px) translateY(-6px);
   z-index: 2;
   opacity: .8;
 }
+
 .cv-timeline-element__gallery-frame:nth-child(4) {
   transform: translateX(8px) translateY(-8px);
   z-index: 1;
@@ -294,11 +317,26 @@
   transform: translateX(8px) translateY(-8px);
 }
 
+.cv-timeline-element__info-fake-bg {
+  background-color: white;
+  position: absolute;
+  top: 233px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
+}
+
+.cv-timeline-element__info-wrapper {
+  position: relative;
+}
+
 .cv-timeline-element__time-ticks {
   height: 25px;
   margin: 5px 0 5px 1px;
   border-left: 1px solid transparent;
-  background-image: linear-gradient(to right, #d9d9d9 0, transparent 1px);
+  background-image: -webkit-linear-gradient(left, #d9d9d9 1px, transparent 0%);
+  background-image: linear-gradient(to right, #d9d9d9 1px, transparent 0%);
   background-size: 6px 6px;
 }
 .cv-timeline-element__info {
