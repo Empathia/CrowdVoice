@@ -338,6 +338,7 @@ hgroup {
     left: 250px;
   }
 }
+
 @media all and (max-width: 768px) {
   .hamburger-menu {
     display: block;
@@ -357,14 +358,24 @@ hgroup {
     right: 20px;
   }
 
-  .tab-controller {
-    -webkit-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-            transform: translateZ(0);
+  div.tab-controller {
     display: block;
     width: 40px;
     height: 32px;
-    left: 250px;
+    left: 254px;
+    top: 15px;
+    background-color: transparent;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  div.tab-controller:hover {
+    background-color: transparent;
+  }
+
+  .view__homepage .tab-controller {
+    top: 0px;
   }
 }
 
