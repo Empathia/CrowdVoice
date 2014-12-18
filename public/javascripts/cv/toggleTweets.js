@@ -143,16 +143,19 @@ Class('ToggleTweets')({
             var toggleTweets = this;
 
             if (!this.loaded) {
-                _.each(window.currentVoice.tweets, function(tweet) {
-                    tweet = tweet.tweet;
-                    twttr.widgets.createTweet(
-                        tweet.id_str,
-                        toggleTweets.scroller[0],
-                        {
-                            theme : 'light'
-                        }
-                    );
-                });
+                setTimeout(function() {
+                    _.each(window.currentVoice.tweets, function(tweet) {
+                        tweet = tweet.tweet;
+                        twttr.widgets.createTweet(
+                            tweet.id_str,
+                            toggleTweets.scroller[0],
+                            {
+                                theme : 'light'
+                            }
+                        );
+                    });
+                }, 350)
+                
             }  
             
             this.loaded = true;
