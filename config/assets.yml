@@ -155,6 +155,7 @@ javascripts:
     - public/javascripts/v4/Backstory/BackstoryTimelineYear.js
     - public/javascripts/v4/Backstory/BackstoryTimelineMonth.js
     - public/javascripts/v4/Backstory/BackstoryTimelineElement.js
+    - public/javascripts/v4/Backstory/BackstoryTimelineCards.js
     - public/javascripts/v4/Backstory/BackstoryTimelineCard.js
     - public/javascripts/v4/Backstory/BackstoryGalleryOverlay.js
     - public/javascripts/v4/Backstory/BackstoryGalleryCarrousel.js
