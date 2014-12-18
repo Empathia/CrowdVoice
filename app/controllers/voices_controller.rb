@@ -20,6 +20,14 @@ class VoicesController < ApplicationController
 
     @voice = slug.voice
 
+    related_voices_ids = @voice.related_voices_ids.split(',').map {|item| item.to_i}
+    @related_voices = Voice.find(related_voices_ids).map { |item| 
+      {
+        :title => item[:title],
+        :slug => item.default_slug
+      }
+    }
+
     scope = (params[:mod] ? @voice.posts.unapproved.where(["created_at > ?", 1.year.ago ]) : @voice.posts.approved)
 
     query = scope.includes(:tags).to_sql

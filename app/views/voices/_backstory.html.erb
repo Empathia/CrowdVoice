@@ -3,6 +3,10 @@
   <%= include_stylesheets :backstory %>
 <% end %>
 
+<script type="text/javascript">
+	window.relatedVoices = <%= raw @related_voices.to_json %>;
+</script>
+
 <%# cache("#{current_connection}_backstory_#{@voice.id}") do %>
 <header class="main-header">
   <%= render :partial => "nav_bar" %>
