@@ -28,6 +28,8 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
          */
         data : null,
 
+        _hasMedia : false,
+
         _galleryWrapperElement : null,
         _coverImageElement : null,
         _dateElement : null,
@@ -71,6 +73,7 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
             this._titleElement.text(this.data.name);
 
             if (totalImages > 0) {
+                this._hasMedia = true;
                 this._titleElement.append('<i class="icon icon-image"></i>');
 
                 if (totalImages >= 2) {
@@ -79,6 +82,7 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
             }
 
             if (totalVideos > 0) {
+                this._hasMedia = true;
                 this._titleElement.append('<i class="icon icon-video"></i>');
 
                 if (totalVideos >= 2) {
@@ -96,8 +100,12 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
         },
 
         _bindEvents : function _bindEvents() {
-            this._galleryWrapperElement.bind('click', this._showOverlayHandler.bind(this));
-            this._viewButtonElement.bind('click', this._showOverlayHandler.bind(this));
+            if (this._hasMedia === true) {
+                this._galleryWrapperElement.bind('click', this._showOverlayHandler.bind(this));
+                this._viewButtonElement.bind('click', this._showOverlayHandler.bind(this));
+            } else {
+                this._viewButtonElement.hide();
+            }
 
             return this;
         },

@@ -392,6 +392,10 @@
   left: 27px;
 }
 
+.cv-timeline-card {
+  background-color: #fff;
+}
+
 .cv-timeline-card__image-wrapper {
   position: absolute;
   width: 56px;
@@ -421,7 +425,6 @@
 .cv-timeline-card__info-desc {
   font-size: 12px;
   color: #666666;
-  background-color: #fff;
   font-style: italic;
   line-height: 16px;
 }

@@ -53,12 +53,24 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
 
         loadNextGallery : function loadNextGallery() {
             if (this.current === this.elements.length - 1) return;
-            this.showOverlay(this.elements[this.current += 1]);
+
+            if (this.timelineElements[this.current + 1]._hasMedia === false) {
+                this.current += 1;
+                return this.loadNextGallery();
+            }
+
+            return this.showOverlay(this.elements[this.current += 1]);
         },
 
         loadPreviousGallery : function loadPreviousGallery() {
             if (this.current === 0) return;
-            this.showOverlay(this.elements[this.current -= 1]);
+
+            if (this.timelineElements[this.current - 1]._hasMedia === false) {
+                this.current -= 1;
+                return this.loadPreviousGallery();
+            }
+
+            return this.showOverlay(this.elements[this.current -= 1]);
         },
 
         updateOverlayImage : function updateOverlayImage(image) {

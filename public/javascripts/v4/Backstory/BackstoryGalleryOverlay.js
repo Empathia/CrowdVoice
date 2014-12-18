@@ -160,12 +160,14 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                 this._carrousel.destroy();
             }
 
-            this.appendChild(new CV.BackstoryGalleryCarrousel({
-                name : '_carrousel'
-            })).addThumbs(data.images.concat(data.videos)).render(this._carouselWrapperElement);
+            if (data.images.concat(data.videos).length) {
+                this.appendChild(new CV.BackstoryGalleryCarrousel({
+                    name : '_carrousel'
+                })).addThumbs(data.images.concat(data.videos)).render(this._carouselWrapperElement);
 
-            /* activate the first/default option */
-            this._carrousel.activateByIndex(0);
+                /* activate the first/default option */
+                this._carrousel.activateByIndex(0);
+            }
 
             this._sourcesElementList.empty();
             (data.sources || []).forEach(function(source)  {
