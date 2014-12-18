@@ -20,7 +20,7 @@ class VoicesController < ApplicationController
 
     @voice = slug.voice
 
-    scope = (params[:mod] ? @voice.posts.unapproved.where(["created_at > ?", 1.year.ago ]).limit(5000) : @voice.posts.approved)
+    scope = (params[:mod] ? @voice.posts.unapproved.where(["created_at > ?", 1.year.ago ]) : @voice.posts.approved)
 
     query = scope.includes(:tags).to_sql
 
