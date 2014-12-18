@@ -61,10 +61,33 @@ class VoicesController < ApplicationController
         }
       }
 
+      result = []
+
+      last_date = nil
+      count     = 0
+      limit     = 100
+
+      ActiveRecord::Base.connection.execute(query).each do |res|
+        date = "#{res[13].year}-#{res[13].month}"
+
+        if date != last_date
+          last_date = date
+          count = 0
+        else
+          count += 1
+        end
+
+        if count < limit
+          result.push(res)
+        end
+      end
+
+
+
       response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
         :tags => @tags,
-        :posts => ActiveRecord::Base.connection.execute(query),
+        :posts => result,
         :timeline => @timeline
       }
 

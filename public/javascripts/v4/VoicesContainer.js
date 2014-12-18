@@ -166,48 +166,35 @@ Class('VoicesContainer').inherits(Widget)({
                     post = post.post;
                 }
 
-                var date    = new Date(post.created_at);
-                var year    = date.getUTCFullYear();
-                var month   = date.getUTCMonth();
+                
+                voice = new VoiceElement({
+                    name          : 'post_' + post.id,
+                    id            : post.id,
+                    image         : post.image,
+                    approved      : post.approved,
+                    description   : CV.getExcerpt(post.description, 250),
+                    imageWidth    : post.image_width,
+                    imageHeight   : post.image_height,
+                    negativeVotes : post.negative_votes_count,
+                    positiveVotes : post.positive_votes_count,
+                    overallScore  : post.overall_score,
+                    sourceService : post.source_service,
+                    sourceType    : post.source_type,
+                    sourceURL     : post.source_url,
+                    title         : post.title,
+                    voiceID       : post.voice_id,
+                    timeAgo       : post.created_at,
+                    createdAt     : post.created_at,
+                    service       : post.source_url,
+                    disabled      : true,
+                    active        : false,
+                    tags          : post.tags
+                });
 
-                var postDate = year + '-' + month;
+                voicesContainer.appendChild(voice);
 
-                if (postDate !== lastDate) {
-                    lastDate = postDate
-                    count = 0;
-                } else {
-                    count++;
-                }
-
-                if (count < limit) {
-                    voice = new VoiceElement({
-                        name          : 'post_' + post.id,
-                        id            : post.id,
-                        image         : post.image,
-                        approved      : post.approved,
-                        description   : CV.getExcerpt(post.description, 250),
-                        imageWidth    : post.image_width,
-                        imageHeight   : post.image_height,
-                        negativeVotes : post.negative_votes_count,
-                        positiveVotes : post.positive_votes_count,
-                        overallScore  : post.overall_score,
-                        sourceService : post.source_service,
-                        sourceType    : post.source_type,
-                        sourceURL     : post.source_url,
-                        title         : post.title,
-                        voiceID       : post.voice_id,
-                        timeAgo       : post.created_at,
-                        createdAt     : post.created_at,
-                        service       : post.source_url,
-                        disabled      : true,
-                        active        : false,
-                        tags          : post.tags
-                    });
-
-                    voicesContainer.appendChild(voice);
-
-                    fragment.appendChild(voice.element[0]);
-                }
+                fragment.appendChild(voice.element[0]);
+            
             });
 
             voicesContainer.element[0].appendChild(fragment);
