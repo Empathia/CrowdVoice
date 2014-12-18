@@ -375,6 +375,7 @@ table.datatable > tfoot > tr > th, table.datatable > tfoot > tr > td {border-top
 .section-icon.map {background-position: 0px 0px}
 .section-icon.twitter {background-position: 0px -25px}
 .section-icon.rss {background-position: 0px -50px}
+.section-icon.slug {background: transparent url('/images/icons-admin-slug.png') no-repeat}
 .form.voices .label-form {}
 .form.voices input[type=text],
 .form.voices textarea {
