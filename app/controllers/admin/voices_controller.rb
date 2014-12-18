@@ -23,6 +23,11 @@ class Admin::VoicesController < ApplicationController
   def create
     @voice = build_scoped_voice(params[:voice])
     @voice.user_id = current_user.id
+
+    if params[:voice][:related_voices_ids]
+      @voice[:related_voices_ids] = params[:voice][:related_voices_ids].join(',')
+    end
+
     if @voice.save
       unless subdomain_present?
         User.where(:is_admin => true).each{|user| ::NotifierMailer.voice_submitted(@voice.id, user.email).deliver }
@@ -38,6 +43,10 @@ class Admin::VoicesController < ApplicationController
   end
 
   def update
+    if params[:voice][:related_voices_ids]
+      params[:voice][:related_voices_ids] = params[:voice][:related_voices_ids].join(',')
+    end
+
     if @voice.update_attributes(params[:voice])
 
       redirect_to admin_voices_path, :notice => t('flash.admin.voices.update.notice')

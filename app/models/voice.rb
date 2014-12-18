@@ -5,7 +5,8 @@ class Voice < ActiveRecord::Base
   attr_accessible :title, :description, :theme, :logo_link,
     :latitude, :longitude, :location, :map_url, :twitter_search, :background, :is_witness_gaza,
     :featured, :archived, :logo, :sponsor_slogan, :sponsor, :rss_feed, :approved,
-    :background_version, :square_background, :wide_background, :posts_attributes, :has_timeline, :slugs_attributes, :blacklist, :backstory_breadcrumb_range, :topic
+    :background_version, :square_background, :wide_background, :posts_attributes, :has_timeline, :slugs_attributes, :blacklist, :backstory_breadcrumb_range, 
+    :topic, :related_voices_ids
 
   mount_uploader :logo, LogoUploader
   mount_uploader :background, BackgroundUploader
@@ -47,6 +48,7 @@ class Voice < ActiveRecord::Base
   scope :archived, approved.where(:archived => true).order('position')
   scope :featured, current.where(:featured => true).order("home_position")
   scope :non_featured, current.where(:featured => false).order('position')
+  scope :has_backstory, where(:has_timeline => true)
 
   acts_as_list :column => 'home_position'
 

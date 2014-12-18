@@ -97,6 +97,20 @@
         <%= render 'shared/error_messages_for', :object => @voice, :field => :rss_feed %>
       </div>
     </div>
+    <div class='related'>
+      <div class="section-btn">
+          <p><span style="padding-left:50px;"></span>Related Backstories</p>
+      </div>
+      <div class="clearfix hide-panel">
+        
+        <% Voice.has_backstory.each do |voice| %>
+          <% voice.related_voices_ids = voice.related_voices_ids || "" %>
+
+          <% checked = @voice.related_voices_ids.split(',').include?(voice.id.to_s) ? true : false %>
+          <p><input type="checkbox" name="voice[related_voices_ids][]" value="<%= voice.id %>" <%= 'checked="checked"'  if checked == true %>/><%= voice.title %></p>
+        <% end %>
+      </div>
+    </div>
     <div class="action clearfix">
       <button class="button-green" type="submit"><span class="accept"></span>Save Voice</button>
     </div>
