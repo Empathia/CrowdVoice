@@ -1,14 +1,12 @@
 Class(CV, 'BackstoryTimelineCard').inherits(Widget)({
     HTML : '\
-        <div class="cv-timeline-cards">\
-            <div class="cv-timeline-card">\
-                <div class="cv-timeline-card__image-wrapper">\
-                    <img class="cv-timeline-card__image"/> \
-                </div>\
-                <div class="cv-timeline-card__info">\
-                    <p class="cv-timeline-card__info-date">{{date}}</p>\
-                    <p class="cv-timeline-card__info-desc">{{description}}</p>\
-                </div>\
+        <div class="cv-timeline-card">\
+            <div class="cv-timeline-card__image-wrapper">\
+                <img class="cv-timeline-card__image"/> \
+            </div>\
+            <div class="cv-timeline-card__info">\
+                <p class="cv-timeline-card__info-date">{{date}}</p>\
+                <p class="cv-timeline-card__info-desc">{{description}}</p>\
             </div>\
         </div>\
     ',
