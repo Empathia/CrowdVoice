@@ -42,11 +42,11 @@
     $(document).ready(function(){
 
       var placeholderInterval = setInterval(function() {
-        if ($('.voices-container .placeholders img').length > 8) {
+        if ($('.voices-container .placeholders img').length >= 8) {
           $('.voices-container .placeholders').html('')
         };
-        $('.voices-container .placeholders').append($('<img src="/images/voice-placeholder.gif" style="margin:5px;" />'))
-      }, 1000);
+        $('.voices-container .placeholders').append($('<img src="/images/voice-placeholder.gif" style="margin:5px;display:none;" />').fadeIn())
+      }, 350);
 
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
