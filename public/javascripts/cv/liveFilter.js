@@ -6,44 +6,47 @@ Class('LiveFilter')({
             this.originalContent = this.container.html();
             this.itemsContainer = $('<ul />').insertAfter(this.container).hide();
             this.items = this.container.find('li').clone().appendTo(this.itemsContainer);
-            this.clearBtn = this.input.next('.clear-search');
+            this.clearBtn = $('.voice-search .clear-search');
             this.sidebarWrapper = $('.sidebar-wrapper');
+            this._searchResultsTitle = $('<div class="sidebar-scroller__accordion-toggler"><h2>Search Results</h2></div>');
+
             this._bindEvents();
         },
 
         _bindEvents: function () {
-            var that = this;
-            this.input.bind('keyup', function () {
-                that.filter($(this).val());
-                if ( $(this).val() === "" ) {
-                  that.clearBtn.hide();
+            this.input.bind('keyup', function (ev) {
+                this.filter(ev.target.value);
+
+                if (ev.target.value === "" ) {
+                  return this.clearBtn.hide();
                 }
-                else {
-                  that.clearBtn.show();
-                }
-            });
+
+                this.clearBtn.show();
+            }.bind(this));
 
             this.input.focusout(function () {
-                that.clearBtn.addClass('invisible');
-            });
+                this.clearBtn.addClass('invisible');
+            }.bind(this));
 
-             this.input.focus(function () {
-                 if ( $(this).val() === "" ) {
-                   that.clearBtn.hide();
-                   that.clearBtn.removeClass('invisible');
+             this.input.focus(function (ev) {
+                 if (ev.target.value === "") {
+                   this.clearBtn.hide();
+                   this.clearBtn.removeClass('invisible');
                  }
                  else {
-                   that.clearBtn.show();
-                   that.clearBtn.removeClass('invisible');
+                   this.clearBtn.show();
+                   this.clearBtn.removeClass('invisible');
                  };
-            });
+            }.bind(this));
 
-            this.clearBtn.click(function (){
-                that.input.focus();
-                that.input.val('');
-                that.filter($(this).val());
-                $(this).hide();
-            });
+            this.clearBtn.click(function (ev) {
+                this.input.focus();
+                this.input.val('');
+                this.filter("");
+                this.clearBtn.hide();
+            }.bind(this));
+
+            return this;
         },
 
         filter: function (value) {
@@ -58,7 +61,7 @@ Class('LiveFilter')({
                     return regex.test( that.removeAccents($(item).text()) );
                 });
                 $('.sidebar-scroller__accordion-arrow').parent().unbind('click');
-                this.container.html('').append($('<ul/>').append(match));
+                this.container.html('').append(this._searchResultsTitle).append($('<ul/>').append(match));
             }
             this.sidebarWrapper.trigger('sidebar.change');
         },

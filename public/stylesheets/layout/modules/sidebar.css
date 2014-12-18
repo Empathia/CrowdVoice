@@ -163,7 +163,7 @@ hgroup {
 }
 .mapit > .tooltip > .tooltip-positioner > .media-type-info {padding: 6px 10px; text-align:center}
 .mapit > .tooltip > .tooltip-positioner > .media-type-info > .media-type-title {width:174px; padding:0px; font-size: 13px}
-.clear-search {width:13px; height:13px; position:absolute; right: 65px; top: 15px; cursor:pointer; display:none; z-index:2}
+.clear-search {width:13px; height:13px; position:absolute; right: 60px; top: 15px; cursor:pointer; display:none; z-index:2}
 
 /* Side Bar Scroll Voice Area */
 .sidebar-scroller {
@@ -177,7 +177,10 @@ hgroup {
   right: 5px;
   width: 6px;
 }
-.searchable {cursor: pointer}
+.searchable {
+  cursor: pointer;
+  width: 250px;
+}
 .searchable > ul > li {position: relative}
 .sidebar-scroller__list-item {font-size: 13px}
 .sidebar-scroller__list-item.last a {border-width: 0}
