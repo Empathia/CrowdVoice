@@ -12,7 +12,7 @@ class WidgetController < ApplicationController
       filter_posts = @voice.posts.approved.limit(50)
       @posts = filter_posts
     else
-      @voices = Voice.approved
+      @voices = Voice.approved.featured
     end
     @rtl = params[:rtl] == '1' ? true : false
     respond_to do |format|
