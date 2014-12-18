@@ -58,7 +58,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         </div>\
     </div>\
     ',
-    SUGGESTION_MAILTO: 'mailto:crowdvoice@mideastyouth.com?subject=I%20have%20a%20correction&body=I\'d%20like%20to%20suggest%20a%20correction%20for%20the%20topic%20',
+    SUGGESTION_MAILTO: "mailto:crowdvoice@mideastyouth.com?subject=I%20have%20a%20correction&body=I'd%20like%20to%20suggest%20a%20correction%20for%20the%20topic%20",
 
     prototype : {
         _document : null,
@@ -154,7 +154,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._dateElement.text(date);
             this._titleElement.text(data.name);
             this._descriptionElement.text(data.description);
-            this._suggestCorrectionElement.attr('src', this.constructor.SUGGESTION_MAILTO + data.name);
+            this._suggestCorrectionElement.attr('href', this.constructor.SUGGESTION_MAILTO + data.name);
 
             if (this._carrousel) {
                 this._carrousel.destroy();

@@ -4,7 +4,6 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
         timelineElements : [],
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('ui component')
 
             this.appendChild(new CV.BackstoryBreadcrumb({
                 name : 'breadcrumb',
@@ -13,7 +12,8 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
 
             this.appendChild(new CV.BackstoryTimeline({
                 name : 'timeline',
-                background : this.background
+                background : this.background,
+                voiceTitle : this.voiceTitle
             })).render(this.element);
 
             this.appendChild(new CV.BackstoryGalleryOverlay({

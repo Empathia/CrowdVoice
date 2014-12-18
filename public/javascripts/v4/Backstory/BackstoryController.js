@@ -15,6 +15,7 @@ Class(CV, 'BackstoryController').includes(NodeSupport)({
             this.appendChild(new CV.BackstoryUIComponent({
                 name : 'backstoryUIComponent',
                 background : wrapper.dataset.background,
+                voiceTitle : wrapper.dataset.voiceTitle,
                 breadcrumbRange : wrapper.dataset.breadcrumbRange
             })).render(wrapper).showSpinner();
 

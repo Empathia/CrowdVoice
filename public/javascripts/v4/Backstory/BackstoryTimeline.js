@@ -10,8 +10,13 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                     <div class="cv-timeline__cell"></div>\
                 </div>\
             </div>\
+            <div class="cv-timeline-fixed-buttons">\
+                <a href="" target="_blank" class="cv-timeline__suggest-event-btn cv-button--small cv-button--light cv-uppercase">Suggest an Event</a>\
+            </div>\
         </div>\
     ',
+    SUGGESTION_MAILTO: "mailto:crowdvoice@mideastyouth.com?subject=I%20have%20a%20correction&body=I'd%20like%20to%20suggest%20a%20new%20event%20for%20the%20topic%20",
+
     prototype : {
         /**
          * Timeline element data holder
@@ -31,6 +36,8 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
          */
         _backgroundElement : null,
 
+        _suggestEventButton : null,
+
         _scrollTimer : null,
 
         init : function init(config) {
@@ -38,6 +45,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
 
             this._timelineElement = this.element.find('.cv-timeline');
             this._backgroundElement = this.element.find('.cv-timeline__background > div');
+            this._suggestEventButton = this.element.find('.cv-timeline__suggest-event-btn');
 
             this._bindEvents();
         },
@@ -56,6 +64,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             this._data = CV.BackstoryRegistry.getInstance().get();
 
             this._backgroundElement[0].style.backgroundImage = 'url(' + this.background + ')';
+            this._suggestEventButton[0].href = this.constructor.SUGGESTION_MAILTO + this.voiceTitle;
 
             this._data.forEach(function(item) {
                 this.appendChild(new CV.BackstoryTimelineYear({
