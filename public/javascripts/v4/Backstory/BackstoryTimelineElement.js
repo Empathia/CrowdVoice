@@ -8,7 +8,6 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
                     </div>\
                 </div>\
             </div>\
-            <div class="cv-timeline-element__info-fake-bg"></div>\
             <div class="cv-timeline-element__info-wrapper">\
                 <div class="cv-timeline-element__time-ticks cv-dynamic-border-color"></div>\
                 <div class="cv-timeline-element__info cv-dynamic-border-color">\

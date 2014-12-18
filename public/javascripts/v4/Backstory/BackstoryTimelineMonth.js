@@ -2,9 +2,10 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
     HTML : '\
         <div class="cv-timeline-month">\
             <div class="cv-timeline-month__label">\
-              <div class="cv-timeline-month__label--upper">MAY</div>\
-              <div class="cv-timeline-month__label--small">2014</div>\
+              <div class="cv-timeline-month__label--upper">{month}</div>\
+              <div class="cv-timeline-month__label--small">{year}</div>\
             </div>\
+            <div class="cv-timeline-element__info-fake-bg"></div>\
         </div>\
     ',
     prototype : {
@@ -24,14 +25,6 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
                         name : day.id,
                         data : day
                     })).render(this.element);
-                } else {
-                    // TODO: add events
-                    /*
-                    this.appendChild(new CV.BackstoryTimelineCard({
-                        name : day.id,
-                        data : day
-                    })).render(this.element);
-                    */
                 }
             }, this);
         }

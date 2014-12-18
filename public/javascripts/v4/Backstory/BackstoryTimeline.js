@@ -65,6 +65,10 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 })).render(this.element.find('.cv-timeline__cell'));
             }, this);
 
+            if ($('.cv-timeline-year:last-child .cv-timeline-month:last-child .cv-timeline-element:last-child > .cv-timeline-cards').length) {
+                $('.cv-timeline-year:last-child .cv-timeline-month:last-child .cv-timeline-element:last-child').css('min-width', 620);
+            }
+
             this._scrollHandler();
 
             return this;
