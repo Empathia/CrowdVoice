@@ -39,6 +39,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
         _suggestEventButton : null,
 
         _scrollTimer : null,
+        _spyScrollFlag : true,
 
         init : function init(config) {
             Widget.prototype.init.call(this, config);
@@ -83,6 +84,22 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             return this;
         },
 
+        scrollTo : function scrollTo(_position) {
+            var backstoryTimeline = this;
+
+            this._spyScrollFlag = false;
+
+            this._timelineElement.animate({
+                scrollLeft : _position
+            }, 400, function() {
+                window.setTimeout(function() {
+                    backstoryTimeline._spyScrollFlag = true;
+                }, 260);
+            });
+
+            return this;
+        },
+
         /**
          * Handles the scroll event. Looks for the BackstoryTimelineElement
          * closest to the left side of the screen and once detected,
@@ -91,6 +108,10 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
          * @return undefined
          */
         _scrollHandler : function _scrollHandler() {
+            if (this._spyScrollFlag === false) {
+                return false;
+            }
+
             if (this._scrollTimer) {
                 window.clearTimeout(this._scrollTimer);
             }

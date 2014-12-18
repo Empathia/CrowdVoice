@@ -1,0 +1,32 @@
+.cv-simple-tooltip {
+  position: absolute;
+  padding: 6px 7px;
+  font-size: 11px;
+  line-height: 1em;
+  white-space: nowrap;
+  z-index: 2;
+
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  z-index: 3;
+  display: none;
+}
+
+.cv-simple-tooltip.active {
+  display: block;
+}
+
+.cv-simple-tooltip:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+
+  border-top: 5px solid rgba(0, 0, 0, 1);
+}

@@ -62,9 +62,7 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
             }
 
             if (_element) {
-                CV.backstoryUIComponent.timeline._timelineElement.animate({
-                    scrollLeft : _element.element[0].offsetParent.offsetLeft
-                }, 400);
+                CV.backstoryUIComponent.timeline.scrollTo(_element.element[0].offsetParent.offsetLeft);
             }
 
             return this;

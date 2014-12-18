@@ -59,6 +59,7 @@
   overflow: auto;
   right: 0;
   left: 95px;
+  width: auto;
 }
 
 .cv-timeline-breadcrum__point-item {
