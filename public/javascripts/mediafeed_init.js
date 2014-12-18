@@ -13,7 +13,7 @@ $(function () {
         infoSidebar     = $('.info-sidebar'),
         colW            = 200,
         columns         = null,
-        
+
         sidebarDisplay  = true,
         sidebarToggler, relayoutTimeout, backgroundTimeout, wallSizeTimeout;
 
@@ -38,27 +38,6 @@ $(function () {
         position : 'bottom',
         className : 'mediafeed-tweets-tooltip'
     }).render(twitterSearchWrapper);
-
-    CV.embeddableTooltip = new CV.Tooltip({
-        element: $('.embeddable-widget-tooltip'),
-        showOnCssHover : false,
-        clickHandler : function(ev) {
-            if (this.active) {
-                this.deactivate();
-                CV.blogWidget._copyCodeClip.glue('js-copy-code-button');
-            } else {
-                this.activate();
-                CV.blogWidget._copyCodeClip.setText('');
-                CV.blogWidget._copyCodeClip.setCSSEffects(true);
-                CV.blogWidget._copyCodeClip.glue('js-copy-code-button');
-                CV.blogWidget._updateCode();
-            }
-            return false
-        },
-        toggler : $('.info-tool.widget a')
-    });
-
-    CV.embeddableTooltip.element.parents('.has-cv-tooltip').removeClass('has-cv-tooltip');
 
     // check if it's a mobile device so we don't unnnecessarily instanciate the post interface and the infosidebar
     if (!isDevice) {
@@ -88,8 +67,6 @@ $(function () {
                 </p>\
             '
         }).render($('.mod'));
-
-        CV.blogWidget = new BlogWidget();
     }
 
     //check for infobox Tags data

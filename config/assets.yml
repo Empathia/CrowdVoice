@@ -127,7 +127,7 @@ javascripts:
     #- public/javascripts/cv/carousel.js
     #- public/javascripts/cv/overlay.js
     - public/javascripts/cv/post.js
-    #- public/javascripts/ZeroClipboard.js
+    - public/javascripts/ZeroClipboard.js
     - public/javascripts/cv/blogWidget.js
     #- public/javascripts/backstory/galleryController.js
     #- public/javascripts/backstory/imageWidget.js

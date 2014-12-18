@@ -22,6 +22,8 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
         },
 
         _setupWidgets : function _setupWidgets() {
+            var voiceHeaderNav = this;
+
             /* Global Google Maps Callback Function */
             window.addCoordsToMap = function addCoordsToMap() {
                 this._voiceMapCreated = true;
@@ -38,6 +40,28 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
                 showOnCssHover : false,
                 enterTogglerElementEvent : this._tooltipMouseEnterHandler.bind(this),
                 leaveTogglerElementEvent : this._tooltipMouseLeaveHandler.bind(this)
+            });
+
+
+            this.blogWidget = new BlogWidget();
+
+            this.embeddableTooltip = new CV.Tooltip({
+                element: $('.embeddable-widget-tooltip'),
+                showOnCssHover : false,
+                clickHandler : function(ev) {
+                    if (this.active) {
+                        this.deactivate();
+                        voiceHeaderNav.blogWidget._copyCodeClip.glue('js-copy-code-button');
+                    } else {
+                        this.activate();
+                        voiceHeaderNav.blogWidget._copyCodeClip.setText('');
+                        voiceHeaderNav.blogWidget._copyCodeClip.setCSSEffects(true);
+                        voiceHeaderNav.blogWidget._copyCodeClip.glue('js-copy-code-button');
+                        voiceHeaderNav.blogWidget._updateCode();
+                    }
+                    return false
+                },
+                toggler : $('.info-tool.widget a')
             });
 
             return this;
