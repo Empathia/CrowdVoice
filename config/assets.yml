@@ -27,6 +27,7 @@ javascripts:
   sidebar: &sidebar
     - public/javascripts/cv/dynamicMeasures.js
     - public/javascripts/v4/Tooltip.js
+    - public/javascripts/v4/SimpleTooltip.js
     - public/javascripts/cv/sidebarToggler.js
     - public/javascripts/cv/accordion.js
     - public/javascripts/cv/slideSection.js
@@ -216,6 +217,7 @@ stylesheets:
     - public/stylesheets/v4/buttons.css
     - public/stylesheets/v4/inputs.css
     - public/stylesheets/v4/tooltip.css
+    - public/stylesheets/v4/simple-tooltip.css
     - public/stylesheets/v4/icons.css
     - public/stylesheets/layout/modules/sidebar.css
     - public/stylesheets/skin/modules/sidebar.css
