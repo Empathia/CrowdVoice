@@ -50,6 +50,12 @@ $(function () {
         className : 'more-about-cv-tooltip',
         position : 'right'
     }).render($('.about-link-wrapper'));
+    new CV.SimpleTooltip({
+        delegateHandler : {
+            element : $('.sidebar-scroller'),
+            selector : '.anchor'
+        }
+    }).render($(document.body));
 
     /*$('.top-left-navigation, .voice-info-tools').click(function(){
         $(this).toggleClass('active');
