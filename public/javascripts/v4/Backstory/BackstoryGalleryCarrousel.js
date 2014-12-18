@@ -55,7 +55,8 @@ Class(CV, 'BackstoryGalleryCarrousel').inherits(Widget)({
 
             data.forEach(function(item) {
                 if (item.video) {
-                    videoID = item.video.match(/watch\?v=(.*)/)[1];
+                    videoID = item.video.match(/watch\?v=(.*)|youtu.be\/(.*)/);
+                    if (videoID) videoID = videoID[1];
                     imageURL = 'http://img.youtube.com/vi/' + videoID + '/1.jpg';
                     item.videoID = videoID;
                 } else {
