@@ -31,11 +31,9 @@
 
 
   <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>" style="height: 1167px; width: 959px;">
-    <div class="voices-container initial-state" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
+    <div class="voices-container" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
       <div class="placeholders">
-      <% 12.times do %>
-        <img src="/images/voice-placeholder.gif" style="margin:5px;" />
-      <% end %>
+      
       </div>
     </div>
   </div>
@@ -43,18 +41,49 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      var placeholderInterval = setInterval(function() {
-        if ($('.voices-container .placeholders img').length >= 8) {
-          $('.voices-container .placeholders').html('')
-        };
-        $('.voices-container .placeholders').append($('<img src="/images/voice-placeholder.gif" style="margin:5px;display:none;" />').fadeIn())
-      }, 350);
-
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
         element  : $('.voices-container'),
         perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
+
+      var iteration = 1;
+      var placeholderInterval = setInterval(function() {
+        if ($('.voices-container .placeholder').length >= 12) {
+          $('.voices-container').html('')
+        }
+
+        if (iteration > 3) {
+          iteration = 1;
+        }
+
+        var options = {};
+
+        switch (iteration) {
+          case 1:
+            options.width = "180px"
+            options.height = "269px"
+            break;
+          case 2:
+            options.width = "180px"
+            options.height = "379px"
+            break;
+          case 3:
+            options.width = "180px"
+            options.height = "419px"
+            break;
+        }
+
+        var element = $('<div class="voice-box placeholder" style="width:' + options.width + ';height:' + options.height + ';"> <img src="/images/cv-placeholder-0' + iteration +'.gif" style="" /></div>')
+        $('.voices-container').append(element);
+
+        CV.voicesContainer.element.isotope('appended', element);
+        CV.voicesContainer.element.isotope('layout');
+        
+        iteration++
+      }, 350);
+
+
 
       CV.OverlaysController = new OverlaysController();
 
@@ -66,7 +95,7 @@
           params += '&mod=1';
       }
 
-      params += "&fetchAll=1"
+      params += "&fetchAll=1";
 
       $.ajax({
         dataType  : "json",
@@ -116,7 +145,7 @@
 
           clearInterval(placeholderInterval);
 
-          CV.voicesContainer.element.find('.placeholders').remove();
+          CV.voicesContainer.element.find('.placeholder').remove();
 
           CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
