@@ -121,7 +121,6 @@ Class('VoiceElement').inherits(Widget)({
             }
 
 
-
             this.sourceElement = this.element.find('a.source-url');
             this.contentElement = this.element.find('.voice-cont');
 
@@ -208,7 +207,6 @@ Class('VoiceElement').inherits(Widget)({
                     var c = confirm("Are you sure you want to delete this?");
 
                     if (c) {
-                        // debugger;
                         $.ajax({
                             url : window.location.pathname + '/posts/' + voice.id,
                             type : 'delete',

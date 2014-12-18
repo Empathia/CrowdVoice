@@ -157,7 +157,7 @@ Class('VoicesContainer').inherits(Widget)({
             var voicesContainer = this;
             var fragment = document.createDocumentFragment();
 
-
+            
             _.each(this.preloadedVoices, function(post) {
                 if (post.post) {
                     post = post.post;
@@ -193,6 +193,7 @@ Class('VoicesContainer').inherits(Widget)({
             });
 
             voicesContainer.element[0].appendChild(fragment);
+
 
             if (callback) {
                 callback();
