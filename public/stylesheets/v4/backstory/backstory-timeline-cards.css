@@ -1,0 +1,104 @@
+/* -- CARDS -- */
+.cv-timeline-cards {
+  width: 326px;
+  white-space: nowrap;
+  position: absolute;
+  top: 385px;
+  left: 266px;
+  z-index: 1;
+}
+.cv-timeline-cards:before {
+  content: '';
+  width: 1px;
+  height: 160px;
+  background: #ccc;
+  position: absolute;
+  top: -118px;
+  left: 27px;
+}
+
+.cv-timeline-cards__arrow {
+  position: absolute;
+  top: 28px;
+  z-index: 1;
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
+}
+
+.cv-timeline-cards__arrow:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.cv-timeline-cards__arrow.disabled {
+  opacity: 0.2;
+}
+
+.cv-timeline-cards__arrow.prev {
+  left: -16px;
+}
+.cv-timeline-cards__arrow.next {
+  right: -16px;
+}
+
+.cv-timeline-cards__carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding-top: 5px;
+}
+
+.cv-timeline-cards__carousel {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  -webkit-transition: left 200ms;
+  transition: left 200ms;
+}
+
+.cv-timeline-card {
+  display: inline-block;
+  width: 326px;
+  min-height: 56px;
+  vertical-align: top;
+  opacity: 0.1;
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
+}
+
+.cv-timeline-card.active {
+  opacity: 1;
+}
+
+.cv-timeline-card__image-wrapper {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.cv-timeline-card__image {
+  position: relative;
+  height: 56px;
+  left: -16px;
+}
+
+.cv-timeline-card__info {
+  padding-left: 67px;
+}
+
+.cv-timeline-card__info-date {
+  display: inline-block;
+  font-size: 15px;
+  color: #b2b2b2;
+  text-transform: uppercase;
+}
+
+.cv-timeline-card__info-desc {
+  font-size: 12px;
+  color: #666666;
+  font-style: italic;
+  line-height: 16px;
+  white-space: normal;
+}
