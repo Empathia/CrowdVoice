@@ -120,7 +120,7 @@ body.blue .post > .post-paceholder > a {color: #4cb5ff}
 /*
   < 460
 */
-@media only screen and (max-width: 460px), only screen and (max-device-width: 460px) {
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
   .top-left-navigation .menu-item.active {
     background: transparent none;
   }
@@ -162,36 +162,9 @@ body.blue .post > .post-paceholder > a {color: #4cb5ff}
     border-top: 1px solid rgba(0, 0, 0, 0.3);
   }
   .info-tags__tooltip .voice-tags li {
-    border-bottom: 1px solid #aeaeae;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
   }
-
-  .filters-and-mode .filters label {
-    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, #e1e1e1 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,#e1e1e1));
-    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,#e1e1e1 100%);
-    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,#e1e1e1 100%);
-    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,#e1e1e1 100%);
-    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,#e1e1e1 100%);
-    border: 1px solid #BFBFBF;
-    border-radius: 0 0 0 0;
-  }
-  .filters-and-mode .filters label:hover {
-    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0.5)));
-    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.5) 100%);
-    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.5) 100%);
-    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.5) 100%);
-    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0.5) 100%);
-  }
-  .filters-and-mode .filters .photos-label {
-    border-radius: 3px 0 0 3px;
-    border-right: none;
-  }
-  .filters-and-mode .filters .links-label {
-    border-radius: 0 3px 3px 0;
-    border-left: none;
-  }
-  .filters-and-mode .filters .tweets-label {
-    border-radius: 3px;
+  .info-tags__tooltip .voice-tags li:last-child {
+    border-bottom: 0;
   }
 }

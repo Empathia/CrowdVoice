@@ -2,6 +2,8 @@ $(function () {
 
     "use strict";
 
+    document.body.classList.add('view__homepage');
+
     var isDesktop = function() {
         return window.innerWidth > 768;
     };

@@ -33,6 +33,10 @@
 
 .voice-tags {border-radius: 3px}
 
+.tag-tooltip-trigger.active {
+  padding-top: 0;
+}
+
 /*
   Color overrides
 */

@@ -39,6 +39,23 @@ $(function () {
         className : 'mediafeed-tweets-tooltip'
     }).render(twitterSearchWrapper);
 
+    new CV.Tooltip({
+        element: $('.info-tags__tooltip'),
+        showOnCssHover : false,
+        clickHandler : function(ev) {
+            if (this.active) {
+                this.deactivate();
+                this.toggler.removeClass('active');
+            } else {
+                this.activate();
+                this.toggler.addClass('active');
+            }
+
+            return false
+        },
+        toggler : $('.tag-tooltip-trigger')
+    });
+
     // check if it's a mobile device so we don't unnnecessarily instanciate the post interface and the infosidebar
     if (!isDevice) {
         //instanciate infosidebar
@@ -177,10 +194,11 @@ $(function () {
                 if (window.innerWidth <= 480 && !navBar.hasClass('detached')) {
                     navBar.addClass('detached').insertBefore(mainContainer);
                     filtersBar.addClass('detached');
-                    mainContainer.append(filtersBar, tagsModal);
+                    tagsModal.removeClass('cv-tooltip--bottom').addClass('cv-tooltip--top');
+                    mainContainer.append(filtersBar);
                 } else if (window.innerWidth > 480 && navBar.hasClass('detached')) {
-                    navBar.insertBefore(voiceTitle).removeClass('detached');
-                    tagsContainer.append(tagsModal);
+                    navBar.insertAfter($('.description-wrapper')).removeClass('detached');
+                    tagsModal.removeClass('cv-tooltip--top').addClass('cv-tooltip--bottom');
                     filtersBar.insertAfter(postBar);
                 }
 

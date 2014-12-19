@@ -7,6 +7,10 @@
   z-index: inherit;
 }
 
+.cv-backstory-ui-wrapper > .widget {
+  height: 100%;
+}
+
 /* -- Breadcrum -- */
 .cv-timeline-breadcrum {
   position: relative;
@@ -92,8 +96,7 @@
   background: #000;
   display: inline-block;
   width: 100%;
-  height: calc(100vh - 98px - 38px);
-  min-height: 450px;
+  bottom: 0;
 }
 
 .cv-timeline__background {
@@ -127,6 +130,8 @@
   overflow-x: scroll;
   overflow-y: hidden;
   height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .cv-timeline__table {

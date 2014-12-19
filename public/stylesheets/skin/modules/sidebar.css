@@ -233,11 +233,11 @@ a.sidebar-scroller__list-item-anchor:hover {color: #d9d9d9; text-decoration:none
 
 .tab-controller,
 .info-tab-controller {
-  background: #1A1A1A;
+  background-color: #1A1A1A;
 }
 .tab-controller:hover,
 .info-tab-controller:hover {
-  background: #222222;
+  background-color: #222222;
 }
 
 .sidebar-tooltip {

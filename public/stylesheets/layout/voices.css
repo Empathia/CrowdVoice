@@ -49,8 +49,16 @@ body{overflow: hidden;}
   float: left;
   margin: 0 10px 0 0;
 }
-.cv-tooltip.info-tags__tooltip {
+.cv-tooltip.info-tags__tooltip.cv-tooltip--bottom {
   top: 18px;
+  left: 0;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0);
+  text-align: left;
+}
+.cv-tooltip.info-tags__tooltip.cv-tooltip--top {
+  /*top: 18px;*/
   left: 0;
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
