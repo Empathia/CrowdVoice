@@ -130,7 +130,7 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
                 months = item.months;
 
                 months.forEach(function(month) {
-                    text = CV.Utils.getMonthName(month.numeric) + " " + year;
+                    text = CV.Utils.getMonthShortName(month.numeric) + " " + year;
 
                     this.appendChild(new CV.BackstoryBreadcrumbItem({
                         name : year + '-' + month.numeric,
