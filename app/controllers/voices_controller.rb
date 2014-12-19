@@ -20,6 +20,7 @@ class VoicesController < ApplicationController
 
     @voice = slug.voice
 
+    @voice.related_voices_ids = @voice.related_voices_ids || ""
     related_voices_ids = @voice.related_voices_ids.split(',').map {|item| item.to_i}
     @related_voices = Voice.find(related_voices_ids).map { |item| 
       {
