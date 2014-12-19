@@ -40,11 +40,13 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                             <p class="cv-backstory-overlay__info-title">{{title}}</p>\
                         </div>\
                         <div class="cv-backstory-overlay__info-body">\
-                            <div class="cv-backstory-overlay__info-body-inner">\
-                                <p class="cv-backstory-overlay__info-description">{{description}}</p>\
-                                <p>\
-                                    <a class="cv-backstory-overlay__info-suggest-correction" href="#" target="_blank">Suggest a Correction</a>\
-                                </p>\
+                            <div class="cv-backstory-overlay__info-body-inner js-scroll-light">\
+                                <div class="cv-backstory-overlay__info-body-inner-content">\
+                                    <p class="cv-backstory-overlay__info-description">{{description}}</p>\
+                                    <p>\
+                                        <a class="cv-backstory-overlay__info-suggest-correction" href="#" target="_blank">Suggest a Correction</a>\
+                                    </p>\
+                                </div>\
                             </div>\
                             <a href="#" class="cv-backstory-overlay__sources-link cv-dynamic-text-color">Sources ›</a>\
                             <div class="cv-backstory-overlay__sources">\
@@ -69,6 +71,12 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
          */
         _carrousel : null,
 
+        /**
+         * Holds the reference to scrollpane API to call its methods.
+         * @property _infoBodyScrollAPI <private> [Object]
+         */
+        _infoBodyScrollAPI : null,
+
         init : function init(config) {
             Widget.prototype.init.call(this, config);
             console.log('timeline gallery overlay');
@@ -84,7 +92,10 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._warningButtonView = this.element.find('.cv-backstory-overlay__warning-button-show');
             this._carouselWrapperElement = this.element.find('.cv-backstory-overlay__gallery-nav');
             this._headerElement = this.element.find('.cv-backstory-overlay__info-header');
-            this._infoBodyElement = this.element.find('.cv-backstory-overlay__info-body');
+            this._infoBodyScrollableElement = this.element.find('.cv-backstory-overlay__info-body-inner').jScrollPane({
+                autoReinitialise : false
+            });
+            this._infoBodyScrollAPI = this._infoBodyScrollableElement.data('jsp');
             this._closeElement = this.element.find('.cv-backstory-overlay__info-header > .close-icon');
             this._dateElement = this.element.find('.cv-backstory-overlay__info-date');
             this._titleElement = this.element.find('.cv-backstory-overlay__info-title');
@@ -155,6 +166,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._titleElement.text(data.name);
             this._descriptionElement.text(data.description);
             this._suggestCorrectionElement.attr('href', this.constructor.SUGGESTION_MAILTO + data.name);
+            this._sourcesLinkElement.hide();
 
             if (this._carrousel) {
                 this._carrousel.destroy();
@@ -194,6 +206,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._imageElement.hide();
             this._iframeElement.hide().attr('src', '');
             this._shotCaptionElement.hide();
+            this._sourcesLinkElement.hide();
 
             if (data.is_explicit) {
                 this._warningMessage.show();
@@ -215,6 +228,7 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             } else {
                 this._iframeElement[0].src = "//www.youtube.com/embed/" + data.videoID;
                 this._iframeElement.show();
+                this._updateGalleryInfo(data);
             }
 
             return this;
@@ -240,15 +254,13 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
                 //if (_w > this.LW) {
                     this.LW = _w
-                    this._bodyElement.width(_w)
-                    //this._shotElement.width(_w)
-                    //this._imageElement.width(_w).height('auto')
+                    this._bodyElement.width(_w);
                 //}
             //} else {
 
             if (_as) {
                 _h = ~~((ih / _as) + 76)
-            } else if (ih < 520) {
+            } else if (ih <= 520) {
                 _h = 520
             } else {
                 if ((ih + 76) > this.ASH)  {
@@ -262,22 +274,27 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
                 //if (_h > this.LH) {
                     this.LH = _h
                     this._bodyElement.height(_h)
-                    //this._shotElement.height(_h)
-                    //this._imageElement.height(_h).width('auto')
                 //}
             //}
 
-            this._shotCaptionElement.text(data.caption).show();
-            this._imageElement.attr('src', data.image).show();
-            this._infoBodyElement.height(_h - this._headerElement.outerHeight());
+            this._updateGalleryInfo(data);
 
             this._$imgTmp.unbind('load');
         },
 
-        _resetVars : function _resetVars() {
-            this.LW = 0; this.LH = 0;
-            this._shotElement.css({height: '', width: ''})
-            this._imageElement.css({height: '', width: ''})
+        /**
+         * Updates the elements of the gallery with the new gallery's data.
+         * @method _updateGalleryInfo <private> [Function]
+         * @return this [BackstoryGalleryOverlay]
+         */
+        _updateGalleryInfo : function _updateGalleryInfo(data) {
+            data.image && this._imageElement.attr('src', data.image).show();
+            data.caption && this._shotCaptionElement.text(data.caption).show();
+            this._infoBodyScrollableElement.height(this._bodyElement[0].getBoundingClientRect().height - this._headerElement[0].offsetHeight - 30);
+            this._infoBodyScrollAPI.reinitialise();
+            this._sourcesLinkElement.show();
+
+            return this;
         },
 
         _keyUpHandler : function _keyUpHandler(ev) {
@@ -292,6 +309,14 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             if (ev.keyCode == 39) { /* next */
                 return window.CV.backstoryUIComponent.loadNextGallery();
             }
+        },
+
+        _resetVars : function _resetVars() {
+            this.LW = 0; this.LH = 0;
+            this._shotElement.css({height: '', width: ''});
+            this._imageElement.css({height: '', width: ''});
+
+            return this;
         },
 
         _activate : function _activate() {

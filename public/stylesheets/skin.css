@@ -40,6 +40,20 @@ body {background: #d9d9d9 url('/images/v3/about/noise.png') 0 0 repeat}
   -webkit-border-radius: 3px;
 }
 
+.js-scroll-light .jspVerticalBar {
+  width: 6px;
+  right: 3px;
+}
+
+.js-scroll-light .jspTrack {
+  background: none;
+}
+
+.js-scroll-light .jspDrag {
+  background: rgba(0,0,0,0.2);
+  box-shadow: none;
+}
+
 /*
   NEW COLOR CLASSES, self-explanatory
 */
