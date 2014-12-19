@@ -102,11 +102,11 @@
           <p><span style="padding-left:50px;"></span>Related Backstories</p>
       </div>
       <div class="clearfix hide-panel">
-        
+
         <% Voice.has_backstory.each do |voice| %>
           <% voice.related_voices_ids = voice.related_voices_ids || "" %>
 
-          <% checked = @voice.related_voices_ids.split(',').include?(voice.id.to_s) ? true : false %>
+          <% checked = voice.related_voices_ids.split(',').include?(voice.id.to_s) ? true : false %>
           <p><input type="checkbox" name="voice[related_voices_ids][]" value="<%= voice.id %>" <%= 'checked="checked"'  if checked == true %>/><%= voice.title %></p>
         <% end %>
       </div>
@@ -186,14 +186,14 @@
             <%= f.label :backstory_breadcrumb_range %>
             <small style="width:275px;">Time range between dates in backstory's breadcrumb navigation.</small>
           </div>
-          
+
           <div><%= f.collection_select :backstory_breadcrumb_range, ["Monthly", "Yearly", "Decade"], :to_s, :capitalize %></div>
         </div>
         <div class="clearfix">
           <div class="label-form" style="width: 150px">
             <%= f.label "Voice Topic" %>
           </div>
-          
+
           <div><%= f.collection_select :topic, ["Human Rights", "Environment", "Freedom of Religion", "Elections", "Gender Equality"], :to_s, :capitalize %></div>
         </div>
         <div class="clearfix">
@@ -288,10 +288,10 @@
             input.bind('blur', function() {
               var text = slug(input.val());
 
-              input.val(text);  
+              input.val(text);
             });
-            
-            
+
+
           })
 
           var inputs = $('input[type="text"]');
@@ -305,13 +305,13 @@
 
             $(this).bind('click', function(e) {
               if (!$(input).siblings('input[type="checkbox"]').attr('checked')) {
-                $(input).siblings('input[type="checkbox"]').trigger('click', e);  
+                $(input).siblings('input[type="checkbox"]').trigger('click', e);
               }
             });
           });
         })()
         </script>
-      
+
     <% end %>
   </section>
 <% end %>
