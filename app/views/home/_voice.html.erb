@@ -1,4 +1,5 @@
-<div class="home-cover__content" style="background-image: url('<%= item.voice.background.url %>');" data-url="<%= "/#{item.voice.default_slug}" %>?all=true">
+<div class="home-cover__content" data-url="<%= "/#{item.voice.default_slug}" %>?all=true">
+  <div class="home-cover__content-bg" style="background-image: url('<%= item.voice.background.url %>');"></div>
   <div class="home-cover__header-title">
     <% if item.item_type == 'featured' %>
       <i class="icon icon-star opacity--40"></i>

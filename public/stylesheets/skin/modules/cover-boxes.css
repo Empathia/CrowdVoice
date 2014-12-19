@@ -1,9 +1,33 @@
 .home-cover__content {
+    overflow: hidden;
     cursor: pointer;
     background-color: rgba(0, 0, 0, .6);
-    background-size: cover;
     border-radius: 3px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .25);
+}
+.home-cover__content-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transition: transform 1000ms ease;
+    transition: transform 1000ms ease;
+    -webkit-transition-delay: 0ms;
+    transition-delay: 0ms;
+}
+.home-cover__content:hover .home-cover__content-bg {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition: transform 10000ms ease-in-out;
+    transition: transform 10000ms ease-in-out;
+    -webkit-transition-delay: 1000ms;
+    transition-delay: 1000ms;
 }
     .home-cover__content::before {
         border-radius: 3px;
