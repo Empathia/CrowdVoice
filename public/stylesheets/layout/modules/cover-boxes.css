@@ -63,39 +63,54 @@
 }
 .home-cover__header-title .icon {
     font-size: 13px;
+    line-height: 18px;
     display: inline-block;
     vertical-align: top;
-    margin: 2px 2px 0 0;
+    margin-right: 4px;
     color: #fff;
 }
 .home-cover__title {
     font-size: 22px;
-    line-height: 1.45em;
-    margin-bottom: 5px;
+    line-height: 1.1em;
+    margin-bottom: 7px;
 }
 .home-cover__media-info {
+    /*background-color: red;*/
     font-size: 11px;
 }
-    .home-cover__media-info .icon {
-        font-size: 13px;
-        margin: 0 2px;
-        color: #fff;
+    .home-cover__media-info .simple-tooltip,
+    .home-cover__media-info .icon,
+    .home-cover__media-info .char--dot,
+    .home-cover__total-voices,
+    .home-cover__time-ago {
+        display: inline-block;
+        vertical-align: top;
+        height: 18px;
+        line-height: 18px;
     }
-    .home-cover__media-info .icon:first-child {
-        margin-left: 0;
+
+        .home-cover__media-info .icon {
+            font-size: 13px;
+            margin: 0 2px;
+            color: #fff;
+        }
+
+        .home-cover__media-info .icon:first-child {
+            margin-left: 0;
+        }
+
+    .home-cover__media-info .char--dot {
+        color: rgba(255,255,255,0.2);
     }
 
     .home-cover__total-voices {
-      margin-top: -2px;
-      display: inline-block;
-      vertical-align: top;
+        margin-left: 5px;
     }
+
     .home-cover__time-ago {
         margin-left: 5px;
-        margin-top: -2px;
-        display: inline-block;
-        vertical-align: top;
     }
+
 .home-cover__actions-wrapper {
     overflow: hidden;
     position: absolute;
