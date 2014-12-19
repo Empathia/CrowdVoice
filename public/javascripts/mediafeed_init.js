@@ -39,6 +39,23 @@ $(function () {
         className : 'mediafeed-tweets-tooltip'
     }).render(twitterSearchWrapper);
 
+    new CV.Tooltip({
+        element: $('.info-tags__tooltip'),
+        showOnCssHover : false,
+        clickHandler : function(ev) {
+            if (this.active) {
+                this.deactivate();
+                this.toggler.removeClass('active');
+            } else {
+                this.activate();
+                this.toggler.addClass('active');
+            }
+
+            return false
+        },
+        toggler : $('.tag-tooltip-trigger')
+    });
+
     // check if it's a mobile device so we don't unnnecessarily instanciate the post interface and the infosidebar
     if (!isDevice) {
         //instanciate infosidebar
