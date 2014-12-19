@@ -185,7 +185,8 @@
   display: block;
   font-size: 12px;
   padding: .5em 1.2em;
-  border-bottom: 1px solid rgba(0,0,0,0.1)
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
 }
 
 .related-backstories-tooltip a:hover {
@@ -194,13 +195,21 @@
   text-decoration: none;
 }
 
-.related-backstories-tooltip a:first-child {
+.related-backstories-tooltip a:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.related-backstories-tooltip a:first-child:not(:last-child) {
     border-radius: 4px 4px 0 0;
+}
+
+.related-backstories-tooltip a:last-child:not(:first-child) {
+  border-bottom: 0;
+  border-radius: 0 0 4px 4px;
 }
 
 .related-backstories-tooltip a:last-child {
   border-bottom: 0;
-  border-radius: 0 0 4px 4px;
 }
 
 .cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-month__label + .cv-timeline-element {
