@@ -158,6 +158,51 @@
   color: #808080;
   font-weight: 600;
 }
+
+.cv-timeline-fixed-buttons .related-backstories__wrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+.related-backstories-tooltip {
+  left: inherit;
+  right: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.related-backstories-tooltip .cv-tooltip__arrow {
+  left: inherit;
+  right: 2em;
+}
+.related-backstories-tooltip .cv-tooltip-inner {
+  padding: 0;
+}
+
+.related-backstories-tooltip a {
+  position: relative;
+  display: block;
+  font-size: 12px;
+  padding: .5em 1.2em;
+  border-bottom: 1px solid rgba(0,0,0,0.1)
+}
+
+.related-backstories-tooltip a:hover {
+  background-color: #fafafa;
+  color: #333;
+  text-decoration: none;
+}
+
+.related-backstories-tooltip a:first-child {
+    border-radius: 4px 4px 0 0;
+}
+
+.related-backstories-tooltip a:last-child {
+  border-bottom: 0;
+  border-radius: 0 0 4px 4px;
+}
+
 .cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-month__label + .cv-timeline-element {
   padding-left: 94px;
 }

@@ -11,7 +11,13 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 </div>\
             </div>\
             <div class="cv-timeline-fixed-buttons">\
-                <a href="" target="_blank" class="cv-timeline__suggest-event-btn cv-button--small cv-button--light cv-uppercase">Suggest an Event</a>\
+                <a href="" target="_blank" class="cv-timeline__suggest-event-btn cv-button cv-dynamic-hover-text-color cv-button--small cv-button--light cv-uppercase">Suggest an Event</a>\
+                <div class="related-backstories__wrapper">\
+                    <a href="" class="related-backstories-button cv-button cv-dynamic-hover-text-color cv-button--small cv-button--light cv-uppercase with-arrow">\
+                        Related Backstories \
+                        <i class="cv-button--arrow-top"></i>\
+                    </a>\
+                </div>\
             </div>\
         </div>\
     ',
@@ -47,6 +53,13 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             this._timelineElement = this.element.find('.cv-timeline');
             this._backgroundElement = this.element.find('.cv-timeline__background > div');
             this._suggestEventButton = this.element.find('.cv-timeline__suggest-event-btn');
+            this._relatedBackstoriesButton = this.element.find('.related-backstories-button');
+
+            if (window.relatedVoices.length > 0) {
+                this._addRelatedBackstoriesDropdown();
+            } else {
+                this._relatedBackstoriesButton.hide();
+            }
 
             this._bindEvents();
         },
@@ -141,6 +154,41 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 window.CV.backstoryUIComponent.breadcrumb.activateItemByDate(~~last.data.year, ~~last.data.month);
                 window.clearTimeout(this._scrollTimer);
             }.bind(this), 250);
+        },
+
+        _addRelatedBackstoriesDropdown : function _addRelatedBackstoriesDropdown() {
+            var fragment = document.createDocumentFragment();
+
+            window.relatedVoices.map(function(r) {
+                var anchorItem = document.createElement('a');
+
+                anchorItem.href = window.location.origin + "/" + r.slug + "?backstory=true";
+                anchorItem.appendChild(document.createTextNode(r.title));
+
+                fragment.appendChild(anchorItem);
+            });
+
+            new CV.Tooltip({
+                toggler : this._relatedBackstoriesButton,
+                showOnCssHover : false,
+                html : fragment,
+                className : 'related-backstories-tooltip',
+                position : 'top',
+                nowrap : true,
+                clickHandler : function(ev) {
+                    if (this.active) {
+                        this.deactivate();
+                        this.toggler.removeClass('active');
+                    } else {
+                        this.activate();
+                        this.toggler.addClass('active');
+                    }
+
+                    return false
+                },
+            }).render(this.element.find('.related-backstories__wrapper'));
+
+            return this;
         }
     }
 });
