@@ -256,7 +256,8 @@
 </section>
 
 <script type="text/javascript">
-  var infoboxTags = <%=raw @voice.blocks.map(&:tag_list).flatten.uniq.to_json %>,
+  // var infoboxTags = <%=raw @voice.blocks.map(&:tag_list).flatten.uniq.to_json %>,
+    var infoboxTags = [],
       _postCount  = <%= Setting.posts_per_page %>,
       _fbPath     = "<%= fb_path %>",
       urlTags     = "<%= params[:tags] %>".split(',');
