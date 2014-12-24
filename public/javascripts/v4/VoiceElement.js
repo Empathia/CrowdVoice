@@ -102,7 +102,7 @@ Class('VoiceElement').inherits(Widget)({
             // Build thumbURL
             var bucket = "http://crowdvoice-production-bucket.s3.amazonaws.com/uploads/";
 
-            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic"];
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
             var date    = new Date(this.createdAt);
             var year    = date.getUTCFullYear();
