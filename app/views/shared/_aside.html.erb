@@ -14,7 +14,7 @@
   </div>
   <div class="sidebar-scroller scroll-secondary">
     <div class="searchable">
-
+    <% cache( from_gaza? ? "#{current_connection}_aside_menu_bar_gaza" : "#{current_connection}_aside_menu_bar") do %>
       <% if from_gaza? %>
         <div class="sidebar-scroller__accordion-toggler">
           <span class="sidebar-scroller__accordion-arrow">more</span>
@@ -53,6 +53,7 @@
           <%= render :partial => 'voices/voices', :object => @archived_voices %>
         </ul>
       <% end %>
+    <% end %>
     
     </div>
   </div>

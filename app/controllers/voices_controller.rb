@@ -55,20 +55,20 @@ class VoicesController < ApplicationController
     if request.format.html?
       respond_with(@posts, :location => @voice)
     else
-      posts_ids = @posts.map(&:id)
+      # posts_ids = @posts.map(&:id)
 
-      @tags = ActsAsTaggableOn::Tagging.includes(:tag).where(:taggable_id => posts_ids).map { |tagging|
-        name = 'none'
+      # @tags = ActsAsTaggableOn::Tagging.includes(:tag).where(:taggable_id => posts_ids).map { |tagging|
+      #   name = 'none'
 
-        if tagging.tag
-          name = tagging.tag.name
-        end
+      #   if tagging.tag
+      #     name = tagging.tag.name
+      #   end
 
-        {
-          :id => tagging.taggable_id,
-          :name => name
-        }
-      }
+      #   {
+      #     :id => tagging.taggable_id,
+      #     :name => name
+      #   }
+      # }
 
       result = []
 
@@ -95,7 +95,8 @@ class VoicesController < ApplicationController
 
       response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
-        :tags => @tags,
+        # :tags => @tags,
+        :tags => [],
         :posts => result,
         :timeline => @timeline
       }
