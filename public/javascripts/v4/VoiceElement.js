@@ -107,7 +107,7 @@ Class('VoiceElement').inherits(Widget)({
             var date    = new Date(this.createdAt);
             var year    = date.getUTCFullYear();
             var month   = months[date.getUTCMonth()];
-            var day     = (date.getDate() < 10 ? '0' : '') + date.getDate();
+            var day     = (date.getUTCDate() < 10 ? '0' : '') + date.getUTCDate();
             var model   = 'image';
             var version = 'thumb_';
 
