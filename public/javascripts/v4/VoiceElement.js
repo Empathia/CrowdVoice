@@ -111,10 +111,12 @@ Class('VoiceElement').inherits(Widget)({
             var model   = 'image';
             var version = 'thumb_';
 
+            var regexp = this.createdAt.match(/^(\d{4})-\d{2}-(\d{2})/);
+
 
             if (this.image && typeof this.image == "string") {
-                this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
-                this.coverURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + this.image;
+                this.thumbURL = bucket + year + '/' + month + '/' + regexp[2] + '/post/image/' + this.id + '/' + version + this.image;
+                this.coverURL = bucket + year + '/' + month + '/' + regexp[2] + '/post/image/' + this.id + '/' + this.image;
             } else {
                 this.thumbURL = this.image ? this.image.thumb.url : '';
                 this.coverURL = this.image ? this.image.url : '';
