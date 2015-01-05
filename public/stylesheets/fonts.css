@@ -1,4 +1,43 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
+/* @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600); */
+
+/* 300 */
+@font-face {
+    font-family: 'source_sans_prolight';
+    src: url('/stylesheets/fonts/sourcesanspro-light-webfont.eot');
+    src: url('/stylesheets/fonts/sourcesanspro-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/stylesheets/fonts/sourcesanspro-light-webfont.woff2') format('woff2'),
+         url('/stylesheets/fonts/sourcesanspro-light-webfont.woff') format('woff'),
+         url('/stylesheets/fonts/sourcesanspro-light-webfont.ttf') format('truetype'),
+         url('/stylesheets/fonts/sourcesanspro-light-webfont.svg#source_sans_prolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 400 */
+@font-face {
+    font-family: 'source_sans_proregular';
+    src: url('/stylesheets/fonts/sourcesanspro-regular-webfont.eot');
+    src: url('/stylesheets/fonts/sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/stylesheets/fonts/sourcesanspro-regular-webfont.woff2') format('woff2'),
+         url('/stylesheets/fonts/sourcesanspro-regular-webfont.woff') format('woff'),
+         url('/stylesheets/fonts/sourcesanspro-regular-webfont.ttf') format('truetype'),
+         url('/stylesheets/fonts/sourcesanspro-regular-webfont.svg#source_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 600 */
+@font-face {
+    font-family: 'source_sans_prosemibold';
+    src: url('/stylesheets/fonts/sourcesanspro-semibold-webfont.eot');
+    src: url('/stylesheets/fonts/sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/stylesheets/fonts/sourcesanspro-semibold-webfont.woff2') format('woff2'),
+         url('/stylesheets/fonts/sourcesanspro-semibold-webfont.woff') format('woff'),
+         url('/stylesheets/fonts/sourcesanspro-semibold-webfont.ttf') format('truetype'),
+         url('/stylesheets/fonts/sourcesanspro-semibold-webfont.svg#source_sans_prosemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @font-face {
   font-family: "GelPen";
@@ -11,9 +50,8 @@
   font-style: normal;
 }
 
-
 body, p, ol, ul, td, input, button {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'source_sans_proregular', sans-serif;
 }
 
 .blog-widget-textarea {
@@ -59,8 +97,9 @@ body, p, ol, ul, td, input, button {
 }
 
 /* semi-bold */
+h1, h2, h3, h4, h5,
 .create-voice .cv-button,
 .home-cover__title,
 .voice-box > .voice-cont > h3 {
-  font-weight: 600;
+  font-family: 'source_sans_prosemibold', sans-serif;
 }
