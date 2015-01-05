@@ -23,6 +23,8 @@ Class('LinkOverlay').inherits(Widget)({
         _flagButtonElement : null,
         _iframeElement : null,
         _document : null,
+        _onboardingTooltip : null,
+        _onboardingCookie : 'link-overlay-navigation',
 
         _prevVoiceElementData : null,
         _nextVoiceElementData : null,
@@ -172,16 +174,16 @@ Class('LinkOverlay').inherits(Widget)({
         _updateArrowState : function _updateArrowState() {
             if (this._prevVoiceElementData) {
                 this._prevArrowElement[0].title = this._prevVoiceElementData.title;
-                this._prevArrowElement.show();
+                this._prevArrowElement.removeClass('disabled');
             } else {
-                this._prevArrowElement.hide();
+                this._prevArrowElement.addClass('disabled');
             }
 
             if (this._nextVoiceElementData) {
                 this._nextArrowElement[0].title = this._nextVoiceElementData.title;
-                this._nextArrowElement.show();
+                this._nextArrowElement.removeClass('disabled');
             } else {
-                this._nextArrowElement.hide();
+                this._nextArrowElement.addClass('disabled');
             }
 
             return this;
@@ -193,21 +195,19 @@ Class('LinkOverlay').inherits(Widget)({
             }
 
             if (ev.keyCode == 37) { /* prev */
+                this._removeOnboardingTooltip();
                 return this._prevArrowClickHandler();
             }
 
             if (ev.keyCode == 39) { /* next */
+                this._removeOnboardingTooltip();
                 return this._nextArrowClickHandler();
             }
         },
 
         _checkOnboarding : function _checkOnboarding () {
-            var onboardingCookie, onboardingTooltip;
-
-            onboardingCookie = 'link-overlay-navigation';
-
-            if (CV.Utils.readCookie(onboardingCookie) === null) {
-                onboardingTooltip = new CV.Tooltip({
+            if (CV.Utils.readCookie(this._onboardingCookie) === null) {
+                this._onboardingTooltip = new CV.Tooltip({
                     html : '\
                         <p>You can use your keyboard keys to navigate through the content</p>\
                         <div class="arrows">\
@@ -223,13 +223,23 @@ Class('LinkOverlay').inherits(Widget)({
                     className : 'keyboard-onboarding-navigation active'
                 }).render(this.element.find('.onboarding-wrapper'));
 
-                onboardingTooltip.element.find('a').bind('click', function (ev) {
+                this._onboardingTooltip.element.find('a').bind('click', function (ev) {
                     ev.preventDefault();
-                    onboardingTooltip.deactivate();
-                    onboardingTooltip.getElement().remove();
-                    CV.Utils.createCookie(onboardingCookie, false, 365);
-                });
+                    this._removeOnboardingTooltip();
+                }.bind(this));
             }
+
+            return this;
+        },
+
+        _removeOnboardingTooltip : function _removeOnboardingTooltip() {
+            if (!this._onboardingTooltip) {
+                return this;
+            }
+
+            this._onboardingTooltip.deactivate();
+            this._onboardingTooltip.getElement().remove();
+            CV.Utils.createCookie(this._onboardingCookie, false, 365);
 
             return this;
         },

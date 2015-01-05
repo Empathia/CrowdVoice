@@ -3,6 +3,10 @@
     <div class="cv-pull-left">
       <div class="cv-branding--arrow">
         <i class="mediafeed-sprite logo"></i>
+        <button class="js-back-to-voice-button cv-button cv-uppercase cv-inline-block">
+          <i class="icon icon-arrow-back"></i>
+          Back to Voice
+        </button>
       </div>
       <p class="cv-overlay-title cv-inline-block"><%= @voice.title %></p>
 
@@ -49,26 +53,19 @@
     </div>
 
     <div class="cv-pull-right">
-      <div class="cv-overlay-buttons-wrapper cv-inline-block">
+      <div class="cv-overlay-buttons-wrapper cv-inline-block onboarding-wrapper">
         <ul class="arrows cv-inline-block">
           <li class="prev cv-inline-block">
             <button class="voice-arrow prev cv-button" title="{{prev_title}}" data-id="{{prev_id}}">
               <i class="icon icon-arrow-left"></i>
             </button>
           </li>
-          <li class="cv-inline-block onboarding-wrapper">
-          </li>
           <li class="next cv-inline-block">
             <button class="voice-arrow next cv-button" title="{{next_title}}" data-id="{{next_id}}">
               <i class="icon icon-arrow-right"></i>
             </button>
           </li>
-          <li class="vertical-divider cv-inline-block"></li>
         </ul>
-        <button class="js-back-to-voice-button cv-button cv-uppercase cv-inline-block">
-          <i class="icon icon-arrow-back"></i>
-          Back to Voice
-        </button>
       </div>
     </div>
   </div>

@@ -133,22 +133,34 @@
   position: relative;
   height: 25px;
 }
+
 .cv-link-gallery .cv-tooltip.keyboard-onboarding-navigation {
   width: 204px;
+  right: 0;
+  left: inherit;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
   text-align: center;
   color: #666666;
 }
+
+.cv-tooltip.keyboard-onboarding-navigation .cv-tooltip__arrow {
+  left: initial;
+  right: 27px;
+}
+
 .cv-link-gallery .cv-tooltip .cv-tooltip-inner {
   padding: 1em 1em 1.5em;
 }
-.onboarding-wrapper .arrows {
+.keyboard-onboarding-navigation .arrows {
   margin: 1em 0;
 }
-.onboarding-wrapper .arrows .cv-button {
+.keyboard-onboarding-navigation .arrows .cv-button {
   position: relative;
   vertical-align: top;
 }
-.onboarding-wrapper .arrows .icon {
+.keyboard-onboarding-navigation .arrows .icon {
   font-size: 4px;
   vertical-align: middle;
   color: #4c4c4c;
@@ -177,14 +189,7 @@
 
 .cv-media-gallery .cv-overlay-header .cv-branding--arrow {
   height: 84px;
-}
-
-.cv-media-gallery .cv-overlay-header .cv-branding--arrow .logo {
-  transform: translate(.8em, 2.5em);
-}
-
-.cv-media-gallery .js-back-to-voice-button {
-  margin-top: 1.3em;
+  padding: 2.25em 1em 0;
 }
 
 .cv-media-gallery .link-overlay-scrollable {
@@ -197,8 +202,8 @@
 .cv-media-gallery-carrousel {
   position: absolute;
   top: 1em;
-  left: 70px;
-  right: 140px;
+  left: 190px;
+  right: 10px;
   overflow: hidden;
 }
 
