@@ -88,7 +88,6 @@ body.blue .post > .post-paceholder > a {color: #4cb5ff}
 .post > .post-button > input[type='submit'] {
   cursor: pointer;
   color: #fff;
-  font-weight: 600;
   border-radius: 0 4px 4px 0;
   text-transform: uppercase;
   text-shadow: none;

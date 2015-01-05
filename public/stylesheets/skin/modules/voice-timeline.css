@@ -6,7 +6,6 @@
 /* Timeline */
 #current_date .year-label {
   color: #666;
-  font-weight: 600;
 }
 .disactivated-timeliner > a {text-decoration: underline}
 

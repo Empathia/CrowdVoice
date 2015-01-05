@@ -20,7 +20,7 @@
 .tweets-sidebar {
   border-left-width: 1px;
   border-left-color : rgba(0,0,0,0.3);
-  box-shadow: -3px 0px 0px rgba(0,0,0,0.05); 
+  box-shadow: -3px 0px 0px rgba(0,0,0,0.05);
   display: block;
   left: auto;
   padding-left: 10px;
@@ -54,7 +54,6 @@
   position: absolute;
   right: 14px;
   top: 10px;
-  font-weight: 600;
   font-size: 12px;
   line-height: 17px;
 }

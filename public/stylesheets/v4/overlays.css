@@ -61,7 +61,6 @@
   line-height: 26px;
   margin: .8em .8em 0 0;
   color: #fff;
-  font-weight: 600;
 }
 
 .cv-overlay-buttons-wrapper {
@@ -315,7 +314,6 @@
 .cv-media-gallery .info-wrapper .title {
   font-size: 16px;
   line-height: 26px;
-  font-weight: 600;
   margin: .6em 0 1em;
 }
 

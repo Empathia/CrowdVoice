@@ -66,7 +66,6 @@
 
 .cv-timeline-fixed-buttons .cv-button--small {
   color: #808080;
-  font-weight: 600;
 }
 
 .cv-timeline-fixed-buttons .related-backstories__wrapper {
@@ -153,7 +152,6 @@
   line-height: 11px;
   color: #666;
   text-transform: uppercase;
-  font-weight: 600;
 }
 .cv-timeline-month__label--small {
   font-size: 11px;
@@ -191,7 +189,6 @@
   margin-bottom: 12px;
   text-transform: uppercase;
   color: #b2b2b2;
-  font-weight: 300;
 }
 
 .cv-timeline-element__description {
@@ -199,7 +196,6 @@
   line-height: 21px;
   margin-bottom: 12px;
   color: #4c4c4c;
-  font-weight: 400;
 }
 
 .cv-timeline-element__description .icon:first-child {
@@ -216,7 +212,6 @@
 .cv-timeline-view-button {
   padding-left: 6px;
   padding-right: 6px;
-  font-weight: 600;
 }
 
 .cv-timeline-element__gallery-wrapper {
@@ -262,17 +257,6 @@
 .cv-timeline-element__gallery-frame:first-child {
   position: relative;
   z-index: 4;
-}
-
-.cv-timeline-element__gallery-frame:first-child:before {
-  content: '';
-  background: #000;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
-  border-radius: 3px;
 }
 
 .cv-timeline-element__gallery-frame + .cv-timeline-element__gallery-frame {
