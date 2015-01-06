@@ -53,7 +53,7 @@ hgroup {
 .crowdvoice-slogan {
   width: 220px;
   white-space: nowrap;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 12px;
   padding: 0 0 10px;
   margin: 0 auto;
@@ -62,7 +62,7 @@ hgroup {
 }
 
 .create-voice {
-  padding: 9px 7px 11px;
+  padding: 7px 7px 15px;
   position: relative;
   z-index: 2;
 }

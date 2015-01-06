@@ -35,7 +35,7 @@
       </li>
       <% if current_user %>
         <li class="addVoice <%= current_user.nil? ? 'logged-out' : 'logged-in' %>">
-          <%= link_to_if current_user, "Manage Voices", admin_root_path, :class => "cv-button cv-uppercase #{current_user.nil? ? 'voicebtn' : 'voicelogin'}" do %>
+          <%= link_to_if current_user, "My Account", admin_root_path, :class => "cv-button cv-uppercase #{current_user.nil? ? 'voicebtn' : 'voicelogin'}" do %>
             <a class="cv-button cv-uppercase voicebtn" href="#">
               <%= t('layout.add_voice') %>
             </a>
