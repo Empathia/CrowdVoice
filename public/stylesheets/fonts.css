@@ -52,6 +52,7 @@
 
 body, p, ol, ul, td, input, button {
   font-family: 'source_sans_proregular', sans-serif;
+  font-weight: normal;
 }
 
 .blog-widget-textarea {
@@ -101,6 +102,7 @@ body, p, ol, ul, td, input, button {
 .voice-content-type-wrapper .time-ago,
 .cv-backstory-overlay__info-date {
   font-family: 'source_sans_prolight', sans-serif;
+  font-weight: normal;
 }
 
 /* semi-bold */
@@ -132,4 +134,5 @@ h1, h2, h3, h4, h5,
 .top-left-navigation.active .menu-item.active:after,
 .menu-item .menu-link {
   font-family: 'source_sans_prosemibold', sans-serif;
+  font-weight: normal;
 }
