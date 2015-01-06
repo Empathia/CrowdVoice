@@ -64,7 +64,7 @@
 .map-container__header-title {
   font-size: 16px;
   line-height: 1;
-  padding: 10px 0 0 0;
+  padding: 10px 0 0 10px;
   color: #b2b2b2;
 }
 
