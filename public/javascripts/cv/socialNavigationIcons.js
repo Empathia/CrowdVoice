@@ -4,10 +4,11 @@
 Class('FacebookNavButton')({
 	prototype : {
 		init : function (options){
+			var protocol = window.location.protocol;
 			this.buttonReceiver = document.getElementById('facebook-nav-button');
 			this.fbIframe		= document.createElement('iframe');
 			this.fbPath			= options.fbPath;
-			this.buttonSource1	= 'http://www.facebook.com/plugins/like.php?href=';
+			this.buttonSource1	= protocol + '//www.facebook.com/plugins/like.php?href=';
 			this.buttonSource2	= '&locale=en_US&width=85&height=21&colorscheme=light&layout=button&action=like&show_faces=false&send=false&appId=101972966529938';
 			// The old compound source wasn't working, so I had to change it using the URL API
 			// if revert is needed, use the compound url directly on an iframe
