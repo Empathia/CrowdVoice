@@ -101,7 +101,6 @@
 
       params += "&fetchAll=1";
 
-
       _.each(jsonResult.posts, function(item) {
         var post = {};
 
@@ -153,9 +152,6 @@
         CV.timeline.update();
         CV.voicesContainer.element.isotope('layout');  
       });
-
-      
-      
 
       CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
 

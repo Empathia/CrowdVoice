@@ -95,7 +95,7 @@ Class('MediaFeedSearch').inherits(Widget)({
             });
 
             _.each(voices, function(voice) {
-                removedElements.push(voice.element[0]);
+                removedElements.push(voice.element);
                 voice.deactivate();
             });
 
@@ -171,11 +171,11 @@ Class('MediaFeedSearch').inherits(Widget)({
             result = result.slice(0, 59);
 
             _.each(result, function(voice) {
-                elements.push(voice.element[0])
+                elements.push(voice.element)
                 voice.activate();
 
                 _.defer(function() {
-                    if (voice.element.visible(true)) {
+                    if ($(voice.element).visible(true)) {
                         voice.setImage();
                     };
                 });

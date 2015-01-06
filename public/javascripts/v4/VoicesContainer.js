@@ -59,15 +59,17 @@ Class('VoicesContainer').inherits(Widget)({
 
                 $.data( this, "scrollChecker", setTimeout(function() {
                     _.each(voicesContainer.children, function(voice) {
+                        var $element = $(voice.element);
+
                         if (voice.active) {
-                            if (voice.element.visible(true)) {
-                                voice.element.removeClass('no-events');
+                            if ($element.visible(true)) {
+                                $element.removeClass('no-events');
                                 
-                                if (!voice.thumbElement.hasClass('na')) {
+                                if (!voice.thumbElement.classList.contains('na')) {
                                     voice.setImage();
                                 }
                             } else {
-                                voice.element.addClass('no-events');
+                                $element.addClass('no-events');
                             }
                         }
                     });
@@ -122,10 +124,10 @@ Class('VoicesContainer').inherits(Widget)({
                     var elements = [];
 
                     _.each(voices, function(voice) {
-                        voice.element.detach();
+                        $(voice.element).detach();
                         voice.activate();
-                        fragment.appendChild(voice.element[0]);
-                        elements.push(voice.element[0]);
+                        fragment.appendChild(voice.element);
+                        elements.push(voice.element);
                     });
 
                     // Get the last voice index in children
@@ -136,7 +138,7 @@ Class('VoicesContainer').inherits(Widget)({
                     if (beforeIndex >= voicesContainer.filteredResults.length) {
                         voicesContainer.element[0].appendChild(fragment);
                     } else {
-                        voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[beforeIndex].element[0]);
+                        voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[beforeIndex].element);
                     }
 
                     voicesContainer.element.isotope('appended', elements);
@@ -144,7 +146,7 @@ Class('VoicesContainer').inherits(Widget)({
                     voicesContainer.currentPage = page + 1;
                 }
 
-                voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
+                voicesContainer.element.parent().animate({ scrollTop: $(foundVoice.element).position().top }, 1000, function() {
                     CV.timeline.afterFetchActions();
                     CV.timeline.updateSliderPosition();
                 });
@@ -193,7 +195,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                 voicesContainer.appendChild(voice);
 
-                fragment.appendChild(voice.element[0]);
+                fragment.appendChild(voice.element);
             
             });
 
@@ -221,18 +223,18 @@ Class('VoicesContainer').inherits(Widget)({
             var voices = this.filteredResults.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
 
             _.each(voices, function(voice) {
-                elements.push(voice.element[0]);
-                voice.element.detach();
+                elements.push(voice.element);
+                $(voice.element).detach();
                 voice.activate();
                 voice.setImage();
                 
-                fragment.appendChild(voice.element[0]);
+                fragment.appendChild(voice.element);
             });
 
             if (this.lastVoiceIndex === 0) {
                 voicesContainer.element[0].appendChild(fragment);
             } else {
-                voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[this.lastVoiceIndex - 1].element[0]);
+                voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[this.lastVoiceIndex - 1].element);
             }
 
             this.element.isotope('appended', elements);
