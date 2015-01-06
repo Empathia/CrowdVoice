@@ -102,22 +102,24 @@ Class('VoiceElement').inherits(Widget)({
             // Build thumbURL
             var bucket = "http://crowdvoice-production-bucket.s3.amazonaws.com/uploads/";
 
-            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
             var date    = new Date(this.createdAt);
-            var year    = date.getUTCFullYear();
-            var month   = months[date.getUTCMonth()];
-            var day     = (date.getUTCDate() < 10 ? '0' : '') + date.getUTCDate();
             var model   = 'image';
             var version = 'thumb_';
 
+            timestamp = date.getTime();
 
-            regexp = date.toDateString().match(/(\d{2})/)[1];
+            timestampToUS = new Date(timestamp - (6 * 60 * 60 * 1000));
+
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            var year    = timestampToUS.getUTCFullYear();
+            var month   = months[timestampToUS.getUTCMonth()];
+            var day     = (timestampToUS.getUTCDate() < 10 ? '0' : '') + timestampToUS.getUTCDate();
 
 
             if (this.image && typeof this.image == "string") {
-                this.thumbURL = bucket + year + '/' + month + '/' + regexp + '/post/image/' + this.id + '/' + version + this.image;
-                this.coverURL = bucket + year + '/' + month + '/' + regexp + '/post/image/' + this.id + '/' + this.image;
+                this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
+                this.coverURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + this.image;
             } else {
                 this.thumbURL = this.image ? this.image.thumb.url : '';
                 this.coverURL = this.image ? this.image.url : '';
