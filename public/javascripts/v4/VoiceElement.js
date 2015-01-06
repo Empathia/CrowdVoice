@@ -107,14 +107,17 @@ Class('VoiceElement').inherits(Widget)({
             var date    = new Date(this.createdAt);
             var year    = date.getUTCFullYear();
             var month   = months[date.getUTCMonth()];
-            var day     = (date.getDate() < 10 ? '0' : '') + date.getDate();
+            var day     = (date.getUTCDate() < 10 ? '0' : '') + date.getUTCDate();
             var model   = 'image';
             var version = 'thumb_';
 
 
+            regexp = date.toDateString().match(/(\d{2})/)[1];
+
+
             if (this.image && typeof this.image == "string") {
-                this.thumbURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + version + this.image;
-                this.coverURL = bucket + year + '/' + month + '/' + day + '/post/image/' + this.id + '/' + this.image;
+                this.thumbURL = bucket + year + '/' + month + '/' + regexp + '/post/image/' + this.id + '/' + version + this.image;
+                this.coverURL = bucket + year + '/' + month + '/' + regexp + '/post/image/' + this.id + '/' + this.image;
             } else {
                 this.thumbURL = this.image ? this.image.thumb.url : '';
                 this.coverURL = this.image ? this.image.url : '';
