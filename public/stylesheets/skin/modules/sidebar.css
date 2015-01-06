@@ -11,7 +11,11 @@
 .crowdvoice-about:hover {background-position: 0 -18px}
 .crowdvoice-custom-about {text-indent: -999em; background: url('/images/bg/sprites/crowdvoice_about.png') no-repeat 0 0}
 .crowdvoice-custom-about:hover {background-position: 0 -18px}
-.crowdvoice-slogan {color: #cccccc; text-align: center}
+.crowdvoice-slogan {
+  color: #cccccc;
+  text-align: center;
+  text-transform: uppercase;
+}
 
 /* Side Bar Custom Scroll Voice Area */
 .sprite-sidebar {
@@ -57,6 +61,7 @@
 }
 .create-voice .voicelogin {
   opacity: 1;
+  font-size: 12px;
 }
 
 .forgot-pass a {color: #fff}
