@@ -66,7 +66,8 @@ Class(CV, 'Map').inherits(Widget)({
     inyectMapClusterScript : function inyectMapClusterScript () {
         if (this.isMapClusterInyected === false) {
             var script = document.createElement('script');
-            script.src = "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js";
+            var protocol = window.location.protocol;
+            script.src = protocol + "//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js";
             document.getElementsByTagName('head')[0].appendChild(script);
             this.isGoogleScriptInyected = true;
         }

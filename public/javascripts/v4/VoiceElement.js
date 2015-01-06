@@ -100,7 +100,8 @@ Class('VoiceElement').inherits(Widget)({
             var voice = this;
 
             // Build thumbURL
-            var bucket = "http://crowdvoice-production-bucket.s3.amazonaws.com/uploads/";
+            var protocol = window.location.protocol;
+            var bucket = protocol + "//crowdvoice-production-bucket.s3.amazonaws.com/uploads/";
 
             var date    = new Date(this.createdAt);
             var model   = 'image';
