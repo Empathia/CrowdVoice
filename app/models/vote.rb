@@ -24,8 +24,7 @@ class Vote < ActiveRecord::Base
   def update_vote_counters
     post[:positive_votes_count] = Vote.where(:post_id => post_id, :rating => 1).count
     post[:negative_votes_count] = Vote.where(:post_id => post_id, :rating => -1).count
-    post.reload
-    post[:overall_score] = post.reload.positive_votes_count - post.reload.negative_votes_count
+    post[:overall_score] = post.positive_votes_count - post.negative_votes_count
   end
 
   # Approves content if overall_score is greater than zero
