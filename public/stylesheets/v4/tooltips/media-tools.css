@@ -15,13 +15,11 @@
 
 .post-media-tooltip-header  .title {
   font-size: 20px;
-  font-weight: 600;
 }
 
 .cv-tooltip .tooltip-label {
   font-size: 15px;
   color: #333;
-  font-weight: 600;
   margin-bottom: .5em;
 }
 
@@ -86,7 +84,6 @@
   font-size: 15px;
   line-height: 20px;
   padding: 1em 1.2em;
-  font-weight: 600;
 }
 
 /**
@@ -100,7 +97,6 @@
   font-size: 15px;
   line-height: 20px;
   padding: 1em 1.2em;
-  font-weight: 600;
 }
 
 .link-post-media-tooltip .carousel {

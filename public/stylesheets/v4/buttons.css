@@ -28,6 +28,11 @@
   box-shadow: inset 0 3px 0 #363636;
 }
 
+.cv-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 /**
  * Sizes
  **/

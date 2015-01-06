@@ -94,6 +94,10 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
                 this._frameElement.after(this.constructor.FRAME_STRING_TEMPLATE);
             }
 
+            if (this._hasMedia === true) {
+                this.element[0].classList.add('has-media');
+            }
+
             day = month = year = date = totalVideos = totalImages = null;
 
             return this;

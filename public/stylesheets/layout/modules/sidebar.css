@@ -66,21 +66,17 @@ hgroup {
   position: relative;
   z-index: 2;
 }
-  .create-voice ul:after {
-    content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;
-  }
   .touch .create-voice {
     display: none;
   }
 
 .create-voice li {
-  float: left;
+  display: inline-block;
   position: relative;
 }
-  .create-voice .voicebtn {margin-left: 7px}
-  .create-voice .voicelogin {margin: 0 7px}
-  .create-voice .signup {margin: 0 5px}
-
+.create-voice li > a {
+  margin: 0 2px;
+}
 .create-voice .tooltip-positioner {left: -30%}
 .create-voice .tooltip-arrow {left: 29%}
 .create-voice .media-type-info {

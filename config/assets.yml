@@ -271,6 +271,9 @@ stylesheets:
   backstory:
     - *defaults
     - public/stylesheets/v4/backstory/backstory.css
+    - public/stylesheets/v4/backstory/backstory-breadcrum.css
+    - public/stylesheets/v4/backstory/backstory-timeline.css
+    - public/stylesheets/v4/backstory/backstory-timeline-cards.css
     - public/stylesheets/v4/backstory/backstory-overlay.css
     # - public/stylesheets/skin/backstory.css
     - public/stylesheets/layout/voices.css

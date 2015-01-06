@@ -11,7 +11,7 @@
 .crowdvoice-about:hover {background-position: 0 -18px}
 .crowdvoice-custom-about {text-indent: -999em; background: url('/images/bg/sprites/crowdvoice_about.png') no-repeat 0 0}
 .crowdvoice-custom-about:hover {background-position: 0 -18px}
-.crowdvoice-slogan {color: #bfbfbf; text-transform: uppercase; text-align: center}
+.crowdvoice-slogan {color: #cccccc; text-align: center}
 
 /* Side Bar Custom Scroll Voice Area */
 .sprite-sidebar {
@@ -34,9 +34,6 @@
 .voice:not(.admin-sidebar-row) {background-color: #121212; box-shadow: -1px 0 0 rgba(255, 255, 255, 0.1) inset}
 
 /* Side Bar Register/Login */
-.addVoice.logged-in {
-  width: 50%;
-}
 .user-form {background-color: #262626}
 .register-login > tbody > .error > td > span {font-size: 10px; color: #e43d3d; font-weight: normal;}
 .register-login > tbody > tr > td > label {color: #999999}
@@ -52,6 +49,9 @@
 }
 .register-login > tbody > tr > td > .error {border-color: #ff0000; background:#fff5f5}
 .user-form > ul > .cancel > a {color: #999999}
+.create-voice {
+  text-align: center;
+}
 .create-voice .voicebtn {
   opacity: 0.6;
 }

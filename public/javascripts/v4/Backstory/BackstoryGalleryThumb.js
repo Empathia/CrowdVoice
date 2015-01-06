@@ -9,6 +9,7 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
             <i class="icon-warning"></i>\
         </div>\
     ',
+    HTML_VIDEO_ICON : '<i class="icon icon-play"></i>',
 
     prototype : {
         data : null,
@@ -22,6 +23,10 @@ Class(CV, 'BackstoryGalleryThumb').inherits(Widget)({
         },
 
         _setupElements : function _setupElements() {
+            if (this.data.video) {
+                this.element.append(this.constructor.HTML_VIDEO_ICON);
+            }
+
             if (this.data.is_explicit) {
                 this.element.append(this.constructor.HTML_EXPLICIT_MESSAGE);
             }
