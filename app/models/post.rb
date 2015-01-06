@@ -27,13 +27,13 @@ class Post < ActiveRecord::Base
 
   # TODO: move the conditions to methods
   before_validation :url_check_blank, :on => :create
-  before_validation :validate_source_existance
-  before_validation :set_source_type, :if => :validate_source_type
-  before_validation :scrape_source, :if => :validate_scrape_source
-  before_validation :set_defaults_strings
+  before_validation :validate_source_existance, :on => :create
+  before_validation :set_source_type, :if => :validate_source_type, :on => :create
+  before_validation :scrape_source, :if => :validate_scrape_source, :on => :create
+  before_validation :set_defaults_strings, :on => :create
 
   before_save :remove_unsafe_characters
-  before_save :update_source_service
+  before_create :update_source_service
 
   before_save :set_tags, :if => '["staging","production"].include?(Rails.env)'
 
