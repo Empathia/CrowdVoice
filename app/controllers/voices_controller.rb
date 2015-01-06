@@ -30,6 +30,7 @@ class VoicesController < ApplicationController
     }
 
     scope = (params[:mod] ? @voice.posts.unapproved.where(["created_at > ?", 1.year.ago ]) : @voice.posts.approved)
+    #scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
 
     query = scope.includes(:tags).to_sql
 
@@ -53,6 +54,17 @@ class VoicesController < ApplicationController
     end
 
     if request.format.html?
+      
+      result = ActiveRecord::Base.connection.execute(query)
+
+      @response = {
+        # :tags => Oj.dump(@tags, :mode => :compat),
+        # :tags => @tags,
+        :tags => [],
+        :posts => result,
+        :timeline => @timeline
+      }
+
       respond_with(@posts, :location => @voice)
     else
       # posts_ids = @posts.map(&:id)
@@ -95,7 +107,7 @@ class VoicesController < ApplicationController
 
 
 
-      response = {
+      @response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
         # :tags => @tags,
         :tags => [],
@@ -103,7 +115,7 @@ class VoicesController < ApplicationController
         :timeline => @timeline
       }
 
-      render :json => Oj.dump(response, :mode => :compat), :layout => false
+      render :json => Oj.dump(@response, :mode => :compat), :layout => false
     end
 
 
