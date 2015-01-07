@@ -7,9 +7,6 @@
     end
  %>
 
-<script type="text/javascript">
-  window.jsonResult = <%= raw @response.to_json %>;
-</script>
 <script type="text/template" id="timeline-deactivated">
   <li class="timeliner disactivated-timeliner" data-year="{{year}}">
     <a href="#" class="cv-dynamic-text-color">
@@ -44,6 +41,8 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
+
+      window.jsonResult = <%= raw @response.to_json %>;
 
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',

@@ -284,13 +284,14 @@ Class('VoicesContainer').inherits(Widget)({
 
             _.each(CV.posts_votes, function(voteObject) {
                 voicesContainer.children.some(function(voiceElement) {
+                    var $element = $(voiceElement.element);
                     if (voiceElement.id == voteObject.id) {
                         if (voteObject.positive) {
-                            voiceElement.element.find('.voice-unmoderated li.up').addClass('up_hover');
-                            voiceElement.element.find('.voice-unmoderated li.down').remove();
+                            $element.find('.voice-unmoderated li.up').addClass('up_hover');
+                            $element.find('.voice-unmoderated li.down').remove();
                         } else {
-                            voiceElement.element.find('.voice-unmoderated li.down').addClass('down_hover');
-                            voiceElement.element.find('.voice-unmoderated li.up').remove();
+                            $element.find('.voice-unmoderated li.down').addClass('down_hover');
+                            $element.find('.voice-unmoderated li.up').remove();
                         }
 
                         return true;
