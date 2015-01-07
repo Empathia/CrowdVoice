@@ -5,7 +5,6 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
               <div class="cv-timeline-month__label--upper">{month}</div>\
               <div class="cv-timeline-month__label--small">{year}</div>\
             </div>\
-            <div class="cv-timeline-element__info-fake-bg"></div>\
         </div>\
     ',
     prototype : {
@@ -13,6 +12,7 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
+            this.labelElement = this.element.find('.cv-timeline-month__label');
             this.monthElement = this.element.find('.cv-timeline-month__label--upper');
             this.yearElement = this.element.find('.cv-timeline-month__label--small');
 
@@ -27,6 +27,8 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
                     })).render(this.element);
                 }
             }, this);
+
+            this.children[0].element.find('.cv-timeline-element__info-wrapper').append(this.labelElement);
         }
     }
 });
