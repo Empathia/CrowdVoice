@@ -1,6 +1,5 @@
 var fs = require('fs');
 var socketio = require('socket.io');
-Tail = require('tail').Tail;
 var express = require('express');
 var http = require('http');
 var app = express()
@@ -10,10 +9,11 @@ var app = express()
 server.listen(9099);
 
 var mysql      = require('mysql');
+
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
+  host     : '127.0.0.1',
+  user     : 'deploy',
+  password : 'i3gh7rb1wer',
   database : 'crowdvoice_production'
 });
 
