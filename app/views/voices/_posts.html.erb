@@ -42,7 +42,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      window.jsonResult = <%= raw @response.to_json %>;
+      window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
 
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',

@@ -58,13 +58,15 @@ class VoicesController < ApplicationController
       
       result = ActiveRecord::Base.connection.execute(query)
 
-      @response = {
+      response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
         # :tags => @tags,
         :tags => [],
         :posts => result,
         :timeline => @timeline
       }
+
+      @response = Oj.dump(response, :mode => :compat)
 
       respond_with(@posts, :location => @voice)
     else
