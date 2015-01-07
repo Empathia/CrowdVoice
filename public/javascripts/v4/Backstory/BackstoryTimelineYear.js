@@ -39,7 +39,7 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
                     _cards.push(
                         this.appendChild(new CV.BackstoryTimelineCards({
                             name : _name
-                        })).render(appendToWidget.element)
+                        })).render(appendToWidget.element.find('.cv-timeline-element__info-wrapper'))
                     );
                 }
 

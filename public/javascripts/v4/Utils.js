@@ -47,5 +47,9 @@ Module(CV, 'Utils')({
             }
         }
         return null;
+    },
+
+    getMaxOfArray : function getMaxOfArray(numArray) {
+        return Math.max.apply(null, numArray);
     }
 });

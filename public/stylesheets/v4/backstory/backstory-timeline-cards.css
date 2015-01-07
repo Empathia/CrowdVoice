@@ -3,8 +3,8 @@
   width: 326px;
   white-space: nowrap;
   position: absolute;
-  top: 385px;
-  left: 266px;
+  top: 150px;
+  right: -155px;
   z-index: 1;
 }
 .cv-timeline-cards:before {
@@ -44,7 +44,7 @@
 .cv-timeline-cards__carousel-wrapper {
   position: relative;
   overflow: hidden;
-  background: #fff;
+  background-color: #fff;
   padding-top: 5px;
 }
 
