@@ -4,7 +4,7 @@
   white-space: nowrap;
   position: absolute;
   top: 150px;
-  right: -155px;
+  left: 225px;
   z-index: 1;
 }
 .cv-timeline-cards:before {

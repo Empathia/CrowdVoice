@@ -99,7 +99,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             lastElementItem = this.children[this.children.length-1];
             lastElementItem = lastElementItem.element.find('.cv-timeline-month:last-child .cv-timeline-element:last-child');
 
-            if (lastElementItem.find('> .cv-timeline-cards').length) {
+            if (lastElementItem.find('.cv-timeline-cards').length) {
                 lastElementItem.css('min-width', 620);
             }
 
