@@ -16,6 +16,17 @@
   height: 100%;
   background-color: rgba(255,255,255,1);
 }
+
+.cv-timeline__background:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  background-color: #fff;
+}
+
 .cv-timeline__background > div {
   height: 100%;
   background-size: cover;
@@ -23,35 +34,21 @@
   -webkit-filter: blur(5px);
   filter: blur(5px);
 }
-.cv-timeline__info-mask {
-  display: none;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  top: 50%;
-  background: #fff;
-  box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
-}
 
 .cv-timeline {
   position: relative;
   white-space: nowrap;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: auto;
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-.cv-timeline__table {
-  display: table;
-  height: 100%;
-}
-
-.cv-timeline__cell {
-  display: table-cell;
-  vertical-align: middle;
+.cv-timeline__inner {
+  position: relative;
+  -webkit-transition: top 200ms;
+  transition: top 200ms;
 }
 
 .cv-timeline-fixed-buttons {
@@ -73,6 +70,14 @@
   display: inline-block;
   vertical-align: top;
   margin-left: 10px;
+}
+
+.related-backstories-button {
+  display: none;
+}
+
+.related-backstories-button.show {
+  display: block;
 }
 
 .related-backstories-tooltip {
@@ -121,9 +126,6 @@
   border-bottom: 0;
 }
 
-.cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-month__label + .cv-timeline-element {
-  padding-left: 94px;
-}
 .cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-month__label {
   left: 34px;
 }
@@ -131,6 +133,7 @@
 .cv-timeline-year {
   display: inline-block;
   vertical-align: top;
+  padding-top: 10px;
 }
 
 .cv-timeline-month {
@@ -140,7 +143,7 @@
 }
 .cv-timeline-month__label {
   position: absolute;
-  top: 238px;
+  top: 5px;
   left: 0;
   height: 25px;
   padding-top: 3px;
@@ -164,24 +167,7 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  padding-left: 40px;
-}
-
-.cv-timeline-element:before {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 25px;
-  top: 238px;
-  left: 0;
-  background-image: -webkit-linear-gradient(left, #d9d9d9 1px, transparent 0);
-  background-image: linear-gradient(to right, #d9d9d9 1px, transparent 0);
-  background-size: 6px 6px;
-  z-index: 1;
-}
-
-.cv-timeline-element + .cv-timeline-element {
-  padding-left: 40px;
+  min-width: 395px;
 }
 
 .cv-timeline-element__title {
@@ -218,7 +204,19 @@
   border-left-width: 3px;
   border-left-style: solid;
   border-left-color: #fff;
-  padding: 10px 15px 15px;
+  padding: 10px 55px 15px 15px;
+}
+
+.cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-element:first-child > .cv-timeline-element__gallery-wrapper {
+  margin-left: 30px;
+}
+
+.cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-element:first-child > .cv-timeline-element__info-wrapper {
+  padding-left: 30px;
+}
+
+.cv-timeline-year:first-child > .cv-timeline-month:first-child > .cv-timeline-element:first-child .cv-timeline-month__label {
+  margin-left: 30px;
 }
 
 .has-media .cv-timeline-element__gallery-wrapper {
@@ -249,6 +247,10 @@
 .cv-timeline-element__gallery-frame > img {
   position: relative;
   display: block;
+  /*
+  width: 214px;
+  height: auto;
+  */
   width: 314px;
   height: 200px;
   border-radius: 2px;
@@ -312,23 +314,16 @@
   transform: translateX(8px) translateY(-8px);
 }
 
-.cv-timeline-element__info-fake-bg {
-  background-color: white;
-  position: absolute;
-  top: 233px;
-  left: 0;
-  width: 100%;
-  height: 300%;
-  box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
-}
-
 .cv-timeline-element__info-wrapper {
   position: relative;
+  background-color: #fff;
+  padding: 5px 0 0 0;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
 }
 
 .cv-timeline-element__time-ticks {
   height: 25px;
-  margin: 5px 0 5px 1px;
+  margin: 0 5px 5px 1px;
   border-left: 1px solid transparent;
   background-image: -webkit-linear-gradient(left, #d9d9d9 1px, transparent 0%);
   background-image: linear-gradient(to right, #d9d9d9 1px, transparent 0%);
