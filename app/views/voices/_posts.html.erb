@@ -42,8 +42,12 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
+      var socketHost;
 
+      var socket = io.connect('http://' + window.location.hostname + ':9099');
+      
+      // window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
+      window.jsonResult = [];
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
         element  : $('.voices-container'),
@@ -100,62 +104,110 @@
 
       params += "&fetchAll=1";
 
-      _.each(jsonResult.posts, function(item) {
-        var post = {};
+      var fragment = document.createDocumentFragment();
 
-        post.id = item[0];
-        post.voice_id = item[1];
-        post.user_id = item[2];
-        post.title = item[3];
-        post.description = item[4];
-        post.positive_votes_count = item[5];
-        post.negative_votes_count = item[6];
-        post.overall_score = item[7];
-        post.source_url = item[8];
-        post.source_type = item[9];
-        post.source_service = item[10];
-        post.image = item[11];
-        post.approved = item[12];
-        post.created_at = item[13];
-        post.updated_at = item[14];
-        post.copyright = item[15];
-        post.image_width = item[16];
-        post.image_height = item[17];
-        post.active = false;
-        post.tags = [];
-
-        for (var i = 0; i < jsonResult.tags.length; i++) {
-          var tag = jsonResult.tags[i];
-
-          if (tag.id === post.id) {
-            post.tags.push(tag.name);
-          }
-        };
-
-        CV.voicesContainer.preloadedVoices.push(post);
+      socket.on('connect', function() {
+        console.log('connect');
       });
 
-      CV.voicesContainer.page = page;
+      // var mode = $.deparam.querystring().mod ? 'approved' : 'unapproved';
 
-      CV.voicesContainer.createVoiceWidgets(function() {
+      if (!$.deparam.querystring().mod) {
+        socket.emit('approved', {id : window.currentVoice.id});    
+      } else {
+        socket.emit('unapproved', {id : window.currentVoice.id});  
+      }
+
+      
+
+      var postCounter = 0;
+      socket.on('posts-data', function(data) {
+        var post = data.value;
+        CV.voicesContainer.preloadedVoices.push(post);
+
+        var voice = new VoiceElement({
+            name          : 'post_' + post.id,
+            id            : post.id,
+            image         : post.image,
+            approved      : post.approved,
+            description   : CV.getExcerpt(post.description, 250),
+            imageWidth    : post.image_width,
+            imageHeight   : post.image_height,
+            negativeVotes : post.negative_votes_count,
+            positiveVotes : post.positive_votes_count,
+            overallScore  : post.overall_score,
+            sourceService : post.source_service,
+            sourceType    : post.source_type,
+            sourceURL     : post.source_url,
+            title         : post.title,
+            voiceID       : post.voice_id,
+            timeAgo       : post.created_at,
+            createdAt     : post.created_at,
+            service       : post.source_url,
+            disabled      : true,
+            active        : false,
+            tags          : []
+        });
+
+        CV.voicesContainer.appendChild(voice);
+        voice.render(CV.voicesContainer.element);
+
+        if (postCounter == 1) {
+          CV.timeline.progress.activate();
+        }
+
+        if (postCounter == 500) {
+          postCounter = 0;
+          CV.timeline.progress.deactivate();
+        }
+
+        postCounter++;
         
       });
 
-      clearInterval(placeholderInterval);
+      socket.on('firstPageFinished', function() {
+        console.log('firstPageFinished')
+        clearInterval(placeholderInterval);
+        CV.voicesContainer.element.find('.placeholder').remove();
 
-      CV.voicesContainer.element.find('.placeholder').remove();
+        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
-      CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+        CV.voicesContainer.enableNextPage(function(){
+          CV.timeline.update();
+          setTimeout(function(){
+            CV.voicesContainer.element.isotope('layout');  
+          }, 500);
+          $('.filters-and-mode').find('input').attr('disabled', true);
+          
+        });
 
-      CV.voicesContainer.enableNextPage(function(){
-        CV.timeline.update();
-        CV.voicesContainer.element.isotope('layout');  
       });
 
-      CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
+      socket.on('nextPage', function(){
+        console.log('nextPage');
+        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+        CV.timeline.update();
+      });
 
-      CV.mediaFeedSearch = new MediaFeedSearch({
-        element : $('.filters-and-mode')
+      
+      CV.voicesContainer.page = page;
+
+
+      socket.on('finished', function(data) {
+        console.log('finished')
+        CV.timeline.progress.deactivate();
+        CV.timeline.update();
+        
+
+        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+
+        CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
+
+        CV.mediaFeedSearch = new MediaFeedSearch({
+          element : $('.filters-and-mode')
+        });
+
+        $('.filters-and-mode').find('input').attr('disabled', false);
       });
     });
   </script>

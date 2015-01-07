@@ -59,17 +59,15 @@ Class('VoicesContainer').inherits(Widget)({
 
                 $.data( this, "scrollChecker", setTimeout(function() {
                     _.each(voicesContainer.children, function(voice) {
-                        var $element = $(voice.element);
-
                         if (voice.active) {
-                            if ($element.visible(true)) {
-                                $element.removeClass('no-events');
+                            if ($(voice.element).visible(true)) {
+                                $(voice.element).removeClass('no-events');
                                 
-                                if (!voice.thumbElement.classList.contains('na')) {
+                                if (!$(voice.thumbElement).hasClass('na')) {
                                     voice.setImage();
                                 }
                             } else {
-                                $element.addClass('no-events');
+                                $(voice.element).addClass('no-events');
                             }
                         }
                     });
@@ -156,6 +154,7 @@ Class('VoicesContainer').inherits(Widget)({
         },
 
         createVoiceWidgets : function(callback) {
+            return;
             var voicesContainer = this;
             var fragment = document.createDocumentFragment();
 
@@ -195,7 +194,7 @@ Class('VoicesContainer').inherits(Widget)({
 
                 voicesContainer.appendChild(voice);
 
-                fragment.appendChild(voice.element);
+                fragment.appendChild(voice.element[0]);
             
             });
 

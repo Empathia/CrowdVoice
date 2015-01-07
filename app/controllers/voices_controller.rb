@@ -55,8 +55,10 @@ class VoicesController < ApplicationController
     end
 
     if request.format.html?
-      
-      result = ActiveRecord::Base.connection.execute(query)
+      puts "="*80
+      puts query
+      # result = ActiveRecord::Base.connection.execute(query)
+      result = []
 
       response = {
         # :tags => Oj.dump(@tags, :mode => :compat),

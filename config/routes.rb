@@ -10,54 +10,54 @@ CrowdvoiceV2::Application.routes.draw do
      get 'sitemap.:format' => :sitemap, :as => :sitemap, :requirements => { :format => 'xml' }
    end
 
-   namespace :admin do
-     resources :voices, :except => [:show] do
-       get :search_voices, :on => :collection
-       get :sidebar, :on => :collection
-       post :sort, :on => :collection
-       resources :events do
+  namespace :admin do
+    resources :voices, :except => [:show] do
+      get :search_voices, :on => :collection
+      get :sidebar, :on => :collection
+      post :sort, :on => :collection
+      resources :events do
         resources :related_images, :only => [:destroy]
         resources :related_videos, :only => [:destroy]
-       end
-       resources :blocks do
-         get 'reorder', :on => :member
-       end
-       get 'posts' => 'posts#index'
-       get 'activate_timeline', :on => :member
-       put 'bulk_update' => 'posts#bulk_update'
-       get 'tags_autocomplete' => 'posts#tags_autocomplete'
-     end
-     resources :tags, :only => [:index, :edit, :update, :destroy]
-     resources :cliparts
-     resources :installations do
-       get 'customization', :on => :collection
-       put 'update_custom', :on => :collection
-     end
-     resources :announcements
-     resources :notifications
-     resources :advanced
-     resource :homepage, :only => [:show, :update], :controller => 'homepage' do
+      end
+      resources :blocks do
+        get 'reorder', :on => :member
+      end
+      get 'posts' => 'posts#index'
+      get 'activate_timeline', :on => :member
+      put 'bulk_update' => 'posts#bulk_update'
+      get 'tags_autocomplete' => 'posts#tags_autocomplete'
+    end
+    resources :tags, :only => [:index, :edit, :update, :destroy]
+    resources :cliparts
+    resources :installations do
+      get 'customization', :on => :collection
+      put 'update_custom', :on => :collection
+    end
+    resources :announcements
+    resources :notifications
+    resources :advanced
+    resource :homepage, :only => [:show, :update], :controller => 'homepage' do
       get :dashboard
     end
-     resources :users do
+    resources :users do
       collection do
         get :search_users
       end
-     end
-     resources :layout_items
+    end
+    resources :layout_items
 
-     post 'image_preview' => 'blocks#image_preview'
-     get 'blocks' => 'blocks#all'
-     get 'settings' => 'settings#index', :as => :settings_index
-     put 'settings' => 'settings#update', :as => :settings_update
-     root :to => 'voices#index'
-   end
+    post 'image_preview' => 'blocks#image_preview'
+    get 'blocks' => 'blocks#all'
+    get 'settings' => 'settings#index', :as => :settings_index
+    put 'settings' => 'settings#update', :as => :settings_update
+    root :to => 'voices#index'
+  end
 
-   resources :subscriptions, :only => [:create] do
-     member do
-       get 'unsubscribe' => :destroy, :as => :unsubscribe
-     end
-   end
+  resources :subscriptions, :only => [:create] do
+    member do
+      get 'unsubscribe' => :destroy, :as => :unsubscribe
+    end
+  end
 
    get 'login' => 'sessions#new'
    get 'twitter_search' => 'voices#twitter_search'
