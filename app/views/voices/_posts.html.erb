@@ -44,10 +44,13 @@
 
       <% if Rails.env.development? %>
         var socket = io.connect('http://localhost:9099');
-      <% elsif Rails.env.staging? %>
-        var socket = io.connect('http://ws.myupdated.info');
       <% elsif Rails.env.production? %>
-        var socket = io.connect('http://ws.crowdvoice.org');
+        if (window.location.hostname === "myupdated.info") {
+          var socket = io.connect('http://ws.myupdated.info');  
+        } else {
+          var socket = io.connect('http://ws.crowdvoice.org');
+        }
+        
       <% end %>
       
       window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
