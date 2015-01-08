@@ -70,7 +70,7 @@ io.sockets.on('connection', function(client) {
     console.log('unapproved', data);
     var voice_id = data.id;
 
-    connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 0 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC', function(err, rows, fields) {
+    connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 0 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC LIMIT 20000', function(err, rows, fields) {
       if (err) throw err;
 
       var firstPage   = 60;
