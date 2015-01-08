@@ -127,7 +127,6 @@
       var postCounter = 0;
       socket.on('posts-data', function(data) {
         var post = data.value;
-        console.log(post.id)
         CV.voicesContainer.preloadedVoices.push(post);
 
         var voice = new VoiceElement({
