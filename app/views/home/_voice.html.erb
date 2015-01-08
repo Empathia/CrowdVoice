@@ -11,7 +11,7 @@
   </div>
   <div class="home-cover__title"><%= item.voice.title %></div>
   <div class="home-cover__media-info">
-    <% if !subdomain_present? && (item.voice.has_timeline || item.voice.events.present?) %>
+    <% if !subdomain_present? && item.voice.has_timeline %>
       <a href="<%= "/#{item.voice.default_slug}" %>?backstory=true" class="simple-tooltip" data-tooltip-text="Backstory" data-tooltip-position="top">
         <i class="icon icon-backstory"></i>
       </a>

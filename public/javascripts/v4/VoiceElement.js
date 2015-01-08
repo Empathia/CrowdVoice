@@ -95,7 +95,26 @@ Class('VoiceElement').inherits(Widget)({
         flagElement   : null,
 
         init : function(config) {
-            Widget.prototype.init.call(this, config);
+            // Widget.prototype.init.call(this, config);
+
+            var property;
+
+            Object.keys(config || {}).forEach(function (propertyName) {
+                this[propertyName] = config[propertyName];
+            }, this);
+
+            if (this.element == null) {
+                this.element = $(this.constructor.HTML.replace(/\s\s+/g, ''))[0];
+                if (this.constructor.ELEMENT_CLASS !== "") {
+                    this.element.classList.add(this.constructor.ELEMENT_CLASS);
+                }
+            }
+
+            if (this.hasOwnProperty('className') === true) {
+                this.element.classList.add(this.className);
+            }
+
+
 
             var voice = this;
 
@@ -127,36 +146,40 @@ Class('VoiceElement').inherits(Widget)({
             }
 
 
-            this.sourceElement = this.element.find('a.source-url');
-            this.contentElement = this.element.find('.voice-cont');
+            this.sourceElement = this.element.querySelectorAll('a.source-url')[0];
+            this.contentElement = this.element.querySelectorAll('.voice-cont')[0];
 
             this.URL     = this.getURL();
             this.postURL = this.isRawImage() ? this.coverURL : this.sourceURL;
 
-            this.flagElement = this.element.find('a.vote-post.flag.cv-hover-danger-brand-color');
+            this.flagElement = this.element.querySelectorAll('a.vote-post.flag.cv-hover-danger-brand-color')[0];
 
-            this.thumbElement = this.element.find('.thumb-preview');
+            this.thumbElement = this.element.querySelectorAll('.thumb-preview')[0];
 
             this.setupElements()._bindEvents();
 
-            this.thumbElement.css({
-                width  : voice.imageWidth,
-                height : voice.imageHeight,
-                background : "#EEE url('/images/image-placeholder.gif') no-repeat 50% 50%"
+            this.thumbElement.style.width       = voice.imageWidth;
+            this.thumbElement.style.height      = voice.imageHeight;
+            this.thumbElement.style.background  = "#EEE url('/images/image-placeholder.gif') no-repeat 50% 50%";
+            
+            var $thumbElement = $(this.thumbElement);
+            
+            $thumbElement.bind('load', function() {
+                voice.thumbElement.classList.add('set');
+                voice.thumbElement.style.background = 'none';
+                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout')
             });
 
-            this.thumbElement.bind('load', function() {
-                voice.thumbElement.addClass('set').css({background : 'none'});
-                // CV.voicesContainer.delayedEvent.dispatch('isotope-relayout');
+            $thumbElement.bind('error', function() {
+                voice.thumbElement.classList.add('na');
+                voice.thumbElement.removeAttribute('src');
+                voice.thumbElement.style.background = "#EEE url('/images/image-not-available.gif') no-repeat 50% 50%";
             });
 
-            this.thumbElement.bind('error', function() {
-                voice.thumbElement.addClass('na')[0].removeAttribute('src');
-                voice.thumbElement.css({background : "#EEE url('/images/image-not-available.gif') no-repeat 50% 50%"});
-            });
+            var $element = $(this.element);
 
             if (!this.approved) {
-                this.element.find('.vote-post.thumb').bind('click', function(ev) {
+                $element.find('.vote-post.thumb').bind('click', function(ev) {
                     ev.preventDefault();
 
                     var b = $(ev.currentTarget),
@@ -165,16 +188,18 @@ Class('VoiceElement').inherits(Widget)({
                     if (p.hasClass('down_hover')) return;
 
                     $.post(this.href, function(data) {
-                        p.siblings().hide();
-
-                        if (p.hasClass('down')) {
-                            p.addClass('down_hover');
-                        } else {
-                            p.addClass('up_hover');
-                            voice.element.removeClass('unmoderated');
-                            voice.element.find('.voice-unmoderated').remove();
-                        }
+                        
                     });
+
+                    p.siblings().hide();
+
+                    if (p.hasClass('down')) {
+                        p.addClass('down_hover');
+                    } else {
+                        p.addClass('up_hover');
+                        voice.element.classList.remove('unmoderated');
+                        $element.find('.voice-unmoderated').remove();
+                    }
 
                     return false;
                 });
@@ -185,29 +210,29 @@ Class('VoiceElement').inherits(Widget)({
         setupElements : function() {
             var voice = this;
 
-            this.element.addClass(this.sourceType);
+            var $element = $(this.element);
+
+            this.element.classList.add(this.sourceType);
 
             if (!this.approved) {
-                this.element.addClass('unmoderated');
+                this.element.classList.add('unmoderated');
 
-                this.element.find('.up.flag-div a').attr({
-                    'href' : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=1'
-                });
-
-                this.element.find('.down.flag-div a').attr({
-                    'href' : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
-                });
+                this.element.querySelectorAll('.up.flag-div a')[0].setAttribute(
+                    'href', window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=1'
+                );
+                
+                this.element.querySelectorAll('.down.flag-div a')[0].setAttribute(
+                    'href', window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
+                );
             } else {
-                this.element.find('.voice-unmoderated').hide();
+                this.element.querySelectorAll('.voice-unmoderated')[0].style.display = 'none';
             }
 
-            this.element.attr({
-                'data-post-id'    : this.id,
-                'data-created-at' : this.createdAt
-            });
+            this.element.setAttribute('data-post-id', this.id);
+            this.element.setAttribute('data-created-at', this.createdAt);
 
             if (CV.isAdmin) {
-                this.element.find('a.close-voice-box').bind('click', function() {
+                $element.find('a.close-voice-box').bind('click', function() {
                     var element = $(this);
 
                     var c = confirm("Are you sure you want to delete this?");
@@ -232,51 +257,51 @@ Class('VoiceElement').inherits(Widget)({
                     return false;
                 });
             } else {
-                this.element.find('a.close-voice-box').hide();
+                this.element.querySelectorAll('a.close-voice-box')[0].style.display = "none";
             }
 
-            this.sourceElement.attr({
-                'data-type'      : voice.sourceType,
-                'data-title'     : voice.title,
-                'data-permalink' : voice.URL,
-                'data-ago'       : voice.timeAgo,
-                'data-id'        : voice.id,
-                'data-voted'     : false,
-                'data-service'   : voice.service,
-                'href'           : voice.postURL
-            });
+            this.sourceElement.setAttribute('data-type', voice.sourceType);
+            this.sourceElement.setAttribute('data-title', voice.title);
+            this.sourceElement.setAttribute('data-permalink', voice.URL);
+            this.sourceElement.setAttribute('data-ago', voice.timeAgo);
+            this.sourceElement.setAttribute('data-id', voice.id);
+            this.sourceElement.setAttribute('data-voted', false);
+            this.sourceElement.setAttribute('data-service', voice.service);
+            this.sourceElement.setAttribute('href', voice.postURL);
 
-            this.element.find('h3').html(this.title);
+            this.element.querySelectorAll('h3')[0].innerHTML = this.title;
+
+            var $sourceElement = $(this.sourceElement);
 
             if (this.sourceType == 'link') {
-                this.sourceElement.after(this.constructor.VOICE_TYPE_HTML);
+                $sourceElement.after(this.constructor.VOICE_TYPE_HTML);
             } else {
-                this.sourceElement.append(this.constructor.VOICE_TYPE_HTML);
+                $sourceElement.append(this.constructor.VOICE_TYPE_HTML);
             }
 
             var date = moment(this.timeAgo).format('MMM-DD-YYYY');
 
-            this.element.find('.time-ago').html(date);
+            this.element.querySelectorAll('.time-ago')[0].innerHTML = date;
 
             if (this.sourceType == 'link' || this.sourceType == 'image') {
-                this.element.find('p.description').html(this.description);
+                this.element.querySelectorAll('p.description')[0].innerHTML = this.description;
             } else {
-                this.sourceElement.append(this.constructor.PLAY_ICON);
+                $sourceElement.append(this.constructor.PLAY_ICON);
             }
 
-            this.element.find('.post-icon-type').addClass('icon-' + this.sourceType);
+            this.element.querySelectorAll('.post-icon-type')[0].classList.add('icon-' + this.sourceType);
 
-            this.element.find('a.facebook').attr({
-                'href' : 'http://facebook.com/sharer.php?u=' + voice.URL
-            });
+            this.element.querySelectorAll('a.facebook')[0].setAttribute(
+                'href', 'http://facebook.com/sharer.php?u=' + voice.URL
+            );
 
-            this.element.find('a.twitter').attr({
-                'href' : 'http://twitter.com/intent/tweet?text=' +  escape(voice.title) + '&url=' + escape(voice.URL) +'&via=crowdvoice'
-            });
+            this.element.querySelectorAll('a.twitter')[0].setAttribute(
+                'href', 'http://twitter.com/intent/tweet?text=' +  escape(voice.title) + '&url=' + escape(voice.URL) +'&via=crowdvoice'
+            );
 
-            this.flagElement.attr({
-                href : window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
-            });
+            this.flagElement.setAttribute(
+                'href',  window.location.pathname + '/posts/' + voice.id + '/votes.json?rating=-1'
+            );
 
             return this;
         },
@@ -284,12 +309,12 @@ Class('VoiceElement').inherits(Widget)({
         _bindEvents : function _bindEvents() {
             var voice = this;
 
-            this.contentElement.bind('click', function(event) {
+            $(this.contentElement).bind('click', function(event) {
                 event.preventDefault();
                 window.CV.OverlaysController.showOverlay(this);
             }.bind(this));
 
-            this.flagElement.bind('click', function() {
+            $(this.flagElement).bind('click', function() {
                 var self = $(this);
 
                 $.ajax({
@@ -298,23 +323,24 @@ Class('VoiceElement').inherits(Widget)({
                     type: $(this).data('method'),
                     dataType: 'json',
                     success: function (data) {
-                        // that._handleSuccess(data, self);
-
                         post_id = voice.id;
-                        // flag = $('div[data-post-id=' + post_id + ']');
-
+                        
                         //Logic for flags
-                        if (voice.flagElement.hasClass('flag')){
+                        var tooltipEl = voice.element.querySelectorAll('.flag-tooltip span')[0];
+                        if (voice.flagElement.classList.contains('flag')){
+                            tooltipEl.classList.add('flagged');
+                            tooltipEl.innerHTML = 'Unflag Content';
+                            voice.flagElement.setAttribute('data-voted', true);
 
-                            voice.element.find('.flag-tooltip span').addClass('flagged').html('Unflag Content');
-                            voice.flagElement.attr('data-voted', true);
-                            voice.flagElement.toggleClass('flag flag-pressed').attr('href', [voice.flagElement.attr('href').split('?')[0], 'rating=1'].join('?') );
+                            
+                            $(voice.flagElement).toggleClass('flag flag-pressed').attr('href', [$(voice.flagElement).attr('href').split('?')[0], 'rating=1'].join('?') );
 
-                        } else if (voice.flagElement.hasClass('flag-pressed')){
+                        } else if (voice.flagElement.classList.contains('flag-pressed')){
 
-                            voice.element.find('.flag-tooltip span').removeClass('flagged').html('Flag Inappropiate Content');
-                            voice.flagElement.attr('data-voted', false);
-                            voice.flagElement.toggleClass('flag flag-pressed').attr('href', [voice.flagElement.attr('href').split('?')[0], 'rating=-1'].join('?') );
+                            tooltipEl.classList.remove('flagged');
+                            tooltipEl.innerHTML = 'Flag Inappropiate Content';
+                            voice.flagElement.setAttribute('data-voted', false);
+                            $(voice.flagElement).toggleClass('flag flag-pressed').attr('href', [$(voice.flagElement).attr('href').split('?')[0], 'rating=-1'].join('?') );
                         }
                     }
                 });
@@ -366,25 +392,27 @@ Class('VoiceElement').inherits(Widget)({
 
         setImage : function() {
             var voice = this;
-            if (!this.thumbElement.hasClass('na') || !this.thumbElement.hasClass('set')) {
-                this.thumbElement.attr({
-                    'src'   : voice.thumbURL,
-                    'width' : voice.imageWidth,
-                    'height' : voice.imageHeight
-                });
+            if (!this.thumbElement.classList.contains('na') || !this.thumbElement.classList.contains('set')) {
+                this.thumbElement.setAttribute('src', voice.thumbURL);
+                this.thumbElement.setAttribute('width', voice.imageWidth);
+                this.thumbElement.setAttribute('height', voice.imageHeight);
             }
         },
 
         _activate : function() {
-            Widget.prototype._activate.call(this);
+            this.active = true;
+            this.element.classList.add('active');
 
-            this.element.removeClass('disabled');
+            this.element.classList.remove('disabled');
         },
 
-        _deactivate : function() {
-            Widget.prototype._deactivate.call(this);
 
-            this.element.addClass('disabled');
+
+        _deactivate : function() {
+            this.active = false;
+            this.element.classList.remove('active');
+
+            this.element.classList.add('disabled');
         },
 
         /**
@@ -470,6 +498,27 @@ Class('VoiceElement').inherits(Widget)({
             }
 
             return childs[currentIndex + 1];
+        },
+
+        render : function render(element, beforeElement) {
+            var $element = $(this.element);
+
+            if (this.__destroyed === true) {
+                console.warn('calling on destroyed object');
+            }
+            this.dispatch('beforeRender', {
+                element : element,
+                beforeElement : beforeElement
+            });
+
+            if (beforeElement) {
+                $element.insertBefore(beforeElement);
+            } else {
+                $element.appendTo(element);
+            }
+
+            this.dispatch('render');
+            return this;
         }
     }
 });

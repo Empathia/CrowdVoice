@@ -60,14 +60,14 @@ Class('VoicesContainer').inherits(Widget)({
                 $.data( this, "scrollChecker", setTimeout(function() {
                     _.each(voicesContainer.children, function(voice) {
                         if (voice.active) {
-                            if (voice.element.visible(true)) {
-                                voice.element.removeClass('no-events');
+                            if ($(voice.element).visible(true)) {
+                                $(voice.element).removeClass('no-events');
                                 
-                                if (!voice.thumbElement.hasClass('na')) {
+                                if (!$(voice.thumbElement).hasClass('na')) {
                                     voice.setImage();
                                 }
                             } else {
-                                voice.element.addClass('no-events');
+                                $(voice.element).addClass('no-events');
                             }
                         }
                     });
@@ -122,10 +122,10 @@ Class('VoicesContainer').inherits(Widget)({
                     var elements = [];
 
                     _.each(voices, function(voice) {
-                        voice.element.detach();
+                        $(voice.element).detach();
                         voice.activate();
-                        fragment.appendChild(voice.element[0]);
-                        elements.push(voice.element[0]);
+                        fragment.appendChild(voice.element);
+                        elements.push(voice.element);
                     });
 
                     // Get the last voice index in children
@@ -136,7 +136,7 @@ Class('VoicesContainer').inherits(Widget)({
                     if (beforeIndex >= voicesContainer.filteredResults.length) {
                         voicesContainer.element[0].appendChild(fragment);
                     } else {
-                        voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[beforeIndex].element[0]);
+                        voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[beforeIndex].element);
                     }
 
                     voicesContainer.element.isotope('appended', elements);
@@ -144,7 +144,7 @@ Class('VoicesContainer').inherits(Widget)({
                     voicesContainer.currentPage = page + 1;
                 }
 
-                voicesContainer.element.parent().animate({ scrollTop: foundVoice.element.position().top }, 1000, function() {
+                voicesContainer.element.parent().animate({ scrollTop: $(foundVoice.element).position().top }, 1000, function() {
                     CV.timeline.afterFetchActions();
                     CV.timeline.updateSliderPosition();
                 });
@@ -154,6 +154,7 @@ Class('VoicesContainer').inherits(Widget)({
         },
 
         createVoiceWidgets : function(callback) {
+            return;
             var voicesContainer = this;
             var fragment = document.createDocumentFragment();
 
@@ -221,18 +222,18 @@ Class('VoicesContainer').inherits(Widget)({
             var voices = this.filteredResults.slice(this.lastVoiceIndex, (this.perPage * (this.currentPage + 1)));
 
             _.each(voices, function(voice) {
-                elements.push(voice.element[0]);
-                voice.element.detach();
+                elements.push(voice.element);
+                $(voice.element).detach();
                 voice.activate();
                 voice.setImage();
                 
-                fragment.appendChild(voice.element[0]);
+                fragment.appendChild(voice.element);
             });
 
             if (this.lastVoiceIndex === 0) {
                 voicesContainer.element[0].appendChild(fragment);
             } else {
-                voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[this.lastVoiceIndex - 1].element[0]);
+                voicesContainer.element[0].insertBefore(fragment, voicesContainer.filteredResults[this.lastVoiceIndex - 1].element);
             }
 
             this.element.isotope('appended', elements);
@@ -282,13 +283,14 @@ Class('VoicesContainer').inherits(Widget)({
 
             _.each(CV.posts_votes, function(voteObject) {
                 voicesContainer.children.some(function(voiceElement) {
+                    var $element = $(voiceElement.element);
                     if (voiceElement.id == voteObject.id) {
                         if (voteObject.positive) {
-                            voiceElement.element.find('.voice-unmoderated li.up').addClass('up_hover');
-                            voiceElement.element.find('.voice-unmoderated li.down').remove();
+                            $element.find('.voice-unmoderated li.up').addClass('up_hover');
+                            $element.find('.voice-unmoderated li.down').remove();
                         } else {
-                            voiceElement.element.find('.voice-unmoderated li.down').addClass('down_hover');
-                            voiceElement.element.find('.voice-unmoderated li.up').remove();
+                            $element.find('.voice-unmoderated li.down').addClass('down_hover');
+                            $element.find('.voice-unmoderated li.up').remove();
                         }
 
                         return true;
