@@ -52,7 +52,8 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
 
             this._timelineElement = this.element.find('.cv-timeline');
             this._timelineInnerElement = this._timelineElement.find('.cv-timeline__inner');
-            this._backgroundElement = this.element.find('.cv-timeline__background > div');
+            this._backgroundWrapperElement = this.element.find('.cv-timeline__background');
+            this._backgroundElement = this._backgroundWrapperElement.find('> div');
             this._suggestEventButton = this.element.find('.cv-timeline__suggest-event-btn');
 
             this._setupElements()._bindEvents();
@@ -110,11 +111,14 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
         },
 
         updateHeightAndCenterVertically : function updateHeightAndCenterVertically() {
-            var eventsHeights, maxEventsHeight, timelineHeight, timelineWrapperHeight, defaultImageHeight, cardsOffsetHeight, topPositionValue;
+            var headerHeight, breadcrumbHeight, eventsHeights, maxEventsHeight, timelineHeight, timelineWrapperHeight, defaultImageHeight, cardsOffsetHeight, topPositionValue;
+
+            headerHeight = 99;
+            breadcrumbHeight = 40;
 
             if (window.innerHeight <= 550) {
-                /* minHeight => (99 = header, 40 = breadcrumb, 550 = minTimelineHeight) */
-                timelineWrapperHeight = (550 - (99 + 40));
+                /* (550 = minTimelineHeight) */
+                timelineWrapperHeight = (550 - (headerHeight + breadcrumbHeight));
             } else {
                 timelineWrapperHeight = this.element.height();
             }
@@ -137,7 +141,13 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             }
 
             maxEventsHeight = CV.Utils.getMaxOfArray(eventsHeights);
-            timelineHeight = ((maxEventsHeight - cardsOffsetHeight) + this._timelineInnerElement.height());
+
+            if (maxEventsHeight > 0) {
+                timelineHeight = ((maxEventsHeight - cardsOffsetHeight) + this._timelineInnerElement.height());
+            } else {
+                timelineHeight = this._timelineInnerElement.height();
+            }
+
             diff = (timelineHeight - timelineWrapperHeight);
 
             if (diff > 0) {
@@ -149,6 +159,10 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
 
             topPositionValue = (timelineWrapperHeight - (this._timelineInnerElement.height() + (maxEventsHeight - cardsOffsetHeight))) / 2;
             this._timelineInnerElement[0].style.top = topPositionValue + "px";
+
+            /* resize background image container */
+            var bh = (this.element[0].querySelector('.cv-timeline-element__info-wrapper').offsetTop + topPositionValue + 10);
+            this._backgroundWrapperElement[0].style.height = bh + "px";
 
             eventsHeights = maxEventsHeight = timelineHeight = timelineWrapperHeight = defaultImageHeight = cardsOffsetHeight = topPositionValue = null;
 
