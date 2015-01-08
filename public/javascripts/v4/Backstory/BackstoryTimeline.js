@@ -128,9 +128,13 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             });
 
             /* get all event cards height */
-            eventsHeights = this._eventCardsElements.map(function(i,e) {
-                return e.getBoundingClientRect().height;
-            });
+            if (this._eventCardsElements.length) {
+                eventsHeights = this._eventCardsElements.map(function(i,e) {
+                    return e.getBoundingClientRect().height;
+                });
+            } else {
+                eventsHeights = [0];
+            }
 
             maxEventsHeight = CV.Utils.getMaxOfArray(eventsHeights);
             timelineHeight = ((maxEventsHeight - cardsOffsetHeight) + this._timelineInnerElement.height());
