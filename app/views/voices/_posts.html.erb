@@ -33,9 +33,6 @@
 
   <div class="voices-scroller scroll-primary <%= 'with-infosidebar' if infosidebarIsPresent %>" style="height: 1167px; width: 959px;">
     <div class="voices-container" style="width: 800px; overflow: hidden; position: relative; height: 564px;">
-      <div class="placeholders">
-      
-      </div>
     </div>
   </div>
 
@@ -45,7 +42,7 @@
       <% if Rails.env.development? %>
         var socket = io.connect('http://localhost:9099');
       <% elsif Rails.env.production? %>
-        if (window.location.hostname === "myupdated.info") {
+        if (window.location.hostname.search("myupdated.info") !== -1) {
           var socket = io.connect('http://ws.myupdated.info');  
         } else {
           var socket = io.connect('http://ws.crowdvoice.org');
@@ -61,41 +58,48 @@
         perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
 
-      var iteration = 1;
-      var placeholderInterval = setInterval(function() {
-        if ($('.voices-container .placeholder').length >= 12) {
-          $('.voices-container').html('')
-        }
+      // var iteration = 1;
+      
+      // var placeholderInterval = setInterval(function() {
+      //   if ($('.voices-container .placeholder').length >= 12) {
+      //     var elements = $('.voices-container .placeholder');
 
-        if (iteration > 3) {
-          iteration = 1;
-        }
+      //     CV.voicesContainer.element.isotope('remove', elements);
 
-        var options = {};
+      //     elements.remove();
 
-        switch (iteration) {
-          case 1:
-            options.width = "180px"
-            options.height = "269px"
-            break;
-          case 2:
-            options.width = "180px"
-            options.height = "379px"
-            break;
-          case 3:
-            options.width = "180px"
-            options.height = "419px"
-            break;
-        }
+      //     $('.voices-container').html('')
+      //   }
 
-        var element = $('<div class="voice-box placeholder" style="width:' + options.width + ';height:' + options.height + ';"> <img src="/images/cv-placeholder-0' + iteration +'.gif" style="" /></div>')
-        $('.voices-container').append(element);
+      //   if (iteration > 3) {
+      //     iteration = 1;
+      //   }
 
-        CV.voicesContainer.element.isotope('appended', element);
-        CV.voicesContainer.element.isotope('layout');
+      //   var options = {};
+
+      //   switch (iteration) {
+      //     case 1:
+      //       options.width = "180px"
+      //       options.height = "269px"
+      //       break;
+      //     case 2:
+      //       options.width = "180px"
+      //       options.height = "379px"
+      //       break;
+      //     case 3:
+      //       options.width = "180px"
+      //       options.height = "419px"
+      //       break;
+      //   }
+
+      //   var element = $('<div class="voice-box placeholder" style="width:' + options.width + ';height:' + options.height + ';"> <img src="/images/cv-placeholder-0' + iteration +'.gif" style="" /></div>')
+      //   $('.voices-container').append(element);
+
+      //   CV.voicesContainer.element.isotope('appended', element);
+      //   CV.voicesContainer.element.isotope('layout');
         
-        iteration++
-      }, 350);
+      //   iteration++
+      // }, 350);
 
 
 
@@ -174,7 +178,7 @@
       });
 
       socket.on('firstPageFinished', function() {
-        clearInterval(placeholderInterval);
+        // clearInterval(placeholderInterval);
         $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
 
