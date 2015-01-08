@@ -32,6 +32,12 @@ class HomeController < ApplicationController
 
   end
 
+  def redirect_to
+    if params[:url]
+      render 'redirect_to', :layout => "redirect"
+    end
+  end
+
   def first
     user = User.first
     session[:user_id] = user.id

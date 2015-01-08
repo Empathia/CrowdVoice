@@ -83,6 +83,7 @@ CrowdvoiceV2::Application.routes.draw do
    match "/install" => "home#enqueue_server"
    match "/check_install" => "home#check_install"
    match "/map" => "home#index"
+   match "/home/redirect_to" => "home#redirect_to"
    #match "/first" => "home#first"
    mount Resque::Server, :at => "/resque"
    root :to => 'home#index'
