@@ -92,7 +92,7 @@ io.sockets.on('connection', function(client) {
             value: row
         });
 
-        if (i == firstPage) {
+        if (i == firstPage || (i == rows.length - 1 && rows.length < firstPage)) {
           client.emit('firstPageFinished');
         }
 
