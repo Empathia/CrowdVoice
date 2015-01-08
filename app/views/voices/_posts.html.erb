@@ -128,6 +128,8 @@
       
 
       var postCounter = 0;
+
+      var fragment = document.createDocumentFragment();
       socket.on('posts-data', function(data) {
         var post = data.value;
         CV.voicesContainer.preloadedVoices.push(post);
@@ -157,15 +159,16 @@
         });
 
         CV.voicesContainer.appendChild(voice);
-        voice.render(CV.voicesContainer.element);
+        fragment.appendChild(voice.element);
+
+        if (postCounter == 60) {
+          CV.voicesContainer.element.append(fragment);
+          fragment = document.createDocumentFragment();
+        };
+        
 
         if (postCounter == 1) {
           CV.timeline.progress.activate();
-        }
-
-        if (postCounter == 500) {
-          postCounter = 0;
-          CV.timeline.progress.deactivate();
         }
 
         postCounter++;
@@ -204,6 +207,7 @@
 
       socket.on('finished', function(data) {
         console.log('finished')
+        CV.voicesContainer.element.append(fragment);
         CV.timeline.progress.deactivate();
         CV.timeline.update();
         
