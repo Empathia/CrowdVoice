@@ -38,7 +38,7 @@ io.sockets.on('connection', function(client) {
   
   client.on('approved', function(data) {
     console.log('approved', data);
-    var voice_id = data.id;
+    var voice_id = parseInt(data.id, 10);
 
     connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 1 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC', function(err, rows, fields) {
       if (err) throw err;
@@ -75,7 +75,7 @@ io.sockets.on('connection', function(client) {
 
   client.on('unapproved', function(data) {
     console.log('unapproved', data);
-    var voice_id = data.id;
+    var voice_id = parseInt(data.id, 10);
 
     connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 0 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC LIMIT 20000', function(err, rows, fields) {
       if (err) throw err;
