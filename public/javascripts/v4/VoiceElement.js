@@ -166,6 +166,7 @@ Class('VoiceElement').inherits(Widget)({
             $thumbElement.bind('load', function() {
                 voice.thumbElement.classList.add('set');
                 voice.thumbElement.style.background = 'none';
+                CV.voicesContainer.delayedEvent.dispatch('isotope-relayout')
             });
 
             $thumbElement.bind('error', function() {

@@ -42,16 +42,16 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-      var socketHost;
-
-      // staging
-      var socket = io.connect('http://ws.myupdated.info');
-
-      // dev
-      // var socket = io.connect('http://localhost:9099');
+      <% if Rails.env.development? %>
+        var socket = io.connect('http://localhost:9099');
+      <% elsif Rails.env.staging? %>
+        var socket = io.connect('http://ws.myupdated.info');
+      <% elsif Rails.env.production? %>
+        var socket = io.connect('http://ws.crowdvoice.org');
+      <% end %>
       
-      // window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
-      window.jsonResult = [];
+      window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
+      
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
         element  : $('.voices-container'),
@@ -172,15 +172,17 @@
       socket.on('firstPageFinished', function() {
         console.log('firstPageFinished')
         clearInterval(placeholderInterval);
+        $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
 
         CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
         CV.voicesContainer.enableNextPage(function(){
+          CV.voicesContainer.element.isotope('layout'); 
           CV.timeline.update();
-          setTimeout(function(){
-            CV.voicesContainer.element.isotope('layout');  
-          }, 500);
+          // setTimeout(function(){
+             
+          // }, 500);
           $('.filters-and-mode').find('input').attr('disabled', true);
           
         });
