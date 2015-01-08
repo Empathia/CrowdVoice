@@ -45,9 +45,9 @@
         var socket = io.connect(protocol + '//localhost:9099');
       <% elsif Rails.env.production? %>
         if (window.location.hostname.search("myupdated.info") !== -1) {
-          var socket = io.connect(protocol + 'http://ws.myupdated.info');  
+          var socket = io.connect(protocol + 'ws.myupdated.info');  
         } else {
-          var socket = io.connect(protocol + 'http://ws.crowdvoice.org');
+          var socket = io.connect(protocol + 'ws.crowdvoice.org');
         }
         
       <% end %>
