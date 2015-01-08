@@ -9,28 +9,34 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
         },
 
         _setupElements : function _setupElements() {
-            /* add months with no_events (normal items) */
-            this.months.forEach(function(month) {
-                var has_no_events = month.events.some(function(event) {
+            var backstoryTimelineYear = this;
+
+            /* add months with no_events, no need to create a month-wrapper
+             * for an item with pure mini-events */
+            backstoryTimelineYear.months.forEach(function(month) {
+                var has_no_mini_events = month.events.some(function(event) {
                     return (event.is_event === false);
                 });
 
-                if (has_no_events) {
-                    this.appendChild(new CV.BackstoryTimelineMonth({
+                if (has_no_mini_events) {
+                    backstoryTimelineYear.appendChild(new CV.BackstoryTimelineMonth({
                         name : 'month-' + month.numeric,
-                        year : this.year,
+                        year : backstoryTimelineYear.year,
                         month : month.numeric,
                         days : month.events
-                    })).render(this.element);
+                    })).render(backstoryTimelineYear.element);
                 }
-            }, this);
+            });
 
-            this._addEventsCards();
+            backstoryTimelineYear._addMiniEvents();
         },
 
-        _addEventsCards : function _addEventsCards() {
-            var _events = [];
-            var _cards = [];
+        _addMiniEvents : function _addMiniEvents() {
+            var backstoryTimelineYear, miniEvents, _cards;
+
+            backstoryTimelineYear = this;
+            miniEvents = [];
+            _cards = [];
 
             function addCard(event, appendToWidget) {
                 var _name = 'cards-' + appendToWidget.data.year + "-" + appendToWidget.data.month + "-" + appendToWidget.data.day;
@@ -49,48 +55,65 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
                 })).render(this[_name].carrouselElement);
             }
 
-            this.months.forEach(function(m) {
-                return m.events.forEach(function(e) {
-                    if (e.is_event) _events.push(e);
+            function getMonthChildren() {
+                return this.children.map(function(child) {
+                    if (child.name.indexOf('month') >= 0) {
+                        return child;
+                    }
+                });
+            }
+
+            backstoryTimelineYear.months.forEach(function(month) {
+                month.events.forEach(function(e) {
+                    if (e.is_event) {
+                        miniEvents.push(e);
+                    }
                 });
             });
 
             /* add the events to the closest year+month last children */
-            if (_events.length) {
-                _events.forEach(function(e) {
-                    var _event_month, _event_day, _fit;
+            var data = getMonthChildren.call(backstoryTimelineYear);
 
-                    _event_month = e.month;
-                    _event_day = e.day;
+            if (miniEvents.length) {
+                miniEvents.forEach(function(mini_event) {
+                    var mini_event_month, mini_event_day, found;
 
-                    _fit = this.children.some(function(m) {
-                        if (m.month >= _event_month) {
-                            return m.children.slice(0).reverse().some(function(d) {
-                                if (~~d.data.day <= _event_day) {
-                                    addCard.call(this, e, d);
+                    mini_event_month = ~~mini_event.month;
+                    mini_event_day = ~~mini_event.day;
 
+                    /* try to add mini_event to the nearest month/day (equal or ahead) */
+                    found = data.some(function(dates) {
+                        if (mini_event_month === ~~dates.month) {
+                            return dates.children.some(function(monthChild) {
+                                if (mini_event_day >= ~~monthChild.data.day) {
+                                    addCard.call(backstoryTimelineYear, mini_event, monthChild);
                                     return true;
                                 }
-                            }, this);
+                            });
                         }
-                    }, this);
+                    });
 
-                    if (!_fit) {
-                        this.children.slice(0).reverse().some(function(m) {
-                            if (m.month < _event_month) {
-                                addCard.call(this, e, m.children[m.children.length-1]);
-
-                                return true;
-                            }
-                        }, this);
+                    if (found) {
+                        return true;
                     }
-                }, this);
-            }
 
-            /* init card carrousels */
-            _cards.forEach(function(card) {
-                card.start();
-            });
+                    /* try to add mini_event to the nearest month/day (behind) */
+                    data.slice(0).reverse().some(function(dates) {
+                        if (mini_event_month > ~~dates.month) {
+                            return dates.children.slice(0).reverse().some(function(monthChild) {
+                                if (mini_event_day <= ~~monthChild.data.day) {
+                                    addCard.call(backstoryTimelineYear, mini_event, monthChild);
+                                    return true;
+                                }
+                            });
+                        }
+                    });
+                });
+
+                _cards.forEach(function(card) {
+                    card.start();
+                });
+            }
 
             return this;
         }
