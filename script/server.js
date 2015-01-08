@@ -17,6 +17,13 @@ var connection = mysql.createConnection({
   database : 'crowdvoice_production'
 });
 
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : '',
+//   database : 'crowdvoice_production'
+// });
+
 connection.connect();
 
 var port = process.env.PORT || 4000;
@@ -48,7 +55,7 @@ io.sockets.on('connection', function(client) {
             value: row
         });
 
-        if (i == firstPage) {
+        if (i == firstPage || (i == rows.length - 1 && rows.length < firstPage)) {
           client.emit('firstPageFinished');
         }
 

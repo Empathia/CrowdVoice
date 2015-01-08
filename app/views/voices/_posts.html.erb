@@ -114,10 +114,8 @@
       var fragment = document.createDocumentFragment();
 
       socket.on('connect', function() {
-        console.log('connect');
+        console.log('socket connected');
       });
-
-      // var mode = $.deparam.querystring().mod ? 'approved' : 'unapproved';
 
       if (!$.deparam.querystring().mod) {
         socket.emit('approved', {id : window.currentVoice.id});    
@@ -125,11 +123,10 @@
         socket.emit('unapproved', {id : window.currentVoice.id});  
       }
 
-      
-
       var postCounter = 0;
 
       var fragment = document.createDocumentFragment();
+      
       socket.on('posts-data', function(data) {
         var post = data.value;
         CV.voicesContainer.preloadedVoices.push(post);
@@ -177,7 +174,6 @@
       });
 
       socket.on('firstPageFinished', function() {
-        console.log('firstPageFinished')
         clearInterval(placeholderInterval);
         $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
@@ -187,17 +183,12 @@
         CV.voicesContainer.enableNextPage(function(){
           CV.voicesContainer.element.isotope('layout'); 
           CV.timeline.update();
-          // setTimeout(function(){
-             
-          // }, 500);
           $('.filters-and-mode').find('input').attr('disabled', true);
-          
         });
 
       });
 
       socket.on('nextPage', function(){
-        console.log('nextPage');
         CV.voicesContainer.filteredResults = CV.voicesContainer.children;
         CV.timeline.update();
       });
@@ -207,7 +198,6 @@
 
 
       socket.on('finished', function(data) {
-        console.log('finished')
         CV.voicesContainer.element.append(fragment);
         CV.timeline.progress.deactivate();
         CV.timeline.update();
