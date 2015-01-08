@@ -84,7 +84,7 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
                     /* try to add mini_event to the nearest month/day (equal or ahead) */
                     found = data.some(function(dates) {
                         if (mini_event_month === ~~dates.month) {
-                            return dates.children.some(function(monthChild) {
+                            return dates.children.slice(0).reverse().some(function(monthChild) {
                                 if (mini_event_day >= ~~monthChild.data.day) {
                                     addCard.call(backstoryTimelineYear, mini_event, monthChild);
                                     return true;
