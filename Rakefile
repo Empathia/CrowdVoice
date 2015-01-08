@@ -63,6 +63,9 @@ task :fetch_tweets => :environment do
         logger.info "Processing #{results.length} results"
 
         results.each do |result|
+          logger.info "Tweet date: #{tweet[:created_at]}"
+          logger.info "Tweet: #{tweet[:text]}"
+          logger.info "\n"
           tweet           = Tweet.new
           tweet[:id_str]  = result[:id]
           tweet[:text]    = result[:full_text]
@@ -77,7 +80,6 @@ task :fetch_tweets => :environment do
           end
         end
 
-        voice.last_tweet         = term
         voice.last_twitter_error = nil
 
         logger.info "#{results.length} processed on Voice #{voice.id}"  
