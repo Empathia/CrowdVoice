@@ -63,9 +63,10 @@ task :fetch_tweets => :environment do
         logger.info "Processing #{results.length} results"
 
         results.each do |result|
-          logger.info "Tweet date: #{tweet[:created_at]}"
-          logger.info "Tweet: #{tweet[:text]}"
+          logger.info "Tweet date: #{result[:created_at]}"
+          logger.info "Tweet: #{result[:text]}"
           logger.info "\n"
+          
           tweet           = Tweet.new
           tweet[:id_str]  = result[:id]
           tweet[:text]    = result[:full_text]
