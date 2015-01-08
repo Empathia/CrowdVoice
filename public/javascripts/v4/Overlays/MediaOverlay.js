@@ -143,7 +143,7 @@ Class('MediaOverlay').inherits(Widget)({
                     console.error(data);
                 });
             }, 60000);
-            
+
             $.embedly(voiceElement.postURL, {
                 key : '7a45bbf49862423380410598ebf08688', /* TODO: Use Esra'a key */
                 maxWidth : parseInt($(document).width() * 0.80),
@@ -197,7 +197,7 @@ Class('MediaOverlay').inherits(Widget)({
 
             this._facebookButtonElement[0].href = this.FACEBOOK_URL_BASE + "u=" + voiceElement.URL;
             this._twitterButtonElement[0].href = this.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;
-            this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + (voiceElement.sourceElement.data('voted') ? 1 : -1);
+            this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + ($(voiceElement.sourceElement).data('voted') ? 1 : -1);
 
             this._timeAgoElement.text(voiceElement.timeAgo);
             this._titleElement.text(voiceElement.title);

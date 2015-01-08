@@ -136,7 +136,7 @@ Class('LinkOverlay').inherits(Widget)({
         _updateDynamicSources : function _updateDynamicSources(voiceElement) {
             this._facebookButtonElement[0].href = this.FACEBOOK_URL_BASE + "u=" + voiceElement.URL;
             this._twitterButtonElement[0].href = this.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;
-            this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + (voiceElement.sourceElement.data('voted') ? 1 : -1);
+            this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + ($(voiceElement.sourceElement).data('voted') ? 1 : -1);
             this._sourceButtonElement[0].href = voiceElement.postURL;
             this._iframeElement[0].src = voiceElement.postURL;
 
