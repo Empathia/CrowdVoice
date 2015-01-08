@@ -138,7 +138,7 @@ Class('LinkOverlay').inherits(Widget)({
             this._twitterButtonElement[0].href = this.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;
             this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + ($(voiceElement.sourceElement).data('voted') ? 1 : -1);
             this._sourceButtonElement[0].href = voiceElement.postURL;
-            this._iframeElement[0].src = "https://www.google.com/search?q=%" + voiceElement.postURL + "&btnI=Im+Feeling+Lucky";
+            this._iframeElement[0].src = voiceElement.postURL;
 
             this._flagButtonElement.unbind('click').bind('click', function() {
                 $.ajax({
