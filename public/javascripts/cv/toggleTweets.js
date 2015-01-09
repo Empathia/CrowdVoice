@@ -143,18 +143,36 @@ Class('ToggleTweets')({
             var toggleTweets = this;
 
             if (!this.loaded) {
-                setTimeout(function() {
-                    _.each(window.currentVoice.tweets, function(tweet) {
-                        tweet = tweet.tweet;
-                        twttr.widgets.createTweet(
-                            tweet.id_str,
-                            toggleTweets.scroller[0],
-                            {
-                                theme : 'light'
-                            }
-                        );
-                    });
-                }, 350)
+                if (window.currentVoice.tweets.length === 0) {
+                    var noTweets =      '<li class="tweet">\
+                                            <p>No tweets found.</p>\
+                                        </li>\
+                                        ';
+
+                    $('ul.tweets-list').append($(noTweets));
+                } else {
+                    $('.tweets-wrapper-list .loader').show();
+                    setTimeout(function() {
+                        
+
+                        _.each(window.currentVoice.tweets, function(tweet, i) {
+                            tweet = tweet.tweet;
+                        
+                            twttr.widgets.createTweet(
+                                tweet.id_str,
+                                toggleTweets.scroller[0],
+                                {
+                                    theme : 'light'
+                                }
+                            ).then(function() {
+                                if (window.currentVoice.tweets.length - 1 === i) {
+                                    $('.tweets-wrapper-list .loader').hide();
+                                };
+                            });    
+                        
+                        });
+                    }, 350)
+                }
                 
             }  
             
