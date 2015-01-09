@@ -21,6 +21,11 @@ class Admin::VoicesController < ApplicationController
   end
 
   def create
+    
+    if params[:voice][:slugs_attributes]["0"][:is_default] == "0"
+        params[:voice][:slugs_attributes]["0"][:is_default] = true 
+    end
+
     @voice = build_scoped_voice(params[:voice])
     @voice.user_id = current_user.id
 

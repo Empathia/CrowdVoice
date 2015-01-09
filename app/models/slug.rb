@@ -4,4 +4,5 @@ class Slug < ActiveRecord::Base
   scope :default, where(:is_default => true).limit(1)
 
   validates :text, :uniqueness => true
+  validates_presence_of :text
 end
