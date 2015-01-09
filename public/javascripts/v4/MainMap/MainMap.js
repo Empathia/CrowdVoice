@@ -84,7 +84,6 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
                     <label><input type="checkbox" name="map-filter__themes" value="all" checked disabled> All <span></span></label>\
                     <label><input type="checkbox" name="map-filter__themes" value="Human Rights" checked> Human Rights <span></span></label>\
                     <label><input type="checkbox" name="map-filter__themes" value="Environment" checked> Environment <span></span></label>\
-                    <label><input type="checkbox" name="map-filter__themes" value="Freedom of Religion" checked> Freedom of Religion <span></span></label>\
                     <label><input type="checkbox" name="map-filter__themes" value="Elections" checked> Elections <span></span></label>\
                     <label><input type="checkbox" name="map-filter__themes" value="Gender Equality" checked> Gender Equality <span></span></label>\
                 ',
