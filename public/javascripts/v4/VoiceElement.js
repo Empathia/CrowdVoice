@@ -126,9 +126,9 @@ Class('VoiceElement').inherits(Widget)({
             var model   = 'image';
             var version = 'thumb_';
 
-            timestamp = date.getTime();
+            var timestamp = date.getTime();
 
-            timestampToUS = new Date(timestamp - (6 * 60 * 60 * 1000));
+            var timestampToUS = new Date(timestamp - (6 * 60 * 60 * 1000));
 
             var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
