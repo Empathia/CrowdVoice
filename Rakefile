@@ -65,14 +65,19 @@ task :fetch_tweets => :environment do
         results.each do |result|
           logger.info "Tweet date: #{result[:created_at]}"
           logger.info "Tweet: #{result[:text]}"
-          logger.info "\n"
+          
           
           tweet           = Tweet.new
           tweet[:id_str]  = result[:id]
           tweet[:text]    = result[:full_text]
           tweet[:voice_id]   = voice.id
-          tweet.save
+          if tweet.save
+            logger.info "SAVED!"
+          else
+            logger.error "Not saved!"
+          end
 
+          logger.info "\n"
           urls = TwitterSearch.extract_tweet_urls(tweet)
           urls.each do |url|
             resolved_url = TwitterSearch.resolve_redirects(url)
