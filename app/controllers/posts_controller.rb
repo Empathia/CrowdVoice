@@ -30,6 +30,8 @@ class PostsController < ApplicationController
         info = {:title => scrape.title, :description => scrape.description, :images => scrape.images}
       end
 
+      puts info.as_json
+
       render :json => info
     rescue Timeout::Error, StandardError
       render :json => {:error => "Can't reach the URL. Please try with another URL."}

@@ -202,7 +202,7 @@ Class('Post').inherits(Widget)({
 
                             voice.setImage();
 
-                            CV.voicesContainer.element.isotope('prepended', voice.element[0]);
+                            CV.voicesContainer.element.isotope('prepended', voice.element);
 
                             that.imageMediaTool.deactivate();
                             that.videoMediaTool.deactivate();
@@ -231,14 +231,17 @@ Class('Post').inherits(Widget)({
 
         _detectUrl : function _detectUrl(url) {
             if (this.constructor.RE_VIDEO.test(url)) {
+                console.log('video');
                 return 'video';
             }
 
             if (this.constructor.RE_IMAGE.test(url)) {
+                console.log('image');
                 return 'image';
             }
 
             if (this.constructor.RE_LINK.test(url)) {
+                console.log('link');
                 return 'link';
             }
 
@@ -254,6 +257,7 @@ Class('Post').inherits(Widget)({
                 data: "url=" + encodeURIComponent(this.inputPost[0].value) + "&voice_id=" + window.currentVoice.slug,
                 dataType: "json",
                 success: function(data, status, xhr) {
+                    console.log(data)
                     that.carousel.loadHash(data);
                     that.carousel.hideLoader();
 

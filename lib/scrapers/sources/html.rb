@@ -21,12 +21,22 @@ module Scrapers
       end
 
       def images
-        @images ||=
         begin
+          images = []
+          fb_og_tag = document.at_css("meta[@property='og:image']")
+
+          twitter_og_tag = document.at_css("meta[@property='twitter:image:src']") || document.at_css("meta[@property='twitter:image']")
+
           fb_tag = document.at_css("link[@rel='image_src']")
-          if fb_tag
-            [expand_relative_path(fb_tag['href']) || DEFAULT_IMAGE]
+
+          if fb_og_tag
+            images = [expand_relative_path(fb_og_tag.attribute('content').value || DEFAULT_IMAGE)]
+          elsif twitter_og_tag
+            images = [expand_relative_path(twitter_og_tag.attribute('content').value || DEFAULT_IMAGE)]
+          elsif fb_tag
+            images = [expand_relative_path(fb_tag['href']) || DEFAULT_IMAGE]
           else
+            puts "else"
             images = document.search('img').map do |img|
               if !img.attribute('src').nil? && img.attribute('src').content =~ /\.(gif|png|jpe?g|bmp)[^\.]*$/i
                 expand_relative_path(img.attribute('src').content)
@@ -34,6 +44,9 @@ module Scrapers
             end.compact
             images.empty? ? images << DEFAULT_IMAGE : images
           end
+          images
+        rescue Exception => e
+          puts e
         end
       end
 
