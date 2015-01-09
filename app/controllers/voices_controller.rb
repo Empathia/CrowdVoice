@@ -37,7 +37,7 @@ class VoicesController < ApplicationController
 
     @posts = Post.find_by_sql(query)
 
-    @tweets = @voice.tweets.limit(100)
+    @tweets = @voice.tweets.order('created_at desc').limit(100)
 
     if request.format.html?
       @blocks = @voice.blocks.map(&:data_parsed)
