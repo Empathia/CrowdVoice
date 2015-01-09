@@ -57,7 +57,7 @@ task :fetch_tweets => :environment do
       end
 
       begin
-        results = Twitter.search(term, {:since_id => last_tweet, :count => 20}).results
+        results = Twitter.search("#{term} exclude:retweets exclude:replies", {:since_id => last_tweet, :count => 20}).results
 
         logger.info "\n"
         logger.info "Processing #{results.length} results"
