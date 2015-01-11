@@ -100,7 +100,8 @@ body, p, ol, ul, td, input, button {
 /* light */
 .cv-timeline-element__title,
 .voice-content-type-wrapper .time-ago,
-.cv-backstory-overlay__info-date {
+.cv-backstory-overlay__info-date,
+.cv-link-gallery .error-message__non-compatible-protocol .default-text {
   font-family: 'source_sans_prolight', sans-serif;
   font-weight: normal;
 }
@@ -132,7 +133,8 @@ h1, h2, h3, h4, h5,
 .notification-bar .close-message,
 .tweets-sidebar .close,
 .top-left-navigation.active .menu-item.active:after,
-.menu-item .menu-link {
+.menu-item .menu-link,
+.cv-link-gallery .error-message__non-compatible-protocol .primary-text {
   font-family: 'source_sans_prosemibold', sans-serif;
   font-weight: normal;
 }

@@ -1,17 +1,20 @@
 Class('LinkOverlay').inherits(Widget)({
+    /**
+     * Holds the url template for facebook share.
+     * @property FACEBOOK_URL_BASE <private> [String]
+     */
+    FACEBOOK_URL_BASE : "http://facebook.com/sharer.php?",
+
+    /**
+     * Holds the twitter url template.
+     * @property TWITTER_URL_BASE <private> [String]
+     */
+    TWITTER_URL_BASE : "http://twitter.com/intent/tweet?",
+
+    _reHTTPS : new RegExp("^https:"),
+
     prototype : {
-        /**
-         * Holds the url template for facebook share.
-         * @property FACEBOOK_URL_BASE <private> [String]
-         */
-        FACEBOOK_URL_BASE : "http://facebook.com/sharer.php?",
-
-        /**
-         * Holds the twitter url template.
-         * @property TWITTER_URL_BASE <private> [String]
-         */
-        TWITTER_URL_BASE : "http://twitter.com/intent/tweet?",
-
+        isHTTPS : false,
         customName : null,
         animationSpeed : 400,
         _nextArrowElement : null,
@@ -22,6 +25,7 @@ Class('LinkOverlay').inherits(Widget)({
         _twitterButtonElement : null,
         _flagButtonElement : null,
         _iframeElement : null,
+        _cannotLoadIframeMessageElement : null,
         _document : null,
         _onboardingTooltip : null,
         _onboardingCookie : 'link-overlay-navigation',
@@ -34,6 +38,7 @@ Class('LinkOverlay').inherits(Widget)({
         init : function init(config) {
             Widget.prototype.init.call(this, config);
 
+            this.isHTTPS = this.constructor._reHTTPS.test(window.location.protocol);
             this._document = $(document);
             this.customName = this.element.data('custom-name');
             this._nextArrowElement = this.element.find('.voice-arrow.next');
@@ -41,6 +46,7 @@ Class('LinkOverlay').inherits(Widget)({
             this._closeButtonElement = this.element.find('.js-back-to-voice-button');
             this._sourceButtonElement = this.element.find('.js-link-gallery-source-button');
             this._iframeElement = this.element.find('iframe');
+            this._cannotLoadIframeMessageElement = this.element.find('.error-message__non-compatible-protocol');
             this._facebookButtonElement = this.element.find('.actions .facebook');
             this._twitterButtonElement = this.element.find('.actions .twitter');
             this._flagButtonElement = this.element.find('.flag-div .flag');
@@ -134,11 +140,21 @@ Class('LinkOverlay').inherits(Widget)({
          * @return this [LinkOverlay]
          */
         _updateDynamicSources : function _updateDynamicSources(voiceElement) {
-            this._facebookButtonElement[0].href = this.FACEBOOK_URL_BASE + "u=" + voiceElement.URL;
-            this._twitterButtonElement[0].href = this.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;
+            this._facebookButtonElement[0].href = this.constructor.FACEBOOK_URL_BASE + "u=" + voiceElement.URL;
+            this._twitterButtonElement[0].href = this.constructor.TWITTER_URL_BASE + "text=" + encodeURIComponent(voiceElement.title) + "&url=" + voiceElement.URL + "&via=" + this.customName;
             this._flagButtonElement[0].href = "/" + window.currentVoice.slug + "/posts/" + voiceElement.id + "/votes.json?rating=" + ($(voiceElement.sourceElement).data('voted') ? 1 : -1);
-            this._sourceButtonElement[0].href = voiceElement.postURL;
+            this._sourceButtonElement.attr('href', voiceElement.postURL);
             this._iframeElement[0].src = window.location.protocol + "//" + window.location.host + "/home/redirect_to?url=" + voiceElement.postURL;
+
+            this._iframeElement.show();
+            this._cannotLoadIframeMessageElement.hide();
+
+            if (this.isHTTPS) {
+                if (this.constructor._reHTTPS.test(voiceElement.postURL) === false) {
+                    this._iframeElement.hide();
+                    this._cannotLoadIframeMessageElement.show();
+                }
+            }
 
             this._flagButtonElement.unbind('click').bind('click', function() {
                 $.ajax({
@@ -277,6 +293,7 @@ Class('LinkOverlay').inherits(Widget)({
             this._closeButtonElement = null;
             this._sourceButtonElement = null;
             this._iframeElement = null;
+            this._cannotLoadIframeMessageElement = null;
             this._facebookButtonElement = null;
             this._twitterButtonElement = null;
             this._flagButtonElement = null;
