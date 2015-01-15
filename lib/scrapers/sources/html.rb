@@ -30,20 +30,21 @@ module Scrapers
           fb_tag = document.at_css("link[@rel='image_src']")
 
           if fb_og_tag
-            images = [expand_relative_path(fb_og_tag.attribute('content').value || DEFAULT_IMAGE)]
+            images.push(expand_relative_path(fb_og_tag.attribute('content').value || DEFAULT_IMAGE))
           elsif twitter_og_tag
-            images = [expand_relative_path(twitter_og_tag.attribute('content').value || DEFAULT_IMAGE)]
+            images.push(expand_relative_path(twitter_og_tag.attribute('content').value || DEFAULT_IMAGE))
           elsif fb_tag
-            images = [expand_relative_path(fb_tag['href']) || DEFAULT_IMAGE]
-          else
-            puts "else"
-            images = document.search('img').map do |img|
-              if !img.attribute('src').nil? && img.attribute('src').content =~ /\.(gif|png|jpe?g|bmp)[^\.]*$/i
-                expand_relative_path(img.attribute('src').content)
-              end
-            end.compact
-            images.empty? ? images << DEFAULT_IMAGE : images
+            images.push(expand_relative_path(fb_tag['href'] || DEFAULT_IMAGE))
           end
+          
+          document.search('img').map do |img|
+            if !img.attribute('src').nil? && img.attribute('src').content =~ /\.(gif|png|jpe?g|bmp)[^\.]*$/i
+              images.push(expand_relative_path(img.attribute('src').content))
+            end
+          end
+
+          images.empty? ? images << DEFAULT_IMAGE : images
+          
           images
         rescue Exception => e
           puts e
