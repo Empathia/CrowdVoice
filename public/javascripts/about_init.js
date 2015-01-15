@@ -108,18 +108,19 @@ $(function() {
             submit_subscribe.attr('disabled', false);
         })
         .bind('ajax:success', function(xhr, data, status) {
-            if (data.created === true) {
-                // added
-                // input_subscribe.removeClass('error').addClass('success');
-                // feedback.removeClass('error').addClass('success').html('Subscribed - look for the confirmation email!');
-                window.locaton = window.location.pathname + '?tnx=Subscribed - look for the confirmation email!';
-                return;
-            }
+            debugger;
             if (data.created === false && data.error) {
                 // already subscribed
                 input_subscribe.removeClass('success').addClass('error').focus();
                 feedback.removeClass('success').addClass('error').html("Email is already subscribed");
                 return;
+            }
+
+            if (data.created === true) {
+                // added
+                // input_subscribe.removeClass('error').addClass('success');
+                // feedback.removeClass('error').addClass('success').html('Subscribed - look for the confirmation email!');
+                window.location = window.location.pathname + '?tnx=Subscribed - look for the confirmation email!';
             }
         })
         .bind('ajax:error', function(e) {

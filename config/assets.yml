@@ -250,6 +250,7 @@ stylesheets:
     - public/stylesheets/skin/modules/tweets-sidebar.css
     - public/stylesheets/layout/modules/about.css
     - public/stylesheets/skin/modules/about.css
+    - public/stylesheets/skin/modules/notifications.css
   mediafeed_pack:
     - *defaults
     - public/stylesheets/jscrollpane.css
