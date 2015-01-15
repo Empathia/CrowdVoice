@@ -108,7 +108,6 @@ $(function() {
             submit_subscribe.attr('disabled', false);
         })
         .bind('ajax:success', function(xhr, data, status) {
-            debugger;
             if (data.created === false && data.error) {
                 // already subscribed
                 input_subscribe.removeClass('success').addClass('error').focus();
