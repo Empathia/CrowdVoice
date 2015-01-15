@@ -22,6 +22,52 @@ task :recreate_images => :environment do
   end
 end
 
+desc "Test mailchimp"
+task :mailchimp => :environment do
+  Gibbon::API.api_key = "0c65b3972885f3fb7007ba52c668568d-us1"
+
+  list = Gibbon::API.lists.list({:filters => {:list_name => 'test'}})
+
+  list_id = list['data'][0]['id']
+
+  folder_id = Gibbon::API.folders.list({:type => 'campaign'})[0]['folder_id']
+
+  c = Gibbon::API.campaigns.create({
+    :type => "regular", 
+    :options => {
+      :list_id => list_id, 
+      :subject => "Test Campaign", 
+      :from_email => "sergio@delagarza.io", 
+      :from_name => "Darth Vader", 
+      :generate_text => true,
+      :folder_id => folder_id
+    }, 
+    :content => {
+      :html => "<html><head></head><body><h1>Foo</h1><p>Bar</p></body></html>"
+    }
+  });
+
+  response = Gibbon::API.campaigns.send({:cid => c['id']})
+
+  puts "Sending original campaign #{response.as_json}"
+
+  sleep 20
+  
+  puts "Modifying campaign content"
+
+  Gibbon::API.campaigns.update({ 
+    :cid => c['id'], 
+    :name => 'content', 
+    :value => { 
+      :html => '<html><head></head><body><h1>Darth</h1><p>Vader rules</p></body></html>'
+    }
+  })
+
+  response = Gibbon::API.campaigns.send({:cid => c['id']})
+
+  puts "Sending modified campaign #{response.as_json}"
+end
+
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
   logger = Logger.new("/data/crowdvoice/shared/log/fetch_tweets.log")
