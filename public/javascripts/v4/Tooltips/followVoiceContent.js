@@ -95,18 +95,26 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
 
             this.element.bind('submit', function(ev) {
                 ev.preventDefault();
-
+                this.clearFormErrors();
                 console.log('form submit');
+                console.log('email =>', this._emailElement.val());
                 console.log('option selected =>', this._radioOptionsElements.filter(':checked').val());
 
-                this.clearFormErrors();
-
-                if (!this._emailRe.test()) {
+                if (!this._emailRe.test(this._emailElement.val())) {
                     this._showFormErrors();
+                    return;
                 }
 
-                // on success
-                // this._successMessageElement.show();
+                var data = {
+                    email : this._emailElement.val(),
+                    ocurrence : this._radioOptionsElements.filter(':checked').val(),
+                    id : window.currentVoice.id
+                }
+
+                $.post('/follow_voice', data, function(response) {
+                    followVoiceTooltip._successMessageElement.show();
+                }, 'json');
+
             }.bind(this));
 
             this._emailElement.bind('keydown', function() {
@@ -116,7 +124,7 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
             this._okButton.bind('click', function() {
                 CV.headerNavWidget.followVoiceTooltip.deactivate();
                 this._successMessageElement.hide();
-            });
+            }.bind(this));
 
             return this;
         },

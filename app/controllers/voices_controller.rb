@@ -15,6 +15,46 @@ class VoicesController < ApplicationController
     end
   end
 
+  def follow
+    list_id = "b7a57bc096"
+
+    Gibbon::API.api_key = "0c65b3972885f3fb7007ba52c668568d-us1"
+
+    Gibbon::API.lists.subscribe({
+      :id => list_id,
+      :email => {
+        :email => params[:email]
+      },
+      :update_existing => true
+    })
+
+    segments = Gibbon::API.lists.static_segments({:id => list_id})
+
+    segment_id = false
+    segments.each do |segment|
+      if segment["name"] == "#{params[:id]}-#{params[:ocurrence]}"
+        segment_id = segment["id"]
+        break
+      end
+    end
+
+    if segment_id
+      segment_member_add = Gibbon::API.lists.static_segment_members_add({
+        :id => list_id,
+        :batch => [
+          {:email => params[:email]}
+        ],
+        :seg_id => segment_id
+      })
+
+      if segment_member_add["success_count"]
+        puts segment_member_add["success_count"]
+        render :json => segment_member_add, :layout => false
+      end
+    end
+
+  end
+
   def show
     slug   = Slug.find_by_text!(params[:id])
 
