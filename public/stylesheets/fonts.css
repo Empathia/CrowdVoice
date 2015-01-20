@@ -134,7 +134,9 @@ h1, h2, h3, h4, h5,
 .tweets-sidebar .close,
 .top-left-navigation.active .menu-item.active:after,
 .menu-item .menu-link,
-.cv-link-gallery .error-message__non-compatible-protocol .primary-text {
+.cv-link-gallery .error-message__non-compatible-protocol .primary-text,
+.blog-widget-title,
+.follow-widget-tooltip .title {
   font-family: 'source_sans_prosemibold', sans-serif;
   font-weight: normal;
 }

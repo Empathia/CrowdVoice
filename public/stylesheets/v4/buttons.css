@@ -57,9 +57,14 @@
 
 .cv-button--medium {
   font-size: 18px;
-  padding: .4em 1em;
+  padding: .45em 1em .35em;
   height: auto;
 }
+  .cv-button--medium:active,
+  .cv-button--medium.active {
+    padding-top: .5em;
+    padding-bottom: .3em;
+  }
 
 /**
  * Colors

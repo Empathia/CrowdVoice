@@ -14,7 +14,7 @@
 
     backstoryTimelineWidget = new CV.BackstoryController();
 
-    new CV.VoiceHeaderNav({
+    CV.headerNavWidget = new CV.VoiceHeaderNav({
         element : $('.voice-info')
     });
 
