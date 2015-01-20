@@ -22,6 +22,116 @@ task :recreate_images => :environment do
   end
 end
 
+desc "Test mailchimp"
+task :create_mailchimp_segments => :environment do
+  Gibbon::API.api_key = "0c65b3972885f3fb7007ba52c668568d-us1"
+
+  # CrowdVoice followers list
+  list_id = "b7a57bc096"
+
+  # CrowdVoice followers campaigns folder
+  folder_id = "48405"
+
+  @voices = Voice.all
+
+  ocurrences = [
+    "daily",
+    "weekly",
+    "biweekly",
+    "monthly",
+    "quarterly",
+    "biannual",
+    "annualy"
+  ]
+  @voices.each do |voice|
+    ocurrences.each do |ocurrence|
+      segment_name = "#{voice.id}-#{ocurrence}"
+      puts segment_name
+      
+      # Add the static Segment
+      segment_id = Gibbon::API.lists.static_segment_add({
+        :id => list_id,
+        :name => segment_name,
+      })["id"]
+
+      # Create campaign for this interest group
+      Gibbon::API.campaigns.create({
+        :type => "regular", 
+        :options => {
+          :list_id => list_id, 
+          :subject => "CrowdVoice #{ocurrence} Notification", 
+          :from_email => "director@mideastyouth.com", 
+          :from_name => "CrowdVoice Notifications", 
+          :generate_text => true,
+          :folder_id => folder_id
+        },
+        :segment_opts => {
+          :saved_segment_id => segment_id
+        },
+        :content => {
+          :html => "<html><head></head><body><h1>Foo</h1><p>Bar</p></body></html>"
+        }
+      });
+    
+    end
+    sleep 1
+  end
+
+
+  # Gibbon::API.campaigns.create({
+  #   :type => "regular", 
+  #   :options => {
+  #     :list_id => list_id, 
+  #     :subject => "Test Campaign", 
+  #     :from_email => "sergio@delagarza.io", 
+  #     :from_name => "Darth Vader", 
+  #     :generate_text => true,
+  #     :folder_id => folder_id
+  #   }, 
+  #   :content => {
+  #     :html => "<html><head></head><body><h1>Foo</h1><p>Bar</p></body></html>"
+  #   }
+  # });
+
+  # groupings = Gibbon::API.lists.interest_groupings({
+  #   :id => list_id
+  # })
+
+
+  # test = Gibbon::API.campaigns.segment_test({
+  #   :list_id => list_id,
+  #   :options => {
+  #     :match => 'all',
+  #     :conditions => [
+  #       {
+  #         :field => 'interests-3817',
+  #         :op => 'all',
+  #         :value => ['3']
+  #       }
+  #     ]
+  #   }
+  # })
+
+  # response = Gibbon::API.campaigns.send({:cid => c['id']})
+
+  # puts "Sending original campaign #{response.as_json}"
+
+  # sleep 20
+  
+  # puts "Modifying campaign content"
+
+  # Gibbon::API.campaigns.update({ 
+  #   :cid => c['id'], 
+  #   :name => 'content', 
+  #   :value => { 
+  #     :html => '<html><head></head><body><h1>Darth</h1><p>Vader rules</p></body></html>'
+  #   }
+  # })
+
+  # response = Gibbon::API.campaigns.send({:cid => c['id']})
+
+  # puts "Sending modified campaign #{response.as_json}"
+
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
   logger = Logger.new("/data/crowdvoice/shared/log/fetch_tweets.log")
