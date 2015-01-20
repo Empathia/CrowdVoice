@@ -76,62 +76,9 @@ task :create_mailchimp_segments => :environment do
     end
     sleep 1
   end
+end
 
-
-  # Gibbon::API.campaigns.create({
-  #   :type => "regular", 
-  #   :options => {
-  #     :list_id => list_id, 
-  #     :subject => "Test Campaign", 
-  #     :from_email => "sergio@delagarza.io", 
-  #     :from_name => "Darth Vader", 
-  #     :generate_text => true,
-  #     :folder_id => folder_id
-  #   }, 
-  #   :content => {
-  #     :html => "<html><head></head><body><h1>Foo</h1><p>Bar</p></body></html>"
-  #   }
-  # });
-
-  # groupings = Gibbon::API.lists.interest_groupings({
-  #   :id => list_id
-  # })
-
-
-  # test = Gibbon::API.campaigns.segment_test({
-  #   :list_id => list_id,
-  #   :options => {
-  #     :match => 'all',
-  #     :conditions => [
-  #       {
-  #         :field => 'interests-3817',
-  #         :op => 'all',
-  #         :value => ['3']
-  #       }
-  #     ]
-  #   }
-  # })
-
-  # response = Gibbon::API.campaigns.send({:cid => c['id']})
-
-  # puts "Sending original campaign #{response.as_json}"
-
-  # sleep 20
   
-  # puts "Modifying campaign content"
-
-  # Gibbon::API.campaigns.update({ 
-  #   :cid => c['id'], 
-  #   :name => 'content', 
-  #   :value => { 
-  #     :html => '<html><head></head><body><h1>Darth</h1><p>Vader rules</p></body></html>'
-  #   }
-  # })
-
-  # response = Gibbon::API.campaigns.send({:cid => c['id']})
-
-  # puts "Sending modified campaign #{response.as_json}"
-
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
   logger = Logger.new("/data/crowdvoice/shared/log/fetch_tweets.log")
