@@ -66,6 +66,15 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         _document : null,
         _window : null,
 
+        MIN_SIZE : 520,
+        ARROWS_WIDTH : (84 * 2),
+        SIDEBAR_WIDTH : 310,
+        availableSpaceWidth : null,
+        availableSpaceHeight : null,
+        lastMaxWidth : 0,
+        lastMaxHeight : 0,
+        _temporalImage : null,
+
         /*
          * BackstoryGalleryCarrousel instance reference holder.
          */
@@ -84,7 +93,6 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             this._document = $(document);
             this._backropElement = this.element.find('.cv-backstory-overlay__backdrop');
             this._bodyElement = this.element.find('.cv-backstory-overlay__body');
-            this._shotElement = this.element.find('.cv-backstory-overlay__shot');
             this._imageElement = this.element.find('.cv-backstory-overlay__shot-image > img');
             this._iframeElement = this.element.find('.cv-backstory-overlay__shot-image > iframe');
             this._shotCaptionElement = this.element.find('.cv-backstory-overlay__shot-caption');
@@ -191,17 +199,6 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             year = month = day = date = null;
         },
 
-        W : null,
-        H : null,
-        ASW : null,
-        ASH : null,
-        MD : 520,
-        LW : 0,
-        LH : 0,
-        arrowsWidth : (84 * 2),
-        _imgTmp : null,
-        _$imgTmp : null,
-
         updateImage : function updateImage(data)  {
             this._imageElement.hide();
             this._iframeElement.hide().attr('src', '');
@@ -215,16 +212,13 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             }
 
             if (data.image) {
-                this._imgTmp = new Image();
-                this._imgTmp.src = data.image;
-                this._$imgTmp = $(this._imgTmp);
+                this._temporalImage = $(new Image());
+                this._temporalImage.attr('src', data.image);
 
-                this.W = window.innerWidth
-                this.H = window.innerHeight
-                this.ASW = (this.W - (this.arrowsWidth))
-                this.ASH = (this.H - (40))
+                this.availableSpaceWidth = (window.innerWidth - (this.ARROWS_WIDTH));
+                this.availableSpaceHeight = (window.innerHeight - (40)); // 40 = keep some vertical space
 
-                this._$imgTmp.unbind('load').bind('load', this._imageLoadHandler.bind(this, data));
+                this._temporalImage.unbind('load').bind('load', this._imageLoadHandler.bind(this, data));
             } else {
                 this._iframeElement[0].src = "//www.youtube.com/embed/" + data.videoID;
                 this._iframeElement.show();
@@ -235,51 +229,56 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         },
 
         _imageLoadHandler : function _imageLoadHandler(data, ev) {
-            var iw = ev.currentTarget.naturalWidth,
-                ih = ev.currentTarget.naturalHeight,
-                h = iw > ih,
-                _w, _h, _as;
+            var _newWidth, _newHeight, _aspectRatio;
+            var imageWidth = ev.currentTarget.naturalWidth;
+            var imageHeight = ev.currentTarget.naturalHeight;
 
-            //if (h) {
-                if ((iw + 310) > this.ASW)  {
-                    _w = this.ASW;
-                    _as = Math.min(iw / (this.ASW - 310))
-                //} else if (iw < this.MD) {
-                //    _w = this.MD;
-                } else if (iw < 520) {
-                    _w = 520
-                } else {
-                    _w = iw + 310;
-                }
-
-                //if (_w > this.LW) {
-                    this.LW = _w
-                    this._bodyElement.width(_w);
-                //}
-            //} else {
-
-            if (_as) {
-                _h = ~~((ih / _as) + 76)
-            } else if (ih <= 520) {
-                _h = 520
+            // calc width
+            if ((imageWidth + this.SIDEBAR_WIDTH) >= this.availableSpaceWidth)  {
+                _newWidth = this.availableSpaceWidth;
+                _aspectRatio = Math.min(imageWidth / (this.availableSpaceWidth - 310));
+            } else if (imageWidth < this.MIN_SIZE) {
+                _newWidth = this.MIN_SIZE;
             } else {
-                if ((ih + 76) > this.ASH)  {
-                    _h = this.ASH
-                //} else if (iw < this.MD) {
-                //    _h = this.MD
+                _newWidth = imageWidth + 310;
+            }
+
+            // calc height
+            if (_aspectRatio) {
+                _newHeight = ~~((imageHeight / _aspectRatio) + 76);
+
+                if (_newHeight > this.availableSpaceHeight)  {
+                    _newHeight = this.availableSpaceHeight;
+                }
+            } else if (imageHeight <= this.MIN_SIZE) {
+                _newHeight = this.MIN_SIZE;
+            } else {
+                if ((imageHeight + 76) > this.availableSpaceHeight)  {
+                    _newHeight = this.availableSpaceHeight
+                } else if (imageWidth < this.MIN_SIZE) {
+                    _newHeight = this.MIN_SIZE;
                 } else {
-                    _h = ih + 76
+                    _newHeight = imageHeight + 76;
                 }
             }
-                //if (_h > this.LH) {
-                    this.LH = _h
-                    this._bodyElement.height(_h)
-                //}
-            //}
 
+            // update latest width and height
+            if (_newWidth > this.lastMaxWidth) {
+                this.lastMaxWidth = _newWidth;
+            }
+            _newWidth = this.lastMaxWidth;
+
+            if (_newHeight > this.lastMaxHeight) {
+                this.lastMaxHeight = _newHeight;
+            }
+            _newHeight = this.lastMaxHeight;
+
+            this._bodyElement.width(_newWidth);
+            this._bodyElement.height(_newHeight)
             this._updateGalleryInfo(data);
+            this._temporalImage.unbind('load');
 
-            this._$imgTmp.unbind('load');
+            imageWidth = imageHeight = h = _newWidth = _newHeight = _aspectRatio = null;
         },
 
         /**
@@ -312,9 +311,10 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
         },
 
         _resetVars : function _resetVars() {
-            this.LW = 0; this.LH = 0;
-            this._shotElement.css({height: '', width: ''});
-            this._imageElement.css({height: '', width: ''});
+            this.lastMaxWidth = 0;
+            this.lastMaxHeight = 0;
+            this._bodyElement.css({height: '', width: ''});
+            this._infoBodyScrollableElement.css({height: this.MIN_SIZE});
 
             return this;
         },
