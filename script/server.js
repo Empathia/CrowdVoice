@@ -33,6 +33,16 @@ app.listen(port, function() {
 });
 
 
+var split = function split(a, n) {
+    var len = a.length,out = [], i = 0;
+    while (i < len) {
+        var size = Math.ceil((len - i) / n--);
+        out.push(a.slice(i, i + size));
+        i += size;
+    }
+    return out;
+}
+
 io.sockets.on('connection', function(client) {
   console.log('socket connected');
   
@@ -43,32 +53,33 @@ io.sockets.on('connection', function(client) {
     connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 1 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC', function(err, rows, fields) {
       if (err) throw err;
 
-      var firstPage   = 60;
-      var perPage     = 60;
-      var itemInPage  = 0;
 
       console.log('Results: ', rows.length);
-      
-      rows.forEach(function(row, i) {
-        client.emit('posts-data', {  
-          channel: 'stdout',
-            value: row
-        });
 
-        if (i == firstPage || (i == rows.length - 1 && rows.length < firstPage)) {
+      var pagesCount = Math.round(rows.length / (rows.length / 30) );
+
+      var pages = split(rows, pagesCount);
+
+      pages.forEach(function(page, i) {
+        
+        if (i === 0) {
+          client.emit('page', {  
+            firstPageRows: page,
+            first : true
+          });
           client.emit('firstPageFinished');
-        }
-
-        if (itemInPage == perPage) {
+          
+        } else {
+          client.emit('page', {  
+            firstPageRows: page,
+            first : false
+          });
           client.emit('nextPage');
-          itemInPage = 0; 
         }
 
-        if (i == rows.length - 1) {
+        if (i == pages.length - 1) {
           client.emit('finished');
         }
-
-        itemInPage++;
       });
     });
   });
@@ -80,32 +91,32 @@ io.sockets.on('connection', function(client) {
     connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 0 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC LIMIT 20000', function(err, rows, fields) {
       if (err) throw err;
 
-      var firstPage   = 60;
-      var perPage     = 60;
-      var itemInPage  = 0;
-
       console.log('Results: ', rows.length);
-      
-      rows.forEach(function(row, i) {
-        client.emit('posts-data', {  
-          channel: 'stdout',
-            value: row
-        });
 
-        if (i == firstPage || (i == rows.length - 1 && rows.length < firstPage)) {
+      var pagesCount = Math.round(rows.length / (rows.length / 30) );
+
+      var pages = split(rows, pagesCount);
+
+      pages.forEach(function(page, i) {
+        
+        if (i === 0) {
+          client.emit('page', {  
+            firstPageRows: page,
+            first : true
+          });
           client.emit('firstPageFinished');
-        }
-
-        if (itemInPage == perPage) {
+          
+        } else {
+          client.emit('page', {  
+            firstPageRows: page,
+            first : false
+          });
           client.emit('nextPage');
-          itemInPage = 0; 
         }
 
-        if (i == rows.length - 1) {
+        if (i == pages.length - 1) {
           client.emit('finished');
         }
-        
-        itemInPage++;
       });
     });
   });
