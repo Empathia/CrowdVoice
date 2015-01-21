@@ -24,7 +24,7 @@ $(function () {
     // Move tweets sidebar
     tweetsSidebar.insertBefore( '.main-container--inner' );
 
-    new CV.VoiceHeaderNav({
+    CV.headerNavWidget = new CV.VoiceHeaderNav({
         element : $('.voice-info')
     });
 

@@ -1,14 +1,15 @@
 Class(CV, 'VoiceHeaderNav').inherits(Widget)({
-    _mapElementWrapper : null,
-    _mapLat : 0,
-    _mapLng : 0,
-    _mapButtonElement : null,
-    _voiceMapCreated : false,
-    _mainContainer : null,
-    voiceMapWidget : null,
-    voiceDescriptionTooltip : null,
-
     prototype : {
+        _mapElementWrapper : null,
+        _mapButtonElement : null,
+        _mapLat : 0,
+        _mapLng : 0,
+        _mainContainer : null,
+        _voiceMapCreated : false,
+        voiceMapWidget : null,
+        voiceDescriptionTooltip : null,
+        blogWidget : null,
+        followVoiceTooltip : null,
         init : function(config) {
             Widget.prototype.init.call(this, config);
 
@@ -42,7 +43,6 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
                 leaveTogglerElementEvent : this._tooltipMouseLeaveHandler.bind(this)
             });
 
-
             this.blogWidget = new BlogWidget();
 
             this.embeddableTooltip = new CV.Tooltip({
@@ -64,6 +64,25 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
                 toggler : $('.info-tool.widget a')
             });
 
+            var followVoiceTooltipContent = new CV.FollowVoiceTooltipContent();
+            this.followVoiceTooltip = new CV.Tooltip({
+                html : followVoiceTooltipContent.element,
+                showOnCssHover : false,
+                clickHandler : function() {
+                    if (this.active) {
+                        this.deactivate();
+                    } else {
+                        followVoiceTooltipContent.clearFormErrors();
+                        this.activate();
+                    }
+
+                    return false;
+                },
+                toggler : this.element.find('.js-follow-button'),
+                className : 'follow-widget-tooltip',
+                position : 'bottom'
+            }).render(this.element.find('.follow-button-container'));
+
             return this;
         },
 
@@ -71,7 +90,8 @@ Class(CV, 'VoiceHeaderNav').inherits(Widget)({
             this._mapButtonElement.bind('click', function(){
                 if ($('label.tweets-label input').attr('checked')) {
                     $('label.tweets-label input').click();
-                };
+                }
+
                 if (this.voiceMapWidget.active) {
                     this._mapButtonElement.removeClass('active');
                     this._mapElementWrapper.removeClass('active');

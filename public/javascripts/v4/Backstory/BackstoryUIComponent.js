@@ -43,10 +43,7 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
             this.current = this.elements.indexOf(data);
 
             this.galleryOverlay.update(data);
-
-            if (this.galleryOverlay.active === false) {
-                this.galleryOverlay.activate();
-            }
+            this.galleryOverlay.activate();
 
             return this;
         },

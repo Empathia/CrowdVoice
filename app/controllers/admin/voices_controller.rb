@@ -38,6 +38,55 @@ class Admin::VoicesController < ApplicationController
         User.where(:is_admin => true).each{|user| ::NotifierMailer.voice_submitted(@voice.id, user.email).deliver }
         ::NotifierMailer.voice_has_been_submitted(@voice.id).deliver
       end
+
+      Gibbon::API.api_key = "0c65b3972885f3fb7007ba52c668568d-us1"
+
+      # CrowdVoice followers list
+      list_id = "b7a57bc096"
+
+      # CrowdVoice followers campaigns folder
+      folder_id = "48405"
+
+      ocurrences = [
+        "daily",
+        "weekly",
+        "biweekly",
+        "monthly",
+        "quarterly",
+        "biannual",
+        "annualy"
+      ]
+
+      ocurrences.each do |ocurrence|
+        segment_name = "#{@voice.id}-#{ocurrence}"
+        
+        # Add the static Segment
+        segment_id = Gibbon::API.lists.static_segment_add({
+          :id => list_id,
+          :name => segment_name,
+        })["id"]
+
+        # Create campaign for this interest group
+        Gibbon::API.campaigns.create({
+          :type => "regular", 
+          :options => {
+            :list_id => list_id, 
+            :subject => "CrowdVoice #{ocurrence} Notification", 
+            :from_email => "director@mideastyouth.com", 
+            :from_name => "CrowdVoice Notifications", 
+            :generate_text => true,
+            :folder_id => folder_id
+          },
+          :segment_opts => {
+            :saved_segment_id => segment_id
+          },
+          :content => {
+            :html => "<html><head></head><body><h1>Foo</h1><p>Bar</p></body></html>"
+          }
+        });
+      
+      end
+
       redirect_to @voice, :notice => t('flash.admin.voices.create.notice')
     else
       render :new

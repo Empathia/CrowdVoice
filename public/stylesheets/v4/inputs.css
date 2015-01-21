@@ -5,6 +5,7 @@
   box-shadow: inset 0 2px 0 rgba(0,0,0,.1);
 }
 
+/* ===== Sizes ===== */
 .cv-input--small {
   height: 21px;
 }
@@ -12,6 +13,14 @@
 .cv-input--medium {
   font-size: 15px;
   height: 35px;
+}
+
+/* ===== Style Options ===== */
+.cv-input.error {
+  border-color: #d90000 !important;
+  background-color: #fffcfc;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,.1),
+    0 0 5px rgba(255, 0, 0, .2) !important;
 }
 
 .cv-input--small.cv-input--rounded {

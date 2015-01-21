@@ -67,6 +67,7 @@ CrowdvoiceV2::Application.routes.draw do
    post 'reset_password_notify' => 'sessions#reset_password_notify'
    post 'remote_page_info' => 'posts#remote_page_info'
    post 'notify_js_error' => 'posts#notify_js_error'
+   post 'follow_voice' => 'voices#follow'
 
    controller :pages do
      get 'about'

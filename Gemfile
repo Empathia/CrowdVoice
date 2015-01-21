@@ -39,6 +39,7 @@ gem "haml-rails"
 # gem 'rack', '~> 1.5.2'
 gem 'abstract', '1.0.0'
 gem 'oj'
+gem 'gibbon'
 
 
 group :staging do
