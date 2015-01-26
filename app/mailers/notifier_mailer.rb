@@ -8,7 +8,7 @@ class NotifierMailer < ActionMailer::Base
     get_server_name
     setup_mail(subscription)
     @subject += 'Subscription confirmation'
-    @title = 'WELCOME TO CROWDVOICE'
+    @title = 'WELCOME TO CROWDVOICE Notifications'
     mail(:to => subscription.email, :subject => @subject)
   end
 
@@ -111,6 +111,7 @@ class NotifierMailer < ActionMailer::Base
 
   def setup_mail(subscription)
     @subscription = subscription
+    @type = subscription.type 
     @voice = @subscription.voice
     @subject = '[Crowdvoice] '
   end

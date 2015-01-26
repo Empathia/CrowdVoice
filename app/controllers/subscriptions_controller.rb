@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = @voice.subscriptions.build(params[:subscription])
     if @subscription.save
-      Resque.enqueue(Confirmation, self.id)
+      ::NotifierMailer.subscription_confirmation(@subscription).deliver
       flash[:notice] = "You have subscribed to this voice. Check your inbox!"
     else
       flash[:alert] = @subscription.errors.full_messages.to_sentence
@@ -22,7 +22,6 @@ class SubscriptionsController < ApplicationController
   private
 
   def find_voice
-    slug = Slug.find_by_text(params[:voice_id])
-    @voice = slug.voice
+    @voice = Voice.find(params[:subscription][:voice_id])
   end
 end

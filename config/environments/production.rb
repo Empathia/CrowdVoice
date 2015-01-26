@@ -47,4 +47,14 @@ CrowdvoiceV2::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   #config.force_ssl = true
+
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "sergio@delagarza.io",
+    :password  => "tHc4jRMZFJRb_vnYhwB3Ow", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'crowdvoice.org', # your domain to identify your server when connecting
+  }
 end

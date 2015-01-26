@@ -106,12 +106,14 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
                 }
 
                 var data = {
-                    email : this._emailElement.val(),
-                    ocurrence : this._radioOptionsElements.filter(':checked').val(),
-                    id : window.currentVoice.id
+                    subscription : {
+                        email     : this._emailElement.val(),
+                        type      : this._radioOptionsElements.filter(':checked').val(),
+                        voice_id  : window.currentVoice.id
+                    }
                 }
 
-                $.post('/follow_voice', data, function(response) {
+                $.post('/subscriptions', data, function(response) {
                     followVoiceTooltip._successMessageElement.show();
                 }, 'json');
 
