@@ -19,7 +19,7 @@ class NotifierMailer < ActionMailer::Base
     @user = User.first
     @units = units
     @event = e
-    mail :to => "alejandro@freshout.us",
+    mail :to => "sergio@empathya.agency",
       :subject => "Scraper Notification"
   end
 
@@ -114,7 +114,7 @@ class NotifierMailer < ActionMailer::Base
 
   def setup_mail(subscription)
     @subscription = subscription
-    @type = subscription.type 
+    @frequency = subscription.frequency 
     @voice = @subscription.voice
     @subject = '[Crowdvoice] '
   end

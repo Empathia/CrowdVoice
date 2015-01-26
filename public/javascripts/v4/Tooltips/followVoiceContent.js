@@ -96,9 +96,6 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
             this.element.bind('submit', function(ev) {
                 ev.preventDefault();
                 this.clearFormErrors();
-                console.log('form submit');
-                console.log('email =>', this._emailElement.val());
-                console.log('option selected =>', this._radioOptionsElements.filter(':checked').val());
 
                 if (!this._emailRe.test(this._emailElement.val())) {
                     this._showFormErrors();
@@ -108,12 +105,13 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
                 var data = {
                     subscription : {
                         email     : this._emailElement.val(),
-                        type      : this._radioOptionsElements.filter(':checked').val(),
+                        frequency : this._radioOptionsElements.filter(':checked').val(),
                         voice_id  : window.currentVoice.id
                     }
                 }
 
                 $.post('/subscriptions', data, function(response) {
+                    console.log('Response', response)
                     followVoiceTooltip._successMessageElement.show();
                 }, 'json');
 

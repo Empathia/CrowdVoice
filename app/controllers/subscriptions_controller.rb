@@ -1,19 +1,26 @@
 class SubscriptionsController < ApplicationController
-  before_filter :find_voice
+  before_filter :find_data, :only => :create
 
   def create
-    @subscription = @voice.subscriptions.build(params[:subscription])
+    if @subscription
+      puts "UPDATE ATTRIBUTES"
+      @subscription.update_attributes(params[:subscription])
+    else
+      @subscription = @voice.subscriptions.build(params[:subscription])
+    end
+
     if @subscription.save
       ::NotifierMailer.subscription_confirmation(@subscription).deliver
-      flash[:notice] = "You have subscribed to this voice. Check your inbox!"
+      response = {:message => "You have subscribed to this voice. Check your inbox!"}
     else
-      flash[:alert] = @subscription.errors.full_messages.to_sentence
+      response = {:message => @subscription.errors.full_messages.to_sentence}
     end
-    redirect_to @voice
+    render :json => response, :layout => false
   end
 
   def destroy
     @subscription = Subscription.find_by_email_hash(params[:id])
+    @voice = @subscription.voice
     @subscription.destroy
     flash[:notice] = "You have unsubscribed from this voice."
     redirect_to @voice
@@ -21,7 +28,8 @@ class SubscriptionsController < ApplicationController
 
   private
 
-  def find_voice
-    @voice = Voice.find(params[:subscription][:voice_id])
+  def find_data
+    @voice        = Voice.find(params[:subscription][:voice_id])
+    @subscription = Subscription.find_by_email_and_voice_id(params[:subscription][:email], params[:subscription][:voice_id])
   end
 end
