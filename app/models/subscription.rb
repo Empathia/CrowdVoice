@@ -1,5 +1,6 @@
 class Subscription < ActiveRecord::Base
   belongs_to :voice
+  attr_accessible :frequency, :email, :email_hash, :voice_id
   validates :email, :presence => {
                       :message => "cannot be empty."
                     },

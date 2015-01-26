@@ -6,7 +6,7 @@ gem 'linecache', '0.43'
 gem 'rails', '3.0.9'
 gem "rails3-generators"
 gem 'jquery-rails', '~> 0.2'
-gem 'fog', '0.8.2'
+gem 'fog'
 gem 'json'
 gem 'jbuilder', '~> 0.4.0'
 gem 'resque', :require => "resque/server"
@@ -39,7 +39,7 @@ gem "haml-rails"
 # gem 'rack', '~> 1.5.2'
 gem 'abstract', '1.0.0'
 gem 'oj'
-gem 'gibbon'
+gem 'mandrill-api'
 
 
 group :staging do

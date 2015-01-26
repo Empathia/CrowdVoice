@@ -1,34 +1,89 @@
-<html>
-  <head>
-  </head>
-  <body style="margin: 0; padding: 0">
-    <table cellpadding="0" cellspacing="0" width="100%" height="100%" style="background-color: #dfdfdb;">
-      <tr>
-        <td valign="top">
-          <table cellpadding="0" cellspacing="0" width="100%" style="text-align: center; padding-bottom: 27px;">
-            <tr>
-              <td width="" valign="top"><div style="height: 9px; background-color: #009784; overflow: hidden;"></div></td>
-              <td width="175" valign="top" style="background-color: #ffffff;">
-                <img src="http://c1736512.cdn.cloudfiles.rackspacecloud.com/sidebar.png" style="display: block" width="175" height="524"/>
-              </td>
-              <%= yield %>
-              <td width="" valign="top"><div style="height: 9px; background-color: #009784; overflow: hidden;"></div></td>
-            </tr>
-          </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body {margin: 0}
+</style>
+</head>
+<body>
 
-          <% if defined?(@voice) && defined?(@subscription)%>
-            <table cellpadding="0" cellspacing="0" style="text-align: center; padding-bottom: 27px" width="100%">
-              <tr>
-                <td style="font-size: 13px; color: #848383">
-                  You are receiving this email because you are subscribed to the daily digest for the voice <%= @voice.title %>.<br/>
-                  If you want to stop receiving these emails, you can unsubscribe by following this URL:<br/>
-                  <%= link_to unsubscribe_voice_subscription_url(@voice, @subscription), unsubscribe_voice_subscription_url(@voice, @subscription), :style => "color: #000000; text-decoration: none;" %>
-                </td>
-              </tr>
-            </table>
+
+  <div style="background-color: #000; text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 0 0 40px 0;">
+
+    <!-- header-logo -->
+    <div style="padding: 30px 0 25px 0; text-align: center;">
+      <a href="http://crowdvoice.org/" style="display: inline-block;">
+        <img src="http://myupdated.info/images/v4/notifications/crowdvoice-email-logo.png" alt="Crowdvoice - Tracking Voices of Protest" width="187" height="41"/>
+      </a>
+    </div>
+
+    <!-- main-content -->
+    <center>
+      <div style="display: inline-block; width: 550px; padding: 30px 0 60px 0; background-color: #FFFFFF; color: #4c4b49; border-radius: 5px;">
+
+        <!-- title + date -->
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" style="margin: 0 0 0 -3px;">
+          <tbody>
+            <tr>
+              <td width="50%" style="padding: 0 0 0 30px; text-align: left; background-color: #B6B6B6; border-radius: 2px 0 0 2px;">
+                <div style="font-size: 18px; line-height: 38px; height: 38px; color: #ffffff; text-transform: uppercase; font-weight: bold;">
+                  Voice Subscription Notification
+                </div>
+              </td>
+              <td width="21px">
+                <img src="http://myupdated.info/images/v4/notifications/bg-title.png" width="21px" height="38px" style="display: block;"/>
+              </td>
+              <td style="padding: 0 30px 0 0; text-align: right;">
+                <div style="font-size: 14px; line-height: 38px; color: #b2b2b2;">
+                  <%= Time.now.strftime("%B %d %Y") %>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- message -->
+        <div style="font-size: 15px; line-height: 25px; padding: 50px 30px 18px; text-align: left;">
+          <%= yield %>
+        </div>
+
+        <img src="http://myupdated.info/images/v4/notifications/bg-middle.png" width="550" height="92"/>
+
+        <div style="padding: 50px 0 0 0;">
+          <% case @voice.theme%>
+          <% when "orange" %>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #ee9d2b; border-bottom: 3px solid #d38412;">GO TO VOICE</a>
+          <% when "red" %>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #F10F2A; border-bottom: 3px solid #D80D25;">GO TO VOICE</a>
+          <% when "blue" %>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #4DB5FF; border-bottom: 3px solid #45A2E5;">GO TO VOICE</a>
+          <% when "yellow" %>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #EBC91C; border-bottom: 3px solid #D3B419;">GO TO VOICE</a>
+          <% when "green" %>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #50B347; border-bottom: 3px solid #47A03F;">GO TO VOICE</a>
           <% end %>
-        </td>
-      </tr>
-    </table>
-  </body>
+        </div>
+
+      </div>
+
+      <!-- disclaimer -->
+      <!-- small text message -->
+      <div style="font-size: 13px; line-height: 23px; color: #a6a39d; font-style: italic; padding: 30px;">
+        <p style="margin: 0 0 15px; font-weight: bold;">This is a confirmation for your subscription to the voice <%= @voice.title %> at <a href="http://crowdvoice.org">Crowdvoice.org</a>.</p>
+
+        <p style="margin: 0 0 15px;">You will receive a <strong><%= @subscription.frequency %></strong> digest with updates regarding this voice.</p>
+
+        <p style="margin: 0 0 15px;">If you want to stop receiving these emails, you can unsubscribe by following this URL:<br/>
+                <%= link_to unsubscribe_subscription_url(@subscription), unsubscribe_subscription_url(@subscription), :style => "color: #FFF; text-decoration: underline;" %><p>
+      </div>
+      <div style="font-size: 13px; padding: 30px 0 0 0; color: #66635c;">
+        <a href="http://crowdvoice.org" style="color: <%= @voice.theme %>">crowdvoice.org</a>
+      </div>
+
+    </center>
+  </div>
+
+</body>
 </html>

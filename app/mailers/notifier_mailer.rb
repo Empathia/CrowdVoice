@@ -8,15 +8,18 @@ class NotifierMailer < ActionMailer::Base
     get_server_name
     setup_mail(subscription)
     @subject += 'Subscription confirmation'
-    @title = 'WELCOME TO CROWDVOICE'
+    @title = 'WELCOME TO CROWDVOICE Notifications'
     mail(:to => subscription.email, :subject => @subject)
+
+    headers['X-MC-PreserveRecipients']  = "false"
+    headers['X-MC-Autotext']            = "true"
   end
 
   def send_notification(units, e)
     @user = User.first
     @units = units
     @event = e
-    mail :to => "alejandro@freshout.us",
+    mail :to => "sergio@empathya.agency",
       :subject => "Scraper Notification"
   end
 
@@ -27,6 +30,14 @@ class NotifierMailer < ActionMailer::Base
     @subject = 'Reset password confirmation'
     @title = 'RESET PASSWORD INSTRUCTIONS FOR CROWDVOICE ACCOUNT'
     mail(:to => user.email, :from => 'send@crowdvoice.org', :subject => @subject)
+  end
+
+  def notification(subscription, count)
+    get_server_name
+    @count = count
+    setup_mail(subscription)
+    @subject += "#{@frequency} digest for #{@voice.title}"
+    mail(:to => subscription.email, :subject => @subject)
   end
 
   # Digest for today's contents added to the voice
@@ -111,6 +122,7 @@ class NotifierMailer < ActionMailer::Base
 
   def setup_mail(subscription)
     @subscription = subscription
+    @frequency = subscription.frequency 
     @voice = @subscription.voice
     @subject = '[Crowdvoice] '
   end

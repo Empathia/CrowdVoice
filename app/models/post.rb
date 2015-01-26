@@ -21,7 +21,13 @@ class Post < ActiveRecord::Base
 
   scope :approved, where(:approved => true)
   scope :unapproved, where(:approved => false)
-  scope :digest, where("created_at BETWEEN ? AND ?", Time.now.utc.beginning_of_day, Time.now.utc.end_of_day)
+  scope :daily, where("created_at BETWEEN ? AND ?", 1.day.ago, Time.now.utc.end_of_day)
+  scope :weekly, where("created_at BETWEEN ? AND ?", 1.week.ago, Time.now.utc.end_of_day)
+  scope :biweekly, where("created_at BETWEEN ? AND ?", 2.weeks.ago, Time.now.utc.end_of_day)
+  scope :monthly, where("created_at BETWEEN ? AND ?", 1.month.ago, Time.now.utc.end_of_day)
+  scope :quarterly, where("created_at BETWEEN ? AND ?", 3.months.ago, Time.now.utc.end_of_day)
+  scope :biannually, where("created_at BETWEEN ? AND ?", 6.months, Time.now.utc.end_of_day)
+  scope :annually, where("created_at BETWEEN ? AND ?", 1.year.ago, Time.now.utc.end_of_day)
   scope :by_type, lambda{ |filter| where(:source_type => filter) }
   scope :by_tags, lambda{ |tags| tagged_with(tags, :any => true) }
 

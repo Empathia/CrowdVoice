@@ -22,62 +22,6 @@ task :recreate_images => :environment do
   end
 end
 
-desc "Test mailchimp"
-task :create_mailchimp_segments => :environment do
-  Gibbon::API.api_key = "0c65b3972885f3fb7007ba52c668568d-us1"
-
-  # CrowdVoice followers list
-  list_id = "b7a57bc096"
-
-  # CrowdVoice followers campaigns folder
-  folder_id = "48405"
-
-  @voices = Voice.all
-
-  ocurrences = [
-    "daily",
-    "weekly",
-    "biweekly",
-    "monthly",
-    "quarterly",
-    "biannual",
-    "annualy"
-  ]
-  @voices.each do |voice|
-    ocurrences.each do |ocurrence|
-      segment_name = "#{voice.id}-#{ocurrence}"
-      puts segment_name
-      
-      # Add the static Segment
-      segment_id = Gibbon::API.lists.static_segment_add({
-        :id => list_id,
-        :name => segment_name,
-      })["id"]
-
-      # Create campaign for this interest group
-      Gibbon::API.campaigns.create({
-        :type => "regular", 
-        :options => {
-          :list_id => list_id, 
-          :subject => "CrowdVoice #{ocurrence} Notification", 
-          :from_email => "director@mideastyouth.com", 
-          :from_name => "CrowdVoice Notifications", 
-          :generate_text => true,
-          :folder_id => folder_id
-        },
-        :segment_opts => {
-          :saved_segment_id => segment_id
-        },
-        :content => {
-          :html => "<html><head></head><body><h1>Foo</h1><p>Bar</p></body></html>"
-        }
-      });
-    
-    end
-    sleep 1
-  end
-end
-
   
 desc "Fetch tweets for voices"
 task :fetch_tweets => :environment do
