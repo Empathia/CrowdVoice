@@ -68,11 +68,11 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
                 },
                 {
                     label : 'Every 6 months',
-                    value : 'biannual'
+                    value : 'biannually'
                 },
                 {
                     label : 'yearly',
-                    value : 'annualy'
+                    value : 'annually'
                 }
             ];
 
@@ -121,9 +121,10 @@ Class(CV, 'FollowVoiceTooltipContent').inherits(Widget)({
                 followVoiceTooltip.clearFormErrors();
             });
 
-            this._okButton.bind('click', function() {
+            this._okButton.bind('click', function(e) {
                 CV.headerNavWidget.followVoiceTooltip.deactivate();
                 this._successMessageElement.hide();
+                e.preventDefault();
             }.bind(this));
 
             return this;

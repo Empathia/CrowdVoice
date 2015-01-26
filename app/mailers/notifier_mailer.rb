@@ -32,6 +32,14 @@ class NotifierMailer < ActionMailer::Base
     mail(:to => user.email, :from => 'send@crowdvoice.org', :subject => @subject)
   end
 
+  def notification(subscription, count)
+    get_server_name
+    @count = count
+    setup_mail(subscription)
+    @subject += "#{@frequency} digest for #{@voice.title}"
+    mail(:to => subscription.email, :subject => @subject)
+  end
+
   # Digest for today's contents added to the voice
   def daily_digest(subscription)
     get_server_name
