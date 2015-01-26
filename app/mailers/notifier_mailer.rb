@@ -10,6 +10,8 @@ class NotifierMailer < ActionMailer::Base
     @subject += 'Subscription confirmation'
     @title = 'WELCOME TO CROWDVOICE Notifications'
     mail(:to => subscription.email, :subject => @subject)
+
+    headers['X-MC-PreserveRecipients'] = "false"
   end
 
   def send_notification(units, e)
