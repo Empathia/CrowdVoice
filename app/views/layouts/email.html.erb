@@ -29,7 +29,7 @@
             <tr>
               <td width="50%" style="padding: 0 0 0 30px; text-align: left; background-color: #B6B6B6; border-radius: 2px 0 0 2px;">
                 <div style="font-size: 18px; line-height: 38px; height: 38px; color: #ffffff; text-transform: uppercase; font-weight: bold;">
-                  Voice Update
+                  Voice Subscription Notification
                 </div>
               </td>
               <td width="21px">
@@ -37,7 +37,7 @@
               </td>
               <td style="padding: 0 30px 0 0; text-align: right;">
                 <div style="font-size: 14px; line-height: 38px; color: #b2b2b2;">
-                  Octuber 22, 2014
+                  <%= Time.now.strftime("%B %d %Y") %>
                 </div>
               </td>
             </tr>
@@ -46,13 +46,14 @@
 
         <!-- message -->
         <div style="font-size: 15px; line-height: 25px; padding: 50px 30px 18px; text-align: left;">
-          <p style="margin: 0 0 15px; font-weight: bold;">Hola,</p>
-          <p style="margin: 0 0 15px;">Gracias por tu preferencia. Some <b>bold</b> text, <i>italic</i>, <em>emphasis</em>, <u>underlined</u>.
+          <%= yield %>
         </div>
 
         <!-- small text message -->
         <div style="font-size: 13px; line-height: 23px; color: #a6a39d; font-style: italic; padding: 30px;">
-            Si hay algo que podamos hacer para mejorar tu experiencia, contáctanos al correo <b>clientes@crowdvoice.org</b>
+            <p style="margin: 0 0 15px; font-weight: bold;">This is a confirmation for your subscription to the voice <%= @voice.title %> at <a href="http://crowdvoice.org">Crowdvoice.org</a>.</p>
+
+          <p style="margin: 0 0 15px;">You will receive a <strong><%= @subscription.type %></strong> digest with updates regarding this voice.</p>
         </div>
 
         <img src="http://myupdated.info/images/v4/notifications/bg-middle.png" width="550" height="92"/>
@@ -60,15 +61,15 @@
         <div style="padding: 50px 0 0 0;">
           <% case @voice.theme%>
           <% when "orange" %>
-          <a href="#" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #ee9d2b; border-bottom: 3px solid #d38412;">GO TO VOICE</a>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #ee9d2b; border-bottom: 3px solid #d38412;">GO TO VOICE</a>
           <% when "red" %>
-          <a href="#" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #F10F2A; border-bottom: 3px solid #D80D25;">GO TO VOICE</a>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #F10F2A; border-bottom: 3px solid #D80D25;">GO TO VOICE</a>
           <% when "blue" %>
-          <a href="#" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #4DB5FF; border-bottom: 3px solid #45A2E5;">GO TO VOICE</a>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #4DB5FF; border-bottom: 3px solid #45A2E5;">GO TO VOICE</a>
           <% when "yellow" %>
-          <a href="#" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #EBC91C; border-bottom: 3px solid #D3B419;">GO TO VOICE</a>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #EBC91C; border-bottom: 3px solid #D3B419;">GO TO VOICE</a>
           <% when "green" %>
-          <a href="#" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #50B347; border-bottom: 3px solid #47A03F;">GO TO VOICE</a>
+          <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #50B347; border-bottom: 3px solid #47A03F;">GO TO VOICE</a>
           <% end %>
         </div>
 
