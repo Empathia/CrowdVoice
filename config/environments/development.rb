@@ -31,8 +31,8 @@ CrowdvoiceV2::Application.configure do
     :address   => "smtp.mandrillapp.com",
     :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
     :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "sergio@delagarza.io",
-    :password  => "tHc4jRMZFJRb_vnYhwB3Ow", # SMTP password is any valid API key
+    :user_name => "director@mideastyouth.com",
+    :password  => "h5BaHIgVRJSrAapteGRA7Q", # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
     :domain => 'crowdvoice.org', # your domain to identify your server when connecting
   }
