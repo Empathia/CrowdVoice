@@ -38,6 +38,9 @@ class NotifierMailer < ActionMailer::Base
     setup_mail(subscription)
     @subject += "#{@frequency} digest for #{@voice.title}"
     mail(:to => subscription.email, :subject => @subject)
+
+    headers['X-MC-PreserveRecipients']  = "false"
+    headers['X-MC-Autotext']            = "true"
   end
 
   # Digest for today's contents added to the voice
