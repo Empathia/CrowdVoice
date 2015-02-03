@@ -15,8 +15,8 @@ class VoicesSweeper < ActionController::Caching::Sweeper
 
   private
   def expire_cache
-    expire_fragment("#{current_connection}_aside_menu_bar")
-    expire_fragment("#{current_connection}_aside_menu_bar_gaza")
+    expire_fragment("#{current_connection}_aside_menu_bar_new")
+    expire_fragment("#{current_connection}_aside_menu_bar_gaza_new")
     expire_fragment("#{current_connection}_homepage")
   end
 end
