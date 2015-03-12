@@ -133,8 +133,6 @@
       var fragment = document.createDocumentFragment();
       socket.on('page', function(data) {
 
-        console.log('data', data)
-        
         _.each(data.firstPageRows, function(post){
           // var post = data.value;
           CV.voicesContainer.preloadedVoices.push(post);
@@ -183,7 +181,6 @@
       });
 
       socket.on('firstPageFinished', function() {
-        console.log('firstPageFinished')
         // clearInterval(placeholderInterval);
         $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
@@ -208,7 +205,6 @@
 
 
       socket.on('finished', function(data) {
-        console.log('finished')
         CV.voicesContainer.element.append(fragment);
         CV.timeline.progress.deactivate();
         CV.timeline.update();
