@@ -56,7 +56,7 @@ io.sockets.on('connection', function(client) {
 
       console.log('Results: ', rows.length);
 
-      var pagesCount = Math.round(rows.length / (rows.length / 30) );
+      var pagesCount = Math.round(rows.length / 30 ) || 1;
 
       var pages = split(rows, pagesCount);
 
@@ -67,6 +67,7 @@ io.sockets.on('connection', function(client) {
             firstPageRows: page,
             first : true
           });
+
           client.emit('firstPageFinished');
           
         } else {
@@ -93,7 +94,7 @@ io.sockets.on('connection', function(client) {
 
       console.log('Results: ', rows.length);
 
-      var pagesCount = Math.round(rows.length / (rows.length / 30) );
+      var pagesCount = Math.round(rows.length / 30 ) || 1;
 
       var pages = split(rows, pagesCount);
 

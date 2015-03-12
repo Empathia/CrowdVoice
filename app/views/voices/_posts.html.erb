@@ -37,7 +37,7 @@
   </div>
 
   <script type="text/javascript">
-    $(document).ready(function(){
+    $(window).load(function(){
 
       var protocol = window.location.protocol;
 
@@ -132,6 +132,8 @@
       var postCounter = 0;
       var fragment = document.createDocumentFragment();
       socket.on('page', function(data) {
+
+        console.log('data', data)
         
         _.each(data.firstPageRows, function(post){
           // var post = data.value;
@@ -171,14 +173,17 @@
 
           postCounter++;
         });
+
         if (data.first) {
           CV.voicesContainer.element.append(fragment);
           fragment = document.createDocumentFragment();
         };
+
         // postCounter = 0;
       });
 
       socket.on('firstPageFinished', function() {
+        console.log('firstPageFinished')
         // clearInterval(placeholderInterval);
         $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
@@ -203,6 +208,7 @@
 
 
       socket.on('finished', function(data) {
+        console.log('finished')
         CV.voicesContainer.element.append(fragment);
         CV.timeline.progress.deactivate();
         CV.timeline.update();

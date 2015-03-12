@@ -31,7 +31,7 @@
               <div class="label-form slug">
                 <%= slug_fields.label :is_default, 'Default' %>
                 <%= slug_fields.check_box :is_default, :style => "width:26px;" %>
-                <%= slug_fields.text_field :text, :label => 'Slug', :disabled => true %>
+                <%= slug_fields.text_field :text, :label => 'Slug' %>
                 <%= render 'shared/error_messages_for', :object => @voice, :field => :slugs %>
               </div>
             </div>
