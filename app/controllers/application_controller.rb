@@ -9,17 +9,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :gaza_path_helper, :get_excerpt, :subdomain_present?, :current_connection
 
   def select_connection
+    ConnectionAdapter.connect_to
     # 'SOME_PREFIX_' + is optional, but would make DBs easier to delineate
-    begin
-      if subdomain_present?
-        ConnectionAdapter.connect_to(request.subdomain)
-      else
-        ConnectionAdapter.connect_to
-      end
-    rescue
-      ConnectionAdapter.restore_connection
-      redirect_to root_url(:host => request.domain, :port => request.port)
-    end
+    # begin
+    #   if subdomain_present?
+    #     ConnectionAdapter.connect_to(request.subdomain)
+    #   else
+    #     ConnectionAdapter.connect_to
+    #   end
+    # rescue
+    #   ConnectionAdapter.restore_connection
+    #   redirect_to root_url(:host => request.domain, :port => request.port)
+    # end
   end
 
   def set_mailer_host

@@ -51,6 +51,7 @@
 
         <img src="http://myupdated.info/images/v4/notifications/bg-middle.png" width="550" height="92"/>
 
+        <% if @voice %>
         <div style="padding: 50px 0 0 0;">
           <% case @voice.theme%>
           <% when "orange" %>
@@ -65,21 +66,26 @@
           <a href="http://crowdvoice.org/<%= @voice.default_slug %>" target="_blank" style="display: inline-block; color: #ffffff; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 36px; padding: 0 24px; height: 35px; border-radius: 3px; -webkit-border-radius: 3px; background: #50B347; border-bottom: 3px solid #47A03F;">GO TO VOICE</a>
           <% end %>
         </div>
+        <% end %>
 
       </div>
 
       <!-- disclaimer -->
       <!-- small text message -->
+      <% if @voice %>
       <div style="font-size: 13px; line-height: 23px; color: #a6a39d; font-style: italic; padding: 30px;">
         <p style="margin: 0 0 15px; font-weight: bold;">This is a confirmation for your subscription to the voice <%= @voice.title %> at <a href="http://crowdvoice.org">Crowdvoice.org</a>.</p>
 
-        <p style="margin: 0 0 15px;">You will receive a <strong><%= @subscription.frequency %></strong> digest with updates regarding this voice.</p>
+        <% if @subscription %>
+          <p style="margin: 0 0 15px;">You will receive a <strong><%= @subscription.frequency %></strong> digest with updates regarding this voice.</p>
 
-        <p style="margin: 0 0 15px;">If you want to stop receiving these emails, you can unsubscribe by following this URL:<br/>
-                <%= link_to unsubscribe_subscription_url(@subscription), unsubscribe_subscription_url(@subscription), :style => "color: #FFF; text-decoration: underline;" %><p>
+          <p style="margin: 0 0 15px;">If you want to stop receiving these emails, you can unsubscribe by following this URL:<br/>
+                  <%= link_to unsubscribe_subscription_url(@subscription), unsubscribe_subscription_url(@subscription), :style => "color: #FFF; text-decoration: underline;" %><p>
+        <% end %>
       </div>
+      <% end %>
       <div style="font-size: 13px; padding: 30px 0 0 0; color: #66635c;">
-        <a href="http://crowdvoice.org" style="color: <%= @voice.theme %>">crowdvoice.org</a>
+        <a href="http://crowdvoice.org" style="color: <%= @voice.theme if @voice %>">crowdvoice.org</a>
       </div>
 
     </center>

@@ -40,10 +40,10 @@ $(function () {
     });
     new LiveFilter('.voice-search > .search', '.searchable');
     new JsonForm('form.register-form', function () {
-        location.reload();
+        window.location = '/?loggedin=true';
     });
     new JsonForm('form.login-form', function () {
-        location.reload();
+        window.location.reload();
     });
     new CV.Tooltip({
         text : 'Find more info about CrowdVoice here!',
