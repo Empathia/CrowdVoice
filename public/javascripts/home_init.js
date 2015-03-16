@@ -80,20 +80,20 @@ $(function () {
     });
 
     /* Social Media Buttons */
-    var connect = document.querySelector('.notification-bar .actions');
-    new SocialMediaButtons({
-        facebookLikeButton : {
-            element: connect.querySelector('.facebook-like')
-        },
-        twitterTweetButton : {
-            element: connect.querySelector('.tweet')
-        },
-        twitterFollow : {
-            element: connect.querySelector('.twitter-follow'),
-            showCount: false,
-            showScreenName: true
-        }
-    });
+    // var connect = document.querySelector('.notification-bar .actions');
+    // new SocialMediaButtons({
+    //     facebookLikeButton : {
+    //         element: connect.querySelector('.facebook-like')
+    //     },
+    //     twitterTweetButton : {
+    //         element: connect.querySelector('.tweet')
+    //     },
+    //     twitterFollow : {
+    //         element: connect.querySelector('.twitter-follow'),
+    //         showCount: false,
+    //         showScreenName: true
+    //     }
+    // });
 
     DynamicMeasures.update();
 
