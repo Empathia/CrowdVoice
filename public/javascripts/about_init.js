@@ -272,20 +272,20 @@ $(function() {
 
 
     /* Social Media Buttons */
-    // var connect = document.querySelector('.connect');
-    // new SocialMediaButtons({
-    //     facebookLikeButton : {
-    //         element: connect.querySelector('.js-fb-like')
-    //     },
-    //     twitterTweetButton : {
-    //         element: connect.querySelector('.js-tw-tweet')
-    //     },
-    //     twitterFollow : {
-    //         element: connect.querySelector('.js-tw-follow'),
-    //         showCount: true,
-    //         showScreenName: false
-    //     }
-    // });
+    var contextElement = document.querySelector('.connect');
+    new SocialMediaButtons({
+        facebookLikeButton : {
+            element: contextElement.querySelector('.js-fb-like')
+        },
+        twitterTweetButton : {
+            element: contextElement.querySelector('.js-tw-tweet')
+        },
+        twitterFollow : {
+            element: contextElement.querySelector('.js-tw-follow'),
+            showCount: true,
+            showScreenName: false
+        }
+    });
 
     DynamicMeasures.update();
 
