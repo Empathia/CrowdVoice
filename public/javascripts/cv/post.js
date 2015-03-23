@@ -167,6 +167,15 @@ Class('Post').inherits(Widget)({
                             that.inputFile.val('');
                             that.inputPost.val('').blur();
 
+                            // Clear the form
+                            that.element.find('input#post_image').val('');
+                            that.element.find('input#image_title').val('');
+                            that.element.find('input#post_remote_image_url').val('');
+                            that.element.find('input#source_url').val('');
+                            that.element.find('textarea#image_description').val('');
+                            that.element.find('textarea#link_description').val('');
+
+
                             var post = {}
 
                             post.name          = 'post_' + data.post.id,
@@ -196,7 +205,17 @@ Class('Post').inherits(Widget)({
                             CV.voicesContainer.preloadedVoices.unshift(voice);
                             CV.voicesContainer.appendChild(voice);
 
-                            voice.render(CV.voicesContainer.element, CV.voicesContainer.element.find('.voice-box').first());
+                            var afterElement;
+
+                            if (CV.voicesContainer.element.find('.voice-box').first().length > 0) {
+                                afterElement = CV.voicesContainer.element.find('.voice-box').first();
+                            } else {
+                                afterElement = false;
+                            }
+
+                            voice.render(CV.voicesContainer.element, afterElement);
+
+                            $('.empty-msg').remove();
 
                             voice.activate();
 
@@ -222,6 +241,14 @@ Class('Post').inherits(Widget)({
                                     $('.cv-tooltip.notice .moderate-tooltip').html('URL '+data[error]);
                                     $('.cv-tooltip.notice').addClass('active');
                                 }
+
+                                // Clear the form
+                                that.element.find('input#post_image').val('');
+                                that.element.find('input#image_title').val('');
+                                that.element.find('input#post_remote_image_url').val('');
+                                that.element.find('input#source_url').val('');
+                                that.element.find('textarea#image_description').val('');
+                                that.element.find('textarea#link_description').val('');
                             }
                         }
                     }
