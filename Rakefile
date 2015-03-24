@@ -85,7 +85,7 @@ task :fetch_tweets => :environment do
               urls.each do |url|
                 resolved_url = TwitterSearch.resolve_redirects(url)
                 
-                logger.info "Saving #{resolved_url}" if voice.posts.new(:source_url => url).save
+                logger.info "Saving #{resolved_url}" if voice.posts.new(:source_url => resolved_url).save
               end
             else
               logger.error "Not saved!"
