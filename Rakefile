@@ -34,7 +34,7 @@ task :fetch_tweets => :environment do
     locked = true
   end
   
-  unless locked?
+  if locked == false
     FileUtils.touch('/tmp/fetching_tweets')
     voices = Voice.where(["last_tweet < ? OR last_twitter_error IS NOT null OR last_tweet IS null", 6.hour.ago])
 
