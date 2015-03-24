@@ -28,7 +28,8 @@ task :fetch_tweets => :environment do
   logger = Logger.new("/data/crowdvoice/shared/log/fetch_tweets.log")
 
   if File.exists?('/tmp/fetching_tweets')
-    logger.warn "Twitter Fetcher is already running, will check again in an hour..."
+    logger.warn "Twitter Fetcher is already running, will check again in an hour..."\
+    return false
   end
   
   FileUtils.touch('/tmp/fetching_tweets')
@@ -74,16 +75,17 @@ task :fetch_tweets => :environment do
           tweet[:voice_id]   = voice.id
           if tweet.save
             logger.info "SAVED!"
+
+            logger.info "\n"
+            
+            urls = TwitterSearch.extract_tweet_urls(tweet)
+            urls.each do |url|
+              resolved_url = TwitterSearch.resolve_redirects(url)
+              
+              logger.info "Saving #{resolved_url}" if voice.posts.new(:source_url => url).save
+            end
           else
             logger.error "Not saved!"
-          end
-
-          logger.info "\n"
-          urls = TwitterSearch.extract_tweet_urls(tweet)
-          urls.each do |url|
-            resolved_url = TwitterSearch.resolve_redirects(url)
-            
-            logger.info "Saving #{resolved_url}" if voice.posts.new(:source_url => url).save
           end
         end
 
