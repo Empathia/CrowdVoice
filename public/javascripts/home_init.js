@@ -80,7 +80,7 @@ $(function () {
     });
 
     /* Social Media Buttons */
-    var contextElement = document.querySelector('.notification-bar .actions');
+    // var contextElement = document.querySelector('.notification-bar .actions');
     // new SocialMediaButtons({
     //     facebookLikeButton : {
     //         element: contextElement.querySelector('.facebook-like')

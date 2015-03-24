@@ -272,7 +272,7 @@ $(function() {
 
 
     /* Social Media Buttons */
-    var contextElement = document.querySelector('.connect');
+    // var contextElement = document.querySelector('.connect');
     // new SocialMediaButtons({
     //     facebookLikeButton : {
     //         element: contextElement.querySelector('.js-fb-like')
