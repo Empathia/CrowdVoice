@@ -21,10 +21,6 @@ set :output, { :error => 'log/cron.error.log', :standard => 'log/cron.log' }
 env :PATH, "$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 set :path, "/data/crowdvoice/current"
 
-every 1.hours do
-	command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} rake clear_rails_cache"
-end
-
 every 1.days, :at => '12:00 am' do
   command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor post:clear_cache_files"
   command "cd #{@path} && rm public/about.html && public/index.html"
