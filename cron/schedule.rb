@@ -21,9 +21,8 @@ set :output, { :error => 'log/cron.error.log', :standard => 'log/cron.log' }
 env :PATH, "$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 set :path, "/data/crowdvoice/current"
 
-# download imap attachments
-every 5.minutes do
-  command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor imap:download"
+every 1.hours do
+	command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} rake clear_rails_cache"
 end
 
 every 1.days, :at => '12:00 am' do
@@ -40,11 +39,6 @@ end
 
 every 1.days, :at => '12:00 am' do
   command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor subscriptions:send_digest"
-end
-
-# Fetch RSS feed
-every 12.hours do
-  command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor voices:update_installation_feed_voices"
 end
 
 

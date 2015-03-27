@@ -6,6 +6,11 @@ require 'rake'
 
 CrowdvoiceV2::Application.load_tasks
 
+desc "Invalidate cache"
+task :clear_rails_cache => :environment do
+  Rails.cache.clear
+end
+
 desc "Recreate post images"
 task :recreate_images => :environment do
   logger = Logger.new("/data/crowdvoice/shared/log/recreate_versions.log")
