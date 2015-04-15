@@ -207,6 +207,13 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             year = month = day = date = null;
         },
 
+        /**
+         * Replace the current image displayed on the gallery, if is a video it
+         * will create an inframe and replace its src attribute.
+         * @method updateImage <public> [Function]
+         * @params data <required> [Object]
+         *      @example { image : "image.png", caption: "Caption", is_explicit: false }
+         */
         updateImage : function updateImage(data)  {
             this._imageElement.hide();
             this._iframeElement.hide().attr('src', '');
@@ -332,11 +339,11 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
             this._resetVars();
 
-            this._document.bind('keydown.bg', function(ev) {
+            this._document.unbind('keydown.bg').bind('keydown.bg', function(ev) {
                 ev.preventDefault();
             });
 
-            this._document.bind('keyup.bg', this._keyUpHandler.bind(this));
+            this._document.unbind('keyup.bg').bind('keyup.bg', this._keyUpHandler.bind(this));
         },
 
         _deactivate : function _deactivate() {
