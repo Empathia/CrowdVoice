@@ -104,12 +104,8 @@ Class(CV, 'BackstoryTimelineElement').inherits(Widget)({
         },
 
         _bindEvents : function _bindEvents() {
-            if (this._hasMedia === true) {
-                this._galleryWrapperElement.bind('click', this._showOverlayHandler.bind(this));
-                this._viewButtonElement.bind('click', this._showOverlayHandler.bind(this));
-            } else {
-                this._viewButtonElement.hide();
-            }
+            this._galleryWrapperElement.bind('click', this._showOverlayHandler.bind(this));
+            this._viewButtonElement.bind('click', this._showOverlayHandler.bind(this));
 
             return this;
         },

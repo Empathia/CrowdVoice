@@ -187,6 +187,14 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
                 /* activate the first/default option */
                 this._carrousel.activateByIndex(0);
+            } else {
+                /*  there are no gallery or videos to be displayed
+                    so we just show the current cover image. */
+                window.CV.backstoryUIComponent.updateOverlayImage({
+                    image : data.background_image,
+                    caption : "",
+                    is_explicit : false
+                });
             }
 
             this._sourcesElementList.empty();
