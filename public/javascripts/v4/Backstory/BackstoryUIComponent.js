@@ -51,25 +51,21 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
         loadNextGallery : function loadNextGallery() {
             if (this.current === this.elements.length - 1) return;
 
-            if (this.timelineElements[this.current + 1]._hasMedia === false) {
-                this.current += 1;
-                return this.loadNextGallery();
-            }
-
             return this.showOverlay(this.elements[this.current += 1]);
         },
 
         loadPreviousGallery : function loadPreviousGallery() {
             if (this.current === 0) return;
 
-            if (this.timelineElements[this.current - 1]._hasMedia === false) {
-                this.current -= 1;
-                return this.loadPreviousGallery();
-            }
-
             return this.showOverlay(this.elements[this.current -= 1]);
         },
 
+        /**
+         * Proxy for BackstoryGalleryOverlay.updateImage method.
+         * @method updateOverlayImage <public> [Function]
+         * @params image <required> [Object]
+         *      @example { image : "image.png", caption: "Caption", is_explicit: false }
+         */
         updateOverlayImage : function updateOverlayImage(image) {
             this.galleryOverlay.updateImage(image);
             return this;
