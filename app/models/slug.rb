@@ -5,4 +5,13 @@ class Slug < ActiveRecord::Base
 
   validates :text, :uniqueness => true
   validates_presence_of :text
+  validate :text_format
+
+  def text_format
+    if "#{text}".include? '/'
+      errors.add(:text, "Can not contain slashes --> '/' <--")
+      return false
+    end
+  end
+
 end
