@@ -266,6 +266,10 @@
             return str;
           }
 
+          var getSanitizedText = function(element) {
+            return slug(element.value);
+          };
+
           $('.slug input[type="checkbox"]').bind('click', function() {
             var that = this;
             $('.slug input[type="checkbox"]').each(function(){
@@ -286,10 +290,14 @@
               checkbox.parents('.page-slug-info').show();
             }
 
-            input.bind('blur', function() {
-              var text = slug(input.val());
+            input.bind('blur', function(ev) {
+              ev.target.value = getSanitizedText(ev.target);
+            }).bind('keypress', function(ev) {
+              var code = ev.keyCode || ev.which;
 
-              input.val(text);
+              if (code == 13) {
+                ev.target.value = getSanitizedText(ev.target);
+              }
             });
 
 
