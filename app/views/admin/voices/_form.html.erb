@@ -24,19 +24,19 @@
       <div class="page-slug-info hide-panel">
         <div class="clearfix">
           <div class="label-form">
-            <p><%= f.label 'Page Slug' %> <span class="red">*</span></p>
-
-            <%= f.fields_for :slugs do |slug_fields| %>
-            <div class="clearfix">
-              <div class="label-form slug">
-                <%= slug_fields.label :is_default, 'Default' %>
-                <%= slug_fields.check_box :is_default, :style => "width:26px;" %>
-                <%= slug_fields.text_field :text, :label => 'Slug' %>
-                <%= render 'shared/error_messages_for', :object => @voice, :field => :slugs %>
-              </div>
-            </div>
-            <% end %>
+            <%= f.label 'Page Slug' %> <span class="red">*</span> <span class="ask-me"></span> <br>
           </div>
+          <small class="answere">user-friendly and URL-valid name. e.g 'my-voice-title-slug-example'</small>
+          <%= f.fields_for :slugs do |slug_fields| %>
+          <div class="clearfix">
+            <div class="label-form slug">
+              <%= slug_fields.label :is_default, 'Default' %>
+              <%= slug_fields.check_box :is_default, :style => "width:26px;" %>
+              <%= slug_fields.text_field :text, :label => 'Slug' %>
+              <%= render 'shared/error_messages_for', :object => @voice, :field => :slugs %>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
