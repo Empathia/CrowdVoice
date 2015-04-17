@@ -283,6 +283,7 @@
               input = checkbox.siblings('input[type="text"]');
             } else {
               input = checkbox.siblings('.field_with_errors').find('input');
+              checkbox.parents('.page-slug-info').show();
             }
 
             input.bind('blur', function() {
