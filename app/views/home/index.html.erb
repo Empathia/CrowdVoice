@@ -1,7 +1,7 @@
 <% @isnot_an_installation = !subdomain_present? && @items.present? && LayoutItem.where("voice_id is not null").size == 8 %>
 
 <% head do %>
-  <%= @isnot_an_installation ? (include_stylesheets :home_pack) : (include_stylesheets :home_installations_pack) %>
+  <%= include_stylesheets :home_pack %>
 <% end %>
 
 <% cache("#{current_connection}_homepage") do %>
@@ -9,25 +9,13 @@
   <div class="welcome-padding"></div>
   <div class="current-voice-bar"></div>
 
-  <% unless @isnot_an_installation %>
-    <!-- Posts count Tooltip -->
-    <div class="voice-count-tooltip corner-all2">
-      <ul>
-        <li><span class="icons photo-count"></span><span>0</span></li>
-        <li><span class="icons video-count"></span><span>0</span></li>
-        <li class="last"><span class="icons link-count"></span><span>0</span></li>
-      </ul>
-      <span class="arrow arrow-bottom"><span></span></span>
-    </div>
-  <% end %>
-
   <div class="welcome-padding">
     <div class="home-scroller">
-      <%= @isnot_an_installation ? (render :partial => 'new_home') : (render :partial => 'old_home') %>
+      <%= render :partial => 'new_home' %>
     </div>
   </div>
 
 <% end %>
 
 <!-- TODO: MOVE JS to the bottom properly -->
-<%= @isnot_an_installation ? (include_javascripts :home_pack) : (include_javascripts :home_installations_pack) %>
+<%= include_javascripts :home_pack %>
