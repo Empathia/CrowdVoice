@@ -56,5 +56,5 @@ group :development, :test do
   gem 'ruby-debug'
   gem "shoulda", '~> 2.11'
   gem "rspec-rails", "~> 2.5"
-  #gem "factory_girl_rails", '~> 1'
+  gem "rails-erd"
 end
