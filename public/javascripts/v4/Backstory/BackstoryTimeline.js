@@ -208,29 +208,26 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 window.clearTimeout(this._scrollTimer);
             }
 
-            this._scrollTimer = window.setTimeout(function() {
-                var last, timelineScrollPosition;
+            var timeline = this._timelineElement;
 
-                timelineScrollPosition = this._timelineElement[0].scrollLeft;
+            this._scrollTimer = window.setTimeout(function() {
+                var last, timelineScrollPosition, sidebarWidth;
+
+                timelineScrollPosition = timeline[0].scrollLeft;
+                sidebarWidth = timeline.offset().left;
 
                 this.children.some(function(year) {
                     return year.children.some(function(month) {
-                        if (month.element[0].offsetLeft <= timelineScrollPosition) {
+                        var mdimensions = month.element.offset().left + (month.element[0].offsetWidth - 16);
+
+                        if ((timelineScrollPosition + mdimensions - sidebarWidth) >= timelineScrollPosition) {
                             last = month;
-                        } else return true;
+                            return true;
+                        }
                     });
                 });
 
-                last.children.some(function (day) {
-                    var _el = day.element[0];
-
-                    if ((day.parent.element[0].offsetLeft + _el.offsetLeft + _el.offsetWidth) > timelineScrollPosition) {
-                        last = day;
-                        return true;
-                    }
-                });
-
-                window.CV.backstoryUIComponent.breadcrumb.activateItemByDate(~~last.data.year, ~~last.data.month);
+                window.CV.backstoryUIComponent.breadcrumb.activateItemByDate(~~last.year, ~~last.month);
                 window.clearTimeout(this._scrollTimer);
             }.bind(this), 250);
         },
