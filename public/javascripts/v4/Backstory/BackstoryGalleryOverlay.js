@@ -237,7 +237,9 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
             } else {
                 this._iframeElement[0].src = "//www.youtube.com/embed/" + data.videoID;
                 this._iframeElement.show();
-                this._updateGalleryInfo(data);
+                setTimeout(function() {
+                    this._updateGalleryInfo(data);
+                }.bind(this), 0);
             }
 
             return this;
