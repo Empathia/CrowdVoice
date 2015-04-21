@@ -169,6 +169,13 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
             return this;
         },
 
+        getLeftOffset : function getLeftOffset() {
+            var scrollLeft = this._timelineElement.scrollLeft();
+            var offsetLeft = this._timelineElement.offset().left;
+
+            return scrollLeft - offsetLeft;
+        },
+
         scrollTo : function scrollTo(_position) {
             var backstoryTimeline = this;
 
