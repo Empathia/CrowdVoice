@@ -3,23 +3,21 @@
 
   <!-- notification bar -->
   <div class="notification-bar is-empty">
-    <% unless subdomain_present? %>
-      <div class="welcome" data-hansel-component-id="top-notice">
-        <a class="close-message">&times;</a>
-        <div class="header">
-          <h2 class="title"><%= t('layout.welcome_title') %></h2>
-          <ul class="actions">
-            <li class="facebook-like"></li>
-            <li class="tweet"></li>
-            <li class="twitter-follow"></li>
-          </ul>
-        </div>
-        <p class="description">
-          <%= t('layout.welcome')  %>
-          <a href="/about"><%= t('layout.learn_more')  %></a>
-        </p>
+    <div class="welcome" data-hansel-component-id="top-notice">
+      <a class="close-message">&times;</a>
+      <div class="header">
+        <h2 class="title"><%= t('layout.welcome_title') %></h2>
+        <ul class="actions">
+          <li class="facebook-like"></li>
+          <li class="tweet"></li>
+          <li class="twitter-follow"></li>
+        </ul>
       </div>
-    <% end %>
+      <p class="description">
+        <%= t('layout.welcome')  %>
+        <a href="/about"><%= t('layout.learn_more')  %></a>
+      </p>
+    </div>
     <% @notifications.each do |notification| %>
       <div class="notification <%= notification.theme %>">
         <a class="close-message">&times;</a>
