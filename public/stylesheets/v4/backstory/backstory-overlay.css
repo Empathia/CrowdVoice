@@ -117,7 +117,7 @@
 
 .cv-backstory-overlay__body {
   position: relative;
-  min-height: 520px;
+  height: 520px;
 
   display: inline-block;
   overflow: hidden;

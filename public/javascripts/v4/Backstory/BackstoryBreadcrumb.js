@@ -36,7 +36,7 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
         },
 
         scrollTo : function scrollTo(year, month, day) {
-            var _element;
+            var _element, timelineScrollLeft, elementOffsetLeft, position;
 
             if (this.range === "Monthly") {
                 window.CV.backstoryUIComponent.timelineElements.some(function(el) {
@@ -62,7 +62,11 @@ Class(CV, 'BackstoryBreadcrumb').inherits(Widget)({
             }
 
             if (_element) {
-                CV.backstoryUIComponent.timeline.scrollTo(_element.element[0].offsetParent.offsetLeft);
+                timelineScrollLeft = CV.backstoryUIComponent.timeline.getLeftOffset();
+                elementOffsetLeft = _element.element.parent().offset().left;
+                position = (timelineScrollLeft + elementOffsetLeft) - 16;
+
+                CV.backstoryUIComponent.timeline.scrollTo(position);
             }
 
             return this;
