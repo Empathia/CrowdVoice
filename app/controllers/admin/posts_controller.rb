@@ -25,13 +25,10 @@ class Admin::PostsController < ApplicationController
   def tags_autocomplete
     tags = ActsAsTaggableOn::Tagging.select("tags.name")\
             .joins(:tag)\
-            .where({
-                :context => 'tags',
-                :taggable_type => 'Post',
-                :taggable_id => @voice.posts.map(&:id) })\
             .where('LOWER(tags.name) like ?', "%#{params[:q]}%")\
             .group('tags.name')\
-            .order('tags.name')
+            .order('tags.name')\
+            .limit(10)
 
     render :json => tags.map{|tag| {:id => 0, :name => tag.name}}, :layout => false
   end
