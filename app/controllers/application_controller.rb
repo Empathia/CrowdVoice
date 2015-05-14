@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :select_connection
+  # before_filter :select_connection
   before_filter :find_voices
-  after_filter :restore_connection, :if => :subdomain_present?
+  # after_filter :restore_connection, :if => :subdomain_present?
   before_filter :set_mailer_host
   include UrlHelper
   helper_method :current_user, :gaza_path_helper, :get_excerpt, :subdomain_present?, :current_connection
