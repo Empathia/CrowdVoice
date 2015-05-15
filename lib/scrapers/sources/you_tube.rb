@@ -27,14 +27,16 @@ module Scrapers
 
       def get_info
         video_id = @url.match(/v=([^&]*)/).captures.first
-        response = HTTParty.get("http://gdata.youtube.com/feeds/api/videos/#{video_id}")
+
+        response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?id=#{video_id}&part=snippet&key=AIzaSyBM_EKNQM8Nvcw0b_CqfuPrtNJ_UlvQKFg")
 
         return nil if response.code != 200 || response.parsed_response == "Invalid id"
 
-        doc = Nokogiri::HTML(response.body)
-        @title        = doc.search("title").first.inner_text
-        @description  = doc.search("description").inner_text
-        @image_url    = doc.search("thumbnail")[0][:url]
+        doc = JSON.parse(response.body)
+
+        @title        = doc["items"][0]["snippet"]["title"]
+        @description  = doc["items"][0]["snippet"]["description"]
+        @image_url    = doc["items"][0]["snippet"]["thumbnails"]['default']["url"].gsub('https', 'http')
         doc
       end
     end

@@ -104,7 +104,7 @@ class Post < ActiveRecord::Base
 
   def self.detect_service(url)
     case url
-      when Scrapers::Sources::YouTube.regexp : 'YouTube'
+      when Scrapers::Sources::YouTube.regexp : 'youtube'
       when Scrapers::Sources::Vimeo.regexp : 'Vimeo'
       when Scrapers::Sources::Flickr.regexp : 'Flickr'
       when Scrapers::Sources::Twitpic.regexp : 'Twitpic'

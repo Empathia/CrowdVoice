@@ -10,19 +10,19 @@ server.listen(9099);
 
 var mysql      = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : '127.0.0.1',
-  user     : 'deploy',
-  password : 'i3gh7rb1wer',
-  database : 'crowdvoice_production'
-});
-
 // var connection = mysql.createConnection({
-//   host     : 'localhost',
-//   user     : 'root',
-//   password : '',
+//   host     : '127.0.0.1',
+//   user     : 'deploy',
+//   password : 'i3gh7rb1wer',
 //   database : 'crowdvoice_production'
 // });
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'crowdvoice_production'
+});
 
 connection.connect();
 

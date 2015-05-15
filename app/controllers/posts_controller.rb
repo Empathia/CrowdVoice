@@ -7,12 +7,12 @@ class PostsController < ApplicationController
 
   def create
     @post = @voice.posts.new(params[:post])
-    if @post.save
+    if @post.save!
       status = :ok
     else
       status = :unprocessable_entity
     end
-
+    
     respond_with(@post, :location => @voice, :status => status, :content_type => "text/plain")
   end
 
