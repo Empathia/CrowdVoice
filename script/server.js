@@ -8,23 +8,28 @@ var app = express()
  
 server.listen(9099);
 
-var mysql      = require('mysql');
+var connection;
 
-// var connection = mysql.createConnection({
-//   host     : '127.0.0.1',
-//   user     : 'deploy',
-//   password : 'i3gh7rb1wer',
-//   database : 'crowdvoice_production'
-// });
+if (process.env.NODE_ENV === 'production') {
+  connection = {
+    host     : '127.0.0.1',
+    user     : 'deploy',
+    password : 'i3gh7rb1wer',
+    database : 'crowdvoice_production'
+  }
+} else {
+  connection = {
+    host     : '127.0.0.1',
+    user     : 'root',
+    password : '',
+    database : 'crowdvoice_production'
+  }
+}
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'crowdvoice_production'
+var knex = require('knex')({
+  client: 'mysql',
+  connection: connection
 });
-
-connection.connect();
 
 var port = process.env.PORT || 4000;
 
@@ -50,7 +55,7 @@ io.sockets.on('connection', function(client) {
     console.log('approved', data);
     var voice_id = parseInt(data.id, 10);
 
-    connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 1 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC', function(err, rows, fields) {
+    knex('posts').where({'approved': true, 'voice_id' : voice_id}).orderBy('id', 'desc').asCallback(function(err, rows) {
       if (err) throw err;
 
 
@@ -89,7 +94,7 @@ io.sockets.on('connection', function(client) {
     console.log('unapproved', data);
     var voice_id = parseInt(data.id, 10);
 
-    connection.query('SELECT `posts`.* FROM `posts` WHERE `posts`.`approved` = 0 AND (`posts`.voice_id = ' + voice_id + ') ORDER BY id DESC LIMIT 20000', function(err, rows, fields) {
+    knex('posts').where({'approved': false, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(20000).asCallback(function(err, rows) {
       if (err) throw err;
 
       console.log('Results: ', rows.length);
