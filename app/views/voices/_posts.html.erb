@@ -60,51 +60,7 @@
         perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
 
-      // var iteration = 1;
       
-      // var placeholderInterval = setInterval(function() {
-      //   if ($('.voices-container .placeholder').length >= 12) {
-      //     var elements = $('.voices-container .placeholder');
-
-      //     CV.voicesContainer.element.isotope('remove', elements);
-
-      //     elements.remove();
-
-      //     $('.voices-container').html('')
-      //   }
-
-      //   if (iteration > 3) {
-      //     iteration = 1;
-      //   }
-
-      //   var options = {};
-
-      //   switch (iteration) {
-      //     case 1:
-      //       options.width = "180px"
-      //       options.height = "269px"
-      //       break;
-      //     case 2:
-      //       options.width = "180px"
-      //       options.height = "379px"
-      //       break;
-      //     case 3:
-      //       options.width = "180px"
-      //       options.height = "419px"
-      //       break;
-      //   }
-
-      //   var element = $('<div class="voice-box placeholder" style="width:' + options.width + ';height:' + options.height + ';"> <img src="/images/cv-placeholder-0' + iteration +'.gif" style="" /></div>')
-      //   $('.voices-container').append(element);
-
-      //   CV.voicesContainer.element.isotope('appended', element);
-      //   CV.voicesContainer.element.isotope('layout');
-        
-      //   iteration++
-      // }, 350);
-
-
-
       CV.OverlaysController = new OverlaysController();
 
       var page = 0;
@@ -130,11 +86,12 @@
       }
 
       var postCounter = 0;
-      var fragment = document.createDocumentFragment();
-      socket.on('page', function(data) {
+      
+      socket.on('firstPage', function(data) {
+        var fragment = document.createDocumentFragment();
 
-        _.each(data.firstPageRows, function(post){
-          // var post = data.value;
+        _.each(data.posts, function(post){
+          
           CV.voicesContainer.preloadedVoices.push(post);
 
           var voice = new VoiceElement({
@@ -168,20 +125,12 @@
           if (postCounter == 1) {
             CV.timeline.progress.activate();
           }
-
           postCounter++;
         });
-
-        if (data.first) {
-          CV.voicesContainer.element.append(fragment);
-          fragment = document.createDocumentFragment();
-        };
-
-        // postCounter = 0;
-      });
-
-      socket.on('firstPageFinished', function() {
-        // clearInterval(placeholderInterval);
+        
+        
+        CV.voicesContainer.element.append(fragment);
+          
         $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
 
@@ -193,11 +142,96 @@
           $('.filters-and-mode').find('input').attr('disabled', true);
         });
 
+        if ((data.page + 1) <= data.pages) {
+          if (!$.deparam.querystring().mod) {
+            socket.emit('nextApproved', {
+              id : window.currentVoice.id,
+              page : data.page + 1,
+              pages : data.pages
+            });
+          } else {
+            socket.emit('nextUnapproved', {
+              id : window.currentVoice.id,
+              page : data.page + 1,
+              pages : data.pages
+            });
+          }
+        }
       });
 
-      socket.on('nextPage', function(){
-        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+
+      socket.on('page', function(data){
+        var fragment = document.createDocumentFragment();
+
+        CV.voicesContainer.preloadedVoices.concat(data.posts);
+
+        _.each(data.posts, function(post){
+          
+          CV.voicesContainer.preloadedVoices.push(post);
+
+          var voice = new VoiceElement({
+              name          : 'post_' + post.id,
+              id            : post.id,
+              image         : post.image,
+              approved      : post.approved,
+              description   : CV.getExcerpt(post.description, 250),
+              imageWidth    : post.image_width,
+              imageHeight   : post.image_height,
+              negativeVotes : post.negative_votes_count,
+              positiveVotes : post.positive_votes_count,
+              overallScore  : post.overall_score,
+              sourceService : post.source_service,
+              sourceType    : post.source_type,
+              sourceURL     : post.source_url,
+              title         : post.title,
+              voiceID       : post.voice_id,
+              timeAgo       : post.created_at,
+              createdAt     : post.created_at,
+              service       : post.source_url,
+              disabled      : true,
+              active        : false,
+              tags          : []
+          });
+
+          CV.voicesContainer.appendChild(voice);
+          fragment.appendChild(voice.element);
+
+        });
         CV.timeline.update();
+
+        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+
+        CV.voicesContainer.element.append(fragment);
+
+        if ((data.page + 1) <= data.pages) {
+          if (!$.deparam.querystring().mod) {
+            socket.emit('nextApproved', {
+              id : window.currentVoice.id,
+              page : data.page + 1,
+              pages : data.pages
+            });
+          } else {
+            socket.emit('nextUnapproved', {
+              id : window.currentVoice.id,
+              page : data.page + 1,
+              pages : data.pages
+            })
+          }
+        } else {
+          CV.timeline.progress.deactivate();
+          CV.timeline.update();
+          
+
+          CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+
+          CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
+
+          CV.mediaFeedSearch = new MediaFeedSearch({
+            element : $('.filters-and-mode')
+          });
+
+          $('.filters-and-mode').find('input').attr('disabled', false);  
+        }
       });
 
       
@@ -205,20 +239,7 @@
 
 
       socket.on('finished', function(data) {
-        CV.voicesContainer.element.append(fragment);
-        CV.timeline.progress.deactivate();
-        CV.timeline.update();
         
-
-        CV.voicesContainer.filteredResults = CV.voicesContainer.children;
-
-        CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
-
-        CV.mediaFeedSearch = new MediaFeedSearch({
-          element : $('.filters-and-mode')
-        });
-
-        $('.filters-and-mode').find('input').attr('disabled', false);
       });
     });
   </script>

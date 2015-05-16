@@ -53,79 +53,75 @@ io.sockets.on('connection', function(client) {
   
   client.on('approved', function(data) {
     console.log('approved', data);
+    
     var voice_id = parseInt(data.id, 10);
 
-    knex('posts').where({'approved': true, 'voice_id' : voice_id}).orderBy('id', 'desc').asCallback(function(err, rows) {
-      if (err) throw err;
+    knex('posts').where({'approved': true, 'voice_id' : voice_id}).count('*').asCallback(function(err, total) {
+      var pages = Math.round(total[0]["count(*)"] / 120);
 
+      
 
-      console.log('Results: ', rows.length);
-
-      var pagesCount = Math.round(rows.length / 30 ) || 1;
-
-      var pages = split(rows, pagesCount);
-
-      pages.forEach(function(page, i) {
-        
-        if (i === 0) {
-          client.emit('page', {  
-            firstPageRows: page,
-            first : true
-          });
-
-          client.emit('firstPageFinished');
-          
-        } else {
-          client.emit('page', {  
-            firstPageRows: page,
-            first : false
-          });
-          client.emit('nextPage');
-        }
-
-        if (i == pages.length - 1) {
-          client.emit('finished');
-        }
+      knex('posts').where({'approved': true, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(120).asCallback(function(err, posts){
+        client.emit('firstPage', {
+          posts : posts,
+          page : 1,
+          pages : pages
+        });
       });
     });
   });
+
+  client.on('nextApproved', function(data) {
+    console.log('nextApproved', data);
+
+    var voice_id = parseInt(data.id, 10);
+
+    knex('posts').where({'approved': true, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(120).offset((data.page -1) * 120).asCallback(function(err, posts) {
+
+      client.emit('page', {
+        posts : posts,
+        page : data.page,
+        pages : data.pages
+      });
+    })
+  });
+
+  // Unapproved Posts
 
   client.on('unapproved', function(data) {
     console.log('unapproved', data);
+    
     var voice_id = parseInt(data.id, 10);
 
-    knex('posts').where({'approved': false, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(20000).asCallback(function(err, rows) {
-      if (err) throw err;
+    knex('posts').where({'approved': false, 'voice_id' : voice_id}).limit(10000).asCallback(function(err, total) {
+      var pages = Math.round(total.length / 120);
 
-      console.log('Results: ', rows.length);
+      
 
-      var pagesCount = Math.round(rows.length / 30 ) || 1;
-
-      var pages = split(rows, pagesCount);
-
-      pages.forEach(function(page, i) {
-        
-        if (i === 0) {
-          client.emit('page', {  
-            firstPageRows: page,
-            first : true
-          });
-          client.emit('firstPageFinished');
-          
-        } else {
-          client.emit('page', {  
-            firstPageRows: page,
-            first : false
-          });
-          client.emit('nextPage');
-        }
-
-        if (i == pages.length - 1) {
-          client.emit('finished');
-        }
+      knex('posts').where({'approved': false, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(120).asCallback(function(err, posts){
+        client.emit('firstPage', {
+          posts : posts,
+          page : 1,
+          pages : pages
+        });
       });
     });
   });
+
+  client.on('nextUnapproved', function(data) {
+    console.log('nextUnapproved', data);
+
+    var voice_id = parseInt(data.id, 10);
+
+    knex('posts').where({'approved': false, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(120).offset((data.page -1) * 120).asCallback(function(err, posts) {
+
+      client.emit('page', {
+        posts : posts,
+        page : data.page,
+        pages : data.pages
+      });
+    })
+  })
 });
 
 
