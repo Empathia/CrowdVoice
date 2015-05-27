@@ -58,7 +58,6 @@ javascripts:
     - *defaults
     - *jscroll
     - *sidebar
-    - public/javascripts/v4/vendor/socket.io.js
     - public/javascripts/include/underscore-min.js
     - public/javascripts/infographics/infoCharts.js
     - public/javascripts/infographics/infoBox.js
