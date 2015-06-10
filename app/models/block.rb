@@ -28,11 +28,12 @@ class Block < ActiveRecord::Base
 
   def data_parsed
     pdata = data_parse_dynamic_tokens
-
+    
     TOKENS.each do |token|
       begin
       #next unless token == 'STATIC_IMAGE_URL' && JSON.parse(self.data)["type"] == 'custom_image'
-      pdata = pdata.gsub token, self.send(token.downcase).to_s
+      puts "#{token} #{self.send(token.downcase).to_s}"
+      pdata = pdata.gsub(/\b#{token}\b/, self.send(token.downcase).to_s)
       rescue
       end
     end if pdata
@@ -46,7 +47,7 @@ class Block < ActiveRecord::Base
     DYNAMIC_TOKENS.each do |token|
       pdata = pdata.gsub(/#{token}/){|s| clipart = Clipart.where(:id => $1); clipart.first ? clipart.first.image.url : ''}
     end if pdata
-    pdata
+    pdata 
   end
 
   def set_position
