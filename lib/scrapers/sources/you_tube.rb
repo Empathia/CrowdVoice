@@ -36,7 +36,13 @@ module Scrapers
 
         @title        = doc["items"][0]["snippet"]["title"]
         @description  = doc["items"][0]["snippet"]["description"]
-        @image_url    = doc["items"][0]["snippet"]["thumbnails"]['default']["url"].gsub('https', 'http')
+
+        if doc["items"][0]["snippet"]["thumbnails"]['high']
+          @image_url    = doc["items"][0]["snippet"]["thumbnails"]['high']["url"].gsub('https', 'http')
+        else
+          @image_url    = doc["items"][0]["snippet"]["thumbnails"]['default']["url"].gsub('https', 'http')
+        end
+        
         doc
       end
     end
