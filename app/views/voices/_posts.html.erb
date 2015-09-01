@@ -45,22 +45,22 @@
         var socket = io.connect(protocol + '//localhost:9099');
       <% elsif Rails.env.production? %>
         if (window.location.hostname.search("myupdated.info") !== -1) {
-          var socket = io.connect(protocol + '//ws.myupdated.info');  
+          var socket = io.connect(protocol + '//ws.myupdated.info');
         } else {
           var socket = io.connect(protocol + '//ws.crowdvoice.org');
         }
-        
+
       <% end %>
-      
+
       window.jsonResult = JSON.parse(<%= raw @response.to_json %>);
-      
+
       CV.voicesContainer = new VoicesContainer({
         name     : 'voicesContainer',
         element  : $('.voices-container'),
         perPage  : <%= per_page = (is_mobile? ? Setting.posts_per_page_on_mobile : Setting.posts_per_page).to_i %>
       });
 
-      
+
       CV.OverlaysController = new OverlaysController();
 
       var page = 0;
@@ -80,18 +80,18 @@
       });
 
       if (!$.deparam.querystring().mod) {
-        socket.emit('approved', {id : window.currentVoice.id});    
+        socket.emit('approved', {id : window.currentVoice.id});
       } else {
-        socket.emit('unapproved', {id : window.currentVoice.id});  
+        socket.emit('unapproved', {id : window.currentVoice.id});
       }
 
       var postCounter = 0;
-      
+
       socket.on('firstPage', function(data) {
         var fragment = document.createDocumentFragment();
 
         _.each(data.posts, function(post){
-          
+
           CV.voicesContainer.preloadedVoices.push(post);
 
           var voice = new VoiceElement({
@@ -121,27 +121,28 @@
           CV.voicesContainer.appendChild(voice);
           fragment.appendChild(voice.element);
 
-          
+
           if (postCounter == 1) {
             CV.timeline.progress.activate();
           }
           postCounter++;
         });
-        
-        
+
+
         CV.voicesContainer.element.append(fragment);
-          
+
         $('.placeholders').remove();
         CV.voicesContainer.element.find('.placeholder').remove();
 
         CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
         CV.voicesContainer.enableNextPage(function(){
-          CV.voicesContainer.element.isotope('layout'); 
+          CV.voicesContainer.element.isotope('layout');
           CV.timeline.update();
           $('.filters-and-mode').find('input').attr('disabled', true);
         });
 
+        console.log(data.page + 1, data.pages)
         if ((data.page + 1) <= data.pages) {
           if (!$.deparam.querystring().mod) {
             socket.emit('nextApproved', {
@@ -156,6 +157,20 @@
               pages : data.pages
             });
           }
+        } else {
+          CV.timeline.progress.deactivate();
+          CV.timeline.update();
+
+
+          CV.voicesContainer.filteredResults = CV.voicesContainer.children;
+
+          CV.voicesContainer.checkURLToShowOverlay().checkVotedVoices();
+
+          CV.mediaFeedSearch = new MediaFeedSearch({
+            element : $('.filters-and-mode')
+          });
+
+          $('.filters-and-mode').find('input').attr('disabled', false);
         }
       });
 
@@ -166,7 +181,7 @@
         CV.voicesContainer.preloadedVoices.concat(data.posts);
 
         _.each(data.posts, function(post){
-          
+
           CV.voicesContainer.preloadedVoices.push(post);
 
           var voice = new VoiceElement({
@@ -220,7 +235,7 @@
         } else {
           CV.timeline.progress.deactivate();
           CV.timeline.update();
-          
+
 
           CV.voicesContainer.filteredResults = CV.voicesContainer.children;
 
@@ -230,16 +245,16 @@
             element : $('.filters-and-mode')
           });
 
-          $('.filters-and-mode').find('input').attr('disabled', false);  
+          $('.filters-and-mode').find('input').attr('disabled', false);
         }
       });
 
-      
+
       CV.voicesContainer.page = page;
 
 
-      socket.on('finished', function(data) {
-        
-      });
+      // socket.on('finished', function(data) {
+      //   console.log('finished')
+      // });
     });
   </script>

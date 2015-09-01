@@ -5,7 +5,7 @@ var http = require('http');
 var app = express()
 , server = http.createServer(app)
  , io = socketio.listen(server);             // socket needs to listen on http server
- 
+
 server.listen(9099);
 
 var connection;
@@ -50,16 +50,16 @@ var split = function split(a, n) {
 
 io.sockets.on('connection', function(client) {
   console.log('socket connected');
-  
+
   client.on('approved', function(data) {
     console.log('approved', data);
-    
+
     var voice_id = parseInt(data.id, 10);
 
     knex('posts').where({'approved': true, 'voice_id' : voice_id}).count('*').asCallback(function(err, total) {
       var pages = Math.round(total[0]["count(*)"] / 120);
 
-      
+
 
       knex('posts').where({'approved': true, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(120).asCallback(function(err, posts){
         client.emit('firstPage', {
@@ -90,13 +90,13 @@ io.sockets.on('connection', function(client) {
 
   client.on('unapproved', function(data) {
     console.log('unapproved', data);
-    
+
     var voice_id = parseInt(data.id, 10);
 
     knex('posts').where({'approved': false, 'voice_id' : voice_id}).limit(10000).asCallback(function(err, total) {
       var pages = Math.round(total.length / 120);
 
-      
+
 
       knex('posts').where({'approved': false, 'voice_id' : voice_id}).orderBy('id', 'desc').limit(120).asCallback(function(err, posts){
         client.emit('firstPage', {
