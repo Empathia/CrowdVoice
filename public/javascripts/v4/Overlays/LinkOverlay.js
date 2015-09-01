@@ -156,6 +156,11 @@ Class('LinkOverlay').inherits(Widget)({
                 }
             }
 
+            if (voiceElement.postURL.search('twitter.com') !== -1) {
+              this._iframeElement.hide();
+              this._cannotLoadIframeMessageElement.show();
+            }
+
             this._flagButtonElement.unbind('click').bind('click', function() {
                 $.ajax({
                     url : this._flagButtonElement[0].href,
