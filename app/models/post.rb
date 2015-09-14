@@ -41,7 +41,7 @@ class Post < ActiveRecord::Base
   before_save :remove_unsafe_characters
   before_create :update_source_service
 
-  before_save :set_tags, :if => '["staging","production"].include?(Rails.env)'
+  #before_save :set_tags, :if => '["staging","production"].include?(Rails.env)'
 
 
   def is_blacklisted?
@@ -53,17 +53,17 @@ class Post < ActiveRecord::Base
     blacklist.each do |word|
       if self.source_url.include? word
         blacklisted = true
-        break    
+        break
       end
 
       if !self.title.blank? and self.title.include? word
         blacklisted = true
-        break    
+        break
       end
 
       if !self.description.blank? and self.description.include? word
         blacklisted = true
-        break    
+        break
       end
     end
 
