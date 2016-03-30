@@ -23,9 +23,8 @@ $(function () {
     var aboutLinkWrapper    = $('.about-link-wrapper'),
         aboutTooltip        = aboutLinkWrapper.find('.tooltip'),
         notificationBar     = $('.notification-bar'),
-        notificationsClose  = notificationBar.find('.notification .close-message'),
-        welcome             = $('.welcome'),
-        welcomeClose        = welcome.find('.close-message');
+        notification        = $('.notification-bar__cv-by'),
+        notificationClose   = notification.find('.close-message');
 
     /* BOXES */
     // Draw the infographics on boxes
@@ -64,35 +63,11 @@ $(function () {
 
     checkNotifications();
 
-    notificationsClose.bind('click', function(e) {
-        var noty = $( e.target ).parent();
-        noty.fadeOut(400, function() {
-            noty.remove();
+    notificationClose.bind('click', function () {
+        notification.fadeOut(400, function() {
+            notification.remove();
             checkNotifications();
         });
-    });
-
-    welcomeClose.bind('click', function () {
-        welcome.fadeOut(400, function() {
-            welcome.remove();
-            checkNotifications();
-        });
-    });
-
-    /* Social Media Buttons */
-    var contextElement = document.querySelector('.notification-bar .actions');
-    new SocialMediaButtons({
-        facebookLikeButton : {
-            element: contextElement.querySelector('.facebook-like')
-        },
-        twitterTweetButton : {
-            element: contextElement.querySelector('.tweet')
-        },
-        twitterFollow : {
-            element: contextElement.querySelector('.twitter-follow'),
-            showCount: false,
-            showScreenName: true
-        }
     });
 
     DynamicMeasures.update();

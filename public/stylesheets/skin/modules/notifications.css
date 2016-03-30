@@ -1,26 +1,12 @@
 .notification-bar {
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
-.welcome {
-  background: #ffffff;
-}
-.welcome .header .title {color: #4c4c4c; text-transform: uppercase;}
-.welcome .description {color: #666}
-.welcome .description > span {}
-.welcome .description a {color: #bb2828; text-decoration: underline}
-.welcome .description a:hover {color: #B88585}
 .notification-bar .close-message {
-  background: #ededed;
-  color: #808080;
-  text-decoration: none;
   text-align: center;
-  border-radius: 50%;
-  z-index: 2;
-  font-family: Arial, Verdana, sans-serif;
+  color: #fff;
+  text-decoration: none;
 }
-.welcome > .close-message:hover {
-  color: #B88585;
-}
+
 .notification .close-message {
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
@@ -85,3 +71,27 @@
 .notification.orange .close-message {background-color: #F3B968}
 
 .notification .circle {background-color: #ffffff; border-radius: 50%}
+
+.notification-bar__cv-by {
+  background: #333 url('/images/v4/home/bg-cv-by-notification@2x.jpg') 100% 100% no-repeat;
+  background-size: 68px 69px;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.notification-bar__cv-by::after {
+  background-image: linear-gradient(to right, #53D1A8, #CB9411);
+}
+
+.notification-bar__cta,
+.notification-bar__cta:visited {
+  font-weight: bold;
+  color: #fff;
+  border-radius: 3px;
+  border-color: #CA9412;
+}
+
+.notification-bar__cta:hover {
+  background-color: #CA9412;
+  text-decoration: none;
+}

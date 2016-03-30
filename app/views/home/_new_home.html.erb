@@ -3,32 +3,12 @@
 
   <!-- notification bar -->
   <div class="notification-bar is-empty">
-    <div class="welcome" data-hansel-component-id="top-notice">
+    <div class='notification-bar__cv-by'>
       <a class="close-message">&times;</a>
-      <div class="header">
-        <h2 class="title"><%= t('layout.welcome_title') %></h2>
-        <ul class="actions">
-          <li class="facebook-like"></li>
-          <li class="tweet"></li>
-          <li class="twitter-follow"></li>
-        </ul>
-      </div>
-      <p class="description">
-        <%= t('layout.welcome')  %>
-        <a href="/about"><%= t('layout.learn_more')  %></a>
-      </p>
+      <p class='notification-bar__title'>We’ve built a new tool to help you crowdsource & curate information more effectively.</p>
+      <p class='notification-bar__text'>The new <b>Crowdvoice.by</b> is customizable and embeddable on any page you manage.  CrowdVoice.org will still be here to lend context to global social movements and human rights issues.</p>
+      <a class='notification-bar__cta' href='https://crowdvoice.by/'>Try Crowdvoice.by Here</a>
     </div>
-    <% @notifications.each do |notification| %>
-      <div class="notification <%= notification.theme %>">
-        <a class="close-message">&times;</a>
-        <div class="description">
-          <span class="circle">
-            <i class="sprite-sidebar"></i>
-          </span>
-          <p><%= link_to notification.content, notification.url %></p>
-        </div>
-      </div>
-    <% end %>
   </div>
   <!-- @notification bar -->
 
