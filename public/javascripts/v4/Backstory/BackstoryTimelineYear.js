@@ -28,7 +28,9 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
                 }
             });
 
-            backstoryTimelineYear._addMiniEvents();
+            setTimeout(function() {
+              backstoryTimelineYear._addMiniEvents();
+            }, 0);
         },
 
         _addMiniEvents : function _addMiniEvents() {
@@ -71,49 +73,72 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
                 });
             });
 
-            /* add the events to the closest year+month last children */
-            var data = getMonthChildren.call(backstoryTimelineYear);
+            if (!miniEvents.length) return this;
 
-            if (miniEvents.length) {
-                miniEvents.forEach(function(mini_event) {
-                    var mini_event_month, mini_event_day, found;
+            var months = getMonthChildren.call(backstoryTimelineYear);
 
-                    mini_event_month = ~~mini_event.month;
-                    mini_event_day = ~~mini_event.day;
+            miniEvents.forEach(function(mini_event) {
+              var mini_event_month = ~~mini_event.month;
+              var mini_event_day = ~~mini_event.day;
 
-                    /* try to add mini_event to the nearest month/day (equal or ahead) */
-                    found = data.some(function(dates) {
-                        if (mini_event_month === ~~dates.month) {
-                            return dates.children.slice(0).reverse().some(function(monthChild) {
-                                if (mini_event_day >= ~~monthChild.data.day) {
-                                    addCard.call(backstoryTimelineYear, mini_event, monthChild);
-                                    return true;
-                                }
-                            });
-                        }
-                    });
+              var found_first = months.slice().reverse().some(function(month) {
+                var current_month = ~~month.month;
+                var month_events_len = month.parent.children.length - 1;
 
-                    if (found) {
+                return month.children.slice(0).reverse().some(function(event, index) {
+                  var current_day = ~~event.data.day;
+
+                  if ((mini_event_month === current_month && mini_event_day >= current_day) || (index === month_events_len)) {
+                    addCard.call(backstoryTimelineYear, mini_event, event);
+                    return true;
+                  }
+
+                  if (mini_event_month > current_month) {
+                    addCard.call(backstoryTimelineYear, mini_event, event);
+                    return true;
+                  }
+                });
+              });
+
+              if (found_first) return true;
+
+              months.slice().some(function(month) {
+                var current_month = ~~month.month;
+                var month_events_len = month.parent.children.length - 1;
+
+                return month.children.slice(0).some(function(event, index) {
+                  var current_day = ~~event.data.day;
+
+                  if ((mini_event_month < current_month) || (index === month_events_len)) {
+                    var previous_event = event.parent.getPreviousSibling();
+
+                    if (previous_event) {
+                      var previous_last_event = previous_event.children[previous_event.children.length - 1];
+                      if (previous_last_event) {
+                        addCard.call(backstoryTimelineYear, mini_event, previous_last_event);
                         return true;
-                    }
-
-                    /* try to add mini_event to the nearest month/day (behind) */
-                    data.slice(0).reverse().some(function(dates) {
-                        if (mini_event_month > ~~dates.month) {
-                            return dates.children.slice(0).reverse().some(function(monthChild) {
-                                if (mini_event_day <= ~~monthChild.data.day) {
-                                    addCard.call(backstoryTimelineYear, mini_event, monthChild);
-                                    return true;
-                                }
-                            });
+                      }
+                    } else {
+                      var previous_year = event.parent.parent.getPreviousSibling();
+                      if (previous_year) {
+                        var previous_year_last_month = previous_year.children[previous_year.children.length - 1];
+                        if (previous_year_last_month) {
+                          var previous_year_last_event = previous_year_last_month.children[previous_year_last_month.children.length - 1];
+                          if (previous_year_last_event) {
+                            addCard.call(previous_year, mini_event, previous_year_last_event);
+                            return true;
+                          }
                         }
-                    });
+                      }
+                    }
+                  }
                 });
+              });
+            });
 
-                _cards.forEach(function(card) {
-                    card.start();
-                });
-            }
+            _cards.map(function(card) {
+              card.start();
+            });
 
             return this;
         }
