@@ -51,7 +51,7 @@ Class(CV, 'Map').inherits(Widget)({
      */
     inyectGoogleMapsScript : function inyectGoogleMapsScript(callback) {
         var script = document.createElement('script');
-        script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false";
+        script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp";
 
         if (callback) {
             script.src += "&callback=" + callback;
@@ -63,20 +63,7 @@ Class(CV, 'Map').inherits(Widget)({
         return this;
     },
 
-    inyectMapClusterScript : function inyectMapClusterScript () {
-        if (this.isMapClusterInyected === false) {
-            var script = document.createElement('script');
-            var protocol = window.location.protocol;
-            script.src = protocol + "//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js";
-            document.getElementsByTagName('head')[0].appendChild(script);
-            this.isGoogleScriptInyected = true;
-        }
-
-        return this;
-    },
-
     isGoogleScriptInyected : false,
-    isMapClusterInyected : false,
     _markerLabelAdded : false,
 
     prototype: {
