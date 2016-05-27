@@ -120,7 +120,6 @@ Class(CV, 'MainMap').inherits(Widget).includes(CV.MainMapHelper)({
             this.constructor.bind('googleMapsScriptInyected', function () {
                 var mainMap = this;
 
-                CV.Map.inyectMapClusterScript();
                 mainMap.mapWidget.setMapCenter(0, 0).createMap();
                 mainMap._createContinentPolygons();
                 mainMap._created = true;
