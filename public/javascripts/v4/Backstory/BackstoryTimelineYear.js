@@ -83,12 +83,11 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
 
               var found_first = months.slice().reverse().some(function(month) {
                 var current_month = ~~month.month;
-                var month_events_len = month.parent.children.length - 1;
 
-                return month.children.slice(0).reverse().some(function(event, index) {
+                return month.children.slice().reverse().some(function(event, index) {
                   var current_day = ~~event.data.day;
 
-                  if ((mini_event_month === current_month && mini_event_day >= current_day) || (index === month_events_len)) {
+                  if ((mini_event_month === current_month) && (mini_event_day >= current_day)) {
                     addCard.call(backstoryTimelineYear, mini_event, event);
                     return true;
                   }
@@ -100,16 +99,17 @@ Class(CV, 'BackstoryTimelineYear').inherits(Widget)({
                 });
               });
 
-              if (found_first) return true;
+              if (found_first) {
+                return true;
+              }
 
               months.slice().some(function(month) {
                 var current_month = ~~month.month;
-                var month_events_len = month.parent.children.length - 1;
 
-                return month.children.slice(0).some(function(event, index) {
+                return month.children.slice().some(function(event, index) {
                   var current_day = ~~event.data.day;
 
-                  if ((mini_event_month < current_month) || (index === month_events_len)) {
+                  if (mini_event_month < current_month) {
                     var previous_event = event.parent.getPreviousSibling();
 
                     if (previous_event) {
