@@ -22,21 +22,25 @@ class VoicesController < ApplicationController
 
     @voice.related_voices_ids = @voice.related_voices_ids || ""
     related_voices_ids = @voice.related_voices_ids.split(',').map {|item| item.to_i}
-    @related_voices = Voice.find(related_voices_ids).map { |item| 
+    @related_voices = Voice.find(related_voices_ids).map { |item|
       {
         :title => item[:title],
         :slug => item.default_slug
       }
     }
 
+    if params[:backstory]
+      @blocks = []
+      respond_with([], :location => @voice)
+      return
+    end
 
-    # scope = (params[:mod] ? @voice.posts.unapproved.where(["created_at > ?", 1.year.ago ]) : @voice.posts.approved)
     scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
 
-    # query = scope.includes(:tags).to_sql
-    query = scope.to_sql
 
-    @posts = Post.find_by_sql(query)
+    # query = scope.to_sql
+
+    @posts = scope
 
     @tweets = @voice.tweets.order('created_at desc').limit(100)
 
@@ -56,61 +60,23 @@ class VoicesController < ApplicationController
     end
 
     if request.format.html?
-      puts "="*80
-      puts query
-      # result = ActiveRecord::Base.connection.execute(query)
       result = []
 
       response = {
-        # :tags => Oj.dump(@tags, :mode => :compat),
-        # :tags => @tags,
         :tags => [],
         :posts => result,
         :timeline => @timeline
       }
 
-      @response = Oj.dump(response, :mode => :compat)
+      # @response = Oj.dump(response, :mode => :compat)
 
       respond_with(@posts, :location => @voice)
     else
-      # posts_ids = @posts.map(&:id)
+      # @posts = Post.find_by_sql(query)
 
-      # @tags = ActsAsTaggableOn::Tagging.includes(:tag).where(:taggable_id => posts_ids).map { |tagging|
-      #   name = 'none'
+      # result = ActiveRecord::Base.connection.execute(query)
 
-      #   if tagging.tag
-      #     name = tagging.tag.name
-      #   end
-
-      #   {
-      #     :id => tagging.taggable_id,
-      #     :name => name
-      #   }
-      # }
-
-      # result = []
-
-      # last_date = nil
-      # count     = 0
-      # limit     = 100
-
-      # ActiveRecord::Base.connection.execute(query).each do |res|
-      #   date = "#{res[13].year}-#{res[13].month}"
-
-      #   if date != last_date
-      #     last_date = date
-      #     count = 0
-      #   else
-      #     count += 1
-      #   end
-
-      #   if count < limit
-      #     result.push(res)
-      #   end
-      # end
-
-      result = ActiveRecord::Base.connection.execute(query)
-
+      result = @posts
 
 
       @response = {
