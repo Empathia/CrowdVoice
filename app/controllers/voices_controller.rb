@@ -66,7 +66,6 @@ class VoicesController < ApplicationController
         :timeline => @timeline
       }
 
-      # @response = Oj.dump(response, :mode => :compat)
 
       respond_with(@posts, :location => @voice)
     else
@@ -74,12 +73,11 @@ class VoicesController < ApplicationController
 
       # result = ActiveRecord::Base.connection.execute(query)
 
-      scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
+      # scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
 
-      @posts = scope
+      @posts = []
 
       result = @posts
-
 
       @response = {
         # :tags => Oj.dump(@tags, :mode => :compat),
