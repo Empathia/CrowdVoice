@@ -35,10 +35,6 @@ class VoicesController < ApplicationController
       @blocks = @voice.blocks.map(&:data_parsed)
     end
 
-    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
-      @votes = get_votes
-    end
-
     if params[:backstory]
       @blocks = []
       respond_with([], :location => @voice)
@@ -51,6 +47,10 @@ class VoicesController < ApplicationController
     # query = scope.to_sql
 
     @posts = scope
+
+    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
+      @votes = get_votes
+    end
 
 
     if params[:post]
