@@ -29,6 +29,16 @@ class VoicesController < ApplicationController
       }
     }
 
+    @tweets = @voice.tweets.order('created_at desc').limit(100)
+
+    if request.format.html?
+      @blocks = @voice.blocks.map(&:data_parsed)
+    end
+
+    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
+      @votes = get_votes
+    end
+
     if params[:backstory]
       @blocks = []
       respond_with([], :location => @voice)
@@ -42,15 +52,6 @@ class VoicesController < ApplicationController
 
     @posts = scope
 
-    @tweets = @voice.tweets.order('created_at desc').limit(100)
-
-    if request.format.html?
-      @blocks = @voice.blocks.map(&:data_parsed)
-    end
-
-    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
-      @votes = get_votes
-    end
 
     if params[:post]
       post = @voice.posts.find(params[:post])
