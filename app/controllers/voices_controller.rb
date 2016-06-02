@@ -43,7 +43,7 @@ class VoicesController < ApplicationController
 
     # query = scope.to_sql
 
-    @posts = = (params[:mod] ? @voice.posts.unapproved.limit(1000) : @voice.posts.approved.limit(1000))
+    @posts = (params[:mod] ? @voice.posts.unapproved.limit(1000) : @voice.posts.approved.limit(1000))
 
     if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
       @votes = get_votes
