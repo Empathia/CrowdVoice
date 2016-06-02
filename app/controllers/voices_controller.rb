@@ -43,11 +43,11 @@ class VoicesController < ApplicationController
 
     # query = scope.to_sql
 
-    @posts = []
-    @votes = []
-    # if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
-    #   @votes = get_votes
-    # end
+    @posts = = (params[:mod] ? @voice.posts.unapproved.limit(1000) : @voice.posts.approved.limit(1000))
+
+    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
+      @votes = get_votes
+    end
 
 
     if params[:post]
@@ -58,7 +58,7 @@ class VoicesController < ApplicationController
     end
 
     if request.format.html?
-      result = []
+      result = @posts
 
       response = {
         :tags => [],
@@ -69,14 +69,6 @@ class VoicesController < ApplicationController
 
       respond_with(@posts, :location => @voice)
     else
-      # @posts = Post.find_by_sql(query)
-
-      # result = ActiveRecord::Base.connection.execute(query)
-
-      # scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
-
-      @posts = []
-
       result = @posts
 
       @response = {
