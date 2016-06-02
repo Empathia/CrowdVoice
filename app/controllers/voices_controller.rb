@@ -41,16 +41,13 @@ class VoicesController < ApplicationController
       return
     end
 
-    scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
-
-
     # query = scope.to_sql
 
-    @posts = scope
-
-    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
-      @votes = get_votes
-    end
+    @posts = []
+    @votes = []
+    # if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
+    #   @votes = get_votes
+    # end
 
 
     if params[:post]
@@ -76,6 +73,10 @@ class VoicesController < ApplicationController
       # @posts = Post.find_by_sql(query)
 
       # result = ActiveRecord::Base.connection.execute(query)
+
+      scope = (params[:mod] ? @voice.posts.unapproved.limit(10000) : @voice.posts.approved)
+
+      @posts = scope
 
       result = @posts
 
