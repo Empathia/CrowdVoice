@@ -57,30 +57,17 @@ class VoicesController < ApplicationController
       end
     end
 
-    if request.format.html?
-      result = @posts
 
-      response = {
-        :tags => [],
-        :posts => result,
-        :timeline => @timeline
-      }
+    result = @posts
+
+    response = {
+      :tags => [],
+      :posts => result,
+      :timeline => @timeline
+    }
 
 
-      respond_with(@posts, :location => @voice)
-    else
-      result = @posts
-
-      @response = {
-        # :tags => Oj.dump(@tags, :mode => :compat),
-        # :tags => @tags,
-        :tags => [],
-        :posts => result,
-        :timeline => @timeline
-      }
-
-      render :json => Oj.dump(@response, :mode => :compat), :layout => false
-    end
+    respond_with(@posts, :location => @voice)
 
 
   end
