@@ -313,7 +313,7 @@
 .cv-timeline-element__info-wrapper {
   position: relative;
   background-color: #fff;
-  padding: 5px 0 0 0;
+  padding: 5px 0 20px 0;
   box-shadow: 0 -2px 0 0 rgba(0,0,0,0.1);
 }
 
@@ -326,9 +326,10 @@
   background-size: 6px 6px;
 }
 .cv-timeline-element__info {
-  width: 250px;
+  width: 266px;
   white-space: normal;
   padding: 10px 15px;
+  margin-bottom: 20px;
   border-left-width: 3px;
   border-left-style: solid;
   border-left-color: #fff;

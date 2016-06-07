@@ -29,6 +29,38 @@ Class(CV, 'BackstoryTimelineMonth').inherits(Widget)({
             }, this);
 
             this.children[0].element.find('.cv-timeline-element__info-wrapper').append(this.labelElement);
+        },
+
+        /**
+         * Proxy that checks if a mini event can be inserted on this month.
+         * @public
+         * @param {Object} miniEvent - The mini event data
+         * @return {BackstoryTimelineElement || null}
+         */
+        canEventBeInserted: function(miniEvent) {
+          var _insertAt = null;
+
+          this.children.slice().reverse().some(function(event) {
+            if ((miniEvent.month === this.month) && (miniEvent.day >= event.data.day)) {
+              _insertAt = event;
+              return true;
+            }
+
+            if (miniEvent.month > this.month) {
+              _insertAt = event;
+              return true;
+            }
+          }, this);
+
+          return _insertAt;
+        },
+
+        hasEvents: function() {
+          return this.children.length;
+        },
+
+        getLastEvent: function() {
+          return this.children[this.children.length - 1];
         }
     }
 });

@@ -92,61 +92,57 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 })).render(this._timelineInnerElement);
             }, this);
 
-            this._eventCardsElements = this.element.find('.cv-timeline-cards__carousel-wrapper');
-            this._imageCovers = this.element.find('.cv-timeline-element__gallery-frame > img');
+            this._printMiniEvents();
 
-            lastElementItem = this.children[this.children.length-1];
-            lastElementItem = lastElementItem.element.find('.cv-timeline-month:last-child .cv-timeline-element:last-child');
+            setTimeout(function(timeline) {
+              lastElementItem = timeline.children[timeline.children.length-1];
+              lastElementItem = lastElementItem.element.find('.cv-timeline-month:last-child .cv-timeline-element:last-child');
 
-            if (lastElementItem.find('.cv-timeline-cards').length) {
+              if (lastElementItem.find('.cv-timeline-cards').length) {
                 lastElementItem.css('min-width', 620);
-            }
+              }
 
-            this.updateHeightAndCenterVertically();
-            this._scrollHandler();
+              timeline.updateHeightAndCenterVertically();
+              timeline._scrollHandler();
+            }, 0, this);
 
             return this;
         },
 
-        updateHeightAndCenterVertically : function updateHeightAndCenterVertically() {
-            var headerHeight, breadcrumbHeight, eventsHeights, maxEventsHeight, timelineHeight, timelineWrapperHeight, defaultImageHeight, cardsOffsetHeight, topPositionValue;
+        /**
+         * Iterates over all timeline's mini events and add them.
+         * @private
+         */
+        _printMiniEvents: function() {
+          var miniEvents = [];
 
-            headerHeight = 99;
-            breadcrumbHeight = 40;
+          this.children.map(function(year) {
+            miniEvents = miniEvents.concat(year.getMiniEvents());
+          });
 
-            if (window.innerHeight <= 550) {
-                /* (550 = minTimelineHeight) */
-                timelineWrapperHeight = (550 - (headerHeight + breadcrumbHeight));
-            } else {
-                timelineWrapperHeight = this.element.height();
-            }
+          miniEvents.map(this._addMiniEvent.bind(this));
+        },
 
-            defaultImageHeight = 200;
-            cardsOffsetHeight = 24;
+        /**
+         * Proxy to add a specific mini event into the timeline chronologically.
+         * @private
+         * @param {Object} miniEvent - Mini event data.
+         */
+        _addMiniEvent: function(miniEvent) {
+          var year = this['year-' + miniEvent.year];
+          var months = year.getMonths();
 
-            /* reset image cover sizes */
-            this._imageCovers.each(function(i, e) {
-                e.style.cssText = "";
-            });
+          var _insertAt;
 
-            /* get all event cards height */
-            if (this._eventCardsElements.length) {
-                eventsHeights = this._eventCardsElements.map(function(i,e) {
-                    return e.getBoundingClientRect().height;
-                });
-            } else {
-                eventsHeights = [0];
-            }
+          months.slice().reverse().some(function(month) {
+            _insertAt = month.canEventBeInserted(miniEvent);
+            if (_insertAt) return true;
+          });
 
-            maxEventsHeight = CV.Utils.getMaxOfArray(eventsHeights);
+          if (_insertAt) return _insertAt.addMiniEvent(miniEvent);
 
-            if (maxEventsHeight > 0) {
-                timelineHeight = ((maxEventsHeight - cardsOffsetHeight) + this._timelineInnerElement.height());
-            } else {
-                timelineHeight = this._timelineInnerElement.height();
-            }
-
-            diff = (timelineHeight - timelineWrapperHeight);
+          year.tryToInsertEventPrev(miniEvent);
+        },
 
         updateHeightAndCenterVertically : function updateHeightAndCenterVertically() {
           var topPositionValue = (this.element.height() - (this._timelineInnerElement.height())) / 2;
