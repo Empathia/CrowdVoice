@@ -31,9 +31,7 @@ class VoicesController < ApplicationController
 
     @tweets = @voice.tweets.order('created_at desc').limit(100)
 
-    if request.format.html?
-      @blocks = @voice.blocks.map(&:data_parsed)
-    end
+    @blocks = @voice.blocks.map(&:data_parsed)
 
     if params[:backstory]
       @blocks = []
@@ -41,14 +39,9 @@ class VoicesController < ApplicationController
       return
     end
 
-    # query = scope.to_sql
-
     @posts = (params[:mod] ? @voice.posts.unapproved.limit(1000) : @voice.posts.approved.limit(1000))
 
-    if (request.format.html? || request.env["HTTP_USER_AGENT"] =~ /MSIE/)
-      @votes = get_votes
-    end
-
+    @votes = get_votes
 
     if params[:post]
       post = @voice.posts.find(params[:post])
@@ -57,32 +50,16 @@ class VoicesController < ApplicationController
       end
     end
 
-    if request.format.html?
-      result = @posts
 
-      response = {
-        :tags => [],
-        :posts => result,
-        :timeline => @timeline
-      }
+    result = @posts
 
+    response = {
+      :tags => [],
+      :posts => result,
+      :timeline => @timeline
+    }
 
-      respond_with(@posts, :location => @voice)
-    else
-      result = @posts
-
-      @response = {
-        # :tags => Oj.dump(@tags, :mode => :compat),
-        # :tags => @tags,
-        :tags => [],
-        :posts => result,
-        :timeline => @timeline
-      }
-
-      render :json => Oj.dump(@response, :mode => :compat), :layout => false
-    end
-
-
+    respond_with(@posts, :location => @voice)
   end
 
   def fetch_feeds
