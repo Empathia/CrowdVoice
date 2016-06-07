@@ -22,17 +22,14 @@ Class(CV, 'BackstoryUIComponent').inherits(Widget)({
         },
 
         showSpinner : function showSpinner() {
-            console.log('show spinner')
             return this;
         },
 
         hideSpinner : function hideSpinner() {
-            console.log('hide spinner')
             return this;
         },
 
         updateUI : function updateUI() {
-            console.log('update ui')
             this.timeline.updateUI();
             this.breadcrumb.updateUI();
             return this;

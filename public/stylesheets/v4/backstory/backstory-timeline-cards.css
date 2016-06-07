@@ -2,19 +2,16 @@
 .cv-timeline-cards {
   width: 326px;
   white-space: nowrap;
-  position: absolute;
-  top: 150px;
-  left: 225px;
+  right: -238px;
   z-index: 1;
 }
-.cv-timeline-cards:before {
-  content: '';
-  width: 1px;
-  height: 160px;
-  background: #ccc;
+.cv-timeline-cards__line {
   position: absolute;
-  top: -118px;
-  left: 27px;
+  left: 28px;
+  bottom: 100%;
+  width: 1px;
+  height: 0px;
+  background: #ccc;
 }
 
 .cv-timeline-cards__arrow {
@@ -44,7 +41,6 @@
 .cv-timeline-cards__carousel-wrapper {
   position: relative;
   overflow: hidden;
-  background-color: #fff;
   padding-top: 5px;
 }
 
@@ -90,8 +86,8 @@
 }
 
 .cv-timeline-card__info-date {
-  display: inline-block;
   font-size: 15px;
+  margin-bottom: 4px;
   color: #b2b2b2;
   text-transform: uppercase;
 }

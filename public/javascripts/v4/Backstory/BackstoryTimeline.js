@@ -41,8 +41,6 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
         _backgroundElement : null,
 
         _suggestEventButton : null,
-        _eventCardsElements : null,
-        _imageCovers : null,
         _scrollTimer : null,
         _spyScrollFlag : true,
         _resizeTimer : null,
@@ -94,79 +92,69 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                 })).render(this._timelineInnerElement);
             }, this);
 
-            this._eventCardsElements = this.element.find('.cv-timeline-cards__carousel-wrapper');
-            this._imageCovers = this.element.find('.cv-timeline-element__gallery-frame > img');
+            this._printMiniEvents();
 
-            lastElementItem = this.children[this.children.length-1];
-            lastElementItem = lastElementItem.element.find('.cv-timeline-month:last-child .cv-timeline-element:last-child');
+            setTimeout(function(timeline) {
+              lastElementItem = timeline.children[timeline.children.length-1];
+              lastElementItem = lastElementItem.element.find('.cv-timeline-month:last-child .cv-timeline-element:last-child');
 
-            if (lastElementItem.find('.cv-timeline-cards').length) {
+              if (lastElementItem.find('.cv-timeline-cards').length) {
                 lastElementItem.css('min-width', 620);
-            }
+              }
 
-            this.updateHeightAndCenterVertically();
-            this._scrollHandler();
+              timeline.updateHeightAndCenterVertically();
+              timeline._scrollHandler();
+            }, 0, this);
 
             return this;
         },
 
+        /**
+         * Iterates over all timeline's mini events and add them.
+         * @private
+         */
+        _printMiniEvents: function() {
+          var miniEvents = [];
+
+          this.children.map(function(year) {
+            miniEvents = miniEvents.concat(year.getMiniEvents());
+          });
+
+          miniEvents.map(this._addMiniEvent.bind(this));
+        },
+
+        /**
+         * Proxy to add a specific mini event into the timeline chronologically.
+         * @private
+         * @param {Object} miniEvent - Mini event data.
+         */
+        _addMiniEvent: function(miniEvent) {
+          var year = this['year-' + miniEvent.year];
+          var months = year.getMonths();
+
+          var _insertAt;
+
+          months.slice().reverse().some(function(month) {
+            _insertAt = month.canEventBeInserted(miniEvent);
+            if (_insertAt) return true;
+          });
+
+          if (_insertAt) return _insertAt.addMiniEvent(miniEvent);
+
+          year.tryToInsertEventPrev(miniEvent);
+        },
+
         updateHeightAndCenterVertically : function updateHeightAndCenterVertically() {
-            var headerHeight, breadcrumbHeight, eventsHeights, maxEventsHeight, timelineHeight, timelineWrapperHeight, defaultImageHeight, cardsOffsetHeight, topPositionValue;
+          var topPositionValue = (this.element.height() - (this._timelineInnerElement.height())) / 2;
 
-            headerHeight = 99;
-            breadcrumbHeight = 40;
-
-            if (window.innerHeight <= 550) {
-                /* (550 = minTimelineHeight) */
-                timelineWrapperHeight = (550 - (headerHeight + breadcrumbHeight));
-            } else {
-                timelineWrapperHeight = this.element.height();
-            }
-
-            defaultImageHeight = 200;
-            cardsOffsetHeight = 24;
-
-            /* reset image cover sizes */
-            this._imageCovers.each(function(i, e) {
-                e.style.cssText = "";
-            });
-
-            /* get all event cards height */
-            if (this._eventCardsElements.length) {
-                eventsHeights = this._eventCardsElements.map(function(i,e) {
-                    return e.getBoundingClientRect().height;
-                });
-            } else {
-                eventsHeights = [0];
-            }
-
-            maxEventsHeight = CV.Utils.getMaxOfArray(eventsHeights);
-
-            if (maxEventsHeight > 0) {
-                timelineHeight = ((maxEventsHeight - cardsOffsetHeight) + this._timelineInnerElement.height());
-            } else {
-                timelineHeight = this._timelineInnerElement.height();
-            }
-
-            diff = (timelineHeight - timelineWrapperHeight);
-
-            if (diff > 0) {
-                this._imageCovers.each(function(i, e) {
-                    e.style.width = "auto";
-                    e.style.height = (defaultImageHeight - diff) + "px";
-                });
-            }
-
-            topPositionValue = (timelineWrapperHeight - (this._timelineInnerElement.height() + (maxEventsHeight - cardsOffsetHeight))) / 2;
-            this._timelineInnerElement[0].style.top = topPositionValue + "px";
+          if (topPositionValue < 0) topPositionValue = 0;
+          this._timelineInnerElement[0].style.top = topPositionValue + "px";
 
             /* resize background image container */
-            var bh = (this.element[0].querySelector('.cv-timeline-element__info-wrapper').offsetTop + topPositionValue + 10);
-            this._backgroundWrapperElement[0].style.height = bh + "px";
+          var bh = (this.element[0].querySelector('.cv-timeline-element__info-wrapper').offsetTop + topPositionValue + 10);
+          this._backgroundWrapperElement[0].style.height = bh + "px";
 
-            eventsHeights = maxEventsHeight = timelineHeight = timelineWrapperHeight = defaultImageHeight = cardsOffsetHeight = topPositionValue = null;
-
-            return this;
+          return this;
         },
 
         getLeftOffset : function getLeftOffset() {
@@ -274,7 +262,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                         this.toggler.addClass('active');
                     }
 
-                    return false
+                    return false;
                 },
             }).render(this.element.find('.related-backstories__wrapper'));
 

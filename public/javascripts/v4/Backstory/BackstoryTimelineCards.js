@@ -1,6 +1,7 @@
 Class(CV, 'BackstoryTimelineCards').inherits(Widget)({
     HTML : '\
         <div class="cv-timeline-cards">\
+            <div class="cv-timeline-cards__line"></div>\
             <div class="cv-timeline-cards__carousel-wrapper">\
                 <div class="cv-timeline-cards__carousel"></div>\
             </div>\
@@ -39,18 +40,21 @@ Class(CV, 'BackstoryTimelineCards').inherits(Widget)({
         },
 
         start : function start() {
-            var childrenLength = this.children.length;
+          var childrenLength = this.children.length;
 
-            if (childrenLength) {
-                this.showCardByIndex(0);
+          if (childrenLength) {
+            this.showCardByIndex(0);
 
-                if (childrenLength === 1) {
-                    this._prevArrowElement.hide();
-                    this._nextArrowElement.hide();
-                }
+            if (childrenLength === 1) {
+              this._prevArrowElement.hide();
+              this._nextArrowElement.hide();
+            } else {
+              this._prevArrowElement.show();
+              this._nextArrowElement.show();
             }
+          }
 
-            return this;
+          return this;
         },
 
         showCardByIndex : function showCardByIndex(index) {
@@ -76,6 +80,11 @@ Class(CV, 'BackstoryTimelineCards').inherits(Widget)({
             this.deactivateAllChildren().showCardByIndex(this._current += 1);
 
             return this;
+        },
+
+        setLineElementHeight: function(height) {
+          this.element.find('.cv-timeline-cards__line').css('height', height);
+          return this;
         },
 
         _updateArrowsState : function _updateArrowsState() {
