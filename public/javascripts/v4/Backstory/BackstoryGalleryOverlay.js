@@ -88,7 +88,6 @@ Class(CV, 'BackstoryGalleryOverlay').inherits(Widget)({
 
         init : function init(config) {
             Widget.prototype.init.call(this, config);
-            console.log('timeline gallery overlay');
 
             this._document = $(document);
             this._backropElement = this.element.find('.cv-backstory-overlay__backdrop');
