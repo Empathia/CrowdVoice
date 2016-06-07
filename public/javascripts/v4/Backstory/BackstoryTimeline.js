@@ -41,8 +41,6 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
         _backgroundElement : null,
 
         _suggestEventButton : null,
-        _eventCardsElements : null,
-        _imageCovers : null,
         _scrollTimer : null,
         _spyScrollFlag : true,
         _resizeTimer : null,
@@ -150,23 +148,17 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
 
             diff = (timelineHeight - timelineWrapperHeight);
 
-            if (diff > 0) {
-                this._imageCovers.each(function(i, e) {
-                    e.style.width = "auto";
-                    e.style.height = (defaultImageHeight - diff) + "px";
-                });
-            }
+        updateHeightAndCenterVertically : function updateHeightAndCenterVertically() {
+          var topPositionValue = (this.element.height() - (this._timelineInnerElement.height())) / 2;
 
-            topPositionValue = (timelineWrapperHeight - (this._timelineInnerElement.height() + (maxEventsHeight - cardsOffsetHeight))) / 2;
-            this._timelineInnerElement[0].style.top = topPositionValue + "px";
+          if (topPositionValue < 0) topPositionValue = 0;
+          this._timelineInnerElement[0].style.top = topPositionValue + "px";
 
             /* resize background image container */
-            var bh = (this.element[0].querySelector('.cv-timeline-element__info-wrapper').offsetTop + topPositionValue + 10);
-            this._backgroundWrapperElement[0].style.height = bh + "px";
+          var bh = (this.element[0].querySelector('.cv-timeline-element__info-wrapper').offsetTop + topPositionValue + 10);
+          this._backgroundWrapperElement[0].style.height = bh + "px";
 
-            eventsHeights = maxEventsHeight = timelineHeight = timelineWrapperHeight = defaultImageHeight = cardsOffsetHeight = topPositionValue = null;
-
-            return this;
+          return this;
         },
 
         getLeftOffset : function getLeftOffset() {
@@ -274,7 +266,7 @@ Class(CV, 'BackstoryTimeline').inherits(Widget)({
                         this.toggler.addClass('active');
                     }
 
-                    return false
+                    return false;
                 },
             }).render(this.element.find('.related-backstories__wrapper'));
 
