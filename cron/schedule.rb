@@ -26,7 +26,7 @@ every 1.days, :at => '12:00 am' do
   command "cd #{@path} && rm public/about.html && public/index.html"
 end
 
-every 1.hours do
+every 6.hours do
   command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} thor voices:update_feed_voices"
   command "cd #{@path} && GEM_HOME=/home/deploy/.bundler RAILS_ENV=#{@environment} rake fetch_tweets"
 end
