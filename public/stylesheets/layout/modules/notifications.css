@@ -50,7 +50,7 @@
 
 .notification-bar__cv-by {
   position: relative;
-  padding: 20px;
+  padding: 30px;
   line-height: 24px;
 }
 .notification-bar__cv-by::after {
@@ -69,16 +69,10 @@
   font-weight: bold;
 }
 
-.notification-bar__text {
-  font-size: 14px;
-  line-height: inherit;
-  margin-bottom: 15px;
-}
-
 .notification-bar__cta {
-  font-size: 14px;
-  padding: 4px 30px;
+  font-size: 12px;
+  padding: 2px 15px;
   display: inline-block;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
 }
