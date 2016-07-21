@@ -34,7 +34,6 @@ class VoicesController < ApplicationController
     @blocks = @voice.blocks.map(&:data_parsed)
 
     if params[:backstory]
-      @blocks = []
       respond_with([], :location => @voice)
       return
     end
